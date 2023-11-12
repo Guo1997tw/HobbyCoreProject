@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 namespace JHobby.Repository.Models.Dto
 {
-	internal class XXXXXDto
+	public class CategoryDto
 	{
+		public string CategoryName { get; set; } = null!;
+
+		public string TypeName { get; set; } = null!;
 	}
 }
