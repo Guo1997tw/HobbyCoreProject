@@ -18,13 +18,47 @@ namespace JHobby.Repository.Implements
 			_jhobbyContext = jhobbyContext;
 		}
 
-		public IEnumerable<CategoryDto> GetCategoryList()
-		{
-			return _jhobbyContext.Categories.Select(c => new CategoryDto
+        public IEnumerable<CategoryDto> GetAll()
+        {
+			var result = _jhobbyContext.Categories.Select(c => new CategoryDto
 			{
+				CategoryId = c.CategoryId,
 				CategoryName = c.CategoryName,
 				TypeName = c.TypeName,
 			}).ToList();
-		}
-	}
+
+			return result;
+        }
+
+        public CategoryDto GetById(int id)
+        {
+			var result = _jhobbyContext.Categories.FirstOrDefault(c => c.CategoryId == id);
+
+			if (result == null) { return null; }
+
+			return new CategoryDto
+			{
+				CategoryId = result.CategoryId,
+				CategoryName = result.CategoryName, 
+				TypeName = result.TypeName
+			};
+        }
+
+        public bool UpdateCategory(int id, CategoryDto categoryDto)
+        {
+            var result = _jhobbyContext.Categories.Find(id);
+
+			if(result != null)
+			{
+				result.CategoryName = categoryDto.CategoryName;
+                result.TypeName = categoryDto.TypeName;
+
+				_jhobbyContext.SaveChanges();
+
+				return true;
+			}
+
+			return false;
+        }
+    }
 }

@@ -1,4 +1,8 @@
+using JHobby.Repository.Implements;
+using JHobby.Repository.Interfaces;
 using JHobby.Repository.Models.Entity;
+using JHobby.Service.Implements;
+using JHobby.Service.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
 namespace JHobby.Website
@@ -15,6 +19,10 @@ namespace JHobby.Website
             // JHobby Coneection String
             builder.Services.AddDbContext<JhobbyContext>(option => {
                 option.UseSqlServer(builder.Configuration.GetConnectionString("JHobby"));});
+
+            // DI Interface
+            builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
+            builder.Services.AddScoped<ICategoryService, CategoryService>();
 
             var app = builder.Build();
 

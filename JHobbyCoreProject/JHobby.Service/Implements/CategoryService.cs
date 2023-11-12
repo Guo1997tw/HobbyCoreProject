@@ -4,6 +4,7 @@ using JHobby.Service.Interfaces;
 using JHobby.Service.Models;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Reflection.Metadata.Ecma335;
 using System.Text;
@@ -20,9 +21,49 @@ namespace JHobby.Service.Implements
 			_categoryRepository = categoryRepository;
 		}
 
-		public IEnumerable<CategoryModel> GetCategoryAll()
-		{
-			return (IEnumerable<CategoryModel>)_categoryRepository.GetCategoryList().ToList();
-		}
-	}
+        public IEnumerable<CategoryModel> GetList()
+        {
+			var resultDto = _categoryRepository.GetAll().ToList();
+
+			var categoryModel = resultDto.Select(dto => new CategoryModel
+			{
+				CategoryId = dto.CategoryId,
+				CategoryName = dto.CategoryName,
+				TypeName = dto.TypeName,
+			});
+
+			return categoryModel;
+        }
+
+        public CategoryModel GetDetail(int id)
+        {
+            var resultDto = _categoryRepository.GetById(id);
+
+			var categoryModel = new CategoryModel
+			{
+				CategoryId = resultDto.CategoryId,
+				CategoryName = resultDto.CategoryName,
+				TypeName = resultDto.TypeName,
+			};
+
+            return categoryModel;
+        }
+
+        public bool ReviseCategory(int id, CategoryModel categoryModel)
+        {
+			var resultDto = _categoryRepository.GetById(id);
+
+			if(resultDto == null)
+			{
+                return false;
+            }
+
+            resultDto.CategoryName = categoryModel.CategoryName;
+            resultDto.TypeName = categoryModel.TypeName;
+
+			_categoryRepository.UpdateCategory(id, resultDto);
+
+			return true;
+        }
+    }
 }
