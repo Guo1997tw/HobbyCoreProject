@@ -46,7 +46,7 @@ namespace JHobby.Repository.Implements
 
         public bool UpdateCategory(int id, CategoryDto categoryDto)
         {
-            var result = _jhobbyContext.Categories.Find(id);
+            var result = _jhobbyContext.Categories.FirstOrDefault(c => c.CategoryId == categoryDto.CategoryId);
 
 			if(result != null)
 			{

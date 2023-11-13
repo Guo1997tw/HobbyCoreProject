@@ -20,11 +20,22 @@ namespace JHobby.Website
             builder.Services.AddDbContext<JhobbyContext>(option => {
                 option.UseSqlServer(builder.Configuration.GetConnectionString("JHobby"));});
 
-            // DI Interface
+            // Swagger DI
+            builder.Services.AddEndpointsApiExplorer();
+            builder.Services.AddSwaggerGen();
+
+            // Interface DI
             builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
             builder.Services.AddScoped<ICategoryService, CategoryService>();
 
             var app = builder.Build();
+
+            // Swagger Use
+            if (app.Environment.IsDevelopment())
+            {
+                app.UseSwagger();
+                app.UseSwaggerUI();
+            }
 
             // Configure the HTTP request pipeline.
             if (!app.Environment.IsDevelopment())
