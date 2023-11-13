@@ -10,4 +10,8 @@
     <ProjectReference Include="..\JHobby.Service\JHobby.Service.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\images\register\" />
+  </ItemGroup>
+
 </Project>
