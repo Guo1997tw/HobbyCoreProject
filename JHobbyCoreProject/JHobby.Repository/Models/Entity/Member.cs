@@ -38,4 +38,12 @@ public partial class Member
     public DateTime CreationDate { get; set; }
 
     public DateTime? LastSignIn { get; set; }
+
+    public virtual ICollection<ActivityUser> ActivityUsers { get; set; } = new List<ActivityUser>();
+
+    public virtual ICollection<MsgBoard> MsgBoards { get; set; } = new List<MsgBoard>();
+
+    public virtual ICollection<Score> Scores { get; set; } = new List<Score>();
+
+    public virtual ICollection<Wish> Wishes { get; set; } = new List<Wish>();
 }

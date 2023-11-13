@@ -9,56 +9,83 @@ using System.Threading.Tasks;
 
 namespace JHobby.Repository.Implements
 {
-	public class CategoryRepository : ICategoryRepository
-	{
-		private readonly JhobbyContext _jhobbyContext;
+    public class CategoryRepository : ICategoryRepository
+    {
+        private readonly JhobbyContext _jhobbyContext;
 
-		public CategoryRepository(JhobbyContext jhobbyContext)
-		{
-			_jhobbyContext = jhobbyContext;
-		}
+        public CategoryRepository(JhobbyContext jhobbyContext)
+        {
+            _jhobbyContext = jhobbyContext;
+        }
 
         public IEnumerable<CategoryDto> GetAll()
         {
-			var result = _jhobbyContext.Categories.Select(c => new CategoryDto
-			{
-				CategoryId = c.CategoryId,
-				CategoryName = c.CategoryName,
-				TypeName = c.TypeName,
-			}).ToList();
+            using (_jhobbyContext)
+            {
+                var queryResult = _jhobbyContext.Categories.Select(c => new CategoryDto
+                {
+                    CategoryId = c.CategoryId,
+                    CategoryName = c.CategoryName,
+                    TypeName = c.TypeName,
+                }).ToList();
 
-			return result;
+                return queryResult;
+            }
         }
 
-        public CategoryDto GetById(int id)
+        public CategoryDto? GetById(int id)
         {
-			var result = _jhobbyContext.Categories.FirstOrDefault(c => c.CategoryId == id);
+            using (_jhobbyContext)
+            {
+                var queryResult = _jhobbyContext.Categories.FirstOrDefault(c => c.CategoryId == id);
 
-			if (result == null) { return null; }
+                if (queryResult == null) return null;
 
-			return new CategoryDto
-			{
-				CategoryId = result.CategoryId,
-				CategoryName = result.CategoryName, 
-				TypeName = result.TypeName
-			};
+                return new CategoryDto
+                {
+                    CategoryId = queryResult.CategoryId,
+                    CategoryName = queryResult.CategoryName,
+                    TypeName = queryResult.TypeName
+                };
+            }
         }
 
-        public bool UpdateCategory(int id, CategoryDto categoryDto)
+        public bool Insert(CreateCategoryDto createCategoryDto)
         {
-            var result = _jhobbyContext.Categories.FirstOrDefault(c => c.CategoryId == categoryDto.CategoryId);
+            using (_jhobbyContext)
+            {
+                var mapper = new Category
+                {
+                    CategoryName = createCategoryDto.CategoryName,
+                    TypeName = createCategoryDto.TypeName
+                };
 
-			if(result != null)
-			{
-				result.CategoryName = categoryDto.CategoryName;
-                result.TypeName = categoryDto.TypeName;
+                _jhobbyContext.Categories.Add(mapper);
+                _jhobbyContext.SaveChanges();
 
-				_jhobbyContext.SaveChanges();
+                return true;
+            }
+        }
 
-				return true;
-			}
+        public bool Update(int id, UpdateCategoryDto updateCategoryDto)
+        {
+            var queryResult = _jhobbyContext.Categories.SingleOrDefault(c => c.CategoryId == id);
 
-			return false;
+            if (queryResult == null) { return false; };
+
+            var mapper = new Category
+            {
+                CategoryName = updateCategoryDto.CategoryName,
+                TypeName = updateCategoryDto.TypeName
+            };
+
+            queryResult.CategoryName = mapper.CategoryName;
+            queryResult.TypeName = mapper.TypeName;
+
+            _jhobbyContext.Categories.Update(queryResult);
+            _jhobbyContext.SaveChanges();
+
+            return true;
         }
     }
 }

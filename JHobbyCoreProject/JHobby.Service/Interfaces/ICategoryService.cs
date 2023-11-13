@@ -14,6 +14,8 @@ namespace JHobby.Service.Interfaces
 
 		public CategoryModel GetDetail(int id);
 
-		public bool ReviseCategory(int id, CategoryModel categoryModel);
+		public bool CreateCategory(CreateCategoryModel createCategoryModel);
+
+		public bool UpdateCategory(int id, UpdateCategoryModel updateCategoryModel);
     }
 }

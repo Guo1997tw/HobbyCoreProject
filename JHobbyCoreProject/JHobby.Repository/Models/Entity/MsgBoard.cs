@@ -12,4 +12,6 @@ public partial class MsgBoard
     public string MessageText { get; set; } = null!;
 
     public DateTime MessageTime { get; set; }
+
+    public virtual Member Member { get; set; } = null!;
 }

@@ -50,21 +50,34 @@ namespace JHobby.Website.Controllers.Api
 			return Ok(viewModel);
 		}
 
-		[HttpPut("id")]
-		public ActionResult UpdateCategorys(int id, [FromBody] CategoryViewModel categoryViewModel)
+		[HttpPost]
+		public IActionResult InsertCategory(CreateCategoryViewModel createCategoryViewModel)
 		{
-			if (categoryViewModel == null) { return BadRequest(); }
+			var mapper = new CreateCategoryModel
+            {
+				CategoryName = createCategoryViewModel.CategoryName,
+				TypeName = createCategoryViewModel.TypeName
+			};
 
-			var servicesDto = _categoryService.GetDetail(id);
+			var result = _categoryService.CreateCategory(mapper);
 
-			if (servicesDto == null) { return NotFound(); }
+			return Ok(result);
+		}
 
-			servicesDto.CategoryName = categoryViewModel.CategoryName;
-            servicesDto.TypeName = categoryViewModel.TypeName;
+		[HttpPut]
+		public IActionResult UpdateCategory(int id, [FromBody] UpdateCategoryViewModel updateCategoryViewModel)
+		{
+			if(id < 0) {  return BadRequest(); }
 
-			_categoryService.ReviseCategory(id, servicesDto);
+			var mapper = new UpdateCategoryModel
+			{
+				CategoryName = updateCategoryViewModel.CategoryName,
+				TypeName = updateCategoryViewModel.TypeName
+			};
 
-			return Ok("已更改成功");
-        }
+			var result = _categoryService.UpdateCategory(id, mapper);
+
+			return Ok(result);
+		}
     }
 }

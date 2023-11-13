@@ -12,8 +12,10 @@ namespace JHobby.Repository.Interfaces
 	{
 		public IEnumerable<CategoryDto> GetAll();
 
-		public CategoryDto GetById(int id);
+		public CategoryDto? GetById(int id);
 
-		public bool UpdateCategory(int id, CategoryDto categoryDto);
+		public bool Insert(CreateCategoryDto createCategoryDto);
+
+        public bool Update(int id, UpdateCategoryDto updateCategoryDto);
     }
 }

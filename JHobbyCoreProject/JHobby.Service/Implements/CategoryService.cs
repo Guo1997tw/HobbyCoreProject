@@ -1,5 +1,6 @@
 ﻿using JHobby.Repository.Interfaces;
 using JHobby.Repository.Models.Dto;
+using JHobby.Repository.Models.Entity;
 using JHobby.Service.Interfaces;
 using JHobby.Service.Models;
 using System;
@@ -49,19 +50,29 @@ namespace JHobby.Service.Implements
             return categoryModel;
         }
 
-        public bool ReviseCategory(int id, CategoryModel categoryModel)
+        public bool CreateCategory(CreateCategoryModel createCategoryModel)
         {
-			var resultDto = _categoryRepository.GetById(id);
-
-			if(resultDto == null)
+			var mapper = new CreateCategoryDto
 			{
-                return false;
-            }
+				CategoryName = createCategoryModel.CategoryName,
+				TypeName = createCategoryModel.TypeName,
+			};
 
-            resultDto.CategoryName = categoryModel.CategoryName;
-            resultDto.TypeName = categoryModel.TypeName;
+			_categoryRepository.Insert(mapper);
 
-			_categoryRepository.UpdateCategory(id, resultDto);
+			return true;
+        }
+
+        public bool UpdateCategory(int id, UpdateCategoryModel updateCategoryModel)
+        {
+			var queryResult = _categoryRepository.GetById(id);
+
+			if (queryResult == null) { return false; }
+
+            queryResult.CategoryName = queryResult.CategoryName;
+            queryResult.TypeName = queryResult.TypeName;
+
+			_categoryRepository.Update(id, queryResult);
 
 			return true;
         }
