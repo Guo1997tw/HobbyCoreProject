@@ -16,13 +16,12 @@
     <link rel="stylesheet" href="~/assets/css/style.css">
 
     <style>
-        .RegisterLogo {
+        .LoginLogo {
             max-width: 150px;
             height: auto;
         }
     </style>
 }
-
 
 <body>
     <!-- Main Wrapper -->
@@ -32,28 +31,23 @@
         <div class="content">
             <div class="container wrapper no-padding">
                 <div class="row no-margin vph-100">
-                    <div class="col-12 col-sm-12 col-md-12 col-lg-12 no-padding">
+                    <div class="col-12 col-sm-12  col-lg-12 no-padding">
                         <div class="dull-pg">
                             <div class="row no-margin vph-100 d-flex align-items-center justify-content-center">
                                 <div class="col-sm-10 col-md-10 col-lg-10 mx-auto">
                                     <header class="text-center">
-                                        <img src="~/images/register/Hobby.png" class="RegisterLogo" alt="HobbyLogo">
+                                        <img src="~/images/register/Hobby.png" class="LoginLogo" alt="HobbyLogo">
                                     </header>
                                     <div class="shadow-card">
-                                        <h2>註冊畫面</h2>
+                                        <h2>歡迎揪團</h2>
+                                        <p>請登入您的帳號</p>
                                         <div class="tab-content" id="myTabContent">
                                             <div class="tab-pane fade show active" id="user" role="tabpanel" aria-labelledby="user-tab">
-                                                <!-- Register Form -->
-                                                <form action="login.html">
+                                                <!-- Login Form -->
+                                                <form action="user-dashboard.html">
                                                     <div class="form-group">
                                                         <div class="group-img">
                                                             <i class="feather-user"></i>
-                                                            <input type="text" class="form-control" placeholder="使用者名稱">
-                                                        </div>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <div class="group-img">
-                                                            <i class="feather-mail"></i>
                                                             <input type="text" class="form-control" placeholder="電子郵件">
                                                         </div>
                                                     </div>
@@ -63,19 +57,14 @@
                                                             <input type="password" class="form-control pass-input" placeholder="密碼">
                                                         </div>
                                                     </div>
-                                                    <div class="form-group">
-                                                        <div class="pass-group group-img">
-                                                            <i class="toggle-password-confirm feather-eye-off"></i>
-                                                            <input type="password" class="form-control pass-confirm" placeholder="密碼確認">
+                                                    <div class="form-group d-sm-flex align-items-center justify-content-between">
+                                                        <div class="form-check form-switch d-flex align-items-center justify-content-start">
+                                                            <input class="form-check-input" type="checkbox" id="user-pass">
+                                                            <label class="form-check-label" for="user-pass">記住我</label>
                                                         </div>
+                                                        <span><a href="forgot-password.html" class="forgot-pass">忘記密碼？</a></span>
                                                     </div>
-                                                    <div class="form-check d-flex justify-content-start align-items-center policy">
-                                                        <div class="d-inline-block">
-                                                            <input class="form-check-input" type="checkbox" value="" id="policy">
-                                                        </div>
-                                                        <label class="form-check-label" for="policy">我已閱讀並同意<a href="XXXXX">《使用條款》</a>與<a href="XXXXX">《隱私權政策》</a></label>
-                                                    </div>
-                                                    <button class="btn btn-secondary register-btn d-inline-flex justify-content-center align-items-center w-100 btn-block" type="submit">建立帳號<i class="feather-arrow-right-circle ms-2"></i></button>
+                                                    <button class="btn btn-secondary register-btn d-inline-flex justify-content-center align-items-center w-100 btn-block" type="submit">登入<i class="feather-arrow-right-circle ms-2"></i></button>
                                                     <div class="form-group">
                                                         <div class="login-options text-center">
                                                             <span class="text">或使用以下帳號登入</span>
@@ -98,12 +87,12 @@
                                                         </ul>
                                                     </div>
                                                 </form>
-                                                <!-- /Register Form -->
+                                                <!-- /Login Form -->
                                             </div>
                                         </div>
                                     </div>
                                     <div class="bottom-text text-center">
-                                        <p>已擁有帳號？ <a href="Login">登入</a></p>
+                                        <p>未擁有帳號？ <a href="Register">註冊</a></p>
                                     </div>
                                 </div>
                             </div>
@@ -117,7 +106,7 @@
     <!-- /Main Wrapper -->
 </body>
 
-@section RegisterScripts{
+@section LoginScripts{
     <!-- jQuery -->
     <script src="~/assets/js/jquery-3.7.0.min.js"></script>
 
