@@ -74,5 +74,17 @@ namespace JHobby.Repository.Implements
 
             return false;
         }
+
+        public bool Delete(int id)
+        {
+            var queryResult = _jhobbyContext.Categories.FirstOrDefault(c => c.CategoryId == id);
+
+            if(queryResult == null) { return false; }
+
+            _jhobbyContext.Categories.Remove(queryResult);
+            _jhobbyContext.SaveChanges();
+
+            return true;
+        }
     }
 }

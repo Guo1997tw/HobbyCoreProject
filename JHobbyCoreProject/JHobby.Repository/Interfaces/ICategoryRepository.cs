@@ -17,5 +17,7 @@ namespace JHobby.Repository.Interfaces
 		public bool Insert(CreateCategoryDto createCategoryDto);
 
         public bool Update(int id, UpdateCategoryDto updateCategoryDto);
+
+		public bool Delete(int id);
     }
 }

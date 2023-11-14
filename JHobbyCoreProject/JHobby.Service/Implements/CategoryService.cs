@@ -67,19 +67,26 @@ namespace JHobby.Service.Implements
         {
             var queryResult = _categoryRepository.GetById(id);
 
-            if (queryResult == null)
-            {
-                return false;
-            }
+            if (queryResult == null) return false;
 
             var dto = new UpdateCategoryDto
             {
                 CategoryName = updateCategoryModel.CategoryName,
                 TypeName = updateCategoryModel.TypeName,
-
             };
 
             _categoryRepository.Update(id, dto);
+
+            return true;
+        }
+
+        public bool DeleteCategory(int id)
+        {
+            var queryResult = _categoryRepository.GetById(id);
+
+            if (queryResult == null) return false;
+
+            _categoryRepository.Delete(id);
 
             return true;
         }

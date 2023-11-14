@@ -79,5 +79,15 @@ namespace JHobby.Website.Controllers.Api
 
 			return Ok(result);
 		}
+
+		[HttpDelete("{id}")]
+		public IActionResult DeleteCategory(int id)
+		{
+			if (id < 0) { return BadRequest(); }
+
+			var result = _categoryService.DeleteCategory(id);
+
+			return Ok(result);
+		}
     }
 }
