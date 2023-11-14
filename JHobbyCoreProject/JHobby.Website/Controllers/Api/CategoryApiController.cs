@@ -7,7 +7,7 @@ using System.Collections.Generic;
 
 namespace JHobby.Website.Controllers.Api
 {
-	[Route("api/[controller]")]
+	[Route("api/[controller]/[action]")]
 	[ApiController]
 	public class CategoryApiController : ControllerBase
 	{

@@ -15,4 +15,8 @@
     <ProjectReference Include="..\JHobby.Service\JHobby.Service.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\css\" />
+  </ItemGroup>
+
 </Project>
