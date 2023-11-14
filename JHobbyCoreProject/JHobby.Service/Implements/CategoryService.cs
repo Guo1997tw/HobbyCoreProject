@@ -13,68 +13,75 @@ using System.Threading.Tasks;
 
 namespace JHobby.Service.Implements
 {
-	public class CategoryService : ICategoryService
-	{
-		private readonly ICategoryRepository _categoryRepository;
+    public class CategoryService : ICategoryService
+    {
+        private readonly ICategoryRepository _categoryRepository;
 
-		public CategoryService(ICategoryRepository categoryRepository)
-		{
-			_categoryRepository = categoryRepository;
-		}
+        public CategoryService(ICategoryRepository categoryRepository)
+        {
+            _categoryRepository = categoryRepository;
+        }
 
         public IEnumerable<CategoryModel> GetList()
         {
-			var resultDto = _categoryRepository.GetAll().ToList();
+            var resultDto = _categoryRepository.GetAll().ToList();
 
-			var categoryModel = resultDto.Select(dto => new CategoryModel
-			{
-				CategoryId = dto.CategoryId,
-				CategoryName = dto.CategoryName,
-				TypeName = dto.TypeName,
-			});
+            var categoryModel = resultDto.Select(dto => new CategoryModel
+            {
+                CategoryId = dto.CategoryId,
+                CategoryName = dto.CategoryName,
+                TypeName = dto.TypeName,
+            });
 
-			return categoryModel;
+            return categoryModel;
         }
 
         public CategoryModel GetDetail(int id)
         {
             var resultDto = _categoryRepository.GetById(id);
 
-			var categoryModel = new CategoryModel
-			{
-				CategoryId = resultDto.CategoryId,
-				CategoryName = resultDto.CategoryName,
-				TypeName = resultDto.TypeName,
-			};
+            var categoryModel = new CategoryModel
+            {
+                CategoryId = resultDto.CategoryId,
+                CategoryName = resultDto.CategoryName,
+                TypeName = resultDto.TypeName,
+            };
 
             return categoryModel;
         }
 
         public bool CreateCategory(CreateCategoryModel createCategoryModel)
         {
-			var mapper = new CreateCategoryDto
-			{
-				CategoryName = createCategoryModel.CategoryName,
-				TypeName = createCategoryModel.TypeName,
-			};
+            var mapper = new CreateCategoryDto
+            {
+                CategoryName = createCategoryModel.CategoryName,
+                TypeName = createCategoryModel.TypeName,
+            };
 
-			_categoryRepository.Insert(mapper);
+            _categoryRepository.Insert(mapper);
 
-			return true;
+            return true;
         }
 
         public bool UpdateCategory(int id, UpdateCategoryModel updateCategoryModel)
         {
-			var queryResult = _categoryRepository.GetById(id);
+            var queryResult = _categoryRepository.GetById(id);
 
-			if (queryResult == null) { return false; }
+            if (queryResult == null)
+            {
+                return false;
+            }
 
-            queryResult.CategoryName = queryResult.CategoryName;
-            queryResult.TypeName = queryResult.TypeName;
+            var dto = new UpdateCategoryDto
+            {
+                CategoryName = updateCategoryModel.CategoryName,
+                TypeName = updateCategoryModel.TypeName,
 
-			_categoryRepository.Update(id, queryResult);
+            };
 
-			return true;
+            _categoryRepository.Update(id, dto);
+
+            return true;
         }
     }
 }

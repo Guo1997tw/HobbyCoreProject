@@ -64,7 +64,7 @@ namespace JHobby.Website.Controllers.Api
 			return Ok(result);
 		}
 
-		[HttpPut]
+		[HttpPut("{id}")]
 		public IActionResult UpdateCategory(int id, [FromBody] UpdateCategoryViewModel updateCategoryViewModel)
 		{
 			if(id < 0) {  return BadRequest(); }

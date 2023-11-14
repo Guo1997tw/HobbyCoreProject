@@ -20,72 +20,59 @@ namespace JHobby.Repository.Implements
 
         public IEnumerable<CategoryDto> GetAll()
         {
-            using (_jhobbyContext)
+            var queryResult = _jhobbyContext.Categories.Select(c => new CategoryDto
             {
-                var queryResult = _jhobbyContext.Categories.Select(c => new CategoryDto
-                {
-                    CategoryId = c.CategoryId,
-                    CategoryName = c.CategoryName,
-                    TypeName = c.TypeName,
-                }).ToList();
+                CategoryId = c.CategoryId,
+                CategoryName = c.CategoryName,
+                TypeName = c.TypeName,
+            }).ToList();
 
-                return queryResult;
-            }
+            return queryResult;
         }
 
         public CategoryDto? GetById(int id)
         {
-            using (_jhobbyContext)
+            var queryResult = _jhobbyContext.Categories.FirstOrDefault(c => c.CategoryId == id);
+
+            if (queryResult == null) return null;
+
+            return new CategoryDto
             {
-                var queryResult = _jhobbyContext.Categories.FirstOrDefault(c => c.CategoryId == id);
-
-                if (queryResult == null) return null;
-
-                return new CategoryDto
-                {
-                    CategoryId = queryResult.CategoryId,
-                    CategoryName = queryResult.CategoryName,
-                    TypeName = queryResult.TypeName
-                };
-            }
+                CategoryId = queryResult.CategoryId,
+                CategoryName = queryResult.CategoryName,
+                TypeName = queryResult.TypeName
+            };
         }
 
         public bool Insert(CreateCategoryDto createCategoryDto)
         {
-            using (_jhobbyContext)
+            var mapper = new Category
             {
-                var mapper = new Category
-                {
-                    CategoryName = createCategoryDto.CategoryName,
-                    TypeName = createCategoryDto.TypeName
-                };
+                CategoryName = createCategoryDto.CategoryName,
+                TypeName = createCategoryDto.TypeName
+            };
 
-                _jhobbyContext.Categories.Add(mapper);
-                _jhobbyContext.SaveChanges();
+            _jhobbyContext.Categories.Add(mapper);
+            _jhobbyContext.SaveChanges();
 
-                return true;
-            }
+            return true;
         }
 
         public bool Update(int id, UpdateCategoryDto updateCategoryDto)
         {
-            var queryResult = _jhobbyContext.Categories.SingleOrDefault(c => c.CategoryId == id);
+            var queryResult = _jhobbyContext.Categories.FirstOrDefault(c => c.CategoryId == id);
 
-            if (queryResult == null) { return false; };
-
-            var mapper = new Category
+            if (queryResult != null)
             {
-                CategoryName = updateCategoryDto.CategoryName,
-                TypeName = updateCategoryDto.TypeName
+                queryResult.CategoryName = updateCategoryDto.CategoryName;
+                queryResult.TypeName = updateCategoryDto.TypeName;
+
+                _jhobbyContext.SaveChanges();
+
+                return true;
             };
 
-            queryResult.CategoryName = mapper.CategoryName;
-            queryResult.TypeName = mapper.TypeName;
-
-            _jhobbyContext.Categories.Update(queryResult);
-            _jhobbyContext.SaveChanges();
-
-            return true;
+            return false;
         }
     }
 }
