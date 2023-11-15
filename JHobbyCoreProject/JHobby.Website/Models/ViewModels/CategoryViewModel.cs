@@ -2,9 +2,9 @@
 {
 	public class CategoryViewModel
 	{
-		public int CategoryId { get; set; }
+        public int CategoryId { get; set; }
 
-		public string CategoryName { get; set; } = null!;
+        public string CategoryName { get; set; } = null!;
 
 		public string TypeName { get; set; } = null!;
 	}

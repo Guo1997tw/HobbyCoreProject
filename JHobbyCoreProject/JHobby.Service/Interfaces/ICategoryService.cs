@@ -10,6 +10,14 @@ namespace JHobby.Service.Interfaces
 {
 	public interface ICategoryService
 	{
-		public IEnumerable<CategoryModel> GetCategoryAll();
-	}
+		public IEnumerable<CategoryModel> GetList();
+
+		public CategoryModel GetDetail(int id);
+
+		public bool CreateCategory(CreateCategoryModel createCategoryModel);
+
+		public bool UpdateCategory(int id, UpdateCategoryModel updateCategoryModel);
+
+		public bool DeleteCategory(int id);
+    }
 }
