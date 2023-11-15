@@ -39,7 +39,7 @@
         mounted() {
             let self = this;
 
-            fetch("/api/CategoryApi/GetCategoriesAll")
+            fetch("/CategoryApi/GetCategoriesAll")
                 .then(r => r.json())
                 .then(d => { self.category = d });
         }
