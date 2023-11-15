@@ -13,5 +13,15 @@ namespace JHobby.Website.Controllers
         {
             return View();
         }
+
+        // MemberCenter/joinAGroup
+        /// <summary>
+        ///  TODO : 參團紀錄
+        /// </summary>
+        /// <returns></returns>
+        public IActionResult joinAGroup()
+        {
+            return View();
+        }
     }
 }
