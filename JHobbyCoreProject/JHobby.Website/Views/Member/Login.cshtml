@@ -1,20 +1,4 @@
-﻿@section Styles{
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="~/assets/css/bootstrap.min.css">
-
-    <!-- Fontawesome CSS -->
-    <link rel="stylesheet" href="~/assets/plugins/fontawesome/css/fontawesome.min.css">
-    <link rel="stylesheet" href="~/assets/plugins/fontawesome/css/all.min.css">
-
-    <!-- Select CSS -->
-    <link rel="stylesheet" href="~/assets/plugins/select2/css/select2.min.css">
-
-    <!-- Feathericon CSS -->
-    <link rel="stylesheet" href="~/assets/css/feather.css">
-
-    <!-- Main CSS -->
-    <link rel="stylesheet" href="~/assets/css/style.css">
-
+﻿@section Styles {
     <style>
         .LoginLogo {
             max-width: 150px;
@@ -23,77 +7,74 @@
     </style>
 }
 
-<body>
-    <!-- Main Wrapper -->
-    <div class="main-wrapper authendication-pages">
-
-        <!-- Page Content -->
-        <div class="content">
-            <div class="container wrapper no-padding">
-                <div class="row no-margin vph-100">
-                    <div class="col-12 col-sm-12  col-lg-12 no-padding">
-                        <div class="dull-pg">
-                            <div class="row no-margin vph-100 d-flex align-items-center justify-content-center">
-                                <div class="col-sm-10 col-md-10 col-lg-10 mx-auto">
-                                    <header class="text-center">
-                                        <img src="~/images/register/Hobby.png" class="LoginLogo" alt="HobbyLogo">
-                                    </header>
-                                    <div class="shadow-card">
-                                        <h2>歡迎揪團</h2>
-                                        <p>請登入您的帳號</p>
-                                        <div class="tab-content" id="myTabContent">
-                                            <div class="tab-pane fade show active" id="user" role="tabpanel" aria-labelledby="user-tab">
-                                                <!-- Login Form -->
-                                                <form action="user-dashboard.html">
-                                                    <div class="form-group">
-                                                        <div class="group-img">
-                                                            <i class="feather-user"></i>
-                                                            <input type="text" class="form-control" placeholder="電子郵件">
-                                                        </div>
+<!-- Main Wrapper -->
+<div class="main-wrapper authendication-pages">
+    <!-- Page Content -->
+    <div class="content">
+        <div class="container wrapper no-padding">
+            <div class="row no-margin vph-100">
+                <div class="col-12 col-sm-12  col-lg-12 no-padding">
+                    <div class="dull-pg">
+                        <div class="row no-margin vph-100 d-flex align-items-center justify-content-center">
+                            <div class="col-sm-10 col-md-10 col-lg-10 mx-auto">
+                                <header class="text-center">
+                                    <img src="~/images/register/Hobby.png" class="LoginLogo" alt="HobbyLogo">
+                                </header>
+                                <div class="shadow-card">
+                                    <h2>歡迎揪團</h2>
+                                    <p>請登入您的帳號</p>
+                                    <div class="tab-content" id="myTabContent">
+                                        <div class="tab-pane fade show active" id="user" role="tabpanel" aria-labelledby="user-tab">
+                                            <!-- Login Form -->
+                                            <form action="user-dashboard.html">
+                                                <div class="form-group">
+                                                    <div class="group-img">
+                                                        <i class="feather-user"></i>
+                                                        <input type="text" class="form-control" placeholder="電子郵件">
                                                     </div>
-                                                    <div class="form-group">
-                                                        <div class="pass-group group-img">
-                                                            <i class="toggle-password feather-eye-off"></i>
-                                                            <input type="password" class="form-control pass-input" placeholder="密碼">
-                                                        </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <div class="pass-group group-img">
+                                                        <i class="toggle-password feather-eye-off"></i>
+                                                        <input type="password" class="form-control pass-input" placeholder="密碼">
                                                     </div>
-                                                    <div class="form-group d-sm-flex align-items-center justify-content-between">
-                                                        <div class="form-check form-switch d-flex align-items-center justify-content-start">
-                                                            <input class="form-check-input" type="checkbox" id="user-pass">
-                                                            <label class="form-check-label" for="user-pass">記住我</label>
-                                                        </div>
-                                                        <span><a href="forgot-password.html" class="forgot-pass">忘記密碼？</a></span>
+                                                </div>
+                                                <div class="form-group d-sm-flex align-items-center justify-content-between">
+                                                    <div class="form-check form-switch d-flex align-items-center justify-content-start">
+                                                        <input class="form-check-input" type="checkbox" id="user-pass">
+                                                        <label class="form-check-label" for="user-pass">記住我</label>
                                                     </div>
-                                                    <button class="btn btn-secondary register-btn d-inline-flex justify-content-center align-items-center w-100 btn-block" type="submit">登入<i class="feather-arrow-right-circle ms-2"></i></button>
-                                                    <div class="form-group">
-                                                        <div class="login-options text-center">
-                                                            <span class="text">或使用以下帳號登入</span>
-                                                        </div>
+                                                    <span><a href="forgot-password.html" class="forgot-pass">忘記密碼？</a></span>
+                                                </div>
+                                                <button class="btn btn-secondary register-btn d-inline-flex justify-content-center align-items-center w-100 btn-block" type="submit">登入<i class="feather-arrow-right-circle ms-2"></i></button>
+                                                <div class="form-group">
+                                                    <div class="login-options text-center">
+                                                        <span class="text">或使用以下帳號登入</span>
                                                     </div>
-                                                    <div class="form-group mb-0">
-                                                        <ul class="social-login d-flex justify-content-center align-items-center">
-                                                            <li class="text-center">
-                                                                <button type="button" class="btn btn-social d-flex align-items-center justify-content-center">
-                                                                    <img src="~/assets/img/icons/google.svg" class="img-fluid" alt="Google">
-                                                                    <span>Google</span>
-                                                                </button>
-                                                            </li>
-                                                            <li class="text-center">
-                                                                <button type="button" class="btn btn-social d-flex align-items-center justify-content-center">
-                                                                    <img src="~/assets/img/icons/facebook.svg" class="img-fluid" alt="Facebook">
-                                                                    <span>Facebook</span>
-                                                                </button>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                </form>
-                                                <!-- /Login Form -->
-                                            </div>
+                                                </div>
+                                                <div class="form-group mb-0">
+                                                    <ul class="social-login d-flex justify-content-center align-items-center">
+                                                        <li class="text-center">
+                                                            <button type="button" class="btn btn-social d-flex align-items-center justify-content-center">
+                                                                <img src="~/assets/img/icons/google.svg" class="img-fluid" alt="Google">
+                                                                <span>Google</span>
+                                                            </button>
+                                                        </li>
+                                                        <li class="text-center">
+                                                            <button type="button" class="btn btn-social d-flex align-items-center justify-content-center">
+                                                                <img src="~/assets/img/icons/facebook.svg" class="img-fluid" alt="Facebook">
+                                                                <span>Facebook</span>
+                                                            </button>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </form>
+                                            <!-- /Login Form -->
                                         </div>
                                     </div>
-                                    <div class="bottom-text text-center">
-                                        <p>未擁有帳號？ <a href="Register">註冊</a></p>
-                                    </div>
+                                </div>
+                                <div class="bottom-text text-center">
+                                    <p>未擁有帳號？ <a href="Register">註冊</a></p>
                                 </div>
                             </div>
                         </div>
@@ -101,21 +82,7 @@
                 </div>
             </div>
         </div>
-        <!-- /Page Content -->
     </div>
-    <!-- /Main Wrapper -->
-</body>
-
-@section LoginScripts{
-    <!-- jQuery -->
-    <script src="~/assets/js/jquery-3.7.0.min.js"></script>
-
-    <!-- Bootstrap Core JS -->
-    <script src="~/assets/js/bootstrap.bundle.min.js"></script>
-
-    <!-- Select JS -->
-    <script src="~/assets/plugins/select2/js/select2.min.js"></script>
-
-    <!-- Custom JS -->
-    <script src="~/assets/js/script.js"></script>
-}
+    <!-- /Page Content -->
+</div>
+<!-- /Main Wrapper -->
