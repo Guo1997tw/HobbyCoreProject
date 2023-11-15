@@ -14,4 +14,8 @@ public partial class Score
     public int Fraction { get; set; }
 
     public DateTime EvaluationTime { get; set; }
+
+    public virtual Activity Activity { get; set; } = null!;
+
+    public virtual Member Member { get; set; } = null!;
 }
