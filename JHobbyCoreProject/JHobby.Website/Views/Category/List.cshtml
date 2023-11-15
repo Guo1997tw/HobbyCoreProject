@@ -1,0 +1,47 @@
+﻿@{
+    ViewData["Title"] = "種類清單";
+}
+
+<partial name="_BreadcrumbPartial" />
+
+<main>
+    <div id="app">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">流水號</th>
+                    <th scope="col">種類</th>
+                    <th scope="col">類型</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="(c, i) in category">
+                    <th scope="row">{{i+1}}</th>
+                    <td>{{c.categoryName}}</td>
+                    <td>{{c.typeName}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</main>
+
+<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+<script>
+    Vue.createApp({
+        data() {
+            return {
+                category: [
+                    { categoryId: "", categoryName: "", typeName: "", }
+                ]
+            }
+        },
+
+        mounted() {
+            let self = this;
+
+            fetch("/CategoryApi/GetCategoriesAll")
+                .then(r => r.json())
+                .then(d => { self.category = d });
+        }
+    }).mount("#app");
+</script>

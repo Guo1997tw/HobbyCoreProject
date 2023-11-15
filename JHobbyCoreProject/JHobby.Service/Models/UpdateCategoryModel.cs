@@ -4,14 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace JHobby.Repository.Models.Dto
+namespace JHobby.Service.Models
 {
-	public class CategoryDto
-	{
-        public int CategoryId { get; set; }
-
+    public class UpdateCategoryModel
+    {
         public string CategoryName { get; set; } = null!;
 
-		public string TypeName { get; set; } = null!;
-	}
+        public string TypeName { get; set; } = null!;
+    }
 }

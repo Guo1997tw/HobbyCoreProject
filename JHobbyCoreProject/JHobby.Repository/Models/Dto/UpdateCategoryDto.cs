@@ -6,12 +6,10 @@ using System.Threading.Tasks;
 
 namespace JHobby.Repository.Models.Dto
 {
-	public class CategoryDto
-	{
-        public int CategoryId { get; set; }
-
+    public class UpdateCategoryDto
+    {
         public string CategoryName { get; set; } = null!;
 
-		public string TypeName { get; set; } = null!;
-	}
+        public string TypeName { get; set; } = null!;
+    }
 }
