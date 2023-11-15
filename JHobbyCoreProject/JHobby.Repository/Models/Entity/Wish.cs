@@ -12,4 +12,8 @@ public partial class Wish
     public int ActivityId { get; set; }
 
     public DateTime AddTime { get; set; }
+
+    public virtual Activity Activity { get; set; } = null!;
+
+    public virtual Member Member { get; set; } = null!;
 }
