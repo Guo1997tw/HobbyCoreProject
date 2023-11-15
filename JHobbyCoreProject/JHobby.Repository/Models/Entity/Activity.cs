@@ -32,4 +32,14 @@ public partial class Activity
     public DateTime Created { get; set; }
 
     public DateTime? DeadLine { get; set; }
+
+    public virtual ICollection<ActivityImage> ActivityImages { get; set; } = new List<ActivityImage>();
+
+    public virtual ICollection<ActivityUser> ActivityUsers { get; set; } = new List<ActivityUser>();
+
+    public virtual Category Category { get; set; } = null!;
+
+    public virtual ICollection<Score> Scores { get; set; } = new List<Score>();
+
+    public virtual ICollection<Wish> Wishes { get; set; } = new List<Wish>();
 }

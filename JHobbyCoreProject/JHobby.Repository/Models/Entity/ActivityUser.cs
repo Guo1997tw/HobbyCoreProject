@@ -12,4 +12,8 @@ public partial class ActivityUser
     public int ActivityId { get; set; }
 
     public string ReviewStatus { get; set; } = null!;
+
+    public virtual Activity Activity { get; set; } = null!;
+
+    public virtual Member Member { get; set; } = null!;
 }
