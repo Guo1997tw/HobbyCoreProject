@@ -5,9 +5,9 @@
 <partial name="_BreadcrumbPartial" />
 
 
-
 <!-- Bootstrap DateTime Picker -->
-<link rel="stylesheet" href="/assets/css/bootstrap-datetimepicker.min.css">
+
+@* <link rel="stylesheet" href="~/assets/css/bootstrap-datetimepicker.min.css"> *@
 
 
 
@@ -65,14 +65,14 @@
 									</div>
 								</div>
 
-								<div class="mb-3">
-									<label for="court" class="form-label" style="font-size: 22px;">活動種類</label>
-									<select class="select select2-hidden-accessible" id="court" tabindex="-1" aria-hidden="true">
-										<option value="0">請選擇活動種類</option>
-										<option value="1">運動類</option>
-										<option value="2">休閒類</option>
-									</select>
-								</div>
+						<div class="mb-3">
+							<label for="court" class="form-label" style="font-size: 22px;">活動種類</label>
+							<select class="select select2-hidden-accessible" id="court" tabindex="-1" aria-hidden="true">
+								<option value="0" disabled selected>請選擇活動種類</option>
+								<option value="1">運動類</option>
+								<option value="2">休閒類</option>
+							</select>
+						</div>
 
 								<div class="mb-3">
 									<label for="endterdate" class="form-label" style="font-size: 22px;">報名截止日期</label>
@@ -143,18 +143,19 @@
 	</div>
 	<!-- /Main Wrapper -->
 	<!-- jQuery -->
-	<script src="/assets/js/jquery-3.7.0.min.js"></script>
+
+	@* <script src="~/assets/js/jquery-3.7.0.min.js"></script>
 
 	<!-- Select JSS -->
-	<script src="/assets/plugins/select2/js/select2.min.js"></script>
+	<script src="~/assets/plugins/select2/js/select2.min.js"></script>
 
 	<!-- Bootstrap DateTime Picker -->
-	<script src="/assets/js/moment.min.js"></script>
-	<script src="/assets/js/bootstrap-datetimepicker.min.js"></script>
+	<script src="~/assets/js/moment.min.js"></script>
+	<script src="~/assets/js/bootstrap-datetimepicker.min.js"></script>
 
 	<!-- Custom JS -->
-	<script src="/assets/js/script.js"></script>
-	<div class="sidebar-overlay"></div>
+    <script src="~/assets/js/script.js"></script> 
+	<div class="sidebar-overlay"></div> *@
+  
 
-
-
+}
