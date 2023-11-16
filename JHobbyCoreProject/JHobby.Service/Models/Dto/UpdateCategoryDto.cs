@@ -9,7 +9,5 @@ namespace JHobby.Service.Models.Dto
     public class UpdateCategoryDto
     {
         public string CategoryName { get; set; } = null!;
-
-        public string TypeName { get; set; } = null!;
     }
 }
