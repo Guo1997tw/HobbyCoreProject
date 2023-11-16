@@ -9,7 +9,7 @@ public partial class Category
 
     public string CategoryName { get; set; } = null!;
 
-    public string TypeName { get; set; } = null!;
-
     public virtual ICollection<Activity> Activities { get; set; } = new List<Activity>();
+
+    public virtual ICollection<CategoryDetail> CategoryDetails { get; set; } = new List<CategoryDetail>();
 }

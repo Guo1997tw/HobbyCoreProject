@@ -23,8 +23,7 @@ namespace JHobby.Repository.Implements
             var queryResult = _jhobbyContext.Categories.Select(c => new CategoryDto
             {
                 CategoryId = c.CategoryId,
-                CategoryName = c.CategoryName,
-                TypeName = c.TypeName,
+                CategoryName = c.CategoryName
             }).ToList();
 
             return queryResult;
@@ -39,8 +38,7 @@ namespace JHobby.Repository.Implements
             return new CategoryDto
             {
                 CategoryId = queryResult.CategoryId,
-                CategoryName = queryResult.CategoryName,
-                TypeName = queryResult.TypeName
+                CategoryName = queryResult.CategoryName
             };
         }
 
@@ -48,8 +46,7 @@ namespace JHobby.Repository.Implements
         {
             var mapper = new Category
             {
-                CategoryName = createCategoryDto.CategoryName,
-                TypeName = createCategoryDto.TypeName
+                CategoryName = createCategoryDto.CategoryName
             };
 
             _jhobbyContext.Categories.Add(mapper);
@@ -65,7 +62,6 @@ namespace JHobby.Repository.Implements
             if (queryResult != null)
             {
                 queryResult.CategoryName = updateCategoryDto.CategoryName;
-                queryResult.TypeName = updateCategoryDto.TypeName;
 
                 _jhobbyContext.SaveChanges();
 
