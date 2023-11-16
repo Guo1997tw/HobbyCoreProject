@@ -1,7 +1,7 @@
-﻿<body data-select2-id="19">
-	<div id="global-loader" style="display: none;">
+﻿<partial name="_BreadcrumbPartial" />
+<div id="global-loader" style="display: none;">
 		<div class="loader-img">
-			<img src="assets/img/loader.png" class="img-fluid" alt="Global">
+			<img src="~/assets/img/loader.png" class="img-fluid" alt="Global">
 		</div>
 	</div>
 
@@ -29,37 +29,37 @@
 							<ul>
 								<li>
 									<a href="user-dashboard.html">
-										<img src="assets/img/icons/dashboard-icon.svg" alt="Icon">
+										<img src="~/assets/img/icons/dashboard-icon.svg" alt="Icon">
 										<span>Dashboard</span>
 									</a>
 								</li>
 								<li>
 									<a href="user-bookings.html">
-										<img src="assets/img/icons/booking-icon.svg" alt="Icon">
+										<img src="~/assets/img/icons/booking-icon.svg" alt="Icon">
 										<span>My Bookings</span>
 									</a>
 								</li>
 								<li>
 									<a href="user-chat.html">
-										<img src="assets/img/icons/chat-icon.svg" alt="Icon">
+										<img src="~/assets/img/icons/chat-icon.svg" alt="Icon">
 										<span>Chat</span>
 									</a>
 								</li>
 								<li>
 									<a href="user-invoice.html">
-										<img src="assets/img/icons/invoice-icon.svg" alt="Icon">
+										<img src="~/assets/img/icons/invoice-icon.svg" alt="Icon">
 										<span>Invoices</span>
 									</a>
 								</li>
 								<li>
 									<a href="user-wallet.html">
-										<img src="assets/img/icons/wallet-icon.svg" alt="Icon">
+										<img src="~/assets/img/icons/wallet-icon.svg" alt="Icon">
 										<span>Wallet</span>
 									</a>
 								</li>
 								<li>
 									<a href="user-profile.html" class="active">
-										<img src="assets/img/icons/profile-icon.svg" alt="Icon">
+										<img src="~/assets/img/icons/profile-icon.svg" alt="Icon">
 										<span>Profile Setting</span>
 									</a>
 								</li>
@@ -92,16 +92,15 @@
 										<div class="col-md-12">
 											<div class="file-upload-text">
 												<div class="file-upload">
-													<img src="assets/img/icons/img-icon.svg" class="img-fluid"
+													<img src="~/assets/img/icons/img-icon.svg" class="img-fluid"
 														alt="Upload">
-													<p>Upload Photo</p>
+													<p>請上傳您的個人照片</p>
 													<span>
 														<i class="feather-edit-3"></i>
 														<input type="file" id="file-input">
 													</span>
 												</div>
-												<h5>Upload a logo with a minimum size of 150 * 150 pixels (JPG, PNG,
-													SVG).</h5>
+											<h5>請上傳一個最小尺寸為 150 * 150 像素的圖檔（JPG、PNG、SVG）</h5>
 											</div>
 										</div>
 									</div>
@@ -159,36 +158,37 @@
 										<div class="input-space">
 											<label class="form-label">信箱</label>
 											<input type="email" class="form-control" id="email"
-												placeholder="Enter Email Address">
+												placeholder="請輸入您的信箱">
 										</div>
 									</div>
 									<div class="col-lg-12 col-md-6">
 										<div class="input-space">
 											<label class="form-label">手機號碼</label>
 											<input type="text" class="form-control" id="phone"
-												placeholder="Enter Phone Number">
+												placeholder="請輸入您的手機號碼">
 										</div>
 									</div>
 
 									<div class="col-lg-12 col-md-4">
 										<div class="input-space">
 											<label class="form-label">請選擇縣市</label>
-											<select class="select select2-hidden-accessible" id="citySelect"
+											<select class="select select2-hidden-accessible" 
 												data-select2-id="1" tabindex="-1" aria-hidden="true">
 												<option data-select2-id="3">台北市</option>
 												<option data-select2-id="19">新北市</option>
 											</select>
 											<label class="form-label">請選擇鄉鎮市區</label>
-											<select class="select select2-hidden-accessible" id="districtSelect"
+											<select class="select select2-hidden-accessible"
 												tabindex="-1" aria-hidden="true">
-
+											<option data-select2-id="20">中山區</option>
+											<option data-select2-id="21">永和區</option>
 											</select>
 										</div>
 									</div>
 									<div class="col-lg-12 col-md-6">
 										<div class="input-space">
-											<label class="form-label">請輸入詳細地址</label>
-											<input type="text" class="form-control" id="city" placeholder="Enter City">
+											<label class="form-label">請輸入地址</label>
+										<input type="text" class="form-control" id="city" placeholder="請輸入地址(範例:南京東路三段219號5樓)">
 										</div>
 									</div>
 
@@ -196,15 +196,16 @@
 										<div class="info-about">
 											<label for="comments" class="form-label">個人簡介</label>
 											<textarea class="form-control" id="comments" rows="3"
-												placeholder="PersonalProfile"></textarea>
+												placeholder="請填寫自我介紹"></textarea>
 										</div>
 									</div>
-							</div>
 							</form>
+							</div>
+							
 						</div>
 						<div class="save-changes text-end">
-							<a href="javascript:;" class="btn btn-primary reset-profile">Reset</a>
-							<a href="javascript:;" class="btn btn-secondary save-profile">Save Change</a>
+							<a href="javascript:;" class="btn btn-primary reset-profile">重置</a>
+							<a href="javascript:;" class="btn btn-secondary save-profile">儲存</a>
 						</div>
 					</div>
 				</div>
@@ -224,61 +225,3 @@
 
 
 	</div>
-
-
-</body>
-
-@section Scripts
-{
-	<!-- jQuery -->
-	<script src="assets/js/jquery-3.7.0.min.js"></script>
-
-	<!-- Bootstrap Core JS -->
-	<script src="assets/js/bootstrap.bundle.min.js"></script>
-
-	<script src="assets/plugins/datatables/jquery.dataTables.min.js"></script>
-	<script src="assets/plugins/datatables/datatables.min.js"></script>
-
-	<!-- Select JS -->
-	<script src="assets/plugins/select2/js/select2.min.js"></script>
-
-	<!-- Custom JS -->
-	<script src="assets/js/script.js"></script>
-	<div class="sidebar-overlay">
-
-		<script>
-			$(document).ready(function () {
-				// 監聽選擇縣市的變更事件
-				$('#citySelect').on('change', function () {
-					// 獲取選擇的縣市的值
-					var selectedCity = $(this).val();
-
-					// 根據選擇的縣市值，動態更新選擇鄉鎮市區的選項
-					updateDistrictOptions(selectedCity);
-				});
-
-				// 初始化時觸發一次，以確保初始狀態正確
-				$('#citySelect').trigger('change');
-			});
-
-			// 函數：根據選擇的縣市值，動態更新選擇鄉鎮市區的選項
-			function updateDistrictOptions(selectedCity) {
-				// 根據選擇的縣市值，這裡可以根據需要添加更多的邏輯
-				// 這裡只是一個簡單的例子
-				var districtOptions = [];
-				if (selectedCity === '台北市') {
-					districtOptions = ['信義區', '大安區', '中山區', /*...*/];
-				} else if (selectedCity === '新北市') {
-					districtOptions = ['板橋區', '新莊區', '中和區', /*...*/];
-				}
-
-				// 清空原有選項
-				$('#districtSelect').empty();
-
-				// 根據新的區域選項重新填充
-				districtOptions.forEach(function (option) {
-					$('#districtSelect').append($('<option>').text(option));
-				});
-			}
-		</script>
-}
