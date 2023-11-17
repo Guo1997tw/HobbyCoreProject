@@ -27,6 +27,8 @@ namespace JHobby.Website
             // Interface DI
             builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
             builder.Services.AddScoped<ICategoryService, CategoryService>();
+            builder.Services.AddScoped<IIndexRepository,IndexRepository>();
+            builder.Services.AddScoped<IIndexService,IndexService>();
 
             var app = builder.Build();
 
