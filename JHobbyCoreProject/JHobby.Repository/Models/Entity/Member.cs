@@ -29,13 +29,23 @@ public partial class Member
 
     public string? Phone { get; set; }
 
+    public string? HeadShot { get; set; }
+
     public string? PersonalProfile { get; set; }
 
     public string Status { get; set; } = null!;
 
-    public string OnlineStatus { get; set; } = null!;
+    public string? OnlineStatus { get; set; }
 
     public DateTime CreationDate { get; set; }
 
     public DateTime? LastSignIn { get; set; }
+
+    public virtual ICollection<ActivityUser> ActivityUsers { get; set; } = new List<ActivityUser>();
+
+    public virtual ICollection<MsgBoard> MsgBoards { get; set; } = new List<MsgBoard>();
+
+    public virtual ICollection<Score> Scores { get; set; } = new List<Score>();
+
+    public virtual ICollection<Wish> Wishes { get; set; } = new List<Wish>();
 }

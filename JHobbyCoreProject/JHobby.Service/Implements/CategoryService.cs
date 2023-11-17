@@ -2,12 +2,6 @@
 using JHobby.Repository.Models.Dto;
 using JHobby.Service.Interfaces;
 using JHobby.Service.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection.Metadata.Ecma335;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace JHobby.Service.Implements
 {
@@ -20,9 +14,69 @@ namespace JHobby.Service.Implements
 			_categoryRepository = categoryRepository;
 		}
 
-		public IEnumerable<CategoryModel> GetCategoryAll()
+		public IEnumerable<CategoryModel> GetList()
 		{
-			return (IEnumerable<CategoryModel>)_categoryRepository.GetCategoryList().ToList();
+			var resultDto = _categoryRepository.GetAll().ToList();
+
+			var categoryModel = resultDto.Select(dto => new CategoryModel
+			{
+				CategoryId = dto.CategoryId,
+				CategoryName = dto.CategoryName
+			});
+
+			return categoryModel;
+		}
+
+		public CategoryModel GetDetail(int id)
+		{
+			var resultDto = _categoryRepository.GetById(id);
+
+			var categoryModel = new CategoryModel
+			{
+				CategoryId = resultDto.CategoryId,
+				CategoryName = resultDto.CategoryName
+			};
+
+			return categoryModel;
+		}
+
+		public bool CreateCategory(CreateCategoryModel createCategoryModel)
+		{
+			var mapper = new CreateCategoryDto
+			{
+				CategoryName = createCategoryModel.CategoryName
+			};
+
+			_categoryRepository.Insert(mapper);
+
+			return true;
+		}
+
+		public bool UpdateCategory(int id, UpdateCategoryModel updateCategoryModel)
+		{
+			var queryResult = _categoryRepository.GetById(id);
+
+			if (queryResult == null) return false;
+
+			var dto = new UpdateCategoryDto
+			{
+				CategoryName = updateCategoryModel.CategoryName
+			};
+
+			_categoryRepository.Update(id, dto);
+
+			return true;
+		}
+
+		public bool DeleteCategory(int id)
+		{
+			var queryResult = _categoryRepository.GetById(id);
+
+			if (queryResult == null) return false;
+
+			_categoryRepository.Delete(id);
+
+			return true;
 		}
 	}
 }

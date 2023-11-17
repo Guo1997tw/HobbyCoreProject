@@ -1,4 +1,8 @@
+using JHobby.Repository.Implements;
+using JHobby.Repository.Interfaces;
 using JHobby.Repository.Models.Entity;
+using JHobby.Service.Implements;
+using JHobby.Service.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
 namespace JHobby.Website
@@ -16,7 +20,22 @@ namespace JHobby.Website
             builder.Services.AddDbContext<JhobbyContext>(option => {
                 option.UseSqlServer(builder.Configuration.GetConnectionString("JHobby"));});
 
+            // Swagger DI
+            builder.Services.AddEndpointsApiExplorer();
+            builder.Services.AddSwaggerGen();
+
+            // Interface DI
+            builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
+            builder.Services.AddScoped<ICategoryService, CategoryService>();
+
             var app = builder.Build();
+
+            // Swagger Use
+            if (app.Environment.IsDevelopment())
+            {
+                app.UseSwagger();
+                app.UseSwaggerUI();
+            }
 
             // Configure the HTTP request pipeline.
             if (!app.Environment.IsDevelopment())

@@ -8,8 +8,8 @@ namespace JHobby.Repository.Models.Dto
 {
 	public class CategoryDto
 	{
-		public string CategoryName { get; set; } = null!;
+        public int CategoryId { get; set; }
 
-		public string TypeName { get; set; } = null!;
+        public string CategoryName { get; set; } = null!;
 	}
 }
