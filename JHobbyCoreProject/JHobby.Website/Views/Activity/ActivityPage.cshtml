@@ -128,12 +128,13 @@
                         <div class="venue-options white-bg mb-4">
                             <ul class="clearfix">
                                 <li class="active"><a href="#overview">Overview</a></li>
-                                <li><a href="#includes">Includes</a></li>
-                                <li><a href="#rules">Rules</a></li>
-                                <li><a href="#amenities">Amenities</a></li>
-                                <li><a href="#gallery">Gallery</a></li>
-                                <li><a href="#reviews">Reviews</a></li>
-                                <li><a href="#location">Locations</a></li>
+                                @* <li><a href="#includes">Includes</a></li> *@
+                                @* <li><a href="#rules">Rules</a></li> *@
+                                @* <li><a href="#amenities">Amenities</a></li> *@
+                                @* <li><a href="#gallery">Gallery</a></li> *@
+                                @* <li><a href="#reviews">Reviews</a></li> *@
+                                <li><a href="#comments">留言版</a></li>
+                                <li><a href="#location">地圖</a></li>
                             </ul>
                         </div>
 
@@ -142,7 +143,7 @@
                             <div class="accordion-item mb-4" id="overview">
                                 <h4 class="accordion-header" id="panelsStayOpen-overview">
                                     <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
-                                        Overview
+                                        介紹
                                     </button>
                                 </h4>
                                 <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-overview">
@@ -160,255 +161,318 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="accordion-item mb-4" id="includes">
-                                <h4 class="accordion-header" id="panelsStayOpen-includes">
-                                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="false" aria-controls="panelsStayOpen-collapseTwo">
-                                        Includes
+                            @* <div class="accordion-item mb-4" id="includes">
+                            <h4 class="accordion-header" id="panelsStayOpen-includes">
+                            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="false" aria-controls="panelsStayOpen-collapseTwo">
+                            Includes
+                            </button>
+                            </h4>
+                            <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-includes">
+                            <div class="accordion-body">
+                            <ul class="clearfix">
+                            <li><i class="feather-check-square"></i>Badminton Racket Unlimited</li>
+                            <li><i class="feather-check-square"></i>Bats</li>
+                            <li><i class="feather-check-square"></i>Hitting Machines</li>
+                            <li><i class="feather-check-square"></i>Multiple Courts</li>
+                            <li><i class="feather-check-square"></i>Spare Players</li>
+                            <li><i class="feather-check-square"></i>Instant Racket</li>
+                            <li><i class="feather-check-square"></i>Green Turfs</li>
+                            </ul>
+                            </div>
+                            </div>
+                            </div> *@
+                            @* <div class="accordion-item mb-4" id="rules">
+                            <h4 class="accordion-header" id="panelsStayOpen-rules">
+                            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseThree" aria-expanded="false" aria-controls="panelsStayOpen-collapseThree">
+                            Rules
+                            </button>
+                            </h4>
+                            <div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-rules">
+                            <div class="accordion-body">
+                            <ul>
+                            <li><p><i class="feather-alert-octagon"></i>Non Marking Shoes are recommended not mandatory for Badminton.</p></li>
+                            <li><p><i class="feather-alert-octagon"></i>A maximum number of members per booking per badminton court is admissible fixed by Venue Vendors</p></li>
+                            <li><p><i class="feather-alert-octagon"></i>No pets, no seeds, no gum, no glass, no hitting or swinging outside of the cage</p></li>
+                            </ul>
+                            </div>
+                            </div>
+                            </div> *@
+                            @* <div class="accordion-item mb-4" id="amenities">
+                            <h4 class="accordion-header" id="panelsStayOpen-amenities">
+                            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseFour" aria-expanded="false" aria-controls="panelsStayOpen-collapseFour">
+                            Amenities
+                            </button>
+                            </h4>
+                            <div id="panelsStayOpen-collapseFour" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-amenities">
+                            <div class="accordion-body">
+                            <ul class="d-md-flex justify-content-between align-items-center">
+                            <li><i class="fa fa-check-circle" aria-hidden="true"></i>Parking</li>
+                            <li><i class="fa fa-check-circle" aria-hidden="true"></i>Drinking Water</li>
+                            <li><i class="fa fa-check-circle" aria-hidden="true"></i>First Aid</li>
+                            <li><i class="fa fa-check-circle" aria-hidden="true"></i>Change Room</li>
+                            <li><i class="fa fa-check-circle" aria-hidden="true"></i>Shower</li>
+                            </ul>
+                            </div>
+                            </div>
+                            </div> *@
+                            @* <div class="accordion-item mb-4" id="gallery">
+                            <h4 class="accordion-header" id="panelsStayOpen-gallery">
+                            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseFive" aria-expanded="false" aria-controls="panelsStayOpen-collapseFive">
+                            Gallery
+                            </button>
+                            </h4>
+                            <div id="panelsStayOpen-collapseFive" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-gallery">
+                            <div class="accordion-body">
+                            <div class="owl-carousel gallery-slider owl-theme">
+                            <a class="corner-radius-10" href="~/assets/img/gallery/gallery2/gallery-thumb-01.jpg" data-fancybox="gallery3">
+                            <img class="img-fluid corner-radius-10" alt="Image" src="~/assets/img/gallery/gallery2/gallery-01.jpg">
+                            </a>
+                            <a class="corner-radius-10" href="~/assets/img/gallery/gallery2/gallery-thumb-02.jpg" data-fancybox="gallery3">
+                            <img class="img-fluid corner-radius-10" alt="Image" src="~/assets/img/gallery/gallery2/gallery-02.jpg">
+                            </a>
+                            <a class="corner-radius-10" href="~/assets/img/gallery/gallery2/gallery-thumb-03.jpg" data-fancybox="gallery3">
+                            <img class="img-fluid corner-radius-10" alt="Image" src="~/assets/img/gallery/gallery2/gallery-03.jpg">
+                            </a>
+                            <a class="corner-radius-10" href="~/assets/img/gallery/gallery2/gallery-thumb-01.jpg" data-fancybox="gallery3">
+                            <img class="img-fluid corner-radius-10" alt="Image" src="~/assets/img/gallery/gallery2/gallery-01.jpg">
+                            </a>
+                            <a class="corner-radius-10" href="~/assets/img/gallery/gallery2/gallery-thumb-02.jpg" data-fancybox="gallery3">
+                            <img class="img-fluid corner-radius-10" alt="Image" src="~/assets/img/gallery/gallery2/gallery-02.jpg">
+                            </a>
+                            <a class="corner-radius-10" href="~/assets/img/gallery/gallery2/gallery-thumb-03.jpg" data-fancybox="gallery3">
+                            <img class="img-fluid corner-radius-10" alt="Image" src="~/assets/img/gallery/gallery2/gallery-03.jpg">
+                            </a>
+                            </div>
+                            </div>
+                            </div>
+                            </div> *@
+                            @* <div class="accordion-item mb-4" id="reviews">
+                            <div class="accordion-header" id="panelsStayOpen-reviews">
+                            <div class="accordion-button d-flex justify-content-between align-items-center" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseSix" aria-controls="panelsStayOpen-collapseSix">
+                            <span class="w-75 mb-0">
+                            Reviews
+                            </span>
+                            <a href="javascript:void(0);" class="btn btn-gradient pull-right write-review add-review" data-bs-toggle="modal" data-bs-target="#add-review">Write a review</a>
+                            </div>
+                            </div>
+                            <div id="panelsStayOpen-collapseSix" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-reviews">
+                            <div class="accordion-body">
+                            <div class="row review-wrapper">
+                            <div class="col-lg-3">
+                            <div class="ratings-info corner-radius-10 text-center">
+                            <h3>4.8</h3>
+                            <span>out of 5.0</span>
+                            <div class="rating">
+                            <i class="fas fa-star filled"></i>
+                            <i class="fas fa-star filled"></i>
+                            <i class="fas fa-star filled"></i>
+                            <i class="fas fa-star filled"></i>
+                            <i class="fas fa-star filled"></i>
+                            </div>
+                            </div>
+                            </div>
+                            <div class="col-lg-9">
+                            <div class="recommended">
+                            <h5>Recommended by 97% of Players</h5>
+                            <div class="row">
+                            <div class="col-12 col-sm-12 col-md-4 col-lg-4 mb-3">
+                            <p class="mb-0">Quality of service</p>
+                            <ul>
+                            <li><i></i></li>
+                            <li><i></i></li>
+                            <li><i></i></li>
+                            <li><i></i></li>
+                            <li><i></i></li>
+                            <li><span>5.0</span></li>
+                            </ul>
+                            </div>
+                            <div class="col-12 col-sm-12 col-md-4 col-lg-4 mb-3">
+                            <p class="mb-0">Quality of service</p>
+                            <ul>
+                            <li><i></i></li>
+                            <li><i></i></li>
+                            <li><i></i></li>
+                            <li><i></i></li>
+                            <li><i></i></li>
+                            <li><span>5.0</span></li>
+                            </ul>
+                            </div>
+                            <div class="col-12 col-sm-12 col-md-4 col-lg-4 mb-3">
+                            <p class="mb-0">Quality of service</p>
+                            <ul>
+                            <li><i></i></li>
+                            <li><i></i></li>
+                            <li><i></i></li>
+                            <li><i></i></li>
+                            <li><i></i></li>
+                            <li><span>5.0</span></li>
+                            </ul>
+                            </div>
+                            <div class="col-12 col-sm-12 col-md-4 col-lg-4">
+                            <p class="mb-0">Quality of service</p>
+                            <ul>
+                            <li><i></i></li>
+                            <li><i></i></li>
+                            <li><i></i></li>
+                            <li><i></i></li>
+                            <li><i></i></li>
+                            <li><span>5.0</span></li>
+                            </ul>
+                            </div>
+                            <div class="col-12 col-sm-12 col-md-4 col-lg-4">
+                            <p class="mb-0">Quality of service</p>
+                            <ul>
+                            <li><i></i></li>
+                            <li><i></i></li>
+                            <li><i></i></li>
+                            <li><i></i></li>
+                            <li><i></i></li>
+                            <li><span>5.0</span></li>
+                            </ul>
+                            </div>
+                            </div>
+                            </div>
+                            </div>
+                            </div>
+                            <!-- Review Box -->
+                            <div class="review-box d-md-flex">
+                            <div class="review-profile">
+                            <img src="~/assets/img/profiles/avatar-01.jpg" alt="User">
+                            </div>
+                            <div class="review-info">
+                            <h6 class="mb-2 tittle">Amanda Booked on 06/04/2023</h6>
+                            <div class="rating">
+                            <i class="fas fa-star filled"></i>
+                            <i class="fas fa-star filled"></i>
+                            <i class="fas fa-star filled"></i>
+                            <i class="fas fa-star filled"></i>
+                            <i class="fas fa-star filled"></i>
+                            <span class="">5.0</span>
+                            </div>
+                            <span class="success-text"><i class="feather-check"></i>Yes, I would book again.</span>
+                            <h6>Absolutely perfect</h6>
+                            <p>If you are looking for a perfect place for friendly matches with your friends or a competitive match, It is the best place.</p>
+                            <ul class="review-gallery clearfix">
+                            <li>
+                            <a href="~/assets/img/gallery/gallery-thumb-01.jpg" data-fancybox="gallery">
+                            <img class="img-fluid" alt="Image" src="~/assets/img/gallery/gallery-01.jpg">
+                            </a>
+                            </li>
+                            <li>
+                            <a href="~/assets/img/gallery/gallery-thumb-02.jpg" data-fancybox="gallery">
+                            <img class="img-fluid" alt="Image" src="~/assets/img/gallery/gallery-02.jpg">
+                            </a>
+                            </li>
+                            <li>
+                            <a href="~/assets/img/gallery/gallery-thumb-03.jpg" data-fancybox="gallery">
+                            <img class="img-fluid" alt="Image" src="~/assets/img/gallery/gallery-03.jpg">
+                            </a>
+                            </li>
+                            <li>
+                            <a href="~/assets/img/gallery/gallery-thumb-04.jpg" data-fancybox="gallery">
+                            <img class="img-fluid" alt="Image" src="~/assets/img/gallery/gallery-04.jpg">
+                            </a>
+                            </li>
+                            <li>
+                            <a href="~/assets/img/gallery/gallery-thumb-05.jpg" data-fancybox="gallery">
+                            <img class="img-fluid" alt="Image" src="~/assets/img/gallery/gallery-05.jpg">
+                            </a>
+                            </li>
+                            </ul>
+                            <span class="post-date">Sent on 11/03/2023</span>
+                            </div>
+                            </div>
+                            <!-- /Review Box -->
+                            <!-- Review Box -->
+                            <div class="review-box d-md-flex">
+                            <div class="review-profile">
+                            <img src="~/assets/img/profiles/avatar-06.jpg" alt="User">
+                            </div>
+                            <div class="review-info">
+                            <h6 class="mb-2 tittle">Amanda Booked on 06/04/2023</h6>
+                            <div class="rating">
+                            <i class="fas fa-star filled"></i>
+                            <i class="fas fa-star filled"></i>
+                            <i class="fas fa-star filled"></i>
+                            <i class="fas fa-star filled"></i>
+                            <i class="fas fa-star filled"></i>
+                            <span class="">5.0</span>
+                            </div>
+                            <span class="warning-text"><i class="feather-x"></i>No, I dont want to book again.</span>
+                            <h6>Awesome. Its very convenient to play.</h6>
+                            <p>If you are looking for a perfect place for friendly matches with your friends or a competitive match, It is the best place.</p>
+                            <div class="dull-bg">
+                            <p>Experience badminton excellence at Badminton Academy. Top-notch facilities, well-maintained courts, and a friendly atmosphere. Highly recommended for an exceptional playing experience</p>
+                            </div>
+                            </div>
+                            </div>
+                            <!-- /Review Box -->
+                            <div class="d-flex justify-content-center mt-1">
+                            <button type="button" class="btn btn-load-more d-flex justify-content-center align-items-center">Load More<i class="feather-plus-square"></i></button>
+                            </div>
+                            </div>
+                            </div>
+                            </div> *@
+                            <div class="accordion-item" id="comments">
+                                <h4 class="accordion-header" id="panelsStayOpen-location">
+                                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-comments" aria-expanded="false" aria-controls="panelsStayOpen-collapseSeven">
+                                        留言版
                                     </button>
                                 </h4>
-                                <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-includes">
+                                <div id="panelsStayOpen-comments" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-comments">
                                     <div class="accordion-body">
-                                        <ul class="clearfix">
-                                            <li><i class="feather-check-square"></i>Badminton Racket Unlimited</li>
-                                            <li><i class="feather-check-square"></i>Bats</li>
-                                            <li><i class="feather-check-square"></i>Hitting Machines</li>
-                                            <li><i class="feather-check-square"></i>Multiple Courts</li>
-                                            <li><i class="feather-check-square"></i>Spare Players</li>
-                                            <li><i class="feather-check-square"></i>Instant Racket</li>
-                                            <li><i class="feather-check-square"></i>Green Turfs</li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="accordion-item mb-4" id="rules">
-                                <h4 class="accordion-header" id="panelsStayOpen-rules">
-                                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseThree" aria-expanded="false" aria-controls="panelsStayOpen-collapseThree">
-                                        Rules
-                                    </button>
-                                </h4>
-                                <div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-rules">
-                                    <div class="accordion-body">
-                                        <ul>
-                                            <li><p><i class="feather-alert-octagon"></i>Non Marking Shoes are recommended not mandatory for Badminton.</p></li>
-                                            <li><p><i class="feather-alert-octagon"></i>A maximum number of members per booking per badminton court is admissible fixed by Venue Vendors</p></li>
-                                            <li><p><i class="feather-alert-octagon"></i>No pets, no seeds, no gum, no glass, no hitting or swinging outside of the cage</p></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="accordion-item mb-4" id="amenities">
-                                <h4 class="accordion-header" id="panelsStayOpen-amenities">
-                                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseFour" aria-expanded="false" aria-controls="panelsStayOpen-collapseFour">
-                                        Amenities
-                                    </button>
-                                </h4>
-                                <div id="panelsStayOpen-collapseFour" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-amenities">
-                                    <div class="accordion-body">
-                                        <ul class="d-md-flex justify-content-between align-items-center">
-                                            <li><i class="fa fa-check-circle" aria-hidden="true"></i>Parking</li>
-                                            <li><i class="fa fa-check-circle" aria-hidden="true"></i>Drinking Water</li>
-                                            <li><i class="fa fa-check-circle" aria-hidden="true"></i>First Aid</li>
-                                            <li><i class="fa fa-check-circle" aria-hidden="true"></i>Change Room</li>
-                                            <li><i class="fa fa-check-circle" aria-hidden="true"></i>Shower</li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="accordion-item mb-4" id="gallery">
-                                <h4 class="accordion-header" id="panelsStayOpen-gallery">
-                                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseFive" aria-expanded="false" aria-controls="panelsStayOpen-collapseFive">
-                                        Gallery
-                                    </button>
-                                </h4>
-                                <div id="panelsStayOpen-collapseFive" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-gallery">
-                                    <div class="accordion-body">
-                                        <div class="owl-carousel gallery-slider owl-theme">
-                                            <a class="corner-radius-10" href="~/assets/img/gallery/gallery2/gallery-thumb-01.jpg" data-fancybox="gallery3">
-                                                <img class="img-fluid corner-radius-10" alt="Image" src="~/assets/img/gallery/gallery2/gallery-01.jpg">
-                                            </a>
-                                            <a class="corner-radius-10" href="~/assets/img/gallery/gallery2/gallery-thumb-02.jpg" data-fancybox="gallery3">
-                                                <img class="img-fluid corner-radius-10" alt="Image" src="~/assets/img/gallery/gallery2/gallery-02.jpg">
-                                            </a>
-                                            <a class="corner-radius-10" href="~/assets/img/gallery/gallery2/gallery-thumb-03.jpg" data-fancybox="gallery3">
-                                                <img class="img-fluid corner-radius-10" alt="Image" src="~/assets/img/gallery/gallery2/gallery-03.jpg">
-                                            </a>
-                                            <a class="corner-radius-10" href="~/assets/img/gallery/gallery2/gallery-thumb-01.jpg" data-fancybox="gallery3">
-                                                <img class="img-fluid corner-radius-10" alt="Image" src="~/assets/img/gallery/gallery2/gallery-01.jpg">
-                                            </a>
-                                            <a class="corner-radius-10" href="~/assets/img/gallery/gallery2/gallery-thumb-02.jpg" data-fancybox="gallery3">
-                                                <img class="img-fluid corner-radius-10" alt="Image" src="~/assets/img/gallery/gallery2/gallery-02.jpg">
-                                            </a>
-                                            <a class="corner-radius-10" href="~/assets/img/gallery/gallery2/gallery-thumb-03.jpg" data-fancybox="gallery3">
-                                                <img class="img-fluid corner-radius-10" alt="Image" src="~/assets/img/gallery/gallery2/gallery-03.jpg">
-                                            </a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="accordion-item mb-4" id="reviews">
-                                <div class="accordion-header" id="panelsStayOpen-reviews">
-                                    <div class="accordion-button d-flex justify-content-between align-items-center" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseSix" aria-controls="panelsStayOpen-collapseSix">
-                                        <span class="w-75 mb-0">
-                                            Reviews
-                                        </span>
-                                        <a href="javascript:void(0);" class="btn btn-gradient pull-right write-review add-review" data-bs-toggle="modal" data-bs-target="#add-review">Write a review</a>
-                                    </div>
-                                </div>
-                                <div id="panelsStayOpen-collapseSix" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-reviews">
-                                    <div class="accordion-body">
-                                        <div class="row review-wrapper">
-                                            <div class="col-lg-3">
-                                                <div class="ratings-info corner-radius-10 text-center">
-                                                    <h3>4.8</h3>
-                                                    <span>out of 5.0</span>
-                                                    <div class="rating">
-                                                        <i class="fas fa-star filled"></i>
-                                                        <i class="fas fa-star filled"></i>
-                                                        <i class="fas fa-star filled"></i>
-                                                        <i class="fas fa-star filled"></i>
-                                                        <i class="fas fa-star filled"></i>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-9">
-                                                <div class="recommended">
-                                                    <h5>Recommended by 97% of Players</h5>
-                                                    <div class="row">
-                                                        <div class="col-12 col-sm-12 col-md-4 col-lg-4 mb-3">
-                                                            <p class="mb-0">Quality of service</p>
-                                                            <ul>
-                                                                <li><i></i></li>
-                                                                <li><i></i></li>
-                                                                <li><i></i></li>
-                                                                <li><i></i></li>
-                                                                <li><i></i></li>
-                                                                <li><span>5.0</span></li>
-                                                            </ul>
+                                        <!-- Comments -->
+                                        <div class="blog-comments">
+                                            <div class="dull-bg">
+                                                @* <h4 class="mb-0">Comments (45)</h4> *@
+                                                <hr>
+                                                <ul>
+                                                    <li class="author-group d-md-flex align-items-center justify-content-start">
+                                                        <div class="profile-pic">
+                                                            <a href="javascript:void(0);" class="d-inline-block"><img src="~/assets/img/profiles/avatar-04.jpg" alt="User"></a>
                                                         </div>
-                                                        <div class="col-12 col-sm-12 col-md-4 col-lg-4 mb-3">
-                                                            <p class="mb-0">Quality of service</p>
-                                                            <ul>
-                                                                <li><i></i></li>
-                                                                <li><i></i></li>
-                                                                <li><i></i></li>
-                                                                <li><i></i></li>
-                                                                <li><i></i></li>
-                                                                <li><span>5.0</span></li>
-                                                            </ul>
+                                                        <div class="info">
+                                                            <div class="head d-flex align-items-center justify-content-start">
+                                                                <h5>Antony Hilfn</h5>
+                                                                <i class="fa-solid fa-circle"></i>
+                                                                <span>15 Mar 2023</span>
+                                                            </div>
+                                                            <p>Lorem Ipsum available but the or majority have that suffered alteration words which don't look even slightly believable. There are many available but the majority the have suffered alteration. There are many variations of dumm passages Lorem majority the have the suffered alteration.</p>
+                                                            <a href="#">Reply</a>
                                                         </div>
-                                                        <div class="col-12 col-sm-12 col-md-4 col-lg-4 mb-3">
-                                                            <p class="mb-0">Quality of service</p>
-                                                            <ul>
-                                                                <li><i></i></li>
-                                                                <li><i></i></li>
-                                                                <li><i></i></li>
-                                                                <li><i></i></li>
-                                                                <li><i></i></li>
-                                                                <li><span>5.0</span></li>
-                                                            </ul>
-                                                        </div>
-                                                        <div class="col-12 col-sm-12 col-md-4 col-lg-4">
-                                                            <p class="mb-0">Quality of service</p>
-                                                            <ul>
-                                                                <li><i></i></li>
-                                                                <li><i></i></li>
-                                                                <li><i></i></li>
-                                                                <li><i></i></li>
-                                                                <li><i></i></li>
-                                                                <li><span>5.0</span></li>
-                                                            </ul>
-                                                        </div>
-                                                        <div class="col-12 col-sm-12 col-md-4 col-lg-4">
-                                                            <p class="mb-0">Quality of service</p>
-                                                            <ul>
-                                                                <li><i></i></li>
-                                                                <li><i></i></li>
-                                                                <li><i></i></li>
-                                                                <li><i></i></li>
-                                                                <li><i></i></li>
-                                                                <li><span>5.0</span></li>
-                                                            </ul>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <!-- Review Box -->
-                                        <div class="review-box d-md-flex">
-                                            <div class="review-profile">
-                                                <img src="~/assets/img/profiles/avatar-01.jpg" alt="User">
-                                            </div>
-                                            <div class="review-info">
-                                                <h6 class="mb-2 tittle">Amanda Booked on 06/04/2023</h6>
-                                                <div class="rating">
-                                                    <i class="fas fa-star filled"></i>
-                                                    <i class="fas fa-star filled"></i>
-                                                    <i class="fas fa-star filled"></i>
-                                                    <i class="fas fa-star filled"></i>
-                                                    <i class="fas fa-star filled"></i>
-                                                    <span class="">5.0</span>
-                                                </div>
-                                                <span class="success-text"><i class="feather-check"></i>Yes, I would book again.</span>
-                                                <h6>Absolutely perfect</h6>
-                                                <p>If you are looking for a perfect place for friendly matches with your friends or a competitive match, It is the best place.</p>
-                                                <ul class="review-gallery clearfix">
-                                                    <li>
-                                                        <a href="~/assets/img/gallery/gallery-thumb-01.jpg" data-fancybox="gallery">
-                                                            <img class="img-fluid" alt="Image" src="~/assets/img/gallery/gallery-01.jpg">
-                                                        </a>
                                                     </li>
-                                                    <li>
-                                                        <a href="~/assets/img/gallery/gallery-thumb-02.jpg" data-fancybox="gallery">
-                                                            <img class="img-fluid" alt="Image" src="~/assets/img/gallery/gallery-02.jpg">
-                                                        </a>
+                                                    <li class="author-group d-md-flex align-items-center justify-content-start">
+                                                        <div class="profile-pic">
+                                                            <a href="javascript:void(0);" class="d-inline-block"><img src="~/assets/img/profiles/avatar-05.jpg" alt="User"></a>
+                                                        </div>
+                                                        <div class="info">
+                                                            <div class="head d-flex align-items-center justify-content-start">
+                                                                <h5>Besant</h5>
+                                                                <i class="fa-solid fa-circle"></i>
+                                                                <span>15 Mar 2023</span>
+                                                            </div>
+                                                            <p>Lorem Ipsum available but the or majority have that suffered alteration words which don't look even slightly believable. There are many available but the majority the have suffered alteration. There are many variations of dumm passages Lorem majority the have the suffered alteration.</p>
+                                                            <a href="#">Reply</a>
+                                                        </div>
                                                     </li>
-                                                    <li>
-                                                        <a href="~/assets/img/gallery/gallery-thumb-03.jpg" data-fancybox="gallery">
-                                                            <img class="img-fluid" alt="Image" src="~/assets/img/gallery/gallery-03.jpg">
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="~/assets/img/gallery/gallery-thumb-04.jpg" data-fancybox="gallery">
-                                                            <img class="img-fluid" alt="Image" src="~/assets/img/gallery/gallery-04.jpg">
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="~/assets/img/gallery/gallery-thumb-05.jpg" data-fancybox="gallery">
-                                                            <img class="img-fluid" alt="Image" src="~/assets/img/gallery/gallery-05.jpg">
-                                                        </a>
+                                                    <li class=" author-group d-md-flex align-items-center justify-content-start">
+                                                        <div class="profile-pic">
+                                                            <a href="javascript:void(0);" class="d-inline-block"><img src="~/assets/img/profiles/avatar-06.jpg" alt="User"></a>
+                                                        </div>
+                                                        <div class="info">
+                                                            <div class="head d-flex align-items-center justify-content-start">
+                                                                <h5>Maria Fin</h5>
+                                                                <i class="fa-solid fa-circle"></i>
+                                                                <span>15 Mar 2023</span>
+                                                            </div>
+                                                            <p>Lorem Ipsum available but the or majority have that suffered alteration words which don't look even slightly believable. There are many available but the majority the have suffered alteration. There are many variations of dumm passages Lorem majority the have the suffered alteration.</p>
+                                                            <a href="#">Reply</a>
+                                                        </div>
                                                     </li>
                                                 </ul>
-                                                <span class="post-date">Sent on 11/03/2023</span>
                                             </div>
                                         </div>
-                                        <!-- /Review Box -->
-                                        <!-- Review Box -->
-                                        <div class="review-box d-md-flex">
-                                            <div class="review-profile">
-                                                <img src="~/assets/img/profiles/avatar-06.jpg" alt="User">
-                                            </div>
-                                            <div class="review-info">
-                                                <h6 class="mb-2 tittle">Amanda Booked on 06/04/2023</h6>
-                                                <div class="rating">
-                                                    <i class="fas fa-star filled"></i>
-                                                    <i class="fas fa-star filled"></i>
-                                                    <i class="fas fa-star filled"></i>
-                                                    <i class="fas fa-star filled"></i>
-                                                    <i class="fas fa-star filled"></i>
-                                                    <span class="">5.0</span>
-                                                </div>
-                                                <span class="warning-text"><i class="feather-x"></i>No, I dont want to book again.</span>
-                                                <h6>Awesome. Its very convenient to play.</h6>
-                                                <p>If you are looking for a perfect place for friendly matches with your friends or a competitive match, It is the best place.</p>
-                                                <div class="dull-bg">
-                                                    <p>Experience badminton excellence at Badminton Academy. Top-notch facilities, well-maintained courts, and a friendly atmosphere. Highly recommended for an exceptional playing experience</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <!-- /Review Box -->
-                                        <div class="d-flex justify-content-center mt-1">
-                                            <button type="button" class="btn btn-load-more d-flex justify-content-center align-items-center">Load More<i class="feather-plus-square"></i></button>
-                                        </div>
+                                        <!-- /Comments -->
                                     </div>
                                 </div>
                             </div>
@@ -435,60 +499,6 @@
                                     </div>
                                 </div>
                             </div>
-
-                            <!-- Comments -->
-                            <div class="blog-comments">
-                                <div class="dull-bg">
-                                    <h4 class="mb-0">留言板</h4>
-                                    <hr>
-                                    <ul>
-                                        <li class="author-group d-md-flex align-items-center justify-content-start">
-                                            <div class="profile-pic">
-                                                <a href="javascript:void(0);" class="d-inline-block"><img src="~/assets/img/profiles/avatar-04.jpg" alt="User"></a>
-                                            </div>
-                                            <div class="info">
-                                                <div class="head d-flex align-items-center justify-content-start">
-                                                    <h5>Antony Hilfn</h5>
-                                                    <i class="fa-solid fa-circle"></i>
-                                                    <span>15 Mar 2023</span>
-                                                </div>
-                                                <p>Lorem Ipsum available but the or majority have that suffered alteration words which don't look even slightly believable. There are many available but the majority the have suffered alteration. There are many variations of dumm passages Lorem majority the have the suffered alteration.</p>
-                                                <a href="#">Reply</a>
-                                            </div>
-                                        </li>
-                                        <li class="author-group d-md-flex align-items-center justify-content-start">
-                                            <div class="profile-pic">
-                                                <a href="javascript:void(0);" class="d-inline-block"><img src="~/assets/img/profiles/avatar-05.jpg" alt="User"></a>
-                                            </div>
-                                            <div class="info">
-                                                <div class="head d-flex align-items-center justify-content-start">
-                                                    <h5>Besant</h5>
-                                                    <i class="fa-solid fa-circle"></i>
-                                                    <span>15 Mar 2023</span>
-                                                </div>
-                                                <p>Lorem Ipsum available but the or majority have that suffered alteration words which don't look even slightly believable. There are many available but the majority the have suffered alteration. There are many variations of dumm passages Lorem majority the have the suffered alteration.</p>
-                                                <a href="#">Reply</a>
-                                            </div>
-                                        </li>
-                                        <li class=" author-group d-md-flex align-items-center justify-content-start">
-                                            <div class="profile-pic">
-                                                <a href="javascript:void(0);" class="d-inline-block"><img src="~/assets/img/profiles/avatar-06.jpg" alt="User"></a>
-                                            </div>
-                                            <div class="info">
-                                                <div class="head d-flex align-items-center justify-content-start">
-                                                    <h5>Maria Fin</h5>
-                                                    <i class="fa-solid fa-circle"></i>
-                                                    <span>15 Mar 2023</span>
-                                                </div>
-                                                <p>Lorem Ipsum available but the or majority have that suffered alteration words which don't look even slightly believable. There are many available but the majority the have suffered alteration. There are many variations of dumm passages Lorem majority the have the suffered alteration.</p>
-                                                <a href="#">Reply</a>
-                                            </div>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <!-- /Comments -->
-
                         </div>
                         <!-- Accordian Contents -->
                     </div>
@@ -502,26 +512,26 @@
                         <p class="mb-0">Check availability on your convenient time</p>
                         </div>
                         </div> *@
-                        <div class="white-bg book-court">
-                            <h4 class="border-bottom">Book A Court</h4>
-                            <h5 class="d-inline-block">Badminton Academy,</h5><p class="d-inline-block"> available Now</p>
-                            <ul class="d-sm-flex align-items-center justify-content-evenly">
-                                <li>
-                                    <h3 class="d-inline-block primary-text">$150</h3><span>/hr</span>
-                                    <p>up to 1 guests</p>
-                                </li>
-                                <li>
-                                    <span><i class="feather-plus"></i></span>
-                                </li>
-                                <li>
-                                    <h4 class="d-inline-block primary-text">$5</h4><span>/hr</span>
-                                    <p>each additional guest <br>up to 4 guests max</p>
-                                </li>
-                            </ul>
-                            <div class="d-grid btn-block mt-3">
-                                <a href="coach-details.html" class="btn btn-secondary d-inline-flex justify-content-center align-items-center"><i class="feather-calendar"></i>Book Now</a>
-                            </div>
+                        @* <div class="white-bg book-court">
+                        <h4 class="border-bottom">Book A Court</h4>
+                        <h5 class="d-inline-block">Badminton Academy,</h5><p class="d-inline-block"> available Now</p>
+                        <ul class="d-sm-flex align-items-center justify-content-evenly">
+                        <li>
+                        <h3 class="d-inline-block primary-text">$150</h3><span>/hr</span>
+                        <p>up to 1 guests</p>
+                        </li>
+                        <li>
+                        <span><i class="feather-plus"></i></span>
+                        </li>
+                        <li>
+                        <h4 class="d-inline-block primary-text">$5</h4><span>/hr</span>
+                        <p>each additional guest <br>up to 4 guests max</p>
+                        </li>
+                        </ul>
+                        <div class="d-grid btn-block mt-3">
+                        <a href="coach-details.html" class="btn btn-secondary d-inline-flex justify-content-center align-items-center"><i class="feather-calendar"></i>Book Now</a>
                         </div>
+                        </div> *@
                         @* <div class="white-bg">
                         <h4 class="border-bottom">Request for Availability</h4>
                         <form>
@@ -593,6 +603,9 @@
                             <a href="contact-us.html" class="btn btn-secondary d-inline-flex justify-content-center align-items-center"><i class="feather-phone-call"></i>Call Owner</a>
                             </div> *@
                         </div>
+                        <div class="d-grid btn-block">
+                            <button class="btn btn-secondary d-inline-flex justify-content-center align-items-center" type="submit">參加<i class="feather-arrow-right-circle ms-1"></i></button>
+                        </div>
                         @* <div class="white-bg listing-owner">
                         <h4 class="border-bottom">Listing By Owner</h4>
                         <ul>
@@ -634,8 +647,6 @@
                 <!-- /Row -->
             </div>
             <!-- /Container -->
-
-
 
             <section class="section innerpagebg">
                 <div class="container">
@@ -846,12 +857,10 @@
                                 </div>
                             </div>
                             <!-- /Featured Item -->
-
                         </div>
                     </div>
                 </div>
             </section>
-
         </div>
         <!-- /Page Content -->
         <!-- Add Review Modal -->
