@@ -25,7 +25,7 @@ namespace JHobby.Website.Controllers.Api
                 Account = memberRegisterViewModel.Account,
                 Password = memberRegisterViewModel.Password,
                 Status = memberRegisterViewModel.Status,
-                CreationDate = memberRegisterViewModel.CreationDate,
+                CreationDate = memberRegisterViewModel.CreationDate
             };
 
             _memberService.CreateMemberRegister(mapper);
