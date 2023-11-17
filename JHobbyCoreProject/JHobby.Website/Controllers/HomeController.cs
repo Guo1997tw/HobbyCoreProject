@@ -18,6 +18,12 @@ namespace JHobby.Website.Controllers
             return View();
         }
 
+        // Home/ConceptPage
+        public IActionResult ConceptPage()
+        {
+            return View();
+        }
+
         public IActionResult Privacy()
         {
             return View();
