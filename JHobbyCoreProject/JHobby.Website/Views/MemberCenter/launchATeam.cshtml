@@ -3,23 +3,19 @@
 @* MemberCenter/launchATeam *@
 <div b-q7camsv0h8="" class="container">
 	<main b-q7camsv0h8="" role="main" class="pb-3">
-
 		<div id="global-loader" style="display: none;">
 			<div class="loader-img">
 				<img src="/assets/img/loader.png" class="img-fluid" alt="Global">
 			</div>
 		</div>
-
 		<!-- Main Wrapper -->
 		<div class="main-wrapper">
-
 			<!-- Header -->
 			<header class="header header-sticky fixed-top">
 			</header>
 			<!-- Page Content -->
 			<div class="content" style="padding-top: 10px;">
 				<div class="container">
-
 					<!-- Statistics Card -->
 					<div class="row">
 					</div>
@@ -34,7 +30,6 @@
 					@* 開團紀錄版面 *@
 					<div class="content court-bg" style="padding-top: 10px">
 						<div class="container">
-
 							<@* 篩選單 *@
 							<div class="row">
 								<div class="col-lg-12">
@@ -83,7 +78,6 @@
 								</div>
 							</div>
 							@* 開團標題欄&搜尋頁  *@
-
 							<div class="row">
 								<div class="col-sm-12">
 									<div class="court-tab-content">
@@ -229,16 +223,9 @@
 																						</span>
 																					</td>
 																					<td class="table-accept-btn text-end">
-																						<a href="~javascript:;"
-																						   class="btn accept-btn">
-																							<i class="feather-check-circle"></i>編輯開團
-																						</a>
-																						<a href="~javascript:;"
-																						   class="btn cancel-table-btn"
-																						   data-bs-toggle="modal"
-																						   data-bs-target="#request-reject">
-																							<i class="feather-x-circle"></i>取消開團
-																						</a>
+																						<a href="javascript:;" class="btn accept-btn"><i class="feather-check-circle"></i>編輯開團</a>
+																						<a href="javascript:;" class="btn cancel-table-btn" data-bs-toggle="modal" data-bs-target="#request-coche">
+																							<i class="feather-x-circle"></i>取消開團</a>
 																					</td>
 																				</tr>
 																				<tr role="row" class="even">
@@ -871,158 +858,17 @@
 		</div>
 		<!-- /Main Wrapper -->
 		<!-- upcoming Modal -->
-		<div class="modal custom-modal fade request-modal" id="upcoming-coach" role="dialog">
-			<div class="modal-dialog modal-dialog-centered modal-md">
-				<div class="modal-content">
-					<div class="modal-header">
-						<div class="form-header modal-header-title">
-							<h4 class="mb-0">
-								Coach Booking Details<span class="badge bg-info ms-2">Upcoming</span>
-							</h4>
-						</div>
-						<a class="close" data-bs-dismiss="modal" aria-label="Close">
-							<span class="align-center" aria-hidden="true"><i class="feather-x"></i></span>
-						</a>
-					</div>
-					<div class="modal-body">
-
-						<!-- Court Request -->
-						<div class="row">
-							<div class="col-lg-12">
-								<div class="card dashboard-card court-information">
-									<div class="card-header">
-										<h4>Court Information</h4>
-									</div>
-									<div class="appointment-info">
-										<ul class="appointmentset">
-											<li>
-												<div class="appointment-item">
-													<div class="appointment-img">
-														<img src="/assets/img/featured/featured-06.jpg" alt="Venue">
-													</div>
-													<div class="appointment-content">
-														<h6>Angela Roudrigez</h6>
-														<div class="table-rating">
-															<div class="rating-point">
-																<i class="fas fa-star filled"></i>
-																<i class="fas fa-star filled"></i>
-																<i class="fas fa-star filled"></i>
-																<i class="fas fa-star filled"></i>
-																<i class="fas fa-star filled"></i>
-																<span>30 Reviews</span>
-															</div>
-														</div>
-													</div>
-												</div>
-											</li>
-											<li>
-												<h6>Location</h6>
-												<p>Santa Monica, CA</p>
-											</li>
-											<li>
-												<h6>Price Per Hour</h6>
-												<p>$200.00 / hr</p>
-											</li>
-											<li>
-												<h6>Rank</h6>
-												<p>Expert</p>
-											</li>
-										</ul>
-									</div>
-								</div>
-								<div class="card dashboard-card court-information">
-									<div class="card-header">
-										<h4>Appointment Information</h4>
-									</div>
-									<div class="appointment-info appoin-border">
-										<ul class="appointmentset">
-											<li>
-												<h6>Booked On</h6>
-												<p>Mon, Jul 14</p>
-											</li>
-											<li>
-												<h6>Booking Type</h6>
-												<p>Onetime</p>
-											</li>
-											<li>
-												<h6>Date &amp; Time</h6>
-												<p>
-													Mon, Jul 14
-													<span>05:00 PM - 08:00 PM</span>
-												</p>
-
-											</li>
-											<li>
-												<h6>Total Number of Hours</h6>
-												<p>2</p>
-											</li>
-										</ul>
-									</div>
-								</div>
-								<div class="card dashboard-card court-information">
-									<div class="card-header">
-										<h4>Payment Details</h4>
-									</div>
-									<div class="appointment-info appoin-border double-row">
-										<ul class="appointmentset">
-											<li>
-												<h6>Coaching Booking Amount</h6>
-												<p>$200</p>
-											</li>
-											<li>
-												<h6>Number of Hours</h6>
-												<p>2</p>
-											</li>
-											<li>
-												<h6>Service Charge</h6>
-												<p>$20</p>
-											</li>
-										</ul>
-									</div>
-									<div class="appointment-info appoin-border ">
-										<ul class="appointmentset">
-											<li>
-												<h6>Total Amount Paid</h6>
-												<p class="color-green">$180</p>
-											</li>
-											<li>
-												<h6>Paid On</h6>
-												<p>Mon, Jul 14</p>
-											</li>
-											<li>
-												<h6>Transaction ID</h6>
-												<p>#5464164445676781641</p>
-											</li>
-											<li>
-												<h6>Payment type</h6>
-												<p>Wallet</p>
-											</li>
-										</ul>
-									</div>
-								</div>
-							</div>
-						</div>
-						<!-- /Court Request -->
-
-					</div>
-					<div class="modal-footer">
-						<div class="table-accept-btn">
-							<a href="~/javascript:;" data-bs-dismiss="modal" class="btn cancel-table-btn">Cancel</a>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
 		<!-- /upcoming Modal -->
 		<!-- upcoming Modal -->
-		<div class="modal custom-modal fade request-modal" id="upcoming-court" role="dialog">
+		<!-- /upcoming Modal -->
+		<!-- Request Modal -->
+		<!-- 刪除開團 -->
+		<div class="modal custom-modal fade request-modal" id="request-coche" style="display: none;" aria-hidden="true">
 			<div class="modal-dialog modal-dialog-centered modal-md">
 				<div class="modal-content">
 					<div class="modal-header">
 						<div class="form-header modal-header-title">
-							<h4 class="mb-0">
-								Court Booking Details<span class="badge bg-info ms-2">Upcoming</span>
-							</h4>
+							<h4 class="mb-0">刪除開團</h4>
 						</div>
 						<a class="close" data-bs-dismiss="modal" aria-label="Close">
 							<span class="align-center" aria-hidden="true"><i class="feather-x"></i></span>
@@ -1034,103 +880,41 @@
 						<div class="row">
 							<div class="col-lg-12">
 								<div class="card dashboard-card court-information">
-									<div class="card-header">
-										<h4>Court Information</h4>
-									</div>
-									<div class="appointment-info">
-										<ul class="appointmentset">
-											<li>
-												<div class="appointment-item">
-													<div class="appointment-img">
-														<img src="/assets/img/booking/booking-03.jpg"
-															 alt="Appointment">
+
+									<!-- ai -->
+									<div class="d-flex align-items-center justify-content-between">
+										<div class="card-header">
+											<h4>注意事項:<br>刪除後無法再復原</h4>
+										</div>
+										<div class="appointment-info">
+											<!-- 訊息欄位 -->
+											<ul>
+												<li>
+													<div class="appointment-item">
+														<div class="appointment-img">
+															<img src="assets/img/booking/booking-01.jpg" alt="User">
+														</div>
+														<div class="appointment-content">
+															<h6>放生老鼠法會</h6>
+															<p class="color-green">愛貓咪大法師</p>
+														</div>
 													</div>
-													<div class="appointment-content">
-														<h6>Wing Sports Academy</h6>
-														<p class="color-green">Court 1</p>
-													</div>
-												</div>
-											</li>
-											<li>
-												<h6>Booked On</h6>
-												<p>$150 Upto 2 guests</p>
-											</li>
-											<li>
-												<h6>Price Per Guest</h6>
-												<p>$15</p>
-											</li>
-											<li>
-												<h6>Maximum Number of Guests</h6>
-												<p>2</p>
-											</li>
-										</ul>
+												</li>
+												<li>
+													<h6>活動時間</h6>
+													<p>星期五, 七月 15日</p>
+												</li>
+												<li>
+													<h6>活動地點</h6>
+													<p>傷心太平洋的某個角落</p>
+												</li>
+											</ul>
+											<!-- 訊息欄位 -->
+										</div>
 									</div>
-								</div>
-								<div class="card dashboard-card court-information">
-									<div class="card-header">
-										<h4>Appointment Information</h4>
-									</div>
-									<div class="appointment-info appoin-border">
-										<ul class="appointmentset">
-											<li>
-												<h6>Booked On</h6>
-												<p>$150 Upto 2 guests</p>
-											</li>
-											<li>
-												<h6>Price Per Guest</h6>
-												<p>$15</p>
-											</li>
-											<li>
-												<h6>Maximum Number of Guests</h6>
-												<p>2</p>
-											</li>
-										</ul>
-									</div>
-								</div>
-								<div class="card dashboard-card court-information">
-									<div class="card-header">
-										<h4>Payment Details</h4>
-									</div>
-									<div class="appointment-info appoin-border double-row">
-										<ul class="appointmentset">
-											<li>
-												<h6>Court Booking Amount</h6>
-												<p>$150</p>
-											</li>
-											<li>
-												<h6>Additional Guests</h6>
-												<p>2</p>
-											</li>
-											<li>
-												<h6>Amount Additional Guests</h6>
-												<p>$30</p>
-											</li>
-											<li>
-												<h6>Service Charge</h6>
-												<p>$20</p>
-											</li>
-										</ul>
-									</div>
-									<div class="appointment-info appoin-border ">
-										<ul class="appointmentsetview">
-											<li>
-												<h6>Total Amount Paid</h6>
-												<p class="color-green">$180</p>
-											</li>
-											<li>
-												<h6>Paid On</h6>
-												<p>Mon, Jul 14</p>
-											</li>
-											<li>
-												<h6>Transaction ID</h6>
-												<p>#5464164445676781641</p>
-											</li>
-											<li>
-												<h6>Payment type</h6>
-												<p>Wallet</p>
-											</li>
-										</ul>
-									</div>
+
+									<!-- ai -->
+
 								</div>
 							</div>
 						</div>
@@ -1139,108 +923,17 @@
 					</div>
 					<div class="modal-footer">
 						<div class="table-accept-btn">
-							<a href="~/javascript:;" data-bs-dismiss="modal" class="btn cancel-table-btn">Cancel</a>
+							<a href="javascript:;" class="btn accept-btn me-0">刪除</a>
 						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<!-- /upcoming Modal -->
-		<!-- Request Modal -->
-		<div class="modal custom-modal fade payment-modal" id="add-payment" role="dialog">
-			<div class="modal-dialog modal-dialog-centered modal-md">
-				<div class="modal-content">
-					<div class="modal-header">
-						<div class="form-header modal-header-title">
-							<h4 class="mb-0">Add Payment to Wallet</h4>
-						</div>
-						<a class="close" data-bs-dismiss="modal" aria-label="Close">
-							<span class="align-center" aria-hidden="true"><i class="feather-x"></i></span>
-						</a>
-					</div>
-					<div class="modal-body">
-						<div class="wallet-wrap wallet-modal">
-							<div class="wallet-amt">
-								<h5>Your Wallet Balance</h5>
-								<h2>$4,544</h2>
-							</div>
-						</div>
-						<form>
-							<div class="input-space">
-								<label class="form-label">Amount</label>
-								<input type="text" class="form-control" placeholder="Enter Amount">
-							</div>
-							<div class="or-div">
-								<h6>OR</h6>
-							</div>
-							<div class="add-wallet-amount form-check">
-								<ul>
-									<li class="active">
-										<div class="add-wallet-checkbox">
-											<input type="checkbox" class="form-check-input" id="value" checked="">
-											<label for="value">Add Value 1</label>
-										</div>
-										<div class="add-wallet-price">
-											<span>+ $80</span>
-										</div>
-									</li>
-									<li>
-										<div class="add-wallet-checkbox">
-											<input type="checkbox" class="form-check-input" id="value1">
-											<label for="value1">Add Value 2</label>
-										</div>
-										<div class="add-wallet-price">
-											<span>+ $60</span>
-										</div>
-									</li>
-									<li>
-										<div class="add-wallet-checkbox">
-											<input type="checkbox" class="form-check-input" id="value2">
-											<label for="value2">Add Value 3</label>
-										</div>
-										<div class="add-wallet-price">
-											<span>+ $120</span>
-										</div>
-									</li>
-									<li>
-										<div class="add-wallet-checkbox">
-											<input type="checkbox" class="form-check-input" id="value3">
-											<label for="value3">Add Value 4</label>
-										</div>
-										<div class="add-wallet-price">
-											<span>+ $120</span>
-										</div>
-									</li>
-								</ul>
-							</div>
-							<div class="radio-setview">
-								<h6>Select Payment Gateway</h6>
-								<div class="radio">
-									<div class="form-check form-check-inline mb-3">
-										<input class="form-check-input default-check me-1" type="radio"
-											   name="inlineRadioOptions" id="inlineRadio3" value="Credit Card">
-										<label class="form-check-label" for="inlineRadio3">Credit Card</label>
-									</div>
-									<div class="form-check form-check-inline mb-0">
-										<input class="form-check-input default-check me-1" type="radio"
-											   name="inlineRadioOptions" id="inlineRadio4" value="Paypal" checked="">
-										<label class="form-check-label" for="inlineRadio4">Paypal</label>
-									</div>
-								</div>
-							</div>
-						</form>
-					</div>
-					<div class="modal-footer">
 						<div class="table-accept-btn">
-							<a href="~/javascript:;" class="btn btn-secondary" data-bs-dismiss="modal"
-							   aria-label="Close">Reset</a>
-							<a href="~/javascript:;" class="btn btn-primary" data-bs-dismiss="modal"
-							   aria-label="Close">Submit</a>
+							<a href="javascript:;" class="btn cancel-table-btn" data-bs-toggle="modal" data-bs-target="#request-reject">取消</a>
 						</div>
+
 					</div>
 				</div>
 			</div>
 		</div>
+		<!-- /刪除開團  -->
 	</main>
 </div>
 
