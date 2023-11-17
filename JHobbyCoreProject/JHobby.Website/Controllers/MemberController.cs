@@ -2,7 +2,6 @@
 
 namespace JHobby.Website.Controllers
 {
-    [Route("[controller]/[action]")]
     public class MemberController : Controller
     {
         public IActionResult Register()
