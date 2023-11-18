@@ -3,9 +3,9 @@
 <head>
 
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
-    <title>DreamSports</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
+	<title>94Hobby</title>
     <!-- Meta Tags -->
     <meta name="twitter:description" content="Elevate your badminton business with Dream Sports template. Empower coaches & players, optimize court performance and unlock industry-leading success for your brand.">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -31,9 +31,9 @@
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="600">
 
-    <link rel="shortcut icon" type="image/x-icon" href="~/assets/img/favicon.png">
-    <link rel="apple-touch-icon" sizes="120x120" href="~/assets/img/apple-touch-icon-120x120.png">
-    <link rel="apple-touch-icon" sizes="152x152" href="~/assets/img/apple-touch-icon-152x152.png">
+	<link rel="shortcut icon" type="image/x-icon" href="~/image/whitecaticon.ico">  @* 網站圖標 *@
+	<link rel="apple-touch-icon" sizes="120x120" href="~/image/whitecaticon.ico">      @* n *@
+	<link rel="apple-touch-icon" sizes="152x152" href="~/image/whitecaticon.ico">
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="~/assets/css/bootstrap.min.css">
@@ -58,18 +58,17 @@
     <!-- Main CSS -->
     <link rel="stylesheet" href="~/assets/css/style.css">
 	@await RenderSectionAsync("Styles", required: false)
-
 </head>
 <body>
 	<div id="global-loader">
-		<div class="loader-img">
-			<img src="~/assets/img/loader.png" class="img-fluid" alt="Global">
-		</div>
+		<div class="loader-img"> <!-- 旋轉圖標 -->
+			<img src="~/image/loader.jpg" style="width: 50px;height: 50px" class="img-fluid" alt="Global">
+        </div>
 	</div>
 
 	<div class="main-wrapper">
-		<!-- Header -->
-		<header class="header header-sticky">
+		<!-- Header  網站導覽列內容 -->
+		<header class="header header-trans" >
 			<div class="container-fluid">
 				<nav class="navbar navbar-expand-lg header-nav">
 					<div class="navbar-header">
@@ -81,159 +80,94 @@
 							</span>
 						</a>
 						<a href="index.html" class="navbar-brand logo">
-							<img src="/assets/img/logo-black.svg" class="img-fluid" alt="Logo">
+							<img src="~/image/logo.svg" style="width: 300px;height: 95px" class="rounded float-left"
+                                 alt="Logo"> <!-- 左邊Logo -->
 						</a>
 					</div>
 					<div class="main-menu-wrapper">
 						<div class="menu-header">
 							<a href="index.html" class="menu-logo">
-								<img src="/assets/img/logo-black.svg" class="img-fluid" alt="Logo">
+								<img src="assets/img/loader.jpg" class="img-fluid" alt="Logo">  @* n *@
 							</a>
-							<a id="menu_close" class="menu-close" href="javascript:void(0);"> <i class="fas fa-times"></i></a>
+							<a id="menu_close" class="menu-close" href="javascript:void(0);">
+								<i class="fas fa-times"></i>
+							</a>
 						</div>
 						<ul class="main-nav">
-							<li><a href="/Home/Privacy">範例頁面</a></li>
-							<li><a href="/">Home</a></li>
 							<li class="has-submenu">
-								<a href="#">Coaches <i class="fas fa-chevron-down"></i></a>
+								<a href="#">網站介紹 <i class="fas fa-chevron-down"></i></a>
+								<ul class="submenu">
+									<li><a href="coaches-map.html">新手上路</a></li>
+									<li><a href="coaches-map-sidebar.html">經營理念</a></li>
+
+								</ul>
+
+							</li>
+							<li class="has-submenu">
+								<a href="#">食 <i class="fas fa-chevron-down"></i></a>
+								<ul class="submenu">
+									<li><a href="user-dashboard.html">團購</a></li>
+								</ul>
+
+							</li>
+							<li class="has-submenu">
+								<a href="#">住 <i class="fas fa-chevron-down"></i></a>
+								<ul class="submenu">
+									<li><a href="about-us.html">露營</a></li>
+									<li><a href="our-teams.html">合租</a></li>
+									<li><a href="services.html">共生公寓</a></li>
+								</ul>
+							</li>
+							<li class="has-submenu">
+								<a href="#">行 <i class="fas fa-chevron-down"></i></a>
+								<ul class="submenu">
+									<li><a href="blog-list.html">共乘</a></li>
+
+								</ul>
+							</li>
+							<li class="has-submenu">
+								<a href="#">育 <i class="fas fa-chevron-down"></i></a>
+								<ul class="submenu">
+									<li><a href="user-dashboard.html">讀書會</a></li>
+									<li><a href="user-bookings.html">技能交換</a></li>
+								</ul>
+							</li>
+							<li class="has-submenu">
+								<a href="#">樂<i class="fas fa-chevron-down"></i></a>
+								<ul class="submenu">
+									<li><a href="user-dashboard.html">休閒</a></li>
+									<li><a href="user-bookings.html">運動</a></li>
+								</ul>
+							</li>
+							<li class="has-submenu">
+								<a href="#">會員中心 <i class="fas fa-chevron-down"></i></a>
 								<ul class="submenu">
 									<li class="has-submenu">
-										<a href="#">Coaches Map</a>
+										<a href="#">個人資料</a>
 										<ul class="submenu inner-submenu">
-											<li><a href="coaches-map.html">Coaches Map</a></li>
-											<li><a href="coaches-map-sidebar.html">Coaches Map Sidebar</a></li>
+											<li><a href="coaches-map.html">編輯資料</a></li>
+											<li><a href="coaches-map-sidebar.html">修改密碼</a></li>
 										</ul>
 									</li>
-									<li><a href="coaches-grid.html">Coaches Grid</a></li>
-									<li><a href="coaches-list.html">Coaches List</a></li>
-									<li><a href="coaches-grid-sidebar.html">Coaches Grid Sidebar</a></li>
-									<li><a href="coaches-list-sidebar.html">Coaches List Sidebar</a></li>
-									<li class="has-submenu">
-										<a href="javascript:void(0);">Booking</a>
-										<ul class="submenu">
-											<li><a href="cage-details.html">Book a Court</a></li>
-											<li><a href="coach-details.html">Book a Coach</a></li>
-										</ul>
-									</li>
-									<li><a href="coach-detail.html">Coach Details</a></li>
-									<li class="has-submenu">
-										<a href="#">Venue</a>
-										<ul class="submenu inner-submenu">
-											<li><a href="listing-list.html">Venue List</a></li>
-											<li><a href="venue-details.html">Venue Details</a></li>
-										</ul>
-									</li>
-									<li><a href="coach-dashboard.html">Coach Dashboard</a></li>
-									<li><a href="all-court.html">Coach Courts</a></li>
-									<li><a href="add-court.html">List Your Court</a></li>
-									<li><a href="coach-chat.html">Chat</a></li>
-									<li><a href="coach-earning.html">Earnings</a></li>
-									<li><a href="coach-wallet.html">Wallet</a></li>
-									<li><a href="coach-profile.html">Profile Settings</a></li>
-									<li><a href="invoice.html">Invoice</a></li>
+									<li><a href="user-dashboard.html">開團管理</a></li>
+									<li><a href="user-bookings.html">參團管理</a></li>
+									<li><a href="user-bookings.html">報名審核</a></li>
 								</ul>
-
-							</li>
-							<li class="has-submenu">
-								<a href="#">User <i class="fas fa-chevron-down"></i></a>
-								<ul class="submenu">
-									<li><a href="user-dashboard.html">User Dashboard</a></li>
-									<li><a href="user-bookings.html">Bookings</a></li>
-									<li><a href="user-chat.html">Chat</a></li>
-									<li><a href="user-invoice.html">Invoice</a></li>
-									<li><a href="user-wallet.html">Wallet</a></li>
-									<li><a href="user-profile.html">Profile Edit</a></li>
-									<li><a href="user-setting-password.html">Change Password</a></li>
-									<li><a href="user-profile-othersetting.html">Other Settings</a></li>
-								</ul>
-
-							</li>
-							<li class="has-submenu">
-								<a href="#">Pages <i class="fas fa-chevron-down"></i></a>
-								<ul class="submenu">
-									<li><a href="about-us.html">About Us</a></li>
-									<li><a href="services.html">Services</a></li>
-									<li><a href="events.html">Events</a></li>
-									<li class="has-submenu">
-										<a href="javascript:void(0);">Authentication</a>
-										<ul class="submenu">
-											<li><a href="register.html">Signup</a></li>
-											<li><a href="login.html">Signin</a></li>
-											<li><a href="forgot-password.html">Forgot Password</a></li>
-											<li><a href="change-password.html">Reset Password</a></li>
-										</ul>
-									</li>
-
-									<li class="has-submenu">
-										<a href="javascript:void(0);">Error Page</a>
-										<ul class="submenu">
-											<li><a href="error-404.html">404 Error</a></li>
-										</ul>
-									</li>
-									<li><a href="pricing.html">Pricing</a></li>
-									<li><a href="faq.html">FAQ</a></li>
-									<li><a href="gallery.html">Gallery</a></li>
-									<li><a href="invoice.html">Invoice</a></li>
-									<li class="has-submenu">
-										<a href="javascript:void(0);">Testimonials</a>
-										<ul class="submenu">
-											<li><a href="testimonials.html">Testimonials</a></li>
-											<li><a href="testimonials-carousel.html">Testimonials Carousel</a></li>
-										</ul>
-									</li>
-									<li><a href="terms-condition.html">Terms & Conditions</a></li>
-									<li><a href="privacy-policy.html">Privacy Policy</a></li>
-									<li><a href="maintenance.html">Maintenance</a></li>
-									<li><a href="coming-soon.html">Coming Soon</a></li>
-								</ul>
-							</li>
-							<li class="has-submenu">
-								<a href="#">Blog <i class="fas fa-chevron-down"></i></a>
-								<ul class="submenu">
-									<li><a href="blog-list.html">Blog List</a></li>
-									<li class="has-submenu">
-										<a href="javascript:void(0);">Blog List Sidebar</a>
-										<ul class="submenu">
-											<li><a href="blog-list-sidebar-left.html">Blog List Sidebar Left</a></li>
-											<li><a href="blog-list-sidebar-right.html">Blog List Sidebar Right</a></li>
-										</ul>
-									</li>
-									<li><a href="blog-grid.html">Blog Grid</a></li>
-									<li class="has-submenu">
-										<a href="javascript:void(0);">Blog Grid Sidebar</a>
-										<ul class="submenu">
-											<li><a href="blog-grid-sidebar-left.html">Blog Grid Sidebar Left</a></li>
-											<li><a href="blog-grid-sidebar-right.html">Blog Grid Sidebar Right</a></li>
-										</ul>
-									</li>
-									<li><a href="blog-details.html">Blog Details</a></li>
-									<li class="has-submenu">
-										<a href="javascript:void(0);">Blog Details Sidebar</a>
-										<ul class="submenu">
-											<li><a href="blog-details-sidebar-left.html">Blog Detail Sidebar Left</a></li>
-											<li><a href="blog-details-sidebar-right.html">Blog Detail Sidebar Right</a></li>
-										</ul>
-									</li>
-									<li><a href="blog-carousel.html">Blog Carousel</a></li>
-								</ul>
-							</li>
-							<li class="active"><a href="contact-us.html">Contact Us</a></li>
-							<li class="login-link">
-								<a href="register.html">Sign Up</a>
-							</li>
-							<li class="login-link">
-								<a href="login.html">Sign In</a>
-							</li>
+								</li>
 						</ul>
 					</div>
 					<ul class="nav header-navbar-rht">
 						<li class="nav-item">
-							<div class="nav-link btn btn-primary log-register">
-								<a href="login.html"><span><i class="feather-users"></i></span>Login</a> / <a href="register.html">Register</a>
+							<div class="nav-link btn btn-white log-register">
+								<a href="login.html"><span><i class="feather-users"></i></span>登入</a> / <a href="register.html">註冊</a>
 							</div>
 						</li>
 						<li class="nav-item">
-							<a class="nav-link btn btn-secondary" href="add-court.html"><span><i class="feather-check-circle"></i></span>List Your Court</a>
+							<a class="nav-link btn btn-secondary" href="add-court.html">
+								<span>
+									<i class="feather-check-circle"></i>
+								</span>立即開團
+							</a>
 						</li>
 					</ul>
 				</nav>
@@ -246,9 +180,9 @@
 		<div class="container">
 			<!-- Footer Join -->
 			<div class="footer-join aos" data-aos="fade-up">
-				<h2>We Welcome Your Passion And Expertise</h2>
-				<p class="sub-title">Join our empowering sports community today and grow with us.</p>
-				<a href="register.html" class="btn btn-primary"><i class="feather-user-plus"></i> Join With Us</a>
+					<h2>無論是交友、聚會，還是各種體驗活動，我們的揪團網站應有盡有。</h2>
+					<p class="sub-title">快來加入 JHobby，立刻享受完整功能，打造屬於你的精彩社交時刻。</p>
+				<a href="register.html" class="btn btn-primary"><i class="feather-user-plus"></i> 加入我們</a>
 			</div>
 			<!-- /Footer Join -->
 			<!-- Footer Top -->
@@ -257,15 +191,15 @@
 					<div class="col-lg-2 col-md-6">
 						<!-- Footer Widget -->
 						<div class="footer-widget footer-menu">
-							<h4 class="footer-title">Contact us</h4>
+								<h4 class="footer-title">聯絡我們</h4>
 							<div class="footer-address-blk">
 								<div class="footer-call">
-									<span>Toll free Customer Care</span>
-									<p>+017 123 456 78</p>
+									<span>免費客戶服務熱線</span>
+									<p>02 2712 0589</p>
 								</div>
 								<div class="footer-call">
-									<span>Need Live Suppot</span>
-									<p>dreamsports@example.com</p>
+									<span>聯絡信箱</span>
+									<p>service@tibame.com</p>
 								</div>
 							</div>
 							<div class="social-icon">
@@ -290,22 +224,22 @@
 					<div class="col-lg-2 col-md-6">
 						<!-- Footer Widget -->
 						<div class="footer-widget footer-menu">
-							<h4 class="footer-title">Quick Links</h4>
+							<h4 class="footer-title">快速連結</h4>
 							<ul>
 								<li>
-									<a href="about-us.html">About us</a>
+									<a href="about-us.html">關於我們</a>
 								</li>
 								<li>
-									<a href="services.html">Services</a>
+									<a href="services.html">服務</a>
 								</li>
 								<li>
-									<a href="events.html">Events</a>
+									<a href="events.html">活動</a>
 								</li>
 								<li>
-									<a href="blog-grid.html">Blogs</a>
+									<a href="blog-grid.html">部落格</a>
 								</li>
 								<li>
-									<a href="contact-us.html">Contact us</a>
+									<a href="contact-us.html">聯絡我們</a>
 								</li>
 							</ul>
 						</div>
@@ -314,22 +248,22 @@
 					<div class="col-lg-2 col-md-6">
 						<!-- Footer Widget -->
 						<div class="footer-widget footer-menu">
-							<h4 class="footer-title">Support</h4>
+							<h4 class="footer-title">幫助中心</h4>
 							<ul>
 								<li>
-									<a href="contact-us.html">Contact Us</a>
+									<a href="contact-us.html">聯絡我們</a>
 								</li>
 								<li>
-									<a href="faq.html">Faq</a>
+									<a href="faq.html">常見問題</a>
 								</li>
 								<li>
-									<a href="privacy-policy.html">Privacy Policy</a>
+									<a href="privacy-policy.html">隱私政策</a>
 								</li>
 								<li>
-									<a href="terms-condition.html">Terms & Conditions</a>
+									<a href="terms-condition.html">使用條款</a>
 								</li>
 								<li>
-									<a href="pricing.html">Pricing</a>
+									<a href="pricing.html">價格</a>
 								</li>
 							</ul>
 						</div>
@@ -338,22 +272,22 @@
 					<div class="col-lg-2 col-md-6">
 						<!-- Footer Widget -->
 						<div class="footer-widget footer-menu">
-							<h4 class="footer-title">Other Links</h4>
+							<h4 class="footer-title">其他連結</h4>
 							<ul>
 								<li>
-									<a href="coaches-grid.html">Coaches</a>
+									<a href="coaches-grid.html">團主(原教練)</a>
 								</li>
 								<li>
-									<a href="listing-grid.html">Sports Venue</a>
+										<a href="listing-grid.html">聚會場地(運動場地)</a>
 								</li>
 								<li>
-									<a href="coach-details.html">Join As Coach</a>
+									<a href="coach-details.html">成為團主</a>
 								</li>
 								<li>
-									<a href="coaches-map.html">Add Venue</a>
+									<a href="coaches-map.html">新增場地</a>
 								</li>
 								<li>
-									<a href="my-profile.html">My Account</a>
+									<a href="my-profile.html">我的帳戶</a>
 								</li>
 							</ul>
 						</div>
@@ -362,22 +296,22 @@
 					<div class="col-lg-2 col-md-6">
 						<!-- Footer Widget -->
 						<div class="footer-widget footer-menu">
-							<h4 class="footer-title">Our Locations</h4>
+							<h4 class="footer-title">聚會地點</h4>
 							<ul>
 								<li>
-									<a href="javascript:void(0);">Germany</a>
+									<a href="javascript:void(0);">台北</a>
 								</li>
 								<li>
-									<a href="javascript:void(0);">Russia</a>
+									<a href="javascript:void(0);">板橋</a>
 								</li>
 								<li>
-									<a href="javascript:void(0);">France</a>
+									<a href="javascript:void(0);">桃園</a>
 								</li>
 								<li>
-									<a href="javascript:void(0);">UK</a>
+									<a href="javascript:void(0);">新竹</a>
 								</li>
 								<li>
-									<a href="javascript:void(0);">Colombia</a>
+									<a href="javascript:void(0);">台中</a>
 								</li>
 							</ul>
 						</div>
@@ -386,7 +320,7 @@
 					<div class="col-lg-2 col-md-6">
 						<!-- Footer Widget -->
 						<div class="footer-widget footer-menu">
-							<h4 class="footer-title">Download</h4>
+							<h4 class="footer-title">下載</h4>
 							<ul>
 								<li>
 									<a href="#"><img src="/assets/img/icons/icon-apple.svg" alt="Apple"></a>
@@ -411,7 +345,7 @@
 					<div class="row align-items-center">
 						<div class="col-md-6">
 							<div class="copyright-text">
-								<p class="mb-0">&copy; 2023 DreamSports  - All rights reserved.</p>
+								<p class="mb-0">&copy; 2023 JHobby  - 版權所有</p>
 							</div>
 						</div>
 						<div class="col-md-6">
@@ -422,9 +356,8 @@
 										<div class="lang-select">
 											<span class="select-icon"><i class="feather-globe"></i></span>
 											<select class="select">
-												<option>English (US)</option>
-												<option>UK</option>
-												<option>Japan</option>
+												<option>台灣</option>
+												<option>美國</option>
 											</select>
 										</div>
 									</li>
@@ -432,8 +365,8 @@
 										<div class="lang-select">
 											<span class="select-icon"></span>
 											<select class="select">
-												<option>$ USD</option>
-												<option>$ Euro</option>
+												<option>$ 台幣</option>
+												<option>$ 美金</option>
 											</select>
 										</div>
 									</li>
@@ -462,23 +395,23 @@
 
     <script src="~/js/site.js" asp-append-version="true"></script>
 	<!-- jQuery -->
-	<script src="/assets/js/jquery-3.7.0.min.js"></script>
+	<script src="~/assets/js/jquery-3.7.0.min.js"></script>
 	<!-- Bootstrap Core JS -->
-	<script src="/assets/js/bootstrap.bundle.min.js"></script>
+	<script src="~/assets/js/bootstrap.bundle.min.js"></script>
 	<!-- Select JS -->
-	<script src="/assets/plugins/select2/js/select2.min.js"></script>
+	<script src="~/assets/plugins/select2/js/select2.min.js"></script>
 	<!-- Owl Carousel JS -->
-	<script src="/assets/plugins/owl-carousel/owl.carousel.min.js"></script>
+	<script src="~/assets/plugins/owl-carousel/owl.carousel.min.js"></script>
 	<!-- Aos -->
-	<script src="/assets/plugins/aos/aos.js"></script>
+	<script src="~/assets/plugins/aos/aos.js"></script>
 	<!-- Counterup JS -->
-	<script src="/assets/js/jquery.waypoints.js"></script>
-	<script src="/assets/js/jquery.counterup.min.js"></script>
+	<script src="~/assets/js/jquery.waypoints.js"></script>
+	<script src="~/assets/js/jquery.counterup.min.js"></script>
 	<!-- Top JS -->
-	<script src="/assets/js/backToTop.js"></script>
+	<script src="~/assets/js/backToTop.js"></script>
+	@await RenderSectionAsync("Scripts", required: false)
 	<!-- Custom JS -->
-	<script src="/assets/js/script.js"></script>
+	<script src="~/assets/js/script.js"></script>
 
-    @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
