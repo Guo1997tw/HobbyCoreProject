@@ -1,14 +1,25 @@
-﻿<!-- Hero Section -->
+﻿@section Styles
+{
+	<style>
+		.service-count-blk {
+			position: inherit;
+			left: 30px;
+			bottom: 30px;
+		}
+	</style>
+}
+
+<!-- Hero Section -->
 <section class="hero-section">
 	<div class="banner-cock-one">
-		<img src="assets/img/icons/banner-cock1.svg" alt="Banner">
+		<img src="~/assets/img/icons/banner-cock1.svg" alt="Banner">
 	</div>
 	<div class="banner-shapes">
 		<div class="banner-dot-one">
 			<span></span>
 		</div>
 		<div class="banner-cock-two">
-			<img src="assets/img/icons/banner-cock2.svg" alt="Banner">
+			<img src="~/assets/img/icons/banner-cock2.svg" alt="Banner">
 			<span></span>
 		</div>
 		<div class="banner-dot-two">
@@ -20,30 +31,30 @@
 			<div class="row align-items-center w-100">
 				<div class="col-lg-7 col-md-10 mx-auto">
 					<div class="section-search aos" data-aos="fade-up">
-						<h4>World Class Badminton Coaching & Premium Courts</h4>
-						<h1>Choose Your <span>Coaches</span> and Start Your Training</h1>
-						<p class="sub-info">Unleash Your Athletic Potential with Expert Coaching, State-of-the-Art Facilities, and Personalized Training Programs.</p>
+@* 						<h4>World Class Badminton Coaching & Premium Courts</h4> *@
+						<h1>選擇喜歡的<span>揪團</span></h1>
+						<h1>開始您的體驗</h1>
+						<p class="sub-info">透過JHobby，綻放出揪團熱情</p>
 						<div class="search-box">
 							<form action="coaches-grid.html">
 								<div class="search-input line">
 									<div class="form-group mb-0">
-										<label>Search for</label>
+										<label>縣市</label>
 										<select class="select">
-											<option>Courts</option>
-											<option>Coaches</option>
+											<option>台北市</option>
+											<option>新北市</option>
 										</select>
 									</div>
 								</div>
 								<div class="search-input">
 									<div class="form-group mb-0">
-										<label>Where </label>
+										<label>區域 </label>
 										<select class="form-control select">
-											<option value="">Choose Location</option>
-											<option>Germany</option>
-											<option>Russia</option>
-											<option>France</option>
-											<option>UK</option>
-											<option>Colombia</option>
+											<option value="">請選擇</option>
+											<option>中山區</option>
+											<option>松山區</option>
+											<option>中正區</option>
+											<option>信義區</option>
 										</select>
 									</div>
 								</div>
@@ -56,7 +67,7 @@
 				</div>
 				<div class="col-lg-5">
 					<div class="banner-imgs text-center aos" data-aos="fade-up">
-						<img class="img-fluid" src="assets/img/bg/banner-right.png" alt="Banner">
+						<img class="img-fluid" src="~/assets/img/bg/banner-right.png" alt="Banner">
 					</div>
 				</div>
 			</div>
@@ -68,8 +79,8 @@
 <section class="section featured-venues">
 	<div class="container">
 		<div class="section-heading aos" data-aos="fade-up">
-			<h2>Featured <span>Venues</span></h2>
-			<p class="sub-title">Advanced sports venues offer the latest facilities, dynamic and unique environments for enhanced badminton performance.</p>
+			<h2>精選<span>揪團</span></h2>
+			<p class="sub-title">JHobby提供高優質活動，創造出最佳揪團體驗。</p>
 		</div>
 		<div class="row">
 			<div class="featured-slider-group ">
@@ -80,36 +91,32 @@
 						<div class="listing-item mb-0">
 							<div class="listing-img">
 								<a href="venue-details.html">
-									<img src="assets/img/venues/venues-01.jpg" alt="Venue">
+									<img src="~/assets/img/venues/venues-01.jpg" alt="Venue">
 								</a>
 								<div class="fav-item-venues">
-									<span class="tag tag-blue">Featured</span>
-									<h5 class="tag tag-primary">$450<span>/hr</span></h5>
+									<span class="tag tag-yellow">精選</span>
+									<div class="list-reviews">
+										<a href="javascript:void(0)" class="fav-icon">
+											<i class="feather-heart"></i>
+										</a>
+									</div>
 								</div>
 							</div>
 							<div class="listing-content">
-								<div class="list-reviews">
-									<div class="d-flex align-items-center">
-										<span class="rating-bg">4.2</span><span>300 Reviews</span>
-									</div>
-									<a href="javascript:void(0)" class="fav-icon">
-										<i class="feather-heart"></i>
-									</a>
-								</div>
 								<h3 class="listing-title">
-									<a href="venue-details.html">Sarah Sports Academy</a>
+									<a href="venue-details.html">[活動名稱1]</a>
 								</h3>
 								<div class="listing-details-group">
-									<p>Elevate your athletic journey at Sarah Sports Academy, where excellence meets opportunity.</p>
+									<p>[活動簡述]</p>
 									<ul>
 										<li>
 											<span>
-												<i class="feather-map-pin"></i>Port Alsworth, AK
+												<i class="feather-map-pin"></i>[活動地點]
 											</span>
 										</li>
 										<li>
 											<span>
-												<i class="feather-calendar"></i>Next Availablity : <span class="primary-text">15 May 2023</span>
+												<i class="feather-calendar"></i>報名截止日 : <span class="primary-text">[2023-11-30]</span>
 											</span>
 										</li>
 									</ul>
@@ -117,10 +124,10 @@
 								<div class="listing-button">
 									<div class="listing-venue-owner">
 										<a class="navigation" href="coach-detail.html">
-											<img src="assets/img/profiles/avatar-01.jpg" alt="Venue">Mart Sublin
+											<img src="~/assets/img/profiles/avatar-01.jpg" alt="Venue">陳O翰
 										</a>
 									</div>
-									<a href="venue-details.html" class="user-book-now"><span><i class="feather-calendar me-2"></i></span>Book Now</a>
+									<a href="venue-details.html" class="user-book-now"><span><i class="feather-calendar me-2"></i></span>參加</a>
 								</div>
 							</div>
 						</div>
@@ -131,36 +138,32 @@
 						<div class="listing-item mb-0">
 							<div class="listing-img">
 								<a href="venue-details.html">
-									<img src="assets/img/venues/venues-02.jpg" class="img-fluid" alt="Venue">
+									<img src="~/assets/img/venues/venues-01.jpg" alt="Venue">
 								</a>
 								<div class="fav-item-venues">
-									<span class="tag tag-blue">Top Rated</span>
-									<h5 class="tag tag-primary">$200<span>/hr</span></h5>
+									<span class="tag tag-yellow">精選</span>
+									<div class="list-reviews">
+										<a href="javascript:void(0)" class="fav-icon">
+											<i class="feather-heart"></i>
+										</a>
+									</div>
 								</div>
 							</div>
 							<div class="listing-content">
-								<div class="list-reviews">
-									<div class="d-flex align-items-center">
-										<span class="rating-bg">5.0</span><span>150 Reviews</span>
-									</div>
-									<a href="javascript:void(0)" class="fav-icon">
-										<i class="feather-heart"></i>
-									</a>
-								</div>
 								<h3 class="listing-title">
-									<a href="venue-details.html">Badminton Academy</a>
+									<a href="venue-details.html">[活動名稱2]</a>
 								</h3>
 								<div class="listing-details-group">
-									<p>Unleash your badminton potential at our premier Badminton Academy, where champions are made.</p>
+									<p>[活動簡述]</p>
 									<ul>
 										<li>
 											<span>
-												<i class="feather-map-pin"></i>Sacramento, CA
+												<i class="feather-map-pin"></i>[活動地點]
 											</span>
 										</li>
 										<li>
 											<span>
-												<i class="feather-calendar"></i>Next Availablity : <span class="primary-text">15 May 2023</span>
+												<i class="feather-calendar"></i>報名截止日 : <span class="primary-text">[2023-11-30]</span>
 											</span>
 										</li>
 									</ul>
@@ -168,10 +171,10 @@
 								<div class="listing-button">
 									<div class="listing-venue-owner">
 										<a class="navigation" href="coach-detail.html">
-											<img src="assets/img/profiles/avatar-02.jpg" alt="Venue">Rebecca
+											<img src="~/assets/img/profiles/avatar-01.jpg" alt="Venue">張O翔
 										</a>
 									</div>
-									<a href="venue-details.html" class="user-book-now"><span><i class="feather-calendar me-2"></i></span>Book Now</a>
+									<a href="venue-details.html" class="user-book-now"><span><i class="feather-calendar me-2"></i></span>參加</a>
 								</div>
 							</div>
 						</div>
@@ -182,35 +185,32 @@
 						<div class="listing-item mb-0">
 							<div class="listing-img">
 								<a href="venue-details.html">
-									<img src="assets/img/venues/venues-03.jpg" class="img-fluid" alt="Venue">
+									<img src="~/assets/img/venues/venues-01.jpg" alt="Venue">
 								</a>
 								<div class="fav-item-venues">
-									<h5 class="tag tag-primary">$350<span>/hr</span></h5>
+									<span class="tag tag-yellow">精選</span>
+									<div class="list-reviews">
+										<a href="javascript:void(0)" class="fav-icon">
+											<i class="feather-heart"></i>
+										</a>
+									</div>
 								</div>
 							</div>
 							<div class="listing-content">
-								<div class="list-reviews">
-									<div class="d-flex align-items-center">
-										<span class="rating-bg">4.7</span><span>120 Reviews</span>
-									</div>
-									<a href="javascript:void(0)" class="fav-icon">
-										<i class="feather-heart"></i>
-									</a>
-								</div>
 								<h3 class="listing-title">
-									<a href="venue-details.html">Manchester Academy</a>
+									<a href="venue-details.html">[活動名稱3]</a>
 								</h3>
 								<div class="listing-details-group">
-									<p>Manchester Academy: Where dreams meet excellence in sports education and training.</p>
+									<p>[活動簡述]</p>
 									<ul>
 										<li>
 											<span>
-												<i class="feather-map-pin"></i>Guysville, OH
+												<i class="feather-map-pin"></i>[活動地點]
 											</span>
 										</li>
 										<li>
 											<span>
-												<i class="feather-calendar"></i>Next Availablity : <span class="primary-text">16 May 2023</span>
+												<i class="feather-calendar"></i>報名截止日 : <span class="primary-text">[2023-11-30]</span>
 											</span>
 										</li>
 									</ul>
@@ -218,10 +218,10 @@
 								<div class="listing-button">
 									<div class="listing-venue-owner">
 										<a class="navigation" href="coach-detail.html">
-											<img src="assets/img/profiles/avatar-03.jpg" alt="Venue">Andrew
+											<img src="~/assets/img/profiles/avatar-01.jpg" alt="Venue">陳O瑜
 										</a>
 									</div>
-									<a href="venue-details.html" class="user-book-now"><span><i class="feather-calendar me-2"></i></span>Book Now</a>
+									<a href="venue-details.html" class="user-book-now"><span><i class="feather-calendar me-2"></i></span>參加</a>
 								</div>
 							</div>
 						</div>
@@ -232,36 +232,32 @@
 						<div class="listing-item mb-0">
 							<div class="listing-img">
 								<a href="venue-details.html">
-									<img src="assets/img/venues/venues-02.jpg" class="img-fluid" alt="Venue">
+									<img src="~/assets/img/venues/venues-01.jpg" alt="Venue">
 								</a>
 								<div class="fav-item-venues">
-									<span class="tag tag-blue">Featured</span>
-									<h5 class="tag tag-primary">$450<span>/hr</span></h5>
+									<span class="tag tag-yellow">精選</span>
+									<div class="list-reviews">
+										<a href="javascript:void(0)" class="fav-icon">
+											<i class="feather-heart"></i>
+										</a>
+									</div>
 								</div>
 							</div>
 							<div class="listing-content">
-								<div class="list-reviews">
-									<div class="d-flex align-items-center">
-										<span class="rating-bg">4.5</span><span>300 Reviews</span>
-									</div>
-									<a href="javascript:void(0)" class="fav-icon">
-										<i class="feather-heart"></i>
-									</a>
-								</div>
 								<h3 class="listing-title">
-									<a href="venue-details.html">ABC Sports Academy</a>
+									<a href="venue-details.html">[活動名稱4]</a>
 								</h3>
 								<div class="listing-details-group">
-									<p>Unleash your badminton potential at our premier ABC Sports Academy, where champions are made.</p>
+									<p>[活動簡述]</p>
 									<ul>
 										<li>
 											<span>
-												<i class="feather-map-pin"></i>Little Rock, AR
+												<i class="feather-map-pin"></i>[活動地點]
 											</span>
 										</li>
 										<li>
 											<span>
-												<i class="feather-calendar"></i>Next Availablity : <span class="primary-text">17 May 2023</span>
+												<i class="feather-calendar"></i>報名截止日 : <span class="primary-text">[2023-11-30]</span>
 											</span>
 										</li>
 									</ul>
@@ -269,146 +265,48 @@
 								<div class="listing-button">
 									<div class="listing-venue-owner">
 										<a class="navigation" href="coach-detail.html">
-											<img src="assets/img/profiles/avatar-04.jpg" alt="Venue">Mart Sublin
+											<img src="~/assets/img/profiles/avatar-01.jpg" alt="Venue">謝O州
 										</a>
 									</div>
-									<a href="venue-details.html" class="user-book-now"><span><i class="feather-calendar me-2"></i></span>Book Now</a>
+									<a href="venue-details.html" class="user-book-now"><span><i class="feather-calendar me-2"></i></span>參加</a>
 								</div>
 							</div>
 						</div>
 					</div>
 					<!-- /Featured Item -->
-
 				</div>
 			</div>
 		</div>
-
 		<!-- View More -->
 		<div class="view-all text-center aos" data-aos="fade-up">
-			<a href="listing-grid.html" class="btn btn-secondary d-inline-flex align-items-center">View All Featured<span class="lh-1"><i class="feather-arrow-right-circle ms-2"></i></span></a>
+			<a href="listing-grid.html" class="btn btn-secondary d-inline-flex align-items-center">更多揪團<span class="lh-1"><i class="feather-arrow-right-circle ms-2"></i></span></a>
 		</div>
 		<!-- View More -->
-
 	</div>
 </section>
 <!-- /Rental Deals -->
 <!-- Best Services -->
-<section class="section best-services">
+<section id="memberGender" class="section best-services">
 	<div class="container">
-		<div class="section-heading aos" data-aos="fade-up">
-			<h2>Extra Benefits, Unmatched  <span>Service Excellence</span></h2>
-			<p class="sub-title">Advance your badminton journey with DreamSports: Exclusive perks, exceptional service.</p>
-		</div>
+
 		<div class="row">
-			<div class="col-lg-6">
-				<div class="best-service-img aos" data-aos="fade-up">
-					<img src="assets/img/best-service.jpg" class="img-fluid" alt="Service">
-					<div class="service-count-blk">
-						<div class="coach-count">
-							<h3>Coaches</h3>
-							<h2><span class="counter-up">88</span>+</h2>
-							<h4>Highly skilled badminton coaches with extensive expertise in the sport.</h4>
+			<div class="service-count-blk" >
+						<div style="background-color:#192335" class="coach-count col-lg-4">
+							<h3>平台會員</h3>
+							<h1 style="color:white"><span class="counter-up">{{totle}}</span>+</h1>
+							<h4>我們擁有高優質的會員</h4>
 						</div>
-						<div class="coach-count coart-count">
-							<h3>Courts</h3>
-							<h2><span class="counter-up">59</span>+</h2>
-							<h4>Well-maintained courts for optimal badminton experiences.</h4>
+						<div class="coach-count col-lg-4">
+							<h3>男性會員</h3>
+							<h1 style="color:white"><span class="counter-up">{{man}}</span>+</h1>
+							<h4>樂衷善於揪團男士</h4>
 						</div>
-					</div>
-				</div>
-			</div>
-			<div class="col-lg-6">
-				<div class="ask-questions aos" data-aos="fade-up">
-					<h3>Frequently Asked Questions</h3>
-					<p>Here are some frequently asked questions about badminton at DreamSports:</p>
-					<div class="faq-info">
-						<div class="accordion" id="accordionExample">
-
-							<!-- FAQ Item -->
-							<div class="accordion-item">
-								<h2 class="accordion-header" id="headingOne">
-									<a href="javascript:;" class="accordion-button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-										How can I book a badminton court at DreamSports?
-									</a>
-								</h2>
-								<div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
-									<div class="accordion-body">
-										<div class="accordion-content">
-											<p>Book your DreamSports badminton court online or contact our customer service for seamless reservations. </p>
-										</div>
-									</div>
-								</div>
-							</div>
-							<!-- /FAQ Item -->
-							<!-- FAQ Item -->
-							<div class="accordion-item">
-								<h2 class="accordion-header" id="headingTwo">
-									<a href="javascript:;" class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-										What is the duration of a badminton court booking?
-									</a>
-								</h2>
-								<div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
-									<div class="accordion-body">
-										<div class="accordion-content">
-											<p>Book your DreamSports badminton court online or contact our customer service for seamless reservations. </p>
-										</div>
-									</div>
-								</div>
-							</div>
-							<!-- /FAQ Item -->
-							<!-- FAQ Item -->
-							<div class="accordion-item">
-								<h2 class="accordion-header" id="headingThree">
-									<a href="javascript:;" class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-										Can I rent badminton equipment at DreamSports?
-									</a>
-								</h2>
-								<div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
-									<div class="accordion-body">
-										<div class="accordion-content">
-											<p>Book your DreamSports badminton court online or contact our customer service for seamless reservations.</p>
-										</div>
-									</div>
-								</div>
-							</div>
-							<!-- /FAQ Item -->
-							<!-- FAQ Item -->
-							<div class="accordion-item">
-								<h2 class="accordion-header" id="headingFour">
-									<a href="javascript:;" class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
-										Are there any coaching services available  at DreamSports?
-									</a>
-								</h2>
-								<div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#accordionExample">
-									<div class="accordion-body">
-										<div class="accordion-content">
-											<p>Book your DreamSports badminton court online or contact our customer service for seamless reservations.</p>
-										</div>
-									</div>
-								</div>
-							</div>
-							<!-- /FAQ Item -->
-							<!-- FAQ Item -->
-							<div class="accordion-item">
-								<h2 class="accordion-header" id="headingFive">
-									<a href="javascript:;" class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
-										Can I join badminton leagues or tournaments at DreamSports?
-									</a>
-								</h2>
-								<div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive" data-bs-parent="#accordionExample">
-									<div class="accordion-body">
-										<div class="accordion-content">
-											<p>Book your DreamSports badminton court online or contact our customer service for seamless reservations.</p>
-										</div>
-									</div>
-								</div>
-							</div>
-							<!-- /FAQ Item -->
-
+						<div class="coach-count col-lg-4">
+							<h3>女性會員</h3>
+							<h1 style="color:white"><span class="counter-up">{{woman}}</span>+</h1>
+							<h4>喜愛參予各式活動女士</h4>
 						</div>
 					</div>
-				</div>
-			</div>
 		</div>
 	</div>
 </section>
@@ -417,8 +315,8 @@
 <section class="section featured-section">
 	<div class="container">
 		<div class="section-heading aos" data-aos="fade-up">
-			<h2>Featured <span>Coaches</span></h2>
-			<p class="sub-title">Uplift your badminton game with our featured coaches, personalized instruction, and expertise to achieve your goals.</p>
+			<h2>熱門 <span>團主</span></h2>
+			<p class="sub-title">JHobby為您準備高熱門揪團主</p>
 		</div>
 		<div class="row">
 			<div class="featured-slider-group aos" data-aos="fade-up">
@@ -429,23 +327,21 @@
 						<div class="listing-item mb-0">
 							<div class="listing-img">
 								<a href="coach-detail.html">
-									<img src="assets/img/profiles/user-01.jpg" alt="User">
+									<img src="~/assets/img/profiles/user-01.jpg" alt="User">
 								</a>
 								<div class="fav-item-venues">
-									<span class="tag tag-blue">Rookie</span>
-									<div class="list-reviews coche-star">
-										<a href="javascript:void(0)" class="fav-icon">
-											<i class="feather-heart"></i>
-										</a>
-									</div>
+									<span class="tag tag-blue">熱門</span>
 								</div>
 								<div class="hour-list">
-									<h5 class="tag tag-primary">From $250 <span>/hr</span></h5>
+									<div class="list-reviews">
+										<div class="d-flex align-items-center">
+											<span class="rating-bg">5.0</span>
+										</div>
+									</div>
 								</div>
 							</div>
 							<div class="listing-content list-coche-content">
-								<span>4 Lessons</span>
-								<h3><a href="coach-detail.html">Kevin Anderson</a></h3>
+								<h3><a href="coach-detail.html">陳O翰</a></h3>
 								<a href="coach-details.html"><i class="feather-arrow-right"></i></a>
 								<a href="coach-details.html" class="icon-hover"><i class="feather-calendar"></i></a>
 							</div>
@@ -457,23 +353,21 @@
 						<div class="listing-item mb-0">
 							<div class="listing-img">
 								<a href="coach-detail.html">
-									<img src="assets/img/profiles/user-02.jpg" alt="User">
+									<img src="~/assets/img/profiles/user-01.jpg" alt="User">
 								</a>
 								<div class="fav-item-venues">
-									<span class="tag tag-blue">Intermediate</span>
-									<div class="list-reviews coche-star">
-										<a href="javascript:void(0)" class="fav-icon">
-											<i class="feather-heart"></i>
-										</a>
-									</div>
+									<span class="tag tag-blue">熱門</span>
 								</div>
 								<div class="hour-list">
-									<h5 class="tag tag-primary">From $150 <span>/hr</span></h5>
+									<div class="list-reviews">
+										<div class="d-flex align-items-center">
+											<span class="rating-bg">5.0</span>
+										</div>
+									</div>
 								</div>
 							</div>
 							<div class="listing-content list-coche-content">
-								<span>3 Lessons</span>
-								<h3><a href="coach-detail.html">Harry Richardson</a></h3>
+								<h3><a href="coach-detail.html">張O翔</a></h3>
 								<a href="coach-details.html"><i class="feather-arrow-right"></i></a>
 								<a href="coach-details.html" class="icon-hover"><i class="feather-calendar"></i></a>
 							</div>
@@ -485,23 +379,21 @@
 						<div class="listing-item mb-0">
 							<div class="listing-img">
 								<a href="coach-detail.html">
-									<img src="assets/img/profiles/user-03.jpg" alt="User">
+									<img src="~/assets/img/profiles/user-01.jpg" alt="User">
 								</a>
 								<div class="fav-item-venues">
-									<span class="tag tag-blue">Professional</span>
-									<div class="list-reviews coche-star">
-										<a href="javascript:void(0)" class="fav-icon">
-											<i class="feather-heart"></i>
-										</a>
-									</div>
+									<span class="tag tag-blue">熱門</span>
 								</div>
 								<div class="hour-list">
-									<h5 class="tag tag-primary">From $350 <span>/hr</span></h5>
+									<div class="list-reviews">
+										<div class="d-flex align-items-center">
+											<span class="rating-bg">5.0</span>
+										</div>
+									</div>
 								</div>
 							</div>
 							<div class="listing-content list-coche-content">
-								<span>2 Lessons</span>
-								<h3><a href="coach-detail.html">Evon Raddick</a></h3>
+								<h3><a href="coach-detail.html">謝O州</a></h3>
 								<a href="coach-details.html"><i class="feather-arrow-right"></i></a>
 								<a href="coach-details.html" class="icon-hover"><i class="feather-calendar"></i></a>
 							</div>
@@ -513,23 +405,21 @@
 						<div class="listing-item mb-0">
 							<div class="listing-img">
 								<a href="coach-detail.html">
-									<img src="assets/img/profiles/user-04.jpg" alt="User">
+									<img src="~/assets/img/profiles/user-01.jpg" alt="User">
 								</a>
 								<div class="fav-item-venues">
-									<span class="tag tag-blue">Rookie</span>
-									<div class="list-reviews coche-star">
-										<a href="javascript:void(0)" class="fav-icon">
-											<i class="feather-heart"></i>
-										</a>
-									</div>
+									<span class="tag tag-blue">熱門</span>
 								</div>
 								<div class="hour-list">
-									<h5 class="tag tag-primary">From $250 <span>/hr</span></h5>
+									<div class="list-reviews">
+										<div class="d-flex align-items-center">
+											<span class="rating-bg">5.0</span>
+										</div>
+									</div>
 								</div>
 							</div>
 							<div class="listing-content list-coche-content">
-								<span>4 Lessons</span>
-								<h3><a href="coach-detail.html">Angela Roudrigez</a></h3>
+								<h3><a href="coach-detail.html">郭O翔</a></h3>
 								<a href="coach-details.html"><i class="feather-arrow-right"></i></a>
 								<a href="coach-details.html" class="icon-hover"><i class="feather-calendar"></i></a>
 							</div>
@@ -541,38 +431,71 @@
 						<div class="listing-item mb-0">
 							<div class="listing-img">
 								<a href="coach-detail.html">
-									<img src="assets/img/profiles/user-02.jpg" alt="User">
+									<img src="~/assets/img/profiles/user-01.jpg" alt="User">
 								</a>
 								<div class="fav-item-venues">
-									<span class="tag tag-blue">Intermediate</span>
-									<div class="list-reviews coche-star">
-										<a href="javascript:void(0)" class="fav-icon">
-											<i class="feather-heart"></i>
-										</a>
-									</div>
+									<span class="tag tag-blue">熱門</span>
 								</div>
 								<div class="hour-list">
-									<h5 class="tag tag-primary">From $150 <span>/hr</span></h5>
+									<div class="list-reviews">
+										<div class="d-flex align-items-center">
+											<span class="rating-bg">5.0</span>
+										</div>
+									</div>
 								</div>
 							</div>
 							<div class="listing-content list-coche-content">
-								<span>4 Lessons</span>
-								<h3><a href="coach-detail.html">Harry Richardson</a></h3>
+								<h3><a href="coach-detail.html">陳O瑜</a></h3>
 								<a href="coach-details.html"><i class="feather-arrow-right"></i></a>
 								<a href="coach-details.html" class="icon-hover"><i class="feather-calendar"></i></a>
 							</div>
 						</div>
 					</div>
 					<!-- /Featured Item -->
-
 				</div>
 			</div>
 		</div>
-		<div class="view-all text-center aos" data-aos="fade-up">
-			<a href="coaches-list.html" class="btn btn-secondary d-inline-flex align-items-center">
-				View All Coaches  <span class="lh-1"><i class="feather-arrow-right-circle ms-2"></i></span>
-			</a>
-		</div>
 	</div>
 </section>
+
+
 <!-- /Featured Coaches -->
+@section Scripts
+{
+	<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.6.0/axios.min.js" integrity="sha512-WrdC3CE9vf1nBf58JHepuWT4x24uTacky9fuzw2g/3L9JkihgwZ6Cfv+JGTtNyosOhEmttMtEZ6H3qJWfI7gIQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+	<script>
+		const memberGender = Vue.createApp({
+			data() {
+				return {
+					memberGender: [],
+					totle:0,
+					man:0,
+					woman:0
+				}
+			},
+			mounted() {
+				let _this = this;
+				_this.queryMemberGender();
+			},
+			methods: {
+				queryMemberGender() {
+					let _this = this;
+					axios.get("/IndexApi/GetGenderList")
+						.then(res => {
+							_this.memberGender = res.data;
+							for (var i = 0; i < _this.memberGender.length; i++) {
+								_this.totle = _this.memberGender[i].totle;
+								_this.man = _this.memberGender[i].man;
+								_this.woman = _this.memberGender[i].woman;
+							}
+						})
+						.catch(err => alert(err));
+				}
+
+			}
+		}).mount("#memberGender")
+
+	</script>
+}
