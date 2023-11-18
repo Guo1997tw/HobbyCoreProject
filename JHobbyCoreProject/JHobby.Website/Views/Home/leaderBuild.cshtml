@@ -18,45 +18,45 @@
 					<div class="col-12 col-sm-12 col-md-12 col-lg-12" data-select2-id="13">
 						<section class="card booking-form" data-select2-id="12">
 							<h3 class="border-bottom" style="font-size: 35px; text-align: center;">開團內容</h3>
-							<form data-select2-id="11">
+							<form data-select2-id="11">		
 
 
 								<div class="mb-3">
-									<label for="date" class="form-label" style="font-size: 22px;">開團地區</label>
+									<label for="date" class="form-label" style="font-size: 22px;">開團縣市</label>
 									<div class="form-icon">
-										<input type="text" class="form-control" placeholder="請輸入正確地址" id="empty-field">
+										<input type="text" class="form-control" placeholder="請輸入正確縣市" id="empty-field">
 
 									</div>
 								</div>
 
+								<div class="mb-3">
+									<label for="date" class="form-label" style="font-size: 22px;">開團鄉鎮市區</label>
+									<div class="form-icon">
+										<input type="text" class="form-control" placeholder="請輸入正確鄉鎮市區" id="empty-field">
+
+									</div>
+								</div>
+
+						<div class="mb-3">
+							<label for="date" class="form-label" style="font-size: 22px;">開團地址</label>
+							<div class="form-icon">
+								<input type="text" class="form-control" placeholder="請輸入正確地址" id="empty-field">
+
+							</div>
+						</div>
+
 
 								<div class="mb-3">
-									<label for="date" class="form-label" style="font-size: 22px;">活動開始日期</label>
+									<label for="date" class="form-label" style="font-size: 22px;">活動開始日期時間</label>
 									<div class="form-icon">
-										<input type="text" class="form-control datetimepicker" placeholder="請選擇日期" id="date">
+										<input type="text" class="form-control datetimepicker" placeholder="請輸入日期時間" >
 										<span class="cus-icon">
-											<i class="feather-calendar icon-date"></i>
+											<i class="feather-calendar icon-date"></i>		
 										</span>
 									</div>
 								</div>
-								<div class="mb-3">
-									<label for="start-time" class="form-label" style="font-size: 22px;">活動開始時間</label>
-									<div class="form-icon">
-										<input type="text" class="form-control timepicker" id="start-time" placeholder="請選擇活動開始時間">
-										<span class="cus-icon">
-											<i class="feather-clock icon-time"></i>
-										</span>
-									</div>
-								</div>
-								<div class="mb-3">
-									<label for="end-time" class="form-label" style="font-size: 22px;">活動結束時間</label>
-									<div class="form-icon">
-										<input type="text" class="form-control timepicker" id="end-time" placeholder="請選擇活動結束時間">
-										<span class="cus-icon">
-											<i class="feather-clock icon-time"></i>
-										</span>
-									</div>
-								</div>
+								
+								
 
 								<div class="mb-3">
 									<label for="empty-field" class="form-label" style="font-size: 22px;">人數限制</label>
@@ -66,8 +66,20 @@
 								</div>
 
 						<div class="mb-3">
-							<label for="court" class="form-label" style="font-size: 22px;">活動種類</label>
-							<select class="select select2-hidden-accessible" id="court" tabindex="-1" aria-hidden="true">
+							<label for="court" class="form-label" style="font-size: 22px;">活動種類(大項)</label>
+							<select class="select select2-hidden-accessible" id="mainCategory" tabindex="-1" aria-hidden="true">
+								<option value="0" disabled selected>請選擇活動種類</option>
+								<option value="1">食</option>
+								<option value="2">住</option>
+								<option value="3">行</option>
+								<option value="4">育</option>
+								<option value="5">樂</option>
+							</select>	
+						</div>
+
+						<div class="mb-3">
+							<label for="court" class="form-label" style="font-size: 22px;">活動種類(小項)</label>
+							<select class="select select2-hidden-accessible" id="subCategory" tabindex="-1" aria-hidden="true">
 								<option value="0" disabled selected>請選擇活動種類</option>
 								<option value="1">運動類</option>
 								<option value="2">休閒類</option>
@@ -75,24 +87,15 @@
 						</div>
 
 								<div class="mb-3">
-									<label for="endterdate" class="form-label" style="font-size: 22px;">報名截止日期</label>
+									<label for="endterdate" class="form-label" style="font-size: 22px;">報名截止日期時間</label>
 									<div class="form-icon">
-										<input type="text" class="form-control datetimepicker" placeholder="請選擇日期" id="date">
+										<input type="text" class="form-control datetimepicker" placeholder="請輸入日期時間">
 										<span class="cus-icon">
 											<i class="feather-calendar icon-date"></i>
 										</span>
 									</div>
 								</div>
 
-								<div class="mb-3">
-									<label for="start-time" class="form-label" style="font-size: 22px;">報名截止時間</label>
-									<div class="form-icon">
-										<input type="text" class="form-control timepicker" id="start-time" placeholder="請選擇活動開始時間">
-										<span class="cus-icon">
-											<i class="feather-clock icon-time"></i>
-										</span>
-									</div>
-								</div>
 
 								<div class="mb-3">
 									<label for="empty-field" class="form-label" style="font-size: 22px;">活動價錢</label>
@@ -108,17 +111,43 @@
 									</div>
 								</div>
 
-								<div class="mb-3">
+								@* <div class="mb-3">
 									<label for="upload-image" class="form-label" style="font-size: 22px;">上傳活動圖片</label>
 									<div class="form-icon">
 										<input type="file" class="form-control" id="upload-image" style="display: none;">
 										<div id="image-preview" style="width: 500px; height: 300px; border: 2px dashed #ccc; display: flex; align-items: center; justify-content: center;">
-											@* <span style="color: #999;">上傳圖片預覽區</span> *@
 											<img style="width:500px;height:300px" src="~/images/NoImage.jpg" />
 										</div>
 										<button type="button" onclick="document.getElementById('upload-image').click()" style="font-size: 14px; padding: 10px;">上傳圖檔</button>
 									</div>
+								</div> *@
+
+						<div class="col-md-12">
+							<div class="appoint-head coach-top">
+								<h1 style="font-size: 22px;">上傳活動圖片</h1>
+							</div>
+							<div class="file-upload-text appointment-upload">
+								<div class="file-upload">
+									<img src="~/assets/img/icons/upload-icon.svg" class="img-fluid" alt="Upload">
+									<p>點此上傳圖片</p>
+									<input type="file" id="file-input">
 								</div>
+								<div class="upload-show-img">
+									<div class="upload-images">
+										<img src="~/assets/img/booking/booking-01.jpg" alt="Uploader">
+										<a href="javascript:void(0);" class="btn btn-icon logo-hide-btn btn-sm"><i class="far fa-trash-alt"></i></a>
+									</div>
+									<div class="upload-images">
+										<img src="~/assets/img/booking/booking-02.jpg" alt="Uploader">
+										<a href="javascript:void(0);" class="btn btn-icon logo-hide-btn btn-sm"><i class="far fa-trash-alt"></i></a>
+									</div>
+									<div class="upload-images">
+										<img src="~/assets/img/booking/booking-03.jpg" alt="Uploader">
+										<a href="javascript:void(0);" class="btn btn-icon logo-hide-btn btn-sm "><i class="far fa-trash-alt "></i></a>
+									</div>
+								</div>
+							</div>
+						</div>
 
 
 
