@@ -9,7 +9,5 @@ namespace JHobby.Repository.Models.Dto
     public class CreateCategoryDto
     {
         public string CategoryName { get; set; } = null!;
-
-        public string TypeName { get; set; } = null!;
     }
 }

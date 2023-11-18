@@ -11,7 +11,7 @@ public partial class Score
 
     public int ActivityId { get; set; }
 
-    public int Fraction { get; set; }
+    public int? Fraction { get; set; }
 
     public DateTime EvaluationTime { get; set; }
 
