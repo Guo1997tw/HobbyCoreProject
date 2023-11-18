@@ -26,8 +26,7 @@ namespace JHobby.Website.Controllers.Api
 			var viewModel = servicesDto.Select(dto => new CategoryViewModel
 			{
 				CategoryId = dto.CategoryId,
-				CategoryName = dto.CategoryName,
-				TypeName = dto.TypeName,
+				CategoryName = dto.CategoryName
 			});
 
 			return Ok(viewModel);
@@ -43,8 +42,7 @@ namespace JHobby.Website.Controllers.Api
 			var viewModel = new CategoryViewModel
 			{
 				CategoryId = servicesDto.CategoryId,
-				CategoryName = servicesDto.CategoryName,
-				TypeName = servicesDto.TypeName
+				CategoryName = servicesDto.CategoryName
 			};
 
 			return Ok(viewModel);
@@ -55,8 +53,7 @@ namespace JHobby.Website.Controllers.Api
 		{
 			var mapper = new CreateCategoryModel
             {
-				CategoryName = createCategoryViewModel.CategoryName,
-				TypeName = createCategoryViewModel.TypeName
+				CategoryName = createCategoryViewModel.CategoryName
 			};
 
 			var result = _categoryService.CreateCategory(mapper);
@@ -71,8 +68,7 @@ namespace JHobby.Website.Controllers.Api
 
 			var mapper = new UpdateCategoryModel
 			{
-				CategoryName = updateCategoryViewModel.CategoryName,
-				TypeName = updateCategoryViewModel.TypeName
+				CategoryName = updateCategoryViewModel.CategoryName
 			};
 
 			var result = _categoryService.UpdateCategory(id, mapper);
