@@ -29,11 +29,13 @@ public partial class Member
 
     public string? Phone { get; set; }
 
+    public string? HeadShot { get; set; }
+
     public string? PersonalProfile { get; set; }
 
     public string Status { get; set; } = null!;
 
-    public string OnlineStatus { get; set; } = null!;
+    public string? OnlineStatus { get; set; }
 
     public DateTime CreationDate { get; set; }
 
