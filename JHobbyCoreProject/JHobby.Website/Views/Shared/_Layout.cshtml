@@ -58,7 +58,6 @@
     <!-- Main CSS -->
     <link rel="stylesheet" href="~/assets/css/style.css">
 	@await RenderSectionAsync("Styles", required: false)
-
 </head>
 <body>
 	<div id="global-loader">
@@ -462,23 +461,23 @@
 
     <script src="~/js/site.js" asp-append-version="true"></script>
 	<!-- jQuery -->
-	<script src="/assets/js/jquery-3.7.0.min.js"></script>
+	<script src="~/assets/js/jquery-3.7.0.min.js"></script>
 	<!-- Bootstrap Core JS -->
-	<script src="/assets/js/bootstrap.bundle.min.js"></script>
+	<script src="~/assets/js/bootstrap.bundle.min.js"></script>
 	<!-- Select JS -->
-	<script src="/assets/plugins/select2/js/select2.min.js"></script>
+	<script src="~/assets/plugins/select2/js/select2.min.js"></script>
 	<!-- Owl Carousel JS -->
-	<script src="/assets/plugins/owl-carousel/owl.carousel.min.js"></script>
+	<script src="~/assets/plugins/owl-carousel/owl.carousel.min.js"></script>
 	<!-- Aos -->
-	<script src="/assets/plugins/aos/aos.js"></script>
+	<script src="~/assets/plugins/aos/aos.js"></script>
 	<!-- Counterup JS -->
-	<script src="/assets/js/jquery.waypoints.js"></script>
-	<script src="/assets/js/jquery.counterup.min.js"></script>
+	<script src="~/assets/js/jquery.waypoints.js"></script>
+	<script src="~/assets/js/jquery.counterup.min.js"></script>
 	<!-- Top JS -->
-	<script src="/assets/js/backToTop.js"></script>
+	<script src="~/assets/js/backToTop.js"></script>
+	@await RenderSectionAsync("Scripts", required: false)
 	<!-- Custom JS -->
-	<script src="/assets/js/script.js"></script>
+	<script src="~/assets/js/script.js"></script>
 
-    @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
