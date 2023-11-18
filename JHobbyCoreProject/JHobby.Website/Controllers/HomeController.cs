@@ -34,7 +34,7 @@ namespace JHobby.Website.Controllers
         {
             return View();
         }
-        public IActionResult NotFound()
+        public IActionResult NotFounds()
         {
             return View();
         }
