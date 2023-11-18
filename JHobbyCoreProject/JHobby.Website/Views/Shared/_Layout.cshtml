@@ -475,9 +475,9 @@
 	<script src="/assets/js/jquery.counterup.min.js"></script>
 	<!-- Top JS -->
 	<script src="/assets/js/backToTop.js"></script>
+	@await RenderSectionAsync("Scripts", required: false)
 	<!-- Custom JS -->
 	<script src="/assets/js/script.js"></script>
 
-    @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

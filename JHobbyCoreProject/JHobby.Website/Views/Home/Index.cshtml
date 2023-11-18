@@ -286,24 +286,24 @@
 </section>
 <!-- /Rental Deals -->
 <!-- Best Services -->
-<section class="section best-services">
+<section id="memberGender" class="section best-services">
 	<div class="container">
 
 		<div class="row">
-					<div class="service-count-blk">
+			<div class="service-count-blk" >
 						<div style="background-color:#192335" class="coach-count col-lg-4">
 							<h3>平台會員</h3>
-						<h1 style="color:white"><span class="counter-up">88</span>+</h1>
-							<h4>我們擁有高優質會員數</h4>
+							<h1 style="color:white"><span class="counter-up">{{totle}}</span>+</h1>
+							<h4>我們擁有高優質的會員</h4>
 						</div>
 						<div class="coach-count col-lg-4">
 							<h3>男性會員</h3>
-							<h1 style="color:white"><span class="counter-up">59</span>+</h1>
+							<h1 style="color:white"><span class="counter-up">{{man}}</span>+</h1>
 							<h4>樂衷善於揪團男士</h4>
 						</div>
 						<div class="coach-count col-lg-4">
 							<h3>女性會員</h3>
-						<h1 style="color:white"><span class="counter-up">59</span>+</h1>
+							<h1 style="color:white"><span class="counter-up">{{woman}}</span>+</h1>
 							<h4>喜愛參予各式活動女士</h4>
 						</div>
 					</div>
@@ -458,3 +458,42 @@
 	</div>
 </section>
 <!-- /Featured Coaches -->
+@section Scripts
+{
+	<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.6.0/axios.min.js" integrity="sha512-WrdC3CE9vf1nBf58JHepuWT4x24uTacky9fuzw2g/3L9JkihgwZ6Cfv+JGTtNyosOhEmttMtEZ6H3qJWfI7gIQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+	<script>
+		const memberGender = Vue.createApp({
+			data() {
+				return {
+					memberGender: [],
+					totle:0,
+					man:0,
+					woman:0
+				}
+			},
+			mounted() {
+				let _this = this;
+				_this.queryMemberGender();
+			},
+			methods: {
+				queryMemberGender() {
+					let _this = this;
+					axios.get("/IndexApi/GetGenderList")
+						.then(res => {
+							_this.memberGender = res.data;
+							for (var i = 0; i < _this.memberGender.length; i++) {
+								_this.totle = _this.memberGender[i].totle;
+								_this.man = _this.memberGender[i].man;
+								_this.woman = _this.memberGender[i].woman;
+							}
+						})
+						.catch(err => alert(err));
+				}
+
+			}
+		}).mount("#memberGender")
+
+	</script>
+}
