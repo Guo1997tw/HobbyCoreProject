@@ -1,9 +1,7 @@
 ﻿namespace JHobby.Website.Models.ViewModels
 {
-	public class CategoryViewModel
-	{
-        public int CategoryId { get; set; }
-
+    public class UpdateCategoryViewModel
+    {
         public string CategoryName { get; set; } = null!;
-	}
+    }
 }

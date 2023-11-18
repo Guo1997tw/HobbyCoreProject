@@ -6,10 +6,8 @@ using System.Threading.Tasks;
 
 namespace JHobby.Service.Models
 {
-	public class CategoryModel
-	{
-        public int CategoryId { get; set; }
-
+    public class CreateCategoryModel
+    {
         public string CategoryName { get; set; } = null!;
-	}
+    }
 }
