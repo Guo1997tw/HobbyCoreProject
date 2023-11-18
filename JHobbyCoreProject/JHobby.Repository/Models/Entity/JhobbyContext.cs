@@ -23,6 +23,8 @@ public partial class JhobbyContext : DbContext
 
     public virtual DbSet<Category> Categories { get; set; }
 
+    public virtual DbSet<CategoryDetail> CategoryDetails { get; set; }
+
     public virtual DbSet<Member> Members { get; set; }
 
     public virtual DbSet<MsgBoard> MsgBoards { get; set; }
@@ -41,25 +43,20 @@ public partial class JhobbyContext : DbContext
         {
             entity.ToTable("Activity");
 
-            entity.Property(e => e.ActivityArea)
-                .HasMaxLength(5)
-                .IsFixedLength();
-            entity.Property(e => e.ActivityCity)
-                .HasMaxLength(5)
-                .IsFixedLength();
-            entity.Property(e => e.ActivityLocation)
-                .HasMaxLength(70)
-                .IsFixedLength();
+            entity.Property(e => e.ActivityArea).HasMaxLength(5);
+            entity.Property(e => e.ActivityCity).HasMaxLength(50);
+            entity.Property(e => e.ActivityLocation).HasMaxLength(70);
             entity.Property(e => e.ActivityName).HasMaxLength(20);
-            entity.Property(e => e.ActivityNotes)
-                .HasMaxLength(1000)
-                .IsFixedLength();
+            entity.Property(e => e.ActivityStatus)
+                .HasMaxLength(2)
+                .IsUnicode(false);
             entity.Property(e => e.Created).HasColumnType("datetime");
-            entity.Property(e => e.DeadLine).HasColumnType("datetime");
+            entity.Property(e => e.JoinDeadLine).HasColumnType("datetime");
             entity.Property(e => e.JoinFee).HasColumnType("money");
             entity.Property(e => e.Payment)
                 .HasMaxLength(2)
                 .IsUnicode(false);
+            entity.Property(e => e.StartTime).HasColumnType("datetime");
 
             entity.HasOne(d => d.Category).WithMany(p => p.Activities)
                 .HasForeignKey(d => d.CategoryId)
@@ -70,10 +67,7 @@ public partial class JhobbyContext : DbContext
         {
             entity.ToTable("ActivityImage");
 
-            entity.Property(e => e.ActivityImage1)
-                .HasMaxLength(100)
-                .IsUnicode(false)
-                .HasColumnName("ActivityImage");
+            entity.Property(e => e.ImageName).HasMaxLength(100);
             entity.Property(e => e.IsCover).HasColumnName("isCover");
             entity.Property(e => e.UploadTime).HasColumnType("datetime");
 
@@ -103,8 +97,20 @@ public partial class JhobbyContext : DbContext
         {
             entity.ToTable("Category");
 
-            entity.Property(e => e.CategoryName).HasMaxLength(10);
-            entity.Property(e => e.TypeName).HasMaxLength(5);
+            entity.Property(e => e.CategoryName).HasMaxLength(5);
+        });
+
+        modelBuilder.Entity<CategoryDetail>(entity =>
+        {
+            entity.HasKey(e => e.CategoryTypeId);
+
+            entity.ToTable("CategoryDetail");
+
+            entity.Property(e => e.TypeName).HasMaxLength(20);
+
+            entity.HasOne(d => d.Category).WithMany(p => p.CategoryDetails)
+                .HasForeignKey(d => d.CategoryId)
+                .HasConstraintName("FK_CategoryDetail_Category");
         });
 
         modelBuilder.Entity<Member>(entity =>
@@ -122,7 +128,8 @@ public partial class JhobbyContext : DbContext
             entity.Property(e => e.Gender)
                 .HasMaxLength(2)
                 .IsUnicode(false);
-            entity.Property(e => e.IdentityCard).HasMaxLength(50);
+            entity.Property(e => e.HeadShot).HasMaxLength(13);
+            entity.Property(e => e.IdentityCard).HasMaxLength(10);
             entity.Property(e => e.LastSignIn).HasColumnType("datetime");
             entity.Property(e => e.MemberName).HasMaxLength(16);
             entity.Property(e => e.NickName).HasMaxLength(16);
@@ -142,6 +149,10 @@ public partial class JhobbyContext : DbContext
             entity.ToTable("MsgBoard");
 
             entity.Property(e => e.MessageTime).HasColumnType("datetime");
+
+            entity.HasOne(d => d.Activity).WithMany(p => p.MsgBoards)
+                .HasForeignKey(d => d.ActivityId)
+                .HasConstraintName("FK_MsgBoard_Activity");
 
             entity.HasOne(d => d.Member).WithMany(p => p.MsgBoards)
                 .HasForeignKey(d => d.MemberId)

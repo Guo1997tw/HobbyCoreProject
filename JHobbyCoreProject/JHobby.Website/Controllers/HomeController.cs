@@ -27,9 +27,45 @@ namespace JHobby.Website.Controllers
 		{
 			return View();
 		}
+		public IActionResult leaderBuild()
+		{
+			return View();
+		}
+		public IActionResult Profile()
+		{
+            ViewData["Title"] = "團主介紹";
+			return View();
+		}
+
+
+		public IActionResult newcomer()
+		{
+            ViewData["Title"] = "新手上路";
+
+			return View();
+		}
+        public IActionResult Middle()
+        {
+            return View();
+        }
+
+		public IActionResult DashboardMenu()
+		{
+			return View();
+		}
+		public IActionResult Review()
+		{
+            ViewData["Title"] = "報名審核";
+			return View();
+		}
+
+        public IActionResult changePassword()       
+        {
+            return View();
+        }
 
 		[ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
+		public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
