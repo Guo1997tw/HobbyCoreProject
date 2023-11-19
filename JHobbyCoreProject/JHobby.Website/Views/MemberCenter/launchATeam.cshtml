@@ -214,7 +214,16 @@
 																							</span>
 																						</h4>
 																					</td>
-																					<td>2</td>
+																					<td>
+																						<!-- 連接參團人數 -->
+																									<a href="javascript:;"
+																										class="btn cancel-table-btn"
+																										data-bs-toggle="modal"
+																										data-bs-target="#add-particpate-check">
+																										2
+																									</a>
+																						<!-- /連接參團人數 -->
+																					</td>
 																					<td>
 																						<span class="pay-dark">10人</span>
 																					</td>
@@ -857,12 +866,7 @@
 			<!-- /Footer -->
 		</div>
 		<!-- /Main Wrapper -->
-		<!-- upcoming Modal -->
-		<!-- /upcoming Modal -->
-		<!-- upcoming Modal -->
-		<!-- /upcoming Modal -->
-		<!-- Request Modal -->
-		<!-- 刪除開團 -->
+		<!-- 彈跳刪除開團 -->
 		<div class="modal custom-modal fade request-modal" id="request-coche" style="display: none;" aria-hidden="true">
 			<div class="modal-dialog modal-dialog-centered modal-md">
 				<div class="modal-content">
@@ -880,8 +884,6 @@
 						<div class="row">
 							<div class="col-lg-12">
 								<div class="card dashboard-card court-information">
-
-									<!-- ai -->
 									<div class="d-flex align-items-center justify-content-between">
 										<div class="card-header">
 											<h4>注意事項:<br>刪除後無法再復原</h4>
@@ -912,14 +914,10 @@
 											<!-- 訊息欄位 -->
 										</div>
 									</div>
-
-									<!-- ai -->
-
 								</div>
 							</div>
 						</div>
 						<!-- /Court Request -->
-
 					</div>
 					<div class="modal-footer">
 						<div class="table-accept-btn">
@@ -928,12 +926,355 @@
 						<div class="table-accept-btn">
 							<a href="javascript:;" class="btn cancel-table-btn" data-bs-toggle="modal" data-bs-target="#request-reject">取消</a>
 						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- /彈跳刪除開團  -->
+		<!-- 彈跳確定參團人數 -->
+		<div class="modal custom-modal fade request-modal" id="add-particpate-check" style="display: none;"
+			 aria-hidden="true">
+			<div class="modal-dialog modal-dialog-centered modal-md">
+				<div class="modal-content">
+					<div class="modal-header">
+						<div class="form-header modal-header-title">
+							<h4 class="mb-0">確定參團人數</h4>
+						</div>
+						<a class="close" data-bs-dismiss="modal" aria-label="Close">
+							<span class="align-center" aria-hidden="true"><i class="feather-x"></i></span>
+						</a>
+					</div>
+					<div class="modal-body">
+						<!-- 開團標題欄&搜尋頁 -->
+						<div class="row">
+							<div class="col-sm-12">
+								<div class="court-tab-content">
+									<div class="card card-tableset">
+										<div class="card-body">
+											<div class="tab-content">
+												<div class="tab-pane fade active show" id="nav-Recent"
+													 role="tabpanel" aria-labelledby="nav-Recent-tab"
+													 tabindex="0">
+													<div class="table-responsive">
+														<div id="DataTables_Table_0_wrapper"
+															 class="dataTables_wrapper dt-bootstrap4 no-footer">
+															<div class="row">
+																<div class="col-sm-12 col-md-6"></div>
+																<div class="col-sm-12 col-md-6"></div>
+															</div>
+															<div class="row">
+																<div class="col-sm-12">
+																	<table class="table table-borderless datatable dataTable no-footer"
+																		   id="DataTables_Table_0" role="grid">
+																		<thead class="thead-light">
+																			<tr role="row">
+																				<th class="sorting_asc"
+																					tabindex="0"
+																					aria-controls="DataTables_Table_0"
+																					rowspan="1" colspan="1"
+																					aria-sort="ascending"
+																					aria-label="Court Name: activate to sort column descending"
+																					style="width: 208.688px;">
+																					開團名稱
+																				</th>
+
+																				<th class="sorting"
+																					tabindex="0"
+																					aria-controls="DataTables_Table_0"
+																					rowspan="1" colspan="1"
+																					aria-label="Date &amp;amp; Time : activate to sort column ascending"
+																					style="width: 121.615px;">
+																					申請時間
+																				</th>
+																				<th class="sorting"
+																					tabindex="0"
+																					aria-controls="DataTables_Table_0"
+																					rowspan="1" colspan="1"
+																					aria-label="Date &amp;amp; Time : activate to sort column ascending"
+																					style="width: 121.615px;">
+																					審核確認時間
+																				</th>
+																				<th class="sorting"
+																					tabindex="0"
+																					aria-controls="DataTables_Table_0"
+																					rowspan="1" colspan="1"
+																					aria-label="Status: activate to sort column ascending"
+																					style="width: 46.3229px;">
+																					申請狀態
+																				</th>
+																				<th class="sorting"
+																					tabindex="0"
+																					aria-controls="DataTables_Table_0"
+																					rowspan="1" colspan="1"
+																					aria-label=": activate to sort column ascending"
+																					style="width: 193.062px;">
+																				</th>
+																			</tr>
+																		</thead>
+																		<tbody>
+																			<!-- 參加人數展示卡片 -->
+																			<tr role="row" class="odd">
+																				<td class="sorting_1">
+																					<h2 class="table-avatar">
+																						<a href="#"
+																						   class="avatar avatar-sm  flex-shrink-0">
+																							<img class="avatar-img"
+																								 src="assets/img/booking/booking-04.jpg"
+																								 alt="User">
+																						</a>
+																						<span class="table-head-name flex-grow-1">
+																							<a href="javascript:;"
+																							   data-bs-toggle="modal"
+																							   data-bs-target="#request-court">王大明</a>
+																						</span>
+																					</h2>
+																				</td>
+																				<td class="table-date-time">
+																					<h4>
+																						星期三, 六月
+																						11日<span>
+																							06:00
+																							PM - 08:00
+																							PM
+																						</span>
+																					</h4>
+																				</td>
+																				<td class="table-date-time">
+																					<h4>
+																						星期三, 六月
+																						11日<span>
+																							06:00
+																							PM - 08:00
+																							PM
+																						</span>
+																					</h4>
+																				</td>
+																				<td class="paid-edit">
+																					<span>
+																						<i class="feather-edit"></i>許可
+																					</span>
+																				</td>
+																				<td class="table-accept-btn text-end">
+																					<a href="javascript:;"
+																					   class="btn cancel-table-btn"
+																					   data-bs-toggle="modal"
+																					   data-bs-target="#delete-particpate-check">
+																						<i class="feather-x-circle"></i>取消資格
+																					</a>
+																				</td>
+																			</tr>
+																			<!-- /參加人數展示卡片 -->
+																			<!-- 填充參加人數卡片 -->
+																			<tr role="row" class="odd">
+																				<td class="sorting_1">
+																					<h2 class="table-avatar">
+																						<a href="#"
+																						   class="avatar avatar-sm  flex-shrink-0">
+																							<img class="avatar-img"
+																								 src="assets/img/booking/booking-04.jpg"
+																								 alt="User">
+																						</a>
+																						<span class="table-head-name flex-grow-1">
+																							<a href="javascript:;"
+																							   data-bs-toggle="modal"
+																							   data-bs-target="#request-court">李小明</a>
+																						</span>
+																					</h2>
+																				</td>
+																				<td class="table-date-time">
+																					<h4>
+																						星期三, 六月
+																						11日<span>
+																							06:00
+																							PM - 08:00
+																							PM
+																						</span>
+																					</h4>
+																				</td>
+																				<td class="table-date-time">
+																					<h4>
+																						星期三, 六月
+																						11日<span>
+																							06:00
+																							PM - 08:00
+																							PM
+																						</span>
+																					</h4>
+																				</td>
+																				<td class="paid-edit">
+																					<span>
+																						<i class="feather-edit"></i>許可
+																					</span>
+																				</td>
+																				<td class="table-accept-btn text-end">
+																					<a href="javascript:;"
+																					   class="btn cancel-table-btn"
+																					   data-bs-toggle="modal"
+																					   data-bs-target="#request-coche">
+																						<i class="feather-x-circle">
+																						</i>取消資格
+																					</a>
+																				</td>
+																			</tr>
+																			<!-- /填充參加人數卡片 -->
+																		</tbody>
+																	</table>
+																</div>
+															</div>
+															<div class="row">
+																<div class="col-sm-12 col-md-5"></div>
+																<div class="col-sm-12 col-md-7"></div>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="tab-footer" style=" margin-top: 10px;">
+										<div class="row">
+											<div class="col-md-6">
+												<div id="tablelength">
+													<div class="dataTables_length"
+														 id="DataTables_Table_1_length">
+														<label>
+															Show
+															<select name="DataTables_Table_1_length"
+																	aria-controls="DataTables_Table_1"
+																	class="custom-select custom-select-sm form-control form-control-sm">
+																<option value="10">10</option>
+																<option value="25">25</option>
+																<option value="50">50</option>
+																<option value="-1">All</option>
+															</select>
+														</label>
+													</div>
+													<div class="dataTables_length"
+														 id="DataTables_Table_0_length">
+														<label>
+															Show
+															<select name="DataTables_Table_0_length"
+																	aria-controls="DataTables_Table_0"
+																	class="custom-select custom-select-sm form-control form-control-sm">
+																<option value="10">10</option>
+																<option value="25">25</option>
+																<option value="50">50</option>
+																<option value="-1">All</option>
+															</select>
+														</label>
+													</div>
+												</div>
+											</div>
+											<div class="col-md-6">
+												<div id="tablepage">
+													<div class="dataTables_paginate paging_simple_numbers"
+														 id="DataTables_Table_1_paginate">
+														<ul class="pagination">
+															<li class="paginate_button page-item previous disabled"
+																id="DataTables_Table_1_previous">
+																<a href="#"
+																   aria-controls="DataTables_Table_1"
+																   data-dt-idx="0" tabindex="0"
+																   class="page-link">
+																	<i class="feather-chevrons-left"></i>
+																</a>
+															</li>
+															<li class="paginate_button page-item active">
+																<a href="#"
+																   aria-controls="DataTables_Table_1"
+																   data-dt-idx="1" tabindex="0"
+																   class="page-link">1</a>
+															</li>
+															<li class="paginate_button page-item next disabled"
+																id="DataTables_Table_1_next">
+																<a href="#"
+																   aria-controls="DataTables_Table_1"
+																   data-dt-idx="2" tabindex="0"
+																   class="page-link">
+																	<i class="feather-chevrons-right"></i>
+																</a>
+															</li>
+														</ul>
+													</div>
+													<div class="dataTables_paginate paging_simple_numbers"
+														 id="DataTables_Table_0_paginate">
+														<ul class="pagination">
+															<li class="paginate_button page-item previous disabled"
+																id="DataTables_Table_0_previous">
+																<a href="#"
+																   aria-controls="DataTables_Table_0"
+																   data-dt-idx="0" tabindex="0"
+																   class="page-link">
+																	<i class="feather-chevrons-left"></i>
+																</a>
+															</li>
+															<li class="paginate_button page-item active">
+																<a href="#"
+																   aria-controls="DataTables_Table_0"
+																   data-dt-idx="1" tabindex="0"
+																   class="page-link">1</a>
+															</li>
+															<li class="paginate_button page-item next disabled"
+																id="DataTables_Table_0_next">
+																<a href="#"
+																   aria-controls="DataTables_Table_0"
+																   data-dt-idx="2" tabindex="0"
+																   class="page-link">
+																	<i class="feather-chevrons-right"></i>
+																</a>
+															</li>
+														</ul>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<!-- /開團標題欄&搜尋頁 -->
+					</div>
+					<div class="modal-footer">
+						<div class="table-accept-btn">
+							<a href="javascript:;" class="btn cancel-table-btn" data-bs-toggle="modal"
+							   data-bs-target="#request-reject">上一頁</a>
+						</div>
 
 					</div>
 				</div>
 			</div>
 		</div>
-		<!-- /刪除開團  -->
+		<!-- /彈跳確定參團人數  -->
+		<!-- 彈跳確定刪除參團人員 -->
+		<div class="modal custom-modal fade request-modal" id="delete-particpate-check"
+			 style="display: none;" aria-hidden="true">
+			<div class="modal-dialog modal-dialog-centered modal-md" style="max-width: 540px;">
+				<div class="modal-content">
+					<div class="modal-header">
+						<div class="form-header modal-header-title">
+							<h4 class="mb-0">確定參團人數</h4>
+						</div>
+						<a class="close" data-bs-dismiss="modal" aria-label="Close">
+							<span class="align-center" aria-hidden="true"><i class="feather-x"></i></span>
+						</a>
+					</div>
+					<div class="modal-body">
+						<span>確定要取消這個人的資格嗎?</span>
+					</div>
+					<div class="modal-footer">
+						<div class="table-accept-btn">
+							<a href="javascript:;" class="btn cancel-table-btn" data-bs-toggle="modal"
+							   data-bs-target="#request-reject">取消資格</a>
+						</div>
+						<div class="table-accept-btn">
+							<a href="javascript:;" class="btn accept-btn" data-bs-toggle="modal"
+							   data-bs-target="#request-reject">上一頁</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- /彈跳確定參團人數  -->
 	</main>
 </div>
 
