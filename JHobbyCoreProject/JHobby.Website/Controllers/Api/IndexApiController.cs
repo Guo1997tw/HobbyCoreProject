@@ -1,5 +1,6 @@
 ﻿using JHobby.Service.Interfaces;
 using JHobby.Service.Models;
+using JHobby.Website.Models.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -32,6 +33,23 @@ namespace JHobby.Website.Controllers.Api
 			return viewModel;
 		}
 
-
+		[HttpGet]
+		public IEnumerable<QueryActivityViewModel> getActivityList()
+		{
+			var services = _IndexService.GetActivityResult();
+			var viewModel = services.Select(s => new QueryActivityViewModel
+			{
+				ActivityId =s.ActivityId,
+				MemberId = s.MemberId,
+				MemberName = s.MemberName,
+				ActivityName=s.ActivityName,
+				ActivityStatus=s.ActivityStatus,
+				ActivityLocation=s.ActivityLocation,
+				ActivityNotes=s.ActivityNotes,
+				JoinDeadLine=s.JoinDeadLine,
+				ActivityImages = s.ActivityImages
+			});
+			return viewModel;
+		}
 	}
 }

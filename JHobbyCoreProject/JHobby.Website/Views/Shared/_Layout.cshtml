@@ -87,7 +87,7 @@
 					<div class="main-menu-wrapper">
 						<div class="menu-header">
 							<a href="index.html" class="menu-logo">
-								<img src="assets/img/loader.jpg" class="img-fluid" alt="Logo">  @* n *@
+								<img src="~/image/loader.jpg" class="img-fluid" alt="Logo">  @* n *@
 							</a>
 							<a id="menu_close" class="menu-close" href="javascript:void(0);">
 								<i class="fas fa-times"></i>
@@ -391,8 +391,7 @@
 		</svg>
 	</div>
 	<!-- scrollToTop end -->
-
-
+	
     <script src="~/js/site.js" asp-append-version="true"></script>
 	<!-- jQuery -->
 	<script src="~/assets/js/jquery-3.7.0.min.js"></script>
@@ -409,9 +408,10 @@
 	<script src="~/assets/js/jquery.counterup.min.js"></script>
 	<!-- Top JS -->
 	<script src="~/assets/js/backToTop.js"></script>
-	@await RenderSectionAsync("Scripts", required: false)
 	<!-- Custom JS -->
 	<script src="~/assets/js/script.js"></script>
+	@await RenderSectionAsync("Scripts", required: false)
+	
 
 </body>
 </html>

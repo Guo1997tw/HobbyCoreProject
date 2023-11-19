@@ -34,7 +34,7 @@
 @* 						<h4>World Class Badminton Coaching & Premium Courts</h4> *@
 						<h1>選擇喜歡的<span>揪團</span></h1>
 						<h1>開始您的體驗</h1>
-						<p class="sub-info">透過JHobby，綻放出揪團熱情</p>
+						<p class="sub-info">透過94HOBBY，綻放出揪團熱情</p>
 						<div class="search-box">
 							<form action="coaches-grid.html">
 								<div class="search-input line">
@@ -76,204 +76,63 @@
 </section>
 <!-- /Hero Section -->
 <!-- Rental Deals -->
-<section class="section featured-venues">
+<section id="rentalActivity" class="section featured-venues">
 	<div class="container">
 		<div class="section-heading aos" data-aos="fade-up">
 			<h2>精選<span>揪團</span></h2>
-			<p class="sub-title">JHobby提供高優質活動，創造出最佳揪團體驗。</p>
+			<p class="sub-title">94HOBBY提供高優質活動，創造出最佳揪團體驗。</p>
 		</div>
 		<div class="row">
 			<div class="featured-slider-group ">
-				<div class="owl-carousel featured-venues-slider owl-theme">
+				<div class="owl-carousel featured-venues-slider owl-theme" >
+					<!-- Featured Item -->
+					<div class="featured-venues-item aos" data-aos="fade-up" v-for="item in activityList">
+						<div class="listing-item mb-0">
+							<div class="listing-img">
+								<a href="venue-details.html">
+									<img src="~/assets/img/venues/venues-01.jpg" alt="Venue">
+								</a>
+								<div class="fav-item-venues">
+									<span class="tag tag-yellow">精選</span>
+									<div class="list-reviews">
+										<a href="javascript:void(0)" class="fav-icon">
+											<i class="feather-heart"></i>
+										</a>
+									</div>
+								</div>
+							</div>
+							<div class="listing-content">
+								<h3 class="listing-title">
+									<a href="venue-details.html">{{item.activityName}}</a>
+								</h3>
+								<div class="listing-details-group">
+									<p>[活動簡述]</p>
+									<ul>
+										<li>
+											<span>
+												<i class="feather-map-pin"></i>{{item.activityLocation}}
+											</span>
+										</li>
+										<li>
+											<span>
+												<i class="feather-calendar"></i>報名截止日 : <span class="primary-text">{{item.joinDeadLine}}</span>
+											</span>
+										</li>
+									</ul>
+								</div>
+								<div class="listing-button">
+									<div class="listing-venue-owner">
+										<a class="navigation" href="coach-detail.html">
+											<img src="~/assets/img/profiles/avatar-01.jpg" alt="Venue">{{item.memberName}}
+										</a>
+									</div>
+									<a href="venue-details.html" class="user-book-now"><span><i class="feather-calendar me-2"></i></span>參加</a>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- /Featured Item -->
 
-					<!-- Featured Item -->
-					<div class="featured-venues-item aos" data-aos="fade-up">
-						<div class="listing-item mb-0">
-							<div class="listing-img">
-								<a href="venue-details.html">
-									<img src="~/assets/img/venues/venues-01.jpg" alt="Venue">
-								</a>
-								<div class="fav-item-venues">
-									<span class="tag tag-yellow">精選</span>
-									<div class="list-reviews">
-										<a href="javascript:void(0)" class="fav-icon">
-											<i class="feather-heart"></i>
-										</a>
-									</div>
-								</div>
-							</div>
-							<div class="listing-content">
-								<h3 class="listing-title">
-									<a href="venue-details.html">[活動名稱1]</a>
-								</h3>
-								<div class="listing-details-group">
-									<p>[活動簡述]</p>
-									<ul>
-										<li>
-											<span>
-												<i class="feather-map-pin"></i>[活動地點]
-											</span>
-										</li>
-										<li>
-											<span>
-												<i class="feather-calendar"></i>報名截止日 : <span class="primary-text">[2023-11-30]</span>
-											</span>
-										</li>
-									</ul>
-								</div>
-								<div class="listing-button">
-									<div class="listing-venue-owner">
-										<a class="navigation" href="coach-detail.html">
-											<img src="~/assets/img/profiles/avatar-01.jpg" alt="Venue">陳O翰
-										</a>
-									</div>
-									<a href="venue-details.html" class="user-book-now"><span><i class="feather-calendar me-2"></i></span>參加</a>
-								</div>
-							</div>
-						</div>
-					</div>
-					<!-- /Featured Item -->
-					<!-- Featured Item -->
-					<div class="featured-venues-item aos" data-aos="fade-up">
-						<div class="listing-item mb-0">
-							<div class="listing-img">
-								<a href="venue-details.html">
-									<img src="~/assets/img/venues/venues-01.jpg" alt="Venue">
-								</a>
-								<div class="fav-item-venues">
-									<span class="tag tag-yellow">精選</span>
-									<div class="list-reviews">
-										<a href="javascript:void(0)" class="fav-icon">
-											<i class="feather-heart"></i>
-										</a>
-									</div>
-								</div>
-							</div>
-							<div class="listing-content">
-								<h3 class="listing-title">
-									<a href="venue-details.html">[活動名稱2]</a>
-								</h3>
-								<div class="listing-details-group">
-									<p>[活動簡述]</p>
-									<ul>
-										<li>
-											<span>
-												<i class="feather-map-pin"></i>[活動地點]
-											</span>
-										</li>
-										<li>
-											<span>
-												<i class="feather-calendar"></i>報名截止日 : <span class="primary-text">[2023-11-30]</span>
-											</span>
-										</li>
-									</ul>
-								</div>
-								<div class="listing-button">
-									<div class="listing-venue-owner">
-										<a class="navigation" href="coach-detail.html">
-											<img src="~/assets/img/profiles/avatar-01.jpg" alt="Venue">張O翔
-										</a>
-									</div>
-									<a href="venue-details.html" class="user-book-now"><span><i class="feather-calendar me-2"></i></span>參加</a>
-								</div>
-							</div>
-						</div>
-					</div>
-					<!-- /Featured Item -->
-					<!-- Featured Item -->
-					<div class="featured-venues-item aos" data-aos="fade-up">
-						<div class="listing-item mb-0">
-							<div class="listing-img">
-								<a href="venue-details.html">
-									<img src="~/assets/img/venues/venues-01.jpg" alt="Venue">
-								</a>
-								<div class="fav-item-venues">
-									<span class="tag tag-yellow">精選</span>
-									<div class="list-reviews">
-										<a href="javascript:void(0)" class="fav-icon">
-											<i class="feather-heart"></i>
-										</a>
-									</div>
-								</div>
-							</div>
-							<div class="listing-content">
-								<h3 class="listing-title">
-									<a href="venue-details.html">[活動名稱3]</a>
-								</h3>
-								<div class="listing-details-group">
-									<p>[活動簡述]</p>
-									<ul>
-										<li>
-											<span>
-												<i class="feather-map-pin"></i>[活動地點]
-											</span>
-										</li>
-										<li>
-											<span>
-												<i class="feather-calendar"></i>報名截止日 : <span class="primary-text">[2023-11-30]</span>
-											</span>
-										</li>
-									</ul>
-								</div>
-								<div class="listing-button">
-									<div class="listing-venue-owner">
-										<a class="navigation" href="coach-detail.html">
-											<img src="~/assets/img/profiles/avatar-01.jpg" alt="Venue">陳O瑜
-										</a>
-									</div>
-									<a href="venue-details.html" class="user-book-now"><span><i class="feather-calendar me-2"></i></span>參加</a>
-								</div>
-							</div>
-						</div>
-					</div>
-					<!-- /Featured Item -->
-					<!-- Featured Item -->
-					<div class="featured-venues-item aos" data-aos="fade-up">
-						<div class="listing-item mb-0">
-							<div class="listing-img">
-								<a href="venue-details.html">
-									<img src="~/assets/img/venues/venues-01.jpg" alt="Venue">
-								</a>
-								<div class="fav-item-venues">
-									<span class="tag tag-yellow">精選</span>
-									<div class="list-reviews">
-										<a href="javascript:void(0)" class="fav-icon">
-											<i class="feather-heart"></i>
-										</a>
-									</div>
-								</div>
-							</div>
-							<div class="listing-content">
-								<h3 class="listing-title">
-									<a href="venue-details.html">[活動名稱4]</a>
-								</h3>
-								<div class="listing-details-group">
-									<p>[活動簡述]</p>
-									<ul>
-										<li>
-											<span>
-												<i class="feather-map-pin"></i>[活動地點]
-											</span>
-										</li>
-										<li>
-											<span>
-												<i class="feather-calendar"></i>報名截止日 : <span class="primary-text">[2023-11-30]</span>
-											</span>
-										</li>
-									</ul>
-								</div>
-								<div class="listing-button">
-									<div class="listing-venue-owner">
-										<a class="navigation" href="coach-detail.html">
-											<img src="~/assets/img/profiles/avatar-01.jpg" alt="Venue">謝O州
-										</a>
-									</div>
-									<a href="venue-details.html" class="user-book-now"><span><i class="feather-calendar me-2"></i></span>參加</a>
-								</div>
-							</div>
-						</div>
-					</div>
-					<!-- /Featured Item -->
 				</div>
 			</div>
 		</div>
@@ -316,7 +175,7 @@
 	<div class="container">
 		<div class="section-heading aos" data-aos="fade-up">
 			<h2>熱門 <span>團主</span></h2>
-			<p class="sub-title">JHobby為您準備高熱門揪團主</p>
+			<p class="sub-title">94HOBBY為您準備高熱門揪團主</p>
 		</div>
 		<div class="row">
 			<div class="featured-slider-group aos" data-aos="fade-up">
@@ -462,9 +321,9 @@
 <!-- /Featured Coaches -->
 @section Scripts
 {
-	<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/3.3.4/vue.global.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.6.0/axios.min.js" integrity="sha512-WrdC3CE9vf1nBf58JHepuWT4x24uTacky9fuzw2g/3L9JkihgwZ6Cfv+JGTtNyosOhEmttMtEZ6H3qJWfI7gIQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-
+	<script src="~/assets/js/script.js"></script>
 	<script>
 		const memberGender = Vue.createApp({
 			data() {
@@ -490,12 +349,43 @@
 								_this.man = _this.memberGender[i].man;
 								_this.woman = _this.memberGender[i].woman;
 							}
+							Vue.nextTick(function () {
+								Jhobby_counter_up();
+							});
 						})
 						.catch(err => alert(err));
 				}
 
 			}
 		}).mount("#memberGender")
+		const rentalActivity = Vue.createApp({
+			data() {
+				return {
+					activityList: []
+				}
+			},
+			mounted() {
+				let _this = this;
+				_this.queryActivityList();
+				// _this.jqowl();
+			},
+			methods: {
+				queryActivityList() {
+					let _this = this;
+					axios.get("/IndexApi/GetActivityList")
+						.then(res => {
+							_this.activityList = res.data;
+							// _this.jqowl();
+							//alert(_this.activityList[0].activityName);
+							Vue.nextTick(function () {
+								Jhobby_featured_venues_slider();
+							});
+						})
+						.catch(err => alert(err));
+				}
+			}
+		}).mount("#rentalActivity")
+
 
 	</script>
 }
