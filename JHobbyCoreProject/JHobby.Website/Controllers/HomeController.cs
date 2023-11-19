@@ -46,13 +46,7 @@ namespace JHobby.Website.Controllers
         {
             return View();
         }
-        public IActionResult Profile()
-        {
-            ViewData["Title"] = "團主介紹";
-            return View();
-        }
-
-
+        
         public IActionResult newcomer()
         {
             ViewData["Title"] = "新手上路";
