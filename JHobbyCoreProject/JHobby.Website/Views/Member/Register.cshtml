@@ -21,7 +21,7 @@
                                     <img src="~/images/register/Hobby.png" class="RegisterLogo" alt="HobbyLogo">
                                 </header>
                                 <div class="shadow-card">
-                                    <h2>註冊畫面</h2>
+                                    <h2>註冊</h2>
                                     <div class="tab-content" id="myTabContent">
                                         <div class="tab-pane fade show active" id="user" role="tabpanel" aria-labelledby="user-tab">
                                             <!-- Register Form -->
@@ -47,18 +47,18 @@
                                                 <div class="form-group">
                                                     <div class="pass-group group-img">
                                                         <i class="toggle-password-confirm feather-eye-off"></i>
-                                                        <input type="password" class="form-control pass-confirm" placeholder="密碼確認">
+                                                        <input type="password" class="form-control pass-confirm" placeholder="密碼確認" v-model="memberRegister.passwordConfirm">
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
-                                                    <input type="text" class="form-control pass-confirm" placeholder="身份别" v-model="memberRegister.status" hidden>
+                                                    <input type="text" class="form-control pass-confirm" placeholder="身份别" v-model="memberRegister.status" hidden readonly>
                                                 </div>
                                                 <div class="form-group">
-                                                    <input type="text" class="form-control pass-confirm" placeholder="建立日期" v-model="memberRegister.creationDate" hidden>
+                                                    <input type="text" class="form-control pass-confirm" placeholder="建立日期" v-model="memberRegister.creationDate" hidden readonly>
                                                 </div>
                                                 <div class="form-check d-flex justify-content-start align-items-center policy">
                                                     <div class="d-inline-block">
-                                                        <input class="form-check-input" type="checkbox" value="" id="policy">
+                                                        <input class="form-check-input" type="checkbox" @* value="" *@ id="policy" v-model="memberRegister.policy">
                                                     </div>
                                                     <label class="form-check-label" for="policy">我已閱讀並同意<a href="XXXXX">《使用條款》</a>與<a href="XXXXX">《隱私權政策》</a></label>
                                                 </div>
@@ -112,13 +112,23 @@
                     account: "",
                     password: "",
                     status: "0",
-                    creationDate: "2023-11-17"
+                    creationDate: this.GetDay(),
+                    passwordConfirm: "",
+                    policy: false
                 },
             }
         },
 
         methods: {
             Registe() {
+                if ((this.memberRegister.passwordConfirm === null) || (this.memberRegister.password !== this.memberRegister.passwordConfirm)) {
+                    return alert("密碼欄位需一致!!");
+                }
+
+                if (!this.memberRegister.policy) {
+                    return alert("您必須同意使用條款和隱私權政策才能註冊!!");
+                }
+
                 let self = this;
 
                 fetch("/MemberApi/InsertRegister", {
@@ -133,6 +143,18 @@
                         console.log('Success', d);
                         alert("註冊成功");
                     })
+            },
+
+            GetDay() {
+                const dayNow = new Date();
+                const year = dayNow.getFullYear();
+                const month = String(dayNow.getMonth() + 1).padStart(2, '0');
+                const day = String(dayNow.getDate()).padStart(2, '0');
+                const hours = String(dayNow.getHours()).padStart(2, '0');
+                const minutes = String(dayNow.getMinutes()).padStart(2, '0');
+                const seconds = String(dayNow.getSeconds()).padStart(2, '0');
+
+                return `${year}-${month}-${day}T${hours}:${minutes}:${seconds}`;
             },
         },
     }).mount("#app");
