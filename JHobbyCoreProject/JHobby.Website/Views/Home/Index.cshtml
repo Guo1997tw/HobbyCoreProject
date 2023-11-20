@@ -75,8 +75,8 @@
 	</div>
 </section>
 <!-- /Hero Section -->
-<!-- Rental Deals -->
-<section id="rentalActivity" class="section featured-venues">
+<!-- hotActivity -->
+<section id="hotActivity" class="section featured-venues">
 	<div class="container">
 		<div class="section-heading aos" data-aos="fade-up">
 			<h2>精選<span>揪團</span></h2>
@@ -143,9 +143,9 @@
 		<!-- View More -->
 	</div>
 </section>
-<!-- /Rental Deals -->
+<!-- /hotActivity -->
 <!-- Best Services -->
-<section id="memberGender" class="section best-services">
+<section id="bestServices" class="section best-services">
 	<div class="container">
 
 		<div class="row" data-aos="fade-up">
@@ -170,162 +170,93 @@
 	</div>
 </section>
 <!-- /Best Services -->
-<!-- Featured Coaches -->
-<section class="section featured-section">
+<!-- Hot Member -->
+<section id="hotMember" class="section featured-section">
 	<div class="container">
 		<div class="section-heading aos" data-aos="fade-up">
 			<h2>熱門 <span>團主</span></h2>
-			<p class="sub-title">94HOBBY為您準備高熱門揪團主</p>
+			<p class="sub-title">94HOBBY為您準備熱門揪團主</p>
 		</div>
 		<div class="row">
-			<div class="featured-slider-group aos" data-aos="fade-up">
+			<div class="featured-slider-group aos" >
 				<div class="owl-carousel featured-coache-slider owl-theme">
+					<!-- Featured Item -->
+					<div class="featured-venues-item" data-aos="fade-up" v-for="item in hotList">
+							<div class="listing-item mb-0" >
+								<div class="listing-img">
+								<a href="coach-detail.html">
+									<img src="~/assets/img/profiles/user-01.jpg" alt="User">
+								</a>
+								<div class="fav-item-venues">
+									<span class="tag tag-blue">熱門</span>
+								</div>
+								<div class="hour-list">
+									<div class="list-reviews">
+										<div class="d-flex align-items-center">
+											<span class="rating-bg">{{item.star}}</span>
+										</div>
+									</div>
+								</div>
+							</div>
+								<div class="listing-content list-coche-content">
+								<h3><a href="coach-detail.html">{{item.nickName}}</a></h3>
+								<a href="coach-details.html"><i class="feather-arrow-right"></i></a>
+								<a href="coach-details.html" class="icon-hover"><i class="feather-calendar"></i></a>
+							</div>
+							</div>
+						</div>
+					<!-- /Featured Item -->
 
-					<!-- Featured Item -->
-					<div class="featured-venues-item">
-						<div class="listing-item mb-0">
-							<div class="listing-img">
-								<a href="coach-detail.html">
-									<img src="~/assets/img/profiles/user-01.jpg" alt="User">
-								</a>
-								<div class="fav-item-venues">
-									<span class="tag tag-blue">熱門</span>
-								</div>
-								<div class="hour-list">
-									<div class="list-reviews">
-										<div class="d-flex align-items-center">
-											<span class="rating-bg">5.0</span>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="listing-content list-coche-content">
-								<h3><a href="coach-detail.html">陳O翰</a></h3>
-								<a href="coach-details.html"><i class="feather-arrow-right"></i></a>
-								<a href="coach-details.html" class="icon-hover"><i class="feather-calendar"></i></a>
-							</div>
-						</div>
-					</div>
-					<!-- /Featured Item -->
-					<!-- Featured Item -->
-					<div class="featured-venues-item">
-						<div class="listing-item mb-0">
-							<div class="listing-img">
-								<a href="coach-detail.html">
-									<img src="~/assets/img/profiles/user-01.jpg" alt="User">
-								</a>
-								<div class="fav-item-venues">
-									<span class="tag tag-blue">熱門</span>
-								</div>
-								<div class="hour-list">
-									<div class="list-reviews">
-										<div class="d-flex align-items-center">
-											<span class="rating-bg">5.0</span>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="listing-content list-coche-content">
-								<h3><a href="coach-detail.html">張O翔</a></h3>
-								<a href="coach-details.html"><i class="feather-arrow-right"></i></a>
-								<a href="coach-details.html" class="icon-hover"><i class="feather-calendar"></i></a>
-							</div>
-						</div>
-					</div>
-					<!-- /Featured Item -->
-					<!-- Featured Item -->
-					<div class="featured-venues-item">
-						<div class="listing-item mb-0">
-							<div class="listing-img">
-								<a href="coach-detail.html">
-									<img src="~/assets/img/profiles/user-01.jpg" alt="User">
-								</a>
-								<div class="fav-item-venues">
-									<span class="tag tag-blue">熱門</span>
-								</div>
-								<div class="hour-list">
-									<div class="list-reviews">
-										<div class="d-flex align-items-center">
-											<span class="rating-bg">5.0</span>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="listing-content list-coche-content">
-								<h3><a href="coach-detail.html">謝O州</a></h3>
-								<a href="coach-details.html"><i class="feather-arrow-right"></i></a>
-								<a href="coach-details.html" class="icon-hover"><i class="feather-calendar"></i></a>
-							</div>
-						</div>
-					</div>
-					<!-- /Featured Item -->
-					<!-- Featured Item -->
-					<div class="featured-venues-item">
-						<div class="listing-item mb-0">
-							<div class="listing-img">
-								<a href="coach-detail.html">
-									<img src="~/assets/img/profiles/user-01.jpg" alt="User">
-								</a>
-								<div class="fav-item-venues">
-									<span class="tag tag-blue">熱門</span>
-								</div>
-								<div class="hour-list">
-									<div class="list-reviews">
-										<div class="d-flex align-items-center">
-											<span class="rating-bg">5.0</span>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="listing-content list-coche-content">
-								<h3><a href="coach-detail.html">郭O翔</a></h3>
-								<a href="coach-details.html"><i class="feather-arrow-right"></i></a>
-								<a href="coach-details.html" class="icon-hover"><i class="feather-calendar"></i></a>
-							</div>
-						</div>
-					</div>
-					<!-- /Featured Item -->
-					<!-- Featured Item -->
-					<div class="featured-venues-item">
-						<div class="listing-item mb-0">
-							<div class="listing-img">
-								<a href="coach-detail.html">
-									<img src="~/assets/img/profiles/user-01.jpg" alt="User">
-								</a>
-								<div class="fav-item-venues">
-									<span class="tag tag-blue">熱門</span>
-								</div>
-								<div class="hour-list">
-									<div class="list-reviews">
-										<div class="d-flex align-items-center">
-											<span class="rating-bg">5.0</span>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="listing-content list-coche-content">
-								<h3><a href="coach-detail.html">陳O瑜</a></h3>
-								<a href="coach-details.html"><i class="feather-arrow-right"></i></a>
-								<a href="coach-details.html" class="icon-hover"><i class="feather-calendar"></i></a>
-							</div>
-						</div>
-					</div>
-					<!-- /Featured Item -->
 				</div>
 			</div>
 		</div>
 	</div>
 </section>
-
-
-<!-- /Featured Coaches -->
+<!-- Hot Member -->
 @section Scripts
 {
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/3.3.4/vue.global.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.6.0/axios.min.js" integrity="sha512-WrdC3CE9vf1nBf58JHepuWT4x24uTacky9fuzw2g/3L9JkihgwZ6Cfv+JGTtNyosOhEmttMtEZ6H3qJWfI7gIQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 	<script src="~/assets/js/script.js"></script>
 	<script>
-		const memberGender = Vue.createApp({
+		const hotActivity = Vue.createApp({
+			data() {
+				return {
+					activityList: [],
+					wish: []
+				}
+			},
+			mounted() {
+				let _this = this;
+				_this.queryActivityList();
+				_this.queryWish();
+				// _this.jqowl();
+			},
+			methods: {
+				queryActivityList() {
+					let _this = this;
+					axios.get("/IndexApi/GetActivityList")
+						.then(res => {
+							_this.activityList = res.data;
+							// _this.jqowl();
+							//alert(_this.activityList[0].activityName);
+							Vue.nextTick(function () {
+								// Jhobby_featured_venues_slider();
+								// Jhobby_aosinit();
+								Jhobby_fav_icon();
+							});
+						})
+						.catch(err => alert(err));
+				},
+				queryWish() {
+					let _this = this;
+					axios.get("/IndexApi/GetWishList")
+						.then(res => _this.wish = res.data)
+						.catch(err => alert(err));
+				}
+			}
+		}).mount("#hotActivity")
+		const bestServices = Vue.createApp({
 			data() {
 				return {
 					memberGender: [],
@@ -357,43 +288,32 @@
 				}
 
 			}
-		}).mount("#memberGender")
-		const rentalActivity = Vue.createApp({
+		}).mount("#bestServices")
+		const hotMember = Vue.createApp({
 			data() {
 				return {
-					activityList: [],
-					wish:[]
+					hotList: [],
 				}
 			},
 			mounted() {
 				let _this = this;
-				_this.queryActivityList();
-				_this.queryWish();
-				// _this.jqowl();
+				_this.queryHotMember();
 			},
 			methods: {
-				queryActivityList() {
+				queryHotMember() {
 					let _this = this;
-					axios.get("/IndexApi/GetActivityList")
+					axios.get("/IndexApi/GetHotMemberList")
 						.then(res => {
-							_this.activityList = res.data;
-							// _this.jqowl();
-							//alert(_this.activityList[0].activityName);
+							_this.hotList = res.data;
 							Vue.nextTick(function () {
 								Jhobby_featured_venues_slider();
+								Jhobby_Featured_Coache_Slider();
 								Jhobby_aosinit();
-								Jhobby_fav_icon();
-								});
-							})
-						.catch(err => alert(err));
-				},
-				queryWish() {
-					let _this = this;
-					axios.get("/IndexApi/GetWishList")
-						.then(res => _this.wish = res.data)
+							});
+						})
 						.catch(err => alert(err));
 				}
 			}
-		}).mount("#rentalActivity")
+		}).mount("#hotMember")
 	</script>
 }

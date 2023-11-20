@@ -39,6 +39,7 @@ function Jhobby_counter_up() {
 	}
 }
 
+//Fade in Scroll
 function Jhobby_aosinit() {
 	AOS.init({
 		duration: 1200,
@@ -51,4 +52,33 @@ function Jhobby_fav_icon () {
 	$('.fav-icon').on('click', function () {
 		$(this).toggleClass('selected');
 	});
+}
+
+// Featured Coache Slider
+function Jhobby_Featured_Coache_Slider() {
+	if ($('.featured-coache-slider').length > 0) {
+		$('.featured-coache-slider').owlCarousel({
+			loop: true,
+			margin: 24,
+			nav: true,
+			dots: false,
+			autoplay: false,
+			smartSpeed: 2000,
+			navText: ["<i class='feather-chevron-left'></i>", "<i class='feather-chevron-right'></i>"],
+			responsive: {
+				0: {
+					items: 1
+				},
+				500: {
+					items: 1
+				},
+				768: {
+					items: 2
+				},
+				1000: {
+					items: 4
+				}
+			}
+		})
+	}
 }

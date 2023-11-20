@@ -7,10 +7,10 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace JHobby.Website.Controllers.Api
 {
-    [Route("[controller]/[action]")]
-    [ApiController]
-    public class IndexApiController : ControllerBase
-    {
+	[Route("[controller]/[action]")]
+	[ApiController]
+	public class IndexApiController : ControllerBase
+	{
 
 		private readonly IIndexService _IndexService;
 
@@ -39,14 +39,14 @@ namespace JHobby.Website.Controllers.Api
 			var services = _IndexService.GetActivityResult();
 			var viewModel = services.Select(s => new QueryActivityViewModel
 			{
-				ActivityId =s.ActivityId,
+				ActivityId = s.ActivityId,
 				MemberId = s.MemberId,
 				MemberName = s.MemberName,
-				ActivityName=s.ActivityName,
-				ActivityStatus=s.ActivityStatus,
-				ActivityLocation=s.ActivityLocation,
-				ActivityNotes=s.ActivityNotes,
-				JoinDeadLine=s.JoinDeadLine,
+				ActivityName = s.ActivityName,
+				ActivityStatus = s.ActivityStatus,
+				ActivityLocation = s.ActivityLocation,
+				ActivityNotes = s.ActivityNotes,
+				JoinDeadLine = s.JoinDeadLine,
 				ActivityImages = s.ActivityImages
 			});
 			return viewModel;
@@ -58,6 +58,20 @@ namespace JHobby.Website.Controllers.Api
 			var id = 1;
 			var services = _IndexService.GetWishByIdResult(id);
 			var viewModel = services.Select(s => s.ActivityId).ToArray();
+			return viewModel;
+		}
+
+		[HttpGet]
+		public IEnumerable<QueryHotMemberViewModel> GetHotMemberList()
+		{
+			var services = _IndexService.GetHotMemberResult();
+			var viewModel = services.Select(s => new QueryHotMemberViewModel
+			{
+				MemberId = s.MemberId,
+				NickName = s.NickName,
+				HeadShot = s.HeadShot,
+				Star = s.Star,
+			});
 			return viewModel;
 		}
 	}

@@ -15,5 +15,7 @@ namespace JHobby.Repository.Interfaces
 
 		public IEnumerable<QueryWishDto>GetWishById(int id);
 
+		public IEnumerable<QueryHotMemberDto> GetHotMemberAll();
+
 	}
 }

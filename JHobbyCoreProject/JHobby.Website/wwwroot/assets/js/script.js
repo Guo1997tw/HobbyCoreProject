@@ -129,34 +129,35 @@ Version      : 1.0
 	//		}
 	//	})
 	//}
-    
+
 	// Featured Coache Slider
+	// ²¾¦Ü"~/js/site.js"
     
-	if($('.featured-coache-slider').length > 0) {       
-		$('.featured-coache-slider').owlCarousel({
-			loop:true,
-			margin:24,
-			nav:true,
-			dots: false,
-			autoplay:false,
-			smartSpeed: 2000,
-			navText : ["<i class='feather-chevron-left'></i>","<i class='feather-chevron-right'></i>"],
-			responsive:{
-				0:{
-					items:1
-				},
-				500:{
-					items:1
-				},
-				768:{
-					items:2
-				},
-				1000:{
-					items:4
-				}
-			}
-		})
-	}
+	//if($('.featured-coache-slider').length > 0) {       
+	//	$('.featured-coache-slider').owlCarousel({
+	//		loop:true,
+	//		margin:24,
+	//		nav:true,
+	//		dots: false,
+	//		autoplay:false,
+	//		smartSpeed: 2000,
+	//		navText : ["<i class='feather-chevron-left'></i>","<i class='feather-chevron-right'></i>"],
+	//		responsive:{
+	//			0:{
+	//				items:1
+	//			},
+	//			500:{
+	//				items:1
+	//			},
+	//			768:{
+	//				items:2
+	//			},
+	//			1000:{
+	//				items:4
+	//			}
+	//		}
+	//	})
+	//}
 
 	// Testimonial Brand Slider
     

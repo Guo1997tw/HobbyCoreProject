@@ -8,6 +8,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace JHobby.Repository.Implements
 {
@@ -49,6 +50,25 @@ namespace JHobby.Repository.Implements
 			return dtoResult;
 		}
 
+		public IEnumerable<QueryHotMemberDto> GetHotMemberAll()
+		{
+			var dtoResult = _JhobbyContext.Members.Join(_JhobbyContext.Activities,
+			m => m.MemberId, a => a.MemberId, (m, a) => new
+			{
+				MemberId=m.MemberId,
+				NickName = m.NickName,
+				HeadShot=m.HeadShot,
+				ActivityId = a.ActivityId
+			}).Join(_JhobbyContext.Scores,ma=>ma.ActivityId,s=>s.ActivityId,(ma,s)=>new QueryHotMemberDto
+			{
+				MemberId = ma.MemberId,
+				NickName = ma.NickName,
+				ActivityId = ma.ActivityId,
+				HeadShot=ma.HeadShot,
+				Fraction =s.Fraction,
+			});
+			return dtoResult;
+		}
 		public IEnumerable<QueryWishDto> GetWishById(int id)
 		{
 			var dtoResult = _JhobbyContext.Wishes.Select(w => new QueryWishDto {

@@ -46,6 +46,22 @@ namespace JHobby.Service.Implements
 			resultModel.Woman = _woman;
 			yield return resultModel;
 		}
+
+		public IEnumerable<QueryHotMemberModel> GetHotMemberResult()
+		{
+			var resporitory=_IidexResporitory.GetHotMemberAll();
+			var resultModel = resporitory.GroupBy(s => new { s.MemberId, s.NickName,s.HeadShot })
+				.Select(group => new QueryHotMemberModel
+				{
+					MemberId = group.Key.MemberId,
+					NickName = group.Key.NickName,
+					HeadShot= group.Key.HeadShot,
+					Star = decimal.Round((decimal)group.Sum(s => s.Fraction) / group.Count(), 1)
+				}).OrderByDescending(model => model.Star).Take(5);
+
+			return resultModel;
+		}
+
 		public IEnumerable<QueryWishModel> GetWishByIdResult(int id)
 		{
 			var resporitory = _IidexResporitory.GetWishById(id);
