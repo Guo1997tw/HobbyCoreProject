@@ -21,7 +21,7 @@ namespace JHobby.Repository.Models.Dto
         public int? CurrentPeople { get; set; }
 
         public DateTime StartTime { get; set; }
-        
+
         public string? NickName { get; set; }
 
     }

@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace JHobby.Service.Models
+﻿namespace JHobby.Website.Models.ViewModels
 {
-    public class PastJoinAGroupModel
+    public class PastJoinAGroupViewModel
     {
         public int ActivityId { get; set; }
 

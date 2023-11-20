@@ -3,6 +3,7 @@ using JHobby.Repository.Interfaces;
 using JHobby.Repository.Models.Entity;
 using JHobby.Service.Implements;
 using JHobby.Service.Interfaces;
+using JHobby.Website.Controllers.Api;
 using Microsoft.EntityFrameworkCore;
 
 namespace JHobby.Website
@@ -31,6 +32,8 @@ namespace JHobby.Website
             builder.Services.AddScoped<IIndexService,IndexService>();
             builder.Services.AddScoped<IMemberRepository, MemberRepository>();
             builder.Services.AddScoped<IMemberService, MemberService>();
+            builder.Services.AddScoped<IPastJoinAGroupRepostiory, PastJoinAGroupRepostiory>();
+            builder.Services.AddScoped<IPastJoinAGroupService, PastJoinAGroupService>();
 
             var app = builder.Build();
 

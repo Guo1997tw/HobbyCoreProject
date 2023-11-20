@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace JHobby.Repository.Implements
 {
-    internal class PastJoinAGroupRepostiory : IPastJoinAGroupRepostiory
+    public class PastJoinAGroupRepostiory : IPastJoinAGroupRepostiory
     {
         private readonly JhobbyContext _JhobbyContext;
 
@@ -36,7 +36,7 @@ namespace JHobby.Repository.Implements
                     CurrentPeople = a.CurrentPeople,
                     StartTime = a.StartTime,
                     NickName = m.NickName
-                }).ToList();
+                });
 
             return queryResult;
         }

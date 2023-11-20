@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace JHobby.Service.Implements
 {
-    internal class PastJoinAGroupService : IPastJoinAGroupService
+    public class PastJoinAGroupService : IPastJoinAGroupService
     {
         private readonly IPastJoinAGroupRepostiory _iPastJoinAGroupRepostiory;
 
@@ -30,7 +30,7 @@ namespace JHobby.Service.Implements
                 ActivityStatus = r.ActivityStatus,
                 ActivityCity = r.ActivityCity,
                 CurrentPeople = r.CurrentPeople,
-                StartTime = r.StartTime,
+                StartTime = r.StartTime,    
                 NickName = r.NickName,
             });
 
