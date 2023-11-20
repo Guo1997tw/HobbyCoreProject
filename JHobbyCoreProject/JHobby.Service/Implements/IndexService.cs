@@ -23,14 +23,14 @@ namespace JHobby.Service.Implements
 			{
 				ActivityId = res.ActivityId,
 				MemberId = res.MemberId,
-				MemberName = res.MemberName,
+				NickName = res.NickName,
 				ActivityName= res.ActivityName.Trim(),
 				ActivityStatus=res.ActivityStatus,
 				ActivityLocation=res.ActivityLocation.Trim(),
 				ActivityNotes=res.ActivityNotes?.Trim(),
 				JoinDeadLine=res.JoinDeadLine.ToString("yyyy-MM-dd"),
 				ActivityImages = res.ActivityImages.Where(ai => ai.IsCover == true).ToList()
-			});
+			}).Take(6);
 			return resultModel;
 		}
 

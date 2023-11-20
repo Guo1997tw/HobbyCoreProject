@@ -123,7 +123,7 @@
 								<div class="listing-button">
 									<div class="listing-venue-owner">
 										<a class="navigation" href="coach-detail.html">
-											<img src="~/assets/img/profiles/avatar-01.jpg" alt="Venue">{{item.memberName}}
+											<img src="~/assets/img/profiles/avatar-01.jpg" alt="Venue">{{item.nickName}}
 										</a>
 									</div>
 									<a href="venue-details.html" class="user-book-now"><span><i class="feather-calendar me-2"></i></span>參加</a>
@@ -178,10 +178,10 @@
 			<p class="sub-title">94HOBBY為您準備熱門揪團主</p>
 		</div>
 		<div class="row">
-			<div class="featured-slider-group aos" >
+			<div class="featured-slider-group aos" data-aos="fade-up">
 				<div class="owl-carousel featured-coache-slider owl-theme">
 					<!-- Featured Item -->
-					<div class="featured-venues-item" data-aos="fade-up" v-for="item in hotList">
+					<div class="featured-venues-item"  v-for="item in hotList">
 							<div class="listing-item mb-0" >
 								<div class="listing-img">
 								<a href="coach-detail.html">
@@ -228,27 +228,19 @@
 			},
 			mounted() {
 				let _this = this;
-				_this.queryActivityList();
-				_this.queryWish();
-				// _this.jqowl();
+				_this.QueryActivityList();
+				_this.QueryWish();
 			},
 			methods: {
-				queryActivityList() {
+				QueryActivityList() {
 					let _this = this;
 					axios.get("/IndexApi/GetActivityList")
 						.then(res => {
 							_this.activityList = res.data;
-							// _this.jqowl();
-							//alert(_this.activityList[0].activityName);
-							Vue.nextTick(function () {
-								// Jhobby_featured_venues_slider();
-								// Jhobby_aosinit();
-								Jhobby_fav_icon();
-							});
 						})
 						.catch(err => alert(err));
 				},
-				queryWish() {
+				QueryWish() {
 					let _this = this;
 					axios.get("/IndexApi/GetWishList")
 						.then(res => _this.wish = res.data)
@@ -267,10 +259,10 @@
 			},
 			mounted() {
 				let _this = this;
-				_this.queryMemberGender();
+				_this.QueryMemberGender();
 			},
 			methods: {
-				queryMemberGender() {
+				QueryMemberGender() {
 					let _this = this;
 					axios.get("/IndexApi/GetGenderList")
 						.then(res => {
@@ -280,9 +272,6 @@
 								_this.man = _this.memberGender[i].man;
 								_this.woman = _this.memberGender[i].woman;
 							}
-							Vue.nextTick(function () {
-								Jhobby_counter_up();
-							});
 						})
 						.catch(err => alert(err));
 				}
@@ -297,23 +286,20 @@
 			},
 			mounted() {
 				let _this = this;
-				_this.queryHotMember();
+				_this.QueryHotMember();
 			},
 			methods: {
-				queryHotMember() {
+				QueryHotMember() {
 					let _this = this;
 					axios.get("/IndexApi/GetHotMemberList")
 						.then(res => {
 							_this.hotList = res.data;
-							Vue.nextTick(function () {
-								Jhobby_featured_venues_slider();
-								Jhobby_Featured_Coache_Slider();
-								Jhobby_aosinit();
-							});
 						})
 						.catch(err => alert(err));
 				}
 			}
 		}).mount("#hotMember")
+
+		Jhobby_Animation()
 	</script>
 }

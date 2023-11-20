@@ -1,5 +1,5 @@
 ﻿// Featured Venues Slider
-function Jhobby_featured_venues_slider() {
+function Jhobby_Ceatured_Venues_Slider() {
 	if ($('.featured-venues-slider').length > 0) {
 		$('.featured-venues-slider').owlCarousel({
 			loop: true,
@@ -28,7 +28,7 @@ function Jhobby_featured_venues_slider() {
 }
 
 // JQuery CounterUp
-function Jhobby_counter_up() {
+function Jhobby_Counter_Up() {
 
 
 	if ($('.coach-count .counter-up').length > 0) {
@@ -40,7 +40,7 @@ function Jhobby_counter_up() {
 }
 
 //Fade in Scroll
-function Jhobby_aosinit() {
+function Jhobby_AosInit() {
 	AOS.init({
 		duration: 1200,
 		once: true
@@ -48,7 +48,7 @@ function Jhobby_aosinit() {
 }
 
 // Select Favourite
-function Jhobby_fav_icon () {
+function Jhobby_Fav_Icon() {
 	$('.fav-icon').on('click', function () {
 		$(this).toggleClass('selected');
 	});
@@ -81,4 +81,17 @@ function Jhobby_Featured_Coache_Slider() {
 			}
 		})
 	}
+}
+
+//動畫集合用函式
+function Animations() {
+	Jhobby_Ceatured_Venues_Slider();
+	Jhobby_Counter_Up();
+	Jhobby_AosInit()
+	Jhobby_Fav_Icon();
+	Jhobby_Featured_Coache_Slider();
+}
+//掛Vue後，動畫要延遲1.5秒後渲染
+function Jhobby_Animation() {
+	setTimeout(Animations, 1500)
 }

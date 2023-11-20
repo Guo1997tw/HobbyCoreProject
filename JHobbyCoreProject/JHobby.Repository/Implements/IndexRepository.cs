@@ -27,7 +27,7 @@ namespace JHobby.Repository.Implements
 				{
 					ActivityId=a.ActivityId,
 					MemberId=a.MemberId,
-					MemberName = m.MemberName,
+					NickName = m.NickName,
 					ActivityName=a.ActivityName,
 					ActivityStatus=a.ActivityStatus,
 					ActivityLocation=a.ActivityLocation,

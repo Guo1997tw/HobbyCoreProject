@@ -41,7 +41,7 @@ namespace JHobby.Website.Controllers.Api
 			{
 				ActivityId = s.ActivityId,
 				MemberId = s.MemberId,
-				MemberName = s.MemberName,
+				NickName = s.NickName,
 				ActivityName = s.ActivityName,
 				ActivityStatus = s.ActivityStatus,
 				ActivityLocation = s.ActivityLocation,

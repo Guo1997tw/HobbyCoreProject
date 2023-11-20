@@ -6,7 +6,7 @@ namespace JHobby.Website.Models.ViewModels
     {
 		public int ActivityId { get; set; }
 		public int MemberId { get; set; }
-		public string? MemberName { get; set; }
+		public string? NickName { get; set; }
 		public string ActivityName { get; set; } = null!;
 		public string ActivityStatus { get; set; } = null!;
 		public string ActivityLocation { get; set; } = null!;
