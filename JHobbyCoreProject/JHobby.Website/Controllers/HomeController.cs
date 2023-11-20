@@ -29,11 +29,6 @@ namespace JHobby.Website.Controllers
             return View();
         }
 
-
-        public IActionResult ProfileSetting()
-        {
-            return View();
-        }
         public IActionResult NotFound()
         {
             return View();
