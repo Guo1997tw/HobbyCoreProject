@@ -33,5 +33,17 @@ namespace JHobby.Service.Implements
             
             return true;
         }
+
+        public bool CheckMemberLogin(string account, string password)
+        {
+            var queryResult = _memberRepository.GetMemberLogin(account);
+
+            if(queryResult != null)
+            {
+                return queryResult.Password == password;
+            }
+
+            return false;
+        }
     }
 }
