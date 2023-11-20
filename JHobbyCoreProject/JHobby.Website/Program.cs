@@ -21,7 +21,7 @@ namespace JHobby.Website
                 option.UseSqlServer(builder.Configuration.GetConnectionString("JHobby"));});
 
             // Swagger DI
-            builder.Services.AddEndpointsApiExplorer();
+            builder.Services.AddEndpointsApiExplorer();     
             builder.Services.AddSwaggerGen();
 
             // Interface DI
@@ -31,8 +31,10 @@ namespace JHobby.Website
             builder.Services.AddScoped<IIndexService,IndexService>();
             builder.Services.AddScoped<IMemberRepository, MemberRepository>();
             builder.Services.AddScoped<IMemberService, MemberService>();
+			builder.Services.AddScoped<IActivityRepository, ActivityRepository>();          
+			builder.Services.AddScoped<IActivityService, ActivityService>();
 
-            var app = builder.Build();
+			var app = builder.Build();
 
             // Swagger Use
             if (app.Environment.IsDevelopment())

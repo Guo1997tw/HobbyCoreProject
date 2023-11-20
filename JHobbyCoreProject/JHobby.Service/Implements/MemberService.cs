@@ -23,7 +23,7 @@ namespace JHobby.Service.Implements
         {
             var mapper = new MemberRegisterDto
             {
-                Account = memberRegisterModel.Account,
+                Account = memberRegisterModel.Account,              
                 Password = memberRegisterModel.Password,
                 Status = memberRegisterModel.Status,
                 CreationDate = memberRegisterModel.CreationDate,

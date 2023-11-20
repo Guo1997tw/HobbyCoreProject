@@ -28,8 +28,8 @@ namespace JHobby.Repository.Implements
                 CreationDate = memberRegisterDto.CreationDate,
             };
 
-            _jhobbyContext.Members.Add(mapper);
-            _jhobbyContext.SaveChanges();
+            _jhobbyContext.Members.Add(mapper); 
+            //_jhobbyContext.SaveChanges();
 
             return true;
         }

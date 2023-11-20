@@ -18,14 +18,14 @@ namespace JHobby.Website.Controllers.Api
         }
 
         [HttpPost]
-        public IActionResult InsertRegister(MemberRegisterViewModel memberRegisterViewModel)
+        public IActionResult InsertRegister(MemberRegisterViewModel memberRegisterViewModel)        
         {
             var mapper = new MemberRegisterModel
             {
                 Account = memberRegisterViewModel.Account,
                 Password = memberRegisterViewModel.Password,
                 Status = memberRegisterViewModel.Status,
-                CreationDate = memberRegisterViewModel.CreationDate
+                CreationDate = memberRegisterViewModel.CreationDate         
             };
 
             _memberService.CreateMemberRegister(mapper);
