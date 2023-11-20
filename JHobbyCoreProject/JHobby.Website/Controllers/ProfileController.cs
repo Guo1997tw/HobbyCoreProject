@@ -11,15 +11,11 @@ namespace JHobby.Website.Controllers
 		{
 			_profileService = profileService;
 		}
-		public IActionResult Profile()
+		public IActionResult Profile(int id)
         {
-            ViewData["Title"] = "團主介紹";
+			ViewData["Title"] = "團主介紹";
             return View();
         }
-  //      public IActionResult<ProfileViewModel> GetProfileById(int id)
-		//{
-        
-  //      }
 
-    }
+	}
 }

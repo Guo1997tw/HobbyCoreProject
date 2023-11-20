@@ -19,7 +19,7 @@ namespace JHobby.Website.Controllers.Api
 
         // GET: api/<ProfileApiController>
         [HttpGet]
-        public IEnumerable<ProfileViewModel> GetProfileById(int id)     //拿團主資料API
+        public IEnumerable<ProfileViewModel> GetProfileById(int id)     //ById拿團主資料API
         {
             var servicesDto = _profileService.GetProfileById(id);
             var viewModel = new ProfileViewModel
