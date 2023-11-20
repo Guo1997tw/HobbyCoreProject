@@ -51,5 +51,14 @@ namespace JHobby.Website.Controllers.Api
 			});
 			return viewModel;
 		}
+
+		[HttpGet]
+		public int[] GetWishList()
+		{
+			var id = 1;
+			var services = _IndexService.GetWishByIdResult(id);
+			var viewModel = services.Select(s => s.ActivityId).ToArray();
+			return viewModel;
+		}
 	}
 }

@@ -48,5 +48,14 @@ namespace JHobby.Repository.Implements
 
 			return dtoResult;
 		}
+
+		public IEnumerable<QueryWishDto> GetWishById(int id)
+		{
+			var dtoResult = _JhobbyContext.Wishes.Select(w => new QueryWishDto {
+				MemberId=w.MemberId,
+				ActivityId = w.ActivityId
+			});
+			return dtoResult;
+		}
 	}
 }

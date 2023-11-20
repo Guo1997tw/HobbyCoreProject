@@ -46,5 +46,15 @@ namespace JHobby.Service.Implements
 			resultModel.Woman = _woman;
 			yield return resultModel;
 		}
+		public IEnumerable<QueryWishModel> GetWishByIdResult(int id)
+		{
+			var resporitory = _IidexResporitory.GetWishById(id);
+			var resultModel = resporitory.Where(s=>s.MemberId==id)
+										.Select(res => new QueryWishModel
+			{
+				ActivityId=res.ActivityId,
+			});
+			return resultModel;
+		}
 	}
 }

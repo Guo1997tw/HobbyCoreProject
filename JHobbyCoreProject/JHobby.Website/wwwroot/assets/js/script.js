@@ -100,7 +100,35 @@ Version      : 1.0
             }
         }
         lastScrollTop = st;
-    }
+	}
+
+	// Featured Venues Slider
+	// ²¾¦Ü"~/js/site.js"
+	//if ($('.featured-venues-slider').length > 0) {
+	//	$('.featured-venues-slider').owlCarousel({
+	//		loop: true,
+	//		margin: 24,
+	//		nav: true,
+	//		dots: false,
+	//		autoplay: false,
+	//		smartSpeed: 2000,
+	//		navText: ["<i class='feather-chevron-left'></i>", "<i class='feather-chevron-right'></i>"],
+	//		responsive: {
+	//			0: {
+	//				items: 1
+	//			},
+	//			500: {
+	//				items: 1
+	//			},
+	//			768: {
+	//				items: 2
+	//			},
+	//			1000: {
+	//				items: 3
+	//			}
+	//		}
+	//	})
+	//}
     
 	// Featured Coache Slider
     
@@ -158,14 +186,15 @@ Version      : 1.0
 		})
 	}
 
-	// Fade in Scroll 
+	// Fade in Scroll
+	// ²¾¦Ü"~/js/site.js"
 	
-	if($('.main-wrapper .aos').length > 0) {
-		AOS.init({
-			duration:1200,
-			once:true
-		});
-	}
+	//if($('.main-wrapper .aos').length > 0) {
+	//	AOS.init({
+	//		duration:1200,
+	//		once:true
+	//	});
+	//}
 
 	// Logo Hide Btn
 
@@ -312,6 +341,14 @@ Version      : 1.0
 		});
 	}
 
+	// JQuery CounterUp
+	// ²¾¦Ü"~/js/site.js"
+	//if ($('.coach-count .counter-up').length > 0) {
+	//	$('.coach-count .counter-up').counterUp({
+	//		delay: 15,
+	//		time: 1500
+	//	});
+	//}
 
 
 	// Datetimepicker Date

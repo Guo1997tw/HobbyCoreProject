@@ -95,7 +95,7 @@
 								<div class="fav-item-venues">
 									<span class="tag tag-yellow">精選</span>
 									<div class="list-reviews">
-										<a href="javascript:void(0)" class="fav-icon">
+										<a href="javascript:void(0)" :class="wish.includes(item.activityId)? 'fav-icon selected':'fav-icon'">
 											<i class="feather-heart"></i>
 										</a>
 									</div>
@@ -148,7 +148,7 @@
 <section id="memberGender" class="section best-services">
 	<div class="container">
 
-		<div class="row">
+		<div class="row" data-aos="fade-up">
 			<div class="service-count-blk" >
 						<div style="background-color:#192335" class="coach-count col-lg-4">
 							<h3>平台會員</h3>
@@ -361,12 +361,14 @@
 		const rentalActivity = Vue.createApp({
 			data() {
 				return {
-					activityList: []
+					activityList: [],
+					wish:[]
 				}
 			},
 			mounted() {
 				let _this = this;
 				_this.queryActivityList();
+				_this.queryWish();
 				// _this.jqowl();
 			},
 			methods: {
@@ -379,13 +381,19 @@
 							//alert(_this.activityList[0].activityName);
 							Vue.nextTick(function () {
 								Jhobby_featured_venues_slider();
-							});
-						})
+								Jhobby_aosinit();
+								Jhobby_fav_icon();
+								});
+							})
+						.catch(err => alert(err));
+				},
+				queryWish() {
+					let _this = this;
+					axios.get("/IndexApi/GetWishList")
+						.then(res => _this.wish = res.data)
 						.catch(err => alert(err));
 				}
 			}
 		}).mount("#rentalActivity")
-
-
 	</script>
 }

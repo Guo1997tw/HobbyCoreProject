@@ -38,3 +38,17 @@ function Jhobby_counter_up() {
 		});
 	}
 }
+
+function Jhobby_aosinit() {
+	AOS.init({
+		duration: 1200,
+		once: true
+	})
+}
+
+// Select Favourite
+function Jhobby_fav_icon () {
+	$('.fav-icon').on('click', function () {
+		$(this).toggleClass('selected');
+	});
+}
