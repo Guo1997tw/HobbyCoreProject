@@ -36,8 +36,7 @@ namespace JHobby.Repository.Implements
                     CurrentPeople = a.CurrentPeople,
                     StartTime = a.StartTime,
                     NickName = m.NickName
-                }
-                );
+                }).ToList();
 
             return queryResult;
         }
