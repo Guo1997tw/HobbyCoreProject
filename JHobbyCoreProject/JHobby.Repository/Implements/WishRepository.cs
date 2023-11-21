@@ -28,6 +28,21 @@ namespace JHobby.Repository.Implements
 			return queryResult;
 		}
 
+		public bool Create(CreateWishDto createWishDto)
+		{
+			var mapper = new Wish
+			{
+				MemberId = createWishDto.MemberId,
+				ActivityId = createWishDto.ActivityId,
+				AddTime = createWishDto.AddTime
+			};
+
+			_jhobbyContext.Wishes.Add(mapper);
+			_jhobbyContext.SaveChanges();
+
+			return true;
+		}
+
 		public bool Delete(int memberId, int activityId)
 		{
 			var queryResult = _jhobbyContext.Wishes.FirstOrDefault(
@@ -40,5 +55,7 @@ namespace JHobby.Repository.Implements
 
 			return true;
 		}
+
+
 	}
 }

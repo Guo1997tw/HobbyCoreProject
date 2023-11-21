@@ -254,7 +254,19 @@
 							.catch(err => alert(err));
 					}
 					else {
-						alert("新增");
+						//目前寫死會員ID_1，等待網頁狀態實作
+						let _this = this;
+						var form = new FormData();
+						form.append("memberId", 1);
+						form.append("activityId", id);
+						form.append("addTime", GetDay());
+						axios.post("/WishApi/InsertWish", form, {
+							headers: {
+								"Content-Type": "multipart/form-data"
+							}
+						})
+						.then()
+						.catch(err => alert(err));
 					}
 					_this.QueryActivityList();
 				}

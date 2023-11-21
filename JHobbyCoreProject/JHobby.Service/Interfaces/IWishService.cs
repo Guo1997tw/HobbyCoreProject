@@ -7,10 +7,10 @@ using System.Threading.Tasks;
 
 namespace JHobby.Service.Interfaces
 {
-	public interface IWishService
+    public interface IWishService
 	{
 		public IEnumerable<QueryWishModel> GetWishByIdResult(int id);
-
+		public bool CreateWish(CreateWishModel createWishModel);
 		public bool DeleteWish(int memberId, int activityId);
 	}
 }

@@ -7,9 +7,11 @@ using System.Threading.Tasks;
 
 namespace JHobby.Repository.Interfaces
 {
-	public interface IWishRepository
+    public interface IWishRepository
 	{
 		public IEnumerable< QueryWishDto> GetWishById(int id);
+		public bool Create(CreateWishDto createWishDto);
 		public bool Delete(int memberId, int activityId);
+
 	}
 }

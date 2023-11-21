@@ -95,3 +95,16 @@ function Animations() {
 function Jhobby_Animation() {
 	setTimeout(Animations, 1500)
 }
+
+//取時間
+function GetDay() {
+	const dayNow = new Date();
+	const year = dayNow.getFullYear();
+	const month = String(dayNow.getMonth() + 1).padStart(2, '0');
+	const day = String(dayNow.getDate()).padStart(2, '0');
+	const hours = String(dayNow.getHours()).padStart(2, '0');
+	const minutes = String(dayNow.getMinutes()).padStart(2, '0');
+	const seconds = String(dayNow.getSeconds()).padStart(2, '0');
+
+	return `${year}-${month}-${day}T${hours}:${minutes}:${seconds}`;
+}

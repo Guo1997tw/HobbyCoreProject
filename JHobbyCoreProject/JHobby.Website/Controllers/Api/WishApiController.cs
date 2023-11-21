@@ -1,11 +1,14 @@
-﻿using JHobby.Service.Interfaces;
+﻿using JHobby.Service.Implements;
+using JHobby.Service.Interfaces;
+using JHobby.Service.Models;
+using JHobby.Website.Models.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace JHobby.Website.Controllers.Api
 {
-	[Route("[controller]/[action]")]
+    [Route("[controller]/[action]")]
 	[ApiController]
 	public class WishApiController : ControllerBase
 	{
@@ -23,6 +26,21 @@ namespace JHobby.Website.Controllers.Api
 			var services = _WishService.GetWishByIdResult(id);
 			var viewModel = services.Select(s => s.ActivityId).ToArray();
 			return viewModel;
+		}
+
+		[HttpPost]
+		public IActionResult InsertWish([FromForm] CreateWishViewModel createWishViewModel)
+		{
+			var mapper = new CreateWishModel
+			{
+				MemberId = createWishViewModel.MemberId,
+				ActivityId = createWishViewModel.ActivityId,
+				AddTime = createWishViewModel.AddTime,
+			};
+
+			var result = _WishService.CreateWish(mapper);
+
+			return Ok(result);
 		}
 
 		[HttpDelete("{activityId}")]
