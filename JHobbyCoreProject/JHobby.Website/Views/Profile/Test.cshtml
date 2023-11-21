@@ -1,0 +1,13 @@
+﻿@model ProfileViewModel
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <form asp-controller="Profile" asp-action="Profile">
+        <select asp-for="MemberId">
+            <option>1</option>
+            <option>2</option>
+            <option>3</option>
+            
+        </select>
+        <a asp-controller="Profile" asp-action="GetProfileById" asp-route-MemberId="@Model.MemberId">會員介紹</a> |
+        <button type="submit">OK</button>
+    </form>

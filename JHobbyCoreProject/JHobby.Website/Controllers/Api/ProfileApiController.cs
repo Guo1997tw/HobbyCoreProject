@@ -32,30 +32,5 @@ namespace JHobby.Website.Controllers.Api
             };
             yield  return viewModel;  
         }
-
-        //GET api/<ProfileApiController>/5
-        //[HttpGet("{id}")]
-        //public async Task<IEnumerable<ProfileModel>> GetProfileById(int id)
-        //{
-
-        //}
-
-        //POST api/<ProfileApiController>
-        //[HttpPost]
-        //public void Post([FromBody] string value)
-        //{
-        //}
-
-        //PUT api/<ProfileApiController>/5
-        //[HttpPut("{id}")]
-        //public void Put(int id, [FromBody] string value)
-        //{
-        //}
-
-        //DELETE api/<ProfileApiController>/5
-        //[HttpDelete("{id}")]
-        //public void Delete(int id)
-        //{
-        //}
     }
 }
