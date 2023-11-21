@@ -7,10 +7,9 @@ using System.Threading.Tasks;
 
 namespace JHobby.Repository.Interfaces
 {
-    public interface IProfileRepository
-    {
-        public IEnumerable<ProfileDto> GetAll();
-        public ProfileDto GetById(int id);
-
-    }
+	internal interface IProfileRepository
+	{
+		public IEnumerable<ProfileDto> GetAll();
+		public ProfileDto GetById(int id);
+	}
 }
