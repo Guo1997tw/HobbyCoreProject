@@ -14,7 +14,7 @@ namespace JHobby.Repository.Implements
 {
 	public class IndexRepository : IIndexRepository
 	{
-		private JhobbyContext _JhobbyContext;
+		private readonly JhobbyContext _JhobbyContext;
 		public IndexRepository(JhobbyContext jhobbyContext)
 		{
 			_JhobbyContext = jhobbyContext;
@@ -66,14 +66,6 @@ namespace JHobby.Repository.Implements
 				ActivityId = ma.ActivityId,
 				HeadShot=ma.HeadShot,
 				Fraction =s.Fraction,
-			});
-			return dtoResult;
-		}
-		public IEnumerable<QueryWishDto> GetWishById(int id)
-		{
-			var dtoResult = _JhobbyContext.Wishes.Select(w => new QueryWishDto {
-				MemberId=w.MemberId,
-				ActivityId = w.ActivityId
 			});
 			return dtoResult;
 		}

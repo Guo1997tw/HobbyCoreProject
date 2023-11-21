@@ -13,8 +13,6 @@ namespace JHobby.Service.Interfaces
 
 		public IEnumerable<QueryActivityModel> GetActivityResult();
 
-		public IEnumerable<QueryWishModel> GetWishByIdResult(int Id);
-
 		public IEnumerable<QueryHotMemberModel> GetHotMemberResult();
 	}
 }

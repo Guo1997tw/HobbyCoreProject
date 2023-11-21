@@ -7,8 +7,7 @@ namespace JHobby.Service.Implements
 {
 	public class IndexService : IIndexService
 	{
-		private IIndexRepository _IidexResporitory;
-
+		private readonly IIndexRepository _IidexResporitory;
 		public IndexService(IIndexRepository IidexResporitory)
 		{
 			_IidexResporitory = IidexResporitory;
@@ -59,17 +58,6 @@ namespace JHobby.Service.Implements
 					Star = decimal.Round((decimal)group.Sum(s => s.Fraction) / group.Count(), 1)
 				}).OrderByDescending(model => model.Star).Take(5);
 
-			return resultModel;
-		}
-
-		public IEnumerable<QueryWishModel> GetWishByIdResult(int id)
-		{
-			var resporitory = _IidexResporitory.GetWishById(id);
-			var resultModel = resporitory.Where(s=>s.MemberId==id)
-										.Select(res => new QueryWishModel
-			{
-				ActivityId=res.ActivityId,
-			});
 			return resultModel;
 		}
 	}

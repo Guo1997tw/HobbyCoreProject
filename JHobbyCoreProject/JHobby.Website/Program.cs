@@ -31,6 +31,8 @@ namespace JHobby.Website
             builder.Services.AddScoped<IIndexService,IndexService>();
             builder.Services.AddScoped<IMemberRepository, MemberRepository>();
             builder.Services.AddScoped<IMemberService, MemberService>();
+            builder.Services.AddScoped<IWishRepository, WishRepository>();
+            builder.Services.AddScoped<IWishService,WishSerive>();
 
             var app = builder.Build();
 

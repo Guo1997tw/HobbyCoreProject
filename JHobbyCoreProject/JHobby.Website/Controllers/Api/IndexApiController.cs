@@ -53,15 +53,6 @@ namespace JHobby.Website.Controllers.Api
 		}
 
 		[HttpGet]
-		public int[] GetWishList()
-		{
-			var id = 1;
-			var services = _IndexService.GetWishByIdResult(id);
-			var viewModel = services.Select(s => s.ActivityId).ToArray();
-			return viewModel;
-		}
-
-		[HttpGet]
 		public IEnumerable<QueryHotMemberViewModel> GetHotMemberList()
 		{
 			var services = _IndexService.GetHotMemberResult();

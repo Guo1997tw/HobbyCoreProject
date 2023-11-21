@@ -95,7 +95,7 @@
 								<div class="fav-item-venues">
 									<span class="tag tag-yellow">精選</span>
 									<div class="list-reviews">
-										<a href="javascript:void(0)" :class="wish.includes(item.activityId)? 'fav-icon selected':'fav-icon'">
+										<a href="javascript:void(0)" v-on:click="Fav(item.activityId)" v-bind:class="wish.includes(item.activityId)? 'fav-icon selected':'fav-icon'">
 											<i class="feather-heart"></i>
 										</a>
 									</div>
@@ -229,7 +229,6 @@
 			mounted() {
 				let _this = this;
 				_this.QueryActivityList();
-				_this.QueryWish();
 			},
 			methods: {
 				QueryActivityList() {
@@ -239,12 +238,25 @@
 							_this.activityList = res.data;
 						})
 						.catch(err => alert(err));
+					_this.QueryWish();
 				},
 				QueryWish() {
 					let _this = this;
-					axios.get("/IndexApi/GetWishList")
+					axios.get("/WishApi/GetWishList")
 						.then(res => _this.wish = res.data)
 						.catch(err => alert(err));
+				},
+				Fav(id) {
+					let _this = this;
+					if (_this.wish.includes(id)) {
+						axios.delete(`/WishApi/DeleteWish/${id}`)
+							.then()
+							.catch(err => alert(err));
+					}
+					else {
+						alert("新增");
+					}
+					_this.QueryActivityList();
 				}
 			}
 		}).mount("#hotActivity")
@@ -275,7 +287,6 @@
 						})
 						.catch(err => alert(err));
 				}
-
 			}
 		}).mount("#bestServices")
 		const hotMember = Vue.createApp({
