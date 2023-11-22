@@ -1,11 +1,13 @@
 ﻿using JHobby.Repository.Interfaces;
 using JHobby.Service.Implements;
 using JHobby.Website.Models.ViewModels;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace JHobby.Website.Controllers.Api
 {
+    [EnableCors("AllowOrigin")]
     [Route("[controller]/[action]")]
     [ApiController]
     public class PastJoinAGroupApiController : ControllerBase
@@ -24,8 +26,6 @@ namespace JHobby.Website.Controllers.Api
 
             var viewModel = serviceDto.Select(s => new PastJoinAGroupViewModel
             {
-                ActivityId = s.ActivityId,
-                MemberId = s.MemberId,
                 ActivityName = s.ActivityName,
                 ActivityStatus = s.ActivityStatus,
                 ActivityCity = s.ActivityCity,

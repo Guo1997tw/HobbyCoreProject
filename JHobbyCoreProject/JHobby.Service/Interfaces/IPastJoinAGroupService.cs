@@ -4,6 +4,6 @@ namespace JHobby.Service.Implements
 {
     public interface IPastJoinAGroupService
     {
-        public IEnumerable<PastJoinAGroupModel> GetPastJoinAGroupsList();
+        public IEnumerable<PastJoinAGroupModel> GetPastJoinAGroupsList(); 
     }
 }

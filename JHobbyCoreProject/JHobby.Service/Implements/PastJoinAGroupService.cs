@@ -12,10 +12,12 @@ namespace JHobby.Service.Implements
     public class PastJoinAGroupService : IPastJoinAGroupService
     {
         private readonly IPastJoinAGroupRepostiory _iPastJoinAGroupRepostiory;
+        private readonly ICommonService _iCommonService;
 
-        public PastJoinAGroupService(IPastJoinAGroupRepostiory iPastJoinAGroupRepostiory)
+        public PastJoinAGroupService(IPastJoinAGroupRepostiory iPastJoinAGroupRepostiory, ICommonService iCommonService)
         {
             _iPastJoinAGroupRepostiory = iPastJoinAGroupRepostiory;
+            _iCommonService = iCommonService; 
         }
 
         public IEnumerable<PastJoinAGroupModel> GetPastJoinAGroupsList()
@@ -27,7 +29,7 @@ namespace JHobby.Service.Implements
                 ActivityId = r.ActivityId,
                 MemberId = r.MemberId,
                 ActivityName = r.ActivityName,
-                ActivityStatus = r.ActivityStatus,
+                ActivityStatus = _iCommonService.ConvertActivityStatus(r.ActivityStatus),
                 ActivityCity = r.ActivityCity,
                 CurrentPeople = r.CurrentPeople,
                 StartTime = r.StartTime,    

@@ -18,8 +18,10 @@ namespace JHobby.Website
             builder.Services.AddControllersWithViews();
 
             // JHobby Coneection String
-            builder.Services.AddDbContext<JhobbyContext>(option => {
-                option.UseSqlServer(builder.Configuration.GetConnectionString("JHobby"));});
+            builder.Services.AddDbContext<JhobbyContext>(option =>
+            {
+                option.UseSqlServer(builder.Configuration.GetConnectionString("JHobby"));
+            });
 
             // Swagger DI
             builder.Services.AddEndpointsApiExplorer();
@@ -28,12 +30,13 @@ namespace JHobby.Website
             // Interface DI
             builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
             builder.Services.AddScoped<ICategoryService, CategoryService>();
-            builder.Services.AddScoped<IIndexRepository,IndexRepository>();
-            builder.Services.AddScoped<IIndexService,IndexService>();
+            builder.Services.AddScoped<IIndexRepository, IndexRepository>();
+            builder.Services.AddScoped<IIndexService, IndexService>();
             builder.Services.AddScoped<IMemberRepository, MemberRepository>();
             builder.Services.AddScoped<IMemberService, MemberService>();
             builder.Services.AddScoped<IPastJoinAGroupRepostiory, PastJoinAGroupRepostiory>();
             builder.Services.AddScoped<IPastJoinAGroupService, PastJoinAGroupService>();
+            builder.Services.AddScoped<ICommonService, CommonService>();
 
             var app = builder.Build();
 
