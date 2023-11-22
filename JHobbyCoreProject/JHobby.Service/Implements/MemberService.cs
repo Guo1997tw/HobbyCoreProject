@@ -5,6 +5,7 @@ using JHobby.Service.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -28,6 +29,22 @@ namespace JHobby.Service.Implements
                 Status = memberRegisterModel.Status,
                 CreationDate = memberRegisterModel.CreationDate,
             };
+
+            // 密碼加鹽十六進制
+            byte[] bpwd = Encoding.Unicode.GetBytes(mapper.Password);
+
+            HMACSHA256 hMACSHA256 = new HMACSHA256();
+
+            byte[] hash = hMACSHA256.ComputeHash(bpwd);
+
+            StringBuilder sb = new StringBuilder();
+
+            foreach (byte b in hash)
+            {
+                sb.Append(b.ToString("x2"));
+            }
+
+            mapper.Password = sb.ToString();
 
             _memberRepository.InsertMemberRegister(mapper);
             
