@@ -1,4 +1,6 @@
-﻿@section Styles
+﻿@using JHobby.Website.Models.ViewModels
+@model SearchCategoyViewModel
+@section Styles
 {
 	<style>
 		.service-count-blk {
@@ -9,7 +11,7 @@
 	</style>
 }
 
-<!-- Hero Section -->
+<!-- CityArea Search -->
 <section class="hero-section">
 	<div class="banner-cock-one">
 		<img src="~/assets/img/icons/banner-cock1.svg" alt="Banner">
@@ -36,7 +38,7 @@
 						<h1>開始您的體驗</h1>
 						<p class="sub-info">透過94HOBBY，綻放出揪團熱情</p>
 						<div class="search-box">
-							<form action="coaches-grid.html">
+							<form asp-controller="Middle" asp-action="ActivityCenter"  method="get">
 								<div class="search-input line">
 									<div class="form-group mb-0">
 										<label>縣市</label>
@@ -50,11 +52,8 @@
 									<div class="form-group mb-0">
 										<label>區域 </label>
 										<select class="form-control select">
-											<option value="">請選擇</option>
-											<option>中山區</option>
-											<option>松山區</option>
 											<option>中正區</option>
-											<option>信義區</option>
+											<option>大同區</option>
 										</select>
 									</div>
 								</div>
@@ -74,7 +73,7 @@
 		</div>
 	</div>
 </section>
-<!-- /Hero Section -->
+<!-- /CityArea Search -->
 <!-- hotActivity -->
 <section id="hotActivity" class="section featured-venues">
 	<div class="container">
@@ -323,6 +322,5 @@
 			}
 		}).mount("#hotMember")
 
-		Jhobby_Animation()
 	</script>
 }

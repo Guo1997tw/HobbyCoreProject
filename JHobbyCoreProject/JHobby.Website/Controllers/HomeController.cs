@@ -59,10 +59,6 @@ namespace JHobby.Website.Controllers
 
             return View();
         }
-        public IActionResult Middle()
-        {
-            return View();
-        }
 
         public IActionResult DashboardMenu()
 		{

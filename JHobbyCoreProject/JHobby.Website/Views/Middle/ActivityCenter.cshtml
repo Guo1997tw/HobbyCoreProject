@@ -1,0 +1,176 @@
+﻿@{
+	var search = ViewBag.search;
+	ViewData["Title"] = "活動";
+}
+@section Styles
+	{
+	<style>
+		.btn-load {
+			background: #FFFFFF;
+			color: #192335;
+			border: 3px solid #EAEDF0;
+			border-radius: 5px;
+			padding: 16px;
+			min-width: 102px;
+			display: inline-flex;
+		}
+	</style>
+}
+<partial name="_BreadcrumbPartial" />
+
+<!-- Page Content -->
+<div class="content">
+	<div class="container">
+
+		<!-- Sort By -->
+		<div class="row">
+			<div class="col-lg-12">
+				<div class="sortby-section">
+					<div class="sorting-info">
+						<div class="row d-flex align-items-center">
+							<div class="col-xl-4 col-lg-3 col-sm-12 col-12">
+							</div>
+							<div class="col-xl-8 col-lg-9 col-sm-12 col-12">
+								<div class="sortby-filter-group">
+
+									<div class="sortbyset">
+										<span class="sortbytitle">排序</span>
+										<div class="sorting-select">
+											<select class="form-control select">
+												<option>近到遠</option>
+												<option>遠到近</option>
+											</select>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- Sort By -->
+		<!-- Listing Content -->
+		<div id="activity" class="row justify-content-center">
+				<!-- Featured Item -->
+					<div class="col-lg-4 col-md-6" v-for="item in activityList">
+						<div class="wrapper">
+						<div class="listing-item listing-item-grid">
+							<div class="listing-img">
+								<a href="venue-details.html">
+									<img src="~/assets/img/venues/venues-01.jpg" alt="Venue">
+								</a>
+								<div class="fav-item-venues">
+									<div class="list-reviews">
+										<a href="javascript:void(0)" v-on:click="Fav(item.activityId)" v-bind:class="wish.includes(item.activityId)? 'fav-icon selected':'fav-icon'">
+											<i class="feather-heart"></i>
+										</a>
+									</div>
+								</div>
+							</div>
+							<div class="listing-content">
+								<h3 class="listing-title">
+									<a href="venue-details.html">{{item.activityName}}</a>
+								</h3>
+								<div class="listing-details-group">
+									<p>[活動簡述]</p>
+									<ul>
+										<li>
+											<span>
+													<i class="feather-map-pin"></i>{{item.activityLocation}}
+											</span>
+										</li>
+										<li>
+											<span>
+													<i class="feather-calendar"></i>報名截止日 : <span class="primary-text">{{item.joinDeadLine}}</span>
+											</span>
+										</li>
+									</ul>
+								</div>
+								<div class="listing-button">
+									<div class="listing-venue-owner">
+										<a class="navigation" href="coach-detail.html">
+												<img src="~/assets/img/profiles/avatar-01.jpg" alt="Venue">{{item.nickName}}
+										</a>
+									</div>
+									<a href="venue-details.html" class="user-book-now"><span><i class="feather-calendar me-2"></i></span>參加</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- /Featured Item -->
+			<div class="col-12 text-center">
+				<div class="more-details">
+					<a href="#" class="btn btn-load">查看更多 <img src="~/assets/img/icons/u_plus-square.svg" class="ms-2" alt="img"></a>
+				</div>
+			</div>
+		</div>
+		<!-- /Listing Content -->
+	</div>
+
+</div>
+<!-- /Page Content -->
+@section Scripts
+	{
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/3.3.4/vue.global.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.6.0/axios.min.js" integrity="sha512-WrdC3CE9vf1nBf58JHepuWT4x24uTacky9fuzw2g/3L9JkihgwZ6Cfv+JGTtNyosOhEmttMtEZ6H3qJWfI7gIQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+	<script>
+		const activity = Vue.createApp({
+			data() {
+				return {
+					activityList: [],
+					wish: []
+				}
+			},
+			mounted() {
+				let _this = this;
+				_this.GetCategoryTypeList();
+			},
+			methods: {
+				GetCategoryTypeList() {
+					let _this = this;
+					axios.get(`/MiddleCenterApi/GetCategoryTypeList/@search.categoyId/@search.categoryTypeId`)
+						.then(res => {
+							_this.activityList = res.data;
+						})
+						.catch(err => alert(err));
+					_this.QueryWish();
+				},
+				QueryWish() {
+					let _this = this;
+					axios.get("/WishApi/GetWishList")
+						.then(res => _this.wish = res.data)
+						.catch(err => alert(err));
+				},
+				Fav(id) {
+					let _this = this;
+					if (_this.wish.includes(id)) {
+						axios.delete(`/WishApi/DeleteWish/${id}`)
+							.then()
+							.catch(err => alert(err));
+					}
+					else {
+						//目前寫死會員ID_1，等待網頁狀態實作
+						let _this = this;
+						var form = new FormData();
+						form.append("memberId", 1);
+						form.append("activityId", id);
+						form.append("addTime", GetDay());
+						axios.post("/WishApi/InsertWish", form, {
+							headers: {
+								"Content-Type": "multipart/form-data"
+							}
+						})
+							.then()
+							.catch(err => alert(err));
+					}
+					_this.QueryActivityList();
+				}
+			}
+		}).mount("#activity")
+
+	</script>
+}

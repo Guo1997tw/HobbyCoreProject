@@ -33,6 +33,8 @@ namespace JHobby.Website
             builder.Services.AddScoped<IMemberService, MemberService>();
             builder.Services.AddScoped<IWishRepository, WishRepository>();
             builder.Services.AddScoped<IWishService,WishSerive>();
+            builder.Services.AddScoped<IMiddleCenterRepository,MiddleCenterRepository>();
+            builder.Services.AddScoped<IMiddleCenterService,MiddleCenterService>();
 
             var app = builder.Build();
 
