@@ -68,11 +68,7 @@ namespace JHobby.Website.Controllers
 		{
 			return View();
 		}
-		public IActionResult Review()
-		{
-            ViewData["Title"] = "報名審核";
-			return View();
-		}
+
 
         public IActionResult changePassword()       
         {
