@@ -22,29 +22,17 @@ namespace JHobby.Service.Implements
 
         public bool CreateMemberRegister(MemberRegisterModel memberRegisterModel)
         {
+            var salt = RandomSalt();
+            var hashPwd = HashPwdWithHMACSHA256(memberRegisterModel.Password, salt);
+            var pwdSalt = $"{hashPwd}:{salt}";
+
             var mapper = new MemberRegisterDto
             {
                 Account = memberRegisterModel.Account,
-                Password = memberRegisterModel.Password,
+                Password = pwdSalt,
                 Status = memberRegisterModel.Status,
                 CreationDate = memberRegisterModel.CreationDate,
             };
-
-            // 密碼加鹽十六進制
-            byte[] bpwd = Encoding.Unicode.GetBytes(mapper.Password);
-
-            HMACSHA256 hMACSHA256 = new HMACSHA256();
-
-            byte[] hash = hMACSHA256.ComputeHash(bpwd);
-
-            StringBuilder sb = new StringBuilder();
-
-            foreach (byte b in hash)
-            {
-                sb.Append(b.ToString("x2"));
-            }
-
-            mapper.Password = sb.ToString();
 
             _memberRepository.InsertMemberRegister(mapper);
             
@@ -57,10 +45,44 @@ namespace JHobby.Service.Implements
 
             if(queryResult != null)
             {
-                return queryResult.Password == password;
+                var parts = queryResult.Password.Split(':');
+
+                if (parts.Length != 2) { return false; }
+
+                var saveHash = parts[0];
+                var saveSalt = parts[1];
+
+                var hashPwd = HashPwdWithHMACSHA256(password, saveSalt);
+
+                return hashPwd == saveHash;
             }
 
             return false;
+        }
+
+        private string RandomSalt(int size = 32)
+        {
+            using (var rng = new RNGCryptoServiceProvider())
+            {
+                var buffer = new byte[size];
+
+                rng.GetBytes(buffer);
+
+                return Convert.ToBase64String(buffer);
+            }
+        }
+
+        private string HashPwdWithHMACSHA256(string password, string salt)
+        {
+            var saltBytes = Convert.FromBase64String(salt);
+
+            using (var hmac = new HMACSHA256(saltBytes))
+            {
+                var pwdBytes = Encoding.UTF8.GetBytes(password);
+                var hash = hmac.ComputeHash(pwdBytes);
+
+                return Convert.ToBase64String(hash);
+            }
         }
     }
 }
