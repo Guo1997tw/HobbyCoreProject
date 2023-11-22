@@ -109,13 +109,15 @@
                     body: JSON.stringify(this.memberLogin)
                 }).then(r => {
                     if (!r.ok) {
-                        throw new e('Fail');
+                        throw new Error('Fail');
                     }
 
                     return r.json();
                 }).then(d => {
                     console.log('Success', d);
                     alert("登入成功~~")
+
+                    window.location.href = '/Home/Index';
                 }).catch(e => {
                     console.log('Fail', e);
                     alert("登入失敗，請確認帳號、密碼是否正確!!");
