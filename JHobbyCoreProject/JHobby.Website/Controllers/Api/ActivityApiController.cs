@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace JHobby.Website.Controllers.Api
 {
-	[Route("api/[controller]")]
+	[Route("[controller]/[action]")]			
 	[ApiController]
 	public class ActivityApiController : ControllerBase
 	{
@@ -25,6 +25,7 @@ namespace JHobby.Website.Controllers.Api
 		{
 			var mapper = new ActivityBuildModel
 			{
+				ActivityName = activityBuildViewModel.ActivityName,
 				ActivityCity = activityBuildViewModel.ActivityCity,
 				ActivityArea = activityBuildViewModel.ActivityArea,
 				ActivityLocation = activityBuildViewModel.ActivityLocation,
@@ -35,7 +36,13 @@ namespace JHobby.Website.Controllers.Api
 				JoinDeadLine = activityBuildViewModel.JoinDeadLine,
 				JoinFee = activityBuildViewModel.JoinFee,
 				ActivityNotes = activityBuildViewModel.ActivityNotes,
-				ActivityId = activityBuildViewModel.ActivityId,
+				MemberId = activityBuildViewModel.MemberId,
+				ActivityStatus = activityBuildViewModel.ActivityStatus,
+				Payment = activityBuildViewModel.Payment,
+				Created = activityBuildViewModel.Created
+
+
+
 			};
 
 			var result=_activityService.CreateActivityBuild(mapper);

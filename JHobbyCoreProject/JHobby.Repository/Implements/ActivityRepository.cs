@@ -23,6 +23,7 @@ namespace JHobby.Repository.Implements
 		{
 			var mapper = new Activity			
 			{
+				ActivityName = activityBuildDto.ActivityName,
 				ActivityCity = activityBuildDto.ActivityCity,
 				ActivityArea = activityBuildDto.ActivityArea,
 				ActivityLocation = activityBuildDto.ActivityLocation,
@@ -33,7 +34,10 @@ namespace JHobby.Repository.Implements
 				JoinDeadLine = activityBuildDto.JoinDeadLine,
 				JoinFee = activityBuildDto.JoinFee,
 				ActivityNotes = activityBuildDto.ActivityNotes,
-				ActivityId = activityBuildDto.ActivityId,
+				MemberId = activityBuildDto.MemberId,
+				ActivityStatus = activityBuildDto.ActivityStatus,
+				Payment = activityBuildDto.Payment,
+				Created = activityBuildDto.Created
 			};
 
 			_jhobbyContext.Activities.Add(mapper);

@@ -8,6 +8,7 @@ namespace JHobby.Repository.Models.Dto
 {
 	public class ActivityBuildDto
 	{
+		public string ActivityName { get; set; } = null!;
 		public string ActivityCity { get; set; } = null!;
 		public string ActivityArea { get; set; } = null!;
 		public string ActivityLocation { get; set; } = null!;
@@ -18,7 +19,10 @@ namespace JHobby.Repository.Models.Dto
 		public DateTime JoinDeadLine { get; set; }		
 		public decimal JoinFee { get; set; }
 		public string? ActivityNotes { get; set; }
-		public int ActivityId { get; set; }
+		public int MemberId { get; set; }
+		public string ActivityStatus { get; set; } = null!;
+		public string Payment { get; set; } = null!;
+		public DateTime Created { get; set; }
 
 
 	}

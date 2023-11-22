@@ -22,17 +22,21 @@ namespace JHobby.Service.Implements
 		{
 			var mapper = new ActivityBuildDto
 			{
+				ActivityName = activityBuildModel.ActivityName,
 				ActivityCity = activityBuildModel.ActivityCity,
 				ActivityArea = activityBuildModel.ActivityArea,
 				ActivityLocation = activityBuildModel.ActivityLocation,
 				StartTime = activityBuildModel.StartTime,
 				MaxPeople = activityBuildModel.MaxPeople,
 				CategoryId = activityBuildModel.CategoryId,
-				CategoryTypeId = activityBuildModel.CategoryTypeId,
+				CategoryTypeId = activityBuildModel.CategoryTypeId,		
 				JoinDeadLine = activityBuildModel.JoinDeadLine,
 				JoinFee = activityBuildModel.JoinFee,
 				ActivityNotes = activityBuildModel.ActivityNotes,
-				ActivityId = activityBuildModel.ActivityId,
+				MemberId = activityBuildModel.MemberId,
+				ActivityStatus = activityBuildModel.ActivityStatus,
+				Payment = activityBuildModel.Payment,
+				Created = activityBuildModel.Created
 			};
 			_activityRepository.InsertActivityBuild(mapper);
 			return true;
