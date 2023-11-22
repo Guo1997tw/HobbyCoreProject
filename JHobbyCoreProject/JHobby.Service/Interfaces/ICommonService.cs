@@ -1,4 +1,4 @@
-﻿namespace JHobby.Service.Implements
+﻿namespace JHobby.Service.Interfaces
 {
     public interface ICommonService
     {

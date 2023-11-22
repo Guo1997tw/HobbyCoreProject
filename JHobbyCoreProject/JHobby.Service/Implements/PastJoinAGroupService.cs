@@ -1,5 +1,6 @@
 ﻿using JHobby.Repository.Interfaces;
 using JHobby.Repository.Models.Dto;
+using JHobby.Service.Interfaces;
 using JHobby.Service.Models;
 using System;
 using System.Collections.Generic;

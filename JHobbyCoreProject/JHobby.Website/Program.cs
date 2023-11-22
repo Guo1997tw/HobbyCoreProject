@@ -38,6 +38,7 @@ namespace JHobby.Website
             builder.Services.AddScoped<IPastJoinAGroupService, PastJoinAGroupService>();
             builder.Services.AddScoped<ICommonService, CommonService>();
 
+
             var app = builder.Build();
 
             // Swagger Use

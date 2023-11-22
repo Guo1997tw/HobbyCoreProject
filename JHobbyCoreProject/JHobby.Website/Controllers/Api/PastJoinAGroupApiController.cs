@@ -7,7 +7,6 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace JHobby.Website.Controllers.Api
 {
-    [EnableCors("AllowOrigin")]
     [Route("[controller]/[action]")]
     [ApiController]
     public class PastJoinAGroupApiController : ControllerBase

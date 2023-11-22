@@ -416,30 +416,29 @@
                                                 </tr>
                                             </thead>
                                             <!-- /參團區塊標題欄-->
-                                            <!-- 展示卡片-->
-                                            <tbody>
-                                                <tr>
+                                            <!-- 過去參團卡片-->
+                                            <tbody id="idPastJoinAGroupCard">
+                                                <tr v-for="(card, index) in pastJoinAGroupCard" :key="index">
                                                     <td>
                                                         <h2 class="table-avatar">
                                                             <a href="/#" data-bs-toggle="modal" data-bs-target="#upcoming-court" class="avatar avatar-sm flex-shrink-0">
                                                                 <img class="avatar-img" src="/assets/img/booking/booking-02.jpg" alt="Booking">
                                                             </a>
                                                             <span class="table-head-name flex-grow-1">
-                                                                <a data-bs-toggle="modal" data-bs-target="#upcoming-court">頁頁頁一頁ㄝ團</a>
-                                                                <span>團主: 軟男</span>
+                                                                <a data-bs-toggle="modal" data-bs-target="#upcoming-court">{{card.activityName}}</a>
+                                                                <span>團主: {{card.nickName}}</span>
                                                             </span>
                                                         </h2>
                                                     </td>
                                                     <td>
-                                                        <p>2023, 5月 11日</p>
-                                                        <p>06:00 PM - 08:00 PM</p>
+                                                        <p>{{card.startTime}}</p>
                                                     </td>
                                                     <td>
-                                                        <h6>2人</h6>
+                                                        <h6>{{card.currentPeople}}人</h6>
                                                     </td>
-                                                    <td>台北市</td>
+                                                    <td>{{card.activityCity}}</td>
                                                     <td class="paid-edit">
-                                                        <span><i class="feather-edit"></i> 已結束</span>
+                                                        <span><i class="feather-edit"></i>{{card.activityStatus}}</span>
                                                     </td>
                                                     <td>
                                                         <!-- 下拉圓形選單評團主 -->
@@ -458,162 +457,12 @@
                                                         <!-- 下拉圓形選單評團主 -->
                                                     </td>
                                                 </tr>
-                                                <!-- /展示卡片-->
-                                                <!-- 展示卡片充版面-->
-                                                <tr>
-                                                    <td>
-                                                        <h2 class="table-avatar">
-                                                            <a href="/#" data-bs-toggle="modal" data-bs-target="#upcoming-court" class="avatar avatar-sm flex-shrink-0">
-                                                                <img class="avatar-img" src="/assets/img/booking/booking-03.jpg" alt="Booking">
-                                                            </a>
-                                                            <span class="table-head-name flex-grow-1">
-                                                                <a data-bs-toggle="modal" data-bs-target="#upcoming-court">Wing Sports Academy</a>
-                                                                <span>Court 2</span>
-                                                            </span>
-                                                        </h2>
-                                                    </td>
-                                                    <td>
-                                                        <p>Tue, Jul 12</p>
-                                                        <p>05:00 PM - 06:00 PM</p>
-                                                    </td>
-                                                    <td>
-                                                        <h6>$120</h6>
-                                                    </td>
-                                                    <td>Jul 12, 2023</td>
-                                                    <td class="paid-edit">
-                                                        <span><i class="feather-edit"></i> Paid</span>
-                                                    </td>
-                                                    <td>
-                                                        <div class="dropdown dropdown-action">
-                                                            <a href="/#" class="action-icon dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-ellipsis"></i></a>
-                                                            <div class="dropdown-menu dropdown-menu-end">
-                                                                <a class="dropdown-item" href="/javascript:void(0);">
-                                                                    <i class="feather-download"></i> Download
-                                                                </a>
-                                                                <a class="dropdown-item" href="/javascript:void(0);">
-                                                                    <i class="feather-trash"></i> Delete
-                                                                </a>
-                                                            </div>
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        <h2 class="table-avatar">
-                                                            <a href="/#" data-bs-toggle="modal" data-bs-target="#upcoming-court" class="avatar avatar-sm flex-shrink-0">
-                                                                <img class="avatar-img" src="/assets/img/booking/booking-04.jpg" alt="Booking">
-                                                            </a>
-                                                            <span class="table-head-name flex-grow-1">
-                                                                <a data-bs-toggle="modal" data-bs-target="#upcoming-court">Feather Badminton</a>
-                                                                <span>Court 3</span>
-                                                            </span>
-                                                        </h2>
-                                                    </td>
-                                                    <td>
-                                                        <p>Wed, Jul 13</p>
-                                                        <p>10:00 AM - 11:00 AM</p>
-                                                    </td>
-                                                    <td>
-                                                        <h6>$470</h6>
-                                                    </td>
-                                                    <td>Jul 13, 2023</td>
-                                                    <td class="paid-edit">
-                                                        <span><i class="feather-edit"></i> Paid</span>
-                                                    </td>
-                                                    <td>
-                                                        <div class="dropdown dropdown-action">
-                                                            <a href="/#" class="action-icon dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-ellipsis"></i></a>
-                                                            <div class="dropdown-menu dropdown-menu-end">
-                                                                <a class="dropdown-item" href="/javascript:void(0);">
-                                                                    <i class="feather-download"></i> Download
-                                                                </a>
-                                                                <a class="dropdown-item" href="/javascript:void(0);">
-                                                                    <i class="feather-trash"></i> Delete
-                                                                </a>
-                                                            </div>
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        <h2 class="table-avatar">
-                                                            <a href="/#" data-bs-toggle="modal" data-bs-target="#upcoming-court" class="avatar avatar-sm flex-shrink-0">
-                                                                <img class="avatar-img" src="/assets/img/booking/booking-05.jpg" alt="Booking">
-                                                            </a>
-                                                            <span class="table-head-name flex-grow-1">
-                                                                <a href="/#" data-bs-toggle="modal" data-bs-target="#upcoming-court">Bwing Sports Academy</a>
-                                                                <span>Court 4</span>
-                                                            </span>
-                                                        </h2>
-                                                    </td>
-                                                    <td>
-                                                        <p>Thu, Jul 14</p>
-                                                        <p>12:00 PM - 01:00 PM</p>
-                                                    </td>
-                                                    <td>
-                                                        <h6>$200</h6>
-                                                    </td>
-                                                    <td>Jul 14, 2023</td>
-                                                    <td class="paid-edit">
-                                                        <span><i class="feather-edit"></i> Paid</span>
-                                                    </td>
-                                                    <td>
-                                                        <div class="dropdown dropdown-action">
-                                                            <a href="/#" class="action-icon dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-ellipsis"></i></a>
-                                                            <div class="dropdown-menu dropdown-menu-end">
-                                                                <a class="dropdown-item" href="/javascript:void(0);">
-                                                                    <i class="feather-download"></i> Download
-                                                                </a>
-                                                                <a class="dropdown-item" href="/javascript:void(0);">
-                                                                    <i class="feather-trash"></i> Delete
-                                                                </a>
-                                                            </div>
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        <h2 class="table-avatar">
-                                                            <a href="/#" data-bs-toggle="modal" data-bs-target="#upcoming-court" class="avatar avatar-sm flex-shrink-0">
-                                                                <img class="avatar-img" src="/assets/img/booking/booking-06.jpg" alt="Booking">
-                                                            </a>
-                                                            <span class="table-head-name flex-grow-1">
-                                                                <a href="/#" data-bs-toggle="modal" data-bs-target="#upcoming-court">Marsh Academy</a>
-                                                                <span>Court 5</span>
-                                                            </span>
-                                                        </h2>
-                                                    </td>
-                                                    <td>
-                                                        <p>Fri, Jul 15</p>
-                                                        <p>08:00 AM - 09:00 AM</p>
-                                                    </td>
-                                                    <td>
-                                                        <h6>$150</h6>
-                                                    </td>
-                                                    <td>Jul 15, 2023</td>
-                                                    <td class="paid-edit">
-                                                        <span><i class="feather-edit"></i> Paid</span>
-                                                    </td>
-                                                    <td>
-                                                        <div class="dropdown dropdown-action">
-                                                            <a href="/#" class="action-icon dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-ellipsis"></i></a>
-                                                            <div class="dropdown-menu dropdown-menu-end">
-                                                                <a class="dropdown-item" href="/javascript:void(0);">
-                                                                    <i class="feather-download"></i> Download
-                                                                </a>
-                                                                <a class="dropdown-item" href="/javascript:void(0);">
-                                                                    <i class="feather-trash"></i> Delete
-                                                                </a>
-                                                            </div>
-                                                        </div>
-                                                    </td>
-                                                </tr>
+                                                <!-- /過去參團卡片-->
                                             </tbody>
                                         </table>
                                     </div>
                                 </div>
                             </div>
-                            <!-- /展示卡片充版面-->
                             <!-- 分頁選單-參團-->
                             <div class="tab-footer" style="margin-top: 10px;">
                                 <div class="row">
@@ -731,7 +580,34 @@
 
 @section Scripts
 {
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script>
 
+        // 過去活動卡片顯示
+        const app = Vue.createApp({
+            data() {
+                return {
+                    pastJoinAGroupCard: [],
+                };
+            },
+            mounted() {
+                let _this = this;
+                _this.axiosPastJoinAGroupCard();
+            },
+            methods: {
+                axiosPastJoinAGroupCard: function () {
+                    axios
+                        .get("https://localhost:7097/PastJoinAGroupApi/GetPastJoinAGroupList")
+                        .then((response) => {
+                            let _this = this;
+                            _this.pastJoinAGroupCard = response.data;
+                        })
+                        .catch((error) => {
+                            alert(`發生錯誤: ${error}`);
+                        });
+                },
+            },
+        }).mount("#idPastJoinAGroupCard");
     </script>
 }
