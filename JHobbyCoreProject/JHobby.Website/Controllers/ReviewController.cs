@@ -4,7 +4,7 @@ namespace JHobby.Website.Controllers
 {
 	public class ReviewController : Controller
 	{
-		public IActionResult Review()
+		public IActionResult Apply()
 		{
 			ViewData["Title"] = "報名審核";
 			return View();
