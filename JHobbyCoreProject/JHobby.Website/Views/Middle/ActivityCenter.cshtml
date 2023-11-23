@@ -19,9 +19,8 @@
 <partial name="_BreadcrumbPartial" />
 
 <!-- Page Content -->
-<div class="content">
+<div id="activity" class="content">
 	<div class="container">
-
 		<!-- Sort By -->
 		<div class="row">
 			<div class="col-lg-12">
@@ -34,25 +33,24 @@
 								<div class="sortby-filter-group">
 
 									<div class="sortbyset">
-										<span class="sortbytitle">排序</span>
+										<span class="sortbytitle">報名截止日排序</span>
 										<div class="sorting-select">
-											<select class="form-control select">
-												<option>近到遠</option>
-												<option>遠到近</option>
+											<select id="selectSort" v-model="sort" v-on:change="Desc()" class="form-select">
+												<option value="asc">近到遠</option>
+												<option value="desc">遠到近</option>
 											</select>
 										</div>
 									</div>
 								</div>
 							</div>
 						</div>
-
 					</div>
 				</div>
 			</div>
 		</div>
 		<!-- Sort By -->
 		<!-- Listing Content -->
-		<div id="activity" data-aos="fade-up" class="row justify-content-center">
+		<div  data-aos="fade-up" class="row justify-content-center">
 				<!-- Featured Item -->
 					<div class="col-lg-4 col-md-6" v-for="item in activityList">
 						<div class="wrapper">
@@ -109,7 +107,6 @@
 		</div>
 		<!-- /Listing Content -->
 	</div>
-
 </div>
 <!-- /Page Content -->
 @section Scripts
@@ -123,7 +120,8 @@
 				return {
 					activityList: [],
 					wish: [],
-					top:6
+					top: 6,
+					sort: "asc"
 				}
 			},
 			mounted() {
@@ -139,6 +137,7 @@
 					form.append("top", _this.top);
 					form.append("city", @search.city);
 					form.append("area", @search.area);
+					form.append("sort", _this.sort);
 					axios.post("/MiddleCenterApi/GetCategoryTypeList", form, {
 						headers: {
 							"Content-Type": "multipart/form-data"
@@ -185,9 +184,16 @@
 					_this.top += 6;
 					_this.GetCategoryTypeList();
 					Jhobby_Animation()
+				},
+				Desc() {
+					let _this = this;
+					_this.GetCategoryTypeList()
+					_this.QueryWish();
 				}
 			}
 		}).mount("#activity")
+
+
 
 	</script>
 }

@@ -33,9 +33,11 @@ namespace JHobby.Service.Implements
 			{
 				query = query.Where(res => res.ActivityCity == search.city && res.ActivityArea == search.area);
 			}
-
-
-			return query.Select(res => new QueryCategoryTypeModel
+			if (search.sort=="desc" )
+			{
+				query = query.OrderByDescending(res => res.JoinDeadLine);
+			}
+			return  query.Select(res => new QueryCategoryTypeModel
 			{
 				ActivityId = res.ActivityId,
 				MemberId = res.MemberId,
@@ -49,6 +51,7 @@ namespace JHobby.Service.Implements
 				JoinDeadLine = res.JoinDeadLine.ToString("yyyy-MM-dd"),
 				ActivityImages = res.ActivityImages.Where(ai => ai.IsCover == true).ToList()
 			}).Take(search.top);
+
 		}
 	}
 }
