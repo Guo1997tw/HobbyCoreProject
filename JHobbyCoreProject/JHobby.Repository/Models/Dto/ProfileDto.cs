@@ -13,5 +13,7 @@ namespace JHobby.Repository.Models.Dto
         public string? Gender { get; set; }
         public string? AcitveCity { get; set; }
         public string? PersonalProfile { get; set; }
-    }
+		public string? HeadShot { get; set; }
+		public double? Fraction { get; set; }
+	}
 }

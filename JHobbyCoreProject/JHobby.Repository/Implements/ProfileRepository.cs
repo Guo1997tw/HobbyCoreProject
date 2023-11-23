@@ -1,11 +1,13 @@
 ﻿using JHobby.Repository.Interfaces;
 using JHobby.Repository.Models.Dto;
 using JHobby.Repository.Models.Entity;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace JHobby.Repository.Implements
 {
@@ -17,31 +19,23 @@ namespace JHobby.Repository.Implements
             _jobbycontext = jhobbyContext;
         }
 
-        public IEnumerable<ProfileDto> GetAll()
-        {
-            var result = _jobbycontext.Members.Select(x => new ProfileDto
-            {
-                MemberId = x.MemberId,
-                NickName = x.NickName,
-                Gender = x.Gender,
-                AcitveCity = x.AcitveCity,
-                PersonalProfile = x.PersonalProfile,
-            });
-            return result;
-        }
+       
 
-        public ProfileDto GetById(int id)
-        {
-            var result=_jobbycontext.Members.FirstOrDefault(x=>x.MemberId == id);
-            var profileDto = new ProfileDto
-            {
-                MemberId =result.MemberId,
-                NickName=result.NickName,
-                Gender = result.Gender,
-                AcitveCity=result.AcitveCity,
-                PersonalProfile = result.PersonalProfile,
-            };
-            return profileDto;
-        }
-    }
+		public ProfileDto GetById(int id)
+		{
+			var m = _jobbycontext.Members.Include(x => x.Scores).FirstOrDefault(x => x.MemberId == id);
+			var result = new ProfileDto
+			{
+				MemberId = m.MemberId,
+				NickName = m.NickName,
+				Gender = m.Gender,
+				AcitveCity = m.AcitveCity,
+				PersonalProfile = m.PersonalProfile,
+				HeadShot = m.HeadShot,
+				Fraction = m.Scores.Average(x=> x.Fraction),
+				
+			};			
+			return result;
+		}
+	}
 }

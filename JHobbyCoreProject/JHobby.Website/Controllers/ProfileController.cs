@@ -13,33 +13,18 @@ namespace JHobby.Website.Controllers
 		{
 			_profileService = profileService;
 		}
-		public IActionResult Profile(int id)
+		public IActionResult MemberProfile(int id)
         {
 			ViewData["Title"] = "團主介紹";
 
-            return View(new ProfileViewModel());
-        }
-		public IActionResult Test(int id)   //測試
-		{
-			return View(new ProfileViewModel
+			return View(new ProfileTestViewModel
 			{
-				MemberId = id,
+				MemberId = id
 			});
 		}
-		public IEnumerable<ProfileViewModel> GetProfileById(int id)
+		public IActionResult Test(int id)   //測試
 		{
-			var servicesDto = _profileService.GetProfileById(id);
-			var viewModel = new ProfileViewModel
-			{
-				MemberId = servicesDto.MemberId,
-				NickName = servicesDto.NickName,
-				Gender = servicesDto.Gender,
-				AcitveCity = servicesDto.AcitveCity,
-				PersonalProfile = servicesDto.PersonalProfile,
-			};
-			yield return viewModel;
-
+			return View(new ProfileTestViewModel());
 		}
-
 	}
 }

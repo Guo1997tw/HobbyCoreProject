@@ -7,10 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Remove="Views\Profile\GetProfileById.cshtml" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="7.0.13" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
   </ItemGroup>
@@ -25,18 +21,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="Views\Profile\GetProfileById.cshtml" />
     <None Include="wwwroot\image\loader.jpg" />
     <None Include="wwwroot\image\logo.svg" />
     <None Include="wwwroot\image\whiteCaticon.ico" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <UpToDateCheckInput Remove="Views\Profile\GetProfileById.cshtml" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <_ContentIncludedByDefault Remove="Views\Profile\GetProfileById.cshtml" />
   </ItemGroup>
 
 </Project>

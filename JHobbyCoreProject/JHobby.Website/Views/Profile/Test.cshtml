@@ -1,13 +1,15 @@
-﻿@model ProfileViewModel
+﻿@model ProfileTestViewModel
 <div class="text-center">
     <h1 class="display-4">Welcome</h1>
     <form asp-controller="Profile" asp-action="Profile">
-        <select asp-for="MemberId">
-            <option>1</option>
-            <option>2</option>
-            <option>3</option>
+        <select asp-for="MemberId" asp-items="new SelectList(new[] { 1, 2, 3 })"></select>
+        <button type="submit">Submit</button>
+        @* <select asp-for="MemberId">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
             
         </select>
-        <a asp-controller="Profile" asp-action="GetProfileById" asp-route-MemberId="@Model.MemberId">會員介紹</a> |
-        <button type="submit">OK</button>
+        
+        <button type="submit">OK</button> *@
     </form>
