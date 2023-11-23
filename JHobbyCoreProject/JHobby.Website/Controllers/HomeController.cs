@@ -53,7 +53,7 @@ namespace JHobby.Website.Controllers
         }
 
 
-        public IActionResult newcomer()
+        public IActionResult Newcomer()
         {
             ViewData["Title"] = "新手上路";
 
