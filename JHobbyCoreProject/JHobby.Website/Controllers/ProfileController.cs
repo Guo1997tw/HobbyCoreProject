@@ -22,9 +22,5 @@ namespace JHobby.Website.Controllers
 				MemberId = id
 			});
 		}
-		public IActionResult Test(int id)   //測試
-		{
-			return View(new ProfileTestViewModel());
-		}
 	}
 }
