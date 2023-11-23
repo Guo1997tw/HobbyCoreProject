@@ -52,7 +52,7 @@
 		</div>
 		<!-- Sort By -->
 		<!-- Listing Content -->
-		<div id="activity" class="row justify-content-center">
+		<div id="activity" data-aos="fade-up" class="row justify-content-center">
 				<!-- Featured Item -->
 					<div class="col-lg-4 col-md-6" v-for="item in activityList">
 						<div class="wrapper">
@@ -103,7 +103,7 @@
 				<!-- /Featured Item -->
 			<div class="col-12 text-center">
 				<div class="more-details">
-					<a href="#" class="btn btn-load">查看更多 <img src="~/assets/img/icons/u_plus-square.svg" class="ms-2" alt="img"></a>
+					<a v-on:click="More()"  class="btn btn-load">查看更多 <img src="~/assets/img/icons/u_plus-square.svg" class="ms-2" alt="img"></a>
 				</div>
 			</div>
 		</div>
@@ -122,7 +122,8 @@
 			data() {
 				return {
 					activityList: [],
-					wish: []
+					wish: [],
+					top:6
 				}
 			},
 			mounted() {
@@ -132,7 +133,17 @@
 			methods: {
 				GetCategoryTypeList() {
 					let _this = this;
-					axios.get(`/MiddleCenterApi/GetCategoryTypeList/@search.categoyId/@search.categoryTypeId`)
+					var form = new FormData();
+					form.append("categoyId", @search.categoyId);
+					form.append("categoryTypeId", @search.categoryTypeId);
+					form.append("top", _this.top);
+					form.append("city", @search.city);
+					form.append("area", @search.area);
+					axios.post("/MiddleCenterApi/GetCategoryTypeList", form, {
+						headers: {
+							"Content-Type": "multipart/form-data"
+							}
+						})
 						.then(res => {
 							_this.activityList = res.data;
 						})
@@ -167,7 +178,13 @@
 							.then()
 							.catch(err => alert(err));
 					}
-					_this.QueryActivityList();
+					_this.GetCategoryTypeList();
+				},
+				More() {
+					let _this = this;
+					_this.top += 6;
+					_this.GetCategoryTypeList();
+					Jhobby_Animation()
 				}
 			}
 		}).mount("#activity")

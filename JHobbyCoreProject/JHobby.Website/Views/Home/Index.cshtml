@@ -1,6 +1,4 @@
-﻿@using JHobby.Website.Models.ViewModels
-@model SearchCategoyViewModel
-@section Styles
+﻿@section Styles
 {
 	<style>
 		.service-count-blk {
@@ -38,22 +36,22 @@
 						<h1>開始您的體驗</h1>
 						<p class="sub-info">透過94HOBBY，綻放出揪團熱情</p>
 						<div class="search-box">
-							<form asp-controller="Middle" asp-action="ActivityCenter"  method="get">
+							<form action="/Middle/ActivityCenter" method="post" >
 								<div class="search-input line">
 									<div class="form-group mb-0">
 										<label>縣市</label>
-										<select class="select">
-											<option>台北市</option>
-											<option>新北市</option>
+										<select name="city" class="select">
+											<option value="1">台北市</option>
+											<option value="2">新北市</option>
 										</select>
 									</div>
 								</div>
 								<div class="search-input">
 									<div class="form-group mb-0">
 										<label>區域 </label>
-										<select class="form-control select">
-											<option>中正區</option>
-											<option>大同區</option>
+										<select name="area" class="form-control select">
+											<option value="1">中正區</option>
+											<option value="2">大同區</option>
 										</select>
 									</div>
 								</div>
@@ -137,7 +135,12 @@
 		</div>
 		<!-- View More -->
 		<div class="view-all text-center aos" data-aos="fade-up">
-			<a href="listing-grid.html" class="btn btn-secondary d-inline-flex align-items-center">更多揪團<span class="lh-1"><i class="feather-arrow-right-circle ms-2"></i></span></a>
+			<form name="more" action="/Middle/ActivityCenter" method="post">
+				<input type="hidden" name="city" value="0" />
+				<input type="hidden" name="area" value="0" />
+				<a href="javascript:document.more.submit();" class="btn btn-secondary d-inline-flex align-items-center">更多揪團<span class="lh-1"><i class="feather-arrow-right-circle ms-2"></i></span></a>
+			</form>
+		
 		</div>
 		<!-- View More -->
 	</div>

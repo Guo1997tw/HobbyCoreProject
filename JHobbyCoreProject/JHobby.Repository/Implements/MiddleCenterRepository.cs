@@ -28,7 +28,9 @@ namespace JHobby.Repository.Implements
 				ActivityLocation = a.ActivityLocation,
 				ActivityNotes = a.ActivityNotes,
 				JoinDeadLine = a.JoinDeadLine,
-				ActivityImages = a.ActivityImages
+				ActivityImages = a.ActivityImages,
+				ActivityCity = a.ActivityCity,
+				ActivityArea = a.ActivityArea,
 			});
 			return dtoResult;
 		}

@@ -15,5 +15,7 @@ namespace JHobby.Repository.Models.Dto
 		public string? ActivityNotes { get; set; }
 		public DateTime JoinDeadLine { get; set; }
 		public virtual ICollection<ActivityImage> ActivityImages { get; set; } = new List<ActivityImage>();
+		public string ActivityCity { get;  set; }
+		public string ActivityArea { get;  set; }
 	}
 }

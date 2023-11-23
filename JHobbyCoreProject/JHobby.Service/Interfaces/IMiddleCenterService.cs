@@ -9,6 +9,6 @@ namespace JHobby.Service.Interfaces
 {
     public interface IMiddleCenterService
 	{
-		public IEnumerable<QueryCategoryTypeModel> GetCategoryTypeResult(int categoyId, int categoryTypeId);
+		public IEnumerable<QueryCategoryTypeModel> GetCategoryTypeResult(SearchModel search);
 	}
 }

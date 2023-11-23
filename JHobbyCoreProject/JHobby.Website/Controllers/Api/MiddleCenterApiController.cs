@@ -1,4 +1,5 @@
 ﻿using JHobby.Service.Interfaces;
+using JHobby.Service.Models;
 using JHobby.Website.Models.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 
@@ -6,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace JHobby.Website.Controllers.Api
 {
-	[Route("[controller]/[action]/{categoyId}/{categoryTypeId}")]
+	[Route("[controller]/[action]")]
 	[ApiController]
 	public class MiddleCenterApiController : ControllerBase
 	{
@@ -16,10 +17,10 @@ namespace JHobby.Website.Controllers.Api
 			_middleCenterService = middleCenterService;
 		}
 		// GET: api/<MiddleCenterApiController>
-		[HttpGet]
-		public IEnumerable<QueryCategoryTypeViewModel> GetCategoryTypeList(int categoyId, int categoryTypeId)
+		[HttpPost]
+		public IEnumerable<QueryCategoryTypeViewModel> GetCategoryTypeList([FromForm] SearchModel search)
 		{
-			var services = _middleCenterService.GetCategoryTypeResult(categoyId, categoryTypeId);
+			var services = _middleCenterService.GetCategoryTypeResult(search);
 			var viewModel = services.Select(s => new QueryCategoryTypeViewModel
 			{
 				ActivityId = s.ActivityId,
