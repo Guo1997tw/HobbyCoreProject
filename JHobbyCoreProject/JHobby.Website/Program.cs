@@ -29,10 +29,12 @@ namespace JHobby.Website
             builder.Services.AddSwaggerGen();
 
             // AutoMapper DI
-            builder.Services.AddAutoMapper(option =>
-            {
-                option.AddProfile<RepositoryProfile>();
-            });
+            //builder.Services.AddAutoMapper(option =>
+            //{
+            //    option.AddProfile<RepositoryProfile>();
+            //});
+
+            builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
             // Interface DI
             builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();

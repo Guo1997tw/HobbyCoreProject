@@ -41,14 +41,10 @@ namespace JHobby.Repository.Implements
         public CategoryDto? GetById(int id)
         {
             var queryResult = _jhobbyContext.Categories.FirstOrDefault(c => c.CategoryId == id);
-
+            
             if (queryResult == null) return null;
 
-            return new CategoryDto
-            {
-                CategoryId = queryResult.CategoryId,
-                CategoryName = queryResult.CategoryName
-            };
+            return _mapper.Map<CategoryDto>(queryResult);
         }
 
         public bool Insert(CreateCategoryDto createCategoryDto)
