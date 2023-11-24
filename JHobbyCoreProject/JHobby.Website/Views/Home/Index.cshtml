@@ -9,23 +9,8 @@
 	</style>
 }
 
-<!-- Hero Section -->
-<section class="hero-section">
-	<div class="banner-cock-one">
-		<img src="~/assets/img/icons/banner-cock1.svg" alt="Banner">
-	</div>
-	<div class="banner-shapes">
-		<div class="banner-dot-one">
-			<span></span>
-		</div>
-		<div class="banner-cock-two">
-			<img src="~/assets/img/icons/banner-cock2.svg" alt="Banner">
-			<span></span>
-		</div>
-		<div class="banner-dot-two">
-			<span></span>
-		</div>
-	</div>
+<!-- CityArea Search -->
+<section class="hero-section">  @* 1920x1080 *@
 	<div class="container">
 		<div class="home-banner">
 			<div class="row align-items-center w-100">
@@ -34,27 +19,24 @@
 @* 						<h4>World Class Badminton Coaching & Premium Courts</h4> *@
 						<h1>選擇喜歡的<span>揪團</span></h1>
 						<h1>開始您的體驗</h1>
-						<p class="sub-info">透過JHobby，綻放出揪團熱情</p>
+						<p class="sub-info">透過94HOBBY，綻放出揪團熱情</p>
 						<div class="search-box">
-							<form action="coaches-grid.html">
+							<form action="/Middle/ActivityCenter" method="post" >
 								<div class="search-input line">
 									<div class="form-group mb-0">
 										<label>縣市</label>
-										<select class="select">
-											<option>台北市</option>
-											<option>新北市</option>
+										<select name="city" class="select">
+											<option value="1">台北市</option>
+											<option value="2">新北市</option>
 										</select>
 									</div>
 								</div>
 								<div class="search-input">
 									<div class="form-group mb-0">
 										<label>區域 </label>
-										<select class="form-control select">
-											<option value="">請選擇</option>
-											<option>中山區</option>
-											<option>松山區</option>
-											<option>中正區</option>
-											<option>信義區</option>
+										<select name="area" class="form-control select">
+											<option value="1">中正區</option>
+											<option value="2">大同區</option>
 										</select>
 									</div>
 								</div>
@@ -67,229 +49,92 @@
 				</div>
 				<div class="col-lg-5">
 					<div class="banner-imgs text-center aos" data-aos="fade-up">
-						<img class="img-fluid" src="~/assets/img/bg/banner-right.png" alt="Banner">
-					</div>
+                    </div>
 				</div>
 			</div>
 		</div>
 	</div>
 </section>
-<!-- /Hero Section -->
-<!-- Rental Deals -->
-<section class="section featured-venues">
+<!-- /CityArea Search -->
+<!-- hotActivity -->
+<section id="hotActivity" class="section featured-venues">
 	<div class="container">
 		<div class="section-heading aos" data-aos="fade-up">
 			<h2>精選<span>揪團</span></h2>
-			<p class="sub-title">JHobby提供高優質活動，創造出最佳揪團體驗。</p>
+			<p class="sub-title">94HOBBY提供高優質活動，創造出最佳揪團體驗。</p>
 		</div>
 		<div class="row">
 			<div class="featured-slider-group ">
-				<div class="owl-carousel featured-venues-slider owl-theme">
+				<div class="owl-carousel featured-venues-slider owl-theme" >
+					<!-- Featured Item -->
+					<div class="featured-venues-item aos" data-aos="fade-up" v-for="item in activityList">
+						<div class="listing-item mb-0">
+							<div class="listing-img">
+								<a href="venue-details.html">
+									<img src="~/assets/img/venues/venues-01.jpg" alt="Venue">
+								</a>
+								<div class="fav-item-venues">
+									<span class="tag tag-yellow">精選</span>
+									<div class="list-reviews">
+										<a href="javascript:void(0)" v-on:click="Fav(item.activityId)" v-bind:class="wish.includes(item.activityId)? 'fav-icon selected':'fav-icon'">
+											<i class="feather-heart"></i>
+										</a>
+									</div>
+								</div>
+							</div>
+							<div class="listing-content">
+								<h3 class="listing-title">
+									<a href="venue-details.html">{{item.activityName}}</a>
+								</h3>
+								<div class="listing-details-group">
+									<p>[活動簡述]</p>
+									<ul>
+										<li>
+											<span>
+												<i class="feather-map-pin"></i>{{item.activityLocation}}
+											</span>
+										</li>
+										<li>
+											<span>
+												<i class="feather-calendar"></i>報名截止日 : <span class="primary-text">{{item.joinDeadLine}}</span>
+											</span>
+										</li>
+									</ul>
+								</div>
+								<div class="listing-button">
+									<div class="listing-venue-owner">
+										<a class="navigation" href="coach-detail.html">
+											<img src="~/assets/img/profiles/avatar-01.jpg" alt="Venue">{{item.nickName}}
+										</a>
+									</div>
+									<a href="venue-details.html" class="user-book-now"><span><i class="feather-calendar me-2"></i></span>參加</a>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- /Featured Item -->
 
-					<!-- Featured Item -->
-					<div class="featured-venues-item aos" data-aos="fade-up">
-						<div class="listing-item mb-0">
-							<div class="listing-img">
-								<a href="venue-details.html">
-									<img src="~/assets/img/venues/venues-01.jpg" alt="Venue">
-								</a>
-								<div class="fav-item-venues">
-									<span class="tag tag-yellow">精選</span>
-									<div class="list-reviews">
-										<a href="javascript:void(0)" class="fav-icon">
-											<i class="feather-heart"></i>
-										</a>
-									</div>
-								</div>
-							</div>
-							<div class="listing-content">
-								<h3 class="listing-title">
-									<a href="venue-details.html">[活動名稱1]</a>
-								</h3>
-								<div class="listing-details-group">
-									<p>[活動簡述]</p>
-									<ul>
-										<li>
-											<span>
-												<i class="feather-map-pin"></i>[活動地點]
-											</span>
-										</li>
-										<li>
-											<span>
-												<i class="feather-calendar"></i>報名截止日 : <span class="primary-text">[2023-11-30]</span>
-											</span>
-										</li>
-									</ul>
-								</div>
-								<div class="listing-button">
-									<div class="listing-venue-owner">
-										<a class="navigation" href="coach-detail.html">
-											<img src="~/assets/img/profiles/avatar-01.jpg" alt="Venue">陳O翰
-										</a>
-									</div>
-									<a href="venue-details.html" class="user-book-now"><span><i class="feather-calendar me-2"></i></span>參加</a>
-								</div>
-							</div>
-						</div>
-					</div>
-					<!-- /Featured Item -->
-					<!-- Featured Item -->
-					<div class="featured-venues-item aos" data-aos="fade-up">
-						<div class="listing-item mb-0">
-							<div class="listing-img">
-								<a href="venue-details.html">
-									<img src="~/assets/img/venues/venues-01.jpg" alt="Venue">
-								</a>
-								<div class="fav-item-venues">
-									<span class="tag tag-yellow">精選</span>
-									<div class="list-reviews">
-										<a href="javascript:void(0)" class="fav-icon">
-											<i class="feather-heart"></i>
-										</a>
-									</div>
-								</div>
-							</div>
-							<div class="listing-content">
-								<h3 class="listing-title">
-									<a href="venue-details.html">[活動名稱2]</a>
-								</h3>
-								<div class="listing-details-group">
-									<p>[活動簡述]</p>
-									<ul>
-										<li>
-											<span>
-												<i class="feather-map-pin"></i>[活動地點]
-											</span>
-										</li>
-										<li>
-											<span>
-												<i class="feather-calendar"></i>報名截止日 : <span class="primary-text">[2023-11-30]</span>
-											</span>
-										</li>
-									</ul>
-								</div>
-								<div class="listing-button">
-									<div class="listing-venue-owner">
-										<a class="navigation" href="coach-detail.html">
-											<img src="~/assets/img/profiles/avatar-01.jpg" alt="Venue">張O翔
-										</a>
-									</div>
-									<a href="venue-details.html" class="user-book-now"><span><i class="feather-calendar me-2"></i></span>參加</a>
-								</div>
-							</div>
-						</div>
-					</div>
-					<!-- /Featured Item -->
-					<!-- Featured Item -->
-					<div class="featured-venues-item aos" data-aos="fade-up">
-						<div class="listing-item mb-0">
-							<div class="listing-img">
-								<a href="venue-details.html">
-									<img src="~/assets/img/venues/venues-01.jpg" alt="Venue">
-								</a>
-								<div class="fav-item-venues">
-									<span class="tag tag-yellow">精選</span>
-									<div class="list-reviews">
-										<a href="javascript:void(0)" class="fav-icon">
-											<i class="feather-heart"></i>
-										</a>
-									</div>
-								</div>
-							</div>
-							<div class="listing-content">
-								<h3 class="listing-title">
-									<a href="venue-details.html">[活動名稱3]</a>
-								</h3>
-								<div class="listing-details-group">
-									<p>[活動簡述]</p>
-									<ul>
-										<li>
-											<span>
-												<i class="feather-map-pin"></i>[活動地點]
-											</span>
-										</li>
-										<li>
-											<span>
-												<i class="feather-calendar"></i>報名截止日 : <span class="primary-text">[2023-11-30]</span>
-											</span>
-										</li>
-									</ul>
-								</div>
-								<div class="listing-button">
-									<div class="listing-venue-owner">
-										<a class="navigation" href="coach-detail.html">
-											<img src="~/assets/img/profiles/avatar-01.jpg" alt="Venue">陳O瑜
-										</a>
-									</div>
-									<a href="venue-details.html" class="user-book-now"><span><i class="feather-calendar me-2"></i></span>參加</a>
-								</div>
-							</div>
-						</div>
-					</div>
-					<!-- /Featured Item -->
-					<!-- Featured Item -->
-					<div class="featured-venues-item aos" data-aos="fade-up">
-						<div class="listing-item mb-0">
-							<div class="listing-img">
-								<a href="venue-details.html">
-									<img src="~/assets/img/venues/venues-01.jpg" alt="Venue">
-								</a>
-								<div class="fav-item-venues">
-									<span class="tag tag-yellow">精選</span>
-									<div class="list-reviews">
-										<a href="javascript:void(0)" class="fav-icon">
-											<i class="feather-heart"></i>
-										</a>
-									</div>
-								</div>
-							</div>
-							<div class="listing-content">
-								<h3 class="listing-title">
-									<a href="venue-details.html">[活動名稱4]</a>
-								</h3>
-								<div class="listing-details-group">
-									<p>[活動簡述]</p>
-									<ul>
-										<li>
-											<span>
-												<i class="feather-map-pin"></i>[活動地點]
-											</span>
-										</li>
-										<li>
-											<span>
-												<i class="feather-calendar"></i>報名截止日 : <span class="primary-text">[2023-11-30]</span>
-											</span>
-										</li>
-									</ul>
-								</div>
-								<div class="listing-button">
-									<div class="listing-venue-owner">
-										<a class="navigation" href="coach-detail.html">
-											<img src="~/assets/img/profiles/avatar-01.jpg" alt="Venue">謝O州
-										</a>
-									</div>
-									<a href="venue-details.html" class="user-book-now"><span><i class="feather-calendar me-2"></i></span>參加</a>
-								</div>
-							</div>
-						</div>
-					</div>
-					<!-- /Featured Item -->
 				</div>
 			</div>
 		</div>
 		<!-- View More -->
 		<div class="view-all text-center aos" data-aos="fade-up">
-			<a href="listing-grid.html" class="btn btn-secondary d-inline-flex align-items-center">更多揪團<span class="lh-1"><i class="feather-arrow-right-circle ms-2"></i></span></a>
+			<form name="more" action="/Middle/ActivityCenter" method="post">
+				<input type="hidden" name="city" value="0" />
+				<input type="hidden" name="area" value="0" />
+				<a href="javascript:document.more.submit();" class="btn btn-secondary d-inline-flex align-items-center">更多揪團<span class="lh-1"><i class="feather-arrow-right-circle ms-2"></i></span></a>
+			</form>
+		
 		</div>
 		<!-- View More -->
 	</div>
 </section>
-<!-- /Rental Deals -->
+<!-- /hotActivity -->
 <!-- Best Services -->
-<section id="memberGender" class="section best-services">
+<section id="bestServices" class="section best-services">
 	<div class="container">
 
-		<div class="row">
+		<div class="row" data-aos="fade-up">
 			<div class="service-count-blk" >
 						<div style="background-color:#192335" class="coach-count col-lg-4">
 							<h3>平台會員</h3>
@@ -311,162 +156,109 @@
 	</div>
 </section>
 <!-- /Best Services -->
-<!-- Featured Coaches -->
-<section class="section featured-section">
+<!-- Hot Member -->
+<section id="hotMember" class="section featured-section">
 	<div class="container">
 		<div class="section-heading aos" data-aos="fade-up">
 			<h2>熱門 <span>團主</span></h2>
-			<p class="sub-title">JHobby為您準備高熱門揪團主</p>
+			<p class="sub-title">94HOBBY為您準備熱門揪團主</p>
 		</div>
 		<div class="row">
 			<div class="featured-slider-group aos" data-aos="fade-up">
 				<div class="owl-carousel featured-coache-slider owl-theme">
+					<!-- Featured Item -->
+					<div class="featured-venues-item"  v-for="item in hotList">
+							<div class="listing-item mb-0" >
+								<div class="listing-img">
+								<a v-bind:href='"@Url.Action("MemberProfile","Profile")/"+item.memberId'>
+									<img src="~/assets/img/profiles/user-01.jpg" alt="User">
+								</a>
+								<div class="fav-item-venues">
+									<span class="tag tag-blue">熱門</span>
+								</div>
+								<div class="hour-list">
+									<div class="list-reviews">
+										<div class="d-flex align-items-center">
+											<span class="rating-bg">{{item.star}}</span>
+										</div>
+									</div>
+								</div>
+							</div>
+								<div class="listing-content list-coche-content">
+								<h3><a href="coach-detail.html">{{item.nickName}}</a></h3>
+								<a v-bind:href='"@Url.Action("MemberProfile","Profile")/"+item.memberId'><i class="feather-arrow-right"></i></a>
+								<a v-bind:href='"@Url.Action("MemberProfile","Profile")/"+item.memberId'><i class="feather-calendar"></i></a>
+							</div>
+							</div>
+						</div>
+					<!-- /Featured Item -->
 
-					<!-- Featured Item -->
-					<div class="featured-venues-item">
-						<div class="listing-item mb-0">
-							<div class="listing-img">
-								<a href="coach-detail.html">
-									<img src="~/assets/img/profiles/user-01.jpg" alt="User">
-								</a>
-								<div class="fav-item-venues">
-									<span class="tag tag-blue">熱門</span>
-								</div>
-								<div class="hour-list">
-									<div class="list-reviews">
-										<div class="d-flex align-items-center">
-											<span class="rating-bg">5.0</span>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="listing-content list-coche-content">
-								<h3><a href="coach-detail.html">陳O翰</a></h3>
-								<a href="coach-details.html"><i class="feather-arrow-right"></i></a>
-								<a href="coach-details.html" class="icon-hover"><i class="feather-calendar"></i></a>
-							</div>
-						</div>
-					</div>
-					<!-- /Featured Item -->
-					<!-- Featured Item -->
-					<div class="featured-venues-item">
-						<div class="listing-item mb-0">
-							<div class="listing-img">
-								<a href="coach-detail.html">
-									<img src="~/assets/img/profiles/user-01.jpg" alt="User">
-								</a>
-								<div class="fav-item-venues">
-									<span class="tag tag-blue">熱門</span>
-								</div>
-								<div class="hour-list">
-									<div class="list-reviews">
-										<div class="d-flex align-items-center">
-											<span class="rating-bg">5.0</span>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="listing-content list-coche-content">
-								<h3><a href="coach-detail.html">張O翔</a></h3>
-								<a href="coach-details.html"><i class="feather-arrow-right"></i></a>
-								<a href="coach-details.html" class="icon-hover"><i class="feather-calendar"></i></a>
-							</div>
-						</div>
-					</div>
-					<!-- /Featured Item -->
-					<!-- Featured Item -->
-					<div class="featured-venues-item">
-						<div class="listing-item mb-0">
-							<div class="listing-img">
-								<a href="coach-detail.html">
-									<img src="~/assets/img/profiles/user-01.jpg" alt="User">
-								</a>
-								<div class="fav-item-venues">
-									<span class="tag tag-blue">熱門</span>
-								</div>
-								<div class="hour-list">
-									<div class="list-reviews">
-										<div class="d-flex align-items-center">
-											<span class="rating-bg">5.0</span>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="listing-content list-coche-content">
-								<h3><a href="coach-detail.html">謝O州</a></h3>
-								<a href="coach-details.html"><i class="feather-arrow-right"></i></a>
-								<a href="coach-details.html" class="icon-hover"><i class="feather-calendar"></i></a>
-							</div>
-						</div>
-					</div>
-					<!-- /Featured Item -->
-					<!-- Featured Item -->
-					<div class="featured-venues-item">
-						<div class="listing-item mb-0">
-							<div class="listing-img">
-								<a href="coach-detail.html">
-									<img src="~/assets/img/profiles/user-01.jpg" alt="User">
-								</a>
-								<div class="fav-item-venues">
-									<span class="tag tag-blue">熱門</span>
-								</div>
-								<div class="hour-list">
-									<div class="list-reviews">
-										<div class="d-flex align-items-center">
-											<span class="rating-bg">5.0</span>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="listing-content list-coche-content">
-								<h3><a href="coach-detail.html">郭O翔</a></h3>
-								<a href="coach-details.html"><i class="feather-arrow-right"></i></a>
-								<a href="coach-details.html" class="icon-hover"><i class="feather-calendar"></i></a>
-							</div>
-						</div>
-					</div>
-					<!-- /Featured Item -->
-					<!-- Featured Item -->
-					<div class="featured-venues-item">
-						<div class="listing-item mb-0">
-							<div class="listing-img">
-								<a href="coach-detail.html">
-									<img src="~/assets/img/profiles/user-01.jpg" alt="User">
-								</a>
-								<div class="fav-item-venues">
-									<span class="tag tag-blue">熱門</span>
-								</div>
-								<div class="hour-list">
-									<div class="list-reviews">
-										<div class="d-flex align-items-center">
-											<span class="rating-bg">5.0</span>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="listing-content list-coche-content">
-								<h3><a href="coach-detail.html">陳O瑜</a></h3>
-								<a href="coach-details.html"><i class="feather-arrow-right"></i></a>
-								<a href="coach-details.html" class="icon-hover"><i class="feather-calendar"></i></a>
-							</div>
-						</div>
-					</div>
-					<!-- /Featured Item -->
 				</div>
 			</div>
 		</div>
 	</div>
 </section>
-
-
-<!-- /Featured Coaches -->
+<!-- Hot Member -->
 @section Scripts
 {
-	<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/3.3.4/vue.global.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.6.0/axios.min.js" integrity="sha512-WrdC3CE9vf1nBf58JHepuWT4x24uTacky9fuzw2g/3L9JkihgwZ6Cfv+JGTtNyosOhEmttMtEZ6H3qJWfI7gIQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-
+	<script src="~/assets/js/script.js"></script>
 	<script>
-		const memberGender = Vue.createApp({
+		const hotActivity = Vue.createApp({
+			data() {
+				return {
+					activityList: [],
+					wish: []
+				}
+			},
+			mounted() {
+				let _this = this;
+				_this.QueryActivityList();
+			},
+			methods: {
+				QueryActivityList() {
+					let _this = this;
+					axios.get("/IndexApi/GetActivityList")
+						.then(res => {
+							_this.activityList = res.data;
+						})
+						.catch(err => alert(err));
+					_this.QueryWish();
+				},
+				QueryWish() {
+					let _this = this;
+					axios.get("/WishApi/GetWishList")
+						.then(res => _this.wish = res.data)
+						.catch(err => alert(err));
+				},
+				Fav(id) {
+					let _this = this;
+					if (_this.wish.includes(id)) {
+						axios.delete(`/WishApi/DeleteWish/${id}`)
+							.then()
+							.catch(err => alert(err));
+					}
+					else {
+						//目前寫死會員ID_1，等待網頁狀態實作
+						let _this = this;
+						var form = new FormData();
+						form.append("memberId", 1);
+						form.append("activityId", id);
+						form.append("addTime", GetDateTime());
+						axios.post("/WishApi/InsertWish", form, {
+							headers: {
+								"Content-Type": "multipart/form-data"
+							}
+						})
+						.then()
+						.catch(err => alert(err));
+					}
+					_this.QueryActivityList();
+				}
+			}
+		}).mount("#hotActivity")
+		const bestServices = Vue.createApp({
 			data() {
 				return {
 					memberGender: [],
@@ -477,10 +269,10 @@
 			},
 			mounted() {
 				let _this = this;
-				_this.queryMemberGender();
+				_this.QueryMemberGender();
 			},
 			methods: {
-				queryMemberGender() {
+				QueryMemberGender() {
 					let _this = this;
 					axios.get("/IndexApi/GetGenderList")
 						.then(res => {
@@ -493,9 +285,29 @@
 						})
 						.catch(err => alert(err));
 				}
-
 			}
-		}).mount("#memberGender")
+		}).mount("#bestServices")
+		const hotMember = Vue.createApp({
+			data() {
+				return {
+					hotList: [],
+				}
+			},
+			mounted() {
+				let _this = this;
+				_this.QueryHotMember();
+			},
+			methods: {
+				QueryHotMember() {
+					let _this = this;
+					axios.get("/IndexApi/GetHotMemberList")
+						.then(res => {
+							_this.hotList = res.data;
+						})
+						.catch(err => alert(err));
+				}
+			}
+		}).mount("#hotMember")
 
 	</script>
 }
