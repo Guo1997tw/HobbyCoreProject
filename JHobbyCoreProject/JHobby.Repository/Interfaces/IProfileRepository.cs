@@ -7,10 +7,8 @@ using System.Threading.Tasks;
 
 namespace JHobby.Repository.Interfaces
 {
-    public interface IMemberRepository
-    {
-        public bool InsertMemberRegister(MemberRegisterDto memberRegisterDto);
-
-        public MemberLoginDto? GetMemberLogin(string account);
-    }
+	public interface IProfileRepository
+	{
+		public ProfileDto GetById(int id);
+	}
 }
