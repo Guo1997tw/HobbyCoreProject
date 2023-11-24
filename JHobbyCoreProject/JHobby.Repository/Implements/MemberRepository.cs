@@ -29,7 +29,7 @@ namespace JHobby.Repository.Implements
             };
 
             _jhobbyContext.Members.Add(mapper); 
-            //_jhobbyContext.SaveChanges();
+            _jhobbyContext.SaveChanges();
 
             return true;
         }
