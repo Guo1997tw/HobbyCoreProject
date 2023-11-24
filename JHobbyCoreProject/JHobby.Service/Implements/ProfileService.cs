@@ -33,7 +33,7 @@ namespace JHobby.Service.Implements
 				AcitveCity = res.AcitveCity,
 				PersonalProfile =res.PersonalProfile,
 				HeadShot = res.HeadShot,
-				Fraction = res.Fraction				
+				Fraction = Math.Round((decimal)res.Fraction,1)
 			};
         }
 
