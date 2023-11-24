@@ -186,7 +186,7 @@
 					<div class="featured-venues-item"  v-for="item in hotList">
 							<div class="listing-item mb-0" >
 								<div class="listing-img">
-								<a href="coach-detail.html">
+								<a v-bind:href='"@Url.Action("MemberProfile","Profile")/"+item.memberId'>
 									<img src="~/assets/img/profiles/user-01.jpg" alt="User">
 								</a>
 								<div class="fav-item-venues">
@@ -202,8 +202,8 @@
 							</div>
 								<div class="listing-content list-coche-content">
 								<h3><a href="coach-detail.html">{{item.nickName}}</a></h3>
-								<a href="coach-details.html"><i class="feather-arrow-right"></i></a>
-								<a href="coach-details.html" class="icon-hover"><i class="feather-calendar"></i></a>
+								<a v-bind:href='"@Url.Action("MemberProfile","Profile")/"+item.memberId'><i class="feather-arrow-right"></i></a>
+								<a v-bind:href='"@Url.Action("MemberProfile","Profile")/"+item.memberId'><i class="feather-calendar"></i></a>
 							</div>
 							</div>
 						</div>
