@@ -261,7 +261,7 @@
 						var form = new FormData();
 						form.append("memberId", 1);
 						form.append("activityId", id);
-						form.append("addTime", GetDay());
+						form.append("addTime", GetDateTime());
 						axios.post("/WishApi/InsertWish", form, {
 							headers: {
 								"Content-Type": "multipart/form-data"

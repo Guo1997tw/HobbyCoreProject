@@ -97,7 +97,7 @@ function Jhobby_Animation() {
 }
 
 //取時間
-function GetDay() {
+function GetDateTime() {
 	const dayNow = new Date();
 	const year = dayNow.getFullYear();
 	const month = String(dayNow.getMonth() + 1).padStart(2, '0');

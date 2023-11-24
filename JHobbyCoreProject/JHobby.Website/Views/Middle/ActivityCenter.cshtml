@@ -22,23 +22,25 @@
 <div id="activity" class="content">
 	<div class="container">
 		<!-- Sort By -->
-		<div class="row">
-			<div class="col-lg-12">
-				<div class="sortby-section">
-					<div class="sorting-info">
-						<div class="row d-flex align-items-center">
-							<div class="col-xl-4 col-lg-3 col-sm-12 col-12">
-							</div>
-							<div class="col-xl-8 col-lg-9 col-sm-12 col-12">
-								<div class="sortby-filter-group">
+		<template v-if="blnData==true">
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="sortby-section">
+						<div class="sorting-info">
+							<div class="row d-flex align-items-center">
+								<div class="col-xl-4 col-lg-3 col-sm-12 col-12">
+								</div>
+								<div class="col-xl-8 col-lg-9 col-sm-12 col-12">
+									<div class="sortby-filter-group">
 
-									<div class="sortbyset">
-										<span class="sortbytitle">報名截止日排序</span>
-										<div class="sorting-select">
-											<select id="selectSort" v-model="sort" v-on:change="Desc()" class="form-select">
-												<option value="asc">近到遠</option>
-												<option value="desc">遠到近</option>
-											</select>
+										<div class="sortbyset">
+											<span class="sortbytitle">報名截止日排序</span>
+											<div class="sorting-select">
+												<select id="selectSort" v-model="sort" v-on:change="Sort()" class="form-select">
+													<option value="asc">近到遠</option>
+													<option value="desc">遠到近</option>
+												</select>
+											</div>
 										</div>
 									</div>
 								</div>
@@ -47,7 +49,7 @@
 					</div>
 				</div>
 			</div>
-		</div>
+		</template>
 		<!-- Sort By -->
 		<!-- Listing Content -->
 		<div  data-aos="fade-up" class="row justify-content-center">
@@ -99,11 +101,22 @@
 					</div>
 				</div>
 				<!-- /Featured Item -->
-			<div class="col-12 text-center">
-				<div class="more-details">
-					<a v-on:click="More()"  class="btn btn-load">查看更多 <img src="~/assets/img/icons/u_plus-square.svg" class="ms-2" alt="img"></a>
+			<template v-if="blnData==true">
+				<div class="col-12 text-center">
+					<div class="more-details">
+						<a v-on:click="More()" class="btn btn-load">查看更多 <img src="~/assets/img/icons/u_plus-square.svg" class="ms-2" alt="img"></a>
+					</div>
 				</div>
-			</div>
+			</template>
+			<template v-else>
+				<div class="row">
+					<div class="col-sm-12 col-md-6 col-lg-5 mx-auto text-center">
+						<h3>查無符合您需求的活動</h3>
+						<p>請等等，很快就有揪團主建立活動</p>
+						<a href="/" class="btn btn-primary d-inline-flex align-items-center">返回首頁<i class="feather-arrow-right-circle ms-2"></i></a>
+					</div>
+				</div>
+			</template>
 		</div>
 		<!-- /Listing Content -->
 	</div>
@@ -121,7 +134,8 @@
 					activityList: [],
 					wish: [],
 					top: 6,
-					sort: "asc"
+					sort: "asc",
+					blnData: true,
 				}
 			},
 			mounted() {
@@ -145,6 +159,9 @@
 						})
 						.then(res => {
 							_this.activityList = res.data;
+							if (_this.activityList.length === 0) {
+								_this.blnData = false;
+							}
 						})
 						.catch(err => alert(err));
 					_this.QueryWish();
@@ -168,7 +185,7 @@
 						var form = new FormData();
 						form.append("memberId", 1);
 						form.append("activityId", id);
-						form.append("addTime", GetDay());
+						form.append("addTime", GetDateTime());
 						axios.post("/WishApi/InsertWish", form, {
 							headers: {
 								"Content-Type": "multipart/form-data"
@@ -185,7 +202,7 @@
 					_this.GetCategoryTypeList();
 					Jhobby_Animation()
 				},
-				Desc() {
+				Sort() {
 					let _this = this;
 					_this.GetCategoryTypeList()
 					_this.QueryWish();
