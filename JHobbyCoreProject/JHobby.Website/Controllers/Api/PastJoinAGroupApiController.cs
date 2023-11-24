@@ -1,5 +1,4 @@
-﻿using JHobby.Repository.Interfaces;
-using JHobby.Service.Implements;
+﻿using JHobby.Service.Implements;
 using JHobby.Website.Models.ViewModels;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
@@ -11,29 +10,24 @@ namespace JHobby.Website.Controllers.Api
     [ApiController]
     public class PastJoinAGroupApiController : ControllerBase
     {
-        private readonly IPastJoinAGroupService _iPastJoinAGroupService;
+        private readonly IPastJoinAGroupService _astJoinAGroupService;
 
-        public PastJoinAGroupApiController(IPastJoinAGroupService iPastJoinAGroupService)
+        public PastJoinAGroupApiController(IPastJoinAGroupService astJoinAGroupService)
         {
-            _iPastJoinAGroupService = iPastJoinAGroupService;
+            _astJoinAGroupService = astJoinAGroupService;
         }
 
         [HttpGet]
-        public IEnumerable<PastJoinAGroupViewModel> GetPastJoinAGroupList()
+        public ActionResult<IQueryable<PastJoinAGroupViewModel>> GetPastJoinAGroupsListAll(int page, int pageSize)
         {
-            var serviceDto = _iPastJoinAGroupService.GetPastJoinAGroupsList();
-
-            var viewModel = serviceDto.Select(s => new PastJoinAGroupViewModel
+            if(page >= 1)
             {
-                ActivityName = s.ActivityName,
-                ActivityStatus = s.ActivityStatus,
-                ActivityCity = s.ActivityCity,
-                CurrentPeople = s.CurrentPeople,
-                StartTime = s.StartTime,
-                NickName = s.NickName,
-            });
+            var data = _astJoinAGroupService.GetPastJoinAGroupsList(page, pageSize).ToList();
 
-            return viewModel;
+            return Ok(data);
+            }
+            else { return null; }
+            
         }
     }
 }

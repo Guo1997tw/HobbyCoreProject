@@ -20,7 +20,7 @@ namespace JHobby.Repository.Implements
         }
 
 
-        public IEnumerable<PastJoinAGroupDto> GetPastJoinAGroupAll()
+        public IQueryable<PastJoinAGroupDto> GetPastJoinAGroupAll(int page, int pageSize)
         {
             var queryResult = _JhobbyContext.Activities.Join(
                 _JhobbyContext.Members,
@@ -38,7 +38,9 @@ namespace JHobby.Repository.Implements
                     NickName = m.NickName
                 });
 
-            return queryResult;
+            return queryResult
+                .Skip((page - 1) * pageSize)
+                .Take(pageSize);
         }
     }
 

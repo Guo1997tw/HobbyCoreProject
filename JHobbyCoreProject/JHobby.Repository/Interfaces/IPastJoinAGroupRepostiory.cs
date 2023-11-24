@@ -9,6 +9,6 @@ namespace JHobby.Repository.Interfaces
 {
     public interface IPastJoinAGroupRepostiory
     {
-        public IEnumerable<PastJoinAGroupDto> GetPastJoinAGroupAll();
+        public IQueryable<PastJoinAGroupDto> GetPastJoinAGroupAll(int page, int pageSize);
     }
 }

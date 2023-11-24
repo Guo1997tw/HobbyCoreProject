@@ -1,4 +1,5 @@
-﻿using JHobby.Repository.Interfaces;
+﻿using Azure;
+using JHobby.Repository.Interfaces;
 using JHobby.Repository.Models.Dto;
 using JHobby.Service.Interfaces;
 using JHobby.Service.Models;
@@ -7,6 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+
 
 namespace JHobby.Service.Implements
 {
@@ -18,12 +20,12 @@ namespace JHobby.Service.Implements
         public PastJoinAGroupService(IPastJoinAGroupRepostiory iPastJoinAGroupRepostiory, ICommonService iCommonService)
         {
             _iPastJoinAGroupRepostiory = iPastJoinAGroupRepostiory;
-            _iCommonService = iCommonService; 
+            _iCommonService = iCommonService;
         }
 
-        public IEnumerable<PastJoinAGroupModel> GetPastJoinAGroupsList()
+        public IQueryable<PastJoinAGroupModel> GetPastJoinAGroupsList(int page,int pageSize)
         {
-            var result = _iPastJoinAGroupRepostiory.GetPastJoinAGroupAll();
+            var result = _iPastJoinAGroupRepostiory.GetPastJoinAGroupAll(page,pageSize);
 
             var pastJoinAGroupModel = result.Select(r => new PastJoinAGroupModel
             {
@@ -33,7 +35,7 @@ namespace JHobby.Service.Implements
                 ActivityStatus = _iCommonService.ConvertActivityStatus(r.ActivityStatus),
                 ActivityCity = r.ActivityCity,
                 CurrentPeople = r.CurrentPeople,
-                StartTime = r.StartTime,    
+                StartTime = r.StartTime,
                 NickName = r.NickName,
             });
 
