@@ -18,14 +18,8 @@ namespace JHobby.Repository.Implements
             _jhobbyContext = jhobbyContext;
         }
 
-        public bool Delete(int id)
+        public IEnumerable<ProfileSettingDto> GetById(int id)
         {
-            throw new NotImplementedException();
-        }
-
-        public ProfileSettingDto GetById(int id)
-        {
-            // 使用 FirstOrDefault 以確保不會返回空值
             var queryResult = _jhobbyContext.Members
                 .Where(m => m.MemberId == id)
                 .Select(m => new ProfileSettingDto
@@ -36,38 +30,18 @@ namespace JHobby.Repository.Implements
                     MemberName = m.MemberName,
                     NickName = m.NickName,
                     Gender = m.Gender,
+                    IdentityCard = m.IdentityCard,
+                    Birthday = m.Birthday,
+                    AcitveCity = m.AcitveCity,
+                    ActiveArea = m.ActiveArea,
+                    Address = m.Address,
+                    Phone = m.Phone,
+                    PersonalProfile = m.PersonalProfile,
 
                     // 其他需要的資料
-                })
-                .FirstOrDefault();
+                });
 
             return queryResult;
         }
-
-        public bool Insert(ProfileSettingDto createProfileSettingDto)
-        {
-            throw new NotImplementedException();
-        }
-
-        public bool Update(int id, ProfileSettingDto updateProfileSettingDto)
-        {
-            throw new NotImplementedException();
-        }
-
-        //public bool Update(int id, ProfileSettingDto updateProfileSettingDto)
-        //{
-        //    var queryResult = _jhobbyContext.ProfileSetting.FirstOrDefault(m => m.MemberId == id);
-
-        //    if (queryResult != null)
-        //    {
-        //        queryResult.CategoryName = updateCategoryDto.CategoryName;
-
-        //        _jhobbyContext.SaveChanges();
-
-        //        return true;
-        //    };
-
-        //    return false;
-        //}
     }
 }

@@ -1,4 +1,5 @@
 ﻿using JHobby.Repository.Models.Dto;
+using JHobby.Service.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,16 +8,9 @@ using System.Threading.Tasks;
 
 namespace JHobby.Service.Interfaces
 {
-    public interface IProfileSettingService
+    public interface IProfileSettingService//顯示會員資訊介面Service
     {
-        public interface IProfileSettingService //功能
-        {
-            public ProfileSettingDto? GetById(int id);
-            public bool Insert(ProfileSettingDto createProfileSettingDto);
+        public IEnumerable<ProfileSettingModel> GetByIdService(int id);
 
-            public bool Update(int id, ProfileSettingDto updateProfileSettingDto);
-
-            public bool Delete(int id);
-        }
     }
 }

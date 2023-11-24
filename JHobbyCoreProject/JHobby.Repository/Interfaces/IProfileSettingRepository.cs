@@ -2,13 +2,9 @@
 
 namespace JHobby.Repository.Interfaces
 {
-    public interface IProfileSettingRepository //功能
+    public interface IProfileSettingRepository //顯示會員資訊介面
     {
-        public ProfileSettingDto? GetById(int id);
-        public bool Insert(ProfileSettingDto createProfileSettingDto);
+        public IEnumerable<ProfileSettingDto> GetById(int id);
 
-        public bool Update(int id, ProfileSettingDto updateProfileSettingDto);
-
-        public bool Delete(int id);
     }
 }

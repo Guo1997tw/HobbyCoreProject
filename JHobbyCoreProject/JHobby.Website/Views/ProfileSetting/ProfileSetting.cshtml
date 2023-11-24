@@ -10,8 +10,8 @@
 
 	<!-- Header -->
 	<header class="header header-sticky">
-		<div class="container-fluid">
-		</div>
+		<div class="container-fluid"></div>
+
 	</header>
 	<!-- /Header -->
 	<!-- Breadcrumb -->
@@ -102,14 +102,14 @@
 								<div class="col-lg-12 col-md-6">
 									<div class="input-space">
 										<label class="form-label">會員編號</label>
-										<input type="text" class="form-control" id="name" placeholder="系統帶入"
+										<input type="text" class="form-control" id="name" placeholder="系統帶入" v-model="ProfileSetting.MemberId"
 											   readonly>
 									</div>
 								</div>
 								<div class="col-lg-12 col-md-6">
 									<div class="input-space">
 										<label class="form-label">身份別</label>
-										<input type="text" class="form-control" id="name" placeholder="系統帶入"
+										<input type="text" class="form-control" id="name" placeholder="系統帶入" v-model="ProfileSetting.status"
 											   readonly>
 									</div>
 								</div>
@@ -202,21 +202,33 @@
 	</div>
 </div>
 
-<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
 <script>
-	document.addEventListener('DOMContentLoaded', function () {
-		var form = document.querySelector('form'); // 假設您的表單是在 form 標籤內
+	Vue.createApp({
+		data() {
+			return {
+				ProfileSetting: {
+					MemberId: "",
+					IdentityType: "",
+					Name: "",
+					NickName: "",
+					Gender: "",
+					IdentityCard: "",
+					Birthday: "",
+					Phone: "",
+					City: "",
+					Area: "",
+					Address: "",
+					PersonalProfile: ""
+				}
+			};
+		},
+		mounted() {
+			let self = this;
 
-		form.addEventListener('submit', function (event) {
-			var nameInput = document.getElementById('name');
-			var nameError = document.getElementById('nameError');
-
-			if (!nameInput.value.trim()) {
-				nameError.textContent = '請輸入暱稱';
-				event.preventDefault(); // 阻止表單提交
-			} else {
-				nameError.textContent = ''; // 清空錯誤訊息
-			}
-		});
-	});
+			// 使用 fetch API 來取得 API 的回應
+			fetch("/ProfileSettingApi/GetProfileSettingViewAll")
+				.then(r => r.json())
+				.then(d => { self.ProfileSetting = d[0]; }); // 注意這裡是 d[0]
+		}
+	}).mount("#app");
 </script>
