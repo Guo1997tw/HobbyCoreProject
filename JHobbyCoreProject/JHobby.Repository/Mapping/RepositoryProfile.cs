@@ -13,7 +13,7 @@ namespace JHobby.Repository.Mapping
     {
         public RepositoryProfile()
         {
-            CreateMap<CategoryDto, Category>()
+            CreateMap<Category, CategoryDto>()
                 .ForMember(s => s.CategoryId, d => d.MapFrom(c => c.CategoryId))
                 .ForMember(s => s.CategoryName, d => d.MapFrom(c => c.CategoryName));
         }

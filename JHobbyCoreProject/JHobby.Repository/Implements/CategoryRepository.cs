@@ -25,9 +25,9 @@ namespace JHobby.Repository.Implements
         {
             var queryResult = _jhobbyContext.Categories.ToList();
 
-            var mappingResult = _mapper.Map<CategoryDto>(queryResult);
+            var mappingResult = _mapper.Map<IEnumerable<CategoryDto>>(queryResult);
 
-            return (IEnumerable<CategoryDto>)mappingResult;
+            return mappingResult;
 
             //var queryResult = _jhobbyContext.Categories.Select(c => new CategoryDto
             //{
