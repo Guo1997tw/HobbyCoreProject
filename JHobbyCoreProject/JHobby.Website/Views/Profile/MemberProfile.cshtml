@@ -81,9 +81,8 @@
 		mounted() {
 			let self = this;
 
-			var id = "1";
 
-			fetch(`/ProfileApi/GetProfileById/${id}`).then(r => r.json()).then(d => { self.memberProfile = d; });
+			fetch(`/ProfileApi/GetProfileById/${@Model.MemberId}`).then(r => r.json()).then(d => { self.memberProfile = d; });
 		}
 
 	}).mount("#app");
