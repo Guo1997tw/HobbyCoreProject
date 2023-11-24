@@ -10,5 +10,10 @@ namespace JHobby.Repository.Interfaces
     public interface IIndexRepository
 	{
 		public IEnumerable<QueryMemberGenderDto> GetGenderAll();
+
+		public IEnumerable<QueryActivityDto> GetActivityAll();
+
+		public IEnumerable<QueryHotMemberDto> GetHotMemberAll();
+
 	}
 }

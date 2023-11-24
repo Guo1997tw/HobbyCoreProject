@@ -3,6 +3,7 @@ using JHobby.Repository.Interfaces;
 using JHobby.Repository.Models.Entity;
 using JHobby.Service.Implements;
 using JHobby.Service.Interfaces;
+using JHobby.Website.Controllers.Api;
 using Microsoft.EntityFrameworkCore;
 
 namespace JHobby.Website
@@ -17,8 +18,10 @@ namespace JHobby.Website
             builder.Services.AddControllersWithViews();
 
             // JHobby Coneection String
-            builder.Services.AddDbContext<JhobbyContext>(option => {
-                option.UseSqlServer(builder.Configuration.GetConnectionString("JHobby"));});
+            builder.Services.AddDbContext<JhobbyContext>(option =>
+            {
+                option.UseSqlServer(builder.Configuration.GetConnectionString("JHobby"));
+            });
 
             // Swagger DI
             builder.Services.AddEndpointsApiExplorer();
@@ -27,12 +30,26 @@ namespace JHobby.Website
             // Interface DI
             builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
             builder.Services.AddScoped<ICategoryService, CategoryService>();
+            builder.Services.AddScoped<IIndexRepository, IndexRepository>();
+            builder.Services.AddScoped<IIndexService, IndexService>();
+            builder.Services.AddScoped<IProfileRepository, ProfileRepository>();
+            builder.Services.AddScoped<IProfileService, ProfileService>();
             builder.Services.AddScoped<IIndexRepository,IndexRepository>();
             builder.Services.AddScoped<IIndexService,IndexService>();
             builder.Services.AddScoped<IMemberRepository, MemberRepository>();
             builder.Services.AddScoped<IMemberService, MemberService>();
             builder.Services.AddScoped<IProfileSettingRepository, ProfileSettingRepository>();
             builder.Services.AddScoped<IProfileSettingService, ProfileSettingService>();
+            builder.Services.AddScoped<IWishRepository, WishRepository>();
+            builder.Services.AddScoped<IWishService,WishSerive>();
+            builder.Services.AddScoped<IMiddleCenterRepository,MiddleCenterRepository>();
+            builder.Services.AddScoped<IMiddleCenterService,MiddleCenterService>();
+            builder.Services.AddScoped<IPastJoinAGroupRepostiory, PastJoinAGroupRepostiory>();
+            builder.Services.AddScoped<IPastJoinAGroupService, PastJoinAGroupService>();
+            builder.Services.AddScoped<ICommonService, CommonService>();
+            builder.Services.AddScoped<IReviewRepository, ReviewRepository>();
+            builder.Services.AddScoped<IReviewService, ReviewService>();
+
 
             var app = builder.Build();
 
