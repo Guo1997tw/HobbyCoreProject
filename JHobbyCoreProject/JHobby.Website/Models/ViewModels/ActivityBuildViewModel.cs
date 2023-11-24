@@ -1,8 +1,9 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.Numerics;
 
 namespace JHobby.Website.Models.ViewModels
 {
-	public class ActivityBuildViewModel
+	public class ActivityBuildViewModel : IValidatableObject
 	{
 		public string ActivityName { get; set; } = null!;
 		public string ActivityCity { get; set; } = null!;
@@ -20,5 +21,14 @@ namespace JHobby.Website.Models.ViewModels
 		public string Payment { get; set; } = null!;
 		public DateTime Created { get; set; }
 
+		public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
+		{
+			if (string.IsNullOrEmpty(ActivityName) && string.IsNullOrEmpty(ActivityCity))
+			{
+				yield return new ValidationResult(
+					"開團名稱和開團縣市不可皆未填寫",
+					new string[] { "ActivityName", "ActivityCity" });
+			}
+		}
 	}
 }

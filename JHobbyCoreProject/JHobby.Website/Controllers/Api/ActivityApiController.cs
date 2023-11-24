@@ -1,4 +1,5 @@
 ﻿using JHobby.Repository.Models.Dto;
+using JHobby.Repository.Models.Entity;
 using JHobby.Service.Implements;
 using JHobby.Service.Interfaces;
 using JHobby.Service.Models;
@@ -23,7 +24,7 @@ namespace JHobby.Website.Controllers.Api
 		[HttpPost]
 		public IActionResult InsertActivity(ActivityBuildViewModel activityBuildViewModel)
 		{
-			var mapper = new ActivityBuildModel
+			var mapper = new ActivityBuildModel			
 			{
 				ActivityName = activityBuildViewModel.ActivityName,
 				ActivityCity = activityBuildViewModel.ActivityCity,
@@ -40,8 +41,6 @@ namespace JHobby.Website.Controllers.Api
 				ActivityStatus = activityBuildViewModel.ActivityStatus,
 				Payment = activityBuildViewModel.Payment,
 				Created = activityBuildViewModel.Created
-
-
 
 			};
 

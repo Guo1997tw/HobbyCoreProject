@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,7 +9,10 @@ namespace JHobby.Repository.Models.Dto
 {
 	public class ActivityBuildDto
 	{
+		
 		public string ActivityName { get; set; } = null!;
+
+		
 		public string ActivityCity { get; set; } = null!;
 		public string ActivityArea { get; set; } = null!;
 		public string ActivityLocation { get; set; } = null!;
