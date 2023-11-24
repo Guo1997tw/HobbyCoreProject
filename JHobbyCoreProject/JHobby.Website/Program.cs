@@ -32,11 +32,17 @@ namespace JHobby.Website
             builder.Services.AddScoped<ICategoryService, CategoryService>();
             builder.Services.AddScoped<IIndexRepository, IndexRepository>();
             builder.Services.AddScoped<IIndexService, IndexService>();
+            builder.Services.AddScoped<IProfileRepository, ProfileRepository>();
+            builder.Services.AddScoped<IProfileService, ProfileService>();
+            builder.Services.AddScoped<IIndexRepository,IndexRepository>();
+            builder.Services.AddScoped<IIndexService,IndexService>();
             builder.Services.AddScoped<IMemberRepository, MemberRepository>();
             builder.Services.AddScoped<IMemberService, MemberService>();
             builder.Services.AddScoped<IPastJoinAGroupRepostiory, PastJoinAGroupRepostiory>();
             builder.Services.AddScoped<IPastJoinAGroupService, PastJoinAGroupService>();
             builder.Services.AddScoped<ICommonService, CommonService>();
+            builder.Services.AddScoped<IReviewRepository, ReviewRepository>();
+            builder.Services.AddScoped<IReviewService, ReviewService>();
 
 
             var app = builder.Build();
