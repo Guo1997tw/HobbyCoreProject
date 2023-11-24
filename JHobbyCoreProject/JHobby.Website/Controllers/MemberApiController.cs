@@ -18,19 +18,30 @@ namespace JHobby.Website.Controllers.Api
         }
 
         [HttpPost]
-        public IActionResult InsertRegister(MemberRegisterViewModel memberRegisterViewModel)
+        public IActionResult InsertRegister(MemberRegisterViewModel memberRegisterViewModel)        
         {
             var mapper = new MemberRegisterModel
             {
                 Account = memberRegisterViewModel.Account,
                 Password = memberRegisterViewModel.Password,
                 Status = memberRegisterViewModel.Status,
-                CreationDate = memberRegisterViewModel.CreationDate
+                CreationDate = memberRegisterViewModel.CreationDate         
             };
 
             _memberService.CreateMemberRegister(mapper);
 
             return Ok(mapper);
+        }
+
+        [HttpPost]
+        public IActionResult CheckMember(MemberLoginViewModel memberLoginViewModel)
+        {
+            if(_memberService.CheckMemberLogin(memberLoginViewModel.Account, memberLoginViewModel.Password))
+            {
+                return Ok(new { Message = "登入成功~~" });
+            }
+
+            return Unauthorized(new { Message = "登入失敗!!" });
         }
     }
 }

@@ -13,6 +13,8 @@ public partial class ActivityUser
 
     public string ReviewStatus { get; set; } = null!;
 
+    public DateTime ReviewTime { get; set; }
+
     public virtual Activity Activity { get; set; } = null!;
 
     public virtual Member Member { get; set; } = null!;

@@ -1,0 +1,92 @@
+﻿@model ProfileTestViewModel
+<partial name="_BreadcrumbPartial" />
+<div id="app" class="content">
+	<div class="container">
+		<!-- Row -->
+		
+			<div class="row move-top">
+				<div class="col-12 col-sm-12 col-md-12 col-lg-12">
+					<div class="content">
+						<div class="dull-bg corner-radius-10 coach-info d-md-flex justify-content-start align-items-start ">
+							<div class="profile-pic">
+								<a href="javascript:void(0);"><img alt="User" class="corner-radius-10" src="~/assets/img/profiles/avatar-coach-detail.jpg"></a>
+							</div>
+							<div class="info w-100">
+								<div class="d-sm-flex justify-content-between align-items-start">
+								<h3 class="d-flex align-items-center justify-content-start mb-0">{{memberProfile.nickName}}</h3>
+								</div>
+								@* <p>性別</p> *@
+								<ul class="d-sm-flex align-items-center">
+									<li class="d-flex align-items-center">
+										<div class="white-bg d-flex align-items-center review">
+										<span>團主評價:</span><span class="white-bg dark-yellow-bg d-flex align-items-center">{{memberProfile.fraction}}</span>
+										</div>
+									</li>
+								</ul>
+							<img src="~/assets/img/icons/location.svg" />{{memberProfile.acitveCity}}
+							</div>
+						</div>
+					</div>
+					<!-- Accordian Contents -->
+					<div class="accordion" id="accordionPanel">
+						<div class="accordion-item mb-4" id="short-bio">
+							<h4 class="accordion-header" id="panelsStayOpen-short-bio">
+								<button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
+									會員個人簡介
+								</button>
+							</h4>
+							<div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-short-bio">
+								<div class="accordion-body">
+									<div class="text show-more-height">
+										<p>
+										{{memberProfile.personalProfile}}
+										</p>
+									</div>
+									@* <div class="show-more d align-items-center primary-text"><i class="feather-plus-circle"></i>Show More</div> *@
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- Accordian Contents -->
+				</div>
+				<aside class="col-12 col-sm-12 col-md-12 col-lg-4 ">
+				</aside>
+			</div>
+		
+		<!-- /Row -->
+	</div>
+	<!-- /container -->
+
+	<section class="visually-hidden section innerpagebg">
+		<div class="container">
+		</div>
+	</section>
+</div>
+
+
+<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+<script>
+	Vue.createApp({
+		data() {
+			return {
+				memberProfile: {
+					nickName: "",
+					gender: "",
+					personalProfile: "",
+					fraction: "",
+					acitveCity:""
+				}
+			}
+		},
+		mounted() {
+			let self = this;
+
+
+			fetch(`/ProfileApi/GetProfileById/${@Model.MemberId}`).then(r => r.json()).then(d => { self.memberProfile = d; });
+		}
+
+	}).mount("#app");
+
+</script>
+
+
