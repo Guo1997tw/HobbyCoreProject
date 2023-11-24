@@ -10,5 +10,9 @@ namespace JHobby.Service.Interfaces
     public interface IIndexService
 	{
 		public IEnumerable<QueryMemberGenderModel> GetGenderResult();
+
+		public IEnumerable<QueryActivityModel> GetActivityResult();
+
+		public IEnumerable<QueryHotMemberModel> GetHotMemberResult();
 	}
 }
