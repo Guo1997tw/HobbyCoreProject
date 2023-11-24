@@ -87,7 +87,7 @@
 					<div class="main-menu-wrapper">
 						<div class="menu-header">
 							<a href="index.html" class="menu-logo">
-								<img src="assets/img/loader.jpg" class="img-fluid" alt="Logo">  @* n *@
+								<img src="~/image/loader.jpg" class="img-fluid" alt="Logo">  @* n *@
 							</a>
 							<a id="menu_close" class="menu-close" href="javascript:void(0);">
 								<i class="fas fa-times"></i>
@@ -135,8 +135,14 @@
 							<li class="has-submenu">
 								<a href="#">樂<i class="fas fa-chevron-down"></i></a>
 								<ul class="submenu">
-									<li><a href="user-dashboard.html">休閒</a></li>
-									<li><a href="user-bookings.html">運動</a></li>
+									<form name="play_inhouse" action="/Middle/ActivityCenter" method="post">
+										<input type="hidden" name="categoyId" value="5" />
+										<input type="hidden" name="categoryTypeId" value="2" />
+										<input type="hidden" name="city" value="0" />
+										<input type="hidden" name="area" value="0" />
+										<li><a href="javascript:document.play_inhouse.submit();">室內運動</a></li>
+									</form>
+									<li><a href="/middle/activityCenter/5/1/0/0">水上運動</a></li>
 								</ul>
 							</li>
 							<li class="has-submenu">
@@ -351,8 +357,7 @@
 		</svg>
 	</div>
 	<!-- scrollToTop end -->
-
-
+	
     <script src="~/js/site.js" asp-append-version="true"></script>
 	<!-- jQuery -->
 	<script src="~/assets/js/jquery-3.7.0.min.js"></script>
@@ -369,9 +374,12 @@
 	<script src="~/assets/js/jquery.counterup.min.js"></script>
 	<!-- Top JS -->
 	<script src="~/assets/js/backToTop.js"></script>
-	@await RenderSectionAsync("Scripts", required: false)
 	<!-- Custom JS -->
 	<script src="~/assets/js/script.js"></script>
+	@await RenderSectionAsync("Scripts", required: false)
+	<script>
+		Jhobby_Animation()
+	</script>
 
 </body>
 </html>

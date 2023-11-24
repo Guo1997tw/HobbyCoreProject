@@ -1,4 +1,5 @@
 ﻿using JHobby.Website.Models;
+using JHobby.Website.Models.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
@@ -34,7 +35,7 @@ namespace JHobby.Website.Controllers
         {
             return View();
         }
-        public IActionResult NotFound()
+        public IActionResult NotFounds()
         {
             return View();
         }
@@ -46,21 +47,11 @@ namespace JHobby.Website.Controllers
         {
             return View();
         }
-        public IActionResult Profile()
-        {
-            ViewData["Title"] = "團主介紹";
-            return View();
-        }
-
-
-        public IActionResult newcomer()
+        
+        public IActionResult Newcomer()
         {
             ViewData["Title"] = "新手上路";
 
-            return View();
-        }
-        public IActionResult Middle()
-        {
             return View();
         }
 
@@ -68,11 +59,7 @@ namespace JHobby.Website.Controllers
 		{
 			return View();
 		}
-		public IActionResult Review()
-		{
-            ViewData["Title"] = "報名審核";
-			return View();
-		}
+
 
         public IActionResult changePassword()       
         {

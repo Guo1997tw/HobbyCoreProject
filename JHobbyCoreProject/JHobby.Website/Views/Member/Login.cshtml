@@ -8,7 +8,7 @@
 }
 
 <!-- Main Wrapper -->
-<div class="main-wrapper authendication-pages">
+<div id="app" class="main-wrapper authendication-pages">
     <!-- Page Content -->
     <div class="content">
         <div class="container wrapper no-padding">
@@ -26,17 +26,17 @@
                                     <div class="tab-content" id="myTabContent">
                                         <div class="tab-pane fade show active" id="user" role="tabpanel" aria-labelledby="user-tab">
                                             <!-- Login Form -->
-                                            <form action="user-dashboard.html">
+                                            <form id="loginForm">
                                                 <div class="form-group">
                                                     <div class="group-img">
                                                         <i class="feather-user"></i>
-                                                        <input type="text" class="form-control" placeholder="電子郵件">
+                                                        <input type="text" class="form-control" placeholder="電子郵件" v-model="memberLogin.account">
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
                                                     <div class="pass-group group-img">
                                                         <i class="toggle-password feather-eye-off"></i>
-                                                        <input type="password" class="form-control pass-input" placeholder="密碼">
+                                                        <input type="password" class="form-control pass-input" placeholder="密碼" v-model="memberLogin.password">
                                                     </div>
                                                 </div>
                                                 <div class="form-group d-sm-flex align-items-center justify-content-between">
@@ -46,7 +46,7 @@
                                                     </div>
                                                     <span><a href="forgot-password.html" class="forgot-pass">忘記密碼？</a></span>
                                                 </div>
-                                                <button class="btn btn-secondary register-btn d-inline-flex justify-content-center align-items-center w-100 btn-block" type="submit">登入<i class="feather-arrow-right-circle ms-2"></i></button>
+                                                <button class="btn btn-secondary register-btn d-inline-flex justify-content-center align-items-center w-100 btn-block" @@click="Login()" type="button">登入<i class="feather-arrow-right-circle ms-2"></i></button>
                                                 <div class="form-group">
                                                     <div class="login-options text-center">
                                                         <span class="text">或使用以下帳號登入</span>
@@ -86,3 +86,43 @@
     <!-- /Page Content -->
 </div>
 <!-- /Main Wrapper -->
+
+<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+<script>
+    Vue.createApp({
+        data() {
+            return {
+                memberLogin: {
+                    account: "",
+                    password: "",
+                },
+            }
+        },
+
+        methods: {
+            Login() {
+                let self = this;
+
+                fetch("/MemberApi/CheckMember", {
+                    method: "POST",
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(this.memberLogin)
+                }).then(r => {
+                    if (!r.ok) {
+                        throw new Error('Fail');
+                    }
+
+                    return r.json();
+                }).then(d => {
+                    console.log('Success', d);
+                    alert("登入成功~~")
+
+                    window.location.href = '/Home/Index';
+                }).catch(e => {
+                    console.log('Fail', e);
+                    alert("登入失敗，請確認帳號、密碼是否正確!!");
+                });
+            },
+        },
+    }).mount("#app");
+</script>

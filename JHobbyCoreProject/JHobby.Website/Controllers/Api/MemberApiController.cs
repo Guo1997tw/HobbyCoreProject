@@ -32,5 +32,16 @@ namespace JHobby.Website.Controllers.Api
 
             return Ok(mapper);
         }
+
+        [HttpPost]
+        public IActionResult CheckMember(MemberLoginViewModel memberLoginViewModel)
+        {
+            if(_memberService.CheckMemberLogin(memberLoginViewModel.Account, memberLoginViewModel.Password))
+            {
+                return Ok(new { Message = "登入成功~~" });
+            }
+
+            return Unauthorized(new { Message = "登入失敗!!" });
+        }
     }
 }
