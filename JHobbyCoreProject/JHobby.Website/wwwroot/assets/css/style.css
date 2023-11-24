@@ -3626,7 +3626,7 @@ div#global-loader {
         z-index: 9;
         bottom: -60px;
         left: 0;
-        background: url('../../image/bg-02.png') top center no-repeat; /*人打羽毛球*/
+        background: url('../img/bg/bg-02.png') top center no-repeat; /*人打羽毛球*/
         background-size: cover;
     }
 @media (max-width: 767.98px) {
