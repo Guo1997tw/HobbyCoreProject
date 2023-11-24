@@ -7,10 +7,8 @@ using System.Threading.Tasks;
 
 namespace JHobby.Repository.Interfaces
 {
-    public interface IMemberRepository
+    public interface IPastJoinAGroupRepostiory
     {
-        public bool InsertMemberRegister(MemberRegisterDto memberRegisterDto);
-
-        public MemberLoginDto? GetMemberLogin(string account);
+        public IQueryable<PastJoinAGroupDto> GetPastJoinAGroupAll(int page, int pageSize);
     }
 }
