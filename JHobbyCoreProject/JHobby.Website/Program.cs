@@ -1,5 +1,6 @@
 using JHobby.Repository.Implements;
 using JHobby.Repository.Interfaces;
+using JHobby.Repository.Mapping;
 using JHobby.Repository.Models.Entity;
 using JHobby.Service.Implements;
 using JHobby.Service.Interfaces;
@@ -26,6 +27,12 @@ namespace JHobby.Website
             // Swagger DI
             builder.Services.AddEndpointsApiExplorer();     
             builder.Services.AddSwaggerGen();
+
+            // AutoMapper DI
+            builder.Services.AddAutoMapper(option =>
+            {
+                option.AddProfile<RepositoryProfile>();
+            });
 
             // Interface DI
             builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();

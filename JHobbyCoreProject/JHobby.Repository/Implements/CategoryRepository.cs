@@ -1,4 +1,5 @@
-﻿using JHobby.Repository.Interfaces;
+﻿using AutoMapper;
+using JHobby.Repository.Interfaces;
 using JHobby.Repository.Models.Dto;
 using JHobby.Repository.Models.Entity;
 using System;
@@ -12,21 +13,29 @@ namespace JHobby.Repository.Implements
     public class CategoryRepository : ICategoryRepository
     {
         private readonly JhobbyContext _jhobbyContext;
+        private readonly IMapper _mapper;
 
-        public CategoryRepository(JhobbyContext jhobbyContext)
+        public CategoryRepository(JhobbyContext jhobbyContext, IMapper mapper)
         {
             _jhobbyContext = jhobbyContext;
+            _mapper = mapper;
         }
 
         public IEnumerable<CategoryDto> GetAll()
         {
-            var queryResult = _jhobbyContext.Categories.Select(c => new CategoryDto
-            {
-                CategoryId = c.CategoryId,
-                CategoryName = c.CategoryName
-            }).ToList();
+            var queryResult = _jhobbyContext.Categories.ToList();
 
-            return queryResult;
+            var mappingResult = _mapper.Map<CategoryDto>(queryResult);
+
+            return (IEnumerable<CategoryDto>)mappingResult;
+
+            //var queryResult = _jhobbyContext.Categories.Select(c => new CategoryDto
+            //{
+            //    CategoryId = c.CategoryId,
+            //    CategoryName = c.CategoryName
+            //}).ToList();
+
+            //return queryResult;
         }
 
         public CategoryDto? GetById(int id)
