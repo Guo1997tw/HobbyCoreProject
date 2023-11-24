@@ -83,6 +83,7 @@ public partial class JhobbyContext : DbContext
             entity.Property(e => e.ReviewStatus)
                 .HasMaxLength(2)
                 .IsUnicode(false);
+            entity.Property(e => e.ReviewTime).HasColumnType("datetime");
 
             entity.HasOne(d => d.Activity).WithMany(p => p.ActivityUsers)
                 .HasForeignKey(d => d.ActivityId)
