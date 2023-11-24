@@ -2019,21 +2019,21 @@ header.header-sticky.fixed-top {
 	8. Breadcrumb
 -----------------------*/
 .breadcrumb {
-  background: url("../img/bg/breadcrumb-bg.png") rgba(36, 29, 57, 0.8) no-repeat;
-  background-size: cover;
-  background-blend-mode: multiply;
-  padding: 60px 0;
-  position: relative;
+    background: url('../image/breadcrumb-bg.jpg') rgba(36, 29, 57, 0.8) no-repeat;
+    background-size: cover;
+    background-blend-mode: multiply;
+    padding: 60px 0;
+    position: relative;
 }
 .breadcrumb:before, .breadcrumb:after {
   content: "";
   background: linear-gradient(105.55deg, #085A6C -6.68%, #269089 43.13%, #7ABC82 96.15%);
   border-radius: 100%;
 }
-.breadcrumb.breadcrumb-list {
-  background: url("../img/bg/breadcrumb-bg2.jpg") rgba(36, 29, 57, 0.8) no-repeat;
-  background-size: cover;
-}
+    .breadcrumb.breadcrumb-list {
+        background: url('../../image/breadcrumb-bg2.jpg') ;
+        background-size: cover;
+    }
 .breadcrumb.breadcrumb-list .container {
   position: relative;
 }
@@ -2454,12 +2454,12 @@ div#global-loader {
 }
 
 .hero-section {
-  position: relative;
-  min-height: 800px;
-  background-image: url(../img/bg/banner.jpg);
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
+    position: relative;
+    min-height: 800px;
+    background-image: url('../../image/banner.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
 }
 @media (max-width: 991.98px) {
   .hero-section {
@@ -3614,21 +3614,21 @@ div#global-loader {
 }
 
 .featured-section {
-  background-image: url(../../assets/img/bg/bg-01.png);
+  background-image: url(../../assets/img/bg/bg-01.png); /*綠色色塊*/
   background-repeat: no-repeat, no-repeat;
   background-position: left bottom -160px;
 }
-.featured-section:before {
-  content: "";
-  position: absolute;
-  width: 285px;
-  height: 220px;
-  z-index: 9;
-  bottom: -60px;
-  left: 0;
-  background: url(../../assets/img/bg/bg-02.png) top center no-repeat;
-  background-size: cover;
-}
+    .featured-section:before {
+        content: "";
+        position: absolute;
+        width: 285px;
+        height: 220px;
+        z-index: 9;
+        bottom: -60px;
+        left: 0;
+        background: url('../../image/bg-02.png') top center no-repeat; /*人打羽毛球*/
+        background-size: cover;
+    }
 @media (max-width: 767.98px) {
   .featured-section:before {
     display: none;
