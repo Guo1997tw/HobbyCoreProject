@@ -33,5 +33,18 @@ namespace JHobby.Repository.Implements
 
             return true;
         }
+
+        public MemberLoginDto? GetMemberLogin(string account)
+        {
+            var queryResult = _jhobbyContext.Members.FirstOrDefault(x => x.Account == account);
+
+            if (queryResult == null) { return null; }
+
+            return new MemberLoginDto
+            {
+                Account = queryResult.Account,
+                Password = queryResult.Password,
+            };
+        }
     }
 }

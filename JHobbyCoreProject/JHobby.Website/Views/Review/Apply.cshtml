@@ -7,7 +7,7 @@
             max-width: 540px;
         }
     </style>
-    
+
 }
 <partial name="_BreadcrumbPartial" />
 <partial name="_DashboardMenuPartail" />
@@ -24,18 +24,18 @@
                                 <div class="sortby-filter-group court-sortby">
                                     <div class="sortbyset week-bg">
                                         <div class="sorting-select">
-                                            <select class="form-control select">
-                                                <option>This Week</option>
-                                                <option>One Day</option>
-                                            </select>
+                                            @* <select class="form-control select">
+                                            <option>This Week</option>
+                                            <option>One Day</option>
+                                            </select> *@
                                         </div>
                                     </div>
                                     <div class="sortbyset">
-                                        <span class="sortbytitle">Sort By</span>
+                                        <span class="sortbytitle">篩選</span>
                                         <div class="sorting-select">
                                             <select class="form-control select">
-                                                <option>Relevance</option>
-                                                <option>Price</option>
+                                                <option>申請時間近到遠</option>
+                                                <option>申請時間遠到近</option>
                                             </select>
                                         </div>
                                     </div>
@@ -75,14 +75,12 @@
                                 <div class="tab-pane fade show active" id="nav-Recent" role="tabpanel"
                                      aria-labelledby="nav-Recent-tab" tabindex="0">
                                     <div class="table-responsive">
-                                        <table class="table table-borderless datatable">
+                                        <table class="table table-borderless ">
                                             <thead class="thead-light">
                                                 <tr>
                                                     <th>活動名稱</th>
                                                     <th>報名申請者</th>
                                                     <th>報名申請時間</th>
-                                                    <th>價錢</th>
-                                                    <th>目前申請狀態</th>
                                                     <th>接受/拒絕</th>
                                                 </tr>
                                             </thead>
@@ -109,11 +107,6 @@
                                                     <td class="table-date-time">
                                                         <h4>Fri, Jul 11<span>06:00 PM - 08:00 PM</span></h4>
                                                     </td>
-
-                                                    <td><span class="pay-dark">$250</span></td>
-                                                    <td class="paid-edit">
-                                                        <span><i class="feather-edit"></i>Paid</span>
-                                                    </td>
                                                     <td class="table-accept-btn text-end">
                                                         <a href="javascript:;" class="btn accept-btn"><i class="feather-check-circle"></i>接受</a>
                                                         <a href="javascript:;" class="btn cancel-table-btn" data-bs-toggle="modal" data-bs-target="#request-reject"><i class="feather-x-circle"></i>拒絕</a>
@@ -125,7 +118,6 @@
                                                             <a href="#" class="avatar avatar-sm  flex-shrink-0"><img class="avatar-img" src="~/assets/img/booking/booking-01.jpg" alt="User"></a>
                                                             <span class="table-head-name flex-grow-1">
                                                                 <a href="javascript:;" data-bs-toggle="modal" data-bs-target="#request-court">Feather Badminton</a>
-
                                                             </span>
                                                         </h2>
                                                     </td>
@@ -140,11 +132,6 @@
                                                     <td class="table-date-time">
                                                         <h4>Mon, Jul 11<span>06:00 PM - 08:00 PM</span></h4>
                                                     </td>
-
-                                                    <td><span class="pay-dark">$150</span></td>
-                                                    <td class="paid-edit">
-                                                        <span><i class="feather-edit"></i>Paid</span>
-                                                    </td>
                                                     <td class="table-accept-btn text-end">
                                                         <a href="javascript:;" class="btn accept-btn"><i class="feather-check-circle"></i>接受</a>
                                                         <a href="javascript:;" class="btn cancel-table-btn" data-bs-toggle="modal" data-bs-target="#request-reject"><i class="feather-x-circle"></i>拒絕</a>
@@ -157,7 +144,6 @@
                                                                class="avatar avatar-sm  flex-shrink-0"><img class="avatar-img" src="~/assets/img/booking/booking-04.jpg" alt="User"></a>
                                                             <span class="table-head-name flex-grow-1">
                                                                 <a href="javascript:;" data-bs-toggle="modal" data-bs-target="#request-court">Bwing Sports Academy</a>
-
                                                             </span>
                                                         </h2>
                                                     </td>
@@ -172,12 +158,6 @@
                                                     </td>
                                                     <td class="table-date-time">
                                                         <h4>Wed, Jul 11<span>06:00 PM - 08:00 PM</span></h4>
-                                                    </td>
-
-                                                    <td><span class="pay-dark">$130</span></td>
-                                                    <td class="paid-edit">
-                                                        <span><i class="feather-edit"></i>Paid</span>
-                                                    </td>
                                                     <td class="table-accept-btn text-end">
                                                         <a href="javascript:;" class="btn accept-btn"><i class="feather-check-circle"></i>接受</a>
                                                         <a href="javascript:;" class="btn cancel-table-btn" data-bs-toggle="modal" data-bs-target="#request-reject"><i class="feather-x-circle"></i>拒絕</a>
@@ -190,7 +170,6 @@
                                                                class="avatar avatar-sm  flex-shrink-0"><img class="avatar-img" src="~/assets/img/booking/booking-05.jpg" alt="User"></a>
                                                             <span class="table-head-name flex-grow-1">
                                                                 <a href="javascript:;" data-bs-toggle="modal" data-bs-target="#request-court">Marsh Academy</a>
-
                                                             </span>
                                                         </h2>
                                                     </td>
@@ -204,11 +183,6 @@
                                                     </td>
                                                     <td class="table-date-time">
                                                         <h4>Wed, Jul 11<span>06:00 PM - 08:00 PM</span></h4>
-                                                    </td>
-
-                                                    <td><span class="pay-dark">$120</span></td>
-                                                    <td class="paid-edit">
-                                                        <span><i class="feather-edit"></i>Paid</span>
                                                     </td>
                                                     <td class="table-accept-btn text-end">
                                                         <a href="javascript:;" class="btn accept-btn"><i class="feather-check-circle"></i>接受</a>

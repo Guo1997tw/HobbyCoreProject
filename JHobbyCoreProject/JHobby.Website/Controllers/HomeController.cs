@@ -30,12 +30,7 @@ namespace JHobby.Website.Controllers
             return View();
         }
 
-
-        public IActionResult ProfileSetting()
-        {
-            return View();
-        }
-        public IActionResult NotFound()
+        public IActionResult NotFounds()
         {
             return View();
         }
@@ -44,20 +39,12 @@ namespace JHobby.Website.Controllers
             return View();
         }
   
-        public IActionResult Profile()
+        
+        public IActionResult Newcomer()
         {
-            return View();
-        }
-
-
-        public IActionResult newcomer()
         {
             ViewData["Title"] = "新手上路";
 
-            return View();
-        }
-        public IActionResult Middle()
-        {
             return View();
         }
 
@@ -65,11 +52,7 @@ namespace JHobby.Website.Controllers
 		{
 			return View();
 		}
-		public IActionResult Review()
-		{
-            ViewData["Title"] = "報名審核";
-			return View();
-		}
+
 
         public IActionResult changePassword()       
         {

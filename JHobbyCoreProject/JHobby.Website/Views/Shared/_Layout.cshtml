@@ -87,7 +87,7 @@
 					<div class="main-menu-wrapper">
 						<div class="menu-header">
 							<a href="index.html" class="menu-logo">
-								<img src="~/assets/img/loader.png" class="img-fluid" alt="Logo">  @* n *@
+								<img src="~/image/loader.jpg" class="img-fluid" alt="Logo">  @* n *@
 							</a>
 							<a id="menu_close" class="menu-close" href="javascript:void(0);">
 								<i class="fas fa-times"></i>
@@ -135,8 +135,14 @@
 							<li class="has-submenu">
 								<a href="#">樂<i class="fas fa-chevron-down"></i></a>
 								<ul class="submenu">
-									<li><a href="user-dashboard.html">休閒</a></li>
-									<li><a href="user-bookings.html">運動</a></li>
+									<form name="play_inhouse" action="/Middle/ActivityCenter" method="post">
+										<input type="hidden" name="categoyId" value="5" />
+										<input type="hidden" name="categoryTypeId" value="2" />
+										<input type="hidden" name="city" value="0" />
+										<input type="hidden" name="area" value="0" />
+										<li><a href="javascript:document.play_inhouse.submit();">室內運動</a></li>
+									</form>
+									<li><a href="/middle/activityCenter/5/1/0/0">水上運動</a></li>
 								</ul>
 							</li>
 							<li class="has-submenu">
@@ -182,64 +188,97 @@
 			<div class="footer-join aos" data-aos="fade-up">
 					<h2>無論是交友、聚會，還是各種體驗活動，我們的揪團網站應有盡有。</h2>
 					<p class="sub-title">快來加入 JHobby，立刻享受完整功能，打造屬於你的精彩社交時刻。</p>
-				<a href="register.html" class="btn btn-primary"><i class="feather-user-plus"></i> 加入我們</a>
+					<a href="https://localhost:7097/Member/Register" class="btn btn-primary"><i class="feather-user-plus"></i> 加入我們</a>
 			</div>
 			<!-- /Footer Join -->
 			<!-- Footer Top -->
 			<div class="footer-top">
 				<div class="row">
-					<div class="col-lg-2 col-md-6">
+					<div class="col-lg-3 col-md-6">
 						<!-- Footer Widget -->
 						<div class="footer-widget footer-menu">
-								<h4 class="footer-title">聯絡我們</h4>
-							<div class="footer-address-blk">
-								<div class="footer-call">
-									<span>免費客戶服務熱線</span>
-									<p>02 2712 0589</p>
-								</div>
-								<div class="footer-call">
-									<span>聯絡信箱</span>
-									<p>service@tibame.com</p>
-								</div>
-							</div>
+								<h4 class="footer-title">網站介紹</h4>
+								<ul>
+									<li>
+										<a href="about-us.html">新手上路</a>
+									</li>
+								</ul>
+								<ul>
+									<li>
+										<a href="about-us.html">經營理念</a>
+									</li>
+								</ul>
 							<div class="social-icon">
 								<ul>
 									<li>
-										<a href="javascript:void(0);" class="facebook"><i class="fab fa-facebook-f"></i> </a>
+										<a href="https://www.facebook.com/TibaMe/?locale=zh_TW" class="facebook"><i class="fab fa-facebook-f"></i> </a>
 									</li>
 									<li>
 										<a href="javascript:void(0);" class="twitter"><i class="fab fa-twitter"></i> </a>
 									</li>
 									<li>
-										<a href="javascript:void(0);" class="instagram"><i class="fab fa-instagram"></i></a>
+										<a href="https://www.instagram.com/tibame_wiedu/" class="instagram"><i class="fab fa-instagram"></i></a>
 									</li>
 									<li>
-										<a href="javascript:void(0);" class="linked-in"><i class="fab fa-linkedin-in"></i></a>
+										<a href="https://www.linkedin.com/company/wieducorp/" class="linked-in"><i class="fab fa-linkedin-in"></i></a>
 									</li>
 								</ul>
 							</div>
 						</div>
 						<!-- /Footer Widget -->
 					</div>
-					<div class="col-lg-2 col-md-6">
+					<div class="col-lg-1 col-md-6">
 						<!-- Footer Widget -->
 						<div class="footer-widget footer-menu">
-							<h4 class="footer-title">快速連結</h4>
+							<h4 class="footer-title">食</h4>
 							<ul>
 								<li>
-									<a href="about-us.html">關於我們</a>
+									<a href="https://localhost:7097/home/notfounds">團購</a>
+								</li>
+							</ul>
+						</div>
+						<!-- /Footer Widget -->
+					</div>
+					<div class="col-lg-1 col-md-6">
+						<!-- Footer Widget -->
+						<div class="footer-widget footer-menu">
+							<h4 class="footer-title">住</h4>
+							<ul>
+								<li>
+									<a href="https://localhost:7097/home/notfounds">露營</a>
 								</li>
 								<li>
-									<a href="services.html">服務</a>
+									<a href="https://localhost:7097/home/notfounds">合租</a>
 								</li>
 								<li>
-									<a href="events.html">活動</a>
+										<a href="https://localhost:7097/home/notfounds">共生公寓</a>
+								</li>
+							</ul>
+						</div>
+						<!-- /Footer Widget -->
+					</div>
+					<div class="col-lg-1 col-md-6">
+						<!-- Footer Widget -->
+						<div class="footer-widget footer-menu">
+							<h4 class="footer-title">行</h4>
+							<ul>
+								<li>
+										<a href="https://localhost:7097/home/notfounds">共乘</a>
+								</li>
+							</ul>
+						</div>
+						<!-- /Footer Widget -->
+					</div>
+					<div class="col-lg-1 col-md-6">
+						<!-- Footer Widget -->
+						<div class="footer-widget footer-menu">
+							<h4 class="footer-title">育</h4>
+							<ul>
+								<li>
+										<a href="https://localhost:7097/home/notfounds">讀書會</a>
 								</li>
 								<li>
-									<a href="blog-grid.html">部落格</a>
-								</li>
-								<li>
-									<a href="contact-us.html">聯絡我們</a>
+										<a href="https://localhost:7097/home/notfounds">技能交換</a>
 								</li>
 							</ul>
 						</div>
@@ -248,88 +287,36 @@
 					<div class="col-lg-2 col-md-6">
 						<!-- Footer Widget -->
 						<div class="footer-widget footer-menu">
-							<h4 class="footer-title">幫助中心</h4>
-							<ul>
-								<li>
-									<a href="contact-us.html">聯絡我們</a>
-								</li>
-								<li>
-									<a href="faq.html">常見問題</a>
-								</li>
-								<li>
-									<a href="privacy-policy.html">隱私政策</a>
-								</li>
-								<li>
-									<a href="terms-condition.html">使用條款</a>
-								</li>
-								<li>
-									<a href="pricing.html">價格</a>
-								</li>
-							</ul>
+								<h4 class="footer-title">樂</h4>
+								<ul>
+									<li>
+										<a href="https://localhost:7097/home/notfounds">休閒</a>
+									</li>
+									<li>
+										<a href="https://localhost:7097/home/notfounds">運動</a>
+									</li>
+								</ul>
+							</div>
 						</div>
-						<!-- /Footer Widget -->
-					</div>
-					<div class="col-lg-2 col-md-6">
-						<!-- Footer Widget -->
+						<div class="col-lg-3 col-md-6 ">
 						<div class="footer-widget footer-menu">
-							<h4 class="footer-title">其他連結</h4>
+							<h4 class="footer-title">會員中心</h4>
 							<ul>
 								<li>
-									<a href="coaches-grid.html">團主(原教練)</a>
+									<a href="javascript:void(0);">個人資料</a>
 								</li>
 								<li>
-										<a href="listing-grid.html">聚會場地(運動場地)</a>
+									<a href="javascript:void(0);">開團管理</a>
 								</li>
-								<li>
-									<a href="coach-details.html">成為團主</a>
-								</li>
-								<li>
-									<a href="coaches-map.html">新增場地</a>
-								</li>
-								<li>
-									<a href="my-profile.html">我的帳戶</a>
-								</li>
+                                <li>
+                                     <a href="javascript:void(0);">參團管理</a>
+                                 </li>
+                                 <li>
+                                     <a href="javascript:void(0);">報名審核</a>
+                                 </li>
 							</ul>
 						</div>
-						<!-- /Footer Widget -->
 					</div>
-					<div class="col-lg-2 col-md-6">
-						<!-- Footer Widget -->
-						<div class="footer-widget footer-menu">
-							<h4 class="footer-title">聚會地點</h4>
-							<ul>
-								<li>
-									<a href="javascript:void(0);">台北</a>
-								</li>
-								<li>
-									<a href="javascript:void(0);">板橋</a>
-								</li>
-								<li>
-									<a href="javascript:void(0);">桃園</a>
-								</li>
-								<li>
-									<a href="javascript:void(0);">新竹</a>
-								</li>
-								<li>
-									<a href="javascript:void(0);">台中</a>
-								</li>
-							</ul>
-						</div>
-						<!-- /Footer Widget -->
-					</div>
-					<div class="col-lg-2 col-md-6">
-						<!-- Footer Widget -->
-						<div class="footer-widget footer-menu">
-							<h4 class="footer-title">下載</h4>
-							<ul>
-								<li>
-									<a href="#"><img src="/assets/img/icons/icon-apple.svg" alt="Apple"></a>
-								</li>
-								<li>
-									<a href="#"><img src="/assets/img/icons/google-icon.svg" alt="Google"></a>
-								</li>
-							</ul>
-						</div>
 						<!-- /Footer Widget -->
 					</div>
 				</div>
@@ -345,33 +332,12 @@
 					<div class="row align-items-center">
 						<div class="col-md-6">
 							<div class="copyright-text">
-								<p class="mb-0">&copy; 2023 JHobby  - 版權所有</p>
+									<p class="mb-0">&copy; 2023 - 94HOBBY - 版權所有</p>
 							</div>
 						</div>
 						<div class="col-md-6">
 							<!-- Copyright Menu -->
-							<div class="dropdown-blk">
-								<ul class="navbar-nav selection-list">
-									<li class="nav-item dropdown">
-										<div class="lang-select">
-											<span class="select-icon"><i class="feather-globe"></i></span>
-											<select class="select">
-												<option>台灣</option>
-												<option>美國</option>
-											</select>
-										</div>
-									</li>
-									<li class="nav-item dropdown">
-										<div class="lang-select">
-											<span class="select-icon"></span>
-											<select class="select">
-												<option>$ 台幣</option>
-												<option>$ 美金</option>
-											</select>
-										</div>
-									</li>
-								</ul>
-							</div>
+
 							<!-- /Copyright Menu -->
 						</div>
 					</div>
@@ -391,8 +357,7 @@
 		</svg>
 	</div>
 	<!-- scrollToTop end -->
-
-
+	
     <script src="~/js/site.js" asp-append-version="true"></script>
 	<!-- jQuery -->
 	<script src="~/assets/js/jquery-3.7.0.min.js"></script>
@@ -409,9 +374,12 @@
 	<script src="~/assets/js/jquery.counterup.min.js"></script>
 	<!-- Top JS -->
 	<script src="~/assets/js/backToTop.js"></script>
-	@await RenderSectionAsync("Scripts", required: false)
 	<!-- Custom JS -->
 	<script src="~/assets/js/script.js"></script>
+	@await RenderSectionAsync("Scripts", required: false)
+	<script>
+		Jhobby_Animation()
+	</script>
 
 </body>
 </html>
