@@ -23,6 +23,21 @@ namespace JHobby.Service.Implements
             _iCommonService = iCommonService;
         }
 
+        public IEnumerable<PastJoinAGroupModel> GetAll()
+        {
+            return _iPastJoinAGroupRepostiory.GetAll().Select(r => new PastJoinAGroupModel
+            {
+                ActivityId = r.ActivityId,
+                MemberId = r.MemberId,
+                ActivityName = r.ActivityName,
+                ActivityStatus = _iCommonService.ConvertActivityStatus(r.ActivityStatus),
+                ActivityCity = r.ActivityCity,
+                CurrentPeople = r.CurrentPeople,
+                StartTime = r.StartTime,
+                NickName = r.NickName,
+            });
+        }
+
         public IQueryable<PastJoinAGroupModel> GetPastJoinAGroupsList(int page,int pageSize)
         {
             var result = _iPastJoinAGroupRepostiory.GetPastJoinAGroupAll(page,pageSize);

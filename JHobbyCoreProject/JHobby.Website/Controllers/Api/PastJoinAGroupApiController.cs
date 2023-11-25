@@ -29,5 +29,19 @@ namespace JHobby.Website.Controllers.Api
             else { return null; }
             
         }
+        [HttpGet]
+        public IEnumerable<PastJoinAGroupViewModel> GetAll()
+        {
+            return _astJoinAGroupService.GetAll().Select(x=> new PastJoinAGroupViewModel 
+            {
+                ActivityCity = x.ActivityCity,
+                ActivityName = x.ActivityName,
+                ActivityStatus  = x.ActivityStatus,
+                CurrentPeople = x.CurrentPeople,
+                NickName = x.NickName,
+                StartTime = x.StartTime,
+            });
+
+        }
     }
 }
