@@ -45,16 +45,24 @@ namespace JHobby.Repository.Implements
             if (queryResult == null) return null;
 
             return _mapper.Map<CategoryDto>(queryResult);
-        }
+
+            //return new CategoryDto
+            //{
+            //    CategoryId = queryResult.CategoryId,
+            //    CategoryName = queryResult.CategoryName,
+            //};
+		}
 
         public bool Insert(CreateCategoryDto createCategoryDto)
         {
-            var mapper = new Category
-            {
-                CategoryName = createCategoryDto.CategoryName
-            };
+            //var mapper = new Category
+            //{
+            //    CategoryName = createCategoryDto.CategoryName
+            //};
 
-            _jhobbyContext.Categories.Add(mapper);
+            var mappingResult = _mapper.Map<Category>(createCategoryDto);
+
+			_jhobbyContext.Categories.Add(mappingResult);
             _jhobbyContext.SaveChanges();
 
             return true;
