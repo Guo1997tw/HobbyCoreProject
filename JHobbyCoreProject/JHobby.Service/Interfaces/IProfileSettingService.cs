@@ -10,7 +10,7 @@ namespace JHobby.Service.Interfaces
 {
     public interface IProfileSettingService//顯示會員資訊介面Service
     {
-        public IEnumerable<ProfileSettingModel> GetByIdService(int id);
+        public ProfileSettingModel GetById(int id);
 
     }
 }
