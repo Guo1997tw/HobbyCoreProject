@@ -46,5 +46,16 @@ namespace JHobby.Repository.Implements
 			return true;
 		}
 
+		/// <summary>
+		/// 活動頁面查詢
+		/// </summary>
+		/// <param name="id"></param>
+		/// <param name="activityName"></param>
+		/// <returns></returns>
+		/// <exception cref="NotImplementedException"></exception>
+		public ActivityPageDto ActivityPageSearch(int id, string activityName)
+		{
+			throw new NotImplementedException();
+		}
 	}
 }
