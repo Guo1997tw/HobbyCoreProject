@@ -32,7 +32,7 @@ namespace JHobby.Website.Controllers.Api
 				Gender = serviceModel.Gender,
 				IdentityCard = serviceModel.IdentityCard,
 				Birthday = serviceModel.Birthday,
-				AcitveCity = serviceModel.AcitveCity,
+                ActiveCity = serviceModel.ActiveCity,
 				ActiveArea = serviceModel.ActiveArea,
 				Address = serviceModel.Address,
 				Phone = serviceModel.Phone,

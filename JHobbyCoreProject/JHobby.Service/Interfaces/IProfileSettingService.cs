@@ -12,5 +12,7 @@ namespace JHobby.Service.Interfaces
     {
         public ProfileSettingModel GetById(int id);
 
-    }
+		public bool Update(int id, ProfileSettingDto updateProfileSettingDto);
+
+	}
 }
