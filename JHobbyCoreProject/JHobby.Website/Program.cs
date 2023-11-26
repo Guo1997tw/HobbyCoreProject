@@ -60,7 +60,8 @@ namespace JHobby.Website
             builder.Services.AddScoped<ICommonService, CommonService>();
             builder.Services.AddScoped<IReviewRepository, ReviewRepository>();
             builder.Services.AddScoped<IReviewService, ReviewService>();
-
+            builder.Services.AddScoped<INowJoinAGroupRepository, NowJoinAGroupRepository>();
+            builder.Services.AddScoped<INowJoinAGroupService, NowJoinAGroupService>();
 
             var app = builder.Build();
 
