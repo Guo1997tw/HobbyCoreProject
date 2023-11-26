@@ -8,7 +8,7 @@
 }
 
 <!-- Main Wrapper -->
-<div id="app" class="main-wrapper authendication-pages">
+<div id="registe" class="main-wrapper authendication-pages">
     <!-- Page Content -->
     <div class="content">
         <div class="container wrapper no-padding">
@@ -121,10 +121,15 @@
 
         methods: {
             Registe() {
+                var emailRule = /^[a-zA-Z0-9._-]+@@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+
+                if (!emailRule.test(this.memberRegister.account)) {
+                    return alert("電子信箱格式有誤，請確認!!");
+                }
+                
                 if ((this.memberRegister.passwordConfirm === null) || (this.memberRegister.password !== this.memberRegister.passwordConfirm)) {
                     return alert("密碼欄位需一致!!");
                 }
-
                 if (!this.memberRegister.policy) {
                     return alert("您必須同意使用條款和隱私權政策才能註冊!!");
                 }
@@ -133,9 +138,7 @@
 
                 fetch("/MemberApi/InsertRegister", {
                     method: "POST",
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
+                    headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(this.memberRegister)
                 })
                     .then(r => r.json())
@@ -159,5 +162,5 @@
                 return `${year}-${month}-${day}T${hours}:${minutes}:${seconds}`;
             },
         },
-    }).mount("#app");
+    }).mount("#registe");
 </script>

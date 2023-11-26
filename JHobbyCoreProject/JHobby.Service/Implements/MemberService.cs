@@ -34,9 +34,7 @@ namespace JHobby.Service.Implements
                 CreationDate = memberRegisterModel.CreationDate,
             };
 
-            _memberRepository.InsertMemberRegister(mapper);
-            
-            return true;
+            return _memberRepository.InsertMemberRegister(mapper) ? true : false;
         }
 
         public bool CheckMemberLogin(string account, string password)
