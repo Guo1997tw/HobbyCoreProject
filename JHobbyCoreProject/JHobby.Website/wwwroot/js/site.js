@@ -91,9 +91,9 @@ function Animations() {
 	Jhobby_Fav_Icon();
 	Jhobby_Featured_Coache_Slider();
 }
-//掛Vue後，動畫要延遲1.5秒後渲染
+//掛Vue後，動畫要延遲1.7秒後渲染
 function Jhobby_Animation() {
-	setTimeout(Animations, 1500)
+	setTimeout(Animations, 1700)
 }
 
 //取時間

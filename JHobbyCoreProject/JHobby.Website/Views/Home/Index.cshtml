@@ -185,14 +185,12 @@
 								</div>
 							</div>
 								<div class="listing-content list-coche-content">
-								<h3><a href="coach-detail.html">{{item.nickName}}</a></h3>
+								<h3><a v-bind:href='"@Url.Action("MemberProfile","Profile")/"+item.memberId'>{{item.nickName}}</a></h3>
 								<a v-bind:href='"@Url.Action("MemberProfile","Profile")/"+item.memberId'><i class="feather-arrow-right"></i></a>
-								<a v-bind:href='"@Url.Action("MemberProfile","Profile")/"+item.memberId'><i class="feather-calendar"></i></a>
 							</div>
 							</div>
 						</div>
 					<!-- /Featured Item -->
-
 				</div>
 			</div>
 		</div>
