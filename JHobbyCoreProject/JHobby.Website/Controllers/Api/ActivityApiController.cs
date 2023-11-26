@@ -56,14 +56,13 @@ namespace JHobby.Website.Controllers.Api
 		/// 活動頁面查詢
 		/// </summary>
 		/// <param name="id"></param>
-		/// <param name="activityName"></param>
 		/// <returns></returns>
-		[HttpGet("{id}/{activityName}")]
-		public ActionResult <ActivityPageViewModel> ActivitySearch(int id, string activityName)
+		[HttpGet("{id}")]
+		public ActionResult <ActivityPageViewModel> ActivitySearch(int id)
 		{
-			var result = _activityService.GetActivityPageSearch(id, activityName);
+			var result = _activityService.GetActivityPageSearch(id);
 
-			if (result == null) return NotFound("找不到此紀錄!!");
+            if (result == null) return NotFound("找不到此紀錄!!");
 
 			return _mapper.Map<ActivityPageViewModel>(result);
 		}

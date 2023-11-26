@@ -16,8 +16,7 @@ namespace JHobby.Service.Interfaces
 		/// 活動頁面查詢
 		/// </summary>
 		/// <param name="id"></param>
-		/// <param name="activityName"></param>
 		/// <returns></returns>
-		public ActivityPageModel GetActivityPageSearch(int id, string activityName);
+		public ActivityPageModel GetActivityPageSearch(int id);
 	}
 }

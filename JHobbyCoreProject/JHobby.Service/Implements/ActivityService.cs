@@ -53,9 +53,9 @@ namespace JHobby.Service.Implements
 		/// <param name="id"></param>
 		/// <param name="activityName"></param>
 		/// <returns></returns>
-		public ActivityPageModel GetActivityPageSearch(int id, string activityName)
+		public ActivityPageModel GetActivityPageSearch(int id)
 		{
-			var result = _activityRepository.GetActivityPageByIN(id, activityName);
+			var result = _activityRepository.GetActivityPageById(id);
 
 			return _mapper.Map<ActivityPageModel>(result);
 		}

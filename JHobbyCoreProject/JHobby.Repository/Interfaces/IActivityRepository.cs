@@ -17,6 +17,6 @@ namespace JHobby.Repository.Interfaces
 		/// <param name="id"></param>
 		/// <param name="activityName"></param>
 		/// <returns></returns>
-		public ActivityPageDto GetActivityPageByIN(int id, string activityName);
+		public ActivityPageDto GetActivityPageById(int id);
 	}
 }

@@ -10,9 +10,9 @@ namespace JHobby.Repository.Models.Dto
 	{
 		public int ActivityId { get; set; }
 
-		public string ActivityName { get; set; } = null!;
+        public string ActivityName { get; set; } = null!;
 
-		public string ActivityLocation { get; set; } = null!;
+        public string ActivityLocation { get; set; } = null!;
 
 		public DateTime StartTime { get; set; }
 
