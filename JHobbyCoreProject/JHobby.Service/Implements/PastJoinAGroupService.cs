@@ -23,9 +23,9 @@ namespace JHobby.Service.Implements
             _iCommonService = iCommonService;
         }
 
-        public IEnumerable<PastJoinAGroupModel> GetAll()
+        public IEnumerable<PastJoinAGroupModel> GetPastJoinAGroupAll()
         {
-            return _iPastJoinAGroupRepostiory.GetAll().Select(r => new PastJoinAGroupModel
+            return _iPastJoinAGroupRepostiory.GetPastJoinAGroupAll().Select(r => new PastJoinAGroupModel
             {
                 ActivityId = r.ActivityId,
                 MemberId = r.MemberId,
@@ -36,25 +36,6 @@ namespace JHobby.Service.Implements
                 StartTime = r.StartTime,
                 NickName = r.NickName,
             });
-        }
-
-        public IQueryable<PastJoinAGroupModel> GetPastJoinAGroupsList(int page,int pageSize)
-        {
-            var result = _iPastJoinAGroupRepostiory.GetPastJoinAGroupAll(page,pageSize);
-
-            var pastJoinAGroupModel = result.Select(r => new PastJoinAGroupModel
-            {
-                ActivityId = r.ActivityId,
-                MemberId = r.MemberId,
-                ActivityName = r.ActivityName,
-                ActivityStatus = _iCommonService.ConvertActivityStatus(r.ActivityStatus),
-                ActivityCity = r.ActivityCity,
-                CurrentPeople = r.CurrentPeople,
-                StartTime = r.StartTime,
-                NickName = r.NickName,
-            });
-
-            return pastJoinAGroupModel;
         }
     }
 }

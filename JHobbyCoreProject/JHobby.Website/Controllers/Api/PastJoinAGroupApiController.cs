@@ -18,21 +18,9 @@ namespace JHobby.Website.Controllers.Api
         }
 
         [HttpGet]
-        public ActionResult<IQueryable<PastJoinAGroupViewModel>> GetPastJoinAGroupsListAll(int page, int pageSize)
+        public IEnumerable<PastJoinAGroupViewModel> GetPastJoinAGroupAll()
         {
-            if(page >= 1)
-            {
-            var data = _astJoinAGroupService.GetPastJoinAGroupsList(page, pageSize).ToList();
-
-            return Ok(data);
-            }
-            else { return null; }
-            
-        }
-        [HttpGet]
-        public IEnumerable<PastJoinAGroupViewModel> GetAll()
-        {
-            return _astJoinAGroupService.GetAll().Select(x=> new PastJoinAGroupViewModel 
+            return _astJoinAGroupService.GetPastJoinAGroupAll().Select(x=> new PastJoinAGroupViewModel 
             {
                 ActivityCity = x.ActivityCity,
                 ActivityName = x.ActivityName,
