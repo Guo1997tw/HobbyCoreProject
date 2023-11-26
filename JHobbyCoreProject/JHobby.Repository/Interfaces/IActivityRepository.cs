@@ -16,6 +16,6 @@ namespace JHobby.Repository.Interfaces
 		/// </summary>
 		/// <param name="id"></param>
 		/// <returns></returns>
-		public ActivityPageDto GetActivityPageById(int id);
+		public IQueryable<ActivityPageDto> GetActivityPageById(int id);
 	}
 }

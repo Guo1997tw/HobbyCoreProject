@@ -56,13 +56,26 @@ namespace JHobby.Repository.Implements
 		/// <param name="id"></param>
 		/// <returns></returns>
 		/// <exception cref="NotImplementedException"></exception>
-		public ActivityPageDto GetActivityPageById(int id)
+		public IQueryable<ActivityPageDto> GetActivityPageById(int id)
 		{
 			//var queryResult = _jhobbyContext.Activities.FirstOrDefault(a => a.ActivityId == id);
 
-			var queryResult = _jhobbyContext.Activities.Include(a => a.ActivityImages).FirstOrDefault(a => a.ActivityId == id);
+			// var queryResult = _jhobbyContext.Activities.Include(a => a.ActivityImages).FirstOrDefault(a => a.ActivityId == id);
 
-			return _mapper.Map<ActivityPageDto>(queryResult);
+			var queryResult = _jhobbyContext.Activities.Join(_jhobbyContext.ActivityImages, a => a.ActivityId, ai => ai.ActivityId, (a, ai) => new ActivityPageDto
+			{
+				ActivityId = a.ActivityId,
+				ActivityLocation = a.ActivityLocation,
+                CategoryId = a.CategoryId,
+                CategoryTypeId = a.CategoryTypeId,
+                ActivityName = a.ActivityName,
+                StartTime = a.StartTime,
+                JoinDeadLine = a.JoinDeadLine,
+                ActivityNotes = a.ActivityNotes,
+				ImageName = ai.ImageName
+            });
+
+			return queryResult;
         }
 	}
 }
