@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace JHobby.Website.Controllers.Api
 {
-    [Route("[controller]/[action]")]
+    [Route("api/ProfileSetting/[action]")]
     [ApiController]
     public class ProfileSettingApiController : ControllerBase
     {
@@ -17,29 +17,28 @@ namespace JHobby.Website.Controllers.Api
             _iProfileSettingService = iProfileSettingService;
         }
 
-        [HttpGet]
-        public ActionResult<IEnumerable<ProfileSettingViewModel>> GetProfileSettingViewAll(int id)
+        [HttpGet("{id}")]
+        public ActionResult<ProfileSettingViewModel> GetById(int id)
         {
-            var serviceModel = _iProfileSettingService.GetByIdService(id); //GetByIdService
+            var serviceModel = _iProfileSettingService.GetById(id); //GetByIdService
 
-            var viewModel = serviceModel.Select(m => new ProfileSettingViewModel
-            {
-                HeadShot = m.HeadShot,
-                Status = m.Status,
-                MemberId = m.MemberId,
-                MemberName = m.MemberName,
-                NickName = m.NickName,
-                Gender = m.Gender,
-                IdentityCard = m.IdentityCard,
-                Birthday = m.Birthday,
-                AcitveCity = m.AcitveCity,
-                ActiveArea = m.ActiveArea,
-                Address = m.Address,
-                Phone = m.Phone,
-                PersonalProfile = m.PersonalProfile
-            });
-
-            return Ok(viewModel);
+			var viewModel = new ProfileSettingViewModel
+			{
+				HeadShot = serviceModel.HeadShot,
+				Status = serviceModel.Status,
+				MemberId = serviceModel.MemberId,
+				MemberName = serviceModel.MemberName,
+				NickName = serviceModel.NickName,
+				Gender = serviceModel.Gender,
+				IdentityCard = serviceModel.IdentityCard,
+				Birthday = serviceModel.Birthday,
+                ActiveCity = serviceModel.ActiveCity,
+				ActiveArea = serviceModel.ActiveArea,
+				Address = serviceModel.Address,
+				Phone = serviceModel.Phone,
+				PersonalProfile = serviceModel.PersonalProfile
+			};
+			return Ok(viewModel);
         }
     }
 }
