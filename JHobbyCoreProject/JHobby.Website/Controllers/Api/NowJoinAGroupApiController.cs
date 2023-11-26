@@ -6,7 +6,6 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace JHobby.Website.Controllers.Api
 {
-    [EnableCors("allowCors")]
     [Route("[controller]/[action]")]
     [ApiController]
     public class NowJoinAGroupApiController : ControllerBase
@@ -25,8 +24,8 @@ namespace JHobby.Website.Controllers.Api
                 .Select(s => new NowJoinAGroupViewModel
                 {
                     ActivityName = s.ActivityName,
-                    ActivityCity = s.ActivityCity,
-                    ActivityStatus = s.ActivityStatus,
+                    ReviewStatus = s.ReviewStatus,
+                    ReviewTime = s.ReviewTime,
                     CurrentPeople = s.CurrentPeople,
                     MaxPeople = s.MaxPeople,
                     StartTime = s.StartTime,
