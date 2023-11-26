@@ -1,4 +1,5 @@
-﻿using JHobby.Repository.Models.Dto;
+﻿using AutoMapper;
+using JHobby.Repository.Models.Dto;
 using JHobby.Repository.Models.Entity;
 using JHobby.Service.Implements;
 using JHobby.Service.Interfaces;
@@ -15,10 +16,12 @@ namespace JHobby.Website.Controllers.Api
 	public class ActivityApiController : ControllerBase
 	{
 		private readonly IActivityService _activityService;
+		private readonly IMapper _mapper;
 		
-		public ActivityApiController (IActivityService activityService)
+		public ActivityApiController (IActivityService activityService, IMapper mapper)
 		{
 			_activityService = activityService;
+			_mapper = mapper;
 		}
 
 		[HttpPost]
@@ -49,8 +52,20 @@ namespace JHobby.Website.Controllers.Api
 			return Ok(result);
 		}
 
+		/// <summary>
+		/// 活動頁面查詢
+		/// </summary>
+		/// <param name="id"></param>
+		/// <param name="activityName"></param>
+		/// <returns></returns>
+		[HttpGet("{id}/{activityName}")]
+		public ActionResult <ActivityPageViewModel> ActivitySearch(int id, string activityName)
+		{
+			var result = _activityService.GetActivityPageSearch(id, activityName);
 
+			if (result == null) return NotFound("找不到此紀錄!!");
 
-
+			return _mapper.Map<ActivityPageViewModel>(result);
+		}
 	}
 }

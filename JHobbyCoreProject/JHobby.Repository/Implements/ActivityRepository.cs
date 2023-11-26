@@ -1,4 +1,5 @@
-﻿using JHobby.Repository.Interfaces;
+﻿using AutoMapper;
+using JHobby.Repository.Interfaces;
 using JHobby.Repository.Models.Dto;
 using JHobby.Repository.Models.Entity;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
@@ -13,10 +14,12 @@ namespace JHobby.Repository.Implements
 	public class ActivityRepository: IActivityRepository
 	{
 		private readonly JhobbyContext _jhobbyContext;
+		private readonly IMapper _mapper;
 
-		public ActivityRepository(JhobbyContext jhobbyContext)
+		public ActivityRepository(JhobbyContext jhobbyContext, IMapper mapper)
 		{
 			_jhobbyContext = jhobbyContext;
+			_mapper = mapper;
 		}
 
 		public bool InsertActivityBuild(ActivityBuildDto activityBuildDto)
@@ -53,9 +56,11 @@ namespace JHobby.Repository.Implements
 		/// <param name="activityName"></param>
 		/// <returns></returns>
 		/// <exception cref="NotImplementedException"></exception>
-		public ActivityPageDto ActivityPageSearch(int id, string activityName)
+		public ActivityPageDto GetActivityPageByIN(int id, string activityName)
 		{
-			throw new NotImplementedException();
+			var queryResult = _jhobbyContext.Activities.FirstOrDefault(a => a.ActivityId == id && a.ActivityName == activityName);
+
+			return _mapper.Map<ActivityPageDto>(queryResult);
 		}
 	}
 }
