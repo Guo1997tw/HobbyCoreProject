@@ -27,8 +27,10 @@ namespace JHobby.Website
             builder.Services.AddEndpointsApiExplorer();     
             builder.Services.AddSwaggerGen();
 
-            // Interface DI
-            builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
+			// Interface DI
+			builder.Services.AddScoped<ILaunchaTeamRepository, LaunchaTeamRepository>();
+			builder.Services.AddScoped<ILaunchaTeamService, LaunchaTeamService>();
+			builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
             builder.Services.AddScoped<ICategoryService, CategoryService>();
             builder.Services.AddScoped<IIndexRepository, IndexRepository>();
             builder.Services.AddScoped<IIndexService, IndexService>();

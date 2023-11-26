@@ -1067,6 +1067,7 @@ div.dataTables_filter .form-control {
   height: 85px;
   padding: 0 15px 0 15px;
   margin-bottom: 0;
+
 }
 @media (max-width: 991.98px) {
   .header .header-nav {
@@ -1805,22 +1806,23 @@ div.dataTables_filter .form-control {
   left: 0;
 }
 
-header.header-sticky {
-  position: sticky;
+header.header-sticky { /*換表頭*/
+    position: sticky;
+    background-color: #FFEBCD;
 }
-header.header-sticky .header-nav .main-nav > li > a {
-  color: #6B7385;
-}
+    header.header-sticky .header-nav .main-nav > li > a {
+        color: #6B7385;
+    }
 @media (max-width: 991.98px) {
   header.header-sticky .header-nav .main-nav > li > a {
     color: #FFFFFF;
   }
 }
-header.header-sticky.fixed-top {
-  background: #FFFFFF;
-  -webkit-box-shadow: 0 3px 5px rgba(57, 63, 72, 0.3);
-  -moz-box-shadow: 0 3px 5px rgba(57, 63, 72, 0.3);
-  box-shadow: 0 3px 5px rgba(57, 63, 72, 0.3);
+header.header-sticky.fixed-top { /*換表頭*/
+    background: #FFEBCD;
+    -webkit-box-shadow: 0 3px 5px rgba(57, 63, 72, 0.3);
+    -moz-box-shadow: 0 3px 5px rgba(57, 63, 72, 0.3);
+    box-shadow: 0 3px 5px rgba(57, 63, 72, 0.3);
 }
 
 /*-----------------
@@ -2019,7 +2021,7 @@ header.header-sticky.fixed-top {
 	8. Breadcrumb
 -----------------------*/
 .breadcrumb {
-    background: url('../image/breadcrumb-bg.jpg') rgba(36, 29, 57, 0.8) no-repeat;
+    /*background: url('../image/breadcrumb-bg.jpg') rgba(36, 29, 57, 0.8) no-repeat;*/
     background-size: cover;
     background-blend-mode: multiply;
     padding: 60px 0;
@@ -2027,7 +2029,7 @@ header.header-sticky.fixed-top {
 }
 .breadcrumb:before, .breadcrumb:after {
   content: "";
-  background: linear-gradient(105.55deg, #085A6C -6.68%, #269089 43.13%, #7ABC82 96.15%);
+/*  background: linear-gradient(105.55deg, #085A6C -6.68%, #269089 43.13%, #7ABC82 96.15%);*/
   border-radius: 100%;
 }
     .breadcrumb.breadcrumb-list {
@@ -2064,7 +2066,7 @@ header.header-sticky.fixed-top {
   bottom: 50px;
   width: 13px;
   height: 13px;
-  background: #23B33A;
+ /* background: #23B33A;*/
   border-radius: 13px;
 }
 @media (max-width: 1200.98px) {
@@ -2111,7 +2113,7 @@ header.header-sticky.fixed-top {
   width: 147px;
   height: 74px;
   content: "";
-  background: linear-gradient(105.55deg, #085A6C -6.68%, #269089 43.13%, #7ABC82 96.15%);
+/*  background: linear-gradient(105.55deg, #085A6C -6.68%, #269089 43.13%, #7ABC82 96.15%);*/
   border-top-left-radius: 84px;
   border-top-right-radius: 84px;
 }
@@ -3007,7 +3009,7 @@ div#global-loader {
 }
 .featured-venues:before {
   content: "";
-  background-image: url(../img/icons/cock-icon.svg);
+/*  background-image: url(../img/icons/cock-icon.svg);     羽毛球圖片*/ 
   background-repeat: no-repeat;
   background-size: cover;
   width: 123px;
@@ -3023,7 +3025,7 @@ div#global-loader {
 }
 .featured-venues:after {
   content: "";
-  background-image: url(../img/icons/bg-01.svg);
+  /*background-image: url(../img/icons/bg-01.svg);*/ 
   background-repeat: no-repeat;
   background-size: cover;
   width: 363px;
@@ -3614,9 +3616,9 @@ div#global-loader {
 }
 
 .featured-section {
-  background-image: url(../../assets/img/bg/bg-01.png); /*綠色色塊*/
-  background-repeat: no-repeat, no-repeat;
-  background-position: left bottom -160px;
+    /*background-image: url(../../assets/img/bg/bg-01.png); 首頁綠色色塊*/
+    background-repeat: no-repeat, no-repeat;
+    background-position: left bottom -160px;
 }
     .featured-section:before {
         content: "";
