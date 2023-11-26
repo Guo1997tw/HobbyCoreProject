@@ -11,6 +11,7 @@ namespace JHobby.Website.Controllers
         /// </summary>
         public IActionResult launchATeam()
         {
+            ViewData["Title"] = "開團紀錄";
             return View();
         }
 

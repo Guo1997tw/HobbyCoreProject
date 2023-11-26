@@ -1,5 +1,5 @@
-﻿@*  @if (User.Identity.IsAuthenticated)
-{   *@
+﻿ @if (User.Identity.IsAuthenticated)
+{  
   @* var u = User.Claims.Where(x => x.Type == ClaimTypes.Name).FirstOrDefault();  *@
 
       <ul class="nav header-navbar-rht logged-in">
@@ -17,19 +17,19 @@
                     </div>
                     <div class="user-text">
                         <h6>Henriques</h6>
-                        <a href="user-profile.html" class="text-profile mb-0">前往個人資料</a>
+                        <a href="https://localhost:7097/ProfileSetting/ProfileSetting" class="text-profile mb-0">前往個人資料</a>
                     </div>
                 </div>
                 <p><a class="dropdown-item" href="login.html">登出</a></p>
             </div>
         </li>
     </ul>
-@* } 
+} 
  else
 { 
     <li class="nav-item">
         <div class="nav-link btn btn-white log-register">
-            <a href="login.html"><span><i class="feather-users"></i></span>登入</a> / <a href="register.html">註冊</a>
+            <a href="https://localhost:7097/member/Login"><span><i class="feather-users"></i></span>登入</a> / <a href="register.html">註冊</a>
         </div>
     </li>
- }  *@
+ } 
