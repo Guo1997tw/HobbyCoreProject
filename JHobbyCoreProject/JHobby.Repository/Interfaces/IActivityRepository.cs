@@ -15,7 +15,6 @@ namespace JHobby.Repository.Interfaces
 		/// 活動頁面查詢
 		/// </summary>
 		/// <param name="id"></param>
-		/// <param name="activityName"></param>
 		/// <returns></returns>
 		public ActivityPageDto GetActivityPageById(int id);
 	}

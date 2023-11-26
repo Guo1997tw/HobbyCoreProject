@@ -17,5 +17,7 @@
 		public DateTime JoinDeadLine { get; set; }
 
 		public string? ActivityNotes { get; set; }
-	}
+
+        public string ImageName { get; set; } = null!;
+    }
 }

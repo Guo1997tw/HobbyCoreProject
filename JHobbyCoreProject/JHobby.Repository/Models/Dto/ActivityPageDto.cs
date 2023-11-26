@@ -1,4 +1,5 @@
-﻿using System;
+﻿using JHobby.Repository.Models.Entity;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,5 +24,7 @@ namespace JHobby.Repository.Models.Dto
 		public DateTime JoinDeadLine { get; set; }
 
 		public string? ActivityNotes { get; set; }
-	}
+
+        public string ImageName { get; set; } = null!;
+    }
 }

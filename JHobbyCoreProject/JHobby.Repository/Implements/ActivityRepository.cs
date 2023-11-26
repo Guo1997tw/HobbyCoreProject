@@ -2,6 +2,7 @@
 using JHobby.Repository.Interfaces;
 using JHobby.Repository.Models.Dto;
 using JHobby.Repository.Models.Entity;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using System;
 using System.Collections.Generic;
@@ -57,7 +58,9 @@ namespace JHobby.Repository.Implements
 		/// <exception cref="NotImplementedException"></exception>
 		public ActivityPageDto GetActivityPageById(int id)
 		{
-            var queryResult = _jhobbyContext.Activities.FirstOrDefault(a => a.ActivityId == id);
+			//var queryResult = _jhobbyContext.Activities.FirstOrDefault(a => a.ActivityId == id);
+
+			var queryResult = _jhobbyContext.Activities.Include(a => a.ActivityImages).FirstOrDefault(a => a.ActivityId == id);
 
 			return _mapper.Map<ActivityPageDto>(queryResult);
         }
