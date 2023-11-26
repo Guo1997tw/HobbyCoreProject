@@ -1,4 +1,5 @@
-﻿using JHobby.Repository.Interfaces;
+﻿using AutoMapper;
+using JHobby.Repository.Interfaces;
 using JHobby.Repository.Models.Dto;
 using JHobby.Service.Interfaces;
 using JHobby.Service.Models;
@@ -8,23 +9,27 @@ namespace JHobby.Service.Implements
 	public class CategoryService : ICategoryService
 	{
 		private readonly ICategoryRepository _categoryRepository;
+        private readonly IMapper _mapper;
 
-		public CategoryService(ICategoryRepository categoryRepository)
+        public CategoryService(ICategoryRepository categoryRepository, IMapper mapper)
 		{
 			_categoryRepository = categoryRepository;
-		}
+			_mapper = mapper;
+
+        }
 
 		public IEnumerable<CategoryModel> GetList()
 		{
-			var resultDto = _categoryRepository.GetAll().ToList();
+			var resultDto = _categoryRepository.GetAll();
+			return _mapper.Map<IEnumerable<CategoryModel>>(resultDto);
 
-			var categoryModel = resultDto.Select(dto => new CategoryModel
-			{
-				CategoryId = dto.CategoryId,
-				CategoryName = dto.CategoryName
-			});
+			//var categoryModel = resultDto.Select(dto => new CategoryModel
+			//{
+			//	CategoryId = dto.CategoryId,
+			//	CategoryName = dto.CategoryName
+			//});
 
-			return categoryModel;
+			//return categoryModel;
 		}
 
 		public CategoryModel GetDetail(int id)
