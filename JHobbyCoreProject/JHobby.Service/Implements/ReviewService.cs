@@ -36,5 +36,25 @@ namespace JHobby.Service.Implements
 			});
 			return reviewModel;
 		}
-	}
+        public IEnumerable<ReviewModel> GetById(int id)
+		{
+			var resultDto= _reviewRepository.GetById(id);
+			var reviewModel = resultDto.Select(dto => new ReviewModel
+            {
+                ActivityId = dto.ActivityId,
+                LeaderId = dto.LeaderId,
+                ActivityName = dto.ActivityName,
+                ReviewStatus = dto.ReviewStatus,
+                ReviewTime = dto.ReviewTime,
+                ApplicantId = dto.ApplicantId,
+                ActivityImageId = dto.ActivityImageId,
+                ImageName = dto.ImageName,
+                IsCover = dto.IsCover,
+                NickName = dto.NickName,
+                HeadShot = dto.HeadShot,
+            });
+            return reviewModel;
+		}
+
+    }
 }

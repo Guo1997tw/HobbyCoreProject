@@ -10,5 +10,6 @@ namespace JHobby.Service.Interfaces
 	public interface IReviewService
 	{
 		public IEnumerable<ReviewModel> GetReviewList();
+		public IEnumerable<ReviewModel> GetById(int id);
 	}
 }

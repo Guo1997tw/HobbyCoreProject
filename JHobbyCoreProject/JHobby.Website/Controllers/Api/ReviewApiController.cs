@@ -1,4 +1,5 @@
-﻿using JHobby.Service.Interfaces;
+﻿using JHobby.Repository.Interfaces;
+using JHobby.Service.Interfaces;
 using JHobby.Service.Models;
 using JHobby.Website.Models.ViewModels;
 using Microsoft.AspNetCore.Http;
@@ -12,7 +13,7 @@ namespace JHobby.Website.Controllers.Api
 	{
 		private readonly IReviewService _reviewService;
 
-		public ReviewApiController(IReviewService reviewService)
+        public ReviewApiController(IReviewService reviewService)
 		{
 			_reviewService = reviewService;
 		}
@@ -36,5 +37,25 @@ namespace JHobby.Website.Controllers.Api
 			});
 			return reviewModel;
 		}
+		[HttpGet("{id}")]
+		public IEnumerable<ReviewViewModel> GetReviewById(int id)
+		{
+            var resultDto = _reviewService.GetById(id);
+            var reviewModel = resultDto.Select(dto => new ReviewViewModel
+            {
+                ActivityId = dto.ActivityId,
+                LeaderId = dto.LeaderId,
+                ActivityName = dto.ActivityName,
+                ReviewStatus = dto.ReviewStatus,
+                ReviewTime = dto.ReviewTime,
+                ApplicantId = dto.ApplicantId,
+                ActivityImageId = dto.ActivityImageId,
+                ImageName = dto.ImageName,
+                IsCover = dto.IsCover,
+                NickName = dto.NickName,
+                HeadShot = dto.HeadShot,
+            });
+            return reviewModel;
+        }
 	}
 }

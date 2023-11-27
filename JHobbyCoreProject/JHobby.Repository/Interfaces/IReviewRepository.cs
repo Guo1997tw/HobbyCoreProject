@@ -10,5 +10,6 @@ namespace JHobby.Repository.Interfaces
 	public interface IReviewRepository
 	{
 		public IEnumerable<ReviewDto> GetAll();
+        public IEnumerable<ReviewDto> GetById(int id);
 	}
 }
