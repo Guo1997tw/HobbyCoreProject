@@ -19,15 +19,15 @@ namespace JHobby.Service.Models
         //活動狀態
         public string ActivityStatus { get; set; } = null!;
 
-        public int? CurrentPeople { get; set; }
-
-        public int? MaxPeople { get; set; }
         public string ActivityName { get; set; } = null!;
 
         public DateTime StartTime { get; set; }
 
         public DateTime JoinDeadLine { get; set; }
+
         public string? NickName { get; set; }
+
+        public int SurplusQuota { get; set; }
 
     }
 }

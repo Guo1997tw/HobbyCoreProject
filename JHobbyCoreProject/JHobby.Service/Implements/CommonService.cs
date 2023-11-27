@@ -12,7 +12,7 @@ namespace JHobby.Service.Implements
         /// <summary>
         /// 轉換ActivityStatus
         /// </summary>
-        /// <param name="ConvertActivityStatus"></param>
+        /// <param name="ActivityStatus"></param>
         /// <returns></returns>
         public string ConvertActivityStatus(string status)
         {
@@ -28,7 +28,7 @@ namespace JHobby.Service.Implements
         /// <summary>
         /// 轉換ReviewStatus
         /// </summary>
-        /// <param name="ConvertReviewStatus"></param>
+        /// <param name="ReviewStatus"></param>
         /// <returns></returns>
         public string ConvertReviewStatus(string status) 
         {
@@ -39,6 +39,17 @@ namespace JHobby.Service.Implements
                 "2" => "待審核",
                 _ => "未知"
             };
+        }
+
+        /// <summary>
+        /// 計算剩餘人數
+        /// </summary>
+        /// <param name="MaxPeople"></param>
+        /// <param name="CurrentPeople"></param>
+        /// <returns></returns>
+        public int CountSurplusQuota(int? max, int? current) 
+        {
+            return max.GetValueOrDefault() - current.GetValueOrDefault();
         }
     }
 }

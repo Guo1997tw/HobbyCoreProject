@@ -28,13 +28,12 @@ namespace JHobby.Service.Implements
                 AddTime = gw.AddTime,
                 MemberId = gw.MemberId,
                 WishId = gw.WishId,
-                ActivityStatus =_commonService.ConvertActivityStatus( gw.ActivityStatus),
+                ActivityStatus = _commonService.ConvertActivityStatus(gw.ActivityStatus),
                 ActivityName = gw.ActivityName,
-                CurrentPeople = gw.CurrentPeople,
                 JoinDeadLine = gw.JoinDeadLine,
-                MaxPeople = gw.MaxPeople,
                 StartTime = gw.StartTime,
                 NickName = gw.NickName,
+                SurplusQuota = _commonService.CountSurplusQuota(gw.MaxPeople, gw.CurrentPeople)
             });
         }
     }

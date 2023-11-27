@@ -8,5 +8,7 @@
         public string ActivityName { get; set; } = null!;
 
         public string? NickName { get; set; }
+
+        public int SurplusQuota { get; set;}
     }
 }

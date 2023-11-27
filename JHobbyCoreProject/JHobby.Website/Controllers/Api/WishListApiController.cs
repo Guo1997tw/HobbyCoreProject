@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace JHobby.Website.Controllers.Api
 {
-    [EnableCors("allowCros")]
+    [EnableCors("allowCors")]
     [Route("[controller]/[action]")]
     [ApiController]
     public class WishListApiController : ControllerBase
@@ -27,6 +27,7 @@ namespace JHobby.Website.Controllers.Api
                     ActivityName = wl.ActivityName,
                     ActivityStatus = wl.ActivityStatus,
                     NickName = wl.NickName,
+                    SurplusQuota = wl.SurplusQuota,
                 });
         }
     }
