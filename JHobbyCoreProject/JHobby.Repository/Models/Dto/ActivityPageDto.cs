@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace JHobby.Repository.Models.Dto
 {
 	public class ActivityPageDto
-	{
+    {
 		public int ActivityId { get; set; }
 
         public int CategoryId { get; set; }
@@ -25,6 +25,6 @@ namespace JHobby.Repository.Models.Dto
 
 		public string? ActivityNotes { get; set; }
 
-        public string ImageName { get; set; } = null!;
+        public virtual ICollection<ActivityImage> ActivityImages { get; set; } = new List<ActivityImage>();
     }
 }
