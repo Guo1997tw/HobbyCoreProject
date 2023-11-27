@@ -72,6 +72,8 @@ namespace JHobby.Website
             builder.Services.AddScoped<IReviewService, ReviewService>();
             builder.Services.AddScoped<INowJoinAGroupRepository, NowJoinAGroupRepository>();
             builder.Services.AddScoped<INowJoinAGroupService, NowJoinAGroupService>();
+            builder.Services.AddScoped<IWishListRepository, WishListRepository>();
+            builder.Services.AddScoped<IWishListService, WishListService>();
 
             var app = builder.Build();
 
