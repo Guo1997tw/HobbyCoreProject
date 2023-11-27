@@ -24,6 +24,16 @@ namespace JHobby.Website
                 option.UseSqlServer(builder.Configuration.GetConnectionString("JHobby"));
             });
 
+            //CORS
+            var allowCors = "allowCors";
+            builder.Services.AddCors(opt =>
+            {
+                opt.AddPolicy(allowCors, policy =>
+                {
+                    policy.WithOrigins("*").WithHeaders("*").WithMethods("*");
+                });
+            });
+
             // Swagger DI
             builder.Services.AddEndpointsApiExplorer();     
             builder.Services.AddSwaggerGen();
@@ -84,6 +94,9 @@ namespace JHobby.Website
             app.UseStaticFiles();
 
             app.UseRouting();
+
+            //CORS
+            app.UseCors("allowCors");
 
             app.UseAuthorization();
 
