@@ -1,6 +1,8 @@
-﻿using JHobby.Repository.Interfaces;
+﻿using AutoMapper;
+using JHobby.Repository.Interfaces;
 using JHobby.Repository.Models.Dto;
 using JHobby.Repository.Models.Entity;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using System;
 using System.Collections.Generic;
@@ -13,10 +15,12 @@ namespace JHobby.Repository.Implements
 	public class ActivityRepository: IActivityRepository
 	{
 		private readonly JhobbyContext _jhobbyContext;
+		private readonly IMapper _mapper;
 
-		public ActivityRepository(JhobbyContext jhobbyContext)
+		public ActivityRepository(JhobbyContext jhobbyContext, IMapper mapper)
 		{
 			_jhobbyContext = jhobbyContext;
+			_mapper = mapper;
 		}
 
 		public bool InsertActivityBuild(ActivityBuildDto activityBuildDto)
@@ -46,5 +50,26 @@ namespace JHobby.Repository.Implements
 			return true;
 		}
 
+		/// <summary>
+		/// 活動頁面查詢
+		/// </summary>
+		/// <param name="id"></param>
+		/// <returns></returns>
+		/// <exception cref="NotImplementedException"></exception>
+		public IQueryable<ActivityPageDto> GetActivityPageById(int id)
+		{
+			return _jhobbyContext.Activities.Include(a => a.ActivityImages).Where(a => a.ActivityId == id).Select(a => new ActivityPageDto
+			{
+				ActivityId = a.ActivityId,
+				ActivityLocation = a.ActivityLocation,
+				CategoryId = a.CategoryId,
+				CategoryTypeId = a.CategoryTypeId,
+				ActivityName = a.ActivityName,
+				StartTime = a.StartTime,
+				JoinDeadLine = a.JoinDeadLine,
+				ActivityNotes = a.ActivityNotes,
+				ActivityImages = a.ActivityImages,
+			});
+        }
 	}
 }

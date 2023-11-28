@@ -1,4 +1,6 @@
-﻿using JHobby.Repository.Models.Dto;
+﻿using AutoMapper;
+using JHobby.Repository.Interfaces;
+using JHobby.Repository.Models.Dto;
 using JHobby.Repository.Models.Entity;
 using JHobby.Service.Implements;
 using JHobby.Service.Interfaces;
@@ -15,11 +17,14 @@ namespace JHobby.Website.Controllers.Api
 	public class ActivityApiController : ControllerBase
 	{
 		private readonly IActivityService _activityService;
-		
-		public ActivityApiController (IActivityService activityService)
+		private readonly IMapper _mapper;
+
+        public ActivityApiController (IActivityService activityService, IMapper mapper)
 		{
 			_activityService = activityService;
-		}
+			_mapper = mapper;
+
+        }
 
 		[HttpPost]
 		public IActionResult InsertActivity(ActivityBuildViewModel activityBuildViewModel)
@@ -49,8 +54,19 @@ namespace JHobby.Website.Controllers.Api
 			return Ok(result);
 		}
 
+		/// <summary>
+		/// 活動頁面查詢
+		/// </summary>
+		/// <param name="id"></param>
+		/// <returns></returns>
+		[HttpGet("{id}")]
+		public ActionResult <ActivityPageViewModel> ActivitySearch(int id)
+		{
+			var result = _activityService.GetActivityPageSearch(id);
 
+			var mapper = _mapper.ProjectTo<ActivityPageViewModel>(result);
 
-
+            return Ok(mapper);
+		}
 	}
 }
