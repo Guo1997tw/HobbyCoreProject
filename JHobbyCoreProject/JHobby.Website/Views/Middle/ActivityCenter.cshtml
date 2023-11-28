@@ -131,9 +131,11 @@
 		const activity = Vue.createApp({
 			data() {
 				return {
+					originList:[],
 					activityList: [],
+					listStar: 0,
+					listEnd: 6,
 					wish: [],
-					top: 6,
 					sort: "asc",
 					blnData: true,
 				}
@@ -148,7 +150,6 @@
 					var form = new FormData();
 					form.append("categoyId", @search.categoyId);
 					form.append("categoryTypeId", @search.categoryTypeId);
-					form.append("top", _this.top);
 					form.append("city", @search.city);
 					form.append("area", @search.area);
 					form.append("sort", _this.sort);
@@ -158,10 +159,11 @@
 							}
 						})
 						.then(res => {
-							_this.activityList = res.data;
-							if (_this.activityList.length === 0) {
+							_this.originList = res.data;
+							if (_this.originList.length === 0) {
 								_this.blnData = false;
 							}
+							_this.activityList = _this.originList.slice(_this.listStar, _this.listEnd)
 						})
 						.catch(err => alert(err));
 					_this.QueryWish();
@@ -198,8 +200,10 @@
 				},
 				More() {
 					let _this = this;
-					_this.top += 6;
-					_this.GetCategoryTypeList();
+					_this.listEnd += 6;
+					_this.activityList = _this.originList.slice(_this.listStar, _this.listEnd)
+					// _this.top += 6;
+					//_this.GetCategoryTypeList();
 					Jhobby_Animation()
 				},
 				Sort() {

@@ -50,7 +50,7 @@ namespace JHobby.Service.Implements
 				ActivityNotes = res.ActivityNotes?.Trim(),
 				JoinDeadLine = res.JoinDeadLine.ToString("yyyy-MM-dd"),
 				ActivityImages = res.ActivityImages.Where(ai => ai.IsCover == true).ToList()
-			}).Take(search.top);
+			});
 
 		}
 	}
