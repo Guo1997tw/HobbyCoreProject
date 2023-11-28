@@ -71,5 +71,20 @@ namespace JHobby.Repository.Implements
 				ActivityImages = a.ActivityImages,
 			});
         }
-	}
+
+		/// <summary>
+		/// 會員留言板查詢
+		/// </summary>
+		/// <returns></returns>
+        public IEnumerable<MemberMsgDto> GetMsgList()
+		{
+			return _jhobbyContext.Members.Join(_jhobbyContext.MsgBoards, m => m.MemberId, mb => mb.MemberId, (m, mb) => new MemberMsgDto
+			{
+				HeadShot = m.HeadShot,
+				MessageTime = mb.MessageTime,
+				MessageText = mb.MessageText,
+				NickName = m.NickName
+			});
+		}
+    }
 }

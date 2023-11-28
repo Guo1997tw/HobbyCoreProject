@@ -6,6 +6,7 @@ using JHobby.Service.Implements;
 using JHobby.Service.Interfaces;
 using JHobby.Service.Models;
 using JHobby.Service.Models.Dto;
+using JHobby.Website.Models;
 using JHobby.Website.Models.ViewModels;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -23,7 +24,6 @@ namespace JHobby.Website.Controllers.Api
 		{
 			_activityService = activityService;
 			_mapper = mapper;
-
         }
 
 		[HttpPost]
@@ -67,6 +67,16 @@ namespace JHobby.Website.Controllers.Api
 			var mapper = _mapper.ProjectTo<ActivityPageViewModel>(result);
 
             return Ok(mapper);
+		}
+
+        /// <summary>
+        /// 會員留言板查詢
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+		public ActionResult <IEnumerable<MemberMsgViewModel>> MemberMsg()
+		{
+			return Ok(_activityService.GetMemberMsg());
 		}
 	}
 }

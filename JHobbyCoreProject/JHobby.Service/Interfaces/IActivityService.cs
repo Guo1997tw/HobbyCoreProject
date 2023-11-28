@@ -18,5 +18,11 @@ namespace JHobby.Service.Interfaces
 		/// <param name="id"></param>
 		/// <returns></returns>
 		public IQueryable<ActivityPageModel> GetActivityPageSearch(int id);
+
+        /// <summary>
+        /// 會員留言板查詢
+        /// </summary>
+        /// <returns></returns>
+        public IEnumerable<MemberMsgModel> GetMemberMsg();
 	}
 }
