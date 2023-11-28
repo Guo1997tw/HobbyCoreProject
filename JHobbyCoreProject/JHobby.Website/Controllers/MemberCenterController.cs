@@ -11,8 +11,8 @@ namespace JHobby.Website.Controllers
         /// </summary>
         public IActionResult launchATeam()
         {
-            ViewData["Title"] = "開團紀錄";
-            return View();
+			ViewData["Title"] = "開團紀錄";
+			return View();
         }
 
         // MemberCenter/joinAGroup
@@ -24,5 +24,6 @@ namespace JHobby.Website.Controllers
         {
             return View();
         }
-    }
+
+	}
 }

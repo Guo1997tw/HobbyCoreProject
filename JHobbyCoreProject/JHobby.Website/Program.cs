@@ -28,6 +28,8 @@ namespace JHobby.Website
             builder.Services.AddSwaggerGen();
 
 			// Interface DI
+			builder.Services.AddScoped<IGroupStartingRepository, GroupStartingRepository>();
+			builder.Services.AddScoped<IGroupStartingService, GroupStartingService>();
 			builder.Services.AddScoped<ILaunchaTeamRepository, LaunchaTeamRepository>();
 			builder.Services.AddScoped<ILaunchaTeamService, LaunchaTeamService>();
 			builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
