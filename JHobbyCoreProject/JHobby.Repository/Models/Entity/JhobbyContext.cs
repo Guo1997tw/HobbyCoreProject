@@ -121,8 +121,8 @@ public partial class JhobbyContext : DbContext
             entity.Property(e => e.Account)
                 .HasMaxLength(50)
                 .IsUnicode(false);
-            entity.Property(e => e.AcitveCity).HasMaxLength(14);
             entity.Property(e => e.ActiveArea).HasMaxLength(20);
+            entity.Property(e => e.ActiveCity).HasMaxLength(14);
             entity.Property(e => e.Address).HasMaxLength(70);
             entity.Property(e => e.Birthday).HasColumnType("date");
             entity.Property(e => e.CreationDate).HasColumnType("datetime");
