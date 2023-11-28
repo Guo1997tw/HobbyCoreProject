@@ -6,14 +6,13 @@ using JHobby.Service.Implements;
 using JHobby.Service.Interfaces;
 using JHobby.Service.Models;
 using JHobby.Service.Models.Dto;
-using JHobby.Website.Models;
 using JHobby.Website.Models.ViewModels;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace JHobby.Website.Controllers.Api
 {
-	[Route("[controller]/[action]")]			
+    [Route("[controller]/[action]")]			
 	[ApiController]
 	public class ActivityApiController : ControllerBase
 	{

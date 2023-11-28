@@ -1,4 +1,4 @@
-﻿namespace JHobby.Website.Models
+﻿namespace JHobby.Website.Models.ViewModels
 {
     public class MemberMsgViewModel
     {
