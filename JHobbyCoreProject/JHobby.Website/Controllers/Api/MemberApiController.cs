@@ -1,4 +1,5 @@
-﻿using JHobby.Service.Interfaces;
+﻿using AutoMapper;
+using JHobby.Service.Interfaces;
 using JHobby.Service.Models;
 using JHobby.Website.Models.ViewModels;
 using Microsoft.AspNetCore.Http;
