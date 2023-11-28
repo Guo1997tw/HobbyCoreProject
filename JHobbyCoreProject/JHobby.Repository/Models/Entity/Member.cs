@@ -21,7 +21,7 @@ public partial class Member
 
     public DateTime? Birthday { get; set; }
 
-    public string? AcitveCity { get; set; }
+    public string? ActiveCity { get; set; }
 
     public string? ActiveArea { get; set; }
 
