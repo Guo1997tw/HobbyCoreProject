@@ -1,7 +1,10 @@
 ﻿@model ActivityPageViewModel
 
 @section Styles {
-
+    <!-- Bootstrap DateTime Picker -->
+    <link rel="stylesheet" href="~/assets/css/bootstrap-datetimepicker.min.css">
+    <!-- Fancybox CSS -->
+    <link rel="stylesheet" href="~/assets/plugins/fancybox/jquery.fancybox.min.css">
 }
 
 @{
@@ -10,15 +13,14 @@
 
 <partial name="_BreadcrumbPartial" />
 
-<body>
     <!-- Main Wrapper -->
-    <div class="main-wrapper venue-coach-details">
+<div id="activity" class="main-wrapper venue-coach-details">
         <!--Galler Slider Section-->
         <div class="bannergallery-section">
             <div class="main-gallery-slider owl-carousel owl-theme">
-                <div class="gallery-widget-item">
-                    <a href="~/assets/img/gallery/gallery1/gallery-01.png" data-fancybox="gallery1">
-                        <img class="img-fluid" alt="Image" src="~/assets/img/gallery/gallery1/gallery-01.png">
+            <div class="gallery-widget-item">
+                    <a href="~/assets/img/gallery/gallery1/gallery-01.png"  data-fancybox="gallery1">
+                    <img class="img-fluid" alt="Image" src="~/assets/img/gallery/gallery1/gallery-01.png">
                     </a>
                 </div>
                 <div class="gallery-widget-item">
@@ -59,63 +61,13 @@
         <div class="venue-info white-bg d-block">
             <div class="container">
                 <div class="row">
-                    <div class="col-12 col-sm-12 col-md-12 col-lg-6">
-                        <h1 class="d-flex align-items-center justify-content-start">[[活動名稱]]<span class="d-flex justify-content-center align-items-center"><i class="fas fa-check-double"></i></span></h1>
+                    <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+                    <h1 class="d-flex align-items-center justify-content-start">{{activity.activityName}}</h1>
                         <ul class="d-sm-flex justify-content-start align-items-center">
-                            <li><i class="feather-map-pin"></i>[[活動地點]]</li>
-                            <li><i class="feather-phone-call"></i>[[報名開始日期]]</li>
-                            <li><i class="feather-phone-call"></i>[[報名截止時間]]</li>                           
-                        </ul>
-                    </div>
-                    @* <div class="col-12 col-sm-12 col-md-12 col-lg-6 text-right">
-                    <ul class="social-options float-lg-end d-sm-flex justify-content-start align-items-center">
-                    <li><a href="javascript:void(0);"><i class="feather-share-2"></i>Share</a></li>
-                    <li><a href="javascript:void(0);" class="favour-adds"><i class="feather-star"></i>Add to favourite</a></li>
-                    <li class="venue-review-info d-flex justify-content-start align-items-center">
-                    <span class="d-flex justify-content-center align-items-center">5.0</span>
-                    <div class="review">
-                    <div class="rating">
-                    <i class="fas fa-star filled"></i>
-                    <i class="fas fa-star filled"></i>
-                    <i class="fas fa-star filled"></i>
-                    <i class="fas fa-star filled"></i>
-                    <i class="fas fa-star filled"></i>
-                    </div>
-                    <p class="mb-0"><a href="javascript:;">15 Reviews</a></p>
-                    </div>
-                    <i class="fa-regular fa-comments"></i>
-                    </li>
+                        <li><i class="feather-map-pin"></i>{{activity.activityLocation}}</li>
+                        <li><i class="feather-clock"></i>活動開始日期：{{activity.startTime}}</li>
+                        <li><i class="feather-clock"></i>活動截止日期：{{activity.joinDeadLine}}</li>
                     </ul>
-                    </div> *@
-                </div>
-                <hr>
-                <div class="row bottom-row d-flex align-items-center">
-                    <div class="col-12 col-sm-12 col-md-6 col-lg-6">
-                        <ul class="d-sm-flex details">
-                            <li>
-                                <div class="profile-pic">
-                                    <a href="javascript:void(0);" class="venue-type"><img class="img-fluid" src="~/assets/img/icons/venue-type.svg" alt="Icon"></a>
-                                </div>
-                                <div class="ms-2">
-                                    <p>Venue Type</p>
-                                    <h6 class="mb-0">Indoor</h6>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="profile-pic">
-                                    <a href="javascript:void(0);"><img class="img-fluid" src="~/assets/img/profiles/avatar-01.jpg" alt="Icon"></a>
-                                </div>
-                                <div class="ms-2">
-                                    <p>Added By</p>
-                                    <h6 class="mb-0">Hendry Williams</h6>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="col-12 col-sm-12 col-md-6 col-lg-6">
-                        @* <div class="d-flex float-sm-end align-items-center">
-                        <p class="d-inline-block me-2 mb-0">Starts From :</p><h3 class="primary-text mb-0 d-inline-block">$150<span>/ hr</span></h3>
-                        </div> *@
                     </div>
                 </div>
             </div>
@@ -129,12 +81,7 @@
                     <div class="col-12 col-sm-12 col-md-12 col-lg-8">
                         <div class="venue-options white-bg mb-4">
                             <ul class="clearfix">
-                                <li class="active"><a href="#overview">Overview</a></li>
-                                @* <li><a href="#includes">Includes</a></li> *@
-                                @* <li><a href="#rules">Rules</a></li> *@
-                                @* <li><a href="#amenities">Amenities</a></li> *@
-                                @* <li><a href="#gallery">Gallery</a></li> *@
-                                @* <li><a href="#reviews">Reviews</a></li> *@
+                                <li><a href="#overview">介紹</a></li>
                                 <li><a href="#comments">留言版</a></li>
                                 <li><a href="#location">地圖</a></li>
                             </ul>
@@ -151,7 +98,7 @@
                                 <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-overview">
                                     <div class="accordion-body">
                                         <div class="text show-more-height">
-                                            <p>[活動內容]</p>
+                                        <p>{{activity.activityNotes}}</p>
                                         </div>
                                         <div class="show-more d align-items-center primary-text"><i class="feather-plus-circle"></i>Show More</div>
                                     </div>
@@ -480,8 +427,9 @@
                                 </h4>
                                 <div id="panelsStayOpen-collapseSeven" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-location">
                                     <div class="accordion-body">
+                                    <input type="button" v-on:click="test()" value="測試" />
                                         <div class="google-maps">
-                                            <iframe width="100%" height="300" frameborder="0" src="https://www.google.com/maps?q=台中市北區崇德路一段629號11樓之2&hl=zh-TW&z=18&t=p&output=embed "></iframe>
+                                        <iframe width="100%" height="300" frameborder="0" v-bind:src="resultSrc"></iframe>
                                         </div>
                                         @* <div class="dull-bg d-flex justify-content-start align-items-center mt-3">
                                         <div class="white-bg me-2">
@@ -1119,17 +1067,17 @@
         <!-- /Add Review Modal -->
     </div>
     <!-- /Main Wrapper -->
-</body>
 
 @section Scripts {
-    <!-- 使用Carousel -->
     <!-- Bootstrap DateTime Picker -->
     <script src="~/assets/js/moment.min.js"></script>
     <script src="~/assets/js/bootstrap-datetimepicker.min.js"></script>
-
-    <!-- Custom JS -->
-    <script src="~/assets/js/script.js"></script>
-
+    <!-- Fancybox JS -->
+    <script src="~/assets/plugins/fancybox/jquery.fancybox.min.js"></script>
+    <!-- Sticky Sidebar JS -->
+    <script src="~/assets/plugins/theia-sticky-sidebar/ResizeSensor.js"></script>
+    <script src="~/assets/plugins/theia-sticky-sidebar/theia-sticky-sidebar.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.6.0/axios.min.js" integrity="sha512-WrdC3CE9vf1nBf58JHepuWT4x24uTacky9fuzw2g/3L9JkihgwZ6Cfv+JGTtNyosOhEmttMtEZ6H3qJWfI7gIQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/3.3.4/vue.global.min.js"></script>
     <script>
         const ratingApp = Vue.createApp({
@@ -1139,6 +1087,37 @@
                 }
             },
         }).mount("#ratingApp")
+        const activity = Vue.createApp({
+            data() { 
+                return {
+                    activity: { "activityId": 1, "categoryId": 5, "categoryTypeId": 2, "activityName": "歡樂打籃球", "activityLocation": "台北市中正區徐州路2-1號", "startTime": "2023-12-15T00:00:00", "joinDeadLine": "2023-11-30T00:00:00", "activityNotes": "全場籃球", "imageName": null, "activityImages": [{ "activityImageId": 1, "activityId": 1, "imageName": "1Image01", "isCover": true, "uploadTime": "2023-11-10T00:00:00", "activity": null }, { "activityImageId": 2, "activityId": 1, "imageName": "1Image02", "isCover": false, "uploadTime": "2023-11-10T00:00:00", "activity": null }, { "activityImageId": 3, "activityId": 1, "imageName": "1Image03", "isCover": false, "uploadTime": "2023-11-10T00:00:00", "activity": null }] },
+                    resultSrc:"",
+                    mapencoded:""
+                }
+            },
+            mounted() {
+                let _this = this;
+                //_this.QueryActivity();
+            },
+            methods: {
+                QueryActivity() {
+                    let _this = this;
+                    axios.get("/ActivityApi/ActivitySearch/1")
+                        .then(res => {
+                            _this.activity = res.data;
+                        })
+                        .catch(err => alert(err));
+                },
+                test() {
+                    let _this = this;
+                    let strSrc1 = "https://www.google.com/maps?q=";
+                    let strSrc2 = encodeURI(_this.activity.activityLocation);
+                    let strSrc3 = "&hl=zh-TW&z=18&t=p&output=embed";
+                    _this.resultSrc = strSrc1 + strSrc2 + strSrc3;
+                }
+            }
+        }).mount("#activity")
+        Jhobby_ShowMore();
 
     </script>
 }
