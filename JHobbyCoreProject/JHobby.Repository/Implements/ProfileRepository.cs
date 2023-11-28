@@ -29,7 +29,7 @@ namespace JHobby.Repository.Implements
 				MemberId = m.MemberId,
 				NickName = m.NickName,
 				Gender = m.Gender,
-				AcitveCity = m.AcitveCity,
+				AcitveCity = m.ActiveCity,
 				PersonalProfile = m.PersonalProfile,
 				HeadShot = m.HeadShot,
 				Fraction = m.Scores.Average(x=> x.Fraction),
