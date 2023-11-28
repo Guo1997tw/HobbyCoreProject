@@ -96,7 +96,7 @@
                     </div>
                     <!--/報名紀錄-->
                     <!-- 心願單 -->
-                    <div class="col-xl-5 col-lg-12 d-flex flex-fill">
+                    <div class="col-xl-5 col-lg-12 d-flex flex-fill" id="idWishListCard">
                         <div class="card dashboard-card academy-card.flex-fill">
                             <div class="card-header card-header-info">
                                 <div class="card-header-inner">
@@ -136,112 +136,21 @@
                                     <div class="table-responsive dashboard-table-responsive">
                                         <table class="table dashboard-card-table">
                                             <tbody>
-                                                <tr>
+                                                <tr v-for="(card, index) in wishListCard"
+                                                    :key="index">
                                                     <td>
                                                         <div class="academy-info academy-info">
                                                             <a href="/user-bookings.html" class="academy-img">
                                                                 <img src="~/assets/img/booking/booking-03.jpg" alt="Booking">
                                                             </a>
                                                             <div class="academy-content">
-                                                                <h6><a href="/user-bookings.html">粉紅泡泡破滅Party</a></h6>
-                                                                <p>尚餘可參加人數: 1人</p>
+                                                                <h6><a href="/user-bookings.html">{{card.activityName}}</a></h6>
+                                                                <p>尚餘可參加人數 : {{card.surplusQuota}}人</p>
                                                             </div>
                                                         </div>
                                                     </td>
                                                     <td class="paid-edit">
-                                                        <span><i class="feather-edit"></i> 報名中</span>
-                                                    </td>
-                                                    <td>
-                                                        <div class="academy-icon">
-                                                            <a href="/user-bookings.html">
-                                                                <i class="feather-chevron-right"></i>
-                                                            </a>
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        <div class="academy-info academy-info">
-                                                            <a href="/user-bookings.html" class="academy-img">
-                                                                <img src="~/assets/img/booking/booking-03.jpg" alt="Booking">
-                                                            </a>
-                                                            <div class="academy-content">
-                                                                <h6><a href="/user-bookings.html">Wing Sports Academy</a></h6>
-                                                                <p>10 Bookings</p>
-                                                            </div>
-                                                        </div>
-                                                    </td>
-                                                    <td class="paid-edit">
-                                                        <span><i class="feather-edit"></i> Paid</span>
-                                                    </td>
-                                                    <td>
-                                                        <div class="academy-icon">
-                                                            <a href="/user-bookings.html">
-                                                                <i class="feather-chevron-right"></i>
-                                                            </a>
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        <div class="academy-info academy-info">
-                                                            <a href="/user-bookings.html" class="academy-img">
-                                                                <img src="~/assets/img/booking/booking-03.jpg" alt="Booking">
-                                                            </a>
-                                                            <div class="academy-content">
-                                                                <h6><a href="/user-bookings.html">Wing Sports Academy</a></h6>
-                                                                <p>10 Bookings</p>
-                                                            </div>
-                                                        </div>
-                                                    </td>
-                                                    <td class="paid-edit">
-                                                        <span><i class="feather-edit"></i> Paid</span>
-                                                    </td>
-                                                    <td>
-                                                        <div class="academy-icon">
-                                                            <a href="/user-bookings.html">
-                                                                <i class="feather-chevron-right"></i>
-                                                            </a>
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        <div class="academy-info academy-info">
-                                                            <a href="/user-bookings.html" class="academy-img">
-                                                                <img src="~/assets/img/booking/booking-04.jpg" alt="Booking">
-                                                            </a>
-                                                            <div class="academy-content">
-                                                                <h6><a href="/user-bookings.html">Feather Badminton</a></h6>
-                                                                <p>20 Bookings</p>
-                                                            </div>
-                                                        </div>
-                                                    </td>
-                                                    <td class="paid-edit">
-                                                        <span><i class="feather-edit"></i> Paid</span>
-                                                    </td>
-                                                    <td>
-                                                        <div class="academy-icon">
-                                                            <a href="/user-bookings.html">
-                                                                <i class="feather-chevron-right"></i>
-                                                            </a>
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        <div class="academy-info academy-info">
-                                                            <a href="/user-bookings.html" class="academy-img">
-                                                                <img src="~/assets/img/booking/booking-05.jpg" alt="Booking">
-                                                            </a>
-                                                            <div class="academy-content">
-                                                                <h6><a href="/user-bookings.html">Bwing Sports Academy</a></h6>
-                                                                <p>30 Bookings</p>
-                                                            </div>
-                                                        </div>
-                                                    </td>
-                                                    <td class="paid-edit">
-                                                        <span><i class="feather-edit"></i> Paid</span>
+                                                        <span><i class="feather-edit"></i>{{card.activityStatus}}</span>
                                                     </td>
                                                     <td>
                                                         <div class="academy-icon">
@@ -483,6 +392,28 @@
         })
             .component("paginate", VuejsPaginateNext)
             .mount("#idNowJoinAGroupCard");
+
+        const wishListCardApp = Vue.createApp({
+            data() {
+                return {
+                    wishListCard: [],
+                }
+            },
+            mounted() {
+                this.axiosWishListCard();
+            },
+            methods:
+            {
+                axiosWishListCard: function () {
+                    var _this = this;
+                    axios
+                        .get(`https://localhost:7097/WishListApi/GetWishListAll`)
+                        .then(response => _this.wishListCard = response.data)
+                        .catch(error => alert(`發生錯誤${error}`))
+
+                }
+            }
+        }).mount("#idWishListCard");
 
         // 過去活動卡片顯示
         const pastJoinAGroup = Vue.createApp({
