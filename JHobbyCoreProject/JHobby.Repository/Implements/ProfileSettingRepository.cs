@@ -32,7 +32,7 @@ namespace JHobby.Repository.Implements
                     Gender = m.Gender,
                     IdentityCard = m.IdentityCard,
                     Birthday = m.Birthday,
-                    AcitveCity = m.AcitveCity,
+                    AcitveCity = m.ActiveCity,
                     ActiveArea = m.ActiveArea,
                     Address = m.Address,
                     Phone = m.Phone,
