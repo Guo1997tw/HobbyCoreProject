@@ -58,8 +58,6 @@ namespace JHobby.Repository.Implements
 		/// <exception cref="NotImplementedException"></exception>
 		public IQueryable<ActivityPageDto> GetActivityPageById(int id)
 		{
-			var queryResult = _jhobbyContext.Activities.FirstOrDefault(a => a.ActivityId == id);
-
 			return _jhobbyContext.Activities.Include(a => a.ActivityImages).Where(a => a.ActivityId == id).Select(a => new ActivityPageDto
 			{
 				ActivityId = a.ActivityId,
@@ -72,19 +70,6 @@ namespace JHobby.Repository.Implements
 				ActivityNotes = a.ActivityNotes,
 				ActivityImages = a.ActivityImages,
 			});
-
-            //var queryResult = _jhobbyContext.Activities.Join(_jhobbyContext.ActivityImages, a => a.ActivityId, ai => ai.ActivityId, (a, ai) => new ActivityPageDto
-            //{
-            //	ActivityId = a.ActivityId,
-            //	ActivityLocation = a.ActivityLocation,
-            //             CategoryId = a.CategoryId,
-            //             CategoryTypeId = a.CategoryTypeId,
-            //             ActivityName = a.ActivityName,
-            //             StartTime = a.StartTime,
-            //             JoinDeadLine = a.JoinDeadLine,
-            //             ActivityNotes = a.ActivityNotes,
-            //	ImageName = ai.ImageName
-            //         });
         }
 	}
 }

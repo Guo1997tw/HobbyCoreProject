@@ -53,11 +53,13 @@ namespace JHobby.Service.Implements
 		/// <param name="id"></param>
 		/// <param name="activityName"></param>
 		/// <returns></returns>
-		public ActivityPageModel GetActivityPageSearch(int id)
+		public IQueryable<ActivityPageModel> GetActivityPageSearch(int id)
 		{
 			var result = _activityRepository.GetActivityPageById(id);
 
-			return _mapper.Map<ActivityPageModel>(result);
-		}
+			var mapper = _mapper.ProjectTo<ActivityPageModel>(result);
+
+			return mapper;
+        }
 	}
 }

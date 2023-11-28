@@ -18,13 +18,11 @@ namespace JHobby.Website.Controllers.Api
 	{
 		private readonly IActivityService _activityService;
 		private readonly IMapper _mapper;
-		private readonly IActivityRepository _activityRepository;
 
-        public ActivityApiController (IActivityService activityService, IMapper mapper, IActivityRepository activityRepository)
+        public ActivityApiController (IActivityService activityService, IMapper mapper)
 		{
 			_activityService = activityService;
 			_mapper = mapper;
-			_activityRepository = activityRepository;
 
         }
 
@@ -64,15 +62,11 @@ namespace JHobby.Website.Controllers.Api
 		[HttpGet("{id}")]
 		public ActionResult <ActivityPageViewModel> ActivitySearch(int id)
 		{
-			return Ok(_activityRepository.GetActivityPageById(id));
+			var result = _activityService.GetActivityPageSearch(id);
 
-			// var result = _activityService.GetActivityPageSearch(id);
+			var mapper = _mapper.ProjectTo<ActivityPageViewModel>(result);
 
-            // if (result == null) return NotFound("找不到此紀錄!!");
-
-			// return _mapper.Map<ActivityPageViewModel>(result);
-
-			
+            return Ok(mapper);
 		}
 	}
 }

@@ -1,4 +1,6 @@
-﻿namespace JHobby.Website.Models.ViewModels
+﻿using JHobby.Repository.Models.Entity;
+
+namespace JHobby.Website.Models.ViewModels
 {
 	public class ActivityPageViewModel
 	{
@@ -19,5 +21,7 @@
 		public string? ActivityNotes { get; set; }
 
         public string ImageName { get; set; } = null!;
+
+        public virtual ICollection<ActivityImage> ActivityImages { get; set; } = new List<ActivityImage>();
     }
 }

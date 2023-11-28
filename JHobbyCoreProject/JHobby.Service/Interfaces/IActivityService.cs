@@ -17,6 +17,6 @@ namespace JHobby.Service.Interfaces
 		/// </summary>
 		/// <param name="id"></param>
 		/// <returns></returns>
-		public ActivityPageModel GetActivityPageSearch(int id);
+		public IQueryable<ActivityPageModel> GetActivityPageSearch(int id);
 	}
 }
