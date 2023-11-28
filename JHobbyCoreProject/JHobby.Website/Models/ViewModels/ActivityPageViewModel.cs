@@ -20,8 +20,6 @@ namespace JHobby.Website.Models.ViewModels
 
 		public string? ActivityNotes { get; set; }
 
-        public string ImageName { get; set; } = null!;
-
         public virtual ICollection<ActivityImage> ActivityImages { get; set; } = new List<ActivityImage>();
     }
 }
