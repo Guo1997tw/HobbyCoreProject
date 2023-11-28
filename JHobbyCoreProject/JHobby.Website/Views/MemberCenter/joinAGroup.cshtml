@@ -50,7 +50,7 @@
                                     <div class="table-responsive dashboard-table-responsive">
                                         <table class="table dashboard-card-table">
                                             <tbody>
-                                                <tr v-for="(card, index) in nowJoinAGroupCard"
+                                                <tr v-for="(card, index) in filterCard"
                                                     :key="index">
                                                     <td>
                                                         <div class="academy-info">
@@ -112,21 +112,20 @@
                                 <div class="col-md-6">
                                     <div class="tab-footer" id="tablepage">
                                         <div class="dataTables_paginate paging_simple_numbers" id="DataTables_Table_1_paginate">
-                                            <ul class="pagination">
-                                                <li class="paginate_button page-item previous disabled" id="DataTables_Table_1_previous">
-                                                    <a href="#" aria-controls="DataTables_Table_1" data-dt-idx="0" tabindex="0" class="page-link">
-                                                        <i class="feather-chevrons-left"></i>
-                                                    </a>
-                                                </li>
-                                                <li class="paginate_button page-item active">
-                                                    <a href="#" aria-controls="DataTables_Table_1" data-dt-idx="1" tabindex="0" class="page-link">1</a>
-                                                </li>
-                                                <li class="paginate_button page-item next disabled" id="DataTables_Table_1_next">
-                                                    <a href="#" aria-controls="DataTables_Table_1" data-dt-idx="2" tabindex="0" class="page-link">
-                                                        <i class="feather-chevrons-right"></i>
-                                                    </a>
-                                                </li>
-                                            </ul>
+                                            <!-- 心願單分頁功能 -->
+                                            <paginate :page-count="total"
+                                                      :click-handler="pageClick"
+                                                      :prev-text="'<'"
+                                                      :next-text="'>'"
+                                                      :container-class="'pagination'">
+                                                <span slot="prevContent">
+                                                    <i class="feather-chevrons-left"></i>
+                                                </span>
+                                                <span slot="nextContent">
+                                                    <i class="feather-chevrons-right"></i>
+                                                </span>
+                                            </paginate>
+                                            <!-- /心願單分頁功能 -->
                                         </div>
                                     </div>
                                 </div>
@@ -136,7 +135,7 @@
                                     <div class="table-responsive dashboard-table-responsive">
                                         <table class="table dashboard-card-table">
                                             <tbody>
-                                                <tr v-for="(card, index) in wishListCard"
+                                                <tr v-for="(card, index) in filterCard"
                                                     :key="index">
                                                     <td>
                                                         <div class="academy-info academy-info">
@@ -360,7 +359,7 @@
             data() {
                 return {
                     nowJoinAGroupCard: [],
-                    countPerPage: 1,
+                    countPerPage: 2,
                     pageNumber: 1,
                 };
             },
@@ -374,7 +373,7 @@
                 filterCard() {
                     var start = (this.pageNumber - 1) * this.countPerPage;
                     var end = start + this.countPerPage;
-                    return this.PastJoinAGroupCard.slice(start, end);
+                    return this.nowJoinAGroupCard.slice(start, end);
                 }
             },
             methods: {
@@ -393,14 +392,27 @@
             .component("paginate", VuejsPaginateNext)
             .mount("#idNowJoinAGroupCard");
 
+        //心願單活動顯示
         const wishListCardApp = Vue.createApp({
             data() {
                 return {
                     wishListCard: [],
+                    countPerPage: 2,
+                    pageNumber: 1,
                 }
             },
             mounted() {
                 this.axiosWishListCard();
+            },
+            computed: {
+                total() {
+                    return Math.ceil(this.wishListCard.length / this.countPerPage);
+                },
+                filterCard() {
+                    var start = (this.pageNumber - 1) * this.countPerPage;
+                    var end = start + this.countPerPage;
+                    return this.wishListCard.slice(start, end);
+                }
             },
             methods:
             {
@@ -411,9 +423,14 @@
                         .then(response => _this.wishListCard = response.data)
                         .catch(error => alert(`發生錯誤${error}`))
 
+                },
+                pageClick(num) {
+                    this.pageNumber = num;
                 }
             }
-        }).mount("#idWishListCard");
+        })
+            .component("paginate", VuejsPaginateNext)
+            .mount("#idWishListCard");
 
         // 過去活動卡片顯示
         const pastJoinAGroup = Vue.createApp({
