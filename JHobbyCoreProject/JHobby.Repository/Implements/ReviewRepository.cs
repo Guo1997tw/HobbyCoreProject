@@ -122,12 +122,20 @@ namespace JHobby.Repository.Implements
                 ImageName = ai.ImageName,
                 IsCover = ai.IsCover,
                 ActivityImageId = ai.ActivityImageId,
-            }).Where(d => d.LeaderId == id);
+            }).Where(d => d.LeaderId == id && d.ReviewStatus == "0");
             return Dtoresult;
         }
-        //public UpdateReviewStatus(int ActivityId, int ApplicantId, ReviewStatusDto reviewStatusDto)
-        //{
-        //    var queryResult = _jhobbyContext.
-        //}
+        public bool UpdateReviewStatus(int ActivityId, int ApplicantId, ReviewStatusDto reviewStatusDto)
+        {
+            var queryResult = _jhobbyContext.ActivityUsers.FirstOrDefault(au => au.ActivityId == ActivityId && au.MemberId == ApplicantId);
+
+            if (queryResult != null)
+            {
+                queryResult.ReviewStatus=reviewStatusDto.ReviewStatus;
+                _jhobbyContext.SaveChanges();
+                return true;
+            }
+            return false;
+        }
     }
 }

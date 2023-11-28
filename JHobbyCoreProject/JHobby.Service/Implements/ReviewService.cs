@@ -1,4 +1,5 @@
 ﻿using JHobby.Repository.Interfaces;
+using JHobby.Repository.Models.Dto;
 using JHobby.Service.Interfaces;
 using JHobby.Service.Models;
 using System;
@@ -39,6 +40,8 @@ namespace JHobby.Service.Implements
         public IEnumerable<ReviewModel> GetById(int id)
 		{
 			var resultDto= _reviewRepository.GetById(id);
+			
+			
 			var reviewModel = resultDto.Select(dto => new ReviewModel
             {
                 ActivityId = dto.ActivityId,
@@ -53,8 +56,20 @@ namespace JHobby.Service.Implements
                 NickName = dto.NickName,
                 HeadShot = dto.HeadShot,
             });
+
             return reviewModel;
 		}
 
-    }
+		public bool UpdateReviewStatus(int ActivityId, int ApplicantId, ReviewStatusModel reviewStatusModel)
+		{
+            var mapping = new ReviewStatusDto
+            {
+                ReviewStatus = reviewStatusModel.ReviewStatus,
+            };
+            _reviewRepository.UpdateReviewStatus(ActivityId, ApplicantId, mapping);
+
+             return true;
+        }
+
+	}
 }

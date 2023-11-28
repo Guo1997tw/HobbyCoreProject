@@ -1,13 +1,18 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using JHobby.Website.Models.ViewModels;
+using Microsoft.AspNetCore.Mvc;
 
 namespace JHobby.Website.Controllers
 {
 	public class ReviewController : Controller
 	{
-		public IActionResult Apply()
+		public IActionResult Apply(int id)
 		{
 			ViewData["Title"] = "報名審核";
-			return View();
+            return View(new ReviewIdViewModel
+            {
+                LeaderId = id
+            });
+            
 		}
 	}
 }

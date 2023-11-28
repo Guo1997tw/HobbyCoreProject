@@ -1,4 +1,5 @@
-﻿using JHobby.Service.Models;
+﻿using JHobby.Repository.Models.Dto;
+using JHobby.Service.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,5 +12,6 @@ namespace JHobby.Service.Interfaces
 	{
 		public IEnumerable<ReviewModel> GetReviewList();
 		public IEnumerable<ReviewModel> GetById(int id);
-	}
+        public bool UpdateReviewStatus(int ActivityId, int ApplicantId, ReviewStatusModel reviewStatusModel);
+    }
 }
