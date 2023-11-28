@@ -51,7 +51,8 @@ namespace JHobby.Website
             builder.Services.AddScoped<ICommonService, CommonService>();
             builder.Services.AddScoped<IReviewRepository, ReviewRepository>();
             builder.Services.AddScoped<IReviewService, ReviewService>();
-
+            builder.Services.AddScoped<IUpdateProfileSettingRepository, UpdateProfileSettingRepository>();
+            builder.Services.AddScoped<IUpdateProfileSettingService, UpdateProfileSettingService>();
 
             var app = builder.Build();
 

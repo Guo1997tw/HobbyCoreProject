@@ -39,33 +39,5 @@ namespace JHobby.Repository.Implements
 				// 其他需要的資料
 			};
 		}
-		public bool Update(int id, ProfileSettingDto updateProfileSettingDto)
-		{
-			// 根据 id 获取现有的个人配置
-			var result = _iProfileSettingRepository.GetById(id);
-
-			if (result == null)
-			{
-				return false;
-			}
-
-			// 更新字符串类型的字段
-			var dto = new ProfileSettingDto
-			{
-				HeadShot = updateProfileSettingDto.UpdatedHeadShot,
-				NickName = updateProfileSettingDto.UpdatedNickName,
-                ActiveCity = updateProfileSettingDto.UpdatedAcitveCity,
-				ActiveArea = updateProfileSettingDto.UpdatedActiveArea,
-				Address = updateProfileSettingDto.UpdatedAddress,
-				Phone = updateProfileSettingDto.UpdatedPhone,
-				PersonalProfile = updateProfileSettingDto.UpdatedPersonalProfile
-			};
-
-			// 其他类型的更新...
-
-			_iProfileSettingRepository.Update(id, dto);
-
-			return true;
-		}
 	}
 }

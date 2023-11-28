@@ -9,14 +9,14 @@ using System.Threading.Tasks;
 
 namespace JHobby.Repository.Implements
 {
-    public class ProfileSettingRepository : IProfileSettingRepository
-    {
-        private readonly JhobbyContext _jhobbyContext;
+	public class ProfileSettingRepository : IProfileSettingRepository
+	{
+		private readonly JhobbyContext _jhobbyContext;
 
-        public ProfileSettingRepository(JhobbyContext jhobbyContext)
-        {
-            _jhobbyContext = jhobbyContext;
-        }
+		public ProfileSettingRepository(JhobbyContext jhobbyContext)
+		{
+			_jhobbyContext = jhobbyContext;
+		}
 
 		public ProfileSettingDto GetById(int id)
 		{
@@ -32,7 +32,7 @@ namespace JHobby.Repository.Implements
 				Gender = result.Gender,
 				IdentityCard = result.IdentityCard,
 				Birthday = result.Birthday,
-				AcitveCity = result.AcitveCity,
+                ActiveCity = result.ActiveCity,
 				ActiveArea = result.ActiveArea,
 				Address = result.Address,
 				Phone = result.Phone,
@@ -43,3 +43,5 @@ namespace JHobby.Repository.Implements
 		}
 	}
 }
+	
+

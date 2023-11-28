@@ -8,8 +8,8 @@ using System.Threading.Tasks;
 
 namespace JHobby.Service.Interfaces
 {
-    public interface IProfileSettingService//顯示會員資訊介面Service
+    public interface IUpdateProfileSettingService
     {
-        public ProfileSettingModel GetById(int id);
-	}
+        public bool Update(int id, UpdateProfileSettingModel updateProfileSettingModel);
+    }
 }
