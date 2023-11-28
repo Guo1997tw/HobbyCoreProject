@@ -24,5 +24,21 @@ namespace JHobby.Service.Implements
                 _ => "未知"
             };
         }
+
+        /// <summary>
+        /// 轉換ReviewStatus
+        /// </summary>
+        /// <param name="ConvertReviewStatus"></param>
+        /// <returns></returns>
+        public string ConvertReviewStatus(string status) 
+        {
+            return status switch
+            {
+                "0" => "未通過",
+                "1" => "通過",
+                "2" => "待審核",
+                _ => "未知"
+            };
+        }
     }
 }
