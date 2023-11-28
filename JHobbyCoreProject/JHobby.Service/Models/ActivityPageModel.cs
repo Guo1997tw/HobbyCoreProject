@@ -1,4 +1,5 @@
-﻿using JHobby.Repository.Models.Entity;
+﻿using JHobby.Repository.Models.Dto;
+using JHobby.Repository.Models.Entity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,6 +26,6 @@ namespace JHobby.Service.Models
 
 		public string? ActivityNotes { get; set; }
 
-        public virtual ICollection<ActivityImage> ActivityImages { get; set; } = new List<ActivityImage>();
+        public virtual IEnumerable<ActivityImageModel> ActivityImages { get; set; } = new List<ActivityImageModel>();
     }
 }

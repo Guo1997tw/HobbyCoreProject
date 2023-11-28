@@ -53,13 +53,42 @@ namespace JHobby.Service.Implements
 		/// <param name="id"></param>
 		/// <param name="activityName"></param>
 		/// <returns></returns>
-		public IQueryable<ActivityPageModel> GetActivityPageSearch(int id)
+		public ActivityPageModel GetActivityPageSearch(int id)
 		{
 			var result = _activityRepository.GetActivityPageById(id);
 
-			var mapper = _mapper.ProjectTo<ActivityPageModel>(result);
+			var mapper = new ActivityPageModel
+			{
+                ActivityId = result.ActivityId,
+                ActivityLocation = result.ActivityLocation,
+                CategoryId = result.CategoryId,
+                CategoryTypeId = result.CategoryTypeId,
+                ActivityName = result.ActivityName,
+                StartTime = result.StartTime,
+                JoinDeadLine = result.JoinDeadLine,
+                ActivityNotes = result.ActivityNotes,
+                ActivityImages = result.ActivityImages.Select(ai => new ActivityImageModel
+                {
+                    ActivityImageId = ai.ActivityImageId,
+					AiActivity = ai.AiActivity,
+                    ImageName = ai.ImageName,
+                    IsCover = ai.IsCover,
+                    UploadTime = ai.UploadTime,
+                })
+            };
 
-			return mapper;
+            return mapper;
+		}
+
+		public IEnumerable<MemberMsgModel> GetMemberMsg()
+		{
+			return _activityRepository.GetMsgList().Select(r => new MemberMsgModel
+            {
+				HeadShot = r.HeadShot,
+				MessageTime = r.MessageTime,
+				NickName = r.NickName,
+				MessageText = r.MessageText,
+			});
         }
-	}
+    }
 }

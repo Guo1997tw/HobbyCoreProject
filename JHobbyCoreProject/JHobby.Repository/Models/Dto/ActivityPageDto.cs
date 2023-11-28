@@ -25,6 +25,6 @@ namespace JHobby.Repository.Models.Dto
 
 		public string? ActivityNotes { get; set; }
 
-        public virtual ICollection<ActivityImage> ActivityImages { get; set; } = new List<ActivityImage>();
+        public virtual IEnumerable<ActivityImageDto> ActivityImages { get; set; } = new List<ActivityImageDto>();
     }
 }

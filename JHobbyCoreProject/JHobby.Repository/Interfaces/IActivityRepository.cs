@@ -16,6 +16,12 @@ namespace JHobby.Repository.Interfaces
 		/// </summary>
 		/// <param name="id"></param>
 		/// <returns></returns>
-		public IQueryable<ActivityPageDto> GetActivityPageById(int id);
-	}
+		public ActivityPageDto GetActivityPageById(int id);
+
+        /// <summary>
+        /// 會員留言板查詢
+        /// </summary>
+        /// <returns></returns>
+        public IEnumerable<MemberMsgDto> GetMsgList();
+    }
 }
