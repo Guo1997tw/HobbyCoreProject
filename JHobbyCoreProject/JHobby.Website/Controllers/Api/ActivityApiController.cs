@@ -29,7 +29,7 @@ namespace JHobby.Website.Controllers.Api
 		[HttpPost]
 		public IActionResult InsertActivity(ActivityBuildViewModel activityBuildViewModel)
 		{
-			var mapper = new ActivityBuildModel			
+			var mapper = new ActivityBuildModel
 			{
 				ActivityName = activityBuildViewModel.ActivityName,
 				ActivityCity = activityBuildViewModel.ActivityCity,
@@ -46,10 +46,9 @@ namespace JHobby.Website.Controllers.Api
 				ActivityStatus = activityBuildViewModel.ActivityStatus,
 				Payment = activityBuildViewModel.Payment,
 				Created = activityBuildViewModel.Created
-
 			};
 
-			var result=_activityService.CreateActivityBuild(mapper);
+			var result = _activityService.CreateActivityBuild(mapper);
 
 			return Ok(result);
 		}
@@ -64,7 +63,25 @@ namespace JHobby.Website.Controllers.Api
 		{
 			var result = _activityService.GetActivityPageSearch(id);
 
-			var mapper = _mapper.ProjectTo<ActivityPageViewModel>(result);
+			var mapper = new ActivityPageViewModel
+			{
+                ActivityId = result.ActivityId,
+                ActivityLocation = result.ActivityLocation,
+                CategoryId = result.CategoryId,
+                CategoryTypeId = result.CategoryTypeId,
+                ActivityName = result.ActivityName,
+                StartTime = result.StartTime,
+                JoinDeadLine = result.JoinDeadLine,
+                ActivityNotes = result.ActivityNotes,
+                ActivityImages = result.ActivityImages.Select(ai => new ActivityImageViewModel
+                {
+                    ActivityImageId = ai.ActivityImageId,
+					AiActivity = ai.AiActivity,
+                    ImageName = ai.ImageName,
+                    IsCover = ai.IsCover,
+                    UploadTime = ai.UploadTime,
+                })
+            };
 
             return Ok(mapper);
 		}

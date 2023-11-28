@@ -6,6 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -25,8 +26,8 @@ namespace JHobby.Repository.Implements
 
 		public bool InsertActivityBuild(ActivityBuildDto activityBuildDto)
 		{
-			var mapper = new Activity			
-			{
+			var mapper = new Activity
+            {
 				ActivityName = activityBuildDto.ActivityName,
 				ActivityCity = activityBuildDto.ActivityCity,
 				ActivityArea = activityBuildDto.ActivityArea,
@@ -56,20 +57,32 @@ namespace JHobby.Repository.Implements
 		/// <param name="id"></param>
 		/// <returns></returns>
 		/// <exception cref="NotImplementedException"></exception>
-		public IQueryable<ActivityPageDto> GetActivityPageById(int id)
+		public ActivityPageDto GetActivityPageById(int id)
 		{
-			return _jhobbyContext.Activities.Include(a => a.ActivityImages).Where(a => a.ActivityId == id).Select(a => new ActivityPageDto
-			{
-				ActivityId = a.ActivityId,
-				ActivityLocation = a.ActivityLocation,
-				CategoryId = a.CategoryId,
-				CategoryTypeId = a.CategoryTypeId,
-				ActivityName = a.ActivityName,
-				StartTime = a.StartTime,
-				JoinDeadLine = a.JoinDeadLine,
-				ActivityNotes = a.ActivityNotes,
-				ActivityImages = a.ActivityImages,
-			});
+			var queryResult = _jhobbyContext.Activities
+				.Include(a => a.ActivityImages)
+				.Where(a => a.ActivityId == id)
+				.Select(a => new ActivityPageDto
+				{
+					ActivityId = a.ActivityId,
+					ActivityLocation = a.ActivityLocation,
+					CategoryId = a.CategoryId,
+					CategoryTypeId = a.CategoryTypeId,
+					ActivityName = a.ActivityName,
+					StartTime = a.StartTime,
+					JoinDeadLine = a.JoinDeadLine,
+					ActivityNotes = a.ActivityNotes,
+					ActivityImages = a.ActivityImages.Select(ai => new ActivityImageDto
+					{
+						ActivityImageId = ai.ActivityImageId,
+						AiActivity = ai.ActivityImageId,
+                        ImageName = ai.ImageName,
+						IsCover = ai.IsCover,
+						UploadTime = ai.UploadTime,
+					}).ToList()
+				}).FirstOrDefault();
+
+            return queryResult;
         }
 
 		/// <summary>
