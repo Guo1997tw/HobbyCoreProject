@@ -48,7 +48,7 @@ namespace JHobby.Website.Controllers.Api
             return Ok(viewModel);
         }
 
-        [HttpPut]
+        [HttpPut("{id}")]
         public ActionResult<UpdateProfileSettingViewModel> UpdateProfileSetting(int id, UpdateProfileSettingViewModel updateProfileSettingViewModel)
         {
             var mapper = new UpdateProfileSettingModel
