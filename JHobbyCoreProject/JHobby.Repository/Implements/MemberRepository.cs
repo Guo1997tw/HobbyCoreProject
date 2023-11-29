@@ -24,6 +24,7 @@ namespace JHobby.Repository.Implements
             {
                 Account = memberRegisterDto.Account,
                 HashPassword = memberRegisterDto.HashPassword,
+                SaltPassword = memberRegisterDto.SaltPassword,
                 Status = memberRegisterDto.Status,
                 CreationDate = memberRegisterDto.CreationDate,
             };

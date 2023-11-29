@@ -127,7 +127,7 @@
                     return alert("電子信箱格式有誤，請確認!!");
                 }
                 
-                if ((this.memberRegister.passwordConfirm === null) || (this.memberRegister.password !== this.memberRegister.passwordConfirm)) {
+                if ((this.memberRegister.passwordConfirm === null) || (this.memberRegister.hashPassword !== this.memberRegister.passwordConfirm)) {
                     return alert("密碼欄位需一致!!");
                 }
                 if (!this.memberRegister.policy) {

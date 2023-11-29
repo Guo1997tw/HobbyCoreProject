@@ -24,12 +24,12 @@ namespace JHobby.Service.Implements
         {
             var salt = RandomSalt();
             var hashPwd = HashPwdWithHMACSHA256(memberRegisterModel.HashPassword, salt);
-            var pwdSalt = $"{hashPwd}:{salt}";
 
             var mapper = new MemberRegisterDto
             {
                 Account = memberRegisterModel.Account,
-                HashPassword = pwdSalt,
+                HashPassword = hashPwd,
+                SaltPassword = salt,
                 Status = memberRegisterModel.Status,
                 CreationDate = memberRegisterModel.CreationDate,
             };
@@ -58,16 +58,25 @@ namespace JHobby.Service.Implements
             return false;
         }
 
-        private string RandomSalt(int size = 32)
+        private int RandomNumberSize(int minNum, int maxNum)
         {
-            using (var rng = new RNGCryptoServiceProvider())
-            {
-                var buffer = new byte[size];
+            byte[] intBytes = new byte[4];
 
-                rng.GetBytes(buffer);
+            RandomNumberGenerator.Fill(intBytes);
 
-                return Convert.ToBase64String(buffer);
-            }
+            int randomInt = BitConverter.ToInt32(intBytes, 0);
+
+            return Math.Abs(randomInt % (maxNum - minNum)) + minNum;
+        }
+
+        private string RandomSalt(int minNum = 8, int maxNum = 256)
+        {
+            int size = RandomNumberSize(minNum, maxNum);
+            var buffer = new byte[size];
+
+            RandomNumberGenerator.Fill(buffer);
+            
+            return Convert.ToBase64String(buffer);
         }
 
         private string HashPwdWithHMACSHA256(string password, string salt)
