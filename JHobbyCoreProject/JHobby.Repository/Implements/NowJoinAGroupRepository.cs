@@ -38,5 +38,25 @@ namespace JHobby.Repository.Implements
                 });
             return nowDto;
         }
+
+        public IEnumerable<NowJoinAGroupDto> GetNowJoinAGroupById(int memberId)
+        {
+            return _jhobbyContext.ActivityUsers
+                .Where(Au => Au.MemberId == memberId)
+                .Include(Au => Au.Activity)
+                .Include(Au => Au.Member)
+                .Select(a => new NowJoinAGroupDto
+                {
+                    ActivityId = a.ActivityId,
+                    ActivityName = a.Activity.ActivityName,
+                    ActivityUserId = a.ActivityUserId,
+                    ReviewStatus = a.ReviewStatus,
+                    ReviewTime = a.ReviewTime,
+                    CurrentPeople = a.Activity.CurrentPeople,
+                    MaxPeople = a.Activity.MaxPeople,
+                    NickName = a.Member.NickName,
+                    StartTime = a.Activity.StartTime,
+                });
+        }
     }
 }

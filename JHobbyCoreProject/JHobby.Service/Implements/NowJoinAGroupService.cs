@@ -39,5 +39,24 @@ namespace JHobby.Service.Implements
                     TimeConvert = _iCommonService.ConvertTime(s.StartTime).FirstOrDefault().TimeConvert
                 });
         }
+
+        public IEnumerable<NowJoinAGroupModel> GetNowJoinAGroupById(int memberId)
+        {
+            return _nowJoinAGroupRepository.GetNowJoinAGroupById(memberId)
+                .Select(s => new NowJoinAGroupModel
+                {
+                    ActivityUserId = s.ActivityUserId,
+                    ActivityId = s.ActivityId,
+                    MemberId = s.MemberId,
+                    ActivityName = s.ActivityName,
+                    ReviewStatus = _iCommonService.ConvertReviewStatus(s.ReviewStatus),
+                    ReviewTime = s.ReviewTime,
+                    CurrentPeople = s.CurrentPeople,
+                    MaxPeople = s.MaxPeople,
+                    NickName = s.NickName,
+                    DateConvert = _iCommonService.ConvertTime(s.StartTime).FirstOrDefault().DateConvert,
+                    TimeConvert = _iCommonService.ConvertTime(s.StartTime).FirstOrDefault().TimeConvert
+                });
+        }
     }
 }
