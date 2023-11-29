@@ -18,15 +18,16 @@ namespace JHobby.Repository.Implements
 			_jhobbyContext = jhobbyContext;
 		}
 
-		public bool InsertMemberRegister(MemberRegisterDto memberRegisterDto)
-		{
-			var mapper = new Member
-			{
-				Account = memberRegisterDto.Account,
-				Password = memberRegisterDto.Password,
-				Status = memberRegisterDto.Status,
-				CreationDate = memberRegisterDto.CreationDate,
-			};
+        public bool InsertMemberRegister(MemberRegisterDto memberRegisterDto)
+        {
+            var mapper = new Member
+            {
+                Account = memberRegisterDto.Account,
+                HashPassword = memberRegisterDto.HashPassword,
+                SaltPassword = memberRegisterDto.SaltPassword,
+                Status = memberRegisterDto.Status,
+                CreationDate = memberRegisterDto.CreationDate,
+            };
 
 			_jhobbyContext.Members.Add(mapper);
 			_jhobbyContext.SaveChanges();
@@ -38,6 +39,15 @@ namespace JHobby.Repository.Implements
 		{
 
 
+            return new MemberLoginDto
+            {
+                Account = queryResult.Account,
+                HashPassword = queryResult.HashPassword,
+                SaltPassword = queryResult.SaltPassword,
+            };
+        }
+    }
+}
 			{
 
 				var queryResult = _jhobbyContext.Members.FirstOrDefault(x => x.Account == account);

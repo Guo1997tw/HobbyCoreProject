@@ -27,20 +27,18 @@ namespace JHobby.Service.Implements
         public bool CreateMemberRegister(MemberRegisterModel memberRegisterModel)
         {
             var salt = RandomSalt();
-            var hashPwd = HashPwdWithHMACSHA256(memberRegisterModel.Password, salt);
-            var pwdSalt = $"{hashPwd}:{salt}";
+            var hashPwd = HashPwdWithHMACSHA256(memberRegisterModel.HashPassword, salt);
 
             var mapper = new MemberRegisterDto
             {
                 Account = memberRegisterModel.Account,
-                Password = pwdSalt,
+                HashPassword = hashPwd,
+                SaltPassword = salt,
                 Status = memberRegisterModel.Status,
                 CreationDate = memberRegisterModel.CreationDate,
             };
 
-            _memberRepository.InsertMemberRegister(mapper);
-
-            return true;
+            return _memberRepository.InsertMemberRegister(mapper) ? true : false;
         }
 
 
@@ -104,31 +102,35 @@ namespace JHobby.Service.Implements
 
             if(queryResult != null)
             {
-                var parts = queryResult.Password.Split(':');
+                var hashTemp = queryResult.HashPassword;
+                var saltTemp = queryResult.SaltPassword;
+                var hashPwd = HashPwdWithHMACSHA256(password, saltTemp);
 
-                if (parts.Length != 2) { return false; }
-
-                var saveHash = parts[0];
-                var saveSalt = parts[1];
-
-                var hashPwd = HashPwdWithHMACSHA256(password, saveSalt);
-
-                return hashPwd == saveHash;
+                return hashPwd == hashTemp;
             }
 
             return false;
         }
 
-        private string RandomSalt(int size = 32)
+        private int RandomNumberSize(int minNum, int maxNum)
         {
-            using (var rng = new RNGCryptoServiceProvider())
-            {
-                var buffer = new byte[size];
+            byte[] intBytes = new byte[4];
 
-                rng.GetBytes(buffer);
+            RandomNumberGenerator.Fill(intBytes);
 
-                return Convert.ToBase64String(buffer);
-            }
+            int randomInt = BitConverter.ToInt32(intBytes, 0);
+
+            return Math.Abs(randomInt % (maxNum - minNum)) + minNum;
+        }
+
+        private string RandomSalt(int minNum = 8, int maxNum = 256)
+        {
+            int size = RandomNumberSize(minNum, maxNum);
+            var buffer = new byte[size];
+
+            RandomNumberGenerator.Fill(buffer);
+            
+            return Convert.ToBase64String(buffer);
         }
 
         private string HashPwdWithHMACSHA256(string password, string salt)

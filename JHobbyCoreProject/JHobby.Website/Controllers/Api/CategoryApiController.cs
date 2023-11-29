@@ -1,4 +1,5 @@
-﻿using JHobby.Service.Interfaces;
+﻿using AutoMapper;
+using JHobby.Service.Interfaces;
 using JHobby.Service.Models;
 using JHobby.Website.Models.ViewModels;
 using Microsoft.AspNetCore.Http;
@@ -12,24 +13,18 @@ namespace JHobby.Website.Controllers.Api
 	public class CategoryApiController : ControllerBase
 	{
 		private readonly ICategoryService _categoryService;
+		private readonly IMapper _mapper;
 
-		public CategoryApiController(ICategoryService categoryService)
+		public CategoryApiController(ICategoryService categoryService, IMapper mapper)
 		{
 			_categoryService = categoryService;
+			_mapper = mapper;
 		}
 
 		[HttpGet]
-		public ActionResult<IEnumerable<CategoryViewModel>> GetCategoriesAll()
+		public IEnumerable<CategoryViewModel> GetCategoriesAll()
 		{
-			var servicesDto = _categoryService.GetList();
-
-			var viewModel = servicesDto.Select(dto => new CategoryViewModel
-			{
-				CategoryId = dto.CategoryId,
-				CategoryName = dto.CategoryName
-			});
-
-			return Ok(viewModel);
+			return _mapper.Map<IEnumerable<CategoryViewModel>>(_categoryService.GetList());
 		}
 
 		[HttpGet("{id}")]

@@ -1,4 +1,5 @@
-﻿using JHobby.Repository.Interfaces;
+﻿using AutoMapper;
+using JHobby.Repository.Interfaces;
 using JHobby.Repository.Models.Dto;
 using JHobby.Repository.Models.Entity;
 using System;
@@ -12,28 +13,36 @@ namespace JHobby.Repository.Implements
     public class CategoryRepository : ICategoryRepository
     {
         private readonly JhobbyContext _jhobbyContext;
+        private readonly IMapper _mapper;
 
-        public CategoryRepository(JhobbyContext jhobbyContext)
+        public CategoryRepository(JhobbyContext jhobbyContext, IMapper mapper)
         {
             _jhobbyContext = jhobbyContext;
+            _mapper = mapper;
         }
 
         public IEnumerable<CategoryDto> GetAll()
         {
-            var queryResult = _jhobbyContext.Categories.Select(c => new CategoryDto
-            {
-                CategoryId = c.CategoryId,
-                CategoryName = c.CategoryName
-            }).ToList();
+            var queryResult = _jhobbyContext.Categories.ToList();
 
-            return queryResult;
+            var mappingResult = _mapper.Map<IEnumerable<CategoryDto>>(queryResult);
+
+            return mappingResult;
+
+            //var queryResult = _jhobbyContext.Categories.Select(c => new CategoryDto
+            //{
+            //    CategoryId = c.CategoryId,
+            //    CategoryName = c.CategoryName
+            //}).ToList();
+
+            //return queryResult;
         }
        
 
         public CategoryDto? GetById(int id)
         {
             var queryResult = _jhobbyContext.Categories.FirstOrDefault(c => c.CategoryId == id);
-
+            
             if (queryResult == null) { return null; }
 
 			return new CategoryDto
@@ -43,14 +52,23 @@ namespace JHobby.Repository.Implements
             };
         }
 
+            //return new CategoryDto
+            //{
+            //    CategoryId = queryResult.CategoryId,
+            //    CategoryName = queryResult.CategoryName,
+            //};
+		}
+
         public bool Insert(CreateCategoryDto createCategoryDto)
         {
-            var mapper = new Category
-            {
-                CategoryName = createCategoryDto.CategoryName
-            };
+            //var mapper = new Category
+            //{
+            //    CategoryName = createCategoryDto.CategoryName
+            //};
 
-            _jhobbyContext.Categories.Add(mapper);
+            var mappingResult = _mapper.Map<Category>(createCategoryDto);
+
+			_jhobbyContext.Categories.Add(mappingResult);
             _jhobbyContext.SaveChanges();
 
             return true;

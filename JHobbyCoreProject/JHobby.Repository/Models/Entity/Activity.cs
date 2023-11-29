@@ -9,9 +9,9 @@ public partial class Activity
 
     public int MemberId { get; set; }
 
-    public int CategoryId { get; set; }     
+    public int CategoryId { get; set; }
 
-    public int CategoryTypeId { get; set; }     
+    public int CategoryTypeId { get; set; }
 
     public string ActivityName { get; set; } = null!;
 
