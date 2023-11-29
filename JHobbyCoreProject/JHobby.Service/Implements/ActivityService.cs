@@ -60,6 +60,7 @@ namespace JHobby.Service.Implements
 			var mapper = new ActivityPageModel
 			{
                 ActivityId = result.ActivityId,
+				MemberId = result.MemberId,
                 ActivityLocation = result.ActivityLocation,
                 CategoryId = result.CategoryId,
                 CategoryTypeId = result.CategoryTypeId,

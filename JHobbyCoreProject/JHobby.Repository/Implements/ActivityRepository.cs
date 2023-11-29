@@ -65,6 +65,7 @@ namespace JHobby.Repository.Implements
 				.Select(a => new ActivityPageDto
 				{
 					ActivityId = a.ActivityId,
+					MemberId = a.MemberId,
 					ActivityLocation = a.ActivityLocation,
 					CategoryId = a.CategoryId,
 					CategoryTypeId = a.CategoryTypeId,

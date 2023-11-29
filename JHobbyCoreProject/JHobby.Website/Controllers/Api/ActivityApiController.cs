@@ -65,6 +65,7 @@ namespace JHobby.Website.Controllers.Api
 			var mapper = new ActivityPageViewModel
 			{
                 ActivityId = result.ActivityId,
+				MemberId = result.MemberId,
                 ActivityLocation = result.ActivityLocation,
                 CategoryId = result.CategoryId,
                 CategoryTypeId = result.CategoryTypeId,
