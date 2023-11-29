@@ -84,7 +84,7 @@
 							</div>
 							<div class="listing-content">
 								<h3 class="listing-title">
-									<a href="venue-details.html">{{item.activityName}}</a>
+									<a v-bind:href='"@Url.Action("ActivityPage","Activity")/"+item.activityId'>{{item.activityName}}</a>
 								</h3>
 								<div class="listing-details-group">
 									<p>[活動簡述]</p>

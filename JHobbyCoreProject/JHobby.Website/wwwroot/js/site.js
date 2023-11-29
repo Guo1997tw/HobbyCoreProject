@@ -102,9 +102,9 @@ function Jhobby_Animation() {
 function Jhobby_ShowMore(){
 	$(".show-more").on('click', function () {
 		if ($(".text").hasClass("show-more-height")) {
-			$(this).html('<i class="feather-minus-circle"></i>Show Less');
+			$(this).html('<i class="feather-minus-circle"></i>顯示較少');
 		} else {
-			$(this).html('<i class="feather-plus-circle"></i>Show More');
+			$(this).html('<i class="feather-plus-circle"></i>顯示較多');
 		}
 
 		$(".text").toggleClass("show-more-height");

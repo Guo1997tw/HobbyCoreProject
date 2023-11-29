@@ -1,6 +1,4 @@
-﻿@model ActivityPageViewModel
-
-@section Styles {
+﻿@section Styles {
     <!-- Bootstrap DateTime Picker -->
     <link rel="stylesheet" href="~/assets/css/bootstrap-datetimepicker.min.css">
     <!-- Fancybox CSS -->
@@ -8,6 +6,7 @@
 }
 
 @{
+    int ActivityId = ViewBag.ActivityId;
     ViewData["Title"] = "活動頁面";
 }
 
@@ -100,263 +99,11 @@
                                         <div class="text show-more-height">
                                         <p>{{activity.activityNotes}}</p>
                                         </div>
-                                        <div class="show-more d align-items-center primary-text"><i class="feather-plus-circle"></i>Show More</div>
+                                    <div class="show-more d align-items-center primary-text"><i class="feather-plus-circle"></i>顯示較多</div>
                                     </div>
                                 </div>
                             </div>
-                            @* <div class="accordion-item mb-4" id="includes">
-                            <h4 class="accordion-header" id="panelsStayOpen-includes">
-                            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="false" aria-controls="panelsStayOpen-collapseTwo">
-                            Includes
-                            </button>
-                            </h4>
-                            <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-includes">
-                            <div class="accordion-body">
-                            <ul class="clearfix">
-                            <li><i class="feather-check-square"></i>Badminton Racket Unlimited</li>
-                            <li><i class="feather-check-square"></i>Bats</li>
-                            <li><i class="feather-check-square"></i>Hitting Machines</li>
-                            <li><i class="feather-check-square"></i>Multiple Courts</li>
-                            <li><i class="feather-check-square"></i>Spare Players</li>
-                            <li><i class="feather-check-square"></i>Instant Racket</li>
-                            <li><i class="feather-check-square"></i>Green Turfs</li>
-                            </ul>
-                            </div>
-                            </div>
-                            </div> *@
-                            @* <div class="accordion-item mb-4" id="rules">
-                            <h4 class="accordion-header" id="panelsStayOpen-rules">
-                            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseThree" aria-expanded="false" aria-controls="panelsStayOpen-collapseThree">
-                            Rules
-                            </button>
-                            </h4>
-                            <div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-rules">
-                            <div class="accordion-body">
-                            <ul>
-                            <li><p><i class="feather-alert-octagon"></i>Non Marking Shoes are recommended not mandatory for Badminton.</p></li>
-                            <li><p><i class="feather-alert-octagon"></i>A maximum number of members per booking per badminton court is admissible fixed by Venue Vendors</p></li>
-                            <li><p><i class="feather-alert-octagon"></i>No pets, no seeds, no gum, no glass, no hitting or swinging outside of the cage</p></li>
-                            </ul>
-                            </div>
-                            </div>
-                            </div> *@
-                            @* <div class="accordion-item mb-4" id="amenities">
-                            <h4 class="accordion-header" id="panelsStayOpen-amenities">
-                            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseFour" aria-expanded="false" aria-controls="panelsStayOpen-collapseFour">
-                            Amenities
-                            </button>
-                            </h4>
-                            <div id="panelsStayOpen-collapseFour" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-amenities">
-                            <div class="accordion-body">
-                            <ul class="d-md-flex justify-content-between align-items-center">
-                            <li><i class="fa fa-check-circle" aria-hidden="true"></i>Parking</li>
-                            <li><i class="fa fa-check-circle" aria-hidden="true"></i>Drinking Water</li>
-                            <li><i class="fa fa-check-circle" aria-hidden="true"></i>First Aid</li>
-                            <li><i class="fa fa-check-circle" aria-hidden="true"></i>Change Room</li>
-                            <li><i class="fa fa-check-circle" aria-hidden="true"></i>Shower</li>
-                            </ul>
-                            </div>
-                            </div>
-                            </div> *@
-                            @* <div class="accordion-item mb-4" id="gallery">
-                            <h4 class="accordion-header" id="panelsStayOpen-gallery">
-                            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseFive" aria-expanded="false" aria-controls="panelsStayOpen-collapseFive">
-                            Gallery
-                            </button>
-                            </h4>
-                            <div id="panelsStayOpen-collapseFive" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-gallery">
-                            <div class="accordion-body">
-                            <div class="owl-carousel gallery-slider owl-theme">
-                            <a class="corner-radius-10" href="~/assets/img/gallery/gallery2/gallery-thumb-01.jpg" data-fancybox="gallery3">
-                            <img class="img-fluid corner-radius-10" alt="Image" src="~/assets/img/gallery/gallery2/gallery-01.jpg">
-                            </a>
-                            <a class="corner-radius-10" href="~/assets/img/gallery/gallery2/gallery-thumb-02.jpg" data-fancybox="gallery3">
-                            <img class="img-fluid corner-radius-10" alt="Image" src="~/assets/img/gallery/gallery2/gallery-02.jpg">
-                            </a>
-                            <a class="corner-radius-10" href="~/assets/img/gallery/gallery2/gallery-thumb-03.jpg" data-fancybox="gallery3">
-                            <img class="img-fluid corner-radius-10" alt="Image" src="~/assets/img/gallery/gallery2/gallery-03.jpg">
-                            </a>
-                            <a class="corner-radius-10" href="~/assets/img/gallery/gallery2/gallery-thumb-01.jpg" data-fancybox="gallery3">
-                            <img class="img-fluid corner-radius-10" alt="Image" src="~/assets/img/gallery/gallery2/gallery-01.jpg">
-                            </a>
-                            <a class="corner-radius-10" href="~/assets/img/gallery/gallery2/gallery-thumb-02.jpg" data-fancybox="gallery3">
-                            <img class="img-fluid corner-radius-10" alt="Image" src="~/assets/img/gallery/gallery2/gallery-02.jpg">
-                            </a>
-                            <a class="corner-radius-10" href="~/assets/img/gallery/gallery2/gallery-thumb-03.jpg" data-fancybox="gallery3">
-                            <img class="img-fluid corner-radius-10" alt="Image" src="~/assets/img/gallery/gallery2/gallery-03.jpg">
-                            </a>
-                            </div>
-                            </div>
-                            </div>
-                            </div> *@
-                            @* <div class="accordion-item mb-4" id="reviews">
-                            <div class="accordion-header" id="panelsStayOpen-reviews">
-                            <div class="accordion-button d-flex justify-content-between align-items-center" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseSix" aria-controls="panelsStayOpen-collapseSix">
-                            <span class="w-75 mb-0">
-                            Reviews
-                            </span>
-                            <a href="javascript:void(0);" class="btn btn-gradient pull-right write-review add-review" data-bs-toggle="modal" data-bs-target="#add-review">Write a review</a>
-                            </div>
-                            </div>
-                            <div id="panelsStayOpen-collapseSix" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-reviews">
-                            <div class="accordion-body">
-                            <div class="row review-wrapper">
-                            <div class="col-lg-3">
-                            <div class="ratings-info corner-radius-10 text-center">
-                            <h3>4.8</h3>
-                            <span>out of 5.0</span>
-                            <div class="rating">
-                            <i class="fas fa-star filled"></i>
-                            <i class="fas fa-star filled"></i>
-                            <i class="fas fa-star filled"></i>
-                            <i class="fas fa-star filled"></i>
-                            <i class="fas fa-star filled"></i>
-                            </div>
-                            </div>
-                            </div>
-                            <div class="col-lg-9">
-                            <div class="recommended">
-                            <h5>Recommended by 97% of Players</h5>
-                            <div class="row">
-                            <div class="col-12 col-sm-12 col-md-4 col-lg-4 mb-3">
-                            <p class="mb-0">Quality of service</p>
-                            <ul>
-                            <li><i></i></li>
-                            <li><i></i></li>
-                            <li><i></i></li>
-                            <li><i></i></li>
-                            <li><i></i></li>
-                            <li><span>5.0</span></li>
-                            </ul>
-                            </div>
-                            <div class="col-12 col-sm-12 col-md-4 col-lg-4 mb-3">
-                            <p class="mb-0">Quality of service</p>
-                            <ul>
-                            <li><i></i></li>
-                            <li><i></i></li>
-                            <li><i></i></li>
-                            <li><i></i></li>
-                            <li><i></i></li>
-                            <li><span>5.0</span></li>
-                            </ul>
-                            </div>
-                            <div class="col-12 col-sm-12 col-md-4 col-lg-4 mb-3">
-                            <p class="mb-0">Quality of service</p>
-                            <ul>
-                            <li><i></i></li>
-                            <li><i></i></li>
-                            <li><i></i></li>
-                            <li><i></i></li>
-                            <li><i></i></li>
-                            <li><span>5.0</span></li>
-                            </ul>
-                            </div>
-                            <div class="col-12 col-sm-12 col-md-4 col-lg-4">
-                            <p class="mb-0">Quality of service</p>
-                            <ul>
-                            <li><i></i></li>
-                            <li><i></i></li>
-                            <li><i></i></li>
-                            <li><i></i></li>
-                            <li><i></i></li>
-                            <li><span>5.0</span></li>
-                            </ul>
-                            </div>
-                            <div class="col-12 col-sm-12 col-md-4 col-lg-4">
-                            <p class="mb-0">Quality of service</p>
-                            <ul>
-                            <li><i></i></li>
-                            <li><i></i></li>
-                            <li><i></i></li>
-                            <li><i></i></li>
-                            <li><i></i></li>
-                            <li><span>5.0</span></li>
-                            </ul>
-                            </div>
-                            </div>
-                            </div>
-                            </div>
-                            </div>
-                            <!-- Review Box -->
-                            <div class="review-box d-md-flex">
-                            <div class="review-profile">
-                            <img src="~/assets/img/profiles/avatar-01.jpg" alt="User">
-                            </div>
-                            <div class="review-info">
-                            <h6 class="mb-2 tittle">Amanda Booked on 06/04/2023</h6>
-                            <div class="rating">
-                            <i class="fas fa-star filled"></i>
-                            <i class="fas fa-star filled"></i>
-                            <i class="fas fa-star filled"></i>
-                            <i class="fas fa-star filled"></i>
-                            <i class="fas fa-star filled"></i>
-                            <span class="">5.0</span>
-                            </div>
-                            <span class="success-text"><i class="feather-check"></i>Yes, I would book again.</span>
-                            <h6>Absolutely perfect</h6>
-                            <p>If you are looking for a perfect place for friendly matches with your friends or a competitive match, It is the best place.</p>
-                            <ul class="review-gallery clearfix">
-                            <li>
-                            <a href="~/assets/img/gallery/gallery-thumb-01.jpg" data-fancybox="gallery">
-                            <img class="img-fluid" alt="Image" src="~/assets/img/gallery/gallery-01.jpg">
-                            </a>
-                            </li>
-                            <li>
-                            <a href="~/assets/img/gallery/gallery-thumb-02.jpg" data-fancybox="gallery">
-                            <img class="img-fluid" alt="Image" src="~/assets/img/gallery/gallery-02.jpg">
-                            </a>
-                            </li>
-                            <li>
-                            <a href="~/assets/img/gallery/gallery-thumb-03.jpg" data-fancybox="gallery">
-                            <img class="img-fluid" alt="Image" src="~/assets/img/gallery/gallery-03.jpg">
-                            </a>
-                            </li>
-                            <li>
-                            <a href="~/assets/img/gallery/gallery-thumb-04.jpg" data-fancybox="gallery">
-                            <img class="img-fluid" alt="Image" src="~/assets/img/gallery/gallery-04.jpg">
-                            </a>
-                            </li>
-                            <li>
-                            <a href="~/assets/img/gallery/gallery-thumb-05.jpg" data-fancybox="gallery">
-                            <img class="img-fluid" alt="Image" src="~/assets/img/gallery/gallery-05.jpg">
-                            </a>
-                            </li>
-                            </ul>
-                            <span class="post-date">Sent on 11/03/2023</span>
-                            </div>
-                            </div>
-                            <!-- /Review Box -->
-                            <!-- Review Box -->
-                            <div class="review-box d-md-flex">
-                            <div class="review-profile">
-                            <img src="~/assets/img/profiles/avatar-06.jpg" alt="User">
-                            </div>
-                            <div class="review-info">
-                            <h6 class="mb-2 tittle">Amanda Booked on 06/04/2023</h6>
-                            <div class="rating">
-                            <i class="fas fa-star filled"></i>
-                            <i class="fas fa-star filled"></i>
-                            <i class="fas fa-star filled"></i>
-                            <i class="fas fa-star filled"></i>
-                            <i class="fas fa-star filled"></i>
-                            <span class="">5.0</span>
-                            </div>
-                            <span class="warning-text"><i class="feather-x"></i>No, I dont want to book again.</span>
-                            <h6>Awesome. Its very convenient to play.</h6>
-                            <p>If you are looking for a perfect place for friendly matches with your friends or a competitive match, It is the best place.</p>
-                            <div class="dull-bg">
-                            <p>Experience badminton excellence at Badminton Academy. Top-notch facilities, well-maintained courts, and a friendly atmosphere. Highly recommended for an exceptional playing experience</p>
-                            </div>
-                            </div>
-                            </div>
-                            <!-- /Review Box -->
-                            <div class="d-flex justify-content-center mt-1">
-                            <button type="button" class="btn btn-load-more d-flex justify-content-center align-items-center">Load More<i class="feather-plus-square"></i></button>
-                            </div>
-                            </div>
-                            </div>
-                            </div> *@
-                            <div class="accordion-item" id="comments">
+                            <div class="accordion-item mb-4" id="comments">
                                 <h4 class="accordion-header" id="panelsStayOpen-location">
                                     <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-comments" aria-expanded="false" aria-controls="panelsStayOpen-collapseSeven">
                                         留言版
@@ -370,56 +117,36 @@
                                                 @* <h4 class="mb-0">Comments (45)</h4> *@
                                                 <hr>
                                                 <ul>
-                                                    <li class="author-group d-md-flex align-items-center justify-content-start">
+                                                    <li class="author-group d-md-flex align-items-center justify-content-start" v-for="item in msgBord">
                                                         <div class="profile-pic">
                                                             <a href="javascript:void(0);" class="d-inline-block"><img src="~/assets/img/profiles/avatar-04.jpg" alt="User"></a>
                                                         </div>
                                                         <div class="info">
                                                             <div class="head d-flex align-items-center justify-content-start">
-                                                                <h5>[[留言人暱稱]]</h5>
+                                                                <h5>{{item.nickName}}</h5>
                                                                 <i class="fa-solid fa-circle"></i>
-                                                                <span>[[留言時間-YYYY-MM-DD]]</span>
+                                                                <span>{{item.messageTime}}</span>
                                                             </div>
-                                                            <p>[[留言內容]]</p>
-                                                            <a href="#">Reply</a>
-                                                        </div>
-                                                    </li>
-                                                    <li class="author-group d-md-flex align-items-center justify-content-start">
-                                                        <div class="profile-pic">
-                                                            <a href="javascript:void(0);" class="d-inline-block"><img src="~/image/avatar-05.jpg" alt="User"></a>
-                                                        </div>
-                                                        <div class="info">
-                                                            <div class="head d-flex align-items-center justify-content-start">
-                                                                <h5>Besant</h5>
-                                                                <i class="fa-solid fa-circle"></i>
-                                                                <span>15 Mar 2023</span>
-                                                            </div>
-                                                            <p>Lorem Ipsum available but the or majority have that suffered alteration words which don't look even slightly believable. There are many available but the majority the have suffered alteration. There are many variations of dumm passages Lorem majority the have the suffered alteration.</p>
-                                                            <a href="#">Reply</a>
-                                                        </div>
-                                                    </li>
-                                                    <li class=" author-group d-md-flex align-items-center justify-content-start">
-                                                        <div class="profile-pic">
-                                                            <a href="javascript:void(0);" class="d-inline-block"><img src="~/assets/img/profiles/avatar-06.jpg" alt="User"></a>
-                                                        </div>
-                                                        <div class="info">
-                                                            <div class="head d-flex align-items-center justify-content-start">
-                                                                <h5>Maria Fin</h5>
-                                                                <i class="fa-solid fa-circle"></i>
-                                                                <span>15 Mar 2023</span>
-                                                            </div>
-                                                            <p>Lorem Ipsum available but the or majority have that suffered alteration words which don't look even slightly believable. There are many available but the majority the have suffered alteration. There are many variations of dumm passages Lorem majority the have the suffered alteration.</p>
-                                                            <a href="#">Reply</a>
+                                                            <p>{{item.messageText}}</p>
+                                                            @* <a href="#">Reply</a> *@
                                                         </div>
                                                     </li>
                                                 </ul>
                                             </div>
+                                        <div class="card new-comment white-bg">
+                                            <form>                                               
+                                                <div class="mb-3">
+                                                    <textarea class="form-control" id="comments" rows="3" placeholder="留下您想說的話"></textarea>
+                                                </div>
+                                                <button type="submit" class="btn btn-gradient">送出</button>
+                                            </form>
+                                        </div>
                                         </div>
                                         <!-- /Comments -->
                                     </div>
                                 </div>
                             </div>
-                            <div class="accordion-item" id="location">
+                            <div class="accordion-item mb-4" id="location">
                                 <h4 class="accordion-header" id="panelsStayOpen-location">
                                     <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseSeven" aria-expanded="false" aria-controls="panelsStayOpen-collapseSeven">
                                         地圖
@@ -427,19 +154,9 @@
                                 </h4>
                                 <div id="panelsStayOpen-collapseSeven" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-location">
                                     <div class="accordion-body">
-                                    <input type="button" v-on:click="test()" value="測試" />
                                         <div class="google-maps">
                                         <iframe width="100%" height="300" frameborder="0" v-bind:src="resultSrc"></iframe>
                                         </div>
-                                        @* <div class="dull-bg d-flex justify-content-start align-items-center mt-3">
-                                        <div class="white-bg me-2">
-                                        <i class="fas fa-location-arrow"></i>
-                                        </div>
-                                        <div class="">
-                                        <h6>Our Venue Location</h6>
-                                        <p>70 Bright St New York, USA</p>
-                                        </div>
-                                        </div> *@
                                     </div>
                                 </div>
                             </div>
@@ -531,12 +248,12 @@
                                     <a href="javascript:void(0);"><img class="img-fluid" alt="User" src="~/image/avatar-05.jpg"></a>
                                 </div>
                                 <div class="">
-                                    <h5>Hendry Williams</h5>
-                                    <div id="ratingApp" class="rating">
+                                <h5>{{profile.nickName}}</h5>
+                                    <div class="rating">
                                         <i class="fas fa-star filled" v-for="n in Math.floor(star)"></i>
                                         <i class="fas fa-star-half-alt" v-if="!Number.isInteger(star)"></i>
-                                        <span class="">5.0</span>
-                                        <span>(20 Reviews)</span>
+                                        <i class="fa-regular fa-star filled" v-for="x in 5-Math.ceil(star)"></i>
+                                        <span>({{star}})</span>
                                     </div>
                                 </div>
                             </div>
@@ -596,9 +313,8 @@
                         <div class="row">
                             <div class="featured-slider-group ">
                                 <div class="owl-carousel featured-venues-slider owl-theme">
-
                                     <!-- Featured Item -->
-                                    <div class="featured-venues-item aos" data-aos="fade-up">
+                                <div class="featured-venues-item aos" data-aos="fade-up" v-for="item in activityList">
                                         <div class="listing-item mb-0">
                                             <div class="listing-img">
                                                 <a href="venue-details.html">
@@ -607,7 +323,7 @@
                                                 <div class="fav-item-venues">
                                                     <span class="tag tag-yellow">精選</span>
                                                     <div class="list-reviews">
-                                                        <a href="javascript:void(0)" class="fav-icon">
+                                                    <a href="javascript:void(0)" v-on:click="Fav(item.activityId)" v-bind:class="wish.includes(item.activityId)? 'fav-icon selected':'fav-icon'">
                                                             <i class="feather-heart"></i>
                                                         </a>
                                                     </div>
@@ -615,19 +331,19 @@
                                             </div>
                                             <div class="listing-content">
                                                 <h3 class="listing-title">
-                                                    <a href="venue-details.html">[活動名稱1]</a>
+                                                    <a href="venue-details.html">{{item.activityName}}</a>
                                                 </h3>
                                                 <div class="listing-details-group">
                                                     <p>[活動簡述]</p>
                                                     <ul>
                                                         <li>
                                                             <span>
-                                                                <i class="feather-map-pin"></i>[活動地點]
+                                                                <i class="feather-map-pin"></i>{{item.activityLocation}}
                                                             </span>
                                                         </li>
                                                         <li>
                                                             <span>
-                                                                <i class="feather-calendar"></i>報名截止日 : <span class="primary-text">[2023-11-30]</span>
+                                                                <i class="feather-calendar"></i>報名截止日 : <span class="primary-text">{{item.joinDeadLine}}</span>
                                                             </span>
                                                         </li>
                                                     </ul>
@@ -635,148 +351,7 @@
                                                 <div class="listing-button">
                                                     <div class="listing-venue-owner">
                                                         <a class="navigation" href="coach-detail.html">
-                                                            <img src="~/assets/img/profiles/avatar-01.jpg" alt="Venue">陳O翰
-                                                        </a>
-                                                    </div>
-                                                    <a href="venue-details.html" class="user-book-now"><span><i class="feather-calendar me-2"></i></span>參加</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- /Featured Item -->
-                                    <!-- Featured Item -->
-                                    <div class="featured-venues-item aos" data-aos="fade-up">
-                                        <div class="listing-item mb-0">
-                                            <div class="listing-img">
-                                                <a href="venue-details.html">
-                                                    <img src="~/assets/img/venues/venues-01.jpg" alt="Venue">
-                                                </a>
-                                                <div class="fav-item-venues">
-                                                    <span class="tag tag-yellow">精選</span>
-                                                    <div class="list-reviews">
-                                                        <a href="javascript:void(0)" class="fav-icon">
-                                                            <i class="feather-heart"></i>
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="listing-content">
-                                                <h3 class="listing-title">
-                                                    <a href="venue-details.html">[活動名稱2]</a>
-                                                </h3>
-                                                <div class="listing-details-group">
-                                                    <p>[活動簡述]</p>
-                                                    <ul>
-                                                        <li>
-                                                            <span>
-                                                                <i class="feather-map-pin"></i>[活動地點]
-                                                            </span>
-                                                        </li>
-                                                        <li>
-                                                            <span>
-                                                                <i class="feather-calendar"></i>報名截止日 : <span class="primary-text">[2023-11-30]</span>
-                                                            </span>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                                <div class="listing-button">
-                                                    <div class="listing-venue-owner">
-                                                        <a class="navigation" href="coach-detail.html">
-                                                            <img src="~/assets/img/profiles/avatar-01.jpg" alt="Venue">張O翔
-                                                        </a>
-                                                    </div>
-                                                    <a href="venue-details.html" class="user-book-now"><span><i class="feather-calendar me-2"></i></span>參加</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- /Featured Item -->
-                                    <!-- Featured Item -->
-                                    <div class="featured-venues-item aos" data-aos="fade-up">
-                                        <div class="listing-item mb-0">
-                                            <div class="listing-img">
-                                                <a href="venue-details.html">
-                                                    <img src="~/assets/img/venues/venues-01.jpg" alt="Venue">
-                                                </a>
-                                                <div class="fav-item-venues">
-                                                    <span class="tag tag-yellow">精選</span>
-                                                    <div class="list-reviews">
-                                                        <a href="javascript:void(0)" class="fav-icon">
-                                                            <i class="feather-heart"></i>
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="listing-content">
-                                                <h3 class="listing-title">
-                                                    <a href="venue-details.html">[活動名稱3]</a>
-                                                </h3>
-                                                <div class="listing-details-group">
-                                                    <p>[活動簡述]</p>
-                                                    <ul>
-                                                        <li>
-                                                            <span>
-                                                                <i class="feather-map-pin"></i>[活動地點]
-                                                            </span>
-                                                        </li>
-                                                        <li>
-                                                            <span>
-                                                                <i class="feather-calendar"></i>報名截止日 : <span class="primary-text">[2023-11-30]</span>
-                                                            </span>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                                <div class="listing-button">
-                                                    <div class="listing-venue-owner">
-                                                        <a class="navigation" href="coach-detail.html">
-                                                            <img src="~/assets/img/profiles/avatar-01.jpg" alt="Venue">陳O瑜
-                                                        </a>
-                                                    </div>
-                                                    <a href="venue-details.html" class="user-book-now"><span><i class="feather-calendar me-2"></i></span>參加</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- /Featured Item -->
-                                    <!-- Featured Item -->
-                                    <div class="featured-venues-item aos" data-aos="fade-up">
-                                        <div class="listing-item mb-0">
-                                            <div class="listing-img">
-                                                <a href="venue-details.html">
-                                                    <img src="~/assets/img/venues/venues-01.jpg" alt="Venue">
-                                                </a>
-                                                <div class="fav-item-venues">
-                                                    <span class="tag tag-yellow">精選</span>
-                                                    <div class="list-reviews">
-                                                        <a href="javascript:void(0)" class="fav-icon">
-                                                            <i class="feather-heart"></i>
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="listing-content">
-                                                <h3 class="listing-title">
-                                                    <a href="venue-details.html">[活動名稱4]</a>
-                                                </h3>
-                                                <div class="listing-details-group">
-                                                    <p>[活動簡述]</p>
-                                                    <ul>
-                                                        <li>
-                                                            <span>
-                                                                <i class="feather-map-pin"></i>[活動地點]
-                                                            </span>
-                                                        </li>
-                                                        <li>
-                                                            <span>
-                                                                <i class="feather-calendar"></i>報名截止日 : <span class="primary-text">[2023-11-30]</span>
-                                                            </span>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                                <div class="listing-button">
-                                                    <div class="listing-venue-owner">
-                                                        <a class="navigation" href="coach-detail.html">
-                                                            <img src="~/assets/img/profiles/avatar-01.jpg" alt="Venue">謝O州
+                                                            <img src="~/assets/img/profiles/avatar-01.jpg" alt="Venue">{{item.nickName}}
                                                         </a>
                                                     </div>
                                                     <a href="venue-details.html" class="user-book-now"><span><i class="feather-calendar me-2"></i></span>參加</a>
@@ -788,197 +363,6 @@
                                 </div>
                             </div>
                         </div>
-
-                        @* <div class="owl-carousel featured-venues-slider owl-theme">
-                        <!-- Featured Item -->
-                        <div class="featured-venues-item">
-                        <div class="listing-item mb-0">
-                        <div class="listing-img">
-                        <a href="venue-details.html">
-                        <img src="~/assets/img/venues/venues-01.jpg" alt="Venue">
-                        </a>
-                        </div>
-                        <div class="listing-content">
-                        <div class="list-reviews">
-                        <div class="d-flex align-items-center">
-                        <span class="rating-bg">4.2</span><span>300 Reviews</span>
-                        </div>
-                        <a href="javascript:void(0)" class="fav-icon">
-                        <i class="feather-heart"></i>
-                        </a>
-                        </div>
-                        <h3 class="listing-title">
-                        <a href="venue-details.html">Sarah Sports Academy</a>
-                        </h3>
-                        <div class="listing-details-group">
-                        <p>Elevate your athletic journey at Sarah Sports Academy, where excellence meets opportunity.</p>
-                        <ul>
-                        <li>
-                        <span>
-                        <i class="feather-map-pin"></i>Port Alsworth, AK
-                        </span>
-                        </li>
-                        <li>
-                        <span>
-                        <i class="feather-calendar"></i>Next Availablity : <span class="primary-text">15 May 2023</span>
-                        </span>
-                        </li>
-                        </ul>
-                        </div>
-                        <div class="listing-button">
-                        <div class="listing-venue-owner">
-                        <a class="navigation">
-                        <img src="~/assets/img/profiles/avatar-01.jpg" alt="User">Mart Sublin
-                        </a>
-                        </div>
-                        <a href="venue-details.html" class="user-book-now"><span><i class="feather-calendar me-2"></i></span>Book Now</a>
-                        </div>
-                        </div>
-                        </div>
-                        </div>
-                        <!-- /Featured Item -->
-                        <!-- Featured Item -->
-                        <div class="featured-venues-item">
-                        <div class="listing-item mb-0">
-                        <div class="listing-img">
-                        <a href="venue-details.html">
-                        <img src="~/assets/img/venues/venues-02.jpg" class="img-fluid" alt="Venues">
-                        </a>
-                        </div>
-                        <div class="listing-content">
-                        <div class="list-reviews">
-                        <div class="d-flex align-items-center">
-                        <span class="rating-bg">5.0</span><span>150 Reviews</span>
-                        </div>
-                        <a href="javascript:void(0)" class="fav-icon">
-                        <i class="feather-heart"></i>
-                        </a>
-                        </div>
-                        <h3 class="listing-title">
-                        <a href="venue-details.html">Badminton Academy</a>
-                        </h3>
-                        <div class="listing-details-group">
-                        <p>Unleash your badminton potential at our premier Badminton Academy, where champions are made</p>
-                        <ul>
-                        <li>
-                        <span>
-                        <i class="feather-map-pin"></i>Sacramento, CA
-                        </span>
-                        </li>
-                        <li>
-                        <span>
-                        <i class="feather-calendar"></i>Next Availablity : <span class="primary-text">15 May 2023</span>
-                        </span>
-                        </li>
-                        </ul>
-                        </div>
-                        <div class="listing-button">
-                        <div class="listing-venue-owner">
-                        <a class="navigation">
-                        <img src="~/assets/img/profiles/avatar-02.jpg" alt="User">Rebecca
-                        </a>
-                        </div>
-                        <a href="venue-details.html" class="user-book-now"><span><i class="feather-calendar me-2"></i></span>Book Now</a>
-                        </div>
-                        </div>
-                        </div>
-                        </div>
-                        <!-- /Featured Item -->
-                        <!-- Featured Item -->
-                        <div class="featured-venues-item">
-                        <div class="listing-item mb-0">
-                        <div class="listing-img">
-                        <a href="venue-details.html">
-                        <img src="~/assets/img/venues/venues-03.jpg" class="img-fluid" alt="Venues">
-                        </a>
-                        </div>
-                        <div class="listing-content">
-                        <div class="list-reviews">
-                        <div class="d-flex align-items-center">
-                        <span class="rating-bg">4.7</span><span>120 Reviews</span>
-                        </div>
-                        <a href="javascript:void(0)" class="fav-icon">
-                        <i class="feather-heart"></i>
-                        </a>
-                        </div>
-                        <h3 class="listing-title">
-                        <a href="venue-details.html">Manchester Academy</a>
-                        </h3>
-                        <div class="listing-details-group">
-                        <p>Manchester Academy: Where dreams meet excellence in sports education and training game.</p>
-                        <ul>
-                        <li>
-                        <span>
-                        <i class="feather-map-pin"></i>Guysville, OH
-                        </span>
-                        </li>
-                        <li>
-                        <span>
-                        <i class="feather-calendar"></i>Next Availablity : <span class="primary-text">16 May 2023</span>
-                        </span>
-                        </li>
-                        </ul>
-                        </div>
-                        <div class="listing-button">
-                        <div class="listing-venue-owner">
-                        <a class="navigation">
-                        <img src="~/assets/img/profiles/avatar-03.jpg" alt="User">Andrew
-                        </a>
-                        </div>
-                        <a href="venue-details.html" class="user-book-now"><span><i class="feather-calendar me-2"></i></span>Book Now</a>
-                        </div>
-                        </div>
-                        </div>
-                        </div>
-                        <!-- /Featured Item -->
-                        <!-- Featured Item -->
-                        <div class="featured-venues-item">
-                        <div class="listing-item mb-0">
-                        <div class="listing-img">
-                        <a href="venue-details.html">
-                        <img src="~/assets/img/venues/venues-02.jpg" class="img-fluid" alt="Venues">
-                        </a>
-                        </div>
-                        <div class="listing-content">
-                        <div class="list-reviews">
-                        <div class="d-flex align-items-center">
-                        <span class="rating-bg">4.5</span><span>300 Reviews</span>
-                        </div>
-                        <a href="javascript:void(0)" class="fav-icon">
-                        <i class="feather-heart"></i>
-                        </a>
-                        </div>
-                        <h3 class="listing-title">
-                        <a href="venue-details.html">ABC Sports Academy</a>
-                        </h3>
-                        <div class="listing-details-group">
-                        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.industry's standard</p>
-                        <ul>
-                        <li>
-                        <span>
-                        <i class="feather-map-pin"></i>Little Rock, AR
-                        </span>
-                        </li>
-                        <li>
-                        <span>
-                        <i class="feather-calendar"></i>Next Availablity : <span class="primary-text">17 May 2023</span>
-                        </span>
-                        </li>
-                        </ul>
-                        </div>
-                        <div class="listing-button">
-                        <div class="listing-venue-owner">
-                        <a class="navigation">
-                        <img src="~/assets/img/profiles/avatar-04.jpg" alt="User">Mart Sublin
-                        </a>
-                        </div>
-                        <a href="venue-details.html" class="user-book-now"><span><i class="feather-calendar me-2"></i></span>Book Now</a>
-                        </div>
-                        </div>
-                        </div>
-                        </div>
-                        <!-- /Featured Item -->
-                        </div> *@
                     </div>
                 </div>
             </section>
@@ -1090,31 +474,103 @@
         const activity = Vue.createApp({
             data() { 
                 return {
-                    activity: { "activityId": 1, "categoryId": 5, "categoryTypeId": 2, "activityName": "歡樂打籃球", "activityLocation": "台北市中正區徐州路2-1號", "startTime": "2023-12-15T00:00:00", "joinDeadLine": "2023-11-30T00:00:00", "activityNotes": "全場籃球", "imageName": null, "activityImages": [{ "activityImageId": 1, "activityId": 1, "imageName": "1Image01", "isCover": true, "uploadTime": "2023-11-10T00:00:00", "activity": null }, { "activityImageId": 2, "activityId": 1, "imageName": "1Image02", "isCover": false, "uploadTime": "2023-11-10T00:00:00", "activity": null }, { "activityImageId": 3, "activityId": 1, "imageName": "1Image03", "isCover": false, "uploadTime": "2023-11-10T00:00:00", "activity": null }] },
+                    activity: {},
+                    //activity: { "activityId": 1, "categoryId": 5, "categoryTypeId": 2, "activityName": "歡樂打籃球", "activityLocation": "台北市中正區徐州路2-1號", "startTime": "2023-12-15T00:00:00", "joinDeadLine": "2023-11-30T00:00:00", "activityNotes": "全場籃球", "imageName": null, "activityImages": [{ "activityImageId": 1, "activityId": 1, "imageName": "1Image01", "isCover": true, "uploadTime": "2023-11-10T00:00:00", "activity": null }, { "activityImageId": 2, "activityId": 1, "imageName": "1Image02", "isCover": false, "uploadTime": "2023-11-10T00:00:00", "activity": null }, { "activityImageId": 3, "activityId": 1, "imageName": "1Image03", "isCover": false, "uploadTime": "2023-11-10T00:00:00", "activity": null }] },
+                    msgBord:[],
+                    activityList: [],
+                    wish: [],
+                    profile:[],
                     resultSrc:"",
-                    mapencoded:""
+                    star:0,
                 }
             },
             mounted() {
                 let _this = this;
-                //_this.QueryActivity();
+                _this.QueryActivity();
+                _this.QueryMsgBord();
+                _this.QueryProfile();
+
             },
             methods: {
                 QueryActivity() {
                     let _this = this;
-                    axios.get("/ActivityApi/ActivitySearch/1")
+                    axios.get("/ActivityApi/ActivitySearch/@ActivityId")
                         .then(res => {
                             _this.activity = res.data;
+                            let strSrc1 = "https://www.google.com/maps?q=";
+                            let strSrc2 = encodeURI(_this.activity.activityLocation);
+                            let strSrc3 = "&hl=zh-TW&z=18&t=p&output=embed";
+                            _this.resultSrc = strSrc1 + strSrc2 + strSrc3;
+                            _this.GetCategoryTypeList();
                         })
                         .catch(err => alert(err));
                 },
-                test() {
+                QueryMsgBord() {
                     let _this = this;
-                    let strSrc1 = "https://www.google.com/maps?q=";
-                    let strSrc2 = encodeURI(_this.activity.activityLocation);
-                    let strSrc3 = "&hl=zh-TW&z=18&t=p&output=embed";
-                    _this.resultSrc = strSrc1 + strSrc2 + strSrc3;
-                }
+                    axios.get("/ActivityApi/MemberMsg")
+                        .then(res => {
+                            _this.msgBord = res.data;
+                        })
+                        .catch(err => alert(err));
+                },
+                QueryProfile() {
+                    //寫死
+                    let _this = this;
+                    axios.get("/ProfileApi/GetProfileById/1")
+                        .then(res => {
+                            _this.profile = res.data;
+                            _this.star = _this.profile.fraction;
+                        })
+                        .catch(err => alert(err));
+                },
+                GetCategoryTypeList() {
+                    let _this = this;
+                    var form = new FormData();
+                    form.append("categoyId", _this.activity.categoryId);
+                    form.append("categoryTypeId", _this.activity.categoryTypeId);
+                    form.append("city", 0);
+                    form.append("area", 0);
+                    axios.post("/MiddleCenterApi/GetCategoryTypeList", form, {
+                        headers: {
+                            "Content-Type": "multipart/form-data"
+                        }
+                    })
+                    .then(res => {
+                            _this.activityList = res.data;
+                    })
+                        .catch(err => alert(err));
+                    _this.QueryWish();
+                },
+                QueryWish() {
+                    let _this = this;
+                    axios.get("/WishApi/GetWishList")
+                        .then(res => _this.wish = res.data)
+                        .catch(err => alert(err));
+                },
+                Fav(id) {
+                    let _this = this;
+                    if (_this.wish.includes(id)) {
+                        axios.delete(`/WishApi/DeleteWish/${id}`)
+                            .then()
+                            .catch(err => alert(err));
+                    }
+                    else {
+                        //目前寫死會員ID_1，等待網頁狀態實作
+                        let _this = this;
+                        var form = new FormData();
+                        form.append("memberId", 1);
+                        form.append("activityId", id);
+                        form.append("addTime", GetDateTime());
+                        axios.post("/WishApi/InsertWish", form, {
+                            headers: {
+                                "Content-Type": "multipart/form-data"
+                            }
+                        })
+                            .then()
+                            .catch(err => alert(err));
+                    }
+                    _this.GetCategoryTypeList();
+                },
             }
         }).mount("#activity")
         Jhobby_ShowMore();
