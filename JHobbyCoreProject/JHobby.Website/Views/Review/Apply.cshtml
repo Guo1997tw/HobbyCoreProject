@@ -107,12 +107,14 @@
                                                         </td>
                                                         <td class="table-date-time">
                                                             <h4>{{item.reviewTime}}</h4>
+                                                            <h4 hidden readonly>{{item.activityId}}</h4>
+                                                            <h4 hidden readonly>{{item.applicantId}}</h4>
                                                         </td>
                                                         <td class="table-accept-btn text-end">
-                                                            <a href="javascript:;" class="btn accept-btn" @@click="updateOk(item.ActivityId,item.ApplicantId)">接受</a>
+                                                            <a href="javascript:;" class="btn accept-btn" @@click="updateOk(item)">接受</a>
                                                             <a href="javascript:;" class="btn cancel-table-btn" data-bs-toggle="modal" data-bs-target="#request-reject">拒絕</a>
                                                         </td>
-                                                    </tr>                                          
+                                                    </tr>
                                                 </tbody>
                                             </table>
                                         </div>
@@ -164,7 +166,7 @@
                 <div class="modal-footer">
                     <div class="table-accept-btn">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">關閉</button>
-                        <a href="javascript:;" class="btn cancel-table-btn" @@click="updateNo">確定拒絕</a>
+                        <button type="button" class="btn cancel-table-btn" data-bs-dismiss="modal" @@click="updateNo(item)">確定拒絕</button>
                     </div>
                 </div>
             </div>
@@ -172,9 +174,6 @@
     </div>
 </div>
 <!-- /Request Reject -->
-
-
-
 @section Scripts
     {
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
@@ -183,14 +182,15 @@
 
         const app = Vue.createApp({
             data() {
+                let self = this;
+
                 return {
-                    reviewData:[],
-                    activityName:"",
-                    reviewTime:"",
-                    nickName:"",
+                    reviewData: [],
+                    activityName: "",
+                    reviewTime: "",
+                    nickName: "",
                     headShot: "",
                     imageName: "",
-
 
                 };
             },
@@ -210,21 +210,39 @@
                             alert(`發生錯誤: ${error}`);
                         });
                 },
-                updateOk: function (ActivityId, ApplicantId) {                    
-                    console.log(ActivityId, ApplicantId)
+                updateOk: function (item) {
+                    let _this = this;
                     var form = new FormData();
-                    form.append("ReviewStatus","1");
-                    axios.put(`/ReviewApi/Update/${item.ActivityId}/${item.ApplicantId}`, form).then((response) => {
-                        let _this = this;
-                        _this.reviewData = response.data;
-                    })
+                    form.append("ReviewStatus", 1);
+                    axios.put(`/ReviewApi/Update/${item.activityId}/${item.applicantId}`, form,
+                        {
+                            headers: {
+                                "Content-Type": "multipart/form-data"
+                            }
+                        }).then((response) => {
+                            _this.reviewData = response.data;
+                            _this.axiosGetReviewById();
+                        })
                         .catch((error) => {
                             alert(`發生錯誤: ${error}`);
                         });
                 },
-                updateNo: function () {
+                updateNo: function (item) {
                     let _this = this;
-                    axios.put
+                    var form = new FormData();
+                    form.append("ReviewStatus", 2);
+                    axios.put(`/ReviewApi/Update/${item.activityId}/${item.applicantId}`, form,
+                        {
+                            headers: {
+                                "Content-Type": "multipart/form-data"
+                            }
+                        }).then((response) => {
+                            _this.reviewData = response.data;
+                            _this.axiosGetReviewById();
+                        })
+                        .catch((error) => {
+                            alert(`發生錯誤: ${error}`);
+                        });
                 }
             },
         }).mount("#idReviewApply");

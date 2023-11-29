@@ -62,7 +62,7 @@ namespace JHobby.Website.Controllers.Api
 		}
 
 		[HttpPut("{ActivityId}/{ApplicantId}")]
-		public ActionResult Update(int ActivityId, int ApplicantId, ReviewStatusViewModel reviewStatusViewModel)
+		public ActionResult Update(int ActivityId, int ApplicantId, [FromForm] ReviewStatusViewModel reviewStatusViewModel)
 		{
 			var mapping = new ReviewStatusModel
             {
