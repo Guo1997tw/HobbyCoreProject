@@ -57,7 +57,6 @@ namespace JHobby.Repository.Implements
             //    CategoryId = queryResult.CategoryId,
             //    CategoryName = queryResult.CategoryName,
             //};
-		}
 
         public bool Insert(CreateCategoryDto createCategoryDto)
         {

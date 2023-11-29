@@ -37,7 +37,9 @@ namespace JHobby.Repository.Implements
 
 		public MemberLoginDto? GetMemberLogin(string account)
 		{
+            var queryResult = _jhobbyContext.Members.FirstOrDefault(x => x.Account == account);
 
+            if (queryResult == null) { return null; }
 
             return new MemberLoginDto
             {
@@ -46,23 +48,7 @@ namespace JHobby.Repository.Implements
                 SaltPassword = queryResult.SaltPassword,
             };
         }
-    }
-}
-			{
 
-				var queryResult = _jhobbyContext.Members.FirstOrDefault(x => x.Account == account);
-
-				if (queryResult == null) { return null; }
-
-				return new MemberLoginDto
-				{
-					Account = queryResult.Account,
-					Password = queryResult.Password,
-				};
-
-
-			}
-		}
 		public MemberDto? GetById(int id)
 		{
 			var resultA = _jhobbyContext.Members.FirstOrDefault(x => x.MemberId == id);
@@ -88,8 +74,5 @@ namespace JHobby.Repository.Implements
 			return false;
 
 		}
-
-
 	}
 }
-
