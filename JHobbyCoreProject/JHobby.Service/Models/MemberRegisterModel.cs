@@ -10,7 +10,7 @@ namespace JHobby.Service.Models
     {
         public string Account { get; set; } = null!;
 
-        public string Password { get; set; } = null!;
+        public string HashPassword { get; set; } = null!;
 
         public string Status { get; set; } = null!;
 

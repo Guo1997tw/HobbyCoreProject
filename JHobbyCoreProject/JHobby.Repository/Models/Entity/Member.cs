@@ -15,7 +15,9 @@ public partial class Member
 
     public string Account { get; set; } = null!;
 
-    public string Password { get; set; } = null!;
+    public string HashPassword { get; set; } = null!;
+
+    public string SaltPassword { get; set; } = null!;
 
     public string? IdentityCard { get; set; }
 
