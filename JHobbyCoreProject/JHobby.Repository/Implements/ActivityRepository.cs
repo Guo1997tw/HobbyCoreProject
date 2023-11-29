@@ -103,5 +103,27 @@ namespace JHobby.Repository.Implements
 
             return result;
         }
+
+		/// <summary>
+		/// 會員留言板新增
+		/// </summary>
+		/// <param name="id"></param>
+		/// <param name="memberInsertMsgDto"></param>
+		/// <returns></returns>
+        public bool InsertMsg(MemberInsertMsgDto memberInsertMsgDto)
+		{
+			var mapper = new MsgBoard
+            {
+                MemberId = memberInsertMsgDto.MemberId,
+                ActivityId = memberInsertMsgDto.ActivityId,
+				MessageTime= memberInsertMsgDto.MessageTime,
+                MessageText = memberInsertMsgDto.MessageText,
+            };
+
+			_jhobbyContext.MsgBoards.Add(mapper);
+			_jhobbyContext.SaveChanges();
+
+			return true;
+		}
     }
 }

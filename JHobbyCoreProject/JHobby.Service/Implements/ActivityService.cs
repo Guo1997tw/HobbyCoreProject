@@ -81,7 +81,12 @@ namespace JHobby.Service.Implements
             return mapper;
 		}
 
-		public IEnumerable<MemberMsgModel> GetMemberMsg(int id)
+        /// <summary>
+        /// 會員留言板查詢
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public IEnumerable<MemberMsgModel> GetMemberMsg(int id)
 		{
 			return _activityRepository.GetMsgList(id).Select(r => new MemberMsgModel
 			{
@@ -92,5 +97,23 @@ namespace JHobby.Service.Implements
 				NickName = r.NickName,
 			}).ToList();
 		}
-	}
+
+        /// <summary>
+        /// 會員留言板新增
+        /// </summary>
+        /// <param name="memberMsgModel"></param>
+        /// <returns></returns>
+        public bool CreateMsg(MemberInsertMsgModel memberMsgModel)
+		{
+			var mapper = new MemberInsertMsgDto
+			{
+                MemberId = memberMsgModel.MemberId,
+                ActivityId = memberMsgModel.ActivityId,
+                MessageTime = memberMsgModel.MessageTime,
+                MessageText = memberMsgModel.MessageText,
+            };
+
+            return (_activityRepository.InsertMsg(mapper)) ? true : false;
+		}
+    }
 }
