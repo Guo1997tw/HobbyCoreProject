@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Data.SqlTypes;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -31,12 +32,14 @@ namespace JHobby.Repository.Implements
 					ActivityName=a.ActivityName,
 					ActivityStatus=a.ActivityStatus,
 					ActivityLocation=a.ActivityLocation,
-					ActivityNotes=a.ActivityNotes,
+                    ActivityNotes = a.ActivityNotes,
 					JoinDeadLine=a.JoinDeadLine,
 					ActivityImages = a.ActivityImages
-				});
+                });
 			return dtoResult;
-		}
+
+
+        }
 
 		public IEnumerable<QueryMemberGenderDto> GetGenderAll()
 		{

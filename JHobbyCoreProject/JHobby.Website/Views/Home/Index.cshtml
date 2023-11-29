@@ -70,7 +70,7 @@
 					<div class="featured-venues-item aos" data-aos="fade-up" v-for="item in activityList">
 						<div class="listing-item mb-0">
 							<div class="listing-img">
-								<a href="venue-details.html">
+								<a v-bind:href ='"@Url.Action("ActivityPage","Activity")/"+item.activityId'>
 									<img src="~/assets/img/venues/venues-01.jpg" alt="Venue">
 								</a>
 								<div class="fav-item-venues">
@@ -86,12 +86,16 @@
 								<h3 class="listing-title">
 									<a v-bind:href='"@Url.Action("ActivityPage","Activity")/"+item.activityId'>{{item.activityName}}</a>
 								</h3>
-								<div class="listing-details-group">
-									<p>[活動簡述]</p>
+								<div class="listing-details-group">								
 									<ul>
 										<li>
 											<span>
-												<i class="feather-map-pin"></i>{{item.activityLocation}}
+												<i class="feather-book-open"></i>活動簡述：{{item.shotActivityNotes}}...
+											</span>
+										</li>
+										<li>
+											<span>
+												<i class="feather-map-pin"></i>活動地址：{{item.activityLocation}}
 											</span>
 										</li>
 										<li>
@@ -103,11 +107,11 @@
 								</div>
 								<div class="listing-button">
 									<div class="listing-venue-owner">
-										<a class="navigation" href="coach-detail.html">
+										<a class="navigation" v-bind:href='"@Url.Action("MemberProfile","Profile")/"+item.memberId'>
 											<img src="~/assets/img/profiles/avatar-01.jpg" alt="Venue">{{item.nickName}}
 										</a>
 									</div>
-									<a href="venue-details.html" class="user-book-now"><span><i class="feather-calendar me-2"></i></span>參加</a>
+									@* <a href="venue-details.html" class="user-book-now"><span><i class="feather-calendar me-2"></i></span>參加</a> *@
 								</div>
 							</div>
 						</div>

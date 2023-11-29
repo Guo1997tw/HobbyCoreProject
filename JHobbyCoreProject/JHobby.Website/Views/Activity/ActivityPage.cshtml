@@ -12,446 +12,251 @@
 
 <partial name="_BreadcrumbPartial" />
 
-    <!-- Main Wrapper -->
+<!-- Main Wrapper -->
 <div id="activity" class="main-wrapper venue-coach-details">
-        <!--Galler Slider Section-->
-        <div class="bannergallery-section">
-            <div class="main-gallery-slider owl-carousel owl-theme">
+    <!--Galler Slider Section-->
+    <div class="bannergallery-section">
+        <div class="main-gallery-slider owl-carousel owl-theme">
             <div class="gallery-widget-item">
-                    <a href="~/assets/img/gallery/gallery1/gallery-01.png"  data-fancybox="gallery1">
+                <a href="~/assets/img/gallery/gallery1/gallery-01.png" data-fancybox="gallery1">
                     <img class="img-fluid" alt="Image" src="~/assets/img/gallery/gallery1/gallery-01.png">
-                    </a>
-                </div>
-                <div class="gallery-widget-item">
-                    <a href="~/assets/img/gallery/gallery1/gallery-02.png" data-fancybox="gallery1">
-                        <img class="img-fluid" alt="Image" src="~/assets/img/gallery/gallery1/gallery-02.png">
-                    </a>
-                </div>
-                <div class="gallery-widget-item">
-                    <a href="~/assets/img/gallery/gallery1/gallery-03.png" data-fancybox="gallery1">
-                        <img class="img-fluid" alt="Image" src="~/assets/img/gallery/gallery1/gallery-03.png">
-                    </a>
-                </div>
-                <div class="gallery-widget-item">
-                    <a href="~/assets/img/gallery/gallery1/gallery-04.png" data-fancybox="gallery1">
-                        <img class="img-fluid" alt="Image" src="~/assets/img/gallery/gallery1/gallery-04.png">
-                    </a>
-                </div>
-                <div class="gallery-widget-item">
-                    <a href="~/assets/img/gallery/gallery1/gallery-05.png" data-fancybox="gallery1">
-                        <img class="img-fluid" alt="Image" src="~/assets/img/gallery/gallery1/gallery-05.png">
-                    </a>
-                </div>
-                <div class="gallery-widget-item">
-                    <a href="~/assets/img/gallery/gallery1/gallery-01.png" data-fancybox="gallery1">
-                        <img class="img-fluid" alt="Image" src="~/assets/img/gallery/gallery1/gallery-01.png">
-                    </a>
-                </div>
-                <div class="gallery-widget-item">
-                    <a href="~/assets/img/gallery/gallery1/gallery-02.png" data-fancybox="gallery1">
-                        <img class="img-fluid" alt="Image" src="~/assets/img/gallery/gallery1/gallery-02.png">
-                    </a>
-                </div>
+                </a>
             </div>
-            <div class="showphotos corner-radius-10">
-                <a href="~/assets/img/gallery/gallery1/gallery-03.png" data-fancybox="gallery1"><i class="fa-regular fa-images"></i>More Photos</a>
+            <div class="gallery-widget-item">
+                <a href="~/assets/img/gallery/gallery1/gallery-02.png" data-fancybox="gallery1">
+                    <img class="img-fluid" alt="Image" src="~/assets/img/gallery/gallery1/gallery-02.png">
+                </a>
+            </div>
+            <div class="gallery-widget-item">
+                <a href="~/assets/img/gallery/gallery1/gallery-03.png" data-fancybox="gallery1">
+                    <img class="img-fluid" alt="Image" src="~/assets/img/gallery/gallery1/gallery-03.png">
+                </a>
+            </div>
+            <div class="gallery-widget-item">
+                <a href="~/assets/img/gallery/gallery1/gallery-04.png" data-fancybox="gallery1">
+                    <img class="img-fluid" alt="Image" src="~/assets/img/gallery/gallery1/gallery-04.png">
+                </a>
+            </div>
+            <div class="gallery-widget-item">
+                <a href="~/assets/img/gallery/gallery1/gallery-05.png" data-fancybox="gallery1">
+                    <img class="img-fluid" alt="Image" src="~/assets/img/gallery/gallery1/gallery-05.png">
+                </a>
+            </div>
+            <div class="gallery-widget-item">
+                <a href="~/assets/img/gallery/gallery1/gallery-01.png" data-fancybox="gallery1">
+                    <img class="img-fluid" alt="Image" src="~/assets/img/gallery/gallery1/gallery-01.png">
+                </a>
+            </div>
+            <div class="gallery-widget-item">
+                <a href="~/assets/img/gallery/gallery1/gallery-02.png" data-fancybox="gallery1">
+                    <img class="img-fluid" alt="Image" src="~/assets/img/gallery/gallery1/gallery-02.png">
+                </a>
             </div>
         </div>
-        <div class="venue-info white-bg d-block">
-            <div class="container">
-                <div class="row">
-                    <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+        <div class="showphotos corner-radius-10">
+            <a href="~/assets/img/gallery/gallery1/gallery-03.png" data-fancybox="gallery1"><i class="fa-regular fa-images"></i>More Photos</a>
+        </div>
+    </div>
+    <div class="venue-info white-bg d-block">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-sm-12 col-md-12 col-lg-12">
                     <h1 class="d-flex align-items-center justify-content-start">{{activity.activityName}}</h1>
-                        <ul class="d-sm-flex justify-content-start align-items-center">
+                    <ul class="d-sm-flex justify-content-start align-items-center">
                         <li><i class="feather-map-pin"></i>{{activity.activityLocation}}</li>
-                        <li><i class="feather-clock"></i>活動開始日期：{{activity.startTime}}</li>
-                        <li><i class="feather-clock"></i>活動截止日期：{{activity.joinDeadLine}}</li>
+                        <li><i class="feather-clock"></i>活動開始日：{{activity.startTime}}</li>
+                        <li><i class="feather-clock"></i>報名截止日：{{activity.joinDeadLine}}</li>
                     </ul>
-                    </div>
                 </div>
             </div>
         </div>
+    </div>
 
-        <!-- Page Content -->
-        <div class="content">
-            <div class="container">
-                <!-- Row -->
-                <div class="row">
-                    <div class="col-12 col-sm-12 col-md-12 col-lg-8">
-                        <div class="venue-options white-bg mb-4">
-                            <ul class="clearfix">
-                                <li><a href="#overview">介紹</a></li>
-                                <li><a href="#comments">留言版</a></li>
-                                <li><a href="#location">地圖</a></li>
-                            </ul>
-                        </div>
+    <!-- Page Content -->
+    <div class="content">
+        <div class="container">
+            <!-- Row -->
+            <div class="row">
+                <div class="col-12 col-sm-12 col-md-12 col-lg-8">
+                    <div class="venue-options white-bg mb-4">
+                        <ul class="clearfix">
+                            <li><a href="#overview">介紹</a></li>
+                            <li><a href="#comments">留言版</a></li>
+                            <li><a href="#location">地圖</a></li>
+                        </ul>
+                    </div>
 
-                        <!-- Accordian Contents -->
-                        <div class="accordion" id="accordionPanel">
-                            <div class="accordion-item mb-4" id="overview">
-                                <h4 class="accordion-header" id="panelsStayOpen-overview">
-                                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
-                                        介紹
-                                    </button>
-                                </h4>
-                                <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-overview">
-                                    <div class="accordion-body">
-                                        <div class="text show-more-height">
+                    <!-- Accordian Contents -->
+                    <div class="accordion" id="accordionPanel">
+                        <div class="accordion-item mb-4" id="overview">
+                            <h4 class="accordion-header" id="panelsStayOpen-overview">
+                                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
+                                    介紹
+                                </button>
+                            </h4>
+                            <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-overview">
+                                <div class="accordion-body">
+                                    <div class="text show-more-height">
                                         <p>{{activity.activityNotes}}</p>
-                                        </div>
-                                    <div class="show-more d align-items-center primary-text"><i class="feather-plus-circle"></i>顯示較多</div>
                                     </div>
+                                    <div class="show-more d align-items-center primary-text"><i class="feather-plus-circle"></i>顯示較多</div>
                                 </div>
                             </div>
-                            <div class="accordion-item mb-4" id="comments">
-                                <h4 class="accordion-header" id="panelsStayOpen-location">
-                                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-comments" aria-expanded="false" aria-controls="panelsStayOpen-collapseSeven">
-                                        留言版
-                                    </button>
-                                </h4>
-                                <div id="panelsStayOpen-comments" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-comments">
-                                    <div class="accordion-body">
-                                        <!-- Comments -->
-                                        <div class="blog-comments">
-                                            <div class="dull-bg">
-                                                @* <h4 class="mb-0">Comments (45)</h4> *@
-                                                <hr>
-                                                <ul>
-                                                    <li class="author-group d-md-flex align-items-center justify-content-start" v-for="item in msgBord">
-                                                        <div class="profile-pic">
-                                                            <a href="javascript:void(0);" class="d-inline-block"><img src="~/assets/img/profiles/avatar-04.jpg" alt="User"></a>
+                        </div>
+                        <div class="accordion-item mb-4" id="comments">
+                            <h4 class="accordion-header" id="panelsStayOpen-location">
+                                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-comments" aria-expanded="false" aria-controls="panelsStayOpen-collapseSeven">
+                                    留言版
+                                </button>
+                            </h4>
+                            <div id="panelsStayOpen-comments" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-comments">
+                                <div class="accordion-body">
+                                    <!-- Comments -->
+                                    <div class="blog-comments">
+                                        <div class="dull-bg">
+                                            @* <h4 class="mb-0">Comments (45)</h4> *@
+                                            <hr>
+                                            <ul>
+                                                <li class="author-group d-md-flex align-items-center justify-content-start" v-for="item in msgBord">
+                                                    <div class="profile-pic">
+                                                        <a href="javascript:void(0);" class="d-inline-block"><img src="~/assets/img/profiles/avatar-04.jpg" alt="User"></a>
+                                                    </div>
+                                                    <div class="info">
+                                                        <div class="head d-flex align-items-center justify-content-start">
+                                                            <h5>{{item.nickName}}</h5>
+                                                            <i class="fa-solid fa-circle"></i>
+                                                            <span>{{item.messageTime}}</span>
                                                         </div>
-                                                        <div class="info">
-                                                            <div class="head d-flex align-items-center justify-content-start">
-                                                                <h5>{{item.nickName}}</h5>
-                                                                <i class="fa-solid fa-circle"></i>
-                                                                <span>{{item.messageTime}}</span>
-                                                            </div>
-                                                            <p>{{item.messageText}}</p>
-                                                            @* <a href="#">Reply</a> *@
-                                                        </div>
-                                                    </li>
-                                                </ul>
-                                            </div>
+                                                        <p>{{item.messageText}}</p>
+                                                        @* <a href="#">Reply</a> *@
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                        </div>
                                         <div class="card new-comment white-bg">
-                                            <form>                                               
+                                            <form>
                                                 <div class="mb-3">
                                                     <textarea class="form-control" id="comments" rows="3" placeholder="留下您想說的話"></textarea>
                                                 </div>
                                                 <button type="submit" class="btn btn-gradient">送出</button>
                                             </form>
                                         </div>
-                                        </div>
-                                        <!-- /Comments -->
                                     </div>
+                                    <!-- /Comments -->
                                 </div>
                             </div>
-                            <div class="accordion-item mb-4" id="location">
-                                <h4 class="accordion-header" id="panelsStayOpen-location">
-                                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseSeven" aria-expanded="false" aria-controls="panelsStayOpen-collapseSeven">
-                                        地圖
-                                    </button>
-                                </h4>
-                                <div id="panelsStayOpen-collapseSeven" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-location">
-                                    <div class="accordion-body">
-                                        <div class="google-maps">
+                        </div>
+                        <div class="accordion-item mb-4" id="location">
+                            <h4 class="accordion-header" id="panelsStayOpen-location">
+                                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseSeven" aria-expanded="false" aria-controls="panelsStayOpen-collapseSeven">
+                                    地圖
+                                </button>
+                            </h4>
+                            <div id="panelsStayOpen-collapseSeven" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-location">
+                                <div class="accordion-body">
+                                    <div class="google-maps">
                                         <iframe width="100%" height="300" frameborder="0" v-bind:src="resultSrc"></iframe>
-                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <!-- Accordian Contents -->
                     </div>
-                    <aside class="col-12 col-sm-12 col-md-12 col-lg-4 theiaStickySidebar">
-                        @* <div class="white-bg d-flex justify-content-start align-items-center availability">
-                        <div>
-                        <span class="icon-bg"><img class="img-fluid" alt="Icon" src="~/assets/img/icons/head-calendar.svg"></span>
-                        </div>
-                        <div>
-                        <h4>Availability</h4>
-                        <p class="mb-0">Check availability on your convenient time</p>
-                        </div>
-                        </div> *@
-                        @* <div class="white-bg book-court">
-                        <h4 class="border-bottom">Book A Court</h4>
-                        <h5 class="d-inline-block">Badminton Academy,</h5><p class="d-inline-block"> available Now</p>
-                        <ul class="d-sm-flex align-items-center justify-content-evenly">
-                        <li>
-                        <h3 class="d-inline-block primary-text">$150</h3><span>/hr</span>
-                        <p>up to 1 guests</p>
-                        </li>
-                        <li>
-                        <span><i class="feather-plus"></i></span>
-                        </li>
-                        <li>
-                        <h4 class="d-inline-block primary-text">$5</h4><span>/hr</span>
-                        <p>each additional guest <br>up to 4 guests max</p>
-                        </li>
-                        </ul>
-                        <div class="d-grid btn-block mt-3">
-                        <a href="coach-details.html" class="btn btn-secondary d-inline-flex justify-content-center align-items-center"><i class="feather-calendar"></i>Book Now</a>
-                        </div>
-                        </div> *@
-                        @* <div class="white-bg">
-                        <h4 class="border-bottom">Request for Availability</h4>
-                        <form>
-                        <div class="mb-10">
-                        <label for="name" class="form-label">Name</label>
-                        <input type="text" class="form-control" id="name" placeholder="Enter Name">
-                        </div>
-                        <div class="mb-10">
-                        <label for="email" class="form-label">Email</label>
-                        <input type="email" class="form-control" id="email" placeholder="Enter Email Address">
-                        </div>
-                        <div class="mb-10">
-                        <label for="name" class="form-label">Phone Number</label>
-                        <input type="text" class="form-control" id="phonenumber" placeholder="Enter Phone Number">
-                        </div>
-                        <div class="mb-10">
-                        <label for="date" class="form-label">Date</label>
-                        <div class="form-icon">
-                        <input type="text" class="form-control datetimepicker" placeholder="Select Date" id="date">
-                        <span class="cus-icon">
-                        <i class="feather-calendar"></i>
-                        </span>
-                        </div>
-                        </div>
-                        <div class="mb-10">
-                        <label for="comments" class="form-label">Details</label>
-                        <textarea class="form-control" id="comments" rows="3" placeholder="Enter Comments"></textarea>
-                        </div>
-                        <div class="">
-                        <label class="form-label">Number of Guests</label>
-                        <div class="input-group">
-                        <input type="number" class="form-control" value="1" readonly>
-                        <input type="number" class="form-control active" value="2" readonly>
-                        <input type="number" class="form-control" value="3" readonly>
-                        <input type="number" class="form-control" value="4" readonly>
-                        </div>
-                        </div>
-                        <div class="form-check d-flex justify-content-start align-items-center policy">
-                        <div class="d-inline-block">
-                        <input class="form-check-input" type="checkbox" value="" id="policy" checked>
-                        </div>
-                        <label class="form-check-label" for="policy">By clicking 'Send Request', I agree to Dreamsport Privacy Policy and Terms of Use</label>
-                        </div>
-                        <div class="d-grid btn-block">
-                        <a href="javascript:;" class="btn btn-secondary d-inline-flex justify-content-center align-items-center">Send Request<i class="feather-arrow-right-circle ms-1"></i></a>
-                        </div>
-                        </form>
-                        </div> *@
-                        <div class="white-bg cage-owner-info">
-                            <h4 class="border-bottom">活動主評價</h4>
-                            <div class="d-flex justify-content-start align-items-center">
-                                <div class="profile-pic">
-                                    <a href="javascript:void(0);"><img class="img-fluid" alt="User" src="~/image/avatar-05.jpg"></a>
-                                </div>
-                                <div class="">
+                    <!-- Accordian Contents -->
+                </div>
+                <aside class="col-12 col-sm-12 col-md-12 col-lg-4 theiaStickySidebar">
+                    <div class="white-bg cage-owner-info">
+                        <h4 class="border-bottom">活動主評價</h4>
+                        <div class="d-flex justify-content-start align-items-center">
+                            <div class="profile-pic">
+                                <a href="javascript:void(0);"><img class="img-fluid" alt="User" src="~/image/avatar-05.jpg"></a>
+                            </div>
+                            <div class="">
                                 <h5>{{profile.nickName}}</h5>
-                                    <div class="rating">
-                                        <i class="fas fa-star filled" v-for="n in Math.floor(star)"></i>
-                                        <i class="fas fa-star-half-alt" v-if="!Number.isInteger(star)"></i>
-                                        <i class="fa-regular fa-star filled" v-for="x in 5-Math.ceil(star)"></i>
-                                        <span>({{star}})</span>
-                                    </div>
+                                <div class="rating">
+                                    <i class="fas fa-star filled" v-for="n in Math.floor(star)"></i>
+                                    <i class="fas fa-star-half-alt" v-if="!Number.isInteger(star)"></i>
+                                    <i class="fa-regular fa-star filled" v-for="x in 5-Math.ceil(star)"></i>
+                                    <span>({{star}})</span>
                                 </div>
                             </div>
-                            @* <div class="d-grid btn-block text-center mt-3">
-                            <a href="contact-us.html" class="btn btn-secondary d-inline-flex justify-content-center align-items-center"><i class="feather-phone-call"></i>Call Owner</a>
-                            </div> *@
                         </div>
-                        <div class="d-grid btn-block">
-                            <button class="btn btn-secondary d-inline-flex justify-content-center align-items-center" type="submit">參加<i class="feather-arrow-right-circle ms-1"></i></button>
-                        </div>
-                        @* <div class="white-bg listing-owner">
-                        <h4 class="border-bottom">Listing By Owner</h4>
-                        <ul>
-                        <li class="d-flex justify-content-start align-items-center">
-                        <div class="">
-                        <a href="blog-details.html"><img class="img-fluid" alt="Venue" src="~/assets/img/listing-by-owner-01.jpg"></a>
-                        </div>
-                        <div class="owner-info">
-                        <h5><a href="blog-details.html">Manchester Academy</a></h5>
-                        <p><i class="feather-map-pin"></i><span>Sacramento, CA</span></p>
-                        <p class="mb-0"><i class="feather-calendar"></i><span>Next Availablity : </span><span class="primary-text">15 May 2023</span></p>
-                        </div>
-                        </li>
-                        <li class="d-flex justify-content-start align-items-center">
-                        <div class="">
-                        <a href="blog-details.html"><img class="img-fluid" alt="Venue" src="~/assets/img/listing-by-owner-02.jpg"></a>
-                        </div>
-                        <div class="owner-info">
-                        <h5><a href="blog-details.html">Sarah Sports Academy</a></h5>
-                        <p><i class="feather-map-pin"></i><span>Sacramento, CA</span></p>
-                        <p class="mb-0"><i class="feather-calendar"></i><span>Next Availablity : </span><span class="primary-text">15 May 2023</span></p>
-                        </div>
-                        </li>
-                        </ul>
-                        </div> *@
-                        @* <div class="white-bg">
-                        <h4 class="border-bottom">Share Venue</h4>
-                        <ul class="social-medias d-flex">
-                        <li class="facebook"><a href="javascript:void(0);"><i class="fa-brands fa-facebook-f"></i></a></li>
-                        <li class="instagram"><a href="javascript:void(0);"><i class="fa-brands fa-instagram"></i></a></li>
-                        <li class="behance"><a href="javascript:void(0);"><i class="fa-brands fa-behance"></i></a></li>
-                        <li class="twitter"><a href="javascript:void(0);"><i class="fa-brands fa-twitter"></i></a></li>
-                        <li class="pinterest"><a href="javascript:void(0);"><i class="fa-brands fa-pinterest"></i></a></li>
-                        <li class="linkedin"><a href="javascript:void(0);"><i class="fa-brands fa-linkedin"></i></a></li>
-                        </ul>
-                        </div> *@
-                    </aside>
-                </div>
-                <!-- /Row -->
+                    </div>
+                    <div class="d-grid btn-block">
+                        <button class="btn btn-secondary d-inline-flex justify-content-center align-items-center" type="submit">參加<i class="feather-arrow-right-circle ms-1"></i></button>
+                    </div>
+                </aside>
             </div>
-            <!-- /Container -->
-
-            <section class="section innerpagebg">
-                <div class="container">
-                    <div class="featured-slider-group">
-                        <h3 class="mb-40">類似活動</h3>
-                        <div class="row">
-                            <div class="featured-slider-group ">
-                                <div class="owl-carousel featured-venues-slider owl-theme">
-                                    <!-- Featured Item -->
+            <!-- /Row -->
+        </div>
+        <!-- /Container -->
+        <section class="section innerpagebg">
+            <div class="container">
+                <div class="featured-slider-group">
+                    <h3 class="mb-40">類似活動</h3>
+                    <div class="row">
+                        <div class="featured-slider-group ">
+                            <div class="owl-carousel featured-venues-slider owl-theme">
+                                <!-- Featured Item -->
                                 <div class="featured-venues-item aos" data-aos="fade-up" v-for="item in activityList">
-                                        <div class="listing-item mb-0">
-                                            <div class="listing-img">
-                                                <a href="venue-details.html">
-                                                    <img src="~/assets/img/venues/venues-01.jpg" alt="Venue">
-                                                </a>
-                                                <div class="fav-item-venues">
-                                                    <span class="tag tag-yellow">精選</span>
-                                                    <div class="list-reviews">
+                                    <div class="listing-item mb-0">
+                                        <div class="listing-img">
+                                            <a v-bind:href='"/Activity/ActivityPage/"+item.activityId'>
+                                                <img src="~/assets/img/venues/venues-01.jpg" alt="Venue">
+                                            </a>
+                                            <div class="fav-item-venues">
+                                                <span class="tag tag-yellow">精選</span>
+                                                <div class="list-reviews">
                                                     <a href="javascript:void(0)" v-on:click="Fav(item.activityId)" v-bind:class="wish.includes(item.activityId)? 'fav-icon selected':'fav-icon'">
-                                                            <i class="feather-heart"></i>
-                                                        </a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="listing-content">
-                                                <h3 class="listing-title">
-                                                    <a href="venue-details.html">{{item.activityName}}</a>
-                                                </h3>
-                                                <div class="listing-details-group">
-                                                    <p>[活動簡述]</p>
-                                                    <ul>
-                                                        <li>
-                                                            <span>
-                                                                <i class="feather-map-pin"></i>{{item.activityLocation}}
-                                                            </span>
-                                                        </li>
-                                                        <li>
-                                                            <span>
-                                                                <i class="feather-calendar"></i>報名截止日 : <span class="primary-text">{{item.joinDeadLine}}</span>
-                                                            </span>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                                <div class="listing-button">
-                                                    <div class="listing-venue-owner">
-                                                        <a class="navigation" href="coach-detail.html">
-                                                            <img src="~/assets/img/profiles/avatar-01.jpg" alt="Venue">{{item.nickName}}
-                                                        </a>
-                                                    </div>
-                                                    <a href="venue-details.html" class="user-book-now"><span><i class="feather-calendar me-2"></i></span>參加</a>
+                                                        <i class="feather-heart"></i>
+                                                    </a>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <!-- /Featured Item -->
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-        </div>
-        <!-- /Page Content -->
-        <!-- Add Review Modal -->
-        <div class="modal custom-modal fade payment-modal" id="add-review" role="dialog">
-            <div class="modal-dialog modal-dialog-centered modal-md">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <div class="form-header modal-header-title">
-                            <h4 class="mb-0">Write a Review</h4>
-                        </div>
-                        <a class="close" data-bs-dismiss="modal" aria-label="Close">
-                            <span class="align-center" aria-hidden="true"><i class="feather-x"></i></span>
-                        </a>
-                    </div>
-                    <div class="modal-body">
-                        <form>
-                            <div class="row">
-                                <div class="col-lg-12">
-                                    <div class="input-space">
-                                        <label class="form-label">Your Name <span>*</span></label>
-                                        <input type="text" class="form-control" id="reviewer-name" placeholder="Enter Your Name">
-                                    </div>
-                                </div>
-                                <div class="col-lg-12">
-                                    <div class="input-space">
-                                        <label class="form-label">Title of your review</label>
-                                        <input type="text" class="form-control" id="title" placeholder="If you could say it in one sentence, what would you say?">
-                                    </div>
-                                </div>
-                                <div class="col-lg-12">
-                                    <div class="input-space">
-                                        <label class="form-label">Your Review <span>*</span></label>
-                                        <textarea class="form-control" id="review" rows="3" placeholder="Enter Your Review"></textarea>
-                                        <small class="text-muted"><span id="chars">100</span> characters remaining</small>
-                                    </div>
-                                </div>
-                                <div class="col-lg-12">
-                                    <div class="input-space review">
-                                        <label class="form-label">Rating <span>*</span></label>
-                                        <div class="star-rating">
-                                            <input id="star-5" type="radio" name="rating" value="star-5">
-                                            <label for="star-5" title="5 stars">
-                                                <i class="active fa fa-star"></i>
-                                            </label>
-                                            <input id="star-4" type="radio" name="rating" value="star-4">
-                                            <label for="star-4" title="4 stars">
-                                                <i class="active fa fa-star"></i>
-                                            </label>
-                                            <input id="star-3" type="radio" name="rating" value="star-3">
-                                            <label for="star-3" title="3 stars">
-                                                <i class="active fa fa-star"></i>
-                                            </label>
-                                            <input id="star-2" type="radio" name="rating" value="star-2">
-                                            <label for="star-2" title="2 stars">
-                                                <i class="active fa fa-star"></i>
-                                            </label>
-                                            <input id="star-1" type="radio" name="rating" value="star-1">
-                                            <label for="star-1" title="1 star">
-                                                <i class="active fa fa-star"></i>
-                                            </label>
+                                        <div class="listing-content">
+                                            <h3 class="listing-title">
+                                                <a v-bind:href='"/Activity/ActivityPage/"+item.activityId'>{{item.activityName}}</a>
+                                            </h3>
+                                            <div class="listing-details-group">
+                                                <ul>
+                                                    <li>
+                                                        <span>
+                                                            <i class="feather-book-open"></i>活動簡述：{{item.shotActivityNotes}}...
+                                                        </span>
+                                                    </li>
+                                                    <li>
+                                                        <span>
+                                                            <i class="feather-map-pin"></i>活動地址：{{item.activityLocation}}
+                                                        </span>
+                                                    </li>
+                                                    <li>
+                                                        <span>
+                                                            <i class="feather-calendar"></i>報名截止日 : <span class="primary-text">{{item.joinDeadLine}}</span>
+                                                        </span>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                            <div class="listing-button">
+                                                <div class="listing-venue-owner">
+                                                    <a class="navigation" v-bind:href='"@Url.Action("MemberProfile","Profile")/"+item.memberId'>
+                                                        <img src="~/assets/img/profiles/avatar-01.jpg" alt="Venue">{{item.nickName}}
+                                                    </a>
+                                                </div>
+                                                @* <a href="venue-details.html" class="user-book-now"><span><i class="feather-calendar me-2"></i></span>參加</a> *@
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="form-group">
-                                    <div class="terms-accept">
-                                        <div class="d-flex align-items-center form-check">
-                                            <input type="checkbox" id="terms_accept" class="form-check-input">
-                                            <label for="terms_accept">I have read and accept <a href="terms-condition.html">Terms &amp; Conditions</a></label>
-                                        </div>
-                                    </div>
-                                </div>
+                                <!-- /Featured Item -->
                             </div>
-                        </form>
-                    </div>
-                    <div class="modal-footer">
-                        <div class="table-accept-btn">
-                            <a href="javascript:;" class="btn btn-primary">Add Review</a>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <!-- /Add Review Modal -->
+        </section>
     </div>
-    <!-- /Main Wrapper -->
-
+    <!-- /Page Content -->
+</div>
+<!-- /Main Wrapper -->
 @section Scripts {
     <!-- Bootstrap DateTime Picker -->
     <script src="~/assets/js/moment.min.js"></script>
@@ -467,21 +272,21 @@
         const ratingApp = Vue.createApp({
             data() {
                 return {
-                    star:5
+                    star: 5
                 }
             },
         }).mount("#ratingApp")
         const activity = Vue.createApp({
-            data() { 
+            data() {
                 return {
                     activity: {},
                     //activity: { "activityId": 1, "categoryId": 5, "categoryTypeId": 2, "activityName": "歡樂打籃球", "activityLocation": "台北市中正區徐州路2-1號", "startTime": "2023-12-15T00:00:00", "joinDeadLine": "2023-11-30T00:00:00", "activityNotes": "全場籃球", "imageName": null, "activityImages": [{ "activityImageId": 1, "activityId": 1, "imageName": "1Image01", "isCover": true, "uploadTime": "2023-11-10T00:00:00", "activity": null }, { "activityImageId": 2, "activityId": 1, "imageName": "1Image02", "isCover": false, "uploadTime": "2023-11-10T00:00:00", "activity": null }, { "activityImageId": 3, "activityId": 1, "imageName": "1Image03", "isCover": false, "uploadTime": "2023-11-10T00:00:00", "activity": null }] },
-                    msgBord:[],
+                    msgBord: [],
                     activityList: [],
                     wish: [],
-                    profile:[],
-                    resultSrc:"",
-                    star:0,
+                    profile: [],
+                    resultSrc: "",
+                    star: 0,
                 }
             },
             mounted() {
@@ -535,9 +340,9 @@
                             "Content-Type": "multipart/form-data"
                         }
                     })
-                    .then(res => {
+                        .then(res => {
                             _this.activityList = res.data;
-                    })
+                        })
                         .catch(err => alert(err));
                     _this.QueryWish();
                 },
