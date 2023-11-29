@@ -43,16 +43,11 @@ namespace JHobby.Service.Implements
 
             if(queryResult != null)
             {
-                var parts = queryResult.HashPassword.Split(':');
+                var hashTemp = queryResult.HashPassword;
+                var saltTemp = queryResult.SaltPassword;
+                var hashPwd = HashPwdWithHMACSHA256(password, saltTemp);
 
-                if (parts.Length != 2) { return false; }
-
-                var saveHash = parts[0];
-                var saveSalt = parts[1];
-
-                var hashPwd = HashPwdWithHMACSHA256(password, saveSalt);
-
-                return hashPwd == saveHash;
+                return hashPwd == hashTemp;
             }
 
             return false;
