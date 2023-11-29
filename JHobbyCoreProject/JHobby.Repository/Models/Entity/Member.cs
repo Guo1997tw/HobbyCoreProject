@@ -15,13 +15,15 @@ public partial class Member
 
     public string Account { get; set; } = null!;
 
-    public string Password { get; set; } = null!;
+    public string HashPassword { get; set; } = null!;
+
+    public string SaltPassword { get; set; } = null!;
 
     public string? IdentityCard { get; set; }
 
     public DateTime? Birthday { get; set; }
 
-    public string? AcitveCity { get; set; }
+    public string? ActiveCity { get; set; }
 
     public string? ActiveArea { get; set; }
 

@@ -23,7 +23,7 @@ namespace JHobby.Repository.Implements
             var mapper = new Member
             {
                 Account = memberRegisterDto.Account,
-                Password = memberRegisterDto.Password,
+                HashPassword = memberRegisterDto.HashPassword,
                 Status = memberRegisterDto.Status,
                 CreationDate = memberRegisterDto.CreationDate,
             };
@@ -43,7 +43,7 @@ namespace JHobby.Repository.Implements
             return new MemberLoginDto
             {
                 Account = queryResult.Account,
-                Password = queryResult.Password,
+                HashPassword = queryResult.HashPassword,
             };
         }
     }
