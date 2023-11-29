@@ -25,18 +25,14 @@
                                     <div class="sortby-filter-group court-sortby">
                                         <div class="sortbyset week-bg">
                                             <div class="sorting-select">
-                                                @* <select class="form-control select">
-                                                <option>This Week</option>
-                                                <option>One Day</option>
-                                                </select> *@
                                             </div>
                                         </div>
                                         <div class="sortbyset">
-                                            <span class="sortbytitle">篩選</span>
+                                            <span class="sortbytitle">報名申請時間排序</span>
                                             <div class="sorting-select">
-                                                <select class="form-control select">
-                                                    <option>申請時間近到遠</option>
-                                                    <option>申請時間遠到近</option>
+                                                <select id="selectSort" v-model="sort" v-on:change="sort()" class="form-select">
+                                                    <option value="asc">近到遠</option>
+                                                    <option value="desc">遠到近</option>
                                                 </select>
                                             </div>
                                         </div>
@@ -101,7 +97,7 @@
                                                                 <a href="my-profile.html"
                                                                    class="avatar avatar-sm  flex-shrink-0"><img class="avatar-img" src="~/assets/img/profiles/avatar-01.jpg" alt="User"></a>
                                                                 <span class="table-head-name table-name-user flex-grow-1">
-                                                                    <a href="my-profile.html">{{item.nickName}}</a>
+                                                                    <a href="">{{item.nickName}}</a>
                                                                 </span>
                                                             </h2>
                                                         </td>
@@ -190,8 +186,9 @@
                     nickName: "",
                     headShot: "",
                     imageName: "",
-                    _activityId:0,
-                    _applicantId:0,
+                    _activityId: 0,
+                    _applicantId: 0,
+                    sort:"asc",
                 };
             },
             mounted() {
@@ -246,11 +243,19 @@
                     _this._activityId = 0;
                     _this._applicantId = 0;
                 },
-                keepId: function (id1,id2) {
+                keepId: function (activityId, applicantId) {
                     let _this = this;
-                    _this._activityId=id1
-                    _this._applicantId=id2
+                    _this._activityId = activityId
+                    _this._applicantId = applicantId
                 }
+                // sort: function (item) {
+                //     let _this = this;
+                //     if (_this.sort === "asc") {
+                                
+                //     } else (_this.sort === "desc"){
+
+                //     }
+                // }
             },
         }).mount("#idReviewApply");
     </script>
