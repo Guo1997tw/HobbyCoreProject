@@ -1,5 +1,6 @@
 using JHobby.Repository.Implements;
 using JHobby.Repository.Interfaces;
+using JHobby.Repository.Mapping;
 using JHobby.Repository.Models.Entity;
 using JHobby.Service.Implements;
 using JHobby.Service.Interfaces;
@@ -27,6 +28,14 @@ namespace JHobby.Website
             builder.Services.AddEndpointsApiExplorer();     
             builder.Services.AddSwaggerGen();
 
+            // AutoMapper DI
+            //builder.Services.AddAutoMapper(option =>
+            //{
+            //    option.AddProfile<RepositoryProfile>();
+            //});
+
+            builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+
             // Interface DI
             builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
             builder.Services.AddScoped<ICategoryService, CategoryService>();
@@ -51,7 +60,8 @@ namespace JHobby.Website
             builder.Services.AddScoped<ICommonService, CommonService>();
             builder.Services.AddScoped<IReviewRepository, ReviewRepository>();
             builder.Services.AddScoped<IReviewService, ReviewService>();
-
+            builder.Services.AddScoped<INowJoinAGroupRepository, NowJoinAGroupRepository>();
+            builder.Services.AddScoped<INowJoinAGroupService, NowJoinAGroupService>();
 
             var app = builder.Build();
 

@@ -41,7 +41,7 @@
                                                 <div class="form-group">
                                                     <div class="pass-group group-img">
                                                         <i class="toggle-password feather-eye-off"></i>         
-                                                        <input type="password" class="form-control pass-input" placeholder="密碼" v-model="memberRegister.password">
+                                                        <input type="password" class="form-control pass-input" placeholder="密碼" v-model="memberRegister.hashPassword">
                                                     </div>
                                                 </div>
                                                 <div class="form-group">
@@ -110,7 +110,7 @@
             return {
                 memberRegister: {
                     account: "",
-                    password: "",
+                    hashPassword: "",
                     status: "0",
                     creationDate: this.GetDay(),
                     passwordConfirm: "",
