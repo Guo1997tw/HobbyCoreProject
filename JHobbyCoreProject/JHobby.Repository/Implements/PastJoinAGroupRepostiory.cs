@@ -2,6 +2,7 @@
 using JHobby.Repository.Interfaces;
 using JHobby.Repository.Models.Dto;
 using JHobby.Repository.Models.Entity;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -40,21 +41,20 @@ namespace JHobby.Repository.Implements
 
         public IEnumerable<PastJoinAGroupDto> GetPastJoinAGroupById(int memberId)
         {
-            return _JhobbyContext.Activities
-                .Where(a => a.MemberId == memberId)
-                .Join(_JhobbyContext.Members,
-               a => a.MemberId,
-               m => m.MemberId,
-               (a, m) => new PastJoinAGroupDto
-               {
-                   ActivityId = a.ActivityId,
-                   ActivityName = a.ActivityName,
-                   ActivityStatus = a.ActivityStatus,
-                   ActivityCity = a.ActivityCity,
-                   CurrentPeople = a.CurrentPeople,
-                   StartTime = a.StartTime,
-                   NickName = m.NickName
-               });
+            return _JhobbyContext.ActivityUsers
+                .Where(Au => Au.MemberId == memberId)
+                .Include(Au => Au.Activity)
+                .Include(Au => Au.Member)
+                .Select(a => new PastJoinAGroupDto
+                {
+                    ActivityId = a.ActivityId,
+                    ActivityName = a.Activity.ActivityName,
+                    ActivityStatus = a.Activity.ActivityStatus,
+                    ActivityCity = a.Activity.ActivityCity,
+                    CurrentPeople = a.Activity.CurrentPeople,
+                    StartTime = a.Activity.StartTime,
+                    NickName = a.Member.NickName
+                });
         }
     }
 

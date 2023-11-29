@@ -441,6 +441,7 @@
                     pastJoinAGroupCard: [],
                     countPerPage: 1,
                     pageNumber: 1
+                    memberId: '2',
                 };
             },
             mounted() {
@@ -459,7 +460,7 @@
             methods: {
                 axiosPastJoinAGroupCard: function () {
                     let _this = this;
-                    axios.get(`/PastJoinAGroupApi/GetPastJoinAGroupAll`)
+                    axios.get(`/PastJoinAGroupApi/GetPastJoinAGroupById?memberId=${_this.memberId}`)
                         .then((response) => _this.pastJoinAGroupCard = response.data)
                         .catch((error) => alert(`發生錯誤: ${error}`));
                 },
