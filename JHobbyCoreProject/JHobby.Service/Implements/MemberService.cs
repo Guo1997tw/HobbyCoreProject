@@ -50,36 +50,34 @@ namespace JHobby.Service.Implements
             return new MemberModel
             {
                 MemberId = resultA.MemberId,
-                Password = resultA.Password,
-            };
+				HashPassword = resultA.HashPassword,
+
+			};
 
         }
 
 
-        public bool UpdateMember(int id, UpdateMemberModel updateMemberModel)
+        public bool UpdateMember(int id, UpdateMemberModel updateMemberModel)       
         {
-            var salt = RandomSalt();
+			var resultA = _memberRepository.GetById(id);
+			if (resultA == null) { return false; }
+
+			var salt = resultA.SaltPassword;
             var hashPwd = HashPwdWithHMACSHA256(updateMemberModel.NewPassword, salt);
-            var pwdSalt = $"{hashPwd}:{salt}";
+          
 
-            var saltTwo = RandomSalt();
+            var saltTwo = resultA.SaltPassword;
             var hashPwdTwo = HashPwdWithHMACSHA256(updateMemberModel.OldPassword, saltTwo);
-            var pwdSaltTwo = $"{hashPwdTwo}:{salt}";
+          
 
+            var databasePassword = resultA.HashPassword;         // 假設從資料庫中取得的密碼是 resultA.HashPassword      
+          
 
-            var resultA = _memberRepository.GetById(id);
-            if (resultA == null) { return false; }
-
-            var databasePassword = resultA.Password;         // 假設從資料庫中取得的密碼是 resultA.Password      
-
-            updateMemberModel.OldPassword = pwdSaltTwo;
-
-
-            if (updateMemberModel.OldPassword == databasePassword && updateMemberModel.OldPassword != updateMemberModel.NewPassword && updateMemberModel.PasswordTwo == updateMemberModel.NewPassword)
+            if (hashPwdTwo == databasePassword && hashPwdTwo != hashPwd && updateMemberModel.PasswordTwo == updateMemberModel.NewPassword)
             {
                 var target = new UpdateMemberDto
                 {
-                    NewPassword = pwdSalt,
+                    NewPassword = hashPwd,
                 };
 
                 _memberRepository.Update(id, target);

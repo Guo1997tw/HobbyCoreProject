@@ -56,22 +56,27 @@ namespace JHobby.Repository.Implements
 			return new MemberDto
 			{
 				MemberId = resultA.MemberId,
-				Password = resultA.Password,
+				HashPassword = resultA.HashPassword,
+				SaltPassword = resultA.SaltPassword,
 			};
 		}				
 
+		
 		public bool Update(int id, UpdateMemberDto updateMemberDto)
 		{
-			var resultA = _jhobbyContext.Members.FirstOrDefault(x => x.MemberId == id);
-			//resultA.Password
-			if (resultA != null)						
-			{											
-				resultA.Password = updateMemberDto.NewPassword;		
-				_jhobbyContext.SaveChanges();
-				return true;
+			
+				var resultA = _jhobbyContext.Members.FirstOrDefault(x => x.MemberId == id);
+				//resultA.Password
+				if (resultA != null)
+				{
+					resultA.HashPassword = updateMemberDto.NewPassword;
+					_jhobbyContext.SaveChanges();
+					return true;
 
-			};
-			return false;
+				};
+				return false;
+			
+			
 
 		}
 	}

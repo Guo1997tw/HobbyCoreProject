@@ -3,7 +3,8 @@
 	public class MemberViewModel
 	{
 		public int MemberId { get; set; }
-		//public string NewPassword { get; set; } = null!;
-		public string Password { get; set; } = null!;
+		public string SaltPassword { get; set; } = null!;
+		public string NewPassword { get; set; } = null!;
+		public string HashPassword { get; set; } = null!;
 	}
 }

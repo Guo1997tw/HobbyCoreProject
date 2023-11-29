@@ -57,7 +57,8 @@ namespace JHobby.Website.Controllers.Api
 			var done= new MemberViewModel
 			{
 				MemberId= result.MemberId,
-                Password= result.Password,
+				HashPassword = result.HashPassword,
+
 			};
             return Ok(done);
 		}
