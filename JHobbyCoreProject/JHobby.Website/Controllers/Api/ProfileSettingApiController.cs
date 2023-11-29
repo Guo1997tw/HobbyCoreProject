@@ -17,11 +17,14 @@ namespace JHobby.Website.Controllers.Api
         private readonly IProfileSettingService _iProfileSettingService;
         private readonly IUpdateProfileSettingService _iUpdateProfileSettingService;
 
-        public ProfileSettingApiController(IProfileSettingService iProfileSettingService, IUpdateProfileSettingService iUpdateProfileSettingService)
+        string _Path;
+
+        public ProfileSettingApiController(IProfileSettingService iProfileSettingService, IUpdateProfileSettingService iUpdateProfileSettingService, IWebHostEnvironment hostEnvironment)
         {
             _iProfileSettingService = iProfileSettingService;
             _iUpdateProfileSettingService = iUpdateProfileSettingService;
-            
+
+            _Path = $@"{hostEnvironment.WebRootPath}\profile\";
         }
 
         [HttpGet("{id}")]
@@ -48,20 +51,46 @@ namespace JHobby.Website.Controllers.Api
             return Ok(viewModel);
         }
 
-        [HttpPut("{id}")]
-        public ActionResult<UpdateProfileSettingViewModel> UpdateProfileSetting(int id, UpdateProfileSettingViewModel updateProfileSettingViewModel)
+        //[HttpPut("{id}")]
+        //public ActionResult<UpdateProfileSettingViewModel> UpdateProfileSetting(int id, UpdateProfileSettingViewModel updateProfileSettingViewModel)
+        //{
+        //    var mapper = new UpdateProfileSettingModel
+        //    {
+        //        UpdatedHeadShot = updateProfileSettingViewModel.UpdatedHeadShot,
+        //        UpdatedNickName = updateProfileSettingViewModel.UpdatedNickName,
+        //        UpdatedAcitveCity = updateProfileSettingViewModel.UpdatedAcitveCity,
+        //        UpdatedActiveArea = updateProfileSettingViewModel.UpdatedActiveArea,
+        //        UpdatedAddress = updateProfileSettingViewModel.UpdatedAddress,
+        //        UpdatedPhone = updateProfileSettingViewModel.UpdatedPhone,
+        //        UpdatedPersonalProfile = updateProfileSettingViewModel.UpdatedPersonalProfile,
+        //    };
+        //    return Ok(_iUpdateProfileSettingService.Update(id, mapper));
+        //}
+
+        FileInfo[] GetFiles()
         {
-            var mapper = new UpdateProfileSettingModel
+            DirectoryInfo directoryInfo = new DirectoryInfo(_Path);
+            FileInfo[] files = directoryInfo.GetFiles();
+            return files;
+        }
+
+        [HttpPut("{id}")]
+        public bool UpdateProfileSetting(int id, [FromForm] UpdateProfileSettingIFormFileViewModel updateProfileSettingIFormFileViewModel)
+        {
+            if (updateProfileSettingIFormFileViewModel.File != null)
             {
-                UpdatedHeadShot = updateProfileSettingViewModel.UpdatedHeadShot,
-                UpdatedNickName = updateProfileSettingViewModel.UpdatedNickName,
-                UpdatedAcitveCity = updateProfileSettingViewModel.UpdatedAcitveCity,
-                UpdatedActiveArea = updateProfileSettingViewModel.UpdatedActiveArea,
-                UpdatedAddress = updateProfileSettingViewModel.UpdatedAddress,
-                UpdatedPhone = updateProfileSettingViewModel.UpdatedPhone,
-                UpdatedPersonalProfile = updateProfileSettingViewModel.UpdatedPersonalProfile,
-            };
-            return Ok(_iUpdateProfileSettingService.Update(id, mapper));
+                if (updateProfileSettingIFormFileViewModel.File.Length > 0)
+                {
+                    string SavePath = $@"{_Path}{updateProfileSettingIFormFileViewModel.File.FileName}";
+
+                    using (var steam = new FileStream(SavePath, FileMode.Create))
+                    {
+                        updateProfileSettingIFormFileViewModel.File.CopyToAsync(steam);
+                    }
+                }
+            }
+
+            return true;
         }
     }
 }
