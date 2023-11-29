@@ -23,5 +23,9 @@ namespace JHobby.Service.Models
         public DateTime StartTime { get; set; }
 
         public string? NickName { get; set; }
+
+        public string? DateConvert { get; set;}
+
+        public string? TimeConvert { get; set; }
     }
 }

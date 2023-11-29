@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlTypes;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using JHobby.Service.Interfaces;
+using JHobby.Service.Models.Dto;
 
 namespace JHobby.Service.Implements
 {
@@ -30,7 +32,7 @@ namespace JHobby.Service.Implements
         /// </summary>
         /// <param name="ReviewStatus"></param>
         /// <returns></returns>
-        public string ConvertReviewStatus(string status) 
+        public string ConvertReviewStatus(string status)
         {
             return status switch
             {
@@ -47,9 +49,24 @@ namespace JHobby.Service.Implements
         /// <param name="MaxPeople"></param>
         /// <param name="CurrentPeople"></param>
         /// <returns></returns>
-        public int CountSurplusQuota(int? max, int? current) 
+        public int CountSurplusQuota(int? max, int? current)
         {
             return max.GetValueOrDefault() - current.GetValueOrDefault();
+        }
+
+
+        public IEnumerable<TimeModelDto> ConvertTime(DateTime dateTime)
+        {
+            string dateConvert = dateTime.ToString("yyyy-MM-dd");
+            string timeConvert = dateTime.ToString("hh:mm tt", System.Globalization.CultureInfo.InvariantCulture);
+
+            TimeModelDto timeModelDto = new TimeModelDto
+            {
+                DateConvert = dateConvert,
+                TimeConvert = timeConvert,
+            };
+
+            yield return timeModelDto;
         }
     }
 }

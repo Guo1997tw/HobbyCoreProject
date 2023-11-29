@@ -35,7 +35,9 @@ namespace JHobby.Service.Implements
                 CurrentPeople = r.CurrentPeople,
                 StartTime = r.StartTime,
                 NickName = r.NickName,
-            });
+                DateConvert = _iCommonService.ConvertTime(r.StartTime).FirstOrDefault().DateConvert,
+                TimeConvert = _iCommonService.ConvertTime(r.StartTime).FirstOrDefault().TimeConvert
+            }) ;
         }
     }
 }

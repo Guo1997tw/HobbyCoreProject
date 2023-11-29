@@ -1,4 +1,6 @@
-﻿namespace JHobby.Service.Interfaces
+﻿using JHobby.Service.Models.Dto;
+
+namespace JHobby.Service.Interfaces
 {
     public interface ICommonService
     {
@@ -7,5 +9,7 @@
         public string ConvertReviewStatus(string status);
 
         public int CountSurplusQuota(int? max, int? current);
+
+        public IEnumerable<TimeModelDto> ConvertTime(DateTime dateTime);
     }
 }
