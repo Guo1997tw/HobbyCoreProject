@@ -59,7 +59,7 @@
                     <div class="listing-item listing-item-grid">
                         <div class="listing-img">
                             <a v-bind:href='"@Url.Action("ActivityPage","Activity")/"+item.activityId'>
-                                <img src="~/assets/img/venues/venues-01.jpg" alt="Venue">
+                                <img :src='"/image/activityimages/"+item.activityImages[0].imageName+".jpg"' style="height:259px;width:417px" alt="Venue">
                             </a>
                             <div class="fav-item-venues">
                                 <div class="list-reviews">

@@ -17,45 +17,15 @@
     <!--Galler Slider Section-->
     <div class="bannergallery-section">
         <div class="main-gallery-slider owl-carousel owl-theme">
-            <div class="gallery-widget-item">
-                <a href="~/assets/img/gallery/gallery1/gallery-01.png" data-fancybox="gallery1">
-                    <img class="img-fluid" alt="Image" src="~/assets/img/gallery/gallery1/gallery-01.png">
-                </a>
-            </div>
-            <div class="gallery-widget-item">
-                <a href="~/assets/img/gallery/gallery1/gallery-02.png" data-fancybox="gallery1">
-                    <img class="img-fluid" alt="Image" src="~/assets/img/gallery/gallery1/gallery-02.png">
-                </a>
-            </div>
-            <div class="gallery-widget-item">
-                <a href="~/assets/img/gallery/gallery1/gallery-03.png" data-fancybox="gallery1">
-                    <img class="img-fluid" alt="Image" src="~/assets/img/gallery/gallery1/gallery-03.png">
-                </a>
-            </div>
-            <div class="gallery-widget-item">
-                <a href="~/assets/img/gallery/gallery1/gallery-04.png" data-fancybox="gallery1">
-                    <img class="img-fluid" alt="Image" src="~/assets/img/gallery/gallery1/gallery-04.png">
-                </a>
-            </div>
-            <div class="gallery-widget-item">
-                <a href="~/assets/img/gallery/gallery1/gallery-05.png" data-fancybox="gallery1">
-                    <img class="img-fluid" alt="Image" src="~/assets/img/gallery/gallery1/gallery-05.png">
-                </a>
-            </div>
-            <div class="gallery-widget-item">
-                <a href="~/assets/img/gallery/gallery1/gallery-01.png" data-fancybox="gallery1">
-                    <img class="img-fluid" alt="Image" src="~/assets/img/gallery/gallery1/gallery-01.png">
-                </a>
-            </div>
-            <div class="gallery-widget-item">
-                <a href="~/assets/img/gallery/gallery1/gallery-02.png" data-fancybox="gallery1">
-                    <img class="img-fluid" alt="Image" src="~/assets/img/gallery/gallery1/gallery-02.png">
+            <div class="gallery-widget-item" v-for="item in activity.activityImages">
+                <a :href='"/image/activityimages/"+item.imageName+".jpg"' data-fancybox="gallery1">
+                    <img class="img-fluid" alt="Image" :src='"/image/activityimages/"+item.imageName+".jpg"'>
                 </a>
             </div>
         </div>
-        <div class="showphotos corner-radius-10">
+@*         <div class="showphotos corner-radius-10">
             <a href="~/assets/img/gallery/gallery1/gallery-03.png" data-fancybox="gallery1"><i class="fa-regular fa-images"></i>More Photos</a>
-        </div>
+        </div> *@
     </div>
     <div class="venue-info white-bg d-block">
         <div class="container">

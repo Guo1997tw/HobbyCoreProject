@@ -83,6 +83,37 @@ function Jhobby_Featured_Coache_Slider() {
 	}
 }
 
+// Main Gallery Owl Carousel Slider for Venue Details
+function Jhobby_Main_gallery_slider()
+{
+	if ($('.main-gallery-slider').length > 0) {
+		$('.main-gallery-slider').owlCarousel({
+			loop: true,
+			nav: true,
+			margin: 5,
+			dots: false,
+			autoplay: false,
+			smartSpeed: 2000,
+			navText: ["<i class='feather-chevron-left'></i>", "<i class='feather-chevron-right'></i>"],
+			responsive: {
+				0: {
+					items: 1
+				},
+				500: {
+					items: 2
+				},
+				768: {
+					items: 3
+				},
+				1000: {
+					items: 3
+				}
+			}
+		})
+	}
+
+}
+
 //動畫集合用函式
 function Animations() {
 	Jhobby_Ceatured_Venues_Slider();
@@ -90,6 +121,7 @@ function Animations() {
 	Jhobby_AosInit()
 	Jhobby_Fav_Icon();
 	Jhobby_Featured_Coache_Slider();
+	Jhobby_Main_gallery_slider();
 }
 //掛Vue後，動畫要延遲1.7秒後渲染
 function Jhobby_Animation() {
