@@ -10,7 +10,19 @@ namespace JHobby.Service.Interfaces
 {
 	public interface IActivityService
 	{
-		public bool CreateActivityBuild(ActivityBuildModel activityBuildModel);		
+		public bool CreateActivityBuild(ActivityBuildModel activityBuildModel);
 
+		/// <summary>
+		/// 活動頁面查詢
+		/// </summary>
+		/// <param name="id"></param>
+		/// <returns></returns>
+		public ActivityPageModel GetActivityPageSearch(int id);
+
+		/// <summary>
+		/// 會員留言板查詢
+		/// </summary>
+		/// <returns></returns>
+		public IEnumerable<MemberMsgModel> GetMemberMsg();
 	}
 }

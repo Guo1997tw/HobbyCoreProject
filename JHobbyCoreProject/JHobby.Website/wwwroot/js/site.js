@@ -96,6 +96,22 @@ function Jhobby_Animation() {
 	setTimeout(Animations, 1700)
 }
 
+
+// Show More Text
+
+function Jhobby_ShowMore(){
+	$(".show-more").on('click', function () {
+		if ($(".text").hasClass("show-more-height")) {
+			$(this).html('<i class="feather-minus-circle"></i>顯示較少');
+		} else {
+			$(this).html('<i class="feather-plus-circle"></i>顯示較多');
+		}
+
+		$(".text").toggleClass("show-more-height");
+	});
+}
+
+
 //取時間
 function GetDateTime() {
 	const dayNow = new Date();

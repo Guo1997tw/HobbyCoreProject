@@ -1,4 +1,6 @@
-﻿using JHobby.Repository.Models.Dto;
+﻿using AutoMapper;
+using JHobby.Repository.Interfaces;
+using JHobby.Repository.Models.Dto;
 using JHobby.Repository.Models.Entity;
 using JHobby.Service.Implements;
 using JHobby.Service.Interfaces;
@@ -10,21 +12,23 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace JHobby.Website.Controllers.Api
 {
-	[Route("[controller]/[action]")]			
+    [Route("[controller]/[action]")]			
 	[ApiController]
 	public class ActivityApiController : ControllerBase
 	{
 		private readonly IActivityService _activityService;
-		
-		public ActivityApiController (IActivityService activityService)
+		private readonly IMapper _mapper;
+
+        public ActivityApiController (IActivityService activityService, IMapper mapper)
 		{
 			_activityService = activityService;
-		}
+			_mapper = mapper;
+        }
 
 		[HttpPost]
 		public IActionResult InsertActivity(ActivityBuildViewModel activityBuildViewModel)
 		{
-			var mapper = new ActivityBuildModel			
+			var mapper = new ActivityBuildModel
 			{
 				ActivityName = activityBuildViewModel.ActivityName,
 				ActivityCity = activityBuildViewModel.ActivityCity,
@@ -41,16 +45,54 @@ namespace JHobby.Website.Controllers.Api
 				ActivityStatus = activityBuildViewModel.ActivityStatus,
 				Payment = activityBuildViewModel.Payment,
 				Created = activityBuildViewModel.Created
-
 			};
 
-			var result=_activityService.CreateActivityBuild(mapper);
+			var result = _activityService.CreateActivityBuild(mapper);
 
 			return Ok(result);
 		}
 
+		/// <summary>
+		/// 活動頁面查詢
+		/// </summary>
+		/// <param name="id"></param>
+		/// <returns></returns>
+		[HttpGet("{id}")]
+		public ActionResult <ActivityPageViewModel> ActivitySearch(int id)
+		{
+			var result = _activityService.GetActivityPageSearch(id);
 
+			var mapper = new ActivityPageViewModel
+			{
+                ActivityId = result.ActivityId,
+                ActivityLocation = result.ActivityLocation,
+                CategoryId = result.CategoryId,
+                CategoryTypeId = result.CategoryTypeId,
+                ActivityName = result.ActivityName,
+                StartTime = result.StartTime,
+                JoinDeadLine = result.JoinDeadLine,
+                ActivityNotes = result.ActivityNotes,
+                ActivityImages = result.ActivityImages.Select(ai => new ActivityImageViewModel
+                {
+                    ActivityImageId = ai.ActivityImageId,
+					AiActivity = ai.AiActivity,
+                    ImageName = ai.ImageName,
+                    IsCover = ai.IsCover,
+                    UploadTime = ai.UploadTime,
+                })
+            };
 
+            return Ok(mapper);
+		}
 
+        /// <summary>
+        /// 會員留言板查詢
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+		public ActionResult <IEnumerable<MemberMsgViewModel>> MemberMsg()
+		{
+			return Ok(_activityService.GetMemberMsg());
+		}
 	}
 }
