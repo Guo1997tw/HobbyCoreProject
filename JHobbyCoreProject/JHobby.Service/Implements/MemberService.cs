@@ -23,13 +23,13 @@ namespace JHobby.Service.Implements
         public bool CreateMemberRegister(MemberRegisterModel memberRegisterModel)
         {
             var salt = RandomSalt();
-            var hashPwd = HashPwdWithHMACSHA256(memberRegisterModel.Password, salt);
+            var hashPwd = HashPwdWithHMACSHA256(memberRegisterModel.HashPassword, salt);
             var pwdSalt = $"{hashPwd}:{salt}";
 
             var mapper = new MemberRegisterDto
             {
-                Account = memberRegisterModel.Account,              
-                Password = pwdSalt,
+                Account = memberRegisterModel.Account,
+                HashPassword = pwdSalt,
                 Status = memberRegisterModel.Status,
                 CreationDate = memberRegisterModel.CreationDate,
             };
@@ -45,7 +45,7 @@ namespace JHobby.Service.Implements
 
             if(queryResult != null)
             {
-                var parts = queryResult.Password.Split(':');
+                var parts = queryResult.HashPassword.Split(':');
 
                 if (parts.Length != 2) { return false; }
 

@@ -24,7 +24,7 @@ namespace JHobby.Website.Controllers.Api
             var mapper = new MemberRegisterModel
             {
                 Account = memberRegisterViewModel.Account,
-                Password = memberRegisterViewModel.Password,
+                HashPassword = memberRegisterViewModel.HashPassword,
                 Status = memberRegisterViewModel.Status,
                 CreationDate = memberRegisterViewModel.CreationDate         
             };
@@ -37,7 +37,7 @@ namespace JHobby.Website.Controllers.Api
         [HttpPost]
         public IActionResult CheckMember(MemberLoginViewModel memberLoginViewModel)
         {
-            if(_memberService.CheckMemberLogin(memberLoginViewModel.Account, memberLoginViewModel.Password))
+            if(_memberService.CheckMemberLogin(memberLoginViewModel.Account, memberLoginViewModel.HashPassword))
             {
                 return Ok(new { Message = "登入成功~~" });
             }
