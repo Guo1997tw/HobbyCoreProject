@@ -20,8 +20,6 @@ namespace JHobby.Service.Models
 
         public int? CurrentPeople { get; set; }
 
-        public DateTime StartTime { get; set; }
-
         public string? NickName { get; set; }
 
         public string? DateConvert { get; set;}

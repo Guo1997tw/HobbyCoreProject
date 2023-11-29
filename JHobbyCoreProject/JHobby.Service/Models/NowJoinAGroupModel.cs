@@ -31,8 +31,8 @@ namespace JHobby.Service.Models
 
         public DateTime StartTime { get; set; }
 
-        public virtual Activity Activity { get; set; } = null!;
+        public string? DateConvert { get; set; }
 
-        public virtual Member Member { get; set; } = null!;
+        public string? TimeConvert { get; set; }
     }
 }

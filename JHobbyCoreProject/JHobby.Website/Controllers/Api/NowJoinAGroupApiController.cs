@@ -31,6 +31,8 @@ namespace JHobby.Website.Controllers.Api
                     MaxPeople = s.MaxPeople,
                     StartTime = s.StartTime,
                     NickName = s.NickName,
+                    DateConvert = s.DateConvert,
+                    TimeConvert = s.TimeConvert,
                 }
             );
         }

@@ -54,7 +54,11 @@ namespace JHobby.Service.Implements
             return max.GetValueOrDefault() - current.GetValueOrDefault();
         }
 
-
+        /// <summary>
+        /// 將Sql Sever內的時間轉成日期格式和時間格式
+        /// </summary>
+        /// <param name="dateTime"></param>
+        /// <returns></returns>
         public IEnumerable<TimeModelDto> ConvertTime(DateTime dateTime)
         {
             string dateConvert = dateTime.ToString("yyyy-MM-dd");

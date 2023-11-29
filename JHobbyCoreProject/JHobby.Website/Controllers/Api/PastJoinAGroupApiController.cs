@@ -28,7 +28,6 @@ namespace JHobby.Website.Controllers.Api
                 ActivityStatus  = x.ActivityStatus,
                 CurrentPeople = x.CurrentPeople,
                 NickName = x.NickName,
-                StartTime = x.StartTime,
                 DateConvert = x.DateConvert,
                 TimeConvert = x.TimeConvert,
             });

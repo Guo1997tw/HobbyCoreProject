@@ -33,8 +33,9 @@ namespace JHobby.Service.Implements
                 ActivityStatus = _iCommonService.ConvertActivityStatus(r.ActivityStatus),
                 ActivityCity = r.ActivityCity,
                 CurrentPeople = r.CurrentPeople,
-                StartTime = r.StartTime,
                 NickName = r.NickName,
+
+                //將StartTime轉成日期格式和時間格式
                 DateConvert = _iCommonService.ConvertTime(r.StartTime).FirstOrDefault().DateConvert,
                 TimeConvert = _iCommonService.ConvertTime(r.StartTime).FirstOrDefault().TimeConvert
             }) ;
