@@ -1,7 +1,11 @@
-﻿using JHobby.Repository.Interfaces;
+﻿using JHobby.Repository.Implements;
+using JHobby.Repository.Interfaces;
 using JHobby.Repository.Models.Dto;
 using JHobby.Service.Interfaces;
 using JHobby.Service.Models;
+using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Query.SqlExpressions;
+using Microsoft.Identity.Client;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -28,18 +32,73 @@ namespace JHobby.Service.Implements
 
             var mapper = new MemberRegisterDto
             {
-                Account = memberRegisterModel.Account,              
+                Account = memberRegisterModel.Account,
                 Password = pwdSalt,
                 Status = memberRegisterModel.Status,
                 CreationDate = memberRegisterModel.CreationDate,
             };
 
             _memberRepository.InsertMemberRegister(mapper);
-            
+
             return true;
         }
 
-        public bool CheckMemberLogin(string account, string password)
+
+        public MemberModel GetByIdDetail(int id)
+        {
+            var resultA = _memberRepository.GetById(id);
+            if (resultA == null) return null;
+
+            return new MemberModel
+            {
+                MemberId = resultA.MemberId,
+                Password = resultA.Password,
+            };
+
+        }
+
+
+        public bool UpdateMember(int id, UpdateMemberModel updateMemberModel)
+        {
+            var salt = RandomSalt();
+            var hashPwd = HashPwdWithHMACSHA256(updateMemberModel.NewPassword, salt);
+            var pwdSalt = $"{hashPwd}:{salt}";
+
+			var saltTwo = RandomSalt();
+			var hashPwdTwo = HashPwdWithHMACSHA256(updateMemberModel.OldPassword, saltTwo);
+			var pwdSaltTwo = $"{hashPwdTwo}:{salt}";
+
+
+			var resultA = _memberRepository.GetById(id);            
+            if (resultA == null) { return false; }
+             
+            var databasePassword = resultA.Password;         // 假設從資料庫中取得的密碼是 resultA.Password      
+
+            updateMemberModel.OldPassword = pwdSaltTwo;           
+
+
+			if (updateMemberModel.OldPassword == databasePassword && updateMemberModel.OldPassword != updateMemberModel.NewPassword && updateMemberModel.PasswordTwo == updateMemberModel.NewPassword)
+            {
+                var target = new UpdateMemberDto
+                {       
+                    NewPassword = pwdSalt,
+                };
+
+                _memberRepository.Update(id, target);
+
+                return true;
+            }
+
+            else
+            {
+                return false;
+            }
+        }
+
+
+
+
+            public bool CheckMemberLogin(string account, string password)
         {
             var queryResult = _memberRepository.GetMemberLogin(account);
 
@@ -84,5 +143,9 @@ namespace JHobby.Service.Implements
                 return Convert.ToBase64String(hash);
             }
         }
+
+
+
+
     }
 }

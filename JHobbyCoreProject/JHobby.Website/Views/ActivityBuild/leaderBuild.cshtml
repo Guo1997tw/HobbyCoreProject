@@ -73,7 +73,7 @@
 
 							<div class="mb-3">
 								<label for="court" class="form-label" style="font-size: 22px;">活動種類(大項)</label>
-								<select class="form-select" id="mainCategory" aria-label="Default select example" v-model="activityBuild.categoryId">
+								<select class="select select2" id="mainCategory" aria-label="Default select example" v-model="activityBuild.categoryId">
 									<option value="" disabled selected>請選擇活動種類</option>
 									<option value="1">食</option>
 									<option value="2">住</option>
@@ -85,7 +85,7 @@
 
 							<div class="mb-3">
 								<label for="court" class="form-label" style="font-size: 22px;">活動種類(小項)</label>
-								<select class="form-select" id="subCategory" aria-label="Default select example" v-model="activityBuild.categoryTypeId">
+								<select class="select select2" id="subCategory" aria-label="Default select example" v-model="activityBuild.categoryTypeId">
 									<option value="" disabled selected>請選擇活動種類</option>
 									<option value="1">水上運動</option>
 									<option value="2">室內運動</option>

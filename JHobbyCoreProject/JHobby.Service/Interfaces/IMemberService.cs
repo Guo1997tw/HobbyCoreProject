@@ -12,5 +12,9 @@ namespace JHobby.Service.Interfaces
         public bool CreateMemberRegister(MemberRegisterModel memberRegisterModel);
 
         public bool CheckMemberLogin(string account, string password);
+
+        public  MemberModel GetByIdDetail(int id);
+        public bool UpdateMember(int id,UpdateMemberModel updateMemberModel);
+        
     }
 }

@@ -28,14 +28,15 @@ namespace JHobby.Repository.Implements
 
             return queryResult;
         }
+       
 
         public CategoryDto? GetById(int id)
         {
             var queryResult = _jhobbyContext.Categories.FirstOrDefault(c => c.CategoryId == id);
 
-            if (queryResult == null) return null;
+            if (queryResult == null) { return null; }
 
-            return new CategoryDto
+			return new CategoryDto
             {
                 CategoryId = queryResult.CategoryId,
                 CategoryName = queryResult.CategoryName

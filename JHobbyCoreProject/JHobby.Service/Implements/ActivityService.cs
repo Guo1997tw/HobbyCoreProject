@@ -1,6 +1,7 @@
 ﻿using JHobby.Repository.Interfaces;
 using JHobby.Repository.Models.Dto;
 using JHobby.Service.Interfaces;
+using JHobby.Service.Models;
 using JHobby.Service.Models.Dto;
 using System;
 using System.Collections.Generic;
@@ -17,7 +18,7 @@ namespace JHobby.Service.Implements
 		public ActivityService (IActivityRepository activityRepository)
 		{
 			_activityRepository = activityRepository;
-		} 
+		}
 		public bool CreateActivityBuild(ActivityBuildModel activityBuildModel)
 		{
 			var mapper = new ActivityBuildDto
@@ -29,7 +30,7 @@ namespace JHobby.Service.Implements
 				StartTime = activityBuildModel.StartTime,
 				MaxPeople = activityBuildModel.MaxPeople,
 				CategoryId = activityBuildModel.CategoryId,
-				CategoryTypeId = activityBuildModel.CategoryTypeId,		
+				CategoryTypeId = activityBuildModel.CategoryTypeId,
 				JoinDeadLine = activityBuildModel.JoinDeadLine,
 				JoinFee = activityBuildModel.JoinFee,
 				ActivityNotes = activityBuildModel.ActivityNotes,
