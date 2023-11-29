@@ -198,7 +198,7 @@
                                                                                         <a href="javascript:;"
                                                                                            class="btn cancel-table-btn"
                                                                                            data-bs-toggle="modal"
-                                                                                           data-bs-target="#add-particpate-check">
+                                                                                           data-bs-target="#add-particpate-check" v-if="item.Edit==true">
                                                                                             2
                                                                                         </a>
                                                                                         <!-- /連接參團人數 -->
@@ -490,7 +490,7 @@
                     @* 開團歷史紀錄版面 *@
                     <div class="row">
                         <div class="col-lg-12">
-                            <div class="card dashboard-card mb-0">
+                            <div id="app" class="card dashboard-card mb-0" v-for="item in show " @@keyup="axiosBrowsepicture">
                                 <div class="card-header card-header-info border-0">
                                     <div class="card-header-inner">
                                         <h4>開團歷史紀錄</h4>
@@ -555,21 +555,21 @@
                                                         </td>
                                                         <td>
                                                             @* <div class="dropdown dropdown-action">
-                                                                <a href="~/#" class="action-icon dropdown-toggle"
-                                                                   data-bs-toggle="dropdown"
-                                                                   aria-expanded="false">
-                                                                    <i class="fas fa-ellipsis"></i>
-                                                                </a>
-                                                                <div class="dropdown-menu dropdown-menu-end">
-                                                                    <a class="dropdown-item"
-                                                                       href="~/javascript:void(0);">
-                                                                        <i class="feather-download"></i> Download
-                                                                    </a>
-                                                                    <a class="dropdown-item"
-                                                                       href="~/javascript:void(0);">
-                                                                        <i class="feather-trash"></i> Delete
-                                                                    </a>
-                                                                </div> 
+                                                            <a href="~/#" class="action-icon dropdown-toggle"
+                                                            data-bs-toggle="dropdown"
+                                                            aria-expanded="false">
+                                                            <i class="fas fa-ellipsis"></i>
+                                                            </a>
+                                                            <div class="dropdown-menu dropdown-menu-end">
+                                                            <a class="dropdown-item"
+                                                            href="~/javascript:void(0);">
+                                                            <i class="feather-download"></i> Download
+                                                            </a>
+                                                            <a class="dropdown-item"
+                                                            href="~/javascript:void(0);">
+                                                            <i class="feather-trash"></i> Delete
+                                                            </a>
+                                                            </div>
                                                             </div>*@
                                                         </td>
                                                     </tr>
@@ -606,21 +606,21 @@
                                                         </td>
                                                         <td>
                                                             @* <div class="dropdown dropdown-action">
-                                                                <a href="~/#" class="action-icon dropdown-toggle"
-                                                                   data-bs-toggle="dropdown"
-                                                                   aria-expanded="false">
-                                                                    <i class="fas fa-ellipsis"></i>
-                                                                </a>
-                                                                <div class="dropdown-menu dropdown-menu-end">
-                                                                    <a class="dropdown-item"
-                                                                       href="~/javascript:void(0);">
-                                                                        <i class="feather-download"></i> Download
-                                                                    </a>
-                                                                    <a class="dropdown-item"
-                                                                       href="~/javascript:void(0);">
-                                                                        <i class="feather-trash"></i> Delete
-                                                                    </a>
-                                                                </div> 
+                                                            <a href="~/#" class="action-icon dropdown-toggle"
+                                                            data-bs-toggle="dropdown"
+                                                            aria-expanded="false">
+                                                            <i class="fas fa-ellipsis"></i>
+                                                            </a>
+                                                            <div class="dropdown-menu dropdown-menu-end">
+                                                            <a class="dropdown-item"
+                                                            href="~/javascript:void(0);">
+                                                            <i class="feather-download"></i> Download
+                                                            </a>
+                                                            <a class="dropdown-item"
+                                                            href="~/javascript:void(0);">
+                                                            <i class="feather-trash"></i> Delete
+                                                            </a>
+                                                            </div>
                                                             </div> *@
                                                         </td>
                                                     </tr>
@@ -657,21 +657,21 @@
                                                         </td>
                                                         <td>
                                                             @* <div class="dropdown dropdown-action">
-                                                                <a href="~/#" class="action-icon dropdown-toggle"
-                                                                   data-bs-toggle="dropdown"
-                                                                   aria-expanded="false">
-                                                                    <i class="fas fa-ellipsis"></i>
-                                                                </a>
-                                                                <div class="dropdown-menu dropdown-menu-end">
-                                                                    <a class="dropdown-item"
-                                                                       href="~/javascript:void(0);">
-                                                                        <i class="feather-download"></i> Download
-                                                                    </a>
-                                                                    <a class="dropdown-item"
-                                                                       href="~/javascript:void(0);">
-                                                                        <i class="feather-trash"></i> Delete
-                                                                    </a>
-                                                                </div> 
+                                                            <a href="~/#" class="action-icon dropdown-toggle"
+                                                            data-bs-toggle="dropdown"
+                                                            aria-expanded="false">
+                                                            <i class="fas fa-ellipsis"></i>
+                                                            </a>
+                                                            <div class="dropdown-menu dropdown-menu-end">
+                                                            <a class="dropdown-item"
+                                                            href="~/javascript:void(0);">
+                                                            <i class="feather-download"></i> Download
+                                                            </a>
+                                                            <a class="dropdown-item"
+                                                            href="~/javascript:void(0);">
+                                                            <i class="feather-trash"></i> Delete
+                                                            </a>
+                                                            </div>
                                                             </div>*@
                                                         </td>
                                                     </tr>
@@ -708,21 +708,21 @@
                                                         </td>
                                                         <td>
                                                             @* <div class="dropdown dropdown-action">
-                                                                <a href="~/#" class="action-icon dropdown-toggle"
-                                                                   data-bs-toggle="dropdown"
-                                                                   aria-expanded="false">
-                                                                    <i class="fas fa-ellipsis"></i>
-                                                                </a>
-                                                                <div class="dropdown-menu dropdown-menu-end">
-                                                                    <a class="dropdown-item"
-                                                                       href="~/javascript:void(0);">
-                                                                        <i class="feather-download"></i> Download
-                                                                    </a>
-                                                                    <a class="dropdown-item"
-                                                                       href="~/javascript:void(0);">
-                                                                        <i class="feather-trash"></i> Delete
-                                                                    </a>
-                                                                </div> 
+                                                            <a href="~/#" class="action-icon dropdown-toggle"
+                                                            data-bs-toggle="dropdown"
+                                                            aria-expanded="false">
+                                                            <i class="fas fa-ellipsis"></i>
+                                                            </a>
+                                                            <div class="dropdown-menu dropdown-menu-end">
+                                                            <a class="dropdown-item"
+                                                            href="~/javascript:void(0);">
+                                                            <i class="feather-download"></i> Download
+                                                            </a>
+                                                            <a class="dropdown-item"
+                                                            href="~/javascript:void(0);">
+                                                            <i class="feather-trash"></i> Delete
+                                                            </a>
+                                                            </div>
                                                             </div> *@
                                                         </td>
                                                     </tr>
@@ -758,21 +758,21 @@
                                                             <span><i class="feather-edit"></i> Paid</span>
                                                         </td>
                                                         <td>
-                                                        @*     <div class="dropdown dropdown-action">
-                                                                <a href="~/#" class="action-icon dropdown-toggle"
-                                                                   data-bs-toggle="dropdown"
-                                                                   aria-expanded="false">
-                                                                    <i class="fas fa-ellipsis"></i>
-                                                                </a>
-                                                                <div class="dropdown-menu dropdown-menu-end">
-                                                                    <a class="dropdown-item"
-                                                                       href="~/javascript:void(0);">
-                                                                        <i class="feather-download"></i> Download
-                                                                    </a>
-                                                                    <a class="dropdown-item"
-                                                                       href="~/javascript:void(0);">
-                                                                    </a>
-                                                                </div> 
+                                                            @*     <div class="dropdown dropdown-action">
+                                                            <a href="~/#" class="action-icon dropdown-toggle"
+                                                            data-bs-toggle="dropdown"
+                                                            aria-expanded="false">
+                                                            <i class="fas fa-ellipsis"></i>
+                                                            </a>
+                                                            <div class="dropdown-menu dropdown-menu-end">
+                                                            <a class="dropdown-item"
+                                                            href="~/javascript:void(0);">
+                                                            <i class="feather-download"></i> Download
+                                                            </a>
+                                                            <a class="dropdown-item"
+                                                            href="~/javascript:void(0);">
+                                                            </a>
+                                                            </div>
                                                             </div> *@
                                                         </td>
                                                     </tr>
@@ -897,10 +897,10 @@
                     </div>
                     <div class="modal-footer">
                         <div class="table-accept-btn">
-                            <a href="javascript:;" class="btn accept-btn me-0">刪除</a>
+                            <button class="btn cancel-table-btn">刪除</button>
                         </div>
                         <div class="table-accept-btn">
-                            <a href="javascript:;" class="btn cancel-table-btn" data-bs-toggle="modal" data-bs-target="#request-reject">取消</a>
+                            <a href="javascript:;" class="btn accept-btn me-0" data-bs-toggle="modal" data-bs-target="#request-reject">取消</a>
                         </div>
                     </div>
                 </div>
@@ -1254,5 +1254,50 @@
     </main>
 </div>
 
+<!-- Hot Member -->
+@section Scripts
+{
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/3.3.4/vue.global.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.6.0/axios.min.js" integrity="sha512-WrdC3CE9vf1nBf58JHepuWT4x24uTacky9fuzw2g/3L9JkihgwZ6Cfv+JGTtNyosOhEmttMtEZ6H3qJWfI7gIQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="~/assets/js/script.js"></script>
+    <script>
+        var record = Vue.recordApp({
+            data() {   //顯示資料
+                return {
+                    axiosBrowsepicture: []
+                };
+            },
+            mounted: function () {
+                this.axiosaxiosBrowsepicture();
+            },
+            methods: {  //事件
+                axiosBrowsepicture: function () {
+                    let _this = this;
+                    axios.get(`/GroupStartingApi`)
+                        .then((result) => _this.Browsepicture = result.data)
+                        .catch((error) => alert(`發生錯誤: ${error}`));
+                },
+        //         update: function (MemberId) {
+        //             alert("update");
+        //         },
+        //         delete: function () {
+        //             let _this = this;
+        //             var from = confirm('確定要刪除嗎?')
+        //             from.append("id", categoryId);
+        //             from.append("__RequestVerificaionToken", $(AntiForgeryToken).val();
+        //             if (return == true){
+        //                 axios.post().then(
+        //                     respose => {
+        //                         alert(response.data);
+        //                         _this.filterCategories();
+        //                     }).catch(err => {
+        //                         alert(err);
+        //                     });
+        //                  }
+        //             },
+             
+        // var app = Vue.recordApp(record).mount("#app")
+    </script>
+}
 
 

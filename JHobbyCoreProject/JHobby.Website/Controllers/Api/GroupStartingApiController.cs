@@ -3,6 +3,7 @@ using JHobby.Service.Implements;
 using JHobby.Service.Interfaces;
 using JHobby.Service.Models;
 using JHobby.Website.Models.ViewModels;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 
 namespace JHobby.Website.Controllers.Api
@@ -12,11 +13,13 @@ namespace JHobby.Website.Controllers.Api
 	public class GroupStartingApiController : ControllerBase
 	{
 		private readonly IGroupStartingService _GroupStartingService;
-
-		public GroupStartingApiController(IGroupStartingService GroupStartingService)
+        private readonly IWebHostEnvironment _webHostEnvironment;
+        public GroupStartingApiController(IGroupStartingService GroupStartingService , IWebHostEnvironment webHostEnvironment)
 		{
 			_GroupStartingService = GroupStartingService;
-		}
+            _webHostEnvironment = webHostEnvironment;
+
+        }
 
 		[HttpGet]
 		public IEnumerable<GroupStartingViewModel> GetAll()
