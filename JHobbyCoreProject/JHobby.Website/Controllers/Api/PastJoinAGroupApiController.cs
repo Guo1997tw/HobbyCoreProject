@@ -11,27 +11,42 @@ namespace JHobby.Website.Controllers.Api
     [ApiController]
     public class PastJoinAGroupApiController : ControllerBase
     {
-        private readonly IPastJoinAGroupService _astJoinAGroupService;
+        private readonly IPastJoinAGroupService _aPastJoinAGroupService;
 
         public PastJoinAGroupApiController(IPastJoinAGroupService astJoinAGroupService)
         {
-            _astJoinAGroupService = astJoinAGroupService;
+            _aPastJoinAGroupService = astJoinAGroupService;
         }
 
         [HttpGet]
         public IEnumerable<PastJoinAGroupViewModel> GetPastJoinAGroupAll()
         {
-            return _astJoinAGroupService.GetPastJoinAGroupAll().Select(x=> new PastJoinAGroupViewModel 
+            return _aPastJoinAGroupService.GetPastJoinAGroupAll().Select(x => new PastJoinAGroupViewModel
             {
                 ActivityCity = x.ActivityCity,
                 ActivityName = x.ActivityName,
-                ActivityStatus  = x.ActivityStatus,
+                ActivityStatus = x.ActivityStatus,
                 CurrentPeople = x.CurrentPeople,
                 NickName = x.NickName,
                 DateConvert = x.DateConvert,
                 TimeConvert = x.TimeConvert,
             });
 
+        }
+
+        [HttpGet]
+        public IEnumerable<PastJoinAGroupViewModel> GetPastJoinAGroupById(int memberId)
+        {
+            return _aPastJoinAGroupService.GetPastJoinAGroupById(memberId).Select(x => new PastJoinAGroupViewModel
+            {
+                ActivityCity = x.ActivityCity,
+                ActivityName = x.ActivityName,
+                ActivityStatus = x.ActivityStatus,
+                CurrentPeople = x.CurrentPeople,
+                NickName = x.NickName,
+                DateConvert = x.DateConvert,
+                TimeConvert = x.TimeConvert,
+            });
         }
     }
 }
