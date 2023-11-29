@@ -22,6 +22,6 @@ namespace JHobby.Repository.Interfaces
         /// 會員留言板查詢
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<MemberMsgDto> GetMsgList();
+        public IEnumerable<MemberMsgDto> GetMsgList(int id);
     }
 }

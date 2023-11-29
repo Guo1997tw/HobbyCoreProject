@@ -90,10 +90,10 @@ namespace JHobby.Website.Controllers.Api
         /// 會員留言板查詢
         /// </summary>
         /// <returns></returns>
-        [HttpGet]
-		public ActionResult <IEnumerable<MemberMsgViewModel>> MemberMsg()
+        [HttpGet("{id}")]
+		public ActionResult <IEnumerable<MemberMsgViewModel>> MemberMsg(int id)
 		{
-			return Ok(_activityService.GetMemberMsg());
+			return Ok(_activityService.GetMemberMsg(id));
 		}
 	}
 }

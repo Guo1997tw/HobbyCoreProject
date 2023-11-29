@@ -8,6 +8,8 @@ namespace JHobby.Service.Models
 {
     public class MemberMsgModel
     {
+        public int ActivityId { get; set; }
+
         public string? HeadShot { get; set; }
 
         public DateTime MessageTime { get; set; }

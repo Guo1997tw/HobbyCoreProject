@@ -23,6 +23,6 @@ namespace JHobby.Service.Interfaces
 		/// 會員留言板查詢
 		/// </summary>
 		/// <returns></returns>
-		public IEnumerable<MemberMsgModel> GetMemberMsg();
+		public IEnumerable<MemberMsgModel> GetMemberMsg(int id);
 	}
 }

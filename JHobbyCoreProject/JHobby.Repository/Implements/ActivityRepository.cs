@@ -90,15 +90,18 @@ namespace JHobby.Repository.Implements
 		/// 會員留言板查詢
 		/// </summary>
 		/// <returns></returns>
-        public IEnumerable<MemberMsgDto> GetMsgList()
+        public IEnumerable<MemberMsgDto> GetMsgList(int id)
 		{
-			return _jhobbyContext.Members.Join(_jhobbyContext.MsgBoards, m => m.MemberId, mb => mb.MemberId, (m, mb) => new MemberMsgDto
-			{
+			var result = _jhobbyContext.Members.Join(_jhobbyContext.MsgBoards, m => m.MemberId, mb => mb.MemberId, (m, mb) => new MemberMsgDto
+            {
+				ActivityId = mb.ActivityId,
 				HeadShot = m.HeadShot,
 				MessageTime = mb.MessageTime,
 				MessageText = mb.MessageText,
 				NickName = m.NickName
-			});
-		}
+			}).Where(f => f.ActivityId == id).ToList();
+
+            return result;
+        }
     }
 }

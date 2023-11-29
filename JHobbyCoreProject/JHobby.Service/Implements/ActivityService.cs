@@ -81,15 +81,16 @@ namespace JHobby.Service.Implements
             return mapper;
 		}
 
-		public IEnumerable<MemberMsgModel> GetMemberMsg()
+		public IEnumerable<MemberMsgModel> GetMemberMsg(int id)
 		{
-			return _activityRepository.GetMsgList().Select(r => new MemberMsgModel
-            {
+			return _activityRepository.GetMsgList(id).Select(r => new MemberMsgModel
+			{
+				ActivityId=r.ActivityId,
 				HeadShot = r.HeadShot,
 				MessageTime = r.MessageTime,
-				NickName = r.NickName,
 				MessageText = r.MessageText,
-			});
-        }
-    }
+				NickName = r.NickName,
+			}).ToList();
+		}
+	}
 }
