@@ -82,7 +82,7 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    <tr v-for="item in reviewData">
+                                                    <tr v-for="item in filterCard">
                                                         <td>
                                                             <h2 class="table-avatar">
                                                                 <a href="#" class="avatar avatar-sm  flex-shrink-0"><img class="avatar-img" src="~/assets/img/booking/booking-01.jpg" alt="User"></a>
@@ -132,20 +132,27 @@
                 </div>
             </div>
         </div>
-        <!--申請紀錄_分頁按鈕-->
-        <paginate :page-count="total"
-                  :click-handler="pageClick"
-                  :prev-text="'<'"
-                  :next-text="'>'"
-                  :container-class="'pagination'">
-            <span slot="prevContent">
-                <i class="feather-chevrons-left"></i>
-            </span>
-            <span slot="nextContent">
-                <i class="feather-chevrons-right"></i>
-            </span>
-        </paginate>
-        <!--/申請紀錄_分頁按鈕-->
+        <!-- 分頁選單-->
+        <div class="tab-footer" style="margin-top: 10px;">
+            <div class="row">
+                <div class="col-md-12">
+                    <div id="tablepage">
+                        <div class="dataTables_paginate paging_simple_numbers" id="DataTables_Table_1_paginate">
+                            <!--分頁按鈕-->
+                            <paginate :page-count="total"
+                            @* :prev-text="'上一頁'"
+                                      :next-text="'下一頁'" *@
+                                      :click-handler="pageClick">
+                                <span slot="prevContent"><i class="feather-chevrons-left"></i></span>
+                                <span slot="nextContent"><i class="feather-chevrons-right"></i></span>
+                            </paginate>
+                            <!--/分頁按鈕-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--/分頁選單-->
         <!-- Request Reject -->
         <div class="modal custom-modal fade request-modal " id="request-reject" role="dialog">
             <div class="modal-dialog modal-dialog-centered modal-sm ">
@@ -211,8 +218,7 @@
                 let _this = this;
                 _this.axiosGetReviewById();
             },
-            computed: {
-                
+            computed: {                
                 total() {
                     let _this = this;
                     return Math.ceil(_this.reviewData.length / _this.countPerPage);
