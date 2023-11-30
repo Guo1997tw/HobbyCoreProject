@@ -23,13 +23,18 @@ namespace JHobby.Service.Implements
         {
             var mapper = new UpdateProfileSettingDto
             {
-                UpdatedHeadShot = updateProfileSettingModel.UpdatedHeadShot,
-                UpdatedNickName = updateProfileSettingModel.UpdatedNickName,
-                UpdatedAcitveCity = updateProfileSettingModel.UpdatedAcitveCity,
-                UpdatedActiveArea = updateProfileSettingModel.UpdatedActiveArea,
-                UpdatedAddress = updateProfileSettingModel.UpdatedAddress,
-                UpdatedPhone = updateProfileSettingModel.UpdatedPhone,
-                UpdatedPersonalProfile = updateProfileSettingModel.UpdatedPersonalProfile,
+                HeadShot = updateProfileSettingModel.HeadShot,
+                Status = updateProfileSettingModel.Status,
+                MemberName = updateProfileSettingModel.MemberName,
+                NickName = updateProfileSettingModel.NickName,
+                Gender = updateProfileSettingModel.Gender,
+                IdentityCard = updateProfileSettingModel.IdentityCard,
+                Birthday = updateProfileSettingModel.Birthday,
+                ActiveCity = updateProfileSettingModel.ActiveCity,
+                ActiveArea = updateProfileSettingModel.ActiveArea,
+                Address = updateProfileSettingModel.Address,
+                Phone = updateProfileSettingModel.Phone,
+                PersonalProfile = updateProfileSettingModel.PersonalProfile,
             };
 
             return  _iUpdateProfileSettingRepository.Update(id, mapper);

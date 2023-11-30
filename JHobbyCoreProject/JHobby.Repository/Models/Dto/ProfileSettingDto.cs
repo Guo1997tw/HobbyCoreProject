@@ -11,6 +11,7 @@ namespace JHobby.Repository.Models.Dto
 		public string? HeadShot { get; set; }
 
 		public string Status { get; set; } = null!;
+
 		public int MemberId { get; set; }
 
 		public string? MemberName { get; set; }
@@ -30,6 +31,7 @@ namespace JHobby.Repository.Models.Dto
 		public string? Address { get; set; }
 
 		public string? Phone { get; set; }
+
 		public string? PersonalProfile { get; set; }
 	}
 }

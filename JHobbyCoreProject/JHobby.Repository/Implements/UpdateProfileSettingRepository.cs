@@ -24,13 +24,18 @@ namespace JHobby.Repository.Implements
 
             if (queryResult != null)
             {
-                queryResult.HeadShot = updateProfileSettingDto.UpdatedHeadShot;
-                queryResult.NickName = updateProfileSettingDto.UpdatedNickName;
-                queryResult.ActiveCity = updateProfileSettingDto.UpdatedAcitveCity;
-                queryResult.ActiveArea = updateProfileSettingDto.UpdatedActiveArea;
-                queryResult.Address = updateProfileSettingDto.UpdatedAddress;
-                queryResult.Phone = updateProfileSettingDto.UpdatedPhone;
-                queryResult.PersonalProfile = updateProfileSettingDto.UpdatedPersonalProfile;
+                queryResult.HeadShot = updateProfileSettingDto.HeadShot;
+                queryResult.Status = updateProfileSettingDto.Status;
+                queryResult.MemberName = updateProfileSettingDto.MemberName;
+                queryResult.NickName = updateProfileSettingDto.NickName;
+                queryResult.Gender = updateProfileSettingDto.Gender;
+                queryResult.IdentityCard = updateProfileSettingDto.IdentityCard;
+                queryResult.Birthday = updateProfileSettingDto.Birthday;
+                queryResult.ActiveCity = updateProfileSettingDto.ActiveCity;
+                queryResult.ActiveArea = updateProfileSettingDto.ActiveArea;
+                queryResult.Address = updateProfileSettingDto.Address;
+                queryResult.Phone = updateProfileSettingDto.Phone;
+                queryResult.PersonalProfile = updateProfileSettingDto.PersonalProfile;
 
                 _jhobbyContext.SaveChanges();
 

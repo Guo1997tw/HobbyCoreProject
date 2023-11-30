@@ -51,18 +51,23 @@ namespace JHobby.Website.Controllers.Api
             return Ok(viewModel);
         }
 
-        //[HttpPut("{id}")]
-        //public ActionResult<UpdateProfileSettingViewModel> UpdateProfileSetting(int id, UpdateProfileSettingViewModel updateProfileSettingViewModel)
+        ////[HttpPut("{id}")]
+        //public ActionResult<UpdateProfileSettingViewModel> UpdateProfileSettingA(int id, UpdateProfileSettingViewModel updateProfileSettingViewModel)
         //{
         //    var mapper = new UpdateProfileSettingModel
         //    {
-        //        UpdatedHeadShot = updateProfileSettingViewModel.UpdatedHeadShot,
-        //        UpdatedNickName = updateProfileSettingViewModel.UpdatedNickName,
-        //        UpdatedAcitveCity = updateProfileSettingViewModel.UpdatedAcitveCity,
-        //        UpdatedActiveArea = updateProfileSettingViewModel.UpdatedActiveArea,
-        //        UpdatedAddress = updateProfileSettingViewModel.UpdatedAddress,
-        //        UpdatedPhone = updateProfileSettingViewModel.UpdatedPhone,
-        //        UpdatedPersonalProfile = updateProfileSettingViewModel.UpdatedPersonalProfile,
+        //        HeadShot = updateProfileSettingViewModel.HeadShot,
+        //        Status = updateProfileSettingViewModel.Status,
+        //        MemberName = updateProfileSettingViewModel.MemberName,
+        //        NickName = updateProfileSettingViewModel.NickName,
+        //        Gender = updateProfileSettingViewModel.Gender,
+        //        IdentityCard = updateProfileSettingViewModel.IdentityCard,
+        //        Birthday = updateProfileSettingViewModel.Birthday,
+        //        ActiveCity = updateProfileSettingViewModel.ActiveCity,
+        //        ActiveArea = updateProfileSettingViewModel.ActiveArea,
+        //        Address = updateProfileSettingViewModel.Address,
+        //        Phone = updateProfileSettingViewModel.Phone,
+        //        PersonalProfile = updateProfileSettingViewModel.PersonalProfile,
         //    };
         //    return Ok(_iUpdateProfileSettingService.Update(id, mapper));
         //}
@@ -75,22 +80,40 @@ namespace JHobby.Website.Controllers.Api
         }
 
         [HttpPut("{id}")]
-        public bool UpdateProfileSetting(int id, [FromForm] UpdateProfileSettingIFormFileViewModel updateProfileSettingIFormFileViewModel)
+        public bool UpdateProfileSetting(int id, [FromForm] UpdateProfileSettingViewModel updateProfileSettingViewModel)
         {
-            if (updateProfileSettingIFormFileViewModel.File != null)
+            var mapper = new UpdateProfileSettingModel
             {
-                if (updateProfileSettingIFormFileViewModel.File.Length > 0)
+                HeadShot = updateProfileSettingViewModel.HeadShot,
+                Status = updateProfileSettingViewModel.Status,
+                MemberName = updateProfileSettingViewModel.MemberName,
+                NickName = updateProfileSettingViewModel.NickName,
+                Gender = updateProfileSettingViewModel.Gender,
+                IdentityCard = updateProfileSettingViewModel.IdentityCard,
+                Birthday = updateProfileSettingViewModel.Birthday,
+                ActiveCity = updateProfileSettingViewModel.ActiveCity,
+                ActiveArea = updateProfileSettingViewModel.ActiveArea,
+                Address = updateProfileSettingViewModel.Address,
+                Phone = updateProfileSettingViewModel.Phone,
+                PersonalProfile = updateProfileSettingViewModel.PersonalProfile,
+            };
+
+            _iUpdateProfileSettingService.Update(id, mapper);
+
+            if (updateProfileSettingViewModel.File != null)
+            {
+                if (updateProfileSettingViewModel.File.Length > 0)
                 {
-                    string SavePath = $@"{_Path}{updateProfileSettingIFormFileViewModel.File.FileName}";
+                    string SavePath = $@"{_Path}{updateProfileSettingViewModel.File.FileName}";
 
                     using (var steam = new FileStream(SavePath, FileMode.Create))
                     {
-                        updateProfileSettingIFormFileViewModel.File.CopyToAsync(steam);
+                        updateProfileSettingViewModel.File.CopyToAsync(steam);
                     }
                 }
             }
-
             return true;
         }
+
     }
 }

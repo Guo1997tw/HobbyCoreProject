@@ -104,19 +104,19 @@
                                 <div class="col-lg-12 col-md-6">
                                     <div class="input-space">
                                         <label class="form-label">會員編號</label>
-                                        <input type="text" class="form-control" id="name" :value="ProfileSetting.memberId" readonly>
+                                        <input type="text" class="form-control" id="name" v-model="ProfileSetting.memberId" readonly>
                                     </div>
                                 </div>
                                 <div class="col-lg-12 col-md-6">
                                     <div class="input-space">
                                         <label class="form-label">身份別</label>
-                                        <input type="text" class="form-control" id="name" placeholder="系統帶入" :value="ProfileSetting.status" readonly>
+                                        <input type="text" class="form-control" id="name" placeholder="系統帶入" v-model="ProfileSetting.status" readonly>
                                     </div>
                                 </div>
                                 <div class="col-lg-12 col-md-6">
                                     <div class="input-space">
                                         <label class="form-label">姓名</label>
-                                        <input type="text" class="form-control" id="name" :value="ProfileSetting.memberName" readonly>
+                                        <input type="text" class="form-control" id="name" v-model="ProfileSetting.memberName" >
                                     </div>
                                 </div>
                                 <div class="col-lg-12 col-md-6">
@@ -128,20 +128,20 @@
                                 <div class="col-lg-12 col-md-6">
                                     <div class="input-space">
                                         <label class="form-label">性別</label>
-                                        <input type="text" class="form-control" id="name" :value="ProfileSetting.gender" readonly>
+                                        <input type="text" class="form-control" id="name" v-model="ProfileSetting.gender" >
                                         <hr>
                                     </div>
                                 </div>
                                 <div class="col-lg-12 col-md-6">
                                     <div class="input-space">
                                         <label class="form-label">身份證</label>
-                                        <input type="text" class="form-control" id="name" :value="ProfileSetting.identityCard" readonly>
+                                        <input type="text" class="form-control" id="name" v-model="ProfileSetting.identityCard" >
                                     </div>
                                 </div>
                                 <div class="col-lg-12 col-md-6">
                                     <div class="input-space">
                                         <label class="form-label">出生年月日</label>
-                                        <input type="datetime" class="form-control" id="name" :value="ProfileSetting.birthday" readonly>
+                                        <input type="datetime" class="form-control" id="name" v-model="ProfileSetting.birthday" >
                                     </div>
                                 </div>
                                 <div class="col-lg-12 col-md-6">
@@ -160,7 +160,7 @@
 
                                         <label class="form-label">請選擇鄉鎮市區</label>
                                         <select2 style="width:100%" :options="areaList" v-model:value="ProfileSetting.activeArea">
-                                            <option disabled value="0">請選擇</option>
+                                            <option disabled value="1"></option>
                                         </select2>
                                     </div>
                                 </div>
@@ -251,7 +251,6 @@
                     if (this.file) formData.append('file', this.file);
                     formData.append('headShot', this.ProfileSetting.headShot);
                     formData.append('status', this.ProfileSetting.status);
-                    formData.append('memberId', this.ProfileSetting.memberId);
                     formData.append('memberName', this.ProfileSetting.memberName);
                     formData.append('nickName', this.ProfileSetting.nickName);
                     formData.append('gender', this.ProfileSetting.gender);
@@ -277,7 +276,8 @@
                     //     method: "put",
                     //     body: form_data
                     // })
-                }
+                },
+
             },
             mounted() {
                 let self = this;
