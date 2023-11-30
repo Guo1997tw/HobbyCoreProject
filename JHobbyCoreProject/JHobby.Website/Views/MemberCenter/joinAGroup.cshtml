@@ -172,7 +172,7 @@
                 <!-- /參團區塊標題欄_報名紀錄/心願單 -->
                 <!-- 參團區塊標題欄_過去活動-->
                 <!--分頁選單過去活動-->
-                <div class="row" id="idPastJoinAGroupCard2">
+                <div class="row" id="idPastJoinAGroupCard">
                     <div class="col-lg-12">
                         <div class="card dashboard-card mb-0">
                             <div class="card-header card-header-info border-0">
@@ -229,10 +229,10 @@
                                                                 <i class="fas fa-ellipsis"></i>
                                                             </a>
                                                             <div class="dropdown-menu dropdown-menu-end">
-                                                                <a class="dropdown-item" href="javascript:;" data-bs-toggle="modal"
+                                                                <div class="dropdown-item" href="javascript:;" data-bs-toggle="modal"
                                                                    data-bs-target="#request-reject">
-                                                                    <a href="javascript:;" class="btn cancel-table-btn" data-bs-toggle="modal" data-bs-target="#request-coche">評分</a>
-                                                                </a>
+                                                                    <button href="javascript:;" class="btn cancel-table-btn" data-bs-toggle="modal" data-bs-target="#request-coche" @@click="setCurrentCard(filterCard[index])">評分</button>
+                                                                </div>
                                                             </div>
                                                         </div>
                                                         <!-- 下拉圓形選單評團主 -->
@@ -267,86 +267,88 @@
                             <!--/分業選單-參團-->
                         </div>
                     </div>
+                    <!-- 有分數星星的彈跳視窗V1.1 -->
+                    <div class="modal custom-modal fade request-modal" id="request-coche" style="display: none;" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered modal-md">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <div class="form-header modal-header-title">
+                                        <h4 class="mb-0">團主評分</h4>
+                                    </div>
+                                    <a class="close" data-bs-dismiss="modal" aria-label="Close">
+                                        <span class="align-center" aria-hidden="true"><i class="feather-x"></i></span>
+                                    </a>
+                                </div>
+                                <div class="modal-body">
+                                    <!-- Court Request -->
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <div class="card dashboard-card court-information">
+                                                <div class="d-flex align-items-center justify-content-between">
+                                                    <div class="card-header">
+                                                        <h4>評分注意事項:<br>送出後就無法再進行更改</h4>
+                                                    </div>
+                                                    <div class="appointment-info">
+                                                        <!-- 訊息欄位 -->
+                                                        <ul>
+                                                            <li>
+                                                                <div class="appointment-item">
+                                                                    <div class="appointment-img">
+                                                                        <img src="~/assets/img/booking/booking-01.jpg" alt="User">
+                                                                    </div>
+                                                                    <div class="appointment-content">
+                                                                        <h6>{{currentCard.activityName}}</h6>
+                                                                        <p class="color-green">參加人數: {{currentCard.currentPeople}}人</p>
+                                                                    </div>
+                                                                </div>
+                                                            </li>
+                                                            <li>
+                                                                <h6>活動時間</h6>
+                                                                <p>{{currentCard.dateConvert}}</p>
+                                                                <p>{{currentCard.timeConvert}}</p>
+                                                            </li>
+                                                            <li>
+                                                                <h6>活動地點</h6>
+                                                                <p>{{currentCard.activityCity}}</p>
+                                                            </li>
+                                                        </ul>
+                                                        <!-- 訊息欄位 -->
+                                                    </div>
+                                                    <div class="ratings-info corner-radius-10 text-center">
+                                                        <!-- 分數星星 -->
+                                                        <div class="ratings-info corner-radius-10 text-center">
+                                                            <div class="rating">
+                                                                <i class="fas fa-star filled"></i>
+                                                                <i class="fas fa-star filled"></i>
+                                                                <i class="fas fa-star filled"></i>
+                                                                <i class="fas fa-star filled"></i>
+                                                                <i class="fas fa-star filled"></i>
+                                                            </div>
+                                                        </div>
+                                                        <!-- 分數星星 -->
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- /Court Request -->
+                                </div>
+                                <div class="modal-footer">
+                                    <div class="table-accept-btn">
+                                        <a href="javascript:;" class="btn accept-btn me-0">送出</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 有分數星星的彈跳視窗V1.1  -->
                 </div>
                 <!--分頁選單過去活動-->
                 <!-- /參團區塊標題欄_過去活動 -->
             </div>
         </div>
         <!-- /Page Content -->
-        <!-- 有分數星星的彈跳視窗V1.1 -->
-        <div class="modal custom-modal fade request-modal" id="request-coche" style="display: none;" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered modal-md">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <div class="form-header modal-header-title">
-                            <h4 class="mb-0">團主評分</h4>
-                        </div>
-                        <a class="close" data-bs-dismiss="modal" aria-label="Close">
-                            <span class="align-center" aria-hidden="true"><i class="feather-x"></i></span>
-                        </a>
-                    </div>
-                    <div class="modal-body">
-                        <!-- Court Request -->
-                        <div class="row">
-                            <div class="col-lg-12">
-                                <div class="card dashboard-card court-information">
-                                    <div class="d-flex align-items-center justify-content-between">
-                                        <div class="card-header">
-                                            <h4>評分注意事項:<br>送出後就無法再進行更改</h4>
-                                        </div>
-                                        <div class="appointment-info">
-                                            <!-- 訊息欄位 -->
-                                            <ul>
-                                                <li>
-                                                    <div class="appointment-item">
-                                                        <div class="appointment-img">
-                                                            <img src="~/assets/img/booking/booking-01.jpg" alt="User">
-                                                        </div>
-                                                        <div class="appointment-content">
-                                                            <h6>頁頁頁一頁ㄝ團</h6>
-                                                            <p class="color-green">參加人數: 2人</p>
-                                                        </div>
-                                                    </div>
-                                                </li>
-                                                <li>
-                                                    <h6>活動時間</h6>
-                                                    <p>2023, 5月 11日</p>
-                                                </li>
-                                                <li>
-                                                    <h6>活動地點</h6>
-                                                    <p>台北市</p>
-                                                </li>
-                                            </ul>
-                                            <!-- 訊息欄位 -->
-                                        </div>
-                                        <div class="ratings-info corner-radius-10 text-center">
-                                            <!-- 分數星星 -->
-                                            <div class="ratings-info corner-radius-10 text-center">
-                                                <div class="rating">
-                                                    <i class="fas fa-star filled"></i>
-                                                    <i class="fas fa-star filled"></i>
-                                                    <i class="fas fa-star filled"></i>
-                                                    <i class="fas fa-star filled"></i>
-                                                    <i class="fas fa-star filled"></i>
-                                                </div>
-                                            </div>
-                                            <!-- 分數星星 -->
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- /Court Request -->
-                    </div>
-                    <div class="modal-footer">
-                        <div class="table-accept-btn">
-                            <a href="javascript:;" class="btn accept-btn me-0">送出</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- 有分數星星的彈跳視窗V1.1  -->
+        
     </main>
 </div>
 
@@ -363,6 +365,7 @@
                     nowJoinAGroupCard: [],
                     countPerPage: 2,
                     pageNumber: 1,
+                    memberId: '2',
                 };
             },
             mounted() {
@@ -382,7 +385,7 @@
                 axiosNowJoinAGroupCard: function () {
                     let _this = this;
                     axios
-                        .get(`https://localhost:7097/NowJoinAGroupApi/GetNowJoinAGroupAll`)
+                        .get(`/NowJoinAGroupApi/GetNowJoinAGroupById?memberId=${_this.memberId}`)
                         .then((response) => { _this.nowJoinAGroupCard = response.data; })
                         .catch((erro) => { alert(`Erro: ${erro}`); });
                 },
@@ -401,6 +404,7 @@
                     wishListCard: [],
                     countPerPage: 2,
                     pageNumber: 1,
+                    memberId: '2',
                 }
             },
             mounted() {
@@ -421,7 +425,7 @@
                 axiosWishListCard: function () {
                     var _this = this;
                     axios
-                        .get(`https://localhost:7097/WishListApi/GetWishListAll`)
+                        .get(`/WishListApi/GetWishListById?memberId=${_this.memberId}`)
                         .then(response => _this.wishListCard = response.data)
                         .catch(error => alert(`發生錯誤${error}`))
 
@@ -439,9 +443,10 @@
             data() {
                 return {
                     pastJoinAGroupCard: [],
-                    countPerPage: 1,
+                    countPerPage: 2,
                     pageNumber: 1,
                     memberId: '2',
+                    currentCard: '',
                 };
             },
             mounted() {
@@ -466,8 +471,11 @@
                 },
                 pageClick(num) {
                     this.pageNumber = num;
-                }
+                },
+                setCurrentCard(card) {
+                    this.currentCard = card;
+                },
             },
-        }).component("paginate", VuejsPaginateNext).mount("#idPastJoinAGroupCard2");
+        }).component("paginate", VuejsPaginateNext).mount("#idPastJoinAGroupCard");
     </script>
 }
