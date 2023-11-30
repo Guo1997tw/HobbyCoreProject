@@ -33,7 +33,6 @@ namespace JHobby.Repository.Implements
               {
                   ActivityId = activityWish.A.ActivityId,
                   AddTime = activityWish.W.AddTime,
-                  MemberId = member.MemberId,
                   WishId = activityWish.W.WishId,
                   ActivityStatus = activityWish.A.ActivityStatus,
                   ActivityName = activityWish.A.ActivityName,
@@ -43,6 +42,32 @@ namespace JHobby.Repository.Implements
                   StartTime = activityWish.A.StartTime,
                   NickName = member.NickName
               });
+        }
+
+        public IEnumerable<WishListDto> GetWishListById(int memberId)
+        {
+            return _jhobbyContext.Wishes
+                .Where(jw => jw.MemberId == memberId)
+                .Join(_jhobbyContext.Activities,
+                      w => w.ActivityId,
+                      a => a.ActivityId,
+                      (w, a) => new { W = w, A = a })
+                .Join(_jhobbyContext.Members,
+                    aw => aw.A.MemberId,
+                    m => m.MemberId,
+                    (activityWish, member) => new WishListDto
+                    {
+                        ActivityId = activityWish.A.ActivityId,
+                        AddTime = activityWish.W.AddTime,
+                        WishId = activityWish.W.WishId,
+                        ActivityStatus = activityWish.A.ActivityStatus,
+                        ActivityName = activityWish.A.ActivityName,
+                        CurrentPeople = activityWish.A.CurrentPeople,
+                        JoinDeadLine = activityWish.A.JoinDeadLine,
+                        MaxPeople = activityWish.A.MaxPeople,
+                        StartTime = activityWish.A.StartTime,
+                        NickName = member.NickName
+                    });
         }
     }
 }

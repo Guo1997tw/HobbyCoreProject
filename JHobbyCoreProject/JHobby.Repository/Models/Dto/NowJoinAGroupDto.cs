@@ -26,8 +26,14 @@ namespace JHobby.Repository.Models.Dto
 
         public int? MaxPeople { get; set; }
 
+        //團主Id
+        public int LunchAGroupPersonId { get; set; }
+
         //團主NickName
         public string? NickName { get; set; }
+
+        //參團者Id
+        public int JoinAGroupPersonId { get; set; }
 
         public DateTime StartTime { get; set; }
 

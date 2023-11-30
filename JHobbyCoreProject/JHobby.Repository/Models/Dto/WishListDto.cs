@@ -10,8 +10,6 @@ namespace JHobby.Repository.Models.Dto
     {
         public int WishId { get; set; }
 
-        public int MemberId { get; set; }
-
         public int ActivityId { get; set; }
 
         public DateTime AddTime { get; set; }

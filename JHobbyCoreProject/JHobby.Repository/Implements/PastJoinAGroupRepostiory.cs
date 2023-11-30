@@ -56,6 +56,7 @@ namespace JHobby.Repository.Implements
                     NickName = a.Member.NickName
                 });
         }
+
     }
 
 }

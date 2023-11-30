@@ -30,5 +30,18 @@ namespace JHobby.Website.Controllers.Api
                     SurplusQuota = wl.SurplusQuota,
                 });
         }
+
+        [HttpGet]
+        public IEnumerable<WishListViewModel> GetWishListById(int memberId)
+        {
+            return _iWishListService.GetWishListById(memberId)
+                .Select(wl => new WishListViewModel
+                {
+                    ActivityName = wl.ActivityName,
+                    ActivityStatus = wl.ActivityStatus,
+                    NickName = wl.NickName,
+                    SurplusQuota = wl.SurplusQuota,
+                });
+        }
     }
 }
