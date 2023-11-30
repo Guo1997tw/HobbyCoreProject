@@ -5,6 +5,7 @@ using JHobby.Repository.Models.Entity;
 using JHobby.Service.Implements;
 using JHobby.Service.Interfaces;
 using JHobby.Website.Controllers.Api;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.EntityFrameworkCore;
 
 namespace JHobby.Website
@@ -63,6 +64,13 @@ namespace JHobby.Website
             builder.Services.AddScoped<INowJoinAGroupRepository, NowJoinAGroupRepository>();
             builder.Services.AddScoped<INowJoinAGroupService, NowJoinAGroupService>();
 
+            // DI Authentication
+            builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(option =>
+            {
+                option.LoginPath = "/Member/Login";
+                option.AccessDeniedPath = "/Home/NotFounds";
+            });
+
             var app = builder.Build();
 
             // Swagger Use
@@ -84,6 +92,9 @@ namespace JHobby.Website
             app.UseStaticFiles();
 
             app.UseRouting();
+
+            // Use Authentication
+            app.UseAuthentication();
 
             app.UseAuthorization();
 
