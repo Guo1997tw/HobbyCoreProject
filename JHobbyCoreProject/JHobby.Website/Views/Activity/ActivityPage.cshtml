@@ -82,33 +82,44 @@
                             <div id="panelsStayOpen-comments" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-comments">
                                 <div class="accordion-body">
                                     <!-- Comments -->
-                                    <div class="blog-comments">
-                                        <div class="dull-bg">
-                                            @* <h4 class="mb-0">Comments (45)</h4> *@
-                                            <hr>
-                                            <ul>
-                                                <li class="author-group d-md-flex align-items-center justify-content-start" v-for="item in msgBord">
-                                                    <div class="profile-pic">
-                                                        <a href="javascript:void(0);" class="d-inline-block"><img src="~/assets/img/profiles/avatar-04.jpg" alt="User"></a>
-                                                    </div>
-                                                    <div class="info">
-                                                        <div class="head d-flex align-items-center justify-content-start">
-                                                            <h5>{{item.nickName}}</h5>
-                                                            <i class="fa-solid fa-circle"></i>
-                                                            <span>{{item.messageTime}}</span>
+                                    <div class="blog-comments">                                        
+                                        <template v-if="blnMsg">
+                                            <div class="dull-bg">
+                                                <hr>
+                                                <ul>
+                                                    <li class="author-group d-md-flex align-items-center justify-content-start" v-for="item in msgBord">
+                                                        <div class="profile-pic">
+                                                            <a href="javascript:void(0);" class="d-inline-block"><img src="~/assets/img/profiles/avatar-04.jpg" alt="User"></a>
                                                         </div>
-                                                        <p>{{item.messageText}}</p>
-                                                        @* <a href="#">Reply</a> *@
-                                                    </div>
-                                                </li>
-                                            </ul>
-                                        </div>
+                                                        <div class="info">
+                                                            <div class="head d-flex align-items-center justify-content-start">
+                                                                <h5>{{item.nickName}}</h5>
+                                                                <i class="fa-solid fa-circle"></i>
+                                                                <span>{{item.messageTime}}</span>
+                                                            </div>
+                                                            <p>{{item.messageText}}</p>
+                                                        </div>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </template>
+                                        <template v-else>
+                                            <div class="dull-bg">
+                                                <ul>
+                                                    <li>
+                                                        <div>
+                                                            <p>這個活動還沒有人留言哦</p>
+                                                        </div>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </template>
                                         <div class="card new-comment white-bg">
                                             <form>
                                                 <div class="mb-3">
-                                                    <textarea class="form-control" id="comments" rows="3" placeholder="留下您想說的話"></textarea>
+                                                    <textarea v-model="message" class="form-control" id="comments" rows="3" placeholder="留下您想說的話"></textarea>
                                                 </div>
-                                                <button type="submit" class="btn btn-gradient">送出</button>
+                                                <button type="button" class="btn btn-gradient"  v-on:click="CreateMsg()">送出</button>
                                             </form>
                                         </div>
                                     </div>
@@ -174,7 +185,6 @@
                                                 <img src="~/assets/img/venues/venues-01.jpg" alt="Venue">
                                             </a>
                                             <div class="fav-item-venues">
-                                                <span class="tag tag-yellow">精選</span>
                                                 <div class="list-reviews">
                                                     <a href="javascript:void(0)" v-on:click="Fav(item.activityId)" v-bind:class="wish.includes(item.activityId)? 'fav-icon selected':'fav-icon'">
                                                         <i class="feather-heart"></i>
@@ -211,7 +221,6 @@
                                                         <img src="~/assets/img/profiles/avatar-01.jpg" alt="Venue">{{item.nickName}}
                                                     </a>
                                                 </div>
-                                                @* <a href="venue-details.html" class="user-book-now"><span><i class="feather-calendar me-2"></i></span>參加</a> *@
                                             </div>
                                         </div>
                                     </div>
@@ -239,13 +248,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.6.0/axios.min.js" integrity="sha512-WrdC3CE9vf1nBf58JHepuWT4x24uTacky9fuzw2g/3L9JkihgwZ6Cfv+JGTtNyosOhEmttMtEZ6H3qJWfI7gIQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/3.3.4/vue.global.min.js"></script>
     <script>
-        const ratingApp = Vue.createApp({
-            data() {
-                return {
-                    star: 5
-                }
-            },
-        }).mount("#ratingApp")
         const activity = Vue.createApp({
             data() {
                 return {
@@ -257,12 +259,13 @@
                     profile: [],
                     resultSrc: "",
                     star: 0,
+                    blnMsg: true,
+                    message: ""
                 }
             },
             mounted() {
                 let _this = this;
                 _this.QueryActivity();
-                _this.QueryMsgBord();
                 _this.QueryProfile();
 
             },
@@ -277,19 +280,21 @@
                             let strSrc3 = "&hl=zh-TW&z=18&t=p&output=embed";
                             _this.resultSrc = strSrc1 + strSrc2 + strSrc3;
                             _this.GetCategoryTypeList();
+                            _this.QueryMsgBord();
                         })
                         .catch(err => alert(err));
                 },
                 QueryMsgBord() {
                     let _this = this;
-                    axios.get("/ActivityApi/MemberMsg")
+                    axios.get(`/ActivityApi/MemberMsg/${_this.activity.activityId}`)
                         .then(res => {
                             _this.msgBord = res.data;
+                            if (_this.msgBord.length === 0) { _this.blnMsg = false }
                         })
                         .catch(err => alert(err));
                 },
                 QueryProfile() {
-                    //寫死
+                    //目前寫死會員ID_1，等待網頁狀態實作
                     let _this = this;
                     axios.get("/ProfileApi/GetProfileById/1")
                         .then(res => {
@@ -345,6 +350,27 @@
                             .catch(err => alert(err));
                     }
                     _this.GetCategoryTypeList();
+                },
+                CreateMsg() {
+                    //目前寫死會員ID_1，等待網頁狀態實作
+                    let _this = this;
+                    if (_this.message !== "") {
+                        var form = new FormData();
+                        form.append("memberId", 1);
+                        form.append("activityId", _this.activity.activityId);
+                        form.append("messageTime", GetDateTime());
+                        form.append("messageText", _this.message);
+                        axios.post("/ActivityApi/MemberCreateMsg", form, {
+                            headers: {
+                                "Content-Type": "multipart/form-data"
+                            }
+                        })
+                        .catch(err => alert("請重新輸入"));
+                        _this.QueryActivity();
+                        //_this.QueryMsgBord()
+                    } else {
+                        alert("請輸入留言")
+                    }
                 },
             }
         }).mount("#activity")

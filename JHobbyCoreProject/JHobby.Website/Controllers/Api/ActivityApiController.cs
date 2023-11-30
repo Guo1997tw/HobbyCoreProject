@@ -102,7 +102,7 @@ namespace JHobby.Website.Controllers.Api
         /// <param name="memberInsertMsgViewModel"></param>
         /// <returns></returns>
         [HttpPost]
-		public ActionResult MemberCreateMsg(MemberInsertMsgViewModel memberInsertMsgViewModel)
+		public ActionResult MemberCreateMsg([FromForm]MemberInsertMsgViewModel memberInsertMsgViewModel)
 		{
 			var mapper = new MemberInsertMsgModel
             {
