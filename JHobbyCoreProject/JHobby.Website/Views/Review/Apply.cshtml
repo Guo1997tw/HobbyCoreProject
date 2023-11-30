@@ -140,8 +140,8 @@
                         <div class="dataTables_paginate paging_simple_numbers" id="DataTables_Table_1_paginate">
                             <!--分頁按鈕-->
                             <paginate :page-count="total"
-                            @* :prev-text="'上一頁'"
-                                      :next-text="'下一頁'" *@
+                                      :prev-text="'<'"
+                                      :next-text="'>'"
                                       :click-handler="pageClick">
                                 <span slot="prevContent"><i class="feather-chevrons-left"></i></span>
                                 <span slot="nextContent"><i class="feather-chevrons-right"></i></span>
