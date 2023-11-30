@@ -1,86 +1,75 @@
-﻿using JHobby.Repository.Interfaces;
+﻿using AutoMapper;
+using JHobby.Repository.Interfaces;
 using JHobby.Repository.Models.Dto;
 using JHobby.Repository.Models.Entity;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 
-namespace JHobby.Repository.Implements
+namespace JHobby.Repository.Implements;
+
+public class CategoryRepository : ICategoryRepository
 {
-    public class CategoryRepository : ICategoryRepository
+    private readonly JhobbyContext _dbContext;
+    private readonly IMapper _mapper;
+
+    public CategoryRepository(JhobbyContext dbContext, IMapper mapper)
     {
-        private readonly JhobbyContext _jhobbyContext;
+        _dbContext = dbContext;
+        _mapper = mapper;
+    }
 
-        public CategoryRepository(JhobbyContext jhobbyContext)
+    public IEnumerable<CategoryDto> GetAll()
+    {
+        return _mapper.Map<IEnumerable<CategoryDto>>(_dbContext.Categories.AsNoTracking());
+    }
+
+    public CategoryDto GetById(int id)
+    {
+        return _mapper.Map<CategoryDto>(_dbContext.Categories.FirstOrDefault(c => c.CategoryId == id));
+    }
+
+    public bool Insert(CategoryCreateDto dto)
+    {
+        try
         {
-            _jhobbyContext = jhobbyContext;
-        }
-
-        public IEnumerable<CategoryDto> GetAll()
-        {
-            var queryResult = _jhobbyContext.Categories.Select(c => new CategoryDto
-            {
-                CategoryId = c.CategoryId,
-                CategoryName = c.CategoryName
-            }).ToList();
-
-            return queryResult;
-        }
-
-        public CategoryDto? GetById(int id)
-        {
-            var queryResult = _jhobbyContext.Categories.FirstOrDefault(c => c.CategoryId == id);
-
-            if (queryResult == null) return null;
-
-            return new CategoryDto
-            {
-                CategoryId = queryResult.CategoryId,
-                CategoryName = queryResult.CategoryName
-            };
-        }
-
-        public bool Insert(CreateCategoryDto createCategoryDto)
-        {
-            var mapper = new Category
-            {
-                CategoryName = createCategoryDto.CategoryName
-            };
-
-            _jhobbyContext.Categories.Add(mapper);
-            _jhobbyContext.SaveChanges();
-
+            _dbContext.Categories.Add(_mapper.Map<Category>(dto));
+            _dbContext.SaveChanges();
             return true;
         }
-
-        public bool Update(int id, UpdateCategoryDto updateCategoryDto)
+        catch (Exception)
         {
-            var queryResult = _jhobbyContext.Categories.FirstOrDefault(c => c.CategoryId == id);
-
-            if (queryResult != null)
-            {
-                queryResult.CategoryName = updateCategoryDto.CategoryName;
-
-                _jhobbyContext.SaveChanges();
-
-                return true;
-            };
-
             return false;
         }
+    }
 
-        public bool Delete(int id)
+    public bool Update(int id, CategoryUpdateDto dto)
+    {
+        try
         {
-            var queryResult = _jhobbyContext.Categories.FirstOrDefault(c => c.CategoryId == id);
-
-            if(queryResult == null) { return false; }
-
-            _jhobbyContext.Categories.Remove(queryResult);
-            _jhobbyContext.SaveChanges();
-
+            var category = _dbContext.Categories.FirstOrDefault(c => c.CategoryId == id);
+            if (category == null) return false;
+            _mapper.Map(dto, category);
+            _dbContext.SaveChanges();
             return true;
+        }
+        catch (Exception)
+        {
+            return false;
+        }
+    }
+
+    public bool Delete(int id)
+    {
+        try
+        {
+            var category = _dbContext.Categories.FirstOrDefault(c => c.CategoryId == id);
+            if (category == null) return false;
+            _dbContext.Categories.Remove(category);
+            _dbContext.SaveChanges();
+            return true;
+        }
+        catch (Exception)
+        {
+            return false;
         }
     }
 }

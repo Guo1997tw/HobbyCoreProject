@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace JHobby.Repository.Models.Dto
 {
-    public class UpdateCategoryDto
+    public class CategoryCreateDto
     {
         public string CategoryName { get; set; } = null!;
     }

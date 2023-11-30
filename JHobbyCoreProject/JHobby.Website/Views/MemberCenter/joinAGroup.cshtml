@@ -7,9 +7,10 @@
         <div class="content">
             <div class="container">
                 <!-- Dashboard Table -->
-                <!-- 參團區塊標題欄_報名紀錄 -->
+                <!-- 參團區塊標題欄_報名紀錄/心願單 -->
                 <div class="row">
-                    <div class="col-xl-7 col-lg-12 d-flex">
+                    <!--報名紀錄-->
+                    <div class="col-xl-7 col-lg-12 d-flex" id="idNowJoinAGroupCard">
                         <div class="card dashboard-card flex-fill">
                             <div class="card-header card-header-info">
                                 <div class="card-header-inner">
@@ -25,11 +26,20 @@
                                 <div class="col-md-6">
                                     <div class="tab-footer" id="tablepage">
                                         <div class="dataTables_paginate paging_simple_numbers" id="DataTables_Table_1_paginate">
-                                            <ul class="pagination">
-                                                <li class="paginate_button page-item previous disabled" id="DataTables_Table_1_previous"><a href="#" aria-controls="DataTables_Table_1" data-dt-idx="0" tabindex="0" class="page-link"><i class="feather-chevrons-left"></i></a></li>
-                                                <li class="paginate_button page-item active"><a href="#" aria-controls="DataTables_Table_1" data-dt-idx="1" tabindex="0" class="page-link">1</a></li>
-                                                <li class="paginate_button page-item next disabled" id="DataTables_Table_1_next"><a href="#" aria-controls="DataTables_Table_1" data-dt-idx="2" tabindex="0" class="page-link"><i class="feather-chevrons-right"></i></a></li>
-                                            </ul>
+                                            <!--報名紀錄_分頁按鈕-->
+                                            <paginate :page-count="total"
+                                                      :click-handler="pageClick"
+                                                      :prev-text="'<'"
+                                                      :next-text="'>'"
+                                                      :container-class="'pagination'">
+                                                <span slot="prevContent">
+                                                    <i class="feather-chevrons-left"></i>
+                                                </span>
+                                                <span slot="nextContent">
+                                                    <i class="feather-chevrons-right"></i>
+                                                </span>
+                                            </paginate>
+                                            <!--/報名紀錄_分頁按鈕-->
                                         </div>
                                     </div>
                                 </div>
@@ -40,29 +50,30 @@
                                     <div class="table-responsive dashboard-table-responsive">
                                         <table class="table dashboard-card-table">
                                             <tbody>
-                                                <tr>
+                                                <tr v-for="(card, index) in filterCard"
+                                                    :key="index">
                                                     <td>
                                                         <div class="academy-info">
                                                             <a href="/user-bookings.html" class="academy-img">
-                                                                <img src="/assets/img/booking/booking-02.jpg" alt="Booking">
+                                                                <img src="~/assets/img/booking/booking-02.jpg" alt="Booking">
                                                             </a>
                                                             <div class="academy-content">
-                                                                <h6><a href="/#" data-bs-toggle="modal" data-bs-target="#upcoming-court">跑跑泡步團</a></h6>
-                                                                <span>團主: 泡一條根</span>
+                                                                <h6><a href="/#" data-bs-toggle="modal" data-bs-target="#upcoming-court">{{card.activityName}}</a></h6>
+                                                                <span>團主: {{card.nickName}}</span>
                                                                 <ul>
-                                                                    <li>活動人數上限 : 4</li>
-                                                                    <li>目前人數: 2</li>
+                                                                    <li>活動人數上限 : {{card.maxPeople}}</li>
+                                                                    <li>目前人數: {{card.currentPeople}}</li>
                                                                 </ul>
                                                             </div>
                                                         </div>
                                                     </td>
                                                     <td>
                                                         <h6>活動時間</h6>
-                                                        <p>星期一, 7月 11日</p>
-                                                        <p>06:00 PM - 08:00 PM</p>
+                                                        <p>{{card.dateConvert}}</p>
+                                                        <p>{{card.timeConvert}}</p>
                                                     </td>
                                                     <td class="paid-edit">
-                                                        <span><i class="feather-edit"></i> 審核中</span>
+                                                        <span><i class="feather-edit"></i> {{card.reviewStatus}}</span>
                                                     </td>
                                                     <td>
                                                         <div class="dropdown dropdown-action">
@@ -76,148 +87,6 @@
                                                     </td>
                                                 </tr>
                                                 <!-- /參團區塊標題欄_報名紀錄展示卡片 -->
-                                                <!-- 參團區塊標題欄_報名紀錄充滿卡片 -->
-                                                <tr>
-                                                    <td>
-                                                        <div class="academy-info">
-                                                            <a href="/user-bookings.html" class="academy-img">
-                                                                <img src="/assets/img/booking/booking-03.jpg" alt="Booking">
-                                                            </a>
-                                                            <div class="academy-content">
-                                                                <h6><a data-bs-toggle="modal" data-bs-target="#upcoming-court">考前跑Party!!!</a></h6>
-                                                                <span>Court 2</span>
-                                                                <ul>
-                                                                    <li>Guests : 3</li>
-                                                                    <li>1 Hr</li>
-                                                                </ul>
-                                                            </div>
-                                                        </div>
-                                                    </td>
-                                                    <td>
-                                                        <h6>Date &amp; Time</h6>
-                                                        <p>Tue, Jul 12</p>
-                                                        <p>07:00 PM - 08:00 PM</p>
-                                                    </td>
-                                                    <td class="paid-edit">
-                                                        <span><i class="feather-edit"></i> Paid</span>
-                                                    </td>
-                                                    <td>
-                                                        <div class="dropdown dropdown-action">
-                                                            <a href="/#" class="action-icon dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-ellipsis"></i></a>
-                                                            <div class="dropdown-menu dropdown-menu-end">
-                                                                <a class="dropdown-item" href="/javascript:void(0);">
-                                                                    <i class="feather-x-circle"></i> Cancel
-                                                                </a>
-                                                            </div>
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        <div class="academy-info">
-                                                            <a href="/user-bookings.html" class="academy-img">
-                                                                <img src="/assets/img/booking/booking-04.jpg" alt="Booking">
-                                                            </a>
-                                                            <div class="academy-content">
-                                                                <h6><a data-bs-toggle="modal" data-bs-target="#upcoming-court">Feather Badminton</a></h6>
-                                                                <span>Court 1</span>
-                                                                <ul>
-                                                                    <li>Guests : 1</li>
-                                                                    <li>4 Hrs</li>
-                                                                </ul>
-                                                            </div>
-                                                        </div>
-                                                    </td>
-                                                    <td>
-                                                        <h6>Date &amp; Time</h6>
-                                                        <p>Wen, Jul 13</p>
-                                                        <p>10:00 PM - 11:00 PM</p>
-                                                    </td>
-                                                    <td class="paid-edit">
-                                                        <span><i class="feather-edit"></i> Paid</span>
-                                                    </td>
-                                                    <td>
-                                                        <div class="dropdown dropdown-action">
-                                                            <a href="/#" class="action-icon dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-ellipsis"></i></a>
-                                                            <div class="dropdown-menu dropdown-menu-end">
-                                                                <a class="dropdown-item" href="/javascript:void(0);">
-                                                                    <i class="feather-x-circle"></i> Cancel
-                                                                </a>
-                                                            </div>
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        <div class="academy-info">
-                                                            <a href="/user-bookings.html" class="academy-img">
-                                                                <img src="/assets/img/booking/booking-05.jpg" alt="Booking">
-                                                            </a>
-                                                            <div class="academy-content">
-                                                                <h6><a data-bs-toggle="modal" data-bs-target="#upcoming-court">Bwing Sports Academy</a></h6>
-                                                                <span>Court 3</span>
-                                                                <ul>
-                                                                    <li>Guests : 5</li>
-                                                                    <li>6 Hrs</li>
-                                                                </ul>
-                                                            </div>
-                                                        </div>
-                                                    </td>
-                                                    <td>
-                                                        <h6>Date &amp; Time</h6>
-                                                        <p>Thu, Jul 14</p>
-                                                        <p>09:00 AM - 10:00 AM</p>
-                                                    </td>
-                                                    <td class="paid-edit">
-                                                        <span><i class="feather-edit"></i> Paid</span>
-                                                    </td>
-                                                    <td>
-                                                        <div class="dropdown dropdown-action">
-                                                            <a href="/#" class="action-icon dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-ellipsis"></i></a>
-                                                            <div class="dropdown-menu dropdown-menu-end">
-                                                                <a class="dropdown-item" href="/javascript:void(0);">
-                                                                    <i class="feather-x-circle"></i> Cancel
-                                                                </a>
-                                                            </div>
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        <div class="academy-info">
-                                                            <a href="/user-bookings.html" class="academy-img">
-                                                                <img src="/assets/img/booking/booking-06.jpg" alt="Booking">
-                                                            </a>
-                                                            <div class="academy-content">
-                                                                <h6><a data-bs-toggle="modal" data-bs-target="#upcoming-court">Marsh Academy</a></h6>
-                                                                <span>Court 2</span>
-                                                                <ul>
-                                                                    <li>Guests : 3</li>
-                                                                    <li>2 Hrs</li>
-                                                                </ul>
-                                                            </div>
-                                                        </div>
-                                                    </td>
-                                                    <td>
-                                                        <h6>Date &amp; Time</h6>
-                                                        <p>Fri, Jul 15</p>
-                                                        <p>11:00 AM - 12:00 PM</p>
-                                                    </td>
-                                                    <td class="paid-edit">
-                                                        <span><i class="feather-edit"></i> Paid</span>
-                                                    </td>
-                                                    <td>
-                                                        <div class="dropdown dropdown-action">
-                                                            <a href="/#" class="action-icon dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-ellipsis"></i></a>
-                                                            <div class="dropdown-menu dropdown-menu-end">
-                                                                <a class="dropdown-item" href="/javascript:void(0);">
-                                                                    <i class="feather-x-circle"></i> Cancel
-                                                                </a>
-                                                            </div>
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                                <!-- /參團區塊標題欄_報名紀錄充滿卡片 -->
                                             </tbody>
                                         </table>
                                     </div>
@@ -226,8 +95,9 @@
                             </div>
                         </div>
                     </div>
-                    <!-- 心願單標頭 -->
-                    <div class="col-xl-5 col-lg-12 d-flex flex-fill">
+                    <!--/報名紀錄-->
+                    <!-- 心願單 -->
+                    <div class="col-xl-5 col-lg-12 d-flex flex-fill" id="idWishListCard">
                         <div class="card dashboard-card academy-card.flex-fill">
                             <div class="card-header card-header-info">
                                 <div class="card-header-inner">
@@ -243,21 +113,20 @@
                                 <div class="col-md-6">
                                     <div class="tab-footer" id="tablepage">
                                         <div class="dataTables_paginate paging_simple_numbers" id="DataTables_Table_1_paginate">
-                                            <ul class="pagination">
-                                                <li class="paginate_button page-item previous disabled" id="DataTables_Table_1_previous">
-                                                    <a href="#" aria-controls="DataTables_Table_1" data-dt-idx="0" tabindex="0" class="page-link">
-                                                        <i class="feather-chevrons-left"></i>
-                                                    </a>
-                                                </li>
-                                                <li class="paginate_button page-item active">
-                                                    <a href="#" aria-controls="DataTables_Table_1" data-dt-idx="1" tabindex="0" class="page-link">1</a>
-                                                </li>
-                                                <li class="paginate_button page-item next disabled" id="DataTables_Table_1_next">
-                                                    <a href="#" aria-controls="DataTables_Table_1" data-dt-idx="2" tabindex="0" class="page-link">
-                                                        <i class="feather-chevrons-right"></i>
-                                                    </a>
-                                                </li>
-                                            </ul>
+                                            <!-- 心願單分頁功能 -->
+                                            <paginate :page-count="total"
+                                                      :click-handler="pageClick"
+                                                      :prev-text="'<'"
+                                                      :next-text="'>'"
+                                                      :container-class="'pagination'">
+                                                <span slot="prevContent">
+                                                    <i class="feather-chevrons-left"></i>
+                                                </span>
+                                                <span slot="nextContent">
+                                                    <i class="feather-chevrons-right"></i>
+                                                </span>
+                                            </paginate>
+                                            <!-- /心願單分頁功能 -->
                                         </div>
                                     </div>
                                 </div>
@@ -267,112 +136,21 @@
                                     <div class="table-responsive dashboard-table-responsive">
                                         <table class="table dashboard-card-table">
                                             <tbody>
-                                                <tr>
+                                                <tr v-for="(card, index) in filterCard"
+                                                    :key="index">
                                                     <td>
                                                         <div class="academy-info academy-info">
                                                             <a href="/user-bookings.html" class="academy-img">
-                                                                <img src="/assets/img/booking/booking-03.jpg" alt="Booking">
+                                                                <img src="~/assets/img/booking/booking-03.jpg" alt="Booking">
                                                             </a>
                                                             <div class="academy-content">
-                                                                <h6><a href="/user-bookings.html">粉紅泡泡破滅Party</a></h6>
-                                                                <p>尚餘可參加人數: 1人</p>
+                                                                <h6><a href="/user-bookings.html">{{card.activityName}}</a></h6>
+                                                                <p>尚餘可參加人數 : {{card.surplusQuota}}人</p>
                                                             </div>
                                                         </div>
                                                     </td>
                                                     <td class="paid-edit">
-                                                        <span><i class="feather-edit"></i> 報名中</span>
-                                                    </td>
-                                                    <td>
-                                                        <div class="academy-icon">
-                                                            <a href="/user-bookings.html">
-                                                                <i class="feather-chevron-right"></i>
-                                                            </a>
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        <div class="academy-info academy-info">
-                                                            <a href="/user-bookings.html" class="academy-img">
-                                                                <img src="/assets/img/booking/booking-03.jpg" alt="Booking">
-                                                            </a>
-                                                            <div class="academy-content">
-                                                                <h6><a href="/user-bookings.html">Wing Sports Academy</a></h6>
-                                                                <p>10 Bookings</p>
-                                                            </div>
-                                                        </div>
-                                                    </td>
-                                                    <td class="paid-edit">
-                                                        <span><i class="feather-edit"></i> Paid</span>
-                                                    </td>
-                                                    <td>
-                                                        <div class="academy-icon">
-                                                            <a href="/user-bookings.html">
-                                                                <i class="feather-chevron-right"></i>
-                                                            </a>
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        <div class="academy-info academy-info">
-                                                            <a href="/user-bookings.html" class="academy-img">
-                                                                <img src="/assets/img/booking/booking-03.jpg" alt="Booking">
-                                                            </a>
-                                                            <div class="academy-content">
-                                                                <h6><a href="/user-bookings.html">Wing Sports Academy</a></h6>
-                                                                <p>10 Bookings</p>
-                                                            </div>
-                                                        </div>
-                                                    </td>
-                                                    <td class="paid-edit">
-                                                        <span><i class="feather-edit"></i> Paid</span>
-                                                    </td>
-                                                    <td>
-                                                        <div class="academy-icon">
-                                                            <a href="/user-bookings.html">
-                                                                <i class="feather-chevron-right"></i>
-                                                            </a>
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        <div class="academy-info academy-info">
-                                                            <a href="/user-bookings.html" class="academy-img">
-                                                                <img src="/assets/img/booking/booking-04.jpg" alt="Booking">
-                                                            </a>
-                                                            <div class="academy-content">
-                                                                <h6><a href="/user-bookings.html">Feather Badminton</a></h6>
-                                                                <p>20 Bookings</p>
-                                                            </div>
-                                                        </div>
-                                                    </td>
-                                                    <td class="paid-edit">
-                                                        <span><i class="feather-edit"></i> Paid</span>
-                                                    </td>
-                                                    <td>
-                                                        <div class="academy-icon">
-                                                            <a href="/user-bookings.html">
-                                                                <i class="feather-chevron-right"></i>
-                                                            </a>
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        <div class="academy-info academy-info">
-                                                            <a href="/user-bookings.html" class="academy-img">
-                                                                <img src="/assets/img/booking/booking-05.jpg" alt="Booking">
-                                                            </a>
-                                                            <div class="academy-content">
-                                                                <h6><a href="/user-bookings.html">Bwing Sports Academy</a></h6>
-                                                                <p>30 Bookings</p>
-                                                            </div>
-                                                        </div>
-                                                    </td>
-                                                    <td class="paid-edit">
-                                                        <span><i class="feather-edit"></i> Paid</span>
+                                                        <span><i class="feather-edit"></i>{{card.activityStatus}}</span>
                                                     </td>
                                                     <td>
                                                         <div class="academy-icon">
@@ -389,10 +167,12 @@
                             </div>
                         </div>
                     </div>
+                    <!-- /心願單 -->
                 </div>
-                <!-- /參團區塊標題欄_報名紀錄 -->
+                <!-- /參團區塊標題欄_報名紀錄/心願單 -->
                 <!-- 參團區塊標題欄_過去活動-->
-                <div class="row" id="idPastJoinAGroupCard">
+                <!--分頁選單過去活動-->
+                <div class="row" id="idPastJoinAGroupCard2">
                     <div class="col-lg-12">
                         <div class="card dashboard-card mb-0">
                             <div class="card-header card-header-info border-0">
@@ -418,11 +198,11 @@
                                             <!-- /參團區塊標題欄-->
                                             <!-- 過去參團卡片-->
                                             <tbody>
-                                                <tr v-for="(card, index) in pastJoinAGroupCard" :key="index">
+                                                <tr v-for="(card, index) in filterCard" :key="index">
                                                     <td>
                                                         <h2 class="table-avatar">
                                                             <a href="/#" data-bs-toggle="modal" data-bs-target="#upcoming-court" class="avatar avatar-sm flex-shrink-0">
-                                                                <img class="avatar-img" src="/assets/img/booking/booking-02.jpg" alt="Booking">
+                                                                <img class="avatar-img" src="~/assets/img/booking/booking-02.jpg" alt="Booking">
                                                             </a>
                                                             <span class="table-head-name flex-grow-1">
                                                                 <a data-bs-toggle="modal" data-bs-target="#upcoming-court">{{card.activityName}}</a>
@@ -431,7 +211,8 @@
                                                         </h2>
                                                     </td>
                                                     <td>
-                                                        <p>{{card.startTime}}</p>
+                                                        <p>{{card.dateConvert}}</p>
+                                                        <p>{{card.timeConvert}}</p>
                                                     </td>
                                                     <td>
                                                         <h6>{{card.currentPeople}}人</h6>
@@ -466,49 +247,28 @@
                             <!-- 分頁選單-參團-->
                             <div class="tab-footer" style="margin-top: 10px;">
                                 <div class="row">
-                                    <div class="col-md-6">
-                                        <div id="tablelength">
-                                            <div class="dataTables_length" id="DataTables_Table_1_length">
-                                                <label>
-                                                    Show
-                                                    <select name="DataTables_Table_1_length" aria-controls="DataTables_Table_1" class="custom-select custom-select-sm form-control form-control-sm">
-                                                        <option value="10">10</option>
-                                                        <option value="25">25</option>
-                                                        <option value="50">50</option>
-                                                        <option value="-1">All</option>
-                                                    </select>
-                                                </label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
+                                    <div class="col-md-12">
                                         <div id="tablepage">
                                             <div class="dataTables_paginate paging_simple_numbers" id="DataTables_Table_1_paginate">
-                                                <ul class="pagination">
-                                                    <li class="paginate_button page-item previous disabled" id="DataTables_Table_1_previous" @@click="changePage(-1)" :disabled="currentPage<= 1">
-                                                        <a href="#" aria-controls="DataTables_Table_1" data-dt-idx="0" tabindex="0" class="page-link">
-                                                            <i class="feather-chevrons-left"></i>
-                                                        </a>
-                                                    </li>
-                                                    <li class="paginate_button page-item active">
-                                                        <a href="#" aria-controls="DataTables_Table_1" data-dt-idx="1" tabindex="0" class="page-link">
-                                                            1
-                                                        </a>
-                                                    </li>
-                                                    <li class="paginate_button page-item next disabled" id="DataTables_Table_1_next" @@click="changePage(1)">
-                                                        <a href="#" aria-controls="DataTables_Table_1" data-dt-idx="2" tabindex="0" class="page-link">
-                                                            <i class="feather-chevrons-right"></i>
-                                                        </a>
-                                                    </li>
-                                                </ul>
+                                                <!--分頁按鈕-->
+                                                <paginate :page-count="total"
+                                                @* :prev-text="'上一頁'"
+                                                          :next-text="'下一頁'" *@
+                                                          :click-handler="pageClick">
+                                                    <span slot="prevContent"><i class="feather-chevrons-left"></i></span>
+                                                    <span slot="nextContent"><i class="feather-chevrons-right"></i></span>
+                                                </paginate>
+                                                <!--/分頁按鈕-->
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
+                            <!--/分業選單-參團-->
                         </div>
                     </div>
                 </div>
+                <!--分頁選單過去活動-->
                 <!-- /參團區塊標題欄_過去活動 -->
             </div>
         </div>
@@ -540,7 +300,7 @@
                                                 <li>
                                                     <div class="appointment-item">
                                                         <div class="appointment-img">
-                                                            <img src="assets/img/booking/booking-01.jpg" alt="User">
+                                                            <img src="~/assets/img/booking/booking-01.jpg" alt="User">
                                                         </div>
                                                         <div class="appointment-content">
                                                             <h6>頁頁頁一頁ㄝ團</h6>
@@ -594,39 +354,119 @@
 {
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://unpkg.com/vuejs-paginate-next@latest/dist/vuejs-paginate-next.umd.js"></script>
     <script>
-
-        // 過去活動卡片顯示
-        const app = Vue.createApp({
+        //現在報名活動顯示
+        const nowJoinAGroup = Vue.createApp({
             data() {
                 return {
-                    pastJoinAGroupCard: [],
-                    currentPage: 1,
-                    pageSize: 1
+                    nowJoinAGroupCard: [],
+                    countPerPage: 2,
+                    pageNumber: 1,
                 };
             },
             mounted() {
-                let _this = this;
-                _this.axiosPastJoinAGroupCard();
+                this.axiosNowJoinAGroupCard();
+            },
+            computed: {
+                total() {
+                    return Math.ceil(this.nowJoinAGroupCard.length / this.countPerPage);
+                },
+                filterCard() {
+                    var start = (this.pageNumber - 1) * this.countPerPage;
+                    var end = start + this.countPerPage;
+                    return this.nowJoinAGroupCard.slice(start, end);
+                }
+            },
+            methods: {
+                axiosNowJoinAGroupCard: function () {
+                    let _this = this;
+                    axios
+                        .get(`https://localhost:7097/NowJoinAGroupApi/GetNowJoinAGroupAll`)
+                        .then((response) => { _this.nowJoinAGroupCard = response.data; })
+                        .catch((erro) => { alert(`Erro: ${erro}`); });
+                },
+                pageClick(num) {
+                    this.pageNumber = num;
+                }
+            },
+        })
+            .component("paginate", VuejsPaginateNext)
+            .mount("#idNowJoinAGroupCard");
+
+        //心願單活動顯示
+        const wishListCardApp = Vue.createApp({
+            data() {
+                return {
+                    wishListCard: [],
+                    countPerPage: 2,
+                    pageNumber: 1,
+                }
+            },
+            mounted() {
+                this.axiosWishListCard();
+            },
+            computed: {
+                total() {
+                    return Math.ceil(this.wishListCard.length / this.countPerPage);
+                },
+                filterCard() {
+                    var start = (this.pageNumber - 1) * this.countPerPage;
+                    var end = start + this.countPerPage;
+                    return this.wishListCard.slice(start, end);
+                }
+            },
+            methods:
+            {
+                axiosWishListCard: function () {
+                    var _this = this;
+                    axios
+                        .get(`https://localhost:7097/WishListApi/GetWishListAll`)
+                        .then(response => _this.wishListCard = response.data)
+                        .catch(error => alert(`發生錯誤${error}`))
+
+                },
+                pageClick(num) {
+                    this.pageNumber = num;
+                }
+            }
+        })
+            .component("paginate", VuejsPaginateNext)
+            .mount("#idWishListCard");
+
+        // 過去活動卡片顯示
+        const pastJoinAGroup = Vue.createApp({
+            data() {
+                return {
+                    pastJoinAGroupCard: [],
+                    countPerPage: 1,
+                    pageNumber: 1
+                };
+            },
+            mounted() {
+                this.axiosPastJoinAGroupCard();
+            },
+            computed: {
+                total() {
+                    return Math.ceil(this.pastJoinAGroupCard.length / this.countPerPage);
+                },
+                filterCard() {
+                    var start = (this.pageNumber - 1) * this.countPerPage;
+                    var end = start + this.countPerPage;
+                    return this.pastJoinAGroupCard.slice(start, end);
+                }
             },
             methods: {
                 axiosPastJoinAGroupCard: function () {
-                    axios
-                        .get(`https://localhost:7097/PastJoinAGroupApi/GetPastJoinAGroupsListAll?page=${this.currentPage}&pageSize=${this.pageSize}`)
-                        .then((response) => {
-                            let _this = this;
-                            _this.pastJoinAGroupCard = response.data;
-                        })
-                        .catch((error) => {
-                            alert(`發生錯誤: ${error}`);
-                        });
-                },
-                changePage: function (step) {
                     let _this = this;
-                    _this.currentPage += step;
-                    _this.axiosPastJoinAGroupCard();
+                    axios.get(`/PastJoinAGroupApi/GetPastJoinAGroupAll`)
+                        .then((response) => _this.pastJoinAGroupCard = response.data)
+                        .catch((error) => alert(`發生錯誤: ${error}`));
+                },
+                pageClick(num) {
+                    this.pageNumber = num;
                 }
             },
-        }).mount("#idPastJoinAGroupCard");
+        }).component("paginate", VuejsPaginateNext).mount("#idPastJoinAGroupCard2");
     </script>
 }

@@ -1,50 +1,32 @@
-﻿using JHobby.Repository.Interfaces;
+﻿using AutoMapper;
+using JHobby.Repository.Interfaces;
 using JHobby.Repository.Models.Dto;
 using JHobby.Repository.Models.Entity;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace JHobby.Repository.Implements
+namespace JHobby.Repository.Implements;
+
+public class ActivityRepository : IActivityRepository
 {
-	public class ActivityRepository: IActivityRepository
-	{
-		private readonly JhobbyContext _jhobbyContext;
+    private readonly JhobbyContext _dbContext;
+    private readonly IMapper _mapper;
 
-		public ActivityRepository(JhobbyContext jhobbyContext)
-		{
-			_jhobbyContext = jhobbyContext;
-		}
+    public ActivityRepository(JhobbyContext dbContext, IMapper mapper)
+    {
+        _dbContext = dbContext;
+        _mapper = mapper;
+    }
 
-		public bool InsertActivityBuild(ActivityBuildDto activityBuildDto)
-		{
-			var mapper = new Activity			
-			{
-				ActivityName = activityBuildDto.ActivityName,
-				ActivityCity = activityBuildDto.ActivityCity,
-				ActivityArea = activityBuildDto.ActivityArea,
-				ActivityLocation = activityBuildDto.ActivityLocation,
-				StartTime = activityBuildDto.StartTime,
-				MaxPeople = activityBuildDto.MaxPeople,
-				CategoryId = activityBuildDto.CategoryId,
-				CategoryTypeId = activityBuildDto.CategoryTypeId,
-				JoinDeadLine = activityBuildDto.JoinDeadLine,
-				JoinFee = activityBuildDto.JoinFee,
-				ActivityNotes = activityBuildDto.ActivityNotes,
-				MemberId = activityBuildDto.MemberId,
-				ActivityStatus = activityBuildDto.ActivityStatus,
-				Payment = activityBuildDto.Payment,
-				Created = activityBuildDto.Created
-			};
-
-			_jhobbyContext.Activities.Add(mapper);
-			_jhobbyContext.SaveChanges();
-
-			return true;
-		}
-
-	}
+    public bool Insert(ActivityCreateDto dto)
+    {
+        try
+        {
+            _dbContext.Activities.Add(_mapper.Map<Activity>(dto));
+            _dbContext.SaveChanges();
+            return true;
+        }
+        catch (Exception)
+        {
+            return false;
+        }
+    }
 }
