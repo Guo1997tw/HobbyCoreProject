@@ -46,11 +46,8 @@ namespace JHobby.Repository.Implements
                 .Include(Au => Au.Activity)
                 .Select(a => new NowJoinAGroupDto
                 {
-                 
                     ActivityName = a.Activity.ActivityName,
-            
                     ReviewStatus = a.ReviewStatus,
-              
                     CurrentPeople = a.Activity.CurrentPeople,
                     MaxPeople = a.Activity.MaxPeople,
                     NickName = activityUser.FirstOrDefault(z=> z.id==a.Activity.MemberId).nickName,

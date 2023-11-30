@@ -26,7 +26,6 @@ namespace JHobby.Website.Controllers.Api
                 {
                     ActivityName = wl.ActivityName,
                     ActivityStatus = wl.ActivityStatus,
-                    NickName = wl.NickName,
                     SurplusQuota = wl.SurplusQuota,
                 });
         }
@@ -39,7 +38,6 @@ namespace JHobby.Website.Controllers.Api
                 {
                     ActivityName = wl.ActivityName,
                     ActivityStatus = wl.ActivityStatus,
-                    NickName = wl.NickName,
                     SurplusQuota = wl.SurplusQuota,
                 });
         }

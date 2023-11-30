@@ -31,43 +31,23 @@ namespace JHobby.Repository.Implements
               m => m.MemberId,
               (activityWish, member) => new WishListDto
               {
-                  ActivityId = activityWish.A.ActivityId,
-                  AddTime = activityWish.W.AddTime,
-                  WishId = activityWish.W.WishId,
                   ActivityStatus = activityWish.A.ActivityStatus,
                   ActivityName = activityWish.A.ActivityName,
-                  CurrentPeople = activityWish.A.CurrentPeople,
-                  JoinDeadLine = activityWish.A.JoinDeadLine,
-                  MaxPeople = activityWish.A.MaxPeople,
-                  StartTime = activityWish.A.StartTime,
                   NickName = member.NickName
               });
         }
 
         public IEnumerable<WishListDto> GetWishListById(int memberId)
         {
-            return _jhobbyContext.Wishes
-                .Where(jw => jw.MemberId == memberId)
-                .Join(_jhobbyContext.Activities,
-                      w => w.ActivityId,
-                      a => a.ActivityId,
-                      (w, a) => new { W = w, A = a })
-                .Join(_jhobbyContext.Members,
-                    aw => aw.A.MemberId,
-                    m => m.MemberId,
-                    (activityWish, member) => new WishListDto
-                    {
-                        ActivityId = activityWish.A.ActivityId,
-                        AddTime = activityWish.W.AddTime,
-                        WishId = activityWish.W.WishId,
-                        ActivityStatus = activityWish.A.ActivityStatus,
-                        ActivityName = activityWish.A.ActivityName,
-                        CurrentPeople = activityWish.A.CurrentPeople,
-                        JoinDeadLine = activityWish.A.JoinDeadLine,
-                        MaxPeople = activityWish.A.MaxPeople,
-                        StartTime = activityWish.A.StartTime,
-                        NickName = member.NickName
-                    });
+            return _jhobbyContext.Wishes.Where(w => w.MemberId == memberId)
+                .Include(a => a.Activity)
+                .Select(w => new WishListDto
+                {
+                    ActivityName = w.Activity.ActivityName,
+                    ActivityStatus = w.Activity.ActivityStatus,
+                    MaxPeople = w.Activity.MaxPeople,
+                    CurrentPeople = w.Activity.CurrentPeople,
+                });
         }
     }
 }

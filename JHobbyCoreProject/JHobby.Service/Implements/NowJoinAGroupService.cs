@@ -45,12 +45,8 @@ namespace JHobby.Service.Implements
             return _nowJoinAGroupRepository.GetNowJoinAGroupById(memberId)
                 .Select(s => new NowJoinAGroupModel
                 {
-             
-        
-           
                     ActivityName = s.ActivityName,
                     ReviewStatus = _iCommonService.ConvertReviewStatus(s.ReviewStatus),
-            
                     CurrentPeople = s.CurrentPeople,
                     MaxPeople = s.MaxPeople,
                     NickName = s.NickName,
