@@ -182,7 +182,7 @@
                     let _this = this;
                     if (_this.wish.includes(id)) {
                         axios.delete(`/WishApi/DeleteWish/${id}`)
-                            .then()
+                            .then(res => _this.QueryWish())
                             .catch(err => alert(err));
                     }
                     else {
@@ -197,10 +197,10 @@
                                 "Content-Type": "multipart/form-data"
                             }
                         })
-                            .then()
+                            .then(res => _this.QueryWish())
                             .catch(err => alert(err));
                     }
-                    _this.GetCategoryTypeList();
+                    //_this.GetCategoryTypeList();
                 },
                 More() {
                     let _this = this;
