@@ -42,7 +42,7 @@ namespace JHobby.Service.Implements
 			var resultDto= _reviewRepository.GetById(id);
 			
 			
-			var reviewModel = resultDto.Select(dto => new ReviewModel
+			var reviewModel = resultDto.OrderByDescending(dto => dto.ReviewTime).Select(dto => new ReviewModel
             {
                 ActivityId = dto.ActivityId,
                 LeaderId = dto.LeaderId,

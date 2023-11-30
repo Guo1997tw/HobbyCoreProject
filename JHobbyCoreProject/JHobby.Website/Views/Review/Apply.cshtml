@@ -30,7 +30,7 @@
                                         <div class="sortbyset">
                                             <span class="sortbytitle">報名申請時間排序</span>
                                             <div class="sorting-select">
-                                                <select id="selectSort" v-model="sort" v-on:change="sort()" class="form-select">
+                                                <select id="selectSort" v-model="sortOrder" class="form-select">
                                                     <option value="asc">近到遠</option>
                                                     <option value="desc">遠到近</option>
                                                 </select>
@@ -209,8 +209,8 @@
                     imageName: "",
                     _activityId: 0,
                     _applicantId: 0,
-                    sort:"asc",
-                    countPerPage: 2,
+                    sortOrder: 'asc',
+                    countPerPage: 5,
                     pageNumber: 1,
                 };
             },
@@ -227,7 +227,14 @@
                     let _this = this;
                     var start = (_this.pageNumber - 1) * _this.countPerPage;
                     var end = start + _this.countPerPage;
-                    return _this.reviewData.slice(start, end);
+                    return _this.reviewData.sort(function (x, y) {
+                        if (_this.sortOrder == "desc") {
+                            return new Date(x.reviewTime).getTime() - new Date(y.reviewTime).getTime()
+                        }
+                        if (_this.sortOrder == "asc") {
+                            return new Date(y.reviewTime).getTime() - new Date(x.reviewTime).getTime()
+                        }
+                    }).slice(start, end)
                 }
             },
             methods: {
@@ -287,14 +294,6 @@
                     let _this = this;
                     _this.pageNumber = num;
                 }
-                // sort: function (item) {
-                //     let _this = this;
-                //     if (_this.sort === "asc") {
-                                
-                //     } else (_this.sort === "desc"){
-
-                //     }
-                // }
             },
         }).component("paginate", VuejsPaginateNext).mount("#idReviewApply");
     </script>
