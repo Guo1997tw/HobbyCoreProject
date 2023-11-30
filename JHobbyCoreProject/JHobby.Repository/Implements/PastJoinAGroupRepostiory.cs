@@ -16,7 +16,7 @@ namespace JHobby.Repository.Implements
 
         public PastJoinAGroupRepostiory(JhobbyContext jhobbyContext)
         {
-            
+
             _JhobbyContext = jhobbyContext;
         }
 
@@ -29,7 +29,25 @@ namespace JHobby.Repository.Implements
                (a, m) => new PastJoinAGroupDto
                {
                    ActivityId = a.ActivityId,
-                   MemberId = a.MemberId,
+                   ActivityName = a.ActivityName,
+                   ActivityStatus = a.ActivityStatus,
+                   ActivityCity = a.ActivityCity,
+                   CurrentPeople = a.CurrentPeople,
+                   StartTime = a.StartTime,
+                   NickName = m.NickName
+               });
+        }
+
+        public IEnumerable<PastJoinAGroupDto> GetPastJoinAGroupById(int memberId)
+        {
+            return _JhobbyContext.Activities
+                .Where(a => a.MemberId == memberId)
+                .Join(_JhobbyContext.Members,
+               a => a.MemberId,
+               m => m.MemberId,
+               (a, m) => new PastJoinAGroupDto
+               {
+                   ActivityId = a.ActivityId,
                    ActivityName = a.ActivityName,
                    ActivityStatus = a.ActivityStatus,
                    ActivityCity = a.ActivityCity,

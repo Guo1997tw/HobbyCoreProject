@@ -9,7 +9,7 @@ namespace JHobby.Repository.Interfaces
 {
 	public interface IActivityRepository		
 	{
-		public bool InsertActivityBuild(ActivityBuildDto activityBuildDto);
+		public bool Insert(ActivityCreateDto dto);
 
 		/// <summary>
 		/// 活動頁面查詢
@@ -30,5 +30,6 @@ namespace JHobby.Repository.Interfaces
         /// <param name="memberInsertMsgDto"></param>
         /// <returns></returns>
         public bool InsertMsg(MemberInsertMsgDto memberInsertMsgDto);
-    }
+		
+	}
 }

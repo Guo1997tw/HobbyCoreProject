@@ -1,4 +1,7 @@
-﻿using JHobby.Service.Implements;
+﻿using AutoMapper;
+using JHobby.Repository.Interfaces;
+using JHobby.Repository.Models.Dto;
+using JHobby.Service.Implements;
 using JHobby.Service.Interfaces;
 using JHobby.Service.Models;
 using JHobby.Website.Models.ViewModels;
@@ -14,7 +17,8 @@ namespace JHobby.Website.Controllers.Api
 	{
 		private readonly IWishService _WishService;
 
-		public WishApiController(IWishService WishService)
+
+        public WishApiController(IWishService WishService, IWishRepository wishRepository)
 		{
 			_WishService = WishService;
 		}

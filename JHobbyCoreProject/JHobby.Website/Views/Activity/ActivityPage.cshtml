@@ -364,10 +364,10 @@
                             headers: {
                                 "Content-Type": "multipart/form-data"
                             }
-                        })
+                        }).then(res => _this.QueryMsgBord())
                         .catch(err => alert("請重新輸入"));
-                        _this.QueryActivity();
-                        //_this.QueryMsgBord()
+                        //_this.QueryActivity();
+                        
                     } else {
                         alert("請輸入留言")
                     }
