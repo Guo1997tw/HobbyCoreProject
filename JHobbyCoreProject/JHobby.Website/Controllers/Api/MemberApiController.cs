@@ -15,16 +15,18 @@ namespace JHobby.Website.Controllers.Api
     public class MemberApiController : ControllerBase
     {
         private readonly IMemberService _memberService;
+        private readonly ISendMailService _sendMailService;
         private readonly IMapper _mapper;
 
-        public MemberApiController(IMemberService memberService, IMapper mapper)
+        public MemberApiController(IMemberService memberService, IMapper mapper, ISendMailService sendMailService)
         {
             _memberService = memberService;
             _mapper = mapper;
+            _sendMailService = sendMailService;
         }
 
         [HttpPost]
-        public IActionResult InsertRegister(MemberRegisterViewModel memberRegisterViewModel)
+        public bool InsertRegister(MemberRegisterViewModel memberRegisterViewModel)
         {
             var mapper = new MemberRegisterModel
             {
@@ -34,9 +36,12 @@ namespace JHobby.Website.Controllers.Api
                 CreationDate = memberRegisterViewModel.CreationDate
             };
 
-            _memberService.CreateMemberRegister(mapper);
+            if(_memberService.CreateMemberRegister(mapper))
+            {
+                _sendMailService.SendLetter(memberRegisterViewModel.Account);
+            }
 
-            return Ok(mapper);
+            return true;
         }
 
         [HttpPost]

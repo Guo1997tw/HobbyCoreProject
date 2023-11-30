@@ -63,6 +63,7 @@ namespace JHobby.Website
             builder.Services.AddScoped<IReviewService, ReviewService>();
             builder.Services.AddScoped<INowJoinAGroupRepository, NowJoinAGroupRepository>();
             builder.Services.AddScoped<INowJoinAGroupService, NowJoinAGroupService>();
+            builder.Services.AddScoped<ISendMailService, SendMailService>();
 
             // DI Authentication
             builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(option =>
