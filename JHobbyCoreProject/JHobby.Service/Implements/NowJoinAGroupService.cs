@@ -35,8 +35,8 @@ namespace JHobby.Service.Implements
                     CurrentPeople = s.CurrentPeople,
                     MaxPeople = s.MaxPeople,
                     NickName = s.NickName,
-                    DateConvert = _iCommonService.ConvertTime(s.StartTime).FirstOrDefault().DateConvert,
-                    TimeConvert = _iCommonService.ConvertTime(s.StartTime).FirstOrDefault().TimeConvert
+                    DateConvert = _iCommonService.ConvertTime(s.StartTime).First().DateConvert,
+                    TimeConvert = _iCommonService.ConvertTime(s.StartTime).First().TimeConvert
                 });
         }
 
@@ -54,8 +54,8 @@ namespace JHobby.Service.Implements
                     CurrentPeople = s.CurrentPeople,
                     MaxPeople = s.MaxPeople,
                     NickName = s.NickName,
-                    DateConvert = _iCommonService.ConvertTime(s.StartTime).FirstOrDefault().DateConvert,
-                    TimeConvert = _iCommonService.ConvertTime(s.StartTime).FirstOrDefault().TimeConvert
+                    DateConvert = _iCommonService.ConvertTime(s.StartTime).First().DateConvert,
+                    TimeConvert = _iCommonService.ConvertTime(s.StartTime).First().TimeConvert
                 });
         }
     }
