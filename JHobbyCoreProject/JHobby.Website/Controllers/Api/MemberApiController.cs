@@ -50,7 +50,6 @@ namespace JHobby.Website.Controllers.Api
 
                 var claims = new List<Claim>
                 {
-                    new Claim(ClaimTypes.Name, memberLoginViewModel.Account),
                     new Claim(ClaimTypes.Role, role)
                 };
 

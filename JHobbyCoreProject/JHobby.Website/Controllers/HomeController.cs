@@ -15,7 +15,7 @@ namespace JHobby.Website.Controllers
             _logger = logger;
         }
 
-        [Authorize(Roles = "0")]
+        // [Authorize(Roles = "Member")]
         public IActionResult Index()
         {
             return View();
