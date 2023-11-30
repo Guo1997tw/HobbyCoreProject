@@ -132,6 +132,20 @@
                 </div>
             </div>
         </div>
+        <!--申請紀錄_分頁按鈕-->
+        <paginate :page-count="total"
+                  :click-handler="pageClick"
+                  :prev-text="'<'"
+                  :next-text="'>'"
+                  :container-class="'pagination'">
+            <span slot="prevContent">
+                <i class="feather-chevrons-left"></i>
+            </span>
+            <span slot="nextContent">
+                <i class="feather-chevrons-right"></i>
+            </span>
+        </paginate>
+        <!--/申請紀錄_分頁按鈕-->
         <!-- Request Reject -->
         <div class="modal custom-modal fade request-modal " id="request-reject" role="dialog">
             <div class="modal-dialog modal-dialog-centered modal-sm ">
@@ -173,6 +187,7 @@
     {
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://unpkg.com/vuejs-paginate-next@latest/dist/vuejs-paginate-next.umd.js"></script>
     <script>
 
         const app = Vue.createApp({
@@ -188,11 +203,26 @@
                     _activityId: 0,
                     _applicantId: 0,
                     sort:"asc",
+                    countPerPage: 2,
+                    pageNumber: 1,
                 };
             },
             mounted() {
                 let _this = this;
                 _this.axiosGetReviewById();
+            },
+            computed: {
+                
+                total() {
+                    let _this = this;
+                    return Math.ceil(_this.reviewData.length / _this.countPerPage);
+                },
+                filterCard() {
+                    let _this = this;
+                    var start = (_this.pageNumber - 1) * _this.countPerPage;
+                    var end = start + _this.countPerPage;
+                    return _this.reviewData.slice(start, end);
+                }
             },
             methods: {
                 axiosGetReviewById: function () {
@@ -246,6 +276,10 @@
                     let _this = this;
                     _this._activityId = activityId
                     _this._applicantId = applicantId
+                },
+                pageClick(num) {
+                    let _this = this;
+                    _this.pageNumber = num;
                 }
                 // sort: function (item) {
                 //     let _this = this;
@@ -256,6 +290,6 @@
                 //     }
                 // }
             },
-        }).mount("#idReviewApply");
+        }).component("paginate", VuejsPaginateNext).mount("#idReviewApply");
     </script>
 }
