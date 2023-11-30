@@ -15,10 +15,12 @@ namespace JHobby.Website.Controllers.Api
     public class MemberApiController : ControllerBase
     {
         private readonly IMemberService _memberService;
+        private readonly IMapper _mapper;
 
-        public MemberApiController(IMemberService memberService)
+        public MemberApiController(IMemberService memberService, IMapper mapper)
         {
             _memberService = memberService;
+            _mapper = mapper;
         }
 
         [HttpPost]
@@ -42,10 +44,14 @@ namespace JHobby.Website.Controllers.Api
         {
             if (_memberService.CheckMemberLogin(memberLoginViewModel.Account, memberLoginViewModel.HashPassword))
             {
+                var member = _memberService.MemberStatus(memberLoginViewModel.Account);
+
+                var role = member.Status == "1" ? "Member" : "NoMember";
+
                 var claims = new List<Claim>
                 {
                     new Claim(ClaimTypes.Name, memberLoginViewModel.Account),
-                    new Claim(ClaimTypes.Role, "0")
+                    new Claim(ClaimTypes.Role, role)
                 };
 
                 var identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
@@ -61,13 +67,16 @@ namespace JHobby.Website.Controllers.Api
             }
 
             return Unauthorized(new { Message = "登入失敗!!" });
+        }
 
-            //if(_memberService.CheckMemberLogin(memberLoginViewModel.Account, memberLoginViewModel.HashPassword))
-            //{
-            //    return Ok(new { Message = "登入成功~~" });
-            //}
+        [HttpGet]
+        public IActionResult GetStatus(string account)
+        {
+            var queryResult = _memberService.MemberStatus(account);
 
-            //return Unauthorized(new { Message = "登入失敗!!" });
+            var mapper = _mapper.Map<MemberStatusViewModel>(queryResult);
+
+            return Ok(mapper);
         }
     }
 }

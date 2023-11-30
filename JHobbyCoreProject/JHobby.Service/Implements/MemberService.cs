@@ -1,4 +1,5 @@
-﻿using JHobby.Repository.Interfaces;
+﻿using AutoMapper;
+using JHobby.Repository.Interfaces;
 using JHobby.Repository.Models.Dto;
 using JHobby.Service.Interfaces;
 using JHobby.Service.Models;
@@ -14,10 +15,12 @@ namespace JHobby.Service.Implements
     public class MemberService : IMemberService
     {
         private readonly IMemberRepository _memberRepository;
+        private readonly IMapper _mapper;
 
-        public MemberService(IMemberRepository memberRepository)
+        public MemberService(IMemberRepository memberRepository, IMapper mapper)
         {
             _memberRepository = memberRepository;
+            _mapper = mapper;
         }
 
         public bool CreateMemberRegister(MemberRegisterModel memberRegisterModel)
@@ -51,6 +54,15 @@ namespace JHobby.Service.Implements
             }
 
             return false;
+        }
+
+        public MemberStatusModel MemberStatus(string account)
+        {
+            var queryResult = _memberRepository.GetMemberStatus(account);
+
+            var mapper = _mapper.Map<MemberStatusModel>(queryResult);
+
+            return mapper;
         }
 
         private int RandomNumberSize(int minNum, int maxNum)

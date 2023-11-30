@@ -1,4 +1,5 @@
-﻿using JHobby.Repository.Interfaces;
+﻿using AutoMapper;
+using JHobby.Repository.Interfaces;
 using JHobby.Repository.Models.Dto;
 using JHobby.Repository.Models.Entity;
 using System;
@@ -12,10 +13,12 @@ namespace JHobby.Repository.Implements
     public class MemberRepository : IMemberRepository
     {
         private readonly JhobbyContext _jhobbyContext;
+        private readonly IMapper _mapper;
 
-        public MemberRepository(JhobbyContext jhobbyContext)
+        public MemberRepository(JhobbyContext jhobbyContext, IMapper mapper)
         {
             _jhobbyContext = jhobbyContext;
+            _mapper = mapper;
         }
 
         public bool InsertMemberRegister(MemberRegisterDto memberRegisterDto)
@@ -47,6 +50,15 @@ namespace JHobby.Repository.Implements
                 HashPassword = queryResult.HashPassword,
                 SaltPassword = queryResult.SaltPassword,
             };
+        }
+
+        public MemberStatusDto? GetMemberStatus(string account)
+        {
+            var queryResult = _jhobbyContext.Members.FirstOrDefault(m => m.Account == account);
+
+            var mapper = _mapper.Map<MemberStatusDto>(queryResult);
+
+            return mapper;
         }
     }
 }
