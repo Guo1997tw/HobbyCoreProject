@@ -86,9 +86,9 @@
 			}
 		},
 		mounted() {
-			let self = this;
+			let _this = this;
 			fetch(`/ProfileApi/GetProfileById/${@Model.MemberId}`).then(r => r.json()).then(d => {
-				self.memberProfile = d; self.star = d.fraction
+				_this.memberProfile = d; _this.star = d.fraction
 				
 			});
 		}
