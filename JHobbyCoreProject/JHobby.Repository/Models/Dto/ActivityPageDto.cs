@@ -11,6 +11,8 @@ namespace JHobby.Repository.Models.Dto
     {
 		public int ActivityId { get; set; }
 
+        public int MemberId { get; set; }
+
         public int CategoryId { get; set; }
 
         public int CategoryTypeId { get; set; }

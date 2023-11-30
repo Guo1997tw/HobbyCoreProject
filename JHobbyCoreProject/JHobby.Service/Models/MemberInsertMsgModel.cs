@@ -6,15 +6,13 @@ using System.Threading.Tasks;
 
 namespace JHobby.Service.Models
 {
-    public class MemberMsgModel
+    public class MemberInsertMsgModel
     {
+        public int MemberId { get; set; }
+
         public int ActivityId { get; set; }
 
-        public string? HeadShot { get; set; }
-
         public DateTime MessageTime { get; set; }
-
-        public string? NickName { get; set; }
 
         public string MessageText { get; set; } = null!;
     }

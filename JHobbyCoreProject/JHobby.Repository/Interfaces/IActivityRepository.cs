@@ -22,6 +22,13 @@ namespace JHobby.Repository.Interfaces
         /// 會員留言板查詢
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<MemberMsgDto> GetMsgList();
+        public IEnumerable<MemberMsgDto> GetMsgList(int id);
+
+        /// <summary>
+        /// 會員留言板新增
+        /// </summary>
+        /// <param name="memberInsertMsgDto"></param>
+        /// <returns></returns>
+        public bool InsertMsg(MemberInsertMsgDto memberInsertMsgDto);
     }
 }

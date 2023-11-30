@@ -1,4 +1,5 @@
-﻿using JHobby.Service.Models;
+﻿using JHobby.Repository.Models.Dto;
+using JHobby.Service.Models;
 using JHobby.Service.Models.Dto;
 using System;
 using System.Collections.Generic;
@@ -23,6 +24,14 @@ namespace JHobby.Service.Interfaces
 		/// 會員留言板查詢
 		/// </summary>
 		/// <returns></returns>
-		public IEnumerable<MemberMsgModel> GetMemberMsg();
+		public IEnumerable<MemberMsgModel> GetMemberMsg(int id);
+
+        /// <summary>
+        /// 會員留言板新增
+        /// </summary>
+        /// <param name="memberMsgModel"></param>
+        /// <returns></returns>
+
+        public bool CreateMsg(MemberInsertMsgModel memberInsertMsgDto);
 	}
 }

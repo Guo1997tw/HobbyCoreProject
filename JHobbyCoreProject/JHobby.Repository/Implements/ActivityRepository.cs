@@ -65,6 +65,7 @@ namespace JHobby.Repository.Implements
 				.Select(a => new ActivityPageDto
 				{
 					ActivityId = a.ActivityId,
+					MemberId = a.MemberId,
 					ActivityLocation = a.ActivityLocation,
 					CategoryId = a.CategoryId,
 					CategoryTypeId = a.CategoryTypeId,
@@ -89,15 +90,40 @@ namespace JHobby.Repository.Implements
 		/// 會員留言板查詢
 		/// </summary>
 		/// <returns></returns>
-        public IEnumerable<MemberMsgDto> GetMsgList()
+        public IEnumerable<MemberMsgDto> GetMsgList(int id)
 		{
-			return _jhobbyContext.Members.Join(_jhobbyContext.MsgBoards, m => m.MemberId, mb => mb.MemberId, (m, mb) => new MemberMsgDto
-			{
+			var result = _jhobbyContext.Members.Join(_jhobbyContext.MsgBoards, m => m.MemberId, mb => mb.MemberId, (m, mb) => new MemberMsgDto
+            {
+				ActivityId = mb.ActivityId,
 				HeadShot = m.HeadShot,
 				MessageTime = mb.MessageTime,
 				MessageText = mb.MessageText,
 				NickName = m.NickName
-			});
+			}).Where(f => f.ActivityId == id).ToList();
+
+            return result;
+        }
+
+		/// <summary>
+		/// 會員留言板新增
+		/// </summary>
+		/// <param name="id"></param>
+		/// <param name="memberInsertMsgDto"></param>
+		/// <returns></returns>
+        public bool InsertMsg(MemberInsertMsgDto memberInsertMsgDto)
+		{
+			var mapper = new MsgBoard
+            {
+                MemberId = memberInsertMsgDto.MemberId,
+                ActivityId = memberInsertMsgDto.ActivityId,
+				MessageTime= memberInsertMsgDto.MessageTime,
+                MessageText = memberInsertMsgDto.MessageText,
+            };
+
+			_jhobbyContext.MsgBoards.Add(mapper);
+			_jhobbyContext.SaveChanges();
+
+			return true;
 		}
     }
 }

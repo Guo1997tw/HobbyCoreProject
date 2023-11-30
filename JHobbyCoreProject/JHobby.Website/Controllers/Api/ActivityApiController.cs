@@ -65,6 +65,7 @@ namespace JHobby.Website.Controllers.Api
 			var mapper = new ActivityPageViewModel
 			{
                 ActivityId = result.ActivityId,
+				MemberId = result.MemberId,
                 ActivityLocation = result.ActivityLocation,
                 CategoryId = result.CategoryId,
                 CategoryTypeId = result.CategoryTypeId,
@@ -89,10 +90,31 @@ namespace JHobby.Website.Controllers.Api
         /// 會員留言板查詢
         /// </summary>
         /// <returns></returns>
-        [HttpGet]
-		public ActionResult <IEnumerable<MemberMsgViewModel>> MemberMsg()
+        [HttpGet("{id}")]
+		public ActionResult <IEnumerable<MemberMsgViewModel>> MemberMsg(int id)
 		{
-			return Ok(_activityService.GetMemberMsg());
+			return Ok(_activityService.GetMemberMsg(id));
+		}
+
+        /// <summary>
+        /// 會員留言板新增
+        /// </summary>
+        /// <param name="memberInsertMsgViewModel"></param>
+        /// <returns></returns>
+        [HttpPost]
+		public ActionResult MemberCreateMsg(MemberInsertMsgViewModel memberInsertMsgViewModel)
+		{
+			var mapper = new MemberInsertMsgModel
+            {
+                MemberId = memberInsertMsgViewModel.MemberId,
+                ActivityId = memberInsertMsgViewModel.ActivityId,
+                MessageTime = memberInsertMsgViewModel.MessageTime,
+                MessageText = memberInsertMsgViewModel.MessageText,
+            };
+
+			_activityService.CreateMsg(mapper);
+
+			return Ok("新增成功");
 		}
 	}
 }
