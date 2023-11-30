@@ -111,6 +111,54 @@ public class ActivityRepository : IActivityRepository
 
         return true;
     }
+
+    /// <summary>
+    /// 查詢會員活動申請者是否已參團或本身是開團者
+    /// </summary>
+    /// <returns></returns>
+    public bool GetStatusById(int memberId, int activityId)
+    {
+        if (_dbContext.Activities.Any(a => a.MemberId == memberId && a.ActivityId == activityId))
+        {
+            return true;
+        }
+        if (_dbContext.ActivityUsers.Any(a => a.MemberId == memberId && a.ActivityId == activityId))
+        {
+            return true;
+        }
+
+        return false;
+    }
+
+    /// <summary>
+    /// 活動申請
+    /// </summary>
+    /// <returns></returns>
+    public bool InsertActivityUser(ActivityUserInsertDto activityUserInsert)
+    {
+        if (_dbContext.ActivityUsers.Any(a=>a.ActivityId==activityUserInsert.ActivityId && a.MemberId==activityUserInsert.MemberId))
+        {
+            return false;
+        }
+        try
+        {
+            var mapper = new ActivityUser
+            {
+                MemberId = activityUserInsert.MemberId,
+                ActivityId = activityUserInsert.ActivityId,
+                ReviewStatus = activityUserInsert.ReviewStatus,
+                ReviewTime = activityUserInsert.ReviewTime,
+            };
+            _dbContext.ActivityUsers.Add(mapper);
+            _dbContext.SaveChanges();
+        }
+        catch (Exception)
+        {
+            return false;
+        }
+
+        return true;
+    }
 }
 
 
@@ -129,6 +177,6 @@ public class ActivityRepository : IActivityRepository
 
 
 
-		
+
 
 

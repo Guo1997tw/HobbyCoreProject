@@ -30,6 +30,17 @@ namespace JHobby.Repository.Interfaces
         /// <param name="memberInsertMsgDto"></param>
         /// <returns></returns>
         public bool InsertMsg(MemberInsertMsgDto memberInsertMsgDto);
-		
-	}
+
+        /// <summary>
+        /// 查詢會員活動申請者是否已參團或本身是開團者
+        /// </summary>
+        /// <returns></returns>
+        public bool GetStatusById(int _memberId, int _activityId);
+
+        /// <summary>
+        /// 活動申請
+        /// </summary>
+        /// <returns></returns>
+        public bool InsertActivityUser(ActivityUserInsertDto activityUserInsert);
+    }
 }

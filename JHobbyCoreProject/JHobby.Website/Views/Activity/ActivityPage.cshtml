@@ -162,9 +162,17 @@
                             </div>
                         </div>
                     </div>
-                    <div class="d-grid btn-block">
-                        <button class="btn btn-secondary d-inline-flex justify-content-center align-items-center" type="submit">參加<i class="feather-arrow-right-circle ms-1"></i></button>
-                    </div>
+                    <template v-if="blnMemberStatus">
+                        <div class="d-grid btn-block">
+                            <button disabled class="btn btn-secondary d-inline-flex justify-content-center align-items-center" type="submit">您已參加</button>
+                        </div>
+                    </template>
+                    <template v-else>
+                        <div class="d-grid btn-block">
+                            <button v-on:click="CreateActivityUser()" class="btn btn-secondary d-inline-flex justify-content-center align-items-center" type="submit">參加<i class="feather-arrow-right-circle ms-1"></i></button>
+                        </div>
+                    </template>
+
                 </aside>
             </div>
             <!-- /Row -->
@@ -257,6 +265,7 @@
                     activityList: [],
                     wish: [],
                     profile: [],
+                    blnMemberStatus:true,
                     resultSrc: "",
                     star: 0,
                     blnMsg: true,
@@ -267,7 +276,8 @@
                 let _this = this;
                 _this.QueryActivity();
                 _this.QueryProfile();
-
+                _this.QueryMsgBord();
+                _this.QueryMemeberStatus();
             },
             methods: {
                 QueryActivity() {
@@ -280,13 +290,12 @@
                             let strSrc3 = "&hl=zh-TW&z=18&t=p&output=embed";
                             _this.resultSrc = strSrc1 + strSrc2 + strSrc3;
                             _this.GetCategoryTypeList();
-                            _this.QueryMsgBord();
                         })
                         .catch(err => alert(err));
                 },
                 QueryMsgBord() {
                     let _this = this;
-                    axios.get(`/ActivityApi/MemberMsg/${_this.activity.activityId}`)
+                    axios.get(`/ActivityApi/MemberMsg/@ActivityId`)
                         .then(res => {
                             _this.msgBord = res.data;
                             if (_this.msgBord.length === 0) { _this.blnMsg = false }
@@ -300,6 +309,16 @@
                         .then(res => {
                             _this.profile = res.data;
                             _this.star = _this.profile.fraction;
+                        })
+                        .catch(err => alert(err));
+                },
+                QueryMemeberStatus() 
+                {
+                    //目前寫死會員ID_1，等待網頁狀態實作
+                    let _this = this;
+                    axios.get(`/ActivityApi/GetMemberJoinStatus/1/@ActivityId`)
+                        .then(res => {
+                            _this.blnMemberStatus = res.data;
                         })
                         .catch(err => alert(err));
                 },
@@ -365,13 +384,36 @@
                                 "Content-Type": "multipart/form-data"
                             }
                         }).then(res => _this.QueryMsgBord())
-                        .catch(err => alert("請重新輸入"));
+                            .catch(err => alert("請重新輸入"));
                         //_this.QueryActivity();
-                        
+
                     } else {
                         alert("請輸入留言")
                     }
                     _this.message = "";
+                },
+                CreateActivityUser() {
+                    //目前寫死會員ID_4，等待網頁狀態實作
+                    let _this = this;
+                    var form = new FormData();
+                    form.append("memberId", 1);
+                    form.append("activityId", @ActivityId);
+                    form.append("reviewStatus", 2);
+                    form.append("reviewTime", GetDateTime());
+                    axios.post("/ActivityApi/ActivityUserCreate", form, {
+                        headers: {
+                            "Content-Type": "multipart/form-data"
+                        }
+                    })
+                        .then(res => { 
+                            if (res.data == true) {
+                                alert("參加成功");
+                                _this.QueryMemeberStatus()
+                            } else { 
+                                alert("您已參加過")
+                            }
+                        })
+                        .catch(err => alert(err));
                 },
             }
         }).mount("#activity")

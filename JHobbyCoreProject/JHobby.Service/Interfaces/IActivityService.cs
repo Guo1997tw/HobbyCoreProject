@@ -33,5 +33,17 @@ namespace JHobby.Service.Interfaces
         /// <returns></returns>
 
         public bool CreateMsg(MemberInsertMsgModel memberInsertMsgDto);
-	}
+
+		/// <summary>
+		/// 查詢會員活動申請者是否已參團或本身是開團者
+		/// </summary>
+		/// <returns></returns>
+		public bool GetMemberStatus(int memberId, int activityId);
+
+        /// <summary>
+        /// 活動申請
+        /// </summary>
+        /// <returns></returns>
+        public bool CreateActivityUser(ActivityUserInsertModel activityUserInsertModel);
+    }
 }
