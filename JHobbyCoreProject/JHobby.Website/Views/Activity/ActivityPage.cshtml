@@ -182,7 +182,7 @@
                                     <div class="listing-item mb-0">
                                         <div class="listing-img">
                                             <a v-bind:href='"/Activity/ActivityPage/"+item.activityId'>
-                                                <img src="~/assets/img/venues/venues-01.jpg" alt="Venue">
+                                                <img :src='"/image/activityimages/"+item.activityImages[0].imageName+".jpg"' alt="Venue">
                                             </a>
                                             <div class="fav-item-venues">
                                                 <div class="list-reviews">
@@ -371,6 +371,7 @@
                     } else {
                         alert("請輸入留言")
                     }
+                    _this.message = "";
                 },
             }
         }).mount("#activity")
