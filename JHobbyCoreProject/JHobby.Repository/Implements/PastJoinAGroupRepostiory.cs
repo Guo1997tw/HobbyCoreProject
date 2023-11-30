@@ -41,6 +41,7 @@ namespace JHobby.Repository.Implements
 
         public IEnumerable<PastJoinAGroupDto> GetPastJoinAGroupById(int memberId)
         {
+            var activityUsers = _JhobbyContext.Members.Select(m => new { id = m.MemberId, nikeName = m.NickName });
             return _JhobbyContext.ActivityUsers
                 .Where(Au => Au.MemberId == memberId)
                 .Include(Au => Au.Activity)
@@ -53,7 +54,7 @@ namespace JHobby.Repository.Implements
                     ActivityCity = a.Activity.ActivityCity,
                     CurrentPeople = a.Activity.CurrentPeople,
                     StartTime = a.Activity.StartTime,
-                    NickName = a.Member.NickName
+                    NickName = activityUsers.FirstOrDefault(ac => ac.id == a.Activity.MemberId).nikeName
                 });
         }
 

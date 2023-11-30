@@ -33,7 +33,6 @@ namespace JHobby.Repository.Implements
               {
                   ActivityStatus = activityWish.A.ActivityStatus,
                   ActivityName = activityWish.A.ActivityName,
-                  NickName = member.NickName
               });
         }
 
