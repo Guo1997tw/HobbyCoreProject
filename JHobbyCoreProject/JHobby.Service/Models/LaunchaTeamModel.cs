@@ -18,5 +18,12 @@ namespace JHobby.Service.Models
 
 		public DateTime Created { get; set; }
 		public int ActivityImageId { get; set; }
+        public string? DateConvert { get; set; }
+
+        public string? TimeConvert { get; set; }
+        public string? CreatedDateConvert { get; set; }
+
+        public string? CreatedTimeConvert { get; set; }
+
     }
 }

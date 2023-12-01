@@ -11,11 +11,12 @@ namespace JHobby.Service.Implements
 	public class GroupStartingService : IGroupStartingService
 	{
 		private readonly IGroupStartingRepository _groupStartingRepository;
+        private readonly ICommonService _iCommonService;
 
-		public GroupStartingService(IGroupStartingRepository groupStartingRepository)
+        public GroupStartingService(IGroupStartingRepository groupStartingRepository, ICommonService  commonService)
 		{
-
-			_groupStartingRepository = groupStartingRepository;
+            _iCommonService = commonService;
+            _groupStartingRepository = groupStartingRepository;
 		}
 		public IEnumerable<GroupStartingModel> GetGroupStartingAll()
 		{
@@ -77,8 +78,12 @@ namespace JHobby.Service.Implements
 				IsCover = a.IsCover,
 				ImageName = a.ImageName,
 				ActivityImageId = a.ActivityImageId,
+                DateConvert = _iCommonService.ConvertTime(a.StartTime).First().DateConvert,
+                TimeConvert = _iCommonService.ConvertTime(a.StartTime).First().TimeConvert
 
-			});
+
+
+            });
 
 			return queryResult;
 		}

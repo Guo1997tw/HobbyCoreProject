@@ -79,9 +79,11 @@ namespace JHobby.Website.Controllers.Api
 				IsCover = x.IsCover,
 				ImageName =x.ImageName,
 				ActivityImageId = x.ActivityImageId,
+                DateConvert = x.DateConvert,
+                TimeConvert = x.TimeConvert,
 
 
-			});
+            });
 
 			return viewModel;
 		}

@@ -12,5 +12,8 @@
 		public bool IsCover { get; set; }
 		public string ImageName { get; set; } = null!;
 		public int ActivityImageId { get; set; }
-	}
+        public string? DateConvert { get; set; }
+
+        public string? TimeConvert { get; set; }
+    }
 }

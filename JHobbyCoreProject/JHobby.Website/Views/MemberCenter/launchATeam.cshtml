@@ -41,14 +41,12 @@
                                                     <div class="sortby-filter-group court-sortby">
                                                         <div class="sortbyset">
                                                             <span class="sortbytitle">活動時間排序</span>
-                                                            <div class="sorting-select">
-                                                                <select class="form-control select select2-hidden-accessible"
-                                                                        data-select2-id="4" tabindex="-1"
-                                                                        aria-hidden="true">
-                                                                    <option data-select2-id="6">近到遠</option>
-                                                                    <option>遠到近</option>
-                                                                </select>
-                                                            </div>
+                                                      <div class="sorting-select">
+                                                <select id="selectSort" v-model="sortOrder" class="form-select">
+                                                    <option value="asc">近到遠</option>
+                                                    <option value="desc">遠到近</option>
+                                                </select>
+                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -187,9 +185,8 @@
                                                                                     </td>
                                                                                     <td class="table-date-time">
                                                                                         <h4>
-                                                                                            <span>
-                                                                                                {{item.startTime}}
-                                                                                            </span>
+                                                                                                <p>{{item.dateConvert}}</p>
+                                                                                                <p> {{item.timeConvert}}</p>
                                                                                         </h4>
                                                                                     </td>
                                                                                     <td>
@@ -390,7 +387,9 @@
                                                             </h2>
                                                         </td>
                                                         <td>
-                                                            <p>{{item.startTime}}</p>
+                                                            <p> {{item.dateConvert}}</p>
+                                                            <p> {{item.timeConvert}}</p>
+                                                           
                                                         </td>
                                                         <td>
                                                             <h6>{{item.currentPeople}}</h6>
@@ -883,6 +882,7 @@
 {
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/3.3.4/vue.global.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.6.0/axios.min.js" integrity="sha512-WrdC3CE9vf1nBf58JHepuWT4x24uTacky9fuzw2g/3L9JkihgwZ6Cfv+JGTtNyosOhEmttMtEZ6H3qJWfI7gIQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+       <script src="https://unpkg.com/vuejs-paginate-next@latest/dist/vuejs-paginate-next.umd.js"></script>
     <script src="~/assets/js/script.js"></script>
     <script>
         var record = Vue.createApp({
@@ -891,13 +891,35 @@
                     axiosBrowsepicture: [{
                        combination:[],
                     },
-                    ]
+                    ],
+                      // sortOrder: 'asc',
+                      // countPerPage: 5,
+                      // pageNumber: 1,
                 };
             },
             mounted() {
                 let _this = this;
                 _this.logBrowsepicture();
             },
+            //  computed: {                
+            //     total() {
+            //         let _this = this;
+            //         return Math.ceil(_this.axiosBrowsepicture.length / _this.countPerPage);
+            //     },
+            //     filterCard() {
+            //         let _this = this;
+            //         var start = (_this.pageNumber - 1) * _this.countPerPage;
+            //         var end = start + _this.countPerPage;
+            //         return _this.axiosBrowsepicture.sort(function (x, y) {
+            //             if (_this.sortOrder == "desc") {
+            //                 return new Date(x.DateConvert).getTime() - new Date(y.DateConvert).getTime()
+            //             }
+            //             if (_this.sortOrder == "asc") {
+            //                 return new Date(y.DateConvert).getTime() - new Date(x.DateConvert).getTime()
+            //             }
+            //         }).slice(start, end)
+            //     }
+            // },
             /* 事件 */
             methods: {
                 logBrowsepicture: function () {  /* 顯示 */
@@ -908,7 +930,7 @@
                         .catch((error) => alert(`發生錯誤: ${error}`));
                 }
             },
-        }).mount("#record")
+        }).component("paginate", VuejsPaginateNext).mount("#record")
         var Updates = Vue.createApp({
             data() {   /* 顯示資料 */
                 return {
@@ -933,6 +955,8 @@
                 }
             },
         }).mount("#Updates")
+
+
         
 
             // updateCurrentPeople: function (CurrentPeople) {  /* 編輯 */

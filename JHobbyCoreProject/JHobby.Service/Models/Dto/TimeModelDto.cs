@@ -11,5 +11,6 @@ namespace JHobby.Service.Models.Dto
         public string? DateConvert {  get; set; } 
 
         public string? TimeConvert { get; set; }
+ 
     }
 }
