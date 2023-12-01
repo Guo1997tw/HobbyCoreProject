@@ -9,7 +9,6 @@ namespace JHobby.Service.Models
 {
     public class ActivityBuildModel
     {
-
         public string ActivityName { get; set; } = null!;
         public string ActivityCity { get; set; } = null!;
         public string ActivityArea { get; set; } = null!;

@@ -3,9 +3,10 @@ using System.Numerics;
 
 namespace JHobby.Website.Models.ViewModels
 {
-	public class ActivityBuildViewModel : IValidatableObject
+	public class ActivityBuildViewModel 
 	{
-		public string ActivityName { get; set; } = null!;
+        public IFormFile? File { get; set; }
+        public string ActivityName { get; set; } = null!;
 		public string ActivityCity { get; set; } = null!;
 		public string ActivityArea { get; set; } = null!;
 		public string ActivityLocation { get; set; } = null!;
@@ -21,14 +22,6 @@ namespace JHobby.Website.Models.ViewModels
 		public string Payment { get; set; } = null!;
 		public DateTime Created { get; set; }
 
-		public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
-		{
-			if (string.IsNullOrEmpty(ActivityName) && string.IsNullOrEmpty(ActivityCity))
-			{
-				yield return new ValidationResult(
-					"開團名稱和開團縣市不可皆未填寫",
-					new string[] { "ActivityName", "ActivityCity" });
-			}
-		}
+		
 	}
 }
