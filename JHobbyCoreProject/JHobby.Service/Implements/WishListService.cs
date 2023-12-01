@@ -24,15 +24,18 @@ namespace JHobby.Service.Implements
         {
             return _iWishListRepository.GetWishListAll().Select(gw => new WishListModel
             {
-                ActivityId = gw.ActivityId,
-                AddTime = gw.AddTime,
-                MemberId = gw.MemberId,
-                WishId = gw.WishId,
                 ActivityStatus = _commonService.ConvertActivityStatus(gw.ActivityStatus),
                 ActivityName = gw.ActivityName,
-                JoinDeadLine = gw.JoinDeadLine,
-                StartTime = gw.StartTime,
-                NickName = gw.NickName,
+                SurplusQuota = _commonService.CountSurplusQuota(gw.MaxPeople, gw.CurrentPeople)
+            });
+        }
+
+        public IEnumerable<WishListModel> GetWishListById(int memberId)
+        {
+            return _iWishListRepository.GetWishListById(memberId).Select(gw => new WishListModel
+            {
+                ActivityStatus = _commonService.ConvertActivityStatus(gw.ActivityStatus),
+                ActivityName = gw.ActivityName,
                 SurplusQuota = _commonService.CountSurplusQuota(gw.MaxPeople, gw.CurrentPeople)
             });
         }

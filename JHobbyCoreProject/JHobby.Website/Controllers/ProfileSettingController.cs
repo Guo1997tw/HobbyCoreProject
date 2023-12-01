@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using JHobby.Website.Models.ViewModels;
+using Microsoft.AspNetCore.Mvc;
 
 namespace JHobby.Website.Controllers
 {

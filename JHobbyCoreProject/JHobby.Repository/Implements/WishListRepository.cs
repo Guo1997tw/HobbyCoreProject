@@ -31,18 +31,22 @@ namespace JHobby.Repository.Implements
               m => m.MemberId,
               (activityWish, member) => new WishListDto
               {
-                  ActivityId = activityWish.A.ActivityId,
-                  AddTime = activityWish.W.AddTime,
-                  MemberId = member.MemberId,
-                  WishId = activityWish.W.WishId,
                   ActivityStatus = activityWish.A.ActivityStatus,
                   ActivityName = activityWish.A.ActivityName,
-                  CurrentPeople = activityWish.A.CurrentPeople,
-                  JoinDeadLine = activityWish.A.JoinDeadLine,
-                  MaxPeople = activityWish.A.MaxPeople,
-                  StartTime = activityWish.A.StartTime,
-                  NickName = member.NickName
               });
+        }
+
+        public IEnumerable<WishListDto> GetWishListById(int memberId)
+        {
+            return _jhobbyContext.Wishes.Where(w => w.MemberId == memberId)
+                .Include(a => a.Activity)
+                .Select(w => new WishListDto
+                {
+                    ActivityName = w.Activity.ActivityName,
+                    ActivityStatus = w.Activity.ActivityStatus,
+                    MaxPeople = w.Activity.MaxPeople,
+                    CurrentPeople = w.Activity.CurrentPeople,
+                });
         }
     }
 }

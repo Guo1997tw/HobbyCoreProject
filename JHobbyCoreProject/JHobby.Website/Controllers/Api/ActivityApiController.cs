@@ -1,4 +1,8 @@
 ﻿using AutoMapper;
+using AutoMapper.Execution;
+using JHobby.Repository.Models.Dto;
+using JHobby.Repository.Models.Entity;
+using JHobby.Service.Implements;
 using JHobby.Service.Interfaces;
 using JHobby.Service.Models;
 using JHobby.Service.Models.Dto;
@@ -13,40 +17,82 @@ namespace JHobby.Website.Controllers.Api
     {
         private readonly IActivityService _activityService;
         private readonly IMapper _mapper;
+        string _Path;
 
-        public ActivityApiController(IActivityService activityService, IMapper mapper)
+        public ActivityApiController(IActivityService activityService, IMapper mapper, IWebHostEnvironment webHostEnvironment)
         {
             _activityService = activityService;
             _mapper = mapper;
+            _Path = $@"{webHostEnvironment.WebRootPath}\profile\";
         }
-
         [HttpPost]
-        public IActionResult InsertActivity(ActivityBuildViewModel activityBuildViewModel)
+        public bool InsertActivity(ActivityBuildViewModel activityBuildViewModel)
         {
-            var mapper = new ActivityBuildModel
+            //        foreach (var activityBuildViewModel.File in activityBuildViewModel)
+            //{
+            if (activityBuildViewModel.File != null)
             {
-                ActivityName = activityBuildViewModel.ActivityName,
-                ActivityCity = activityBuildViewModel.ActivityCity,
-                ActivityArea = activityBuildViewModel.ActivityArea,
-                ActivityLocation = activityBuildViewModel.ActivityLocation,
-                StartTime = activityBuildViewModel.StartTime,
-                MaxPeople = activityBuildViewModel.MaxPeople,
-                CategoryId = activityBuildViewModel.CategoryId,
-                CategoryTypeId = activityBuildViewModel.CategoryTypeId,
-                JoinDeadLine = activityBuildViewModel.JoinDeadLine,
-                JoinFee = activityBuildViewModel.JoinFee,
-                ActivityNotes = activityBuildViewModel.ActivityNotes,
-                MemberId = activityBuildViewModel.MemberId,
-                ActivityStatus = activityBuildViewModel.ActivityStatus,
-                Payment = activityBuildViewModel.Payment,
-                Created = activityBuildViewModel.Created
-            };
+                if (activityBuildViewModel.File.Length > 0)
+                {
+                    string SavePath = $@"{_Path}\{activityBuildViewModel.File.FileName}";
+                    using (var steam = new FileStream(SavePath, FileMode.Create))
+                    {
+                        activityBuildViewModel.File.CopyToAsync(steam);
+                        //ActivityCity = activityBuildViewModel.ActivityCity,
+                        //ActivityArea = activityBuildViewModel.ActivityArea,
+                        //ActivityLocation = activityBuildViewModel.ActivityLocation,
+                        //StartTime = activityBuildViewModel.StartTime,
+                        //MaxPeople = activityBuildViewModel.MaxPeople,
+                        //CategoryId = activityBuildViewModel.CategoryId,
+                        //CategoryTypeId = activityBuildViewModel.CategoryTypeId,
+                        //JoinDeadLine = activityBuildViewModel.JoinDeadLine,
+                        //JoinFee = activityBuildViewModel.JoinFee,
+                        //ActivityNotes = activityBuildViewModel.ActivityNotes,
+                        //MemberId = activityBuildViewModel.MemberId,
+                        //ActivityStatus = activityBuildViewModel.ActivityStatus,
+                        //Payment = activityBuildViewModel.Payment,
+                        //Created = activityBuildViewModel.Created
 
-            var result = _activityService.CreateActivityBuild(mapper);
 
-            return Ok(result);
+                    }
+                }
+            }
+
+            return true;
         }
 
+        //[HttpPost]
+        //public IActionResult InsertActivity(ActivityBuildViewModel activityBuildViewModel)
+        //{
+        //    var mapper = new ActivityBuildModel
+        //    {
+        //        ActivityName = activityBuildViewModel.ActivityName,
+        //        ActivityCity = activityBuildViewModel.ActivityCity,
+        //        ActivityArea = activityBuildViewModel.ActivityArea,
+        //        ActivityLocation = activityBuildViewModel.ActivityLocation,
+        //        StartTime = activityBuildViewModel.StartTime,
+        //        MaxPeople = activityBuildViewModel.MaxPeople,
+        //        CategoryId = activityBuildViewModel.CategoryId,
+        //        CategoryTypeId = activityBuildViewModel.CategoryTypeId,
+        //        JoinDeadLine = activityBuildViewModel.JoinDeadLine,
+        //        JoinFee = activityBuildViewModel.JoinFee,
+        //        ActivityNotes = activityBuildViewModel.ActivityNotes,
+        //        MemberId = activityBuildViewModel.MemberId,
+        //        ActivityStatus = activityBuildViewModel.ActivityStatus,
+        //        Payment = activityBuildViewModel.Payment,
+        //        Created = activityBuildViewModel.Created
+        //    };
+
+        //    var result = _activityService.CreateActivityBuild(mapper);
+        //    return Ok(result);
+        //}
+
+        FileInfo[] GetFiles()
+        {
+            DirectoryInfo directoryInfo = new DirectoryInfo(_Path);
+            FileInfo[] files = directoryInfo.GetFiles();
+            return files;
+        }
         /// <summary>
         /// 活動頁面查詢
         /// </summary>
@@ -126,8 +172,8 @@ namespace JHobby.Website.Controllers.Api
         /// 活動申請
         /// </summary>
         /// <returns></returns>
-		[HttpPost]
-        public bool ActivityUserCreate([FromForm]ActivityUserInsertViewModel activityUserInsertViewModel)
+        [HttpPost]
+        public bool ActivityUserCreate([FromForm] ActivityUserInsertViewModel activityUserInsertViewModel)
         {
             var mapper = new ActivityUserInsertModel
             {
@@ -142,5 +188,6 @@ namespace JHobby.Website.Controllers.Api
             }
             return true;
         }
+
     }
 }
