@@ -10,9 +10,9 @@ using System.Threading.Tasks;
 
 namespace JHobby.Repository.Implements
 {
-    public class MemberRepository : IMemberRepository
-    {
-        private readonly JhobbyContext _jhobbyContext;
+	public class MemberRepository : IMemberRepository
+	{
+		private readonly JhobbyContext _jhobbyContext;
         private readonly IMapper _mapper;
 
         public MemberRepository(JhobbyContext jhobbyContext, IMapper mapper)
@@ -32,14 +32,14 @@ namespace JHobby.Repository.Implements
                 CreationDate = memberRegisterDto.CreationDate,
             };
 
-            _jhobbyContext.Members.Add(mapper); 
-            _jhobbyContext.SaveChanges();
+			_jhobbyContext.Members.Add(mapper);
+			_jhobbyContext.SaveChanges();
 
-            return true;
-        }
+			return true;
+		}
 
-        public MemberLoginDto? GetMemberLogin(string account)
-        {
+		public MemberLoginDto? GetMemberLogin(string account)
+		{
             var queryResult = _jhobbyContext.Members.FirstOrDefault(x => x.Account == account);
 
             if (queryResult == null) { return null; }
@@ -51,6 +51,37 @@ namespace JHobby.Repository.Implements
                 SaltPassword = queryResult.SaltPassword,
             };
         }
+
+		public MemberDto? GetById(int id)
+		{
+			var resultA = _jhobbyContext.Members.FirstOrDefault(x => x.MemberId == id);
+			if (resultA == null) return null;
+			return new MemberDto
+			{
+				MemberId = resultA.MemberId,
+				HashPassword = resultA.HashPassword,
+				SaltPassword = resultA.SaltPassword,
+			};
+		}				
+
+		
+		public bool Update(int id, UpdateMemberDto updateMemberDto)
+		{
+			
+				var resultA = _jhobbyContext.Members.FirstOrDefault(x => x.MemberId == id);
+				//resultA.Password
+				if (resultA != null)
+				{
+					resultA.HashPassword = updateMemberDto.NewPassword;
+					_jhobbyContext.SaveChanges();
+					return true;
+
+				};
+				return false;
+			
+			
+
+		}
 
         public MemberStatusDto? GetMemberStatus(string account)
         {

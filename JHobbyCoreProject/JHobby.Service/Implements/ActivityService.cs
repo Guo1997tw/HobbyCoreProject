@@ -3,15 +3,13 @@ using JHobby.Repository.Interfaces;
 using JHobby.Repository.Models.Dto;
 using JHobby.Service.Interfaces;
 using JHobby.Service.Models;
-using JHobby.Service.Models.Dto;
 
 namespace JHobby.Service.Implements
 {
     public class ActivityService : IActivityService
     {
         public readonly IActivityRepository _activityRepository;
-        private readonly IMapper _mapper;
-
+        public readonly IMapper _mapper;
         public ActivityService(IActivityRepository activityRepository, IMapper mapper)
         {
             _activityRepository = activityRepository;

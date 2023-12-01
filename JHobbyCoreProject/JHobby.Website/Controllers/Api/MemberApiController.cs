@@ -1,4 +1,7 @@
 ﻿using AutoMapper;
+using JHobby.Repository.Interfaces;
+using JHobby.Repository.Models.Dto;
+using JHobby.Service.Implements;
 using JHobby.Service.Interfaces;
 using JHobby.Service.Models;
 using JHobby.Website.Models.ViewModels;
@@ -15,14 +18,16 @@ namespace JHobby.Website.Controllers.Api
     public class MemberApiController : ControllerBase
     {
         private readonly IMemberService _memberService;
+        private readonly IMemberRepository _memberRepository;
         private readonly ISendMailService _sendMailService;
         private readonly IMapper _mapper;
 
-        public MemberApiController(IMemberService memberService, IMapper mapper, ISendMailService sendMailService)
+        public MemberApiController(IMemberService memberService, IMapper mapper, ISendMailService sendMailService, IMemberRepository memberRepository)
         {
             _memberService = memberService;
             _mapper = mapper;
             _sendMailService = sendMailService;
+            _memberRepository = memberRepository;
         }
 
         [HttpPost]
@@ -82,5 +87,40 @@ namespace JHobby.Website.Controllers.Api
 
             return Ok(mapper);
         }
-    }
+    
+    
+		[HttpGet("{id}")]
+		public ActionResult <MemberViewModel> GetMemberById(int id)     
+		{
+			var result = _memberService.GetByIdDetail(id);
+			var done= new MemberViewModel
+			{
+				MemberId= result.MemberId,
+				HashPassword = result.HashPassword,
+
+			};
+            return Ok(done);
+		}
+
+
+		[HttpPut("{id}")]
+		public IActionResult UpdateMember(int id, [FromBody] UpdateMemberViewModel updateMemberViewModel)
+		{
+            if (id < 0) { return BadRequest(); }
+
+
+
+            var result = new UpdateMemberModel
+            {
+               // Password = updateMemberViewModel.Password,
+				NewPassword = updateMemberViewModel.NewPassword,
+				OldPassword = updateMemberViewModel.OldPassword,
+                PasswordTwo = updateMemberViewModel.PasswordTwo,
+            };
+
+            var done = _memberService.UpdateMember(id, result);       //會跑到Service層裡的方法
+
+            return Ok(done);
+        }
+	}
 }
