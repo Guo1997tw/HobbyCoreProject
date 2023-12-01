@@ -22,7 +22,7 @@ namespace JHobby.Service.Implements
 
 		public IEnumerable<QueryWishModel> GetWishByIdResult(int id)
 		{
-			var resporitory = _WishRespository.GetWishById(id);
+			var resporitory = _WishRespository.GetById(id);
 			var resultModel = resporitory.Select(res => new QueryWishModel
 										{
 											ActivityId = res.ActivityId,
@@ -32,7 +32,7 @@ namespace JHobby.Service.Implements
 
 		public bool CreateWish(CreateWishModel createWishModel)
 		{
-			var mapper = new CreateWishDto
+			var mapper = new WishCreateDto
 			{
 				MemberId = createWishModel.MemberId,
 				ActivityId=createWishModel.ActivityId,
@@ -46,7 +46,7 @@ namespace JHobby.Service.Implements
 
 		public bool DeleteWish(int memberId, int activityId)
 		{
-			var queryResult = _WishRespository.GetWishById(memberId);
+			var queryResult = _WishRespository.GetById(memberId);
 
 			if (queryResult == null) return false;
 

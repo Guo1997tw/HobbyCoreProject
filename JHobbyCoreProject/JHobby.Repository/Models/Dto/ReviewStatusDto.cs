@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace JHobby.Repository.Models.Dto
 {
-    public class CreateCategoryDto
+    public class ReviewStatusDto
     {
-        public string CategoryName { get; set; } = null!;
+        public string ReviewStatus { get; set; } = null!;
     }
 }

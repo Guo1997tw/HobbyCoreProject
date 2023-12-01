@@ -18,22 +18,21 @@ namespace JHobby.Repository.Implements
         {
             _jobbycontext = jhobbyContext;
         }
-
-       
-
 		public ProfileDto GetById(int id)
 		{
-			var m = _jobbycontext.Members.Include(x => x.Scores).FirstOrDefault(x => x.MemberId == id);
-			var result = new ProfileDto
+			var m = _jobbycontext.Members.FirstOrDefault(x => x.MemberId == id);
+			if (m == null) return new ProfileDto();
+			var f = _jobbycontext.Activities.Include(x => x.Scores).Where(x => x.MemberId == id)
+				.SelectMany(x=>x.Scores.Select(z=>z.Fraction)).Average();
+            var result = new ProfileDto
 			{
 				MemberId = m.MemberId,
 				NickName = m.NickName,
 				Gender = m.Gender,
-				AcitveCity = m.AcitveCity,
+				AcitveCity = m.ActiveCity,
 				PersonalProfile = m.PersonalProfile,
 				HeadShot = m.HeadShot,
-				Fraction = m.Scores.Average(x=> x.Fraction),
-				
+				Fraction = f,				
 			};			
 			return result;
 		}

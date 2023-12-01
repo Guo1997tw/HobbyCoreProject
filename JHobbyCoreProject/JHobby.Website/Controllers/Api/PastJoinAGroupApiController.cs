@@ -6,28 +6,47 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace JHobby.Website.Controllers.Api
 {
+    [EnableCors("allowCors")]
     [Route("[controller]/[action]")]
     [ApiController]
     public class PastJoinAGroupApiController : ControllerBase
     {
-        private readonly IPastJoinAGroupService _astJoinAGroupService;
+        private readonly IPastJoinAGroupService _aPastJoinAGroupService;
 
         public PastJoinAGroupApiController(IPastJoinAGroupService astJoinAGroupService)
         {
-            _astJoinAGroupService = astJoinAGroupService;
+            _aPastJoinAGroupService = astJoinAGroupService;
         }
 
         [HttpGet]
-        public ActionResult<IQueryable<PastJoinAGroupViewModel>> GetPastJoinAGroupsListAll(int page, int pageSize)
+        public IEnumerable<PastJoinAGroupViewModel> GetPastJoinAGroupAll()
         {
-            if(page >= 1)
+            return _aPastJoinAGroupService.GetPastJoinAGroupAll().Select(x => new PastJoinAGroupViewModel
             {
-            var data = _astJoinAGroupService.GetPastJoinAGroupsList(page, pageSize).ToList();
+                ActivityCity = x.ActivityCity,
+                ActivityName = x.ActivityName,
+                ActivityStatus = x.ActivityStatus,
+                CurrentPeople = x.CurrentPeople,
+                NickName = x.NickName,
+                DateConvert = x.DateConvert,
+                TimeConvert = x.TimeConvert,
+            });
 
-            return Ok(data);
-            }
-            else { return null; }
-            
+        }
+
+        [HttpGet]
+        public IEnumerable<PastJoinAGroupViewModel> GetPastJoinAGroupById(int memberId)
+        {
+            return _aPastJoinAGroupService.GetPastJoinAGroupById(memberId).Select(x => new PastJoinAGroupViewModel
+            {
+                ActivityCity = x.ActivityCity,
+                ActivityName = x.ActivityName,
+                ActivityStatus = x.ActivityStatus,
+                CurrentPeople = x.CurrentPeople,
+                NickName = x.NickName,
+                DateConvert = x.DateConvert,
+                TimeConvert = x.TimeConvert,
+            });
         }
     }
 }
