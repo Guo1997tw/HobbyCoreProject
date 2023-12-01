@@ -5,6 +5,7 @@ using JHobby.Repository.Models.Entity;
 using JHobby.Service.Implements;
 using JHobby.Service.Interfaces;
 using JHobby.Website.Controllers.Api;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.EntityFrameworkCore;
 
 namespace JHobby.Website
@@ -74,6 +75,14 @@ namespace JHobby.Website
             builder.Services.AddScoped<INowJoinAGroupService, NowJoinAGroupService>();
             builder.Services.AddScoped<IWishListRepository, WishListRepository>();
             builder.Services.AddScoped<IWishListService, WishListService>();
+            builder.Services.AddScoped<ISendMailService, SendMailService>();
+
+            // DI Authentication
+            builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(option =>
+            {
+                option.LoginPath = "/Member/Login";
+                option.AccessDeniedPath = "/Home/NotFounds";
+            });
 
             var app = builder.Build();
 
@@ -97,8 +106,11 @@ namespace JHobby.Website
 
             app.UseRouting();
 
-            //CORS
+            // CORS
             app.UseCors("allowCors");
+
+            // Use Authentication
+            app.UseAuthentication();
 
             app.UseAuthorization();
 

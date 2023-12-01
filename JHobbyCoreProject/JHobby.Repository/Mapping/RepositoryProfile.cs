@@ -9,12 +9,13 @@ public class RepositoryProfile : Profile
     public RepositoryProfile()
     {
         CreateMap<Category, CategoryDto>();
-        CreateMap<Category, CategoryCreateDto>();
-        CreateMap<Category, CategoryUpdateDto>();
-
-        CreateMap<Activity, ActivityCreateDto>();
-
+        CreateMap<CategoryCreateDto, Category>();
+		CreateMap<Member, MemberStatusDto>();
+        CreateMap<CategoryUpdateDto, Category>();
+        CreateMap<ActivityCreateDto, Activity>();
         CreateMap<Wish, WishDto>();
-        CreateMap<Wish, WishCreateDto>();
+        CreateMap<WishCreateDto, Wish>();
+        CreateMap<Activity, ActivityPageDto>();
+        CreateMap<ActivityImage, ActivityPageDto>();
     }
 }

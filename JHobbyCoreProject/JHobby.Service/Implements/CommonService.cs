@@ -72,5 +72,18 @@ namespace JHobby.Service.Implements
 
             yield return timeModelDto;
         }
+        /// <summary>
+        /// 取字串檢查
+        /// </summary>
+        /// <param name="shotCheck"></param>
+        /// <returns></returns>
+        public int ShotCheck(int len, string str)
+        {
+            if (len >= str.Length)
+            {
+                len = str.Length;
+            }
+            return len;
+        }
     }
 }

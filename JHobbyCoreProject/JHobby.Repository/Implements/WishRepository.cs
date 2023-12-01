@@ -30,7 +30,7 @@ public class WishRepository : IWishRepository
             _dbContext.SaveChanges();
             return true;
         }
-        catch (Exception )
+        catch (Exception)
         {
             return false;
         }

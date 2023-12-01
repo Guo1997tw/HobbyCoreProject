@@ -10,6 +10,8 @@ namespace JHobby.Website.Mapping
         public PresentationProfile()
         {
             CreateMap<CategoryModel, CategoryViewModel>();
+            CreateMap<ActivityPageModel, ActivityPageViewModel>();
+            CreateMap<MemberStatusModel, MemberStatusViewModel>();
         }
     }
 }
