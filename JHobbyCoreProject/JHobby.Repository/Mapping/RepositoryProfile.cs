@@ -1,21 +1,21 @@
 ﻿using AutoMapper;
 using JHobby.Repository.Models.Dto;
 using JHobby.Repository.Models.Entity;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace JHobby.Repository.Mapping
+namespace JHobby.Repository.Mapping;
+
+public class RepositoryProfile : Profile
 {
-    public class RepositoryProfile : Profile
+    public RepositoryProfile()
     {
-        public RepositoryProfile()
-        {
-            CreateMap<Category, CategoryDto>();
-            CreateMap<Category, CreateCategoryDto>();
-            CreateMap<Member, MemberStatusDto>();
-        }
+        CreateMap<Category, CategoryDto>();
+        CreateMap<CategoryCreateDto, Category>();
+		CreateMap<Member, MemberStatusDto>();
+        CreateMap<CategoryUpdateDto, Category>();
+        CreateMap<ActivityCreateDto, Activity>();
+        CreateMap<Wish, WishDto>();
+        CreateMap<WishCreateDto, Wish>();
+        CreateMap<Activity, ActivityPageDto>();
+        CreateMap<ActivityImage, ActivityPageDto>();
     }
 }

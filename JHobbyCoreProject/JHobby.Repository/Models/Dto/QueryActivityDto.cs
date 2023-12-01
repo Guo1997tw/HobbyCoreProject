@@ -13,7 +13,7 @@ namespace JHobby.Repository.Models.Dto
 
 		public string ActivityLocation { get; set; } = null!;
 		public string? ActivityNotes { get; set; }
-		public DateTime JoinDeadLine { get; set; }
+        public DateTime JoinDeadLine { get; set; }
 		public virtual ICollection<ActivityImage> ActivityImages { get; set; } = new List<ActivityImage>();
 	}
 }
