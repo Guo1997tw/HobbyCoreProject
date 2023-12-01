@@ -46,7 +46,8 @@ namespace JHobby.Website.Controllers.Api
 				ActivityStatus = s.ActivityStatus,
 				ActivityLocation = s.ActivityLocation,
 				ActivityNotes = s.ActivityNotes,
-				JoinDeadLine = s.JoinDeadLine,
+                ShotActivityNotes=s.ShotActivityNotes,
+                JoinDeadLine = s.JoinDeadLine,
 				ActivityImages = s.ActivityImages
 			});
 			return viewModel;

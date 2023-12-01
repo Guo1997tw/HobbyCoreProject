@@ -1,5 +1,6 @@
 ﻿using JHobby.Website.Models;
 using JHobby.Website.Models.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
@@ -14,6 +15,7 @@ namespace JHobby.Website.Controllers
             _logger = logger;
         }
 
+        // [Authorize(Roles = "Member")]
         public IActionResult Index()
         {
             return View();

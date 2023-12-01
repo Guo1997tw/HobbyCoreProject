@@ -11,5 +11,6 @@ namespace JHobby.Service.Interfaces
         public int CountSurplusQuota(int? max, int? current);
 
         public IEnumerable<TimeModelDto> ConvertTime(DateTime dateTime);
+        public int ShotCheck(int len, string str);
     }
 }

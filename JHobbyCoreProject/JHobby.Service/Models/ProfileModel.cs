@@ -14,6 +14,6 @@ namespace JHobby.Service.Models
         public string? AcitveCity { get; set; }
         public string? PersonalProfile { get; set; }
 		public string? HeadShot { get; set; }
-		public double? Fraction { get; set; }
+		public decimal? Fraction { get; set; }
 	}
 }

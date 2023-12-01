@@ -16,6 +16,8 @@ namespace JHobby.Service.Mapping
         {
             CreateMap<CategoryDto, CategoryModel>();
 			CreateMap<CategoryCreateDto, CreateCategoryModel>();
-		}
+            CreateMap<ActivityPageDto, ActivityPageModel>();
+            CreateMap<MemberStatusDto, MemberStatusModel>();
+        }
     }
 }
