@@ -1,6 +1,6 @@
 ﻿namespace JHobby.Repository.Models.Dto
 {
-    public class CreateWishDto
+    public class WishCreateDto
     {
 		public int MemberId { get; set; }
 

@@ -11,7 +11,8 @@ namespace JHobby.Service.Models
 		public string ActivityStatus { get; set; } = null!;
 		public string ActivityLocation { get; set; } = null!;
 		public string? ActivityNotes { get; set; }
-		public string? JoinDeadLine { get; set; }
+        public string? ShotActivityNotes { get; set; }
+        public string? JoinDeadLine { get; set; }
 		public virtual ICollection<ActivityImage> ActivityImages { get; set; } = new List<ActivityImage>();
 	}
 }

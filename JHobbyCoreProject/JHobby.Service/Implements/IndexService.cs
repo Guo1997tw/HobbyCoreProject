@@ -8,9 +8,11 @@ namespace JHobby.Service.Implements
 	public class IndexService : IIndexService
 	{
 		private readonly IIndexRepository _IidexResporitory;
-		public IndexService(IIndexRepository IidexResporitory)
+		private readonly ICommonService _CommonService;
+		public IndexService(IIndexRepository IidexResporitory,ICommonService commonService)
 		{
 			_IidexResporitory = IidexResporitory;
+			_CommonService = commonService;
 		}
 
 		public IEnumerable<QueryActivityModel> GetActivityResult()
@@ -27,11 +29,14 @@ namespace JHobby.Service.Implements
 				ActivityStatus=res.ActivityStatus,
 				ActivityLocation=res.ActivityLocation.Trim(),
 				ActivityNotes=res.ActivityNotes?.Trim(),
+				ShotActivityNotes=res.ActivityNotes.Substring(0, _CommonService.ShotCheck(10,res.ActivityNotes)).Trim(),
 				JoinDeadLine=res.JoinDeadLine.ToString("yyyy-MM-dd"),
 				ActivityImages = res.ActivityImages.Where(ai => ai.IsCover == true).ToList()
 			}).Take(6);
 			return resultModel;
 		}
+
+
 
 		public IEnumerable<QueryMemberGenderModel> GetGenderResult()
 		{
@@ -60,5 +65,6 @@ namespace JHobby.Service.Implements
 
 			return resultModel;
 		}
-	}
+
+    }
 }

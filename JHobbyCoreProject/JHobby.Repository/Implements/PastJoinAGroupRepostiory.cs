@@ -2,6 +2,7 @@
 using JHobby.Repository.Interfaces;
 using JHobby.Repository.Models.Dto;
 using JHobby.Repository.Models.Entity;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,7 +17,7 @@ namespace JHobby.Repository.Implements
 
         public PastJoinAGroupRepostiory(JhobbyContext jhobbyContext)
         {
-            
+
             _JhobbyContext = jhobbyContext;
         }
 
@@ -29,7 +30,6 @@ namespace JHobby.Repository.Implements
                (a, m) => new PastJoinAGroupDto
                {
                    ActivityId = a.ActivityId,
-                   MemberId = a.MemberId,
                    ActivityName = a.ActivityName,
                    ActivityStatus = a.ActivityStatus,
                    ActivityCity = a.ActivityCity,
@@ -38,6 +38,26 @@ namespace JHobby.Repository.Implements
                    NickName = m.NickName
                });
         }
+
+        public IEnumerable<PastJoinAGroupDto> GetPastJoinAGroupById(int memberId)
+        {
+            var activityUsers = _JhobbyContext.Members.Select(m => new { id = m.MemberId, nikeName = m.NickName });
+            return _JhobbyContext.ActivityUsers
+                .Where(Au => Au.MemberId == memberId)
+                .Include(Au => Au.Activity)
+                .Include(Au => Au.Member)
+                .Select(a => new PastJoinAGroupDto
+                {
+                    ActivityId = a.ActivityId,
+                    ActivityName = a.Activity.ActivityName,
+                    ActivityStatus = a.Activity.ActivityStatus,
+                    ActivityCity = a.Activity.ActivityCity,
+                    CurrentPeople = a.Activity.CurrentPeople,
+                    StartTime = a.Activity.StartTime,
+                    NickName = activityUsers.FirstOrDefault(ac => ac.id == a.Activity.MemberId).nikeName
+                });
+        }
+
     }
 
 }

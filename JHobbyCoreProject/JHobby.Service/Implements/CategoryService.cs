@@ -47,7 +47,7 @@ namespace JHobby.Service.Implements
 
 		public bool CreateCategory(CreateCategoryModel createCategoryModel)
 		{
-			var mapper = new CreateCategoryDto
+			var mapper = new CategoryCreateDto
 			{
 				CategoryName = createCategoryModel.CategoryName
 			};
@@ -63,7 +63,7 @@ namespace JHobby.Service.Implements
 
 			if (queryResult == null) return false;
 
-			var dto = new UpdateCategoryDto
+			var dto = new CategoryUpdateDto
 			{
 				CategoryName = updateCategoryModel.CategoryName
 			};

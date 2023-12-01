@@ -1,5 +1,5 @@
-﻿<partial name="_BreadcrumbPartial" />
-<partial name="_DashboardMenuPartail" />
+﻿<partial name="_BreadcrumbPartial" />s
+<partial name="_DashboardMenuPartial" />
 @* MemberCenter/launchATeam *@
 <div b-q7camsv0h8="" class="container">
     <main b-q7camsv0h8="" role="main" class="pb-3">
@@ -40,13 +40,13 @@
                                                 <div class="col-xl-12 col-sm-12 col-auto">
                                                     <div class="sortby-filter-group court-sortby">
                                                         <div class="sortbyset">
-                                                            <span class="sortbytitle">Sort By</span>
+                                                            <span class="sortbytitle">活動時間排序</span>
                                                             <div class="sorting-select">
                                                                 <select class="form-control select select2-hidden-accessible"
                                                                         data-select2-id="4" tabindex="-1"
                                                                         aria-hidden="true">
-                                                                    <option data-select2-id="6">Relevance</option>
-                                                                    <option>Price</option>
+                                                                    <option data-select2-id="6">近到遠</option>
+                                                                    <option>遠到近</option>
                                                                 </select>
                                                             </div>
                                                         </div>
@@ -112,7 +112,7 @@
                                                                     <div class="col-sm-12 col-md-6"></div>
                                                                     <div class="col-sm-12 col-md-6"></div>
                                                                 </div>
-                                                                <div class="row">
+                                                                <div class="row" id="Updates">
                                                                     <div class="col-sm-12">
                                                                         <table class="table table-borderless no-footer"
                                                                                id="DataTables_Table_0" role="grid">
@@ -165,7 +165,7 @@
                                                                                 </tr>
                                                                             </thead>
                                                                             <tbody>
-                                                                                <tr role="row" class="odd">
+                                                                                <tr role="row" class="odd" v-for="item in showUpdates">
                                                                                     <td class="sorting_1">
                                                                                         <h2 class="table-avatar">
                                                                                             <a href="~#"
@@ -177,19 +177,18 @@
                                                                                             <span class="table-head-name flex-grow-1">
                                                                                                 <a href="~javascript:;"
                                                                                                    data-bs-toggle="modal"
-                                                                                                   data-bs-target="#request-court">GOGO跑步團</a>
+                                                                                                   data-bs-target="#request-court">
+                                                                                                    </a>
+                                                                                                        {{item.activityName}}
                                                                                                 <span>
-                                                                                                    團主:
-                                                                                                    千里型男
                                                                                                 </span>
                                                                                             </span>
                                                                                         </h2>
                                                                                     </td>
                                                                                     <td class="table-date-time">
                                                                                         <h4>
-                                                                                            星期三, 六月 11日<span>
-                                                                                                06:00
-                                                                                                PM - 08:00 PM
+                                                                                            <span>
+                                                                                                {{item.startTime}}
                                                                                             </span>
                                                                                         </h4>
                                                                                     </td>
@@ -198,180 +197,28 @@
                                                                                         <a href="javascript:;"
                                                                                            class="btn cancel-table-btn"
                                                                                            data-bs-toggle="modal"
-                                                                                           data-bs-target="#add-particpate-check">
-                                                                                            2
+                                                                                           data-bs-target="#add-particpate-check" v-show="item.currentPeople" >
+                                                                                           2
                                                                                         </a>
+                                                                                       
                                                                                         <!-- /連接參團人數 -->
                                                                                     </td>
                                                                                     <td>
-                                                                                        <span class="pay-dark">10人</span>
+                                                                                        <span class="pay-dark">{{item.maxPeople}}</span>
                                                                                     </td>
                                                                                     <td class="paid-edit">
                                                                                         <span>
-                                                                                            <i class="feather-edit"></i>報名中
+                                                                                            <i class="feather-edit"></i>{{item.activityStatus}}
                                                                                         </span>
                                                                                     </td>
                                                                                     <td class="table-accept-btn text-end">
-                                                                                        <a href="javascript:;" class="btn accept-btn"><i class="feather-check-circle"></i>編輯開團</a>
+                                                                                        <a href="https://localhost:7097/home/leaderedit" class="btn accept-btn"><i class="feather-check-circle"></i>編輯開團</a>
                                                                                         <a href="javascript:;" class="btn cancel-table-btn" data-bs-toggle="modal" data-bs-target="#request-coche">
                                                                                             <i class="feather-x-circle"></i>取消開團
                                                                                         </a>
                                                                                     </td>
                                                                                 </tr>
-                                                                                <tr role="row" class="even">
-                                                                                    <td class="sorting_1">
-                                                                                        <h2 class="table-avatar">
-                                                                                            <a href="~#"
-                                                                                               class="avatar avatar-sm  flex-shrink-0">
-                                                                                                <img class="avatar-img"
-                                                                                                     src="~/assets/img/booking/booking-01.jpg"
-                                                                                                     alt="User">
-                                                                                            </a>
-                                                                                            <span class="table-head-name flex-grow-1">
-                                                                                                <a href="~javascript:;"
-                                                                                                   data-bs-toggle="modal"
-                                                                                                   data-bs-target="#request-court">
-                                                                                                    Feather
-                                                                                                    Badminton
-                                                                                                </a>
-                                                                                                <span>Court 2</span>
-                                                                                            </span>
-                                                                                        </h2>
-                                                                                    </td>
-
-                                                                                    <td class="table-date-time">
-                                                                                        <h4>
-                                                                                            Mon, Jul 11<span>
-                                                                                                06:00
-                                                                                                PM - 08:00 PM
-                                                                                            </span>
-                                                                                        </h4>
-                                                                                    </td>
-                                                                                    <td>2</td>
-                                                                                    <td>
-                                                                                        <span class="pay-dark">$150</span>
-                                                                                    </td>
-                                                                                    <td class="paid-edit">
-                                                                                        <span>
-                                                                                            <i class="feather-edit"></i>Paid
-                                                                                        </span>
-                                                                                    </td>
-                                                                                    <td class="table-accept-btn text-end">
-                                                                                        <a href="~javascript:;"
-                                                                                           class="btn accept-btn">
-                                                                                            <i class="feather-check-circle"></i>Accept
-                                                                                        </a>
-                                                                                        <a href="~javascript:;"
-                                                                                           class="btn cancel-table-btn"
-                                                                                           data-bs-toggle="modal"
-                                                                                           data-bs-target="#request-reject">
-                                                                                            <i class="feather-x-circle"></i>Cancel
-                                                                                        </a>
-                                                                                    </td>
-                                                                                </tr>
-                                                                                <tr role="row" class="odd">
-                                                                                    <td class="sorting_1">
-                                                                                        <h2 class="table-avatar">
-                                                                                            <a href="~#"
-                                                                                               class="avatar avatar-sm  flex-shrink-0">
-                                                                                                <img class="avatar-img"
-                                                                                                     src="~/assets/img/booking/booking-05.jpg"
-                                                                                                     alt="User">
-                                                                                            </a>
-                                                                                            <span class="table-head-name flex-grow-1">
-                                                                                                <a href="~javascript:;"
-                                                                                                   data-bs-toggle="modal"
-                                                                                                   data-bs-target="#request-court">
-                                                                                                    Marsh
-                                                                                                    Academy
-                                                                                                </a>
-                                                                                                <span>Court 4</span>
-                                                                                            </span>
-                                                                                        </h2>
-                                                                                    </td>
-
-                                                                                    <td class="table-date-time">
-                                                                                        <h4>
-                                                                                            Wed, Jul 11<span>
-                                                                                                06:00
-                                                                                                PM - 08:00 PM
-                                                                                            </span>
-                                                                                        </h4>
-                                                                                    </td>
-                                                                                    <td>2</td>
-                                                                                    <td>
-                                                                                        <span class="pay-dark">$120</span>
-                                                                                    </td>
-                                                                                    <td class="paid-edit">
-                                                                                        <span>
-                                                                                            <i class="feather-edit"></i>Paid
-                                                                                        </span>
-                                                                                    </td>
-                                                                                    <td class="table-accept-btn text-end">
-                                                                                        <a href="~javascript:;"
-                                                                                           class="btn accept-btn">
-                                                                                            <i class="feather-check-circle"></i>Accept
-                                                                                        </a>
-                                                                                        <a href="~javascript:;"
-                                                                                           class="btn cancel-table-btn"
-                                                                                           data-bs-toggle="modal"
-                                                                                           data-bs-target="#request-reject">
-                                                                                            <i class="feather-x-circle"></i>Cancel
-                                                                                        </a>
-                                                                                    </td>
-                                                                                </tr>
-                                                                                <tr role="row" class="even">
-                                                                                    <td class="sorting_1">
-                                                                                        <h2 class="table-avatar">
-                                                                                            <a href="~#"
-                                                                                               class="avatar avatar-sm  flex-shrink-0">
-                                                                                                <img class="avatar-img"
-                                                                                                     src="~/assets/img/booking/booking-01.jpg"
-                                                                                                     alt="User">
-                                                                                            </a>
-                                                                                            <span class="table-head-name flex-grow-1">
-                                                                                                <a href="~javascript:;"
-                                                                                                   data-bs-toggle="modal"
-                                                                                                   data-bs-target="#request-court">
-                                                                                                    Wing
-                                                                                                    Sports
-                                                                                                    Academy
-                                                                                                </a>
-                                                                                                <span>Court 1</span>
-                                                                                            </span>
-                                                                                        </h2>
-                                                                                    </td>
-
-                                                                                    <td class="table-date-time">
-                                                                                        <h4>
-                                                                                            Fri, Jul 11<span>
-                                                                                                06:00
-                                                                                                PM - 08:00 PM
-                                                                                            </span>
-                                                                                        </h4>
-                                                                                    </td>
-                                                                                    <td>2</td>
-                                                                                    <td>
-                                                                                        <span class="pay-dark">$250</span>
-                                                                                    </td>
-                                                                                    <td class="paid-edit">
-                                                                                        <span>
-                                                                                            <i class="feather-edit"></i>Paid
-                                                                                        </span>
-                                                                                    </td>
-                                                                                    <td class="table-accept-btn text-end">
-                                                                                        <a href="~javascript:;"
-                                                                                           class="btn accept-btn">
-                                                                                            <i class="feather-check-circle"></i>Accept
-                                                                                        </a>
-                                                                                        <a href="~javascript:;"
-                                                                                           class="btn cancel-table-btn"
-                                                                                           data-bs-toggle="modal"
-                                                                                           data-bs-target="#request-reject">
-                                                                                            <i class="feather-x-circle"></i>Cancel
-                                                                                        </a>
-                                                                                    </td>
-                                                                                </tr>
+                                                                         
                                                                             </tbody>
                                                                         </table>
                                                                     </div>
@@ -429,7 +276,7 @@
                                                                     <li class="paginate_button page-item previous disabled"
                                                                         aria-controls="DataTables_Table_1"
                                                                         data-dt-idx="0" tabindex="0"
-                                                                        class="page-link">
+                                                                        <class="page-link">
                                                                         <i class="feather-chevrons-left"></i>
                                                             </a>
                                                             </li>
@@ -490,7 +337,7 @@
                     @* 開團歷史紀錄版面 *@
                     <div class="row">
                         <div class="col-lg-12">
-                            <div class="card dashboard-card mb-0">
+                            <li >
                                 <div class="card-header card-header-info border-0">
                                     <div class="card-header-inner">
                                         <h4>開團歷史紀錄</h4>
@@ -509,7 +356,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="tab-content">
+                                <div class="tab-content" id="record">
                                     <div class="tab-pane fade active show" id="nav-Recent" role="tabpanel"
                                          aria-labelledby="nav-Recent-tab" tabindex="0">
                                         <div class="table-responsive table-datatble">
@@ -525,7 +372,7 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    <tr>
+                                                    <tr  v-for="item in axiosBrowsepicture">
                                                         <td>
                                                             <h2 class="table-avatar">
                                                                 <a href="~/#" data-bs-toggle="modal"
@@ -533,249 +380,26 @@
                                                                    class="avatar avatar-sm flex-shrink-0">
                                                                     <img class="avatar-img"
                                                                          src="~/assets/img/booking/booking-02.jpg"
-                                                                         alt="Booking">
+                                                                         alt="Booking" >
                                                                 </a>
                                                                 <span class="table-head-name flex-grow-1">
                                                                     <a data-bs-toggle="modal"
-                                                                       data-bs-target="#upcoming-court">ChaseChase團</a>
-                                                                    <span>團主: 半夜加班郎</span>
+                                                                       data-bs-target="#upcoming-court">{{item.activityName}}</a>
+                                                                    <span>{{item.MemberId}}</span>
                                                                 </span>
                                                             </h2>
                                                         </td>
                                                         <td>
-                                                            <p>2023, 七月 11日</p>
-                                                            <p>06:00 PM - 08:00 PM</p>
+                                                            <p>{{item.startTime}}</p>
                                                         </td>
                                                         <td>
-                                                            <h6>5人</h6>
+                                                            <h6>{{item.currentPeople}}</h6>
                                                         </td>
-                                                        <td>2023, 六月 11日</td>
+                                                        <td>{{item.created}}</td>
                                                         <td class="paid-edit">
-                                                            <span><i class="feather-edit"></i> 已開團</span>
-                                                        </td>
-                                                        <td>
-                                                            <div class="dropdown dropdown-action">
-                                                                <a href="~/#" class="action-icon dropdown-toggle"
-                                                                   data-bs-toggle="dropdown"
-                                                                   aria-expanded="false">
-                                                                    <i class="fas fa-ellipsis"></i>
-                                                                </a>
-                                                                <div class="dropdown-menu dropdown-menu-end">
-                                                                    <a class="dropdown-item"
-                                                                       href="~/javascript:void(0);">
-                                                                        <i class="feather-download"></i> Download
-                                                                    </a>
-                                                                    <a class="dropdown-item"
-                                                                       href="~/javascript:void(0);">
-                                                                        <i class="feather-trash"></i> Delete
-                                                                    </a>
-                                                                </div>
-                                                            </div>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>
-                                                            <h2 class="table-avatar">
-                                                                <a href="~/#" data-bs-toggle="modal"
-                                                                   data-bs-target="#upcoming-court"
-                                                                   class="avatar avatar-sm flex-shrink-0">
-                                                                    <img class="avatar-img"
-                                                                         src="~/assets/img/booking/booking-03.jpg"
-                                                                         alt="Booking">
-                                                                </a>
-                                                                <span class="table-head-name flex-grow-1">
-                                                                    <a data-bs-toggle="modal"
-                                                                       data-bs-target="#upcoming-court">
-                                                                        Wing Sports
-                                                                        Academy
-                                                                    </a>
-                                                                    <span>Court 2</span>
-                                                                </span>
-                                                            </h2>
-                                                        </td>
-                                                        <td>
-                                                            <p>Tue, Jul 12</p>
-                                                            <p>05:00 PM - 06:00 PM</p>
-                                                        </td>
-                                                        <td>
-                                                            <h6>$120</h6>
-                                                        </td>
-                                                        <td>Jul 12, 2023</td>
-                                                        <td class="paid-edit">
-                                                            <span><i class="feather-edit"></i> Paid</span>
-                                                        </td>
-                                                        <td>
-                                                            <div class="dropdown dropdown-action">
-                                                                <a href="~/#" class="action-icon dropdown-toggle"
-                                                                   data-bs-toggle="dropdown"
-                                                                   aria-expanded="false">
-                                                                    <i class="fas fa-ellipsis"></i>
-                                                                </a>
-                                                                <div class="dropdown-menu dropdown-menu-end">
-                                                                    <a class="dropdown-item"
-                                                                       href="~/javascript:void(0);">
-                                                                        <i class="feather-download"></i> Download
-                                                                    </a>
-                                                                    <a class="dropdown-item"
-                                                                       href="~/javascript:void(0);">
-                                                                        <i class="feather-trash"></i> Delete
-                                                                    </a>
-                                                                </div>
-                                                            </div>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>
-                                                            <h2 class="table-avatar">
-                                                                <a href="~/#" data-bs-toggle="modal"
-                                                                   data-bs-target="#upcoming-court"
-                                                                   class="avatar avatar-sm flex-shrink-0">
-                                                                    <img class="avatar-img"
-                                                                         src="~/assets/img/booking/booking-04.jpg"
-                                                                         alt="Booking">
-                                                                </a>
-                                                                <span class="table-head-name flex-grow-1">
-                                                                    <a data-bs-toggle="modal"
-                                                                       data-bs-target="#upcoming-court">
-                                                                        Feather
-                                                                        Badminton
-                                                                    </a>
-                                                                    <span>Court 3</span>
-                                                                </span>
-                                                            </h2>
-                                                        </td>
-                                                        <td>
-                                                            <p>Wed, Jul 13</p>
-                                                            <p>10:00 AM - 11:00 AM</p>
-                                                        </td>
-                                                        <td>
-                                                            <h6>$470</h6>
-                                                        </td>
-                                                        <td>Jul 13, 2023</td>
-                                                        <td class="paid-edit">
-                                                            <span><i class="feather-edit"></i> Paid</span>
-                                                        </td>
-                                                        <td>
-                                                            <div class="dropdown dropdown-action">
-                                                                <a href="~/#" class="action-icon dropdown-toggle"
-                                                                   data-bs-toggle="dropdown"
-                                                                   aria-expanded="false">
-                                                                    <i class="fas fa-ellipsis"></i>
-                                                                </a>
-                                                                <div class="dropdown-menu dropdown-menu-end">
-                                                                    <a class="dropdown-item"
-                                                                       href="~/javascript:void(0);">
-                                                                        <i class="feather-download"></i> Download
-                                                                    </a>
-                                                                    <a class="dropdown-item"
-                                                                       href="~/javascript:void(0);">
-                                                                        <i class="feather-trash"></i> Delete
-                                                                    </a>
-                                                                </div>
-                                                            </div>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>
-                                                            <h2 class="table-avatar">
-                                                                <a href="~/#" data-bs-toggle="modal"
-                                                                   data-bs-target="#upcoming-court"
-                                                                   class="avatar avatar-sm flex-shrink-0">
-                                                                    <img class="avatar-img"
-                                                                         src="/assets/img/booking/booking-05.jpg"
-                                                                         alt="Booking">
-                                                                </a>
-                                                                <span class="table-head-name flex-grow-1">
-                                                                    <a href="~/#" data-bs-toggle="modal"
-                                                                       data-bs-target="#upcoming-court">
-                                                                        Bwing
-                                                                        Sports Academy
-                                                                    </a>
-                                                                    <span>Court 4</span>
-                                                                </span>
-                                                            </h2>
-                                                        </td>
-                                                        <td>
-                                                            <p>Thu, Jul 14</p>
-                                                            <p>12:00 PM - 01:00 PM</p>
-                                                        </td>
-                                                        <td>
-                                                            <h6>$200</h6>
-                                                        </td>
-                                                        <td>Jul 14, 2023</td>
-                                                        <td class="paid-edit">
-                                                            <span><i class="feather-edit"></i> Paid</span>
-                                                        </td>
-                                                        <td>
-                                                            <div class="dropdown dropdown-action">
-                                                                <a href="~/#" class="action-icon dropdown-toggle"
-                                                                   data-bs-toggle="dropdown"
-                                                                   aria-expanded="false">
-                                                                    <i class="fas fa-ellipsis"></i>
-                                                                </a>
-                                                                <div class="dropdown-menu dropdown-menu-end">
-                                                                    <a class="dropdown-item"
-                                                                       href="~/javascript:void(0);">
-                                                                        <i class="feather-download"></i> Download
-                                                                    </a>
-                                                                    <a class="dropdown-item"
-                                                                       href="~/javascript:void(0);">
-                                                                        <i class="feather-trash"></i> Delete
-                                                                    </a>
-                                                                </div>
-                                                            </div>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td>
-                                                            <h2 class="table-avatar">
-                                                                <a href="~/#" data-bs-toggle="modal"
-                                                                   data-bs-target="#upcoming-court"
-                                                                   class="avatar avatar-sm flex-shrink-0">
-                                                                    <img class="avatar-img"
-                                                                         src="/assets/img/booking/booking-06.jpg"
-                                                                         alt="Booking">
-                                                                </a>
-                                                                <span class="table-head-name flex-grow-1">
-                                                                    <a href="~/#" data-bs-toggle="modal"
-                                                                       data-bs-target="#upcoming-court">
-                                                                        Marsh
-                                                                        Academy
-                                                                    </a>
-                                                                    <span>Court 5</span>
-                                                                </span>
-                                                            </h2>
-                                                        </td>
-                                                        <td>
-                                                            <p>Fri, Jul 15</p>
-                                                            <p>08:00 AM - 09:00 AM</p>
-                                                        </td>
-                                                        <td>
-                                                            <h6>$150</h6>
-                                                        </td>
-                                                        <td>Jul 15, 2023</td>
-                                                        <td class="paid-edit">
-                                                            <span><i class="feather-edit"></i> Paid</span>
-                                                        </td>
-                                                        <td>
-                                                            <div class="dropdown dropdown-action">
-                                                                <a href="~/#" class="action-icon dropdown-toggle"
-                                                                   data-bs-toggle="dropdown"
-                                                                   aria-expanded="false">
-                                                                    <i class="fas fa-ellipsis"></i>
-                                                                </a>
-                                                                <div class="dropdown-menu dropdown-menu-end">
-                                                                    <a class="dropdown-item"
-                                                                       href="~/javascript:void(0);">
-                                                                        <i class="feather-download"></i> Download
-                                                                    </a>
-                                                                    <a class="dropdown-item"
-                                                                       href="~/javascript:void(0);">
-                                                                    </a>
-                                                                </div>
-                                                            </div>
-                                                        </td>
-                                                    </tr>
+                                                            <span><i class="feather-edit"></i>{{item.activityStatus}}</span>
+                                                        </td> 
+                                                    </tr
                                                 </tbody>
                                             </table>
                                         </div>
@@ -897,10 +521,10 @@
                     </div>
                     <div class="modal-footer">
                         <div class="table-accept-btn">
-                            <a href="javascript:;" class="btn accept-btn me-0">刪除</a>
+                            <button class="btn cancel-table-btn">刪除</button>
                         </div>
                         <div class="table-accept-btn">
-                            <a href="javascript:;" class="btn cancel-table-btn" data-bs-toggle="modal" data-bs-target="#request-reject">取消</a>
+                            <a href="javascript:;" class="btn accept-btn me-0" data-bs-toggle="modal" data-bs-target="#request-reject">取消</a>
                         </div>
                     </div>
                 </div>
@@ -1254,5 +878,105 @@
     </main>
 </div>
 
+<!-- Hot Member -->
+@section Scripts
+{
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/3.3.4/vue.global.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.6.0/axios.min.js" integrity="sha512-WrdC3CE9vf1nBf58JHepuWT4x24uTacky9fuzw2g/3L9JkihgwZ6Cfv+JGTtNyosOhEmttMtEZ6H3qJWfI7gIQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="~/assets/js/script.js"></script>
+    <script>
+        var record = Vue.createApp({
+            data() {   /* 顯示資料 */
+                return {
+                    axiosBrowsepicture: [{
+                       combination:[],
+                    },
+                    ]
+                };
+            },
+            mounted() {
+                let _this = this;
+                _this.logBrowsepicture();
+            },
+            /* 事件 */
+            methods: {
+                logBrowsepicture: function () {  /* 顯示 */
+                    let _this = this;
+                    //alert("123")
+                    axios.get(`/LaunchaTeamApi/GetByIdOld/1`)
+                        .then((result) => { _this.axiosBrowsepicture = result.data; })
+                        .catch((error) => alert(`發生錯誤: ${error}`));
+                }
+            },
+        }).mount("#record")
+        var Updates = Vue.createApp({
+            data() {   /* 顯示資料 */
+                return {
+                    showUpdates: [{
+                        combination:[],
+                   
+                    },
+                    ]
+                };
+            },
+            mounted() {
+                let _this = this;
+                _this.lookUpdates();
+            },
+            /* 事件 */
+            methods: {
+                lookUpdates: function () {  /* 顯示 */
+                    let _this = this;
+                    axios.get(`/GroupStartingApi/GetByIdNow/1`)
+                        .then((viewModel) => { _this.showUpdates = viewModel.data; })
+                        .catch((error) => alert(`發生錯誤: ${error}`));
+                }
+            },
+        }).mount("#Updates")
+        
 
+            // updateCurrentPeople: function (CurrentPeople) {  /* 編輯 */
+            //     //alert("update");
+            //     let _this = this;
+            //     {
+            //         var item = _this.CurrentPeople[i]
+            //         if (CurrentPeople == _this.CurrentPeople[i].CurrentPeople) {
+            //             item.Edit = true;
+            //         }
+            //     }
+            // },
 
+                //   deletematerial: function () {  /* 刪除 */ 
+                //         let _this = this;
+                //          { 
+                //             axios.delete(`/GroupStartingApi/Delete/{id}`,)
+                //             .then(response => {
+                //              alert(response.data);
+                //             }).catch(err => {
+                //                alert(err);
+                //             }
+                //          }
+                //    });
+            
+
+        
+
+                // filterLaunchaTeam: function () {   /*篩選  放大鏡*/
+                //     let _this = this;
+                //     var request = {};
+                //     request.CurrentPeople = isNaN(Number(_this.filter)) ? -1 :
+                //         Number(_this.filter);
+                //     request.CurrentPeople = request.Activity = _this.filter;
+                //     request.Picture = null;
+                //     axios.post(`$`).then(   /* 發送呼叫 */
+                //         response => {
+                //             _this.filterCategories = response.data;
+                //             for (var i = 0; i < _this.categories[i];
+                //                 item.Edit = false;
+                //         }
+                //         }).catch(err => {
+                //             alert(err)
+                //         });
+                //  }
+                   </script>
+}

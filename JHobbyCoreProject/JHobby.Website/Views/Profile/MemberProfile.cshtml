@@ -18,8 +18,14 @@
 								@* <p>性別</p> *@
 								<ul class="d-sm-flex align-items-center">
 									<li class="d-flex align-items-center">
-										<div class="white-bg d-flex align-items-center review">
-										<span>團主評價:</span><span class="white-bg dark-yellow-bg d-flex align-items-center">{{memberProfile.fraction}}</span>
+									<div class="white-bg d-flex align-items-center review venue-coach-details">
+										<span>個人評價:</span>@* <span class="white-bg dark-yellow-bg d-flex align-items-center">{{memberProfile.fraction}}</span> *@
+										<div class=" rating ">
+											<i class="fas fa-star filled" v-for="n in Math.floor(star)"></i>
+											<i class="fas fa-star-half-alt" v-if="!Number.isInteger(star)"></i>
+											<i class="fa-regular fa-star filled" v-for="x in 5-Math.ceil(star)"></i>
+											<span>({{star}})</span>
+										</div>
 										</div>
 									</li>
 								</ul>
@@ -74,15 +80,17 @@
 					gender: "",
 					personalProfile: "",
 					fraction: "",
-					acitveCity:""
-				}
+					acitveCity:"",					
+				},
+					star: 0,
 			}
 		},
 		mounted() {
-			let self = this;
-
-
-			fetch(`/ProfileApi/GetProfileById/${@Model.MemberId}`).then(r => r.json()).then(d => { self.memberProfile = d; });
+			let _this = this;
+			fetch(`/ProfileApi/GetProfileById/${@Model.MemberId}`).then(r => r.json()).then(d => {
+				_this.memberProfile = d; _this.star = d.fraction
+				
+			});
 		}
 
 	}).mount("#app");

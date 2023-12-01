@@ -13,6 +13,8 @@ namespace JHobby.Repository.Interfaces
 
         public MemberLoginDto? GetMemberLogin(string account);
 
+        public MemberStatusDto? GetMemberStatus(string account);
+
         public MemberDto? GetById(int id);
 
 		public bool Update(int id,UpdateMemberDto updateMemberDto);

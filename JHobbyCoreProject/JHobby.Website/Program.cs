@@ -5,6 +5,7 @@ using JHobby.Repository.Models.Entity;
 using JHobby.Service.Implements;
 using JHobby.Service.Interfaces;
 using JHobby.Website.Controllers.Api;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.EntityFrameworkCore;
 
 namespace JHobby.Website
@@ -24,6 +25,16 @@ namespace JHobby.Website
                 option.UseSqlServer(builder.Configuration.GetConnectionString("JHobby"));
             });
 
+            //CORS
+            var allowCors = "allowCors";
+            builder.Services.AddCors(opt =>
+            {
+                opt.AddPolicy(allowCors, policy =>
+                {
+                    policy.WithOrigins("*").WithHeaders("*").WithMethods("*");
+                });
+            });
+
             // Swagger DI
             builder.Services.AddEndpointsApiExplorer();     
             builder.Services.AddSwaggerGen();
@@ -38,6 +49,12 @@ namespace JHobby.Website
 
             // Interface DI
             builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
+			// Interface DI
+			builder.Services.AddScoped<IGroupStartingRepository, GroupStartingRepository>();
+			builder.Services.AddScoped<IGroupStartingService, GroupStartingService>();
+			builder.Services.AddScoped<ILaunchaTeamRepository, LaunchaTeamRepository>();
+			builder.Services.AddScoped<ILaunchaTeamService, LaunchaTeamService>();
+			builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
             builder.Services.AddScoped<ICategoryService, CategoryService>();
             builder.Services.AddScoped<IIndexRepository, IndexRepository>();
             builder.Services.AddScoped<IIndexService, IndexService>();
@@ -60,8 +77,20 @@ namespace JHobby.Website
             builder.Services.AddScoped<ICommonService, CommonService>();
             builder.Services.AddScoped<IReviewRepository, ReviewRepository>();
             builder.Services.AddScoped<IReviewService, ReviewService>();
+            builder.Services.AddScoped<IUpdateProfileSettingRepository, UpdateProfileSettingRepository>();
+            builder.Services.AddScoped<IUpdateProfileSettingService, UpdateProfileSettingService>();
             builder.Services.AddScoped<INowJoinAGroupRepository, NowJoinAGroupRepository>();
             builder.Services.AddScoped<INowJoinAGroupService, NowJoinAGroupService>();
+            builder.Services.AddScoped<IWishListRepository, WishListRepository>();
+            builder.Services.AddScoped<IWishListService, WishListService>();
+            builder.Services.AddScoped<ISendMailService, SendMailService>();
+
+            // DI Authentication
+            builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(option =>
+            {
+                option.LoginPath = "/Member/Login";
+                option.AccessDeniedPath = "/Home/NotFounds";
+            });
 
             var app = builder.Build();
 
@@ -84,6 +113,12 @@ namespace JHobby.Website
             app.UseStaticFiles();
 
             app.UseRouting();
+
+            // CORS
+            app.UseCors("allowCors");
+
+            // Use Authentication
+            app.UseAuthentication();
 
             app.UseAuthorization();
 

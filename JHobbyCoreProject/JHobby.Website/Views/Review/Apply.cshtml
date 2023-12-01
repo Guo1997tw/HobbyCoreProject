@@ -1,4 +1,5 @@
-﻿@{
+﻿@model ReviewIdViewModel
+@{
     ViewData["Title"] = "報名審核";
 }
 @section Styles{
@@ -10,243 +11,290 @@
 
 }
 <partial name="_BreadcrumbPartial" />
-<partial name="_DashboardMenuPartail" />
-<div class="content court-bg">
-    <div class="container">
-
-        <!-- Sort By -->
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="sortby-section court-sortby-section">
-                    <div class="sorting-info">
-                        <div class="row d-flex align-items-center">
-                            <div class="col-xl-12 col-sm-12 col-auto">
-                                <div class="sortby-filter-group court-sortby">
-                                    <div class="sortbyset week-bg">
-                                        <div class="sorting-select">
-                                            @* <select class="form-control select">
-                                            <option>This Week</option>
-                                            <option>One Day</option>
-                                            </select> *@
+<partial name="_DashboardMenuPartial" />
+<div id="idReviewApply">
+    <div class="content court-bg">
+        <div class="container">
+            <!-- Sort By -->
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="sortby-section court-sortby-section">
+                        <div class="sorting-info">
+                            <div class="row d-flex align-items-center">
+                                <div class="col-xl-12 col-sm-12 col-auto">
+                                    <div class="sortby-filter-group court-sortby">
+                                        <div class="sortbyset week-bg">
+                                            <div class="sorting-select">
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="sortbyset">
-                                        <span class="sortbytitle">篩選</span>
-                                        <div class="sorting-select">
-                                            <select class="form-control select">
-                                                <option>申請時間近到遠</option>
-                                                <option>申請時間遠到近</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Sort By -->
-
-        <div class="row">
-            <div class="col-sm-12">
-                <div class="court-tab-content">
-                    <div class="card card-tableset">
-                        <div class="card-body">
-                            <div class="coache-head-blk">
-                                <div class="row align-items-center">
-                                    <div class="col-lg-6">
-                                        <div class="court-table-head">
-                                            <h4>資格審核</h4>
-                                            <p>活動報名審核</p>
-                                        </div>
-                                    </div>
-                                    <div class="col-lg-6">
-                                        <div class="coach-active-blk">
-                                            <div id="tablefilter"></div>
-                                            <div class="card-header-btns">
+                                        <div class="sortbyset">
+                                            <span class="sortbytitle">報名申請時間排序</span>
+                                            <div class="sorting-select">
+                                                <select id="selectSort" v-model="sortOrder" class="form-select">
+                                                    <option value="asc">近到遠</option>
+                                                    <option value="desc">遠到近</option>
+                                                </select>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="tab-content">
-                                <div class="tab-pane fade show active" id="nav-Recent" role="tabpanel"
-                                     aria-labelledby="nav-Recent-tab" tabindex="0">
-                                    <div class="table-responsive">
-                                        <table class="table table-borderless ">
-                                            <thead class="thead-light">
-                                                <tr>
-                                                    <th>活動名稱</th>
-                                                    <th>報名申請者</th>
-                                                    <th>報名申請時間</th>
-                                                    <th>接受/拒絕</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <td>
-                                                        <h2 class="table-avatar">
-                                                            <a href="#" class="avatar avatar-sm  flex-shrink-0"><img class="avatar-img" src="~/assets/img/booking/booking-01.jpg" alt="User"></a>
-                                                            <span class="table-head-name flex-grow-1">
-                                                                <a href="javascript:;" data-bs-toggle="modal"
-                                                                   data-bs-target="#request-court">Wing Sports Academy</a>
-                                                            </span>
-                                                        </h2>
-                                                    </td>
-                                                    <td>
-                                                        <h2 class="table-avatar">
-                                                            <a href="my-profile.html"
-                                                               class="avatar avatar-sm  flex-shrink-0"><img class="avatar-img" src="~/assets/img/profiles/avatar-01.jpg" alt="User"></a>
-                                                            <span class="table-head-name table-name-user flex-grow-1">
-                                                                <a href="my-profile.html">Johnson</a>
-                                                            </span>
-                                                        </h2>
-                                                    </td>
-                                                    <td class="table-date-time">
-                                                        <h4>Fri, Jul 11<span>06:00 PM - 08:00 PM</span></h4>
-                                                    </td>
-                                                    <td class="table-accept-btn text-end">
-                                                        <a href="javascript:;" class="btn accept-btn"><i class="feather-check-circle"></i>接受</a>
-                                                        <a href="javascript:;" class="btn cancel-table-btn" data-bs-toggle="modal" data-bs-target="#request-reject"><i class="feather-x-circle"></i>拒絕</a>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        <h2 class="table-avatar">
-                                                            <a href="#" class="avatar avatar-sm  flex-shrink-0"><img class="avatar-img" src="~/assets/img/booking/booking-01.jpg" alt="User"></a>
-                                                            <span class="table-head-name flex-grow-1">
-                                                                <a href="javascript:;" data-bs-toggle="modal" data-bs-target="#request-court">Feather Badminton</a>
-                                                            </span>
-                                                        </h2>
-                                                    </td>
-                                                    <td>
-                                                        <h2 class="table-avatar">
-                                                            <a href="my-profile.html" class="avatar avatar-sm  flex-shrink-0"><img class="avatar-img" src="~/assets/img/profiles/avatar-02.jpg" alt="User"></a>
-                                                            <span class="table-head-name table-name-user flex-grow-1">
-                                                                <a href="my-profile.html">Andy</a>
-                                                            </span>
-                                                        </h2>
-                                                    </td>
-                                                    <td class="table-date-time">
-                                                        <h4>Mon, Jul 11<span>06:00 PM - 08:00 PM</span></h4>
-                                                    </td>
-                                                    <td class="table-accept-btn text-end">
-                                                        <a href="javascript:;" class="btn accept-btn"><i class="feather-check-circle"></i>接受</a>
-                                                        <a href="javascript:;" class="btn cancel-table-btn" data-bs-toggle="modal" data-bs-target="#request-reject"><i class="feather-x-circle"></i>拒絕</a>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        <h2 class="table-avatar">
-                                                            <a href="#"
-                                                               class="avatar avatar-sm  flex-shrink-0"><img class="avatar-img" src="~/assets/img/booking/booking-04.jpg" alt="User"></a>
-                                                            <span class="table-head-name flex-grow-1">
-                                                                <a href="javascript:;" data-bs-toggle="modal" data-bs-target="#request-court">Bwing Sports Academy</a>
-                                                            </span>
-                                                        </h2>
-                                                    </td>
-                                                    <td>
-                                                        <h2 class="table-avatar">
-                                                            <a href="my-profile.html"
-                                                               class="avatar avatar-sm  flex-shrink-0"><img class="avatar-img" src="~/assets/img/profiles/avatar-06.jpg" alt="User"></a>
-                                                            <span class="table-head-name table-name-user flex-grow-1">
-                                                                <a href="my-profile.html">Pranika</a>
-                                                            </span>
-                                                        </h2>
-                                                    </td>
-                                                    <td class="table-date-time">
-                                                        <h4>Wed, Jul 11<span>06:00 PM - 08:00 PM</span></h4>
-                                                    <td class="table-accept-btn text-end">
-                                                        <a href="javascript:;" class="btn accept-btn"><i class="feather-check-circle"></i>接受</a>
-                                                        <a href="javascript:;" class="btn cancel-table-btn" data-bs-toggle="modal" data-bs-target="#request-reject"><i class="feather-x-circle"></i>拒絕</a>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td>
-                                                        <h2 class="table-avatar">
-                                                            <a href="#"
-                                                               class="avatar avatar-sm  flex-shrink-0"><img class="avatar-img" src="~/assets/img/booking/booking-05.jpg" alt="User"></a>
-                                                            <span class="table-head-name flex-grow-1">
-                                                                <a href="javascript:;" data-bs-toggle="modal" data-bs-target="#request-court">Marsh Academy</a>
-                                                            </span>
-                                                        </h2>
-                                                    </td>
-                                                    <td>
-                                                        <h2 class="table-avatar">
-                                                            <a href="my-profile.html" class="avatar avatar-sm  flex-shrink-0"><img class="avatar-img" src="~/assets/img/profiles/avatar-03.jpg" alt="User"></a>
-                                                            <span class="table-head-name table-name-user flex-grow-1">
-                                                                <a href="my-profile.html">Ariyan</a>
-                                                            </span>
-                                                        </h2>
-                                                    </td>
-                                                    <td class="table-date-time">
-                                                        <h4>Wed, Jul 11<span>06:00 PM - 08:00 PM</span></h4>
-                                                    </td>
-                                                    <td class="table-accept-btn text-end">
-                                                        <a href="javascript:;" class="btn accept-btn"><i class="feather-check-circle"></i>接受</a>
-                                                        <a href="javascript:;" class="btn cancel-table-btn" data-bs-toggle="modal" data-bs-target="#request-reject"><i class="feather-x-circle"></i>拒絕</a>
-                                                    </td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Sort By -->
+
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="court-tab-content">
+                        <div class="card card-tableset">
+                            <div class="card-body">
+                                <div class="coache-head-blk">
+                                    <div class="row align-items-center">
+                                        <div class="col-lg-6">
+                                            <div class="court-table-head">
+                                                <h4>資格審核</h4>
+                                                <p>活動報名審核</p>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <div class="coach-active-blk">
+                                                <div id="tablefilter"></div>
+                                                <div class="card-header-btns">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="tab-content">
+                                    <div class="tab-pane fade show active" id="nav-Recent" role="tabpanel"
+                                         aria-labelledby="nav-Recent-tab" tabindex="0">
+                                        <div class="table-responsive">
+                                            <table class="table table-borderless ">
+                                                <thead class="thead-light">
+                                                    <tr>
+                                                        <th>活動名稱</th>
+                                                        <th>報名申請者</th>
+                                                        <th>報名申請時間</th>
+                                                        <th>接受/拒絕</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr v-for="item in filterCard">
+                                                        <td>
+                                                            <h2 class="table-avatar">
+                                                                <a href="#" class="avatar avatar-sm  flex-shrink-0"><img class="avatar-img" src="~/assets/img/booking/booking-01.jpg" alt="User"></a>
+                                                                <span class="table-head-name flex-grow-1">
+                                                                    <a href="javascript:;" data-bs-toggle="modal"
+                                                                       data-bs-target="#request-court">{{item.activityName}}</a>
+                                                                </span>
+                                                            </h2>
+                                                        </td>
+                                                        <td>
+                                                            <h2 class="table-avatar">
+                                                                <a href="my-profile.html"
+                                                                   class="avatar avatar-sm  flex-shrink-0"><img class="avatar-img" src="~/assets/img/profiles/avatar-01.jpg" alt="User"></a>
+                                                                <span class="table-head-name table-name-user flex-grow-1">
+                                                                    <a href="">{{item.nickName}}</a>
+                                                                </span>
+                                                            </h2>
+                                                        </td>
+                                                        <td class="table-date-time">
+                                                            <h4>{{item.reviewTime}}</h4>
+                                                            <h4 hidden readonly>{{item.activityId}}</h4>
+                                                            <h4 hidden readonly>{{item.applicantId}}</h4>
+                                                        </td>
+                                                        <td class="table-accept-btn text-end">
+                                                            <a href="javascript:;" class="btn accept-btn" @@click="updateOk(item)">接受</a>
+                                                            <a href="javascript:;" class="btn cancel-table-btn" data-bs-toggle="modal" data-bs-target="#request-reject" @@click="keepId(item.activityId,item.applicantId)">拒絕</a>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="tab-footer">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div id="tablelength"></div>
-                            </div>
-                            <div class="col-md-6">
-                                <div id="tablepage"></div>
+                        <div class="tab-footer">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div id="tablelength"></div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div id="tablepage"></div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-
-    </div>
-</div>
-
-<!-- Request Reject -->
-<div class="modal custom-modal fade request-modal " id="request-reject" role="dialog">
-    <div class="modal-dialog modal-dialog-centered modal-sm ">
-        <div class="modal-content">
-            <div class="modal-header">
-                <div class="form-header modal-header-title">
-                    <h4 class="mb-0">拒絕申請確認</h4>
-                </div>
-                <a class="close" data-bs-dismiss="modal" aria-label="Close">
-                    <span class="align-center" aria-hidden="true"><i class="feather-x"></i></span>
-                </a>
-            </div>
-            <div class="modal-body">
-
-                <!-- Court Request -->
-                <div class="row">
-                    <div class="col-lg-12 ">
-                        <div class="card dashboard-card court-information">
-                            <div class="appointment-info ">
-                                <h3>確定拒絕參團者申請嗎?</h3>
-                            </div>
+        <!-- 分頁選單-->
+        <div class="tab-footer" style="margin-top: 10px;">
+            <div class="row">
+                <div class="col-md-12">
+                    <div id="tablepage">
+                        <div class="dataTables_paginate paging_simple_numbers" id="DataTables_Table_1_paginate">
+                            <!--分頁按鈕-->
+                            <paginate :page-count="total"
+                                      :prev-text="'<'"
+                                      :next-text="'>'"
+                                      :click-handler="pageClick">
+                                <span slot="prevContent"><i class="feather-chevrons-left"></i></span>
+                                <span slot="nextContent"><i class="feather-chevrons-right"></i></span>
+                            </paginate>
+                            <!--/分頁按鈕-->
                         </div>
                     </div>
                 </div>
-                <!-- /Court Request -->
-
             </div>
-            <div class="modal-footer">
-                <div class="table-accept-btn">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">關閉</button>
-                    <a href="javascript:;" class="btn cancel-table-btn">確定拒絕</a>
+        </div>
+        <!--/分頁選單-->
+        <!-- Request Reject -->
+        <div class="modal custom-modal fade request-modal " id="request-reject" role="dialog">
+            <div class="modal-dialog modal-dialog-centered modal-sm ">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <div class="form-header modal-header-title">
+                            <h4 class="mb-0">拒絕申請確認</h4>
+                        </div>
+                        <a class="close" data-bs-dismiss="modal" aria-label="Close">
+                            <span class="align-center" aria-hidden="true"><i class="feather-x"></i></span>
+                        </a>
+                    </div>
+                    <div class="modal-body">
+                        <!-- Court Request -->
+                        <div class="row">
+                            <div class="col-lg-12 ">
+                                <div class="card dashboard-card court-information">
+                                    <div class="appointment-info ">
+                                        <h3>確定拒絕參團者申請嗎?</h3>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /Court Request -->
+                    </div>
+                    <div class="modal-footer">
+                        <div class="table-accept-btn">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">關閉</button>
+                            <button type="button" class="btn cancel-table-btn" data-bs-dismiss="modal" @@click="updateNo(item)">確定拒絕</button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
 <!-- /Request Reject -->
+@section Scripts
+    {
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://unpkg.com/vuejs-paginate-next@latest/dist/vuejs-paginate-next.umd.js"></script>
+    <script>
+
+        const app = Vue.createApp({
+            data() {
+                let self = this;
+                return {
+                    reviewData: [],
+                    activityName: "",
+                    reviewTime: "",
+                    nickName: "",
+                    headShot: "",
+                    imageName: "",
+                    _activityId: 0,
+                    _applicantId: 0,
+                    sortOrder: 'asc',
+                    countPerPage: 5,
+                    pageNumber: 1,
+                };
+            },
+            mounted() {
+                let _this = this;
+                _this.axiosGetReviewById();
+            },
+            computed: {                
+                total() {
+                    let _this = this;
+                    return Math.ceil(_this.reviewData.length / _this.countPerPage);
+                },
+                filterCard() {
+                    let _this = this;
+                    var start = (_this.pageNumber - 1) * _this.countPerPage;
+                    var end = start + _this.countPerPage;
+                    return _this.reviewData.sort(function (x, y) {
+                        if (_this.sortOrder == "desc") {
+                            return new Date(x.reviewTime).getTime() - new Date(y.reviewTime).getTime()
+                        }
+                        if (_this.sortOrder == "asc") {
+                            return new Date(y.reviewTime).getTime() - new Date(x.reviewTime).getTime()
+                        }
+                    }).slice(start, end)
+                }
+            },
+            methods: {
+                axiosGetReviewById: function () {
+                    axios
+                        .get(`/ReviewApi/GetReviewById/5`)
+                        .then((response) => {
+                            let _this = this;
+                            _this.reviewData = response.data;
+                        })
+                        .catch((error) => {
+                            alert(`發生錯誤: ${error}`);
+                        });
+                },
+                updateOk: function (item) {
+                    let _this = this;
+                    var form = new FormData();
+                    form.append("ReviewStatus", 1);
+                    axios.put(`/ReviewApi/Update/${item.activityId}/${item.applicantId}`, form,
+                        {
+                            headers: {
+                                "Content-Type": "multipart/form-data"
+                            }
+                        }).then((response) => {
+                            _this.reviewData = response.data;
+                            _this.axiosGetReviewById();
+                        })
+                        .catch((error) => {
+                            alert(`發生錯誤: ${error}`);
+                        });
+                },
+                updateNo: function (item) {
+                    let _this = this;
+                    var form = new FormData();
+                    form.append("ReviewStatus", 2);
+                    axios.put(`/ReviewApi/Update/${_this._activityId}/${_this._applicantId}`, form,
+                        {
+                            headers: {
+                                "Content-Type": "multipart/form-data"
+                            }
+                        }).then((response) => {
+                            _this.reviewData = response.data;
+                            _this.axiosGetReviewById();
+                        })
+                        .catch((error) => {
+                            alert(`發生錯誤: ${error}`);
+                        });
+                    _this._activityId = 0;
+                    _this._applicantId = 0;
+                },
+                keepId: function (activityId, applicantId) {
+                    let _this = this;
+                    _this._activityId = activityId
+                    _this._applicantId = applicantId
+                },
+                pageClick(num) {
+                    let _this = this;
+                    _this.pageNumber = num;
+                }
+            },
+        }).component("paginate", VuejsPaginateNext).mount("#idReviewApply");
+    </script>
+}

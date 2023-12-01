@@ -28,13 +28,32 @@ namespace JHobby.Service.Implements
             return _iPastJoinAGroupRepostiory.GetPastJoinAGroupAll().Select(r => new PastJoinAGroupModel
             {
                 ActivityId = r.ActivityId,
-                MemberId = r.MemberId,
                 ActivityName = r.ActivityName,
                 ActivityStatus = _iCommonService.ConvertActivityStatus(r.ActivityStatus),
                 ActivityCity = r.ActivityCity,
                 CurrentPeople = r.CurrentPeople,
-                StartTime = r.StartTime,
                 NickName = r.NickName,
+
+                //將StartTime轉成日期格式和時間格式
+                DateConvert = _iCommonService.ConvertTime(r.StartTime).FirstOrDefault().DateConvert,
+                TimeConvert = _iCommonService.ConvertTime(r.StartTime).FirstOrDefault().TimeConvert
+            }) ;
+        }
+
+        public IEnumerable<PastJoinAGroupModel> GetPastJoinAGroupById(int memberId)
+        {
+            return _iPastJoinAGroupRepostiory.GetPastJoinAGroupById(memberId).Select(r => new PastJoinAGroupModel
+            {
+                ActivityId = r.ActivityId,
+                ActivityName = r.ActivityName,
+                ActivityStatus = _iCommonService.ConvertActivityStatus(r.ActivityStatus),
+                ActivityCity = r.ActivityCity,
+                CurrentPeople = r.CurrentPeople,
+                NickName = r.NickName,
+
+                //將StartTime轉成日期格式和時間格式
+                DateConvert = _iCommonService.ConvertTime(r.StartTime).FirstOrDefault().DateConvert,
+                TimeConvert = _iCommonService.ConvertTime(r.StartTime).FirstOrDefault().TimeConvert
             });
         }
     }
