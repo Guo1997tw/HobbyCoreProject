@@ -40,13 +40,13 @@
                                                 <div class="col-xl-12 col-sm-12 col-auto">
                                                     <div class="sortby-filter-group court-sortby">
                                                         <div class="sortbyset">
-                                                            <span class="sortbytitle">Sort By</span>
+                                                            <span class="sortbytitle">活動時間排序</span>
                                                             <div class="sorting-select">
                                                                 <select class="form-control select select2-hidden-accessible"
                                                                         data-select2-id="4" tabindex="-1"
                                                                         aria-hidden="true">
-                                                                    <option data-select2-id="6">Relevance</option>
-                                                                    <option>Price</option>
+                                                                    <option data-select2-id="6">近到遠</option>
+                                                                    <option>遠到近</option>
                                                                 </select>
                                                             </div>
                                                         </div>
@@ -197,10 +197,8 @@
                                                                                         <a href="javascript:;"
                                                                                            class="btn cancel-table-btn"
                                                                                            data-bs-toggle="modal"
-                                                                                           data-bs-target="#add-particpate-check" v-if="item.Edit==true" >
-                                                                                            {{item.currentPeople}}
-                                                                                                  
-                                                                                    
+                                                                                           data-bs-target="#add-particpate-check" v-show="item.currentPeople" >
+                                                                                           2
                                                                                         </a>
                                                                                        
                                                                                         <!-- /連接參團人數 -->
@@ -214,7 +212,7 @@
                                                                                         </span>
                                                                                     </td>
                                                                                     <td class="table-accept-btn text-end">
-                                                                                        <a href="javascript:;" class="btn accept-btn"><i class="feather-check-circle"></i>編輯開團</a>
+                                                                                        <a href="https://localhost:7097/home/leaderedit" class="btn accept-btn"><i class="feather-check-circle"></i>編輯開團</a>
                                                                                         <a href="javascript:;" class="btn cancel-table-btn" data-bs-toggle="modal" data-bs-target="#request-coche">
                                                                                             <i class="feather-x-circle"></i>取消開團
                                                                                         </a>
@@ -381,7 +379,7 @@
                                                                    data-bs-target="#upcoming-court"
                                                                    class="avatar avatar-sm flex-shrink-0">
                                                                     <img class="avatar-img"
-                                                                         v-bind:src="~/assets/img/booking/booking-02.jpg"
+                                                                         src="~/assets/img/booking/booking-02.jpg"
                                                                          alt="Booking" >
                                                                 </a>
                                                                 <span class="table-head-name flex-grow-1">
