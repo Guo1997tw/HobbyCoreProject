@@ -1,4 +1,5 @@
 ﻿using JHobby.Repository.Interfaces;
+using JHobby.Repository.Models.Dto;
 using JHobby.Service.Interfaces;
 using JHobby.Service.Models;
 using System;
@@ -26,8 +27,8 @@ namespace JHobby.Service.Implements
 				LeaderId = dto.LeaderId,
 				ActivityName = dto.ActivityName,
 				ReviewStatus = dto.ReviewStatus,
-				ReviewTime = dto.ReviewTime,
-				ApplicantId = dto.ApplicantId,
+				ReviewTime = dto.ReviewTime.ToString("yyyy-MM-dd HH:mm:ss"),
+                ApplicantId = dto.ApplicantId,
 				ActivityImageId = dto.ActivityImageId,
 				ImageName = dto.ImageName,
 				IsCover = dto.IsCover,
@@ -36,5 +37,39 @@ namespace JHobby.Service.Implements
 			});
 			return reviewModel;
 		}
+        public IEnumerable<ReviewModel> GetById(int id)
+		{
+			var resultDto= _reviewRepository.GetById(id);
+			
+			
+			var reviewModel = resultDto.OrderByDescending(dto => dto.ReviewTime).Select(dto => new ReviewModel
+            {
+                ActivityId = dto.ActivityId,
+                LeaderId = dto.LeaderId,
+                ActivityName = dto.ActivityName.Trim(),
+                ReviewStatus = dto.ReviewStatus,
+                ReviewTime = dto.ReviewTime.ToString("yyyy-MM-dd HH:mm:ss"),
+                ApplicantId = dto.ApplicantId,
+                ActivityImageId = dto.ActivityImageId,
+                ImageName = dto.ImageName,
+                IsCover = dto.IsCover,
+                NickName = dto.NickName,
+                HeadShot = dto.HeadShot,
+            });
+
+            return reviewModel;
+		}
+
+		public bool UpdateReviewStatus(int ActivityId, int ApplicantId, ReviewStatusModel reviewStatusModel)
+		{
+            var mapping = new ReviewStatusDto
+            {
+                ReviewStatus = reviewStatusModel.ReviewStatus,
+            };
+            _reviewRepository.UpdateReviewStatus(ActivityId, ApplicantId, mapping);
+
+             return true;
+        }
+
 	}
 }

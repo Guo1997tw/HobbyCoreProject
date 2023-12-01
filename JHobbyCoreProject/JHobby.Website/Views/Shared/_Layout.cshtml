@@ -106,30 +106,30 @@
 							<li class="has-submenu">
 								<a href="#">食 <i class="fas fa-chevron-down"></i></a>
 								<ul class="submenu">
-									<li><a href="https://localhost:7097/Home/notfounds">團購</a></li>
+									<li><a href="/home/NotFounds">團購</a></li>
 								</ul>
 
 							</li>
 							<li class="has-submenu">
 								<a href="#">住 <i class="fas fa-chevron-down"></i></a>
 								<ul class="submenu">
-									<li><a href="https://localhost:7097/Home/notfounds">露營</a></li>
-									<li><a href="https://localhost:7097/Home/notfounds">合租</a></li>
-									<li><a href="https://localhost:7097/Home/notfounds">共生公寓</a></li>
+									<li><a href="/home/NotFounds">露營</a></li>
+									<li><a href="/home/NotFounds">合租</a></li>
+									<li><a href="/home/NotFounds">共生公寓</a></li>
 								</ul>
 							</li>
 							<li class="has-submenu">
 								<a href="#">行 <i class="fas fa-chevron-down"></i></a>
 								<ul class="submenu">
-									<li><a href="https://localhost:7097/Home/notfounds">共乘</a></li>
+									<li><a href="/home/NotFounds">共乘</a></li>
 
 								</ul>
 							</li>
 							<li class="has-submenu">
 								<a href="#">育 <i class="fas fa-chevron-down"></i></a>
 								<ul class="submenu">
-									<li><a href="https://localhost:7097/Home/notfounds">讀書會</a></li>
-									<li><a href="https://localhost:7097/Home/notfounds">技能交換</a></li>
+									<li><a href="/home/NotFounds">讀書會</a></li>
+									<li><a href="/home/NotFounds">技能交換</a></li>
 								</ul>
 							</li>
 							<li class="has-submenu">
@@ -137,12 +137,18 @@
 								<ul class="submenu">
 									<form name="play_inhouse" action="/Middle/ActivityCenter" method="post">
 										<input type="hidden" name="categoyId" value="5" />
-										<input type="hidden" name="categoryTypeId" value="2" />
+										<input type="hidden" name="categoryTypeId" value="8" />
 										<input type="hidden" name="city" value="0" />
 										<input type="hidden" name="area" value="0" />
 										<li><a href="javascript:document.play_inhouse.submit();">室內運動</a></li>
 									</form>
-									<li><a href="/middle/activityCenter/5/1/0/0">水上運動</a></li>
+									<form name="play_water" action="/Middle/ActivityCenter" method="post">
+										<input type="hidden" name="categoyId" value="5" />
+										<input type="hidden" name="categoryTypeId" value="9" />
+										<input type="hidden" name="city" value="0" />
+										<input type="hidden" name="area" value="0" />
+									<li><a href="javascript:document.play_water.submit();">水上運動</a></li>
+									</form>
 								</ul>
 							</li>
 							<li class="has-submenu">
@@ -198,21 +204,18 @@
 								<h4 class="footer-title">網站介紹</h4>
 								<ul>
 									<li>
-										<a href="about-us.html">新手上路</a>
+										<a href="https://localhost:7097/home/newcomer">新手上路</a>
 									</li>
 								</ul>
 								<ul>
 									<li>
-										<a href="about-us.html">經營理念</a>
+										<a href="https://localhost:7097/home/conceptpage">經營理念</a>
 									</li>
 								</ul>
 							<div class="social-icon">
 								<ul>
 									<li>
 										<a href="https://www.facebook.com/TibaMe/?locale=zh_TW" class="facebook"><i class="fab fa-facebook-f"></i> </a>
-									</li>
-									<li>
-										<a href="javascript:void(0);" class="twitter"><i class="fab fa-twitter"></i> </a>
 									</li>
 									<li>
 										<a href="https://www.instagram.com/tibame_wiedu/" class="instagram"><i class="fab fa-instagram"></i></a>
@@ -287,12 +290,20 @@
 						<div class="footer-widget footer-menu">
 								<h4 class="footer-title">樂</h4>
 								<ul>
-									<li>
-										<a href="https://localhost:7097/home/notfounds">休閒</a>
-									</li>
-									<li>
-										<a href="https://localhost:7097/home/notfounds">運動</a>
-									</li>
+									<form name="foot_play_inhouse" action="/Middle/ActivityCenter" method="post">
+										<input type="hidden" name="categoyId" value="5" />
+										<input type="hidden" name="categoryTypeId" value="8" />
+										<input type="hidden" name="city" value="0" />
+										<input type="hidden" name="area" value="0" />
+									<li><a href="javascript:document.foot_play_inhouse.submit();">室內運動</a></li>
+									</form>
+									<form name="foot_play_water" action="/Middle/ActivityCenter" method="post">
+										<input type="hidden" name="categoyId" value="5" />
+										<input type="hidden" name="categoryTypeId" value="9" />
+										<input type="hidden" name="city" value="0" />
+										<input type="hidden" name="area" value="0" />
+									<li><a href="javascript:document.foot_play_water.submit();">水上運動</a></li>
+									</form>
 								</ul>
 							</div>
 						</div>
@@ -301,16 +312,16 @@
 							<h4 class="footer-title">會員中心</h4>
 							<ul>
 								<li>
-									<a href="javascript:void(0);">個人資料</a>
+									<a href="https://localhost:7097/ProfileSetting/ProfileSetting">個人資料</a>
 								</li>
 								<li>
-									<a href="javascript:void(0);">開團管理</a>
+									<a href="https://localhost:7097/MemberCenter/launchATeam">開團管理</a>
 								</li>
                                 <li>
-                                     <a href="javascript:void(0);">參團管理</a>
+									<a href="https://localhost:7097/MemberCenter/joinAGroup">參團管理</a>
                                  </li>
                                  <li>
-                                     <a href="javascript:void(0);">報名審核</a>
+									<a href="https://localhost:7097/REVIEW/APPLY">報名審核</a>
                                  </li>
 							</ul>
 						</div>

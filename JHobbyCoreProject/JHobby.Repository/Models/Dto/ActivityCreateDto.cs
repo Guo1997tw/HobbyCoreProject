@@ -7,13 +7,12 @@ using System.Threading.Tasks;
 
 namespace JHobby.Repository.Models.Dto		
 {
-	public class ActivityBuildDto
+	public class ActivityCreateDto
 	{
 		
 		public string ActivityName { get; set; } = null!;
 
-		
-		public string ActivityCity { get; set; } = null!;
+        public string ActivityCity { get; set; } = null!;
 		public string ActivityArea { get; set; } = null!;
 		public string ActivityLocation { get; set; } = null!;
 		public DateTime StartTime { get; set; }

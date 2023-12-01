@@ -454,32 +454,32 @@ Version      : 1.0
 	});
 
 	// Main Gallery Owl Carousel Slider for Venue Details
-
-	if($('.main-gallery-slider').length > 0) {   
-		$('.main-gallery-slider').owlCarousel({
-			loop:true,
-			nav:true,
-			margin:5,
-			dots: false,
-			autoplay:false,
-			smartSpeed: 2000,
-			navText : ["<i class='feather-chevron-left'></i>","<i class='feather-chevron-right'></i>"],
-			responsive:{
-				0:{
-					items:1
-				},
-				500:{
-					items:2
-				},
-				768:{
-					items:4
-				},
-				1000:{
-					items:5
-				}
-			}
-		})
-	}
+	// ²¾¦Ü"~/js/site.js"
+	//if($('.main-gallery-slider').length > 0) {   
+	//	$('.main-gallery-slider').owlCarousel({
+	//		loop:true,
+	//		nav:true,
+	//		margin:5,
+	//		dots: false,
+	//		autoplay:false,
+	//		smartSpeed: 2000,
+	//		navText : ["<i class='feather-chevron-left'></i>","<i class='feather-chevron-right'></i>"],
+	//		responsive:{
+	//			0:{
+	//				items:1
+	//			},
+	//			500:{
+	//				items:2
+	//			},
+	//			768:{
+	//				items:4
+	//			},
+	//			1000:{
+	//				items:5
+	//			}
+	//		}
+	//	})
+	//}
 
 	// Gallery Owl Carousel Slider For Venue Details
 

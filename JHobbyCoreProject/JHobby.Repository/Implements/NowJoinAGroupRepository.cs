@@ -14,12 +14,12 @@ namespace JHobby.Repository.Implements
     {
         private readonly JhobbyContext _jhobbyContext;
 
-        public NowJoinAGroupRepository(JhobbyContext jhobbyContext) 
+        public NowJoinAGroupRepository(JhobbyContext jhobbyContext)
         {
             _jhobbyContext = jhobbyContext;
         }
 
-        public IEnumerable<NowJoinAGroupDto> GetNowJoinAGroupAll() 
+        public IEnumerable<NowJoinAGroupDto> GetNowJoinAGroupAll()
         {
             var nowDto = _jhobbyContext.ActivityUsers
                 .Include(Au => Au.Activity)
@@ -37,6 +37,22 @@ namespace JHobby.Repository.Implements
                     StartTime = a.Activity.StartTime,
                 });
             return nowDto;
+        }
+
+        public IEnumerable<NowJoinAGroupDto> GetNowJoinAGroupById(int memberId)
+        {
+            var activityUser = _jhobbyContext.Members.Select(x => new { id=x.MemberId,nickName=x.NickName }) ;
+            return _jhobbyContext.ActivityUsers.Where(Au => Au.MemberId == memberId)
+                .Include(Au => Au.Activity)
+                .Select(a => new NowJoinAGroupDto
+                {
+                    ActivityName = a.Activity.ActivityName,
+                    ReviewStatus = a.ReviewStatus,
+                    CurrentPeople = a.Activity.CurrentPeople,
+                    MaxPeople = a.Activity.MaxPeople,
+                    NickName = activityUser.FirstOrDefault(z=> z.id==a.Activity.MemberId).nickName,
+                    StartTime = a.Activity.StartTime,
+                });
         }
     }
 }
