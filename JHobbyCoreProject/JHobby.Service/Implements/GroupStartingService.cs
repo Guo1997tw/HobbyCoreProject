@@ -36,7 +36,7 @@ namespace JHobby.Service.Implements
 		}
 		public bool Delete(int id)
 		{
-			var queryResult = _groupStartingRepository.GetById(id);
+			var queryResult = _groupStartingRepository.GetByIdNow(id);
 
 			if (queryResult == null) return false;
 
@@ -47,7 +47,7 @@ namespace JHobby.Service.Implements
 
 		public bool Update(int id, GroupStartingModel GroupStartingModel)
 		{
-			var queryResult = _groupStartingRepository.GetById(id);
+			var queryResult = _groupStartingRepository.GetByIdNow(id);
 
 			if (queryResult == null) return false;
 
@@ -61,9 +61,9 @@ namespace JHobby.Service.Implements
 			return true;
 		}
 
-		public IEnumerable<GroupStartingModel> GetById(int id)    /*IEnumerable多筆*/
+		public IEnumerable<GroupStartingModel> GetByIdNow(int id)    /*IEnumerable多筆*/
 		{
-			var result = _groupStartingRepository.GetById(id);
+			var result = _groupStartingRepository.GetByIdNow(id);
 			var queryResult = result.Select(a => new GroupStartingModel
 
 			{

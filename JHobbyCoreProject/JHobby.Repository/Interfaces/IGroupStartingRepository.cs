@@ -10,7 +10,7 @@ namespace JHobby.Repository.Interfaces
 	public interface IGroupStartingRepository
 	{
 		public IEnumerable<GroupStartingDto> GetGroupStartingAll();
-		public IEnumerable<GroupStartingDto?> GetById(int id);
+		public IEnumerable<GroupStartingDto?> GetByIdNow(int id);
 		public bool Delete(int id);
 		public bool Update(int id, GroupStartingDto groupStartingDto);
 

@@ -13,28 +13,37 @@ using System.Threading.Tasks;
 
 namespace JHobby.Service.Implements
 {
-	public class LaunchaTeamService : ILaunchaTeamService
-	{
-		private readonly ILaunchaTeamRepository _LaunchaTeamRepostiory;
+    public class LaunchaTeamService : ILaunchaTeamService
+    {
+        private readonly ILaunchaTeamRepository _LaunchaTeamRepostiory;
 
-		public LaunchaTeamService(ILaunchaTeamRepository launchaTeamRepostiory)
-		{
-			_LaunchaTeamRepostiory = launchaTeamRepostiory;
-		}
-		public IEnumerable<LaunchaTeamModel> GetAll()
-		{
-			return _LaunchaTeamRepostiory.GetAll().Select(a => new LaunchaTeamModel
-			{
-				MemberId = a.MemberId,
-				ActivityName = a.ActivityName,
-				ActivityStatus = a.ActivityStatus,
-				StartTime = a.StartTime,
-				Created = a.Created,
-				IsCover = a.IsCover,
-				ImageName = a.ImageName,
-				ActivityImageId = a.ActivityImageId,
+        public LaunchaTeamService(ILaunchaTeamRepository launchaTeamRepostiory)
+        {
+            _LaunchaTeamRepostiory = launchaTeamRepostiory;
+        }
 
-			});
+
+
+        public IEnumerable<LaunchaTeamModel> GetByIdOld(int id) 
+        { 
+       var result = _LaunchaTeamRepostiory.GetByIdOld(id);
+        var queryResult = result.Select(a => new LaunchaTeamModel
+
+        {
+            MemberId = a.MemberId,
+            ActivityName = a.ActivityName,
+            CurrentPeople = a.CurrentPeople,
+            ActivityStatus = a.ActivityStatus,
+            StartTime = a.StartTime,
+            IsCover = a.IsCover,
+            ImageName = a.ImageName,
+            ActivityImageId = a.ActivityImageId,
+
+        }); 
+
+			return (IEnumerable<LaunchaTeamModel>)queryResult;
 		}
+
 }
-	}
+}
+

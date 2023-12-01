@@ -68,7 +68,7 @@ namespace JHobby.Repository.Implements
 			return true;
 		}
 
-		public IEnumerable<GroupStartingDto?> GetById(int id)
+		public IEnumerable<GroupStartingDto?> GetByIdNow(int id)
 		{
 			var result= _jhobbyContext.Activities.Join(
 			   _jhobbyContext.ActivityImages,
@@ -92,7 +92,6 @@ namespace JHobby.Repository.Implements
 			return result;
 
 
-		}
-
-	}
+		}     
+    }
 }

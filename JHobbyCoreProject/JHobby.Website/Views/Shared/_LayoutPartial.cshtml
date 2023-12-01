@@ -1,15 +1,30 @@
 ﻿ @if (User.Identity.IsAuthenticated)
 {  
   @* var u = User.Claims.Where(x => x.Type == ClaimTypes.Name).FirstOrDefault();  *@
-
-      <ul class="nav header-navbar-rht logged-in">
+ 
+@*       <ul class="nav header-navbar-rht logged-in">
+        <li class="has-submenu">
+            <a href="#">會員中心 <i class="fas fa-chevron-down"></i></a>
+            <ul class="submenu">
+                <li class="has-submenu">
+                    <a href="https://localhost:7097/ProfileSetting/ProfileSetting">個人資料</a>
+                    <ul class="submenu inner-submenu">
+                        <li><a href="https://localhost:7097/profilesetting/profilesetting">編輯資料</a></li>
+                        <li><a href="https://localhost:7097/home/changePassword">修改密碼</a></li>
+                    </ul>
+                </li>
+                <li><a href="https://localhost:7097/MemberCenter/launchATeam">開團管理</a></li>
+                <li><a href="https://localhost:7097/MemberCenter/joinAGroup">參團管理</a></li>
+                <li><a href="https://localhost:7097/REVIEW/APPLY">報名審核</a></li>
+            </ul>
+        </li>
         <!-- 使用者選單 -->
         <li class="nav-item dropdown has-arrow logged-item">
             <a href="#" class="dropdown-toggle nav-link" data-bs-toggle="dropdown">
                 <span class="user-img">
                     <img class="rounded-circle" src="~/image/avatar-05.jpg" width="31" alt="Darren Elder">
                 </span>
-            </a>
+            </a>  *@
             <div class="dropdown-menu dropdown-menu-end">
                 <div class="user-header">
                     <div class="avatar avatar-sm">
@@ -22,8 +37,8 @@
                 </div>
                 <p><a class="dropdown-item" href="login.html">登出</a></p>
             </div>
-        </li>
-    </ul>
+   @*     </li>
+    </ul>  *@
 } 
  else
 { 

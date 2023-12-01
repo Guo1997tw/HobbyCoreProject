@@ -19,24 +19,30 @@ namespace JHobby.Repository.Implements
             _jhobbyContext = jhobbyContext;
         }
 
-        public IEnumerable<LaunchaTeamDto> GetAll()
+        public IEnumerable<LaunchaTeamDto> GetByIdOld(int id)
         {
-			return _jhobbyContext.Activities.Join(
-			   _jhobbyContext.ActivityImages,
-			   a => a.ActivityId,
-			   m => m.ActivityId,
-			   (a, m) => new LaunchaTeamDto
-			   {
-                MemberId = a.MemberId,
-                ActivityName = a.ActivityName,
-                ActivityStatus = a.ActivityStatus,
-                StartTime = a.StartTime,
-				Created=a.Created,
-				IsCover = m.IsCover,
-                ImageName = m.ImageName,
-                ActivityImageId = m.ActivityImageId,
+            var result = _jhobbyContext.Activities.Join(
+                   _jhobbyContext.ActivityImages,
+                   a => a.ActivityId,
+                   m => m.ActivityId,
+                   (a, m) => new LaunchaTeamDto
+                   {
+                       MemberId = a.MemberId,
+                       ActivityName = a.ActivityName,
+                       CurrentPeople = a.CurrentPeople,
+                       ActivityStatus = a.ActivityStatus,
+                       StartTime = a.StartTime,
+                       IsCover = m.IsCover,
+                       ImageName = m.ImageName,
+                       ActivityImageId = m.ActivityImageId,
 
-            }); 
+                   }).Where(g => g.MemberId == id);
+
+            return result;
+
         }
+
+
     }
 }
+

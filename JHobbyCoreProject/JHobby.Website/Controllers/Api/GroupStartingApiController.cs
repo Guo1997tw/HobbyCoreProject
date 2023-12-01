@@ -63,9 +63,9 @@ namespace JHobby.Website.Controllers.Api
 			return Ok(result);
 		}
 		[HttpGet("{id}")]
-		public IEnumerable<GroupStartingViewModel> GetById(int id)
+		public IEnumerable<GroupStartingViewModel> GetByIdNow(int id)
 		{
-			var Dto = _GroupStartingService.GetById(id);
+			var Dto = _GroupStartingService.GetByIdNow(id);
 
 			var viewModel = Dto.Select(x=> new GroupStartingViewModel 
 			{

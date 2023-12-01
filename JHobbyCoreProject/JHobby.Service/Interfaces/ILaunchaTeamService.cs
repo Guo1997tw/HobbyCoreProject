@@ -10,6 +10,6 @@ namespace JHobby.Service.Interfaces
 {
     public interface ILaunchaTeamService
 	{
-         IEnumerable<LaunchaTeamModel> GetAll();
+         IEnumerable<LaunchaTeamModel> GetByIdOld(int id);
     }
 }

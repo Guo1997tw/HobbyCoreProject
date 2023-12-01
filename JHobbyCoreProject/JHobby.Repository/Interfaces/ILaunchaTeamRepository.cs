@@ -9,6 +9,6 @@ namespace JHobby.Repository.Interfaces
 {
     public interface ILaunchaTeamRepository
     {
-        public IEnumerable<LaunchaTeamDto> GetAll();
+        public IEnumerable<LaunchaTeamDto?> GetByIdOld(int id);
     }
 }

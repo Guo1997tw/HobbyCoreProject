@@ -6,6 +6,8 @@
         public string ActivityName { get; set; } = null!;
         public string ActivityStatus { get; set; } = null!;
         public DateTime StartTime { get; set; }
+
+        public int? CurrentPeople { get; set; }
         public bool IsCover { get; set; }
         public string ImageName { get; set; } = null!;
 
