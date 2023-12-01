@@ -39,8 +39,8 @@ namespace JHobby.Service.Implements
             IsCover = a.IsCover,
             ImageName = a.ImageName,
             ActivityImageId = a.ActivityImageId,
-            DateConvert = _iCommonService.ConvertTime(a.StartTime).First().DateConvert,
-            TimeConvert = _iCommonService.ConvertTime(a.StartTime).First().TimeConvert,
+            DateConvert = _iCommonService.ConvertTime(a.StartTime).FirstOrDefault().DateConvert,
+            TimeConvert = _iCommonService.ConvertTime(a.StartTime).FirstOrDefault().TimeConvert,
             CreatedDateConvert = _iCommonService.ConvertTime(a.Created).FirstOrDefault().DateConvert,
             CreatedTimeConvert = _iCommonService.ConvertTime(a.Created).FirstOrDefault().TimeConvert
 
