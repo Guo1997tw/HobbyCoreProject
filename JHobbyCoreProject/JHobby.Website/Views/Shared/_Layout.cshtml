@@ -284,12 +284,20 @@
 						<div class="footer-widget footer-menu">
 								<h4 class="footer-title">樂</h4>
 								<ul>
-									<li>
-										<a href="https://localhost:7097/home/notfounds">休閒</a>
-									</li>
-									<li>
-										<a href="https://localhost:7097/home/notfounds">運動</a>
-									</li>
+									<form name="play_inhouse" action="/Middle/ActivityCenter" method="post">
+										<input type="hidden" name="categoyId" value="5" />
+										<input type="hidden" name="categoryTypeId" value="8" />
+										<input type="hidden" name="city" value="0" />
+										<input type="hidden" name="area" value="0" />
+									<li><a href="javascript:document.play_inhouse.submit();">室內運動</a></li>
+									</form>
+									<form name="play_inhouse" action="/Middle/ActivityCenter" method="post">
+										<input type="hidden" name="categoyId" value="5" />
+										<input type="hidden" name="categoryTypeId" value="9" />
+										<input type="hidden" name="city" value="0" />
+										<input type="hidden" name="area" value="0" />
+									<li><a href="javascript:document.play_inhouse.submit();">水上運動</a></li>
+									</form>
 								</ul>
 							</div>
 						</div>
