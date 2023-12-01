@@ -18,7 +18,7 @@ namespace JHobby.Service.Implements
 
         public bool CreateActivityBuild(ActivityBuildModel activityBuildModel)
         {
-            var mapper = new ActivityCreateDto
+            var resultA = new ActivityBuildDto
             {
                 ActivityName = activityBuildModel.ActivityName,
                 ActivityCity = activityBuildModel.ActivityCity,
@@ -36,9 +36,10 @@ namespace JHobby.Service.Implements
                 Payment = activityBuildModel.Payment,
                 Created = activityBuildModel.Created
             };
-            _activityRepository.Insert(mapper);
+            _activityRepository.InsertActivityBuild(resultA);
             return true;
         }
+    
 
         /// <summary>
         /// 活動頁面查詢

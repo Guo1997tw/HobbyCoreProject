@@ -32,6 +32,9 @@
                                 <label for="date" class="form-label" style="font-size: 22px;">開團縣市</label>
                                 <div class="form-icon">
                                     <input type="text" class="form-control" placeholder="請輸入正確縣市" id="empty-field" v-model="activityBuild.activityCity">
+                                    @* <select2 style="width:100%" :options="cityList" v-model:value="activityBuild.activityCity">
+                                    <option disabled value="0">請選擇</option>
+                                    </select2> *@
                                     <span name="ActivityCity" class="text-danger"></span>
                                 </div>
                             </div>
@@ -40,6 +43,9 @@
                                 <label for="date" class="form-label" style="font-size: 22px;">開團鄉鎮市區</label>
                                 <div class="form-icon">
                                     <input type="text" class="form-control" placeholder="請輸入正確鄉鎮市區" id="empty-field" v-model="activityBuild.activityArea">
+                                    @* <select2 style="width:100%" :options="areaList" v-model:value="activityBuild.activityArea">
+                                    <option disabled value="1"></option>
+                                    </select2> *@           
                                 </div>
                             </div>
 
@@ -73,7 +79,7 @@
 
                             <div class="mb-3">
                                 <label for="court" class="form-label" style="font-size: 22px;">活動種類(大項)</label>
-                                <select class="form-select" id="mainCategory" aria-label="Default select example" v-model="activityBuild.categoryId">
+                                <select class="select select2" id="mainCategory" aria-label="Default select example" v-model="activityBuild.categoryId">
                                     <option value="" disabled selected>請選擇活動種類</option>
                                     <option value="1">食</option>
                                     <option value="2">住</option>
@@ -85,7 +91,7 @@
 
                             <div class="mb-3">
                                 <label for="court" class="form-label" style="font-size: 22px;">活動種類(小項)</label>
-                                <select class="form-select" id="subCategory" aria-label="Default select example" v-model="activityBuild.categoryTypeId">
+                                <select class="select select2" id="subCategory" aria-label="Default select example" v-model="activityBuild.categoryTypeId">
                                     <option value="" disabled selected>請選擇活動種類</option>
                                     <option value="1">水上運動</option>
                                     <option value="2">室內運動</option>
@@ -200,6 +206,9 @@
 
 
 <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+<script src="~/js/jhobbyselect2component.js"></script>
+<script src="~/js/taiwancity.js"></script>
+
 <script>
     Vue.createApp({
         data() {
@@ -208,7 +217,8 @@
                 defaultPicTwo: "/images/NoImage.jpg",
                 defaultPicThree: "/images/NoImage.jpg",
 
-                fileOne: null,                                   // 存儲所選擇的檔案
+                // 存儲所選擇的檔案
+                fileOne: null,                                   
                 fileTwo: null,
                 fileThree:null,
 
@@ -234,6 +244,27 @@
         },
 
 
+        computed: {
+            cityList() {
+                return taiwanCity.map(x => {
+                    return {
+                        id: x.CityName,
+                        text: x.CityName
+                    }
+                })
+            },
+            areaList() {
+                let area = taiwanCity.filter(x => x.CityName == this.activityBuild.activeCity);
+                if (area.length < 1) return [];
+                return area[0].AreaList.map(x => {
+                    return {
+                        id: x.AreaName,
+                        text: x.AreaName
+                    }
+                })
+            }
+        },
+
 
         methods: {
             uploadPicOne(e) {
@@ -256,7 +287,9 @@
 
             leaderBuild() {
                 var formData = new FormData();
-                formData.append('file', this.fileOne);
+                if (this.fileOne) formData.append('file', this.fileOne);
+                if (this.fileTwo) formData.append('file', this.fileTwo);
+                if (this.fileThree) formData.append('file', this.fileThree);
 
                 formData.append('activityName', this.activityBuild.activityName);
                 formData.append('activityCity', this.activityBuild.activityCity);
@@ -293,5 +326,5 @@
                 //alert(123);
             },
         },
-    }).mount("#app");
+    }).component('select2', select2).mount("#app");
 </script>

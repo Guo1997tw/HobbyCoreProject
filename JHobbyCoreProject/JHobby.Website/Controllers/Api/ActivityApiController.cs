@@ -25,67 +25,6 @@ namespace JHobby.Website.Controllers.Api
             _mapper = mapper;
             _Path = $@"{webHostEnvironment.WebRootPath}\profile\";
         }
-        [HttpPost]
-        public bool InsertActivity(ActivityBuildViewModel activityBuildViewModel)
-        {
-            //        foreach (var activityBuildViewModel.File in activityBuildViewModel)
-            //{
-            if (activityBuildViewModel.File != null)
-            {
-                if (activityBuildViewModel.File.Length > 0)
-                {
-                    string SavePath = $@"{_Path}\{activityBuildViewModel.File.FileName}";
-                    using (var steam = new FileStream(SavePath, FileMode.Create))
-                    {
-                        activityBuildViewModel.File.CopyToAsync(steam);
-                        //ActivityCity = activityBuildViewModel.ActivityCity,
-                        //ActivityArea = activityBuildViewModel.ActivityArea,
-                        //ActivityLocation = activityBuildViewModel.ActivityLocation,
-                        //StartTime = activityBuildViewModel.StartTime,
-                        //MaxPeople = activityBuildViewModel.MaxPeople,
-                        //CategoryId = activityBuildViewModel.CategoryId,
-                        //CategoryTypeId = activityBuildViewModel.CategoryTypeId,
-                        //JoinDeadLine = activityBuildViewModel.JoinDeadLine,
-                        //JoinFee = activityBuildViewModel.JoinFee,
-                        //ActivityNotes = activityBuildViewModel.ActivityNotes,
-                        //MemberId = activityBuildViewModel.MemberId,
-                        //ActivityStatus = activityBuildViewModel.ActivityStatus,
-                        //Payment = activityBuildViewModel.Payment,
-                        //Created = activityBuildViewModel.Created
-
-
-                    }
-                }
-            }
-
-            return true;
-        }
-
-        //[HttpPost]
-        //public IActionResult InsertActivity(ActivityBuildViewModel activityBuildViewModel)
-        //{
-        //    var mapper = new ActivityBuildModel
-        //    {
-        //        ActivityName = activityBuildViewModel.ActivityName,
-        //        ActivityCity = activityBuildViewModel.ActivityCity,
-        //        ActivityArea = activityBuildViewModel.ActivityArea,
-        //        ActivityLocation = activityBuildViewModel.ActivityLocation,
-        //        StartTime = activityBuildViewModel.StartTime,
-        //        MaxPeople = activityBuildViewModel.MaxPeople,
-        //        CategoryId = activityBuildViewModel.CategoryId,
-        //        CategoryTypeId = activityBuildViewModel.CategoryTypeId,
-        //        JoinDeadLine = activityBuildViewModel.JoinDeadLine,
-        //        JoinFee = activityBuildViewModel.JoinFee,
-        //        ActivityNotes = activityBuildViewModel.ActivityNotes,
-        //        MemberId = activityBuildViewModel.MemberId,
-        //        ActivityStatus = activityBuildViewModel.ActivityStatus,
-        //        Payment = activityBuildViewModel.Payment,
-        //        Created = activityBuildViewModel.Created
-        //    };
-
-        //    var result = _activityService.CreateActivityBuild(mapper);
-        //    return Ok(result);
-        //}
 
         FileInfo[] GetFiles()
         {
@@ -93,6 +32,51 @@ namespace JHobby.Website.Controllers.Api
             FileInfo[] files = directoryInfo.GetFiles();
             return files;
         }
+
+        [HttpPost]
+        public bool InsertActivity(ActivityBuildViewModel activityBuildViewModel)
+        {
+            //        foreach (var activityBuildViewModel.File in activityBuildViewModel)
+            //{
+            var resultA = new ActivityBuildModel
+            {
+                ActivityCity = activityBuildViewModel.ActivityCity,
+                ActivityArea = activityBuildViewModel.ActivityArea,
+                ActivityLocation = activityBuildViewModel.ActivityLocation,
+                StartTime = activityBuildViewModel.StartTime,
+                MaxPeople = activityBuildViewModel.MaxPeople,
+                CategoryId = activityBuildViewModel.CategoryId,
+                CategoryTypeId = activityBuildViewModel.CategoryTypeId,
+                JoinDeadLine = activityBuildViewModel.JoinDeadLine,
+                JoinFee = activityBuildViewModel.JoinFee,
+                ActivityNotes = activityBuildViewModel.ActivityNotes,
+                MemberId = activityBuildViewModel.MemberId,
+                ActivityStatus = activityBuildViewModel.ActivityStatus,
+                Payment = activityBuildViewModel.Payment,
+                Created = activityBuildViewModel.Created
+            };
+
+            _activityService.CreateActivityBuild(resultA);
+
+
+            //foreach (var activityBuildViewModel.File in activityBuildViewModel)
+            //{
+            if (activityBuildViewModel.File != null)
+            {
+                if (activityBuildViewModel.File.Length > 0)
+                {
+                    string SavePath = $@"{_Path}{activityBuildViewModel.File.FileName}";
+
+                    using (var steam = new FileStream(SavePath, FileMode.Create))
+                    {
+                        activityBuildViewModel.File.CopyToAsync(steam);
+                    }
+                }
+            }
+            return true;
+        }
+
+
         /// <summary>
         /// 活動頁面查詢
         /// </summary>

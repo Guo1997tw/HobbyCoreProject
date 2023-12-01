@@ -38,6 +38,36 @@ public class ActivityRepository : IActivityRepository
         }
     }
 
+    public bool InsertActivityBuild(ActivityBuildDto activityBuildDto)
+    {
+        _mapper
+        var resultA = new Activity
+        {
+            ActivityName = activityBuildDto.ActivityName,
+            ActivityCity = activityBuildDto.ActivityCity,
+            ActivityArea = activityBuildDto.ActivityArea,
+            ActivityLocation = activityBuildDto.ActivityLocation,
+            StartTime = activityBuildDto.StartTime,
+            MaxPeople = activityBuildDto.MaxPeople,
+            CategoryId = activityBuildDto.CategoryId,
+            CategoryTypeId = activityBuildDto.CategoryTypeId,
+            JoinDeadLine = activityBuildDto.JoinDeadLine,
+            JoinFee = activityBuildDto.JoinFee,
+            ActivityNotes = activityBuildDto.ActivityNotes,
+            MemberId = activityBuildDto.MemberId,
+            ActivityStatus = activityBuildDto.ActivityStatus,
+            Payment = activityBuildDto.Payment,
+            Created = activityBuildDto.Created
+        };
+
+        _dbContext.Activities.Add(resultA);
+        _dbContext.SaveChanges();
+
+        return true;
+    }
+
+
+
     /// <summary>
     /// 活動頁面查詢
     /// </summary>
