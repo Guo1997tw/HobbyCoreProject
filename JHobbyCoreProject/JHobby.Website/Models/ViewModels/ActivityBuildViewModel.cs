@@ -5,8 +5,8 @@ namespace JHobby.Website.Models.ViewModels
 {
 	public class ActivityBuildViewModel 
 	{
-        public IFormFile? File { get; set; }
-        public string ActivityName { get; set; } = null!;
+		public IFormFile? File { get; set; }
+		public string ActivityName { get; set; } = null!;
 		public string ActivityCity { get; set; } = null!;
 		public string ActivityArea { get; set; } = null!;
 		public string ActivityLocation { get; set; } = null!;
