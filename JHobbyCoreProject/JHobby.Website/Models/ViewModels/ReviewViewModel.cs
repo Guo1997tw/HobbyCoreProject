@@ -5,7 +5,7 @@
 		public int ActivityId { get; set; }
 		public int LeaderId { get; set; }  //團主Id
 		public string ReviewStatus { get; set; } = null!;
-		public DateTime ReviewTime { get; set; }
+		public string ReviewTime { get; set; }
 		public string ActivityName { get; set; } = null!;
 		public int ActivityImageId { get; set; }
 		public string ImageName { get; set; } = null!;

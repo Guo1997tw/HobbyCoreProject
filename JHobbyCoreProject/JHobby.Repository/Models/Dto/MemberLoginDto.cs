@@ -11,5 +11,7 @@ namespace JHobby.Repository.Models.Dto
         public string Account { get; set; } = null!;
 
         public string HashPassword { get; set; } = null!;
+
+        public string SaltPassword { get; set; } = null!;
     }
 }

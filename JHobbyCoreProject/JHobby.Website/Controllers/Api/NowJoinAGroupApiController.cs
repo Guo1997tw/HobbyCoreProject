@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace JHobby.Website.Controllers.Api
 {
+    [EnableCors("allowCors")]
     [Route("[controller]/[action]")]
     [ApiController]
     public class NowJoinAGroupApiController : ControllerBase
@@ -30,6 +31,8 @@ namespace JHobby.Website.Controllers.Api
                     MaxPeople = s.MaxPeople,
                     StartTime = s.StartTime,
                     NickName = s.NickName,
+                    DateConvert = s.DateConvert,
+                    TimeConvert = s.TimeConvert,
                 }
             );
         }

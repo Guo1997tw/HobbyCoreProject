@@ -1,61 +1,55 @@
-﻿using JHobby.Repository.Interfaces;
+﻿using AutoMapper;
+using JHobby.Repository.Interfaces;
 using JHobby.Repository.Models.Dto;
 using JHobby.Repository.Models.Entity;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 
-namespace JHobby.Repository.Implements
+namespace JHobby.Repository.Implements;
+
+public class WishRepository : IWishRepository
 {
-	public class WishRepository : IWishRepository
-	{
-		private readonly JhobbyContext _jhobbyContext;
+    private readonly JhobbyContext _dbContext;
+    private readonly IMapper _mapper;
 
-		public WishRepository(JhobbyContext jhobbyContext)
-		{
-			_jhobbyContext = jhobbyContext;
-		}
+    public WishRepository(JhobbyContext dbContext,IMapper mapper)
+    {
+        _dbContext = dbContext;
+        _mapper = mapper;
+    }
 
-		public IEnumerable<QueryWishDto> GetWishById(int id)
-		{
-			var queryResult = _jhobbyContext.Wishes.Where(w=>w.MemberId == id).
-				Select(w=>new QueryWishDto {
-					MemberId = w.MemberId,
-					ActivityId = w.ActivityId
-				});
-			return queryResult;
-		}
+    public IEnumerable<WishDto> GetById(int id)
+    {
+        return _mapper.Map<IEnumerable<WishDto>>(_dbContext.Wishes.AsNoTracking().Where(w => w.MemberId == id));
+    }
 
-		public bool Create(CreateWishDto createWishDto)
-		{
-			var mapper = new Wish
-			{
-				MemberId = createWishDto.MemberId,
-				ActivityId = createWishDto.ActivityId,
-				AddTime = createWishDto.AddTime
-			};
+    public bool Create(WishCreateDto dto)
+    {
+        try
+        {
+            _dbContext.Wishes.Add(_mapper.Map<Wish>(dto));
+            _dbContext.SaveChanges();
+            return true;
+        }
+        catch (Exception)
+        {
+            return false;
+        }
+    }
 
-			_jhobbyContext.Wishes.Add(mapper);
-			_jhobbyContext.SaveChanges();
-
-			return true;
-		}
-
-		public bool Delete(int memberId, int activityId)
-		{
-			var queryResult = _jhobbyContext.Wishes.FirstOrDefault(
-				w => w.MemberId == memberId && w.ActivityId== activityId);
-
-			if (queryResult == null) { return false; }
-
-			_jhobbyContext.Wishes.Remove(queryResult);
-			_jhobbyContext.SaveChanges();
-
-			return true;
-		}
-
-
-	}
+    public bool Delete(int memberId, int activityId)
+    {
+        try
+        {
+            var wish = _dbContext.Wishes.FirstOrDefault(
+                w => w.MemberId == memberId && w.ActivityId == activityId);
+            if (wish == null) return false;
+            _dbContext.Wishes.Remove(wish);
+            _dbContext.SaveChanges();
+            return true;
+        }
+        catch (Exception )
+        {
+            return false;
+        }
+    }
 }

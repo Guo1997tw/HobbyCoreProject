@@ -14,10 +14,12 @@ namespace JHobby.Service.Implements
 	public class MiddleCenterService : IMiddleCenterService
 	{
 		private readonly IMiddleCenterRepository _middleCenterRepository;
+		private readonly ICommonService _commonService;
 
-		public MiddleCenterService(IMiddleCenterRepository middleCenterRepository)
+		public MiddleCenterService(IMiddleCenterRepository middleCenterRepository, ICommonService commonService)
 		{
 			_middleCenterRepository = middleCenterRepository;
+			_commonService = commonService;
 		}
 
 
@@ -48,9 +50,10 @@ namespace JHobby.Service.Implements
 				ActivityStatus = res.ActivityStatus,
 				ActivityLocation = res.ActivityLocation.Trim(),
 				ActivityNotes = res.ActivityNotes?.Trim(),
-				JoinDeadLine = res.JoinDeadLine.ToString("yyyy-MM-dd"),
+                ShotActivityNotes = res.ActivityNotes.Substring(0, _commonService.ShotCheck(10, res.ActivityNotes)).Trim(),
+                JoinDeadLine = res.JoinDeadLine.ToString("yyyy-MM-dd"),
 				ActivityImages = res.ActivityImages.Where(ai => ai.IsCover == true).ToList()
-			}).Take(search.top);
+			});
 
 		}
 	}
