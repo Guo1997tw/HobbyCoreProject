@@ -13,11 +13,13 @@ namespace JHobby.Service.Implements
 	public class ReviewService:IReviewService
 	{
 		private readonly IReviewRepository _reviewRepository;
+        private readonly ICommonService _iCommonService;
 
-		public ReviewService(IReviewRepository reviewRepository)
+        public ReviewService(IReviewRepository reviewRepository, ICommonService commonService)
 		{
 			_reviewRepository = reviewRepository;
-		}
+            _iCommonService = commonService;
+        }
 		public IEnumerable<ReviewModel>GetReviewList()
 		{
 			var resultDto = _reviewRepository.GetAll();
@@ -55,6 +57,8 @@ namespace JHobby.Service.Implements
                 IsCover = dto.IsCover,
                 NickName = dto.NickName,
                 HeadShot = dto.HeadShot,
+                DateConvert = _iCommonService.ConvertTime(dto.ReviewTime).First().DateConvert,
+                TimeConvert = _iCommonService.ConvertTime(dto.ReviewTime).First().TimeConvert
             });
 
             return reviewModel;
