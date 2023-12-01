@@ -1,9 +1,11 @@
 using JHobby.Repository.Implements;
 using JHobby.Repository.Interfaces;
+using JHobby.Repository.Mapping;
 using JHobby.Repository.Models.Entity;
 using JHobby.Service.Implements;
 using JHobby.Service.Interfaces;
 using JHobby.Website.Controllers.Api;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.EntityFrameworkCore;
 
 namespace JHobby.Website
@@ -23,9 +25,27 @@ namespace JHobby.Website
                 option.UseSqlServer(builder.Configuration.GetConnectionString("JHobby"));
             });
 
+            //CORS
+            var allowCors = "allowCors";
+            builder.Services.AddCors(opt =>
+            {
+                opt.AddPolicy(allowCors, policy =>
+                {
+                    policy.WithOrigins("*").WithHeaders("*").WithMethods("*");
+                });
+            });
+
             // Swagger DI
             builder.Services.AddEndpointsApiExplorer();     
             builder.Services.AddSwaggerGen();
+
+            // AutoMapper DI
+            //builder.Services.AddAutoMapper(option =>
+            //{
+            //    option.AddProfile<RepositoryProfile>();
+            //});
+
+            builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
             // Interface DI
             builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
@@ -51,7 +71,18 @@ namespace JHobby.Website
             builder.Services.AddScoped<ICommonService, CommonService>();
             builder.Services.AddScoped<IReviewRepository, ReviewRepository>();
             builder.Services.AddScoped<IReviewService, ReviewService>();
+            builder.Services.AddScoped<INowJoinAGroupRepository, NowJoinAGroupRepository>();
+            builder.Services.AddScoped<INowJoinAGroupService, NowJoinAGroupService>();
+            builder.Services.AddScoped<IWishListRepository, WishListRepository>();
+            builder.Services.AddScoped<IWishListService, WishListService>();
+            builder.Services.AddScoped<ISendMailService, SendMailService>();
 
+            // DI Authentication
+            builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(option =>
+            {
+                option.LoginPath = "/Member/Login";
+                option.AccessDeniedPath = "/Home/NotFounds";
+            });
 
             var app = builder.Build();
 
@@ -74,6 +105,12 @@ namespace JHobby.Website
             app.UseStaticFiles();
 
             app.UseRouting();
+
+            // CORS
+            app.UseCors("allowCors");
+
+            // Use Authentication
+            app.UseAuthentication();
 
             app.UseAuthorization();
 

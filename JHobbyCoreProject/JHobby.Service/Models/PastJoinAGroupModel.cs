@@ -10,8 +10,6 @@ namespace JHobby.Service.Models
     {
         public int ActivityId { get; set; }
 
-        public int MemberId { get; set; }
-
         public string ActivityName { get; set; } = null!;
 
         public string ActivityStatus { get; set; } = null!;
@@ -20,8 +18,10 @@ namespace JHobby.Service.Models
 
         public int? CurrentPeople { get; set; }
 
-        public DateTime StartTime { get; set; }
-
         public string? NickName { get; set; }
+
+        public string? DateConvert { get; set;}
+
+        public string? TimeConvert { get; set; }
     }
 }

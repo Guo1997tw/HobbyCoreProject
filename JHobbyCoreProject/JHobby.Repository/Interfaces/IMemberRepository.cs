@@ -12,5 +12,7 @@ namespace JHobby.Repository.Interfaces
         public bool InsertMemberRegister(MemberRegisterDto memberRegisterDto);
 
         public MemberLoginDto? GetMemberLogin(string account);
+
+        public MemberStatusDto? GetMemberStatus(string account);
     }
 }

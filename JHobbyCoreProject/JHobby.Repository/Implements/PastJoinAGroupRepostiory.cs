@@ -1,4 +1,5 @@
-﻿using JHobby.Repository.Interfaces;
+﻿using Azure;
+using JHobby.Repository.Interfaces;
 using JHobby.Repository.Models.Dto;
 using JHobby.Repository.Models.Entity;
 using System;
@@ -15,32 +16,45 @@ namespace JHobby.Repository.Implements
 
         public PastJoinAGroupRepostiory(JhobbyContext jhobbyContext)
         {
-            
+
             _JhobbyContext = jhobbyContext;
         }
 
-
-        public IQueryable<PastJoinAGroupDto> GetPastJoinAGroupAll(int page, int pageSize)
+        public IEnumerable<PastJoinAGroupDto> GetPastJoinAGroupAll()
         {
-            var queryResult = _JhobbyContext.Activities.Join(
-                _JhobbyContext.Members,
-                a => a.MemberId,
-                m => m.MemberId,
-                (a,m) => new PastJoinAGroupDto
-                {
-                    ActivityId = a.ActivityId,
-                    MemberId = a.MemberId,
-                    ActivityName = a.ActivityName,
-                    ActivityStatus = a.ActivityStatus,
-                    ActivityCity = a.ActivityCity,
-                    CurrentPeople = a.CurrentPeople,
-                    StartTime = a.StartTime,
-                    NickName = m.NickName
-                });
+            return _JhobbyContext.Activities.Join(
+               _JhobbyContext.Members,
+               a => a.MemberId,
+               m => m.MemberId,
+               (a, m) => new PastJoinAGroupDto
+               {
+                   ActivityId = a.ActivityId,
+                   ActivityName = a.ActivityName,
+                   ActivityStatus = a.ActivityStatus,
+                   ActivityCity = a.ActivityCity,
+                   CurrentPeople = a.CurrentPeople,
+                   StartTime = a.StartTime,
+                   NickName = m.NickName
+               });
+        }
 
-            return queryResult
-                .Skip((page - 1) * pageSize)
-                .Take(pageSize);
+        public IEnumerable<PastJoinAGroupDto> GetPastJoinAGroupById(int memberId)
+        {
+            return _JhobbyContext.Activities
+                .Where(a => a.MemberId == memberId)
+                .Join(_JhobbyContext.Members,
+               a => a.MemberId,
+               m => m.MemberId,
+               (a, m) => new PastJoinAGroupDto
+               {
+                   ActivityId = a.ActivityId,
+                   ActivityName = a.ActivityName,
+                   ActivityStatus = a.ActivityStatus,
+                   ActivityCity = a.ActivityCity,
+                   CurrentPeople = a.CurrentPeople,
+                   StartTime = a.StartTime,
+                   NickName = m.NickName
+               });
         }
     }
 
