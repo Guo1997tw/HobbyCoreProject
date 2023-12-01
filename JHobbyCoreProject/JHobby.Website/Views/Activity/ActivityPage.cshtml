@@ -7,7 +7,7 @@
 
 @{
     int ActivityId = ViewBag.ActivityId;
-    ViewData["Title"] = "活動頁面";
+    ViewData["Title"] = "活動說明";
 }
 
 <partial name="_BreadcrumbPartial" />
@@ -327,8 +327,6 @@
                     var form = new FormData();
                     form.append("categoyId", _this.activity.categoryId);
                     form.append("categoryTypeId", _this.activity.categoryTypeId);
-                    form.append("city", 0);
-                    form.append("area", 0);
                     axios.post("/MiddleCenterApi/GetCategoryTypeList", form, {
                         headers: {
                             "Content-Type": "multipart/form-data"

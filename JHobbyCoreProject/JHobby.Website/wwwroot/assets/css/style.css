@@ -3246,18 +3246,22 @@ div#global-loader {
   margin: 0 0 15px;
 }
 .listing-item .list-reviews .fav-icon {
-  width: 30px;
-  height: 30px;
-  border: 1px solid #EAEDF0;
-  align-items: center;
-  justify-content: center;
-  border-radius: 50%;
-  color: #192335;
+    width: 30px;
+    height: 30px;
+    border: 1px solid #EAEDF0;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+   /* color: #192335;*/
+    color: #000000;
+    background-color: #FFFFFF;
 }
 .listing-item .list-reviews .fav-icon:hover, .listing-item .list-reviews .fav-icon.selected {
-  background-color: #23B33A;
-  border-color: #23B33A;
-  color: #FFFFFF;
+    /*background-color: #23B33A;
+    border-color: #23B33A;*/
+    background-color: #FF5555;
+    border-color: #FF5555;
+    color: #FFFFFF;
 }
 .listing-item .list-reviews span {
   font-size: 14px;

@@ -31,7 +31,7 @@ namespace JHobby.Service.Implements
 			{
 				query = query.Where(res => res.CategoryId == search.categoyId && res.CategoryTypeId == search.categoryTypeId);
 			}
-			if (search.city !="0" && search.area !="0")
+			if (!string.IsNullOrEmpty(search.city) && !string.IsNullOrEmpty(search.area))
 			{
 				query = query.Where(res => res.ActivityCity == search.city && res.ActivityArea == search.area);
 			}

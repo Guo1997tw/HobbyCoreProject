@@ -10,7 +10,7 @@
 }
 
 <!-- CityArea Search -->
-<section class="hero-section">
+<section id="cityArea" class="hero-section">
     @* 1920x1080 *@
     <div class="container">
         <div class="home-banner">
@@ -26,19 +26,24 @@
                                 <div class="search-input line">
                                     <div class="form-group mb-0">
                                         <label>縣市</label>
-                                        <select name="city" class="select">
+@*                                         <select name="city" class="select">
                                             <option value="1">台北市</option>
                                             <option value="2">新北市</option>
-                                        </select>
+                                        </select> *@
+                                        <select2 name="city" style="width:100%" :options="cityList" v-model:value="activeCity">
+                                            <option disabled  value="0">請選擇</option>
+                                        </select2>
                                     </div>
                                 </div>
                                 <div class="search-input">
                                     <div class="form-group mb-0">
                                         <label>區域 </label>
-                                        <select name="area" class="form-control select">
+@*                                         <select  class="form-control select">
                                             <option value="1">中正區</option>
                                             <option value="2">大同區</option>
-                                        </select>
+                                        </select> *@
+                                        <select2 name="area" style="width:100%" :options="areaList">
+                                        </select2>
                                     </div>
                                 </div>
                                 <div class="search-btn">
@@ -124,8 +129,6 @@
         <!-- View More -->
         <div class="view-all text-center aos" data-aos="fade-up">
             <form name="more" action="/Middle/ActivityCenter" method="post">
-                <input type="hidden" name="city" value="0" />
-                <input type="hidden" name="area" value="0" />
                 <a href="javascript:document.more.submit();" class="btn btn-secondary d-inline-flex align-items-center">更多揪團<span class="lh-1"><i class="feather-arrow-right-circle ms-2"></i></span></a>
             </form>
 
@@ -206,6 +209,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/3.3.4/vue.global.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.6.0/axios.min.js" integrity="sha512-WrdC3CE9vf1nBf58JHepuWT4x24uTacky9fuzw2g/3L9JkihgwZ6Cfv+JGTtNyosOhEmttMtEZ6H3qJWfI7gIQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="~/assets/js/script.js"></script>
+    <script src="~/js/jhobbyselect2component.js"></script>
+    <script src="~/js/taiwancity.js"></script>
     <script>
         const hotActivity = Vue.createApp({
             data() {
@@ -310,6 +315,36 @@
                 }
             }
         }).mount("#hotMember")
+        const cityArea = Vue.createApp({
+            data() {
+                return {
+                    activeCity:""
+                }
+            },
+            mounted() {
+
+            },
+            computed: {
+                cityList() {
+                    return taiwanCity.map(x => {
+                        return {
+                            id: x.CityName,
+                            text: x.CityName
+                        }
+                    })
+                },
+                areaList() {
+                    let area = taiwanCity.filter(x => x.CityName == this.activeCity);
+                    if (area.length < 1) return [];
+                    return area[0].AreaList.map(x => {
+                        return {
+                            id: x.AreaName,
+                            text: x.AreaName
+                        }
+                    })
+                }
+            }
+        }).component('select2', select2).mount("#cityArea");
 
     </script>
 }
