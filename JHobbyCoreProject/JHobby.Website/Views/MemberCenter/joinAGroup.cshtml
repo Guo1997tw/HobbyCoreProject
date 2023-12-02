@@ -54,11 +54,12 @@
                                                     :key="index">
                                                     <td>
                                                         <div class="academy-info">
-                                                            <a href="/user-bookings.html" class="academy-img">
+                                                            <a class="academy-img" :href="`/Activity/ActivityPage/${pictureActivityId}`"
+                                                            @@click="pictureLinkToGroupPage(filterCard[index])">
                                                                 <img src="~/assets/img/booking/booking-02.jpg" alt="Booking">
                                                             </a>
                                                             <div class="academy-content">
-                                                                <h6><a href="/#" data-bs-toggle="modal" data-bs-target="#upcoming-court">{{card.activityName}}</a></h6>
+                                                                <h6><a href="/#" data-bs-toggle="modal" data-bs-target="#upcoming-court" @@click.prevent="titleLinkToGroupPage(filterCard[index])">{{card.activityName}}</a></h6>
                                                                 <span>團主: {{card.nickName}}</span>
                                                                 <ul>
                                                                     <li>活動人數上限 : {{card.maxPeople}}</li>
@@ -99,7 +100,8 @@
                                                                        "
                                                                  data-popper-reference-hidden="">
                                                                 <a class="dropdown-item"
-                                                                   href="https://localhost:7097/Activity/ActivityPage/7">
+                                                                   :href="`/Activity/ActivityPage/${activityId}`"
+                                                                   @@click="linkToGroupPage">
                                                                     <i class="feather-x-circle"></i>
                                                                     前往頁面
                                                                 </a>
@@ -394,6 +396,9 @@
                     pageNumber: 1,
                     memberId: '2',
                     currentCard: "",
+                    activityId: "",
+                    pictureActivityId: "",
+                    titleActivityId: ""
                 };
             },
             mounted() {
@@ -438,6 +443,16 @@
                 setCurrentCard(card) {
                     this.currentCard = card;
                 },
+                linkToGroupPage() {
+                    this.activityId = this.currentCard.activityId;
+                },
+                pictureLinkToGroupPage(card) {
+                    this.pictureActivityId = card.activityId;
+                },
+                titleLinkToGroupPage(card) {
+                    this.titleActivityId = card.activityId;
+                    window.location.href = `/Activity/ActivityPage/${card.activityId}`;
+                }
             },
         })
             .component("paginate", VuejsPaginateNext)

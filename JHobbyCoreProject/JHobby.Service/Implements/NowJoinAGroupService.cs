@@ -48,6 +48,7 @@ namespace JHobby.Service.Implements
                 {
                     ActivityName = s.ActivityName,
                     ActivityUserId = s.ActivityUserId,
+                    ActivityId= s.ActivityId,
                     MemberId = s.MemberId,
                     ReviewStatus = _iCommonService.ConvertReviewStatus(s.ReviewStatus),
                     CurrentPeople = s.CurrentPeople,

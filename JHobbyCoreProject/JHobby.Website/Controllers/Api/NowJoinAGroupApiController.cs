@@ -47,6 +47,7 @@ namespace JHobby.Website.Controllers.Api
                 .Select(s => new NowJoinAGroupViewModel
                 {
                     ActivityUserId = s.ActivityUserId,
+                    ActivityId = s.ActivityId,
                     MemberId = s.MemberId,
                     ActivityName = s.ActivityName,
                     ReviewStatus = s.ReviewStatus,
