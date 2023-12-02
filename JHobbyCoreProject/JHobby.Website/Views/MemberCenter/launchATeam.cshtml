@@ -140,7 +140,7 @@
                                                                                         rowspan="1" colspan="1"
                                                                                         aria-label="Additional Guests: activate to sort column ascending"
                                                                                         style="width: 128.396px;">
-                                                                                        目前參加人數
+                                                                                        目前參加狀態
                                                                                     </th>
                                                                                     <th class="sorting" tabindex="0"
                                                                                         aria-controls="DataTables_Table_0"
@@ -194,12 +194,7 @@
                                                                                     </td>
                                                                                     <td>
                                                                                         <!-- 連接參團人數 -->
-                                                                                        <a href="javascript:;"
-                                                                                           class="btn cancel-table-btn"
-                                                                                           data-bs-toggle="modal"
-                                                                                           data-bs-target="#add-particpate-check" v-show="item.currentPeople" >
-                                                                                           2
-                                                                                        </a>
+                                                                                        <button>查看</button>
                                                                                        
                                                                                         <!-- /連接參團人數 -->
                                                                                     </td>
@@ -399,7 +394,7 @@
                                                         <td class="paid-edit">
                                                             <span><i class="feather-edit"></i>{{item.activityStatus}}</span>
                                                         </td> 
-                                                    </tr
+                                                    </tr>
                                                 </tbody>
                                             </table>
                                         </div>
@@ -465,6 +460,8 @@
                 </div>
             </div>
         </div>
+   
+
         <!-- /Main Wrapper -->
         <!-- 彈跳刪除開團 -->
         <div class="modal custom-modal fade request-modal" id="request-coche" style="display: none;" aria-hidden="true">

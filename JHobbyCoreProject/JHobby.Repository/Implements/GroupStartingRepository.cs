@@ -92,6 +92,42 @@ namespace JHobby.Repository.Implements
 			return result;
 
 
-		}     
+		}
+        public IEnumerable<GroupStartingCurrentDto> CurrentById(int id, int ActivityId)
+        {
+            var Dtoresult = _jhobbyContext.Members.Join(_jhobbyContext.ActivityUsers, m => m.MemberId, au => au.MemberId, (m, au) => new
+            {
+                ApplicantId = m.MemberId,
+                NickName = m.NickName,
+                HeadShot = m.HeadShot,
+                ReviewStatus = au.ReviewStatus,
+                ReviewTime = au.ReviewTime,
+                ActivityId = au.ActivityId,
+            }).Join(_jhobbyContext.Activities, mau => mau.ActivityId, a => a.ActivityId, (mau, a) => new
+            {
+                ApplicantId = mau.ApplicantId,
+                NickName = mau.NickName,
+                HeadShot = mau.HeadShot,
+                ReviewStatus = mau.ReviewStatus,
+                ReviewTime = mau.ReviewTime,
+                ActivityId = mau.ActivityId,
+                ActivityName = a.ActivityName,
+                LeaderId = a.MemberId,
+            }).Join(_jhobbyContext.ActivityImages, maua => maua.ActivityId, ai => ai.ActivityId, (maua, ai) => new GroupStartingCurrentDto
+            {
+                ApplicantId = maua.ApplicantId,
+                NickName = maua.NickName,
+                HeadShot = maua.HeadShot,
+                ReviewStatus = maua.ReviewStatus,
+                ReviewTime = maua.ReviewTime,
+                ActivityId = maua.ActivityId,
+                ActivityName = maua.ActivityName,
+                LeaderId = maua.LeaderId,
+                ImageName = ai.ImageName,
+                IsCover = ai.IsCover,
+                ActivityImageId = ai.ActivityImageId,
+            }).Where(d => (d.LeaderId == id) && (d.ReviewStatus == "1" || d.ReviewStatus == "3"));
+            return Dtoresult;
+        }
     }
 }
