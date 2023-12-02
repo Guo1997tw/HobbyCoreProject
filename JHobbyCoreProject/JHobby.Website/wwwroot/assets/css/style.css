@@ -1830,7 +1830,7 @@ header.header-sticky.fixed-top { /*換表頭*/
 -----------------------*/
 .footer {
   background-color: #0A1A38;
-  padding: 60px 0 0;
+  padding: 0px 0 0;
   float: left;
   width: 100%;
 }

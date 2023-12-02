@@ -3,9 +3,9 @@
 <head>
 
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
-	<title>94Hobby</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
+    <title>94Hobby</title>
     <!-- Meta Tags -->
     <meta name="twitter:description" content="Elevate your badminton business with Dream Sports template. Empower coaches & players, optimize court performance and unlock industry-leading success for your brand.">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -31,9 +31,9 @@
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="600">
 
-	<link rel="shortcut icon" type="image/x-icon" href="~/image/whitecaticon.ico">  @* 網站圖標 *@
-	<link rel="apple-touch-icon" sizes="120x120" href="~/image/whitecaticon.ico">      @* n *@
-	<link rel="apple-touch-icon" sizes="152x152" href="~/image/whitecaticon.ico">
+    <link rel="shortcut icon" type="image/x-icon" href="~/image/whitecaticon.ico">  @* 網站圖標 *@
+    <link rel="apple-touch-icon" sizes="120x120" href="~/image/whitecaticon.ico">      @* n *@
+    <link rel="apple-touch-icon" sizes="152x152" href="~/image/whitecaticon.ico">
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="~/assets/css/bootstrap.min.css">
@@ -57,335 +57,327 @@
 
     <!-- Main CSS -->
     <link rel="stylesheet" href="~/assets/css/style.css">
-	@await RenderSectionAsync("Styles", required: false)
+
+    @await RenderSectionAsync("Styles", required: false)
 </head>
 <body>
-	<div id="global-loader">
-		<div class="loader-img"> <!-- 旋轉圖標 -->
-			<img src="~/image/loader.jpg" style="width: 50px;height: 50px" class="img-fluid" alt="Global">
+    <div id="global-loader">
+        <div class="loader-img">
+            <!-- 旋轉圖標 -->
+            <img src="~/image/loader.jpg" style="width: 50px;height: 50px" class="img-fluid" alt="Global">
         </div>
-	</div>
+    </div>
 
-	<div class="main-wrapper">
-		<!-- Header  網站導覽列內容 -->
-		<header class="header header-sticky">
-			<div class="container-fluid">
-				<nav class="navbar navbar-expand-lg header-nav">
-					<div class="navbar-header">
-						<a id="mobile_btn" href="javascript:void(0);">
-							<span class="bar-icon">
-								<span></span>
-								<span></span>
-								<span></span>
-							</span>
-						</a>
-						<a href="https://localhost:7097/" class="navbar-brand logo">
-							<img src="~/image/logo.svg" style="width: 300px;height: 95px" class="rounded float-left"
-								 alt="Logo" > <!-- 左邊Logo -->
-						</a>
-					</div>				
-					<div class="main-menu-wrapper">
-						<div class="menu-header">
-							<a href="index.html" class="menu-logo">
-								<img src="~/image/loader.jpg" class="img-fluid" alt="Logo">  @* n *@
-							</a>
-							<a id="menu_close" class="menu-close" href="javascript:void(0);">
-								<i class="fas fa-times"></i>
-							</a>
-						</div>
-						<ul class="main-nav">
-							<li class="has-submenu">
-								<a href="#">網站介紹 <i class="fas fa-chevron-down"></i></a>
-								<ul class="submenu">
-									<li><a href="https://localhost:7097/home/newcomer">新手上路</a></li>
-									<li><a href="https://localhost:7097/home/conceptpage">經營理念</a></li>
+    <div class="main-wrapper">
+        <!-- Header  網站導覽列內容 -->
+        <header class="header header-sticky">
+            <div class="container-fluid">
+                <nav class="navbar navbar-expand-lg header-nav">
+                    <div class="navbar-header">
+                        <a id="mobile_btn" href="javascript:void(0);">
+                            <span class="bar-icon">
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                            </span>
+                        </a>
+                        <a href="https://localhost:7097/" class="navbar-brand logo">
+                            <img src="~/image/logo.svg" style="width: 300px;height: 95px" class="rounded float-left"
+                                 alt="Logo"> <!-- 左邊Logo -->
+                        </a>
+                    </div>
+                    <div class="main-menu-wrapper">
+                        <div class="menu-header">
+                            <a href="index.html" class="menu-logo">
+                                <img src="~/image/loader.jpg" class="img-fluid" alt="Logo">  @* n *@
+                            </a>
+                            <a id="menu_close" class="menu-close" href="javascript:void(0);">
+                                <i class="fas fa-times"></i>
+                            </a>
+                        </div>
+                        <ul class="main-nav">
+                            <li class="has-submenu">
+                                <a href="#">網站介紹 <i class="fas fa-chevron-down"></i></a>
+                                <ul class="submenu">
+                                    <li><a href="https://localhost:7097/home/newcomer">新手上路</a></li>
+                                    <li><a href="https://localhost:7097/home/conceptpage">經營理念</a></li>
 
-								</ul>
+                                </ul>
 
-							</li>
-							<li class="has-submenu">
-								<a href="#">食 <i class="fas fa-chevron-down"></i></a>
-								<ul class="submenu">
-									<li><a href="/home/NotFounds">團購</a></li>
-								</ul>
+                            </li>
+                            <li class="has-submenu">
+                                <a href="#">食 <i class="fas fa-chevron-down"></i></a>
+                                <ul class="submenu">
+                                    <li><a href="/home/NotFounds">團購</a></li>
+                                </ul>
 
-							</li>
-							<li class="has-submenu">
-								<a href="#">住 <i class="fas fa-chevron-down"></i></a>
-								<ul class="submenu">
-									<li><a href="/home/NotFounds">露營</a></li>
-									<li><a href="/home/NotFounds">合租</a></li>
-									<li><a href="/home/NotFounds">共生公寓</a></li>
-								</ul>
-							</li>
-							<li class="has-submenu">
-								<a href="#">行 <i class="fas fa-chevron-down"></i></a>
-								<ul class="submenu">
-									<li><a href="/home/NotFounds">共乘</a></li>
+                            </li>
+                            <li class="has-submenu">
+                                <a href="#">住 <i class="fas fa-chevron-down"></i></a>
+                                <ul class="submenu">
+                                    <li><a href="/home/NotFounds">露營</a></li>
+                                    <li><a href="/home/NotFounds">合租</a></li>
+                                    <li><a href="/home/NotFounds">共生公寓</a></li>
+                                </ul>
+                            </li>
+                            <li class="has-submenu">
+                                <a href="#">行 <i class="fas fa-chevron-down"></i></a>
+                                <ul class="submenu">
+                                    <li><a href="/home/NotFounds">共乘</a></li>
 
-								</ul>
-							</li>
-							<li class="has-submenu">
-								<a href="#">育 <i class="fas fa-chevron-down"></i></a>
-								<ul class="submenu">
-									<li><a href="/home/NotFounds">讀書會</a></li>
-									<li><a href="/home/NotFounds">技能交換</a></li>
-								</ul>
-							</li>
-							<li class="has-submenu">
-								<a href="#">樂<i class="fas fa-chevron-down"></i></a>
-								<ul class="submenu">
-									<form name="play_inhouse" action="/Middle/ActivityCenter" method="post">
-										<input type="hidden" name="categoyId" value="5" />
-										<input type="hidden" name="categoryTypeId" value="8" />
-										<li><a href="javascript:document.play_inhouse.submit();">室內運動</a></li>
-									</form>
-									<form name="play_water" action="/Middle/ActivityCenter" method="post">
-										<input type="hidden" name="categoyId" value="5" />
-										<input type="hidden" name="categoryTypeId" value="9" />
-									<li><a href="javascript:document.play_water.submit();">水上運動</a></li>
-									</form>
-								</ul>
-							</li>
-							<li class="has-submenu">
-								<a href="#">會員中心 <i class="fas fa-chevron-down"></i></a>
-								<ul class="submenu">
-									<li class="has-submenu">
-										<a href="https://localhost:7097/ProfileSetting/ProfileSetting">個人資料</a>
-										<ul class="submenu inner-submenu">
-											<li><a href="https://localhost:7097/profilesetting/profilesetting">編輯資料</a></li>
-											<li><a href="https://localhost:7097/home/changePassword">修改密碼</a></li>
-										</ul>
-									</li>
-									<li><a href="https://localhost:7097/MemberCenter/launchATeam">開團管理</a></li>
-									<li><a href="https://localhost:7097/MemberCenter/joinAGroup">參團管理</a></li>
-									<li><a href="https://localhost:7097/REVIEW/APPLY">報名審核</a></li>
-								</ul>
-								</li>
-						</ul>
-					</div>
-					<ul class="nav header-navbar-rht">
-						<partial name="_LayoutPartial" />
-						<li>&nbsp;</li>
-						<li class="nav-item">
-							<a class="nav-link btn btn-secondary" href="https://localhost:7097/ActivityBuild/leaderBuild">
-								<span>
-									<i class="feather-check-circle"></i>
-								</span>立即開團
-							</a>
-						</li>
-					</ul>
-				</nav>
-			</div>
-		</header>
+                                </ul>
+                            </li>
+                            <li class="has-submenu">
+                                <a href="#">育 <i class="fas fa-chevron-down"></i></a>
+                                <ul class="submenu">
+                                    <li><a href="/home/NotFounds">讀書會</a></li>
+                                    <li><a href="/home/NotFounds">技能交換</a></li>
+                                </ul>
+                            </li>
+                            <li class="has-submenu">
+                                <a href="#">樂<i class="fas fa-chevron-down"></i></a>
+                                <ul class="submenu">
+                                    <form name="play_inhouse" action="/Middle/ActivityCenter" method="post">
+                                        <input type="hidden" name="categoyId" value="5" />
+                                        <input type="hidden" name="categoryTypeId" value="8" />
+                                    <li><a href="javascript:document.play_inhouse.submit();">室內運動</a></li>
+                                    </form>
+                                    <form name="play_water" action="/Middle/ActivityCenter" method="post">
+                                        <input type="hidden" name="categoyId" value="5" />
+                                        <input type="hidden" name="categoryTypeId" value="9" />
+                                    <li><a href="javascript:document.play_water.submit();">水上運動</a></li>
+                                    </form>
+                                </ul>
+                            </li>
+                            <li class="has-submenu">
+                                <a href="#">會員中心 <i class="fas fa-chevron-down"></i></a>
+                                <ul class="submenu">
+                                    <li class="has-submenu">
+                                        <a href="https://localhost:7097/ProfileSetting/ProfileSetting">個人資料</a>
+                                        <ul class="submenu inner-submenu">
+                                            <li><a href="https://localhost:7097/profilesetting/profilesetting">編輯資料</a></li>
+                                            <li><a href="https://localhost:7097/home/changePassword">修改密碼</a></li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="https://localhost:7097/MemberCenter/launchATeam">開團管理</a></li>
+                                    <li><a href="https://localhost:7097/MemberCenter/joinAGroup">參團管理</a></li>
+                                    <li><a href="https://localhost:7097/REVIEW/APPLY">報名審核</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                    <ul class="nav header-navbar-rht">
+                        <partial name="_LayoutPartial" />
+                        <li>&nbsp;</li>
+                        <li class="nav-item">
+                            <a class="nav-link btn btn-secondary" href="https://localhost:7097/ActivityBuild/leaderBuild">
+                                <span>
+                                    <i class="feather-check-circle"></i>
+                                </span>立即開團
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
 
-		<!-- /Header -->
-            @RenderBody()
-	<!-- Footer -->
-		<footer class="footer">
-		<div class="container">
-			<!-- Footer Join -->
-			<div class="footer-join aos" data-aos="fade-up">
-					<h2>無論是交友、聚會，還是各種體驗活動，我們的揪團網站應有盡有。</h2>
-					<p class="sub-title">快來加入 JHobby，立刻享受完整功能，打造屬於你的精彩社交時刻。</p>
-					<a href="https://localhost:7097/Member/Register" class="btn btn-primary"><i class="feather-user-plus"></i> 加入我們</a>
-			</div>
-			<!-- /Footer Join -->
-			<!-- Footer Top -->
-			<div class="footer-top">
-				<div class="row">
-					<div class="col-lg-3 col-md-6">
-						<!-- Footer Widget -->
-						<div class="footer-widget footer-menu">
-								<h4 class="footer-title">網站介紹</h4>
-								<ul>
-									<li>
-										<a href="https://localhost:7097/home/newcomer">新手上路</a>
-									</li>
-								</ul>
-								<ul>
-									<li>
-										<a href="https://localhost:7097/home/conceptpage">經營理念</a>
-									</li>
-								</ul>
-							<div class="social-icon">
-								<ul>
-									<li>
-										<a href="https://www.facebook.com/TibaMe/?locale=zh_TW" class="facebook"><i class="fab fa-facebook-f"></i> </a>
-									</li>
-									<li>
-										<a href="https://www.instagram.com/tibame_wiedu/" class="instagram"><i class="fab fa-instagram"></i></a>
-									</li>
-									<li>
-										<a href="https://www.linkedin.com/company/wieducorp/" class="linked-in"><i class="fab fa-linkedin-in"></i></a>
-									</li>
-								</ul>
-							</div>
-						</div>
-						<!-- /Footer Widget -->
-					</div>
-					<div class="col-lg-1 col-md-6">
-						<!-- Footer Widget -->
-						<div class="footer-widget footer-menu">
-							<h4 class="footer-title">食</h4>
-							<ul>
-								<li>
-									<a href="https://localhost:7097/home/notfounds">團購</a>
-								</li>
-							</ul>
-						</div>
-						<!-- /Footer Widget -->
-					</div>
-					<div class="col-lg-1 col-md-6">
-						<!-- Footer Widget -->
-						<div class="footer-widget footer-menu">
-							<h4 class="footer-title">住</h4>
-							<ul>
-								<li>
-									<a href="https://localhost:7097/home/notfounds">露營</a>
-								</li>
-								<li>
-									<a href="https://localhost:7097/home/notfounds">合租</a>
-								</li>
-								<li>
-										<a href="https://localhost:7097/home/notfounds">共生公寓</a>
-								</li>
-							</ul>
-						</div>
-						<!-- /Footer Widget -->
-					</div>
-					<div class="col-lg-1 col-md-6">
-						<!-- Footer Widget -->
-						<div class="footer-widget footer-menu">
-							<h4 class="footer-title">行</h4>
-							<ul>
-								<li>
-										<a href="https://localhost:7097/home/notfounds">共乘</a>
-								</li>
-							</ul>
-						</div>
-						<!-- /Footer Widget -->
-					</div>
-					<div class="col-lg-1 col-md-6">
-						<!-- Footer Widget -->
-						<div class="footer-widget footer-menu">
-							<h4 class="footer-title">育</h4>
-							<ul>
-								<li>
-										<a href="https://localhost:7097/home/notfounds">讀書會</a>
-								</li>
-								<li>
-										<a href="https://localhost:7097/home/notfounds">技能交換</a>
-								</li>
-							</ul>
-						</div>
-						<!-- /Footer Widget -->
-					</div>
-					<div class="col-lg-2 col-md-6">
-						<!-- Footer Widget -->
-						<div class="footer-widget footer-menu">
-								<h4 class="footer-title">樂</h4>
-								<ul>
-									<form name="foot_play_inhouse" action="/Middle/ActivityCenter" method="post">
-										<input type="hidden" name="categoyId" value="5" />
-										<input type="hidden" name="categoryTypeId" value="8" />
-										<input type="hidden" name="city" value="0" />
-										<input type="hidden" name="area" value="0" />
-									<li><a href="javascript:document.foot_play_inhouse.submit();">室內運動</a></li>
-									</form>
-									<form name="foot_play_water" action="/Middle/ActivityCenter" method="post">
-										<input type="hidden" name="categoyId" value="5" />
-										<input type="hidden" name="categoryTypeId" value="9" />
-										<input type="hidden" name="city" value="0" />
-										<input type="hidden" name="area" value="0" />
-									<li><a href="javascript:document.foot_play_water.submit();">水上運動</a></li>
-									</form>
-								</ul>
-							</div>
-						</div>
-						<div class="col-lg-3 col-md-6 ">
-						<div class="footer-widget footer-menu">
-							<h4 class="footer-title">會員中心</h4>
-							<ul>
-								<li>
-									<a href="https://localhost:7097/ProfileSetting/ProfileSetting">個人資料</a>
-								</li>
-								<li>
-									<a href="https://localhost:7097/MemberCenter/launchATeam">開團管理</a>
-								</li>
-                                <li>
-									<a href="https://localhost:7097/MemberCenter/joinAGroup">參團管理</a>
-                                 </li>
-                                 <li>
-									<a href="https://localhost:7097/REVIEW/APPLY">報名審核</a>
-                                 </li>
-							</ul>
-						</div>
-					</div>
-						<!-- /Footer Widget -->
-					</div>
-				</div>
-			</div>
-			<!-- /Footer Top -->
-		
+        <!-- /Header -->
+        @RenderBody()
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="container">
+                <!-- Footer Top -->
+                <div class="footer-top">
+                    <div class="row">
+                        <div class="col-lg-3 col-md-6">
+                            <!-- Footer Widget -->
+                            <div class="footer-widget footer-menu">
+                                <h4 class="footer-title">網站介紹</h4>
+                                <ul>
+                                    <li>
+                                        <a href="https://localhost:7097/home/newcomer">新手上路</a>
+                                    </li>
+                                </ul>
+                                <ul>
+                                    <li>
+                                        <a href="https://localhost:7097/home/conceptpage">經營理念</a>
+                                    </li>
+                                </ul>
+                                <div class="social-icon">
+                                    <ul>
+                                        <li>
+                                            <a href="https://www.facebook.com/TibaMe/?locale=zh_TW" class="facebook"><i class="fab fa-facebook-f"></i> </a>
+                                        </li>
+                                        <li>
+                                            <a href="https://www.instagram.com/tibame_wiedu/" class="instagram"><i class="fab fa-instagram"></i></a>
+                                        </li>
+                                        <li>
+                                            <a href="https://www.linkedin.com/company/wieducorp/" class="linked-in"><i class="fab fa-linkedin-in"></i></a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <!-- /Footer Widget -->
+                        </div>
+                        <div class="col-lg-1 col-md-6">
+                            <!-- Footer Widget -->
+                            <div class="footer-widget footer-menu">
+                                <h4 class="footer-title">食</h4>
+                                <ul>
+                                    <li>
+                                        <a href="https://localhost:7097/home/notfounds">團購</a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <!-- /Footer Widget -->
+                        </div>
+                        <div class="col-lg-1 col-md-6">
+                            <!-- Footer Widget -->
+                            <div class="footer-widget footer-menu">
+                                <h4 class="footer-title">住</h4>
+                                <ul>
+                                    <li>
+                                        <a href="https://localhost:7097/home/notfounds">露營</a>
+                                    </li>
+                                    <li>
+                                        <a href="https://localhost:7097/home/notfounds">合租</a>
+                                    </li>
+                                    <li>
+                                        <a href="https://localhost:7097/home/notfounds">共生公寓</a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <!-- /Footer Widget -->
+                        </div>
+                        <div class="col-lg-1 col-md-6">
+                            <!-- Footer Widget -->
+                            <div class="footer-widget footer-menu">
+                                <h4 class="footer-title">行</h4>
+                                <ul>
+                                    <li>
+                                        <a href="https://localhost:7097/home/notfounds">共乘</a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <!-- /Footer Widget -->
+                        </div>
+                        <div class="col-lg-1 col-md-6">
+                            <!-- Footer Widget -->
+                            <div class="footer-widget footer-menu">
+                                <h4 class="footer-title">育</h4>
+                                <ul>
+                                    <li>
+                                        <a href="https://localhost:7097/home/notfounds">讀書會</a>
+                                    </li>
+                                    <li>
+                                        <a href="https://localhost:7097/home/notfounds">技能交換</a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <!-- /Footer Widget -->
+                        </div>
+                        <div class="col-lg-2 col-md-6">
+                            <!-- Footer Widget -->
+                            <div class="footer-widget footer-menu">
+                                <h4 class="footer-title">樂</h4>
+                                <ul>
+                                    <form name="foot_play_inhouse" action="/Middle/ActivityCenter" method="post">
+                                        <input type="hidden" name="categoyId" value="5" />
+                                        <input type="hidden" name="categoryTypeId" value="8" />
+                                        <input type="hidden" name="city" value="0" />
+                                        <input type="hidden" name="area" value="0" />
+                                    <li><a href="javascript:document.foot_play_inhouse.submit();">室內運動</a></li>
+                                    </form>
+                                    <form name="foot_play_water" action="/Middle/ActivityCenter" method="post">
+                                        <input type="hidden" name="categoyId" value="5" />
+                                        <input type="hidden" name="categoryTypeId" value="9" />
+                                        <input type="hidden" name="city" value="0" />
+                                        <input type="hidden" name="area" value="0" />
+                                    <li><a href="javascript:document.foot_play_water.submit();">水上運動</a></li>
+                                    </form>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-6 ">
+                            <div class="footer-widget footer-menu">
+                                <h4 class="footer-title">會員中心</h4>
+                                <ul>
+                                    <li>
+                                        <a href="https://localhost:7097/ProfileSetting/ProfileSetting">個人資料</a>
+                                    </li>
+                                    <li>
+                                        <a href="https://localhost:7097/MemberCenter/launchATeam">開團管理</a>
+                                    </li>
+                                    <li>
+                                        <a href="https://localhost:7097/MemberCenter/joinAGroup">參團管理</a>
+                                    </li>
+                                    <li>
+                                        <a href="https://localhost:7097/REVIEW/APPLY">報名審核</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <!-- /Footer Widget -->
+                    </div>
+                </div>
+            </div>
+            <!-- /Footer Top -->
+            <!-- Footer Bottom -->
+            <div class="footer-bottom">
+                <div class="container">
+                    <!-- Copyright -->
+                    <div class="copyright">
+                        <div class="row align-items-center">
+                            <div class="col-md-6">
+                                <div class="copyright-text">
+                                    <p class="mb-0">&copy; 2023 - 94HOBBY - 版權所有</p>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <!-- Copyright Menu -->
+                                <!-- /Copyright Menu -->
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /Copyright -->
+                </div>
+            </div>
+            <!-- /Footer Bottom -->
 
-		<!-- Footer Bottom -->
-		<div class="footer-bottom">
-			<div class="container">
-				<!-- Copyright -->
-				<div class="copyright">
-					<div class="row align-items-center">
-						<div class="col-md-6">
-							<div class="copyright-text">
-									<p class="mb-0">&copy; 2023 - 94HOBBY - 版權所有</p>
-							</div>
-						</div>
-						<div class="col-md-6">
-							<!-- Copyright Menu -->
+        </footer>
+        <!-- /Footer -->
+    </div>
 
-							<!-- /Copyright Menu -->
-						</div>
-					</div>
-				</div>
-				<!-- /Copyright -->
-			</div>
-		</div>
-		<!-- /Footer Bottom -->
+    <!-- scrollToTop start -->
+    <div class="progress-wrap active-progress">
+        <svg class="progress-circle svg-content" width="100%" height="100%" viewBox="-1 -1 102 102">
+            <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98" style="transition: stroke-dashoffset 10ms linear 0s; stroke-dasharray: 307.919px, 307.919px; stroke-dashoffset: 228.265px;"></path>
+        </svg>
+    </div>
+    <!-- scrollToTop end -->
 
-	</footer>
-	<!-- /Footer -->
-	</div>
-
-	<!-- scrollToTop start -->
-	<div class="progress-wrap active-progress">
-		<svg class="progress-circle svg-content" width="100%" height="100%" viewBox="-1 -1 102 102">
-			<path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98" style="transition: stroke-dashoffset 10ms linear 0s; stroke-dasharray: 307.919px, 307.919px; stroke-dashoffset: 228.265px;"></path>
-		</svg>
-	</div>
-	<!-- scrollToTop end -->
-	
     <script src="~/js/site.js" asp-append-version="true"></script>
-	<!-- jQuery -->
-	<script src="~/assets/js/jquery-3.7.0.min.js"></script>
-	<!-- Bootstrap Core JS -->
-	<script src="~/assets/js/bootstrap.bundle.min.js"></script>
-	<!-- Select JS -->
-	<script src="~/assets/plugins/select2/js/select2.min.js"></script>
-	<!-- Owl Carousel JS -->
-	<script src="~/assets/plugins/owl-carousel/owl.carousel.min.js"></script>
-	<!-- Aos -->
-	<script src="~/assets/plugins/aos/aos.js"></script>
-	<!-- Counterup JS -->
-	<script src="~/assets/js/jquery.waypoints.js"></script>
-	<script src="~/assets/js/jquery.counterup.min.js"></script>
-	<!-- Top JS -->
-	<script src="~/assets/js/backToTop.js"></script>
-	<!-- Custom JS -->
-	<script src="~/assets/js/script.js"></script>
-	@await RenderSectionAsync("Scripts", required: false)
-	<script>
-		Jhobby_Animation()
-	</script>
+    <!-- jQuery -->
+    <script src="~/assets/js/jquery-3.7.0.min.js"></script>
+    <!-- Bootstrap Core JS -->
+    <script src="~/assets/js/bootstrap.bundle.min.js"></script>
+    <!-- Select JS -->
+    <script src="~/assets/plugins/select2/js/select2.min.js"></script>
+    <!-- Owl Carousel JS -->
+    <script src="~/assets/plugins/owl-carousel/owl.carousel.min.js"></script>
+    <!-- Aos -->
+    <script src="~/assets/plugins/aos/aos.js"></script>
+    <!-- Counterup JS -->
+    <script src="~/assets/js/jquery.waypoints.js"></script>
+    <script src="~/assets/js/jquery.counterup.min.js"></script>
+    <!-- Top JS -->
+    <script src="~/assets/js/backToTop.js"></script>
+    <!-- Custom JS -->
+    <script src="~/assets/js/script.js"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+    <script>
+        Jhobby_Animation()
+    </script>
 
 </body>
 </html>
