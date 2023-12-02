@@ -1,53 +1,57 @@
 ﻿<partial name="_BreadcrumbPartial" />s
 <partial name="_DashboardMenuPartial" />
 @* MemberCenter/launchATeam *@
-<div b-q7camsv0h8="" class="container">
-    <main b-q7camsv0h8="" role="main" class="pb-3">
-        <div id="global-loader" style="display: none;">
-            <div class="loader-img">
-                <img src="/assets/img/loader.png" class="img-fluid" alt="Global">
-            </div>
-        </div>
-        <!-- Main Wrapper -->
-        <div class="main-wrapper">
-            <!-- Header -->
-            <header class="header header-sticky fixed-top">
-            </header>
-            <!-- Page Content -->
-            <div class="content" style="padding-top: 10px;">
-                <div class="container">
-                    <!-- Statistics Card -->
-                    <div class="row">
+<div id="record">
+    <div>
+        <div b-q7camsv0h8="" class="container">
+            <main b-q7camsv0h8="" role="main" class="pb-3">
+                <div id="global-loader" style="display: none;">
+                    <div class="loader-img">
+                        <img src="/assets/img/loader.png" class="img-fluid" alt="Global">
                     </div>
-                    <!-- /Statistics Card -->
-                    <!-- Appointment -->
-                    <div class="row">
-                        <div class="col-lg-12">
-                        </div>
-                    </div>
-                    <!-- /Appointment -->
-                    <!-- Dashboard Table -->
-                    @* 開團紀錄版面 *@
-                    <div class="content court-bg" style="padding-top: 10px">
+                </div>
+                <!-- Main Wrapper -->
+                <div class="main-wrapper">
+                    <!-- Header -->
+                    <header class="header header-sticky fixed-top">
+                    </header>
+                    <!-- Page Content -->
+                    <div class="content" style="padding-top: 10px;">
                         <div class="container">
-                            @* 篩選單 *@
+                            <!-- Statistics Card -->
+                            <div class="row">
+                            </div>
+                            <!-- /Statistics Card -->
+                            <!-- Appointment -->
                             <div class="row">
                                 <div class="col-lg-12">
-                                    <div class="sortby-section court-sortby-section">
-                                        <div class="sorting-info" style="
+                                </div>
+                            </div>
+                            <!-- /Appointment -->
+                            <!-- Dashboard Table -->
+                            @* 開團紀錄版面 *@
+                            <div class="content court-bg" style="padding-top: 10px">
+                                <div class="container">
+                                    @* 篩選單 *@
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <div class="sortby-section court-sortby-section">
+                                                <div class="sorting-info" style="
 											margin-bottom: 10px;">
-                                            <div class="row d-flex align-items-center">
-                                                <div class="col-xl-12 col-sm-12 col-auto">
-                                                    <div class="sortby-filter-group court-sortby">
-                                                        <div class="sortbyset">
-                                                            <span class="sortbytitle">活動時間排序</span>
-                                                            <div class="sorting-select">
-                                                                <select class="form-control select select2-hidden-accessible"
-                                                                        data-select2-id="4" tabindex="-1"
-                                                                        aria-hidden="true">
-                                                                    <option data-select2-id="6">近到遠</option>
-                                                                    <option>遠到近</option>
-                                                                </select>
+                                                    <div class="row d-flex align-items-center">
+                                                        <div class="col-xl-12 col-sm-12 col-auto">
+                                                            <div class="sortby-filter-group court-sortby">
+                                                                <div class="sortbyset">
+                                                                    <span class="sortbytitle">活動時間排序</span>
+                                                                    <div class="sorting-select">
+                                                                        <select class="form-control select select2-hidden-accessible"
+                                                                                data-select2-id="4" tabindex="-1"
+                                                                                aria-hidden="true">
+                                                                            <option data-select2-id="6">近到遠</option>
+                                                                            <option>遠到近</option>
+                                                                        </select>
+                                                                    </div>
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -55,45 +59,176 @@
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                            </div>
-                            @* 開團標題欄&搜尋頁  *@
-                            <div class="row">
-                                <div class="col-sm-12">
-                                    <div class="court-tab-content">
-                                        <div class="card card-tableset">
-                                            <div class="card-body">
-                                                <div class="coache-head-blk">
-                                                    <div class="row align-items-center">
-                                                        <div class="col-lg-6">
-                                                            <div class="court-table-head">
-                                                                <h4>開團紀錄</h4>
-                                                                <p>
-                                                                    Efficiently manage and respond to booking
-                                                                    requests
-                                                                </p>
+                                    @* 開團標題欄&搜尋頁  *@
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <div class="court-tab-content">
+                                                <div class="card card-tableset">
+                                                    <div class="card-body">
+                                                        <div class="coache-head-blk">
+                                                            <div class="row align-items-center">
+                                                                <div class="col-lg-6">
+                                                                    <div class="court-table-head">
+                                                                        <h4>開團紀錄</h4>
+                                                                        <p>
+                                                                            Efficiently manage and respond to booking
+                                                                            requests
+                                                                        </p>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-lg-6">
+                                                                    <div class="coach-active-blk">
+                                                                        <div id="tablefilter">
+                                                                            <div id="DataTables_Table_0_filter"
+                                                                                 class="dataTables_filter">
+                                                                                <label>
+                                                                                    <input type="search"
+                                                                                           class="form-control form-control-sm"
+                                                                                           placeholder="Search"
+                                                                                           aria-controls="DataTables_Table_0">
+                                                                                </label>
+                                                                            </div>
+                                                                            <div id="DataTables_Table_1_filter"
+                                                                                 class="dataTables_filter">
+                                                                                <label>
+                                                                                    <input type="search"
+                                                                                           class="form-control form-control-sm"
+                                                                                           placeholder="Search"
+                                                                                           aria-controls="DataTables_Table_1">
+                                                                                </label>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+
+                                                                </div>
                                                             </div>
                                                         </div>
-                                                        <div class="col-lg-6">
-                                                            <div class="coach-active-blk">
-                                                                <div id="tablefilter">
-                                                                    <div id="DataTables_Table_0_filter"
-                                                                         class="dataTables_filter">
-                                                                        <label>
-                                                                            <input type="search"
-                                                                                   class="form-control form-control-sm"
-                                                                                   placeholder="Search"
-                                                                                   aria-controls="DataTables_Table_0">
-                                                                        </label>
-                                                                    </div>
-                                                                    <div id="DataTables_Table_1_filter"
-                                                                         class="dataTables_filter">
-                                                                        <label>
-                                                                            <input type="search"
-                                                                                   class="form-control form-control-sm"
-                                                                                   placeholder="Search"
-                                                                                   aria-controls="DataTables_Table_1">
-                                                                        </label>
+                                                        <div class="tab-content">
+                                                            <div class="tab-pane fade active show" id="nav-Recent"
+                                                                 role="tabpanel" aria-labelledby="nav-Recent-tab"
+                                                                 tabindex="0">
+                                                                <div class="table-responsive">
+                                                                    <div id="DataTables_Table_0_wrapper"
+                                                                         class="dataTables_wrapper dt-bootstrap4 no-footer">
+                                                                        <div class="row">
+                                                                            <div class="col-sm-12 col-md-6"></div>
+                                                                            <div class="col-sm-12 col-md-6"></div>
+                                                                        </div>
+                                                                        <div class="row" id="Updates">
+                                                                            <div class="col-sm-12">
+                                                                                <table class="table table-borderless no-footer"
+                                                                                       id="DataTables_Table_0" role="grid">
+                                                                                    <thead class="thead-light">
+                                                                                        <tr role="row">
+                                                                                            <th class="sorting_asc"
+                                                                                                tabindex="0"
+                                                                                                aria-controls="DataTables_Table_0"
+                                                                                                rowspan="1" colspan="1"
+                                                                                                aria-sort="ascending"
+                                                                                                aria-label="Court Name: activate to sort column descending"
+                                                                                                style="width: 208.688px;">
+                                                                                                開團名稱
+                                                                                            </th>
+
+                                                                                            <th class="sorting" tabindex="0"
+                                                                                                aria-controls="DataTables_Table_0"
+                                                                                                rowspan="1" colspan="1"
+                                                                                                aria-label="Date &amp;amp; Time : activate to sort column ascending"
+                                                                                                style="width: 121.615px;">
+                                                                                                活動時間
+                                                                                            </th>
+                                                                                            <th class="sorting" tabindex="0"
+                                                                                                aria-controls="DataTables_Table_0"
+                                                                                                rowspan="1" colspan="1"
+                                                                                                aria-label="Additional Guests: activate to sort column ascending"
+                                                                                                style="width: 128.396px;">
+                                                                                                目前參加狀態
+                                                                                            </th>
+                                                                                            <th class="sorting" tabindex="0"
+                                                                                                aria-controls="DataTables_Table_0"
+                                                                                                rowspan="1" colspan="1"
+                                                                                                aria-label="Payment: activate to sort column ascending"
+                                                                                                style="width: 64.7917px;">
+                                                                                                尚餘可參加人數
+                                                                                            </th>
+                                                                                            <th class="sorting" tabindex="0"
+                                                                                                aria-controls="DataTables_Table_0"
+                                                                                                rowspan="1" colspan="1"
+                                                                                                aria-label="Status: activate to sort column ascending"
+                                                                                                style="width: 46.3229px;">
+                                                                                                開團狀態
+                                                                                            </th>
+                                                                                            <th class="sorting" tabindex="0"
+                                                                                                aria-controls="DataTables_Table_0"
+                                                                                                rowspan="1" colspan="1"
+                                                                                                aria-label=": activate to sort column ascending"
+                                                                                                style="width: 193.062px;">
+                                                                                            </th>
+                                                                                        </tr>
+                                                                                    </thead>
+                                                                                    <tbody>
+                                                                                        <tr role="row" class="odd" v-for="item in showUpdates">
+                                                                                            <td class="sorting_1">
+                                                                                                <h2 class="table-avatar">
+                                                                                                    <a href="~#"
+                                                                                                       class="avatar avatar-sm  flex-shrink-0">
+                                                                                                        <img class="avatar-img"
+                                                                                                             src="~/assets/img/booking/booking-04.jpg"
+                                                                                                             alt="User">
+                                                                                                    </a>
+                                                                                                    <span class="table-head-name flex-grow-1">
+                                                                                                        <a href="~javascript:;"
+                                                                                                           data-bs-toggle="modal"
+                                                                                                           data-bs-target="#request-court">
+                                                                                                        </a>
+                                                                                                        {{item.activityName}}
+                                                                                                        <span>
+                                                                                                        </span>
+                                                                                                    </span>
+                                                                                                </h2>
+                                                                                            </td>
+                                                                                            <td class="table-date-time">
+                                                                                                <h4>
+                                                                                                    <span>
+                                                                                                        {{item.startTime}}
+                                                                                                    </span>
+                                                                                                </h4>
+                                                                                            </td>
+                                                                                            <td>
+                                                                                                <!-- 連接參團人數 -->
+                                                                                                <button type="button" class="btn btn-secondary"
+                                                                                                        data-bs-toggle="modal"
+                                                                                                        data-bs-target="#add-particpate-check" @@click="Current()">
+                                                                                                    <i class="feather-eye"></i>查看詳細狀態
+                                                                                                    
+                                                                                                </button>
+                                                                                                
+                                                                                                <!-- /連接參團人數 -->
+                                                                                            </td>
+                                                                                            <td>
+                                                                                                <span class="pay-dark">{{item.maxPeople}}</span>
+                                                                                            </td>
+                                                                                            <td class="paid-edit">
+                                                                                                <span>
+                                                                                                    <i class="feather-edit"></i>{{item.activityStatus}}
+                                                                                                </span>
+                                                                                            </td>
+                                                                                            <td class="table-accept-btn text-end">
+                                                                                                <a href="https://localhost:7097/home/leaderedit" class="btn accept-btn"><i class="feather-check-circle"></i>編輯開團</a>
+                                                                                                <a href="javascript:;" class="btn cancel-table-btn" data-bs-toggle="modal" data-bs-target="#request-coche">
+                                                                                                    <i class="feather-x-circle"></i>取消開團
+                                                                                                </a>
+                                                                                            </td>
+                                                                                        </tr>
+
+                                                                                    </tbody>
+                                                                                </table>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="row">
+                                                                            <div class="col-sm-12 col-md-5"></div>
+                                                                            <div class="col-sm-12 col-md-7"></div>
+                                                                        </div>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -101,224 +236,224 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="tab-content">
-                                                    <div class="tab-pane fade active show" id="nav-Recent"
-                                                         role="tabpanel" aria-labelledby="nav-Recent-tab"
-                                                         tabindex="0">
-                                                        <div class="table-responsive">
-                                                            <div id="DataTables_Table_0_wrapper"
-                                                                 class="dataTables_wrapper dt-bootstrap4 no-footer">
-                                                                <div class="row">
-                                                                    <div class="col-sm-12 col-md-6"></div>
-                                                                    <div class="col-sm-12 col-md-6"></div>
+                                                <div class="tab-footer" style=" margin-top: 10px;">
+                                                    <div class="row">
+                                                        <div class="col-md-6">
+                                                            <div id="tablelength">
+                                                                <div class="dataTables_length"
+                                                                     id="DataTables_Table_1_length">
+                                                                    <label>
+                                                                        Show
+                                                                        <select name="DataTables_Table_1_length"
+                                                                                aria-controls="DataTables_Table_1"
+                                                                                class="custom-select custom-select-sm form-control form-control-sm">
+                                                                            <option value="10">10</option>
+                                                                            <option value="25">25</option>
+                                                                            <option value="50">50</option>
+                                                                            <option value="-1">All</option>
+                                                                        </select>
+                                                                    </label>
                                                                 </div>
-                                                                <div class="row" id="Updates">
-                                                                    <div class="col-sm-12">
-                                                                        <table class="table table-borderless no-footer"
-                                                                               id="DataTables_Table_0" role="grid">
-                                                                            <thead class="thead-light">
-                                                                                <tr role="row">
-                                                                                    <th class="sorting_asc"
-                                                                                        tabindex="0"
-                                                                                        aria-controls="DataTables_Table_0"
-                                                                                        rowspan="1" colspan="1"
-                                                                                        aria-sort="ascending"
-                                                                                        aria-label="Court Name: activate to sort column descending"
-                                                                                        style="width: 208.688px;">
-                                                                                        開團名稱
-                                                                                    </th>
-
-                                                                                    <th class="sorting" tabindex="0"
-                                                                                        aria-controls="DataTables_Table_0"
-                                                                                        rowspan="1" colspan="1"
-                                                                                        aria-label="Date &amp;amp; Time : activate to sort column ascending"
-                                                                                        style="width: 121.615px;">
-                                                                                        活動時間
-                                                                                    </th>
-                                                                                    <th class="sorting" tabindex="0"
-                                                                                        aria-controls="DataTables_Table_0"
-                                                                                        rowspan="1" colspan="1"
-                                                                                        aria-label="Additional Guests: activate to sort column ascending"
-                                                                                        style="width: 128.396px;">
-                                                                                        目前參加狀態
-                                                                                    </th>
-                                                                                    <th class="sorting" tabindex="0"
-                                                                                        aria-controls="DataTables_Table_0"
-                                                                                        rowspan="1" colspan="1"
-                                                                                        aria-label="Payment: activate to sort column ascending"
-                                                                                        style="width: 64.7917px;">
-                                                                                        尚餘可參加人數
-                                                                                    </th>
-                                                                                    <th class="sorting" tabindex="0"
-                                                                                        aria-controls="DataTables_Table_0"
-                                                                                        rowspan="1" colspan="1"
-                                                                                        aria-label="Status: activate to sort column ascending"
-                                                                                        style="width: 46.3229px;">
-                                                                                        開團狀態
-                                                                                    </th>
-                                                                                    <th class="sorting" tabindex="0"
-                                                                                        aria-controls="DataTables_Table_0"
-                                                                                        rowspan="1" colspan="1"
-                                                                                        aria-label=": activate to sort column ascending"
-                                                                                        style="width: 193.062px;">
-                                                                                    </th>
-                                                                                </tr>
-                                                                            </thead>
-                                                                            <tbody>
-                                                                                <tr role="row" class="odd" v-for="item in showUpdates">
-                                                                                    <td class="sorting_1">
-                                                                                        <h2 class="table-avatar">
-                                                                                            <a href="~#"
-                                                                                               class="avatar avatar-sm  flex-shrink-0">
-                                                                                                <img class="avatar-img"
-                                                                                                     src="~/assets/img/booking/booking-04.jpg"
-                                                                                                     alt="User">
-                                                                                            </a>
-                                                                                            <span class="table-head-name flex-grow-1">
-                                                                                                <a href="~javascript:;"
-                                                                                                   data-bs-toggle="modal"
-                                                                                                   data-bs-target="#request-court">
-                                                                                                    </a>
-                                                                                                        {{item.activityName}}
-                                                                                                <span>
-                                                                                                </span>
-                                                                                            </span>
-                                                                                        </h2>
-                                                                                    </td>
-                                                                                    <td class="table-date-time">
-                                                                                        <h4>
-                                                                                            <span>
-                                                                                                {{item.startTime}}
-                                                                                            </span>
-                                                                                        </h4>
-                                                                                    </td>
-                                                                                    <td>
-                                                                                        <!-- 連接參團人數 -->
-                                                                                        <button>查看</button>
-                                                                                       
-                                                                                        <!-- /連接參團人數 -->
-                                                                                    </td>
-                                                                                    <td>
-                                                                                        <span class="pay-dark">{{item.maxPeople}}</span>
-                                                                                    </td>
-                                                                                    <td class="paid-edit">
-                                                                                        <span>
-                                                                                            <i class="feather-edit"></i>{{item.activityStatus}}
-                                                                                        </span>
-                                                                                    </td>
-                                                                                    <td class="table-accept-btn text-end">
-                                                                                        <a href="https://localhost:7097/home/leaderedit" class="btn accept-btn"><i class="feather-check-circle"></i>編輯開團</a>
-                                                                                        <a href="javascript:;" class="btn cancel-table-btn" data-bs-toggle="modal" data-bs-target="#request-coche">
-                                                                                            <i class="feather-x-circle"></i>取消開團
-                                                                                        </a>
-                                                                                    </td>
-                                                                                </tr>
-                                                                         
-                                                                            </tbody>
-                                                                        </table>
-                                                                    </div>
+                                                                <div class="dataTables_length"
+                                                                     id="DataTables_Table_0_length">
+                                                                    <label>
+                                                                        Show
+                                                                        <select name="DataTables_Table_0_length"
+                                                                                aria-controls="DataTables_Table_0"
+                                                                                class="custom-select custom-select-sm form-control form-control-sm">
+                                                                            <option value="10">10</option>
+                                                                            <option value="25">25</option>
+                                                                            <option value="50">50</option>
+                                                                            <option value="-1">All</option>
+                                                                        </select>
+                                                                    </label>
                                                                 </div>
-                                                                <div class="row">
-                                                                    <div class="col-sm-12 col-md-5"></div>
-                                                                    <div class="col-sm-12 col-md-7"></div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <div id="tablepage">
+                                                                <div class="dataTables_paginate paging_simple_numbers" id="DataTables_Table_1_previous">
+                                                                        <a href="~#" id="DataTables_Table_1_paginate">
+                                                                    <ul class="pagination">
+                                                                            <li class="paginate_button page-item previous disabled"
+                                                                                aria-controls="DataTables_Table_1"
+                                                                                data-dt-idx="0" tabindex="0"><i class="feather-chevrons-left"></i>
+                                                                             </li>
+                                                                        </a>
+                                                                    
+                                                                         <li class="paginate_button page-item active">
+                                                                     <a href="~#" aria-controls="DataTables_Table_1"
+                                                                           data-dt-idx="1" tabindex="0"
+                                                                           class="page-link">1</a>
+                                                                         </li>
+                                                                          <li class="paginate_button page-item next disabled"
+                                                                        id="DataTables_Table_1_next">
+                                                                        <a href="~#"
+                                                                           aria-controls="DataTables_Table_1"
+                                                                           data-dt-idx="2" tabindex="0"
+                                                                           class="page-link">
+                                                                            <i class="feather-chevrons-right"></i>
+                                                                        </a>
+                                                                        </li>
+                                                                   </ul>
+                                                                </div>
+                                                                <div class="dataTables_paginate paging_simple_numbers"
+                                                                     id="DataTables_Table_0_paginate">
+                                                                    <ul class="pagination">
+                                                                        <li class="paginate_button page-item previous disabled"
+                                                                            id="DataTables_Table_0_previous">
+                                                                            <a href="~#"
+                                                                               aria-controls="DataTables_Table_0"
+                                                                               data-dt-idx="0" tabindex="0"
+                                                                               class="page-link">
+                                                                                <i class="feather-chevrons-left"></i>
+                                                                            </a>
+                                                                        </li>
+                                                                        <li class="paginate_button page-item active">
+                                                                            <a href="~#" aria-controls="DataTables_Table_0"
+                                                                               data-dt-idx="1" tabindex="0"
+                                                                               class="page-link">1</a>
+                                                                        </li>
+                                                                        <li class="paginate_button page-item next disabled"
+                                                                            id="DataTables_Table_0_next">
+                                                                            <a href="~#"
+                                                                               aria-controls="DataTables_Table_0"
+                                                                               data-dt-idx="2" tabindex="0"
+                                                                               class="page-link">
+                                                                                <i class="feather-chevrons-right"></i>
+                                                                            </a>
+                                                                        </li>
+                                                                    </ul>
                                                                 </div>
                                                             </div>
                                                         </div>
                                                     </div>
-
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="tab-footer" style=" margin-top: 10px;">
-                                            <div class="row">
-                                                <div class="col-md-6">
-                                                    <div id="tablelength">
-                                                        <div class="dataTables_length"
-                                                             id="DataTables_Table_1_length">
+                                    </div>
+
+                                </div>
+                            </div>
+                            @* 開團歷史紀錄版面 *@
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    
+                                        <div class="card-header card-header-info border-0">
+                                            <div class="card-header-inner">
+                                                <h4>開團歷史紀錄</h4>
+                                                <p>Access recent invoices related to court bookings </p>
+                                            </div>
+                                            <div class="col-lg-6">
+                                                <div class="coach-active-blk">
+                                                    <div id="tablefilter">
+                                                        <div id="DataTables_Table_1_filter" class="dataTables_filter">
                                                             <label>
-                                                                Show
-                                                                <select name="DataTables_Table_1_length"
-                                                                        aria-controls="DataTables_Table_1"
-                                                                        class="custom-select custom-select-sm form-control form-control-sm">
-                                                                    <option value="10">10</option>
-                                                                    <option value="25">25</option>
-                                                                    <option value="50">50</option>
-                                                                    <option value="-1">All</option>
-                                                                </select>
-                                                            </label>
-                                                        </div>
-                                                        <div class="dataTables_length"
-                                                             id="DataTables_Table_0_length">
-                                                            <label>
-                                                                Show
-                                                                <select name="DataTables_Table_0_length"
-                                                                        aria-controls="DataTables_Table_0"
-                                                                        class="custom-select custom-select-sm form-control form-control-sm">
-                                                                    <option value="10">10</option>
-                                                                    <option value="25">25</option>
-                                                                    <option value="50">50</option>
-                                                                    <option value="-1">All</option>
-                                                                </select>
+                                                                <input type="search" class="form-control form-control-sm"
+                                                                       placeholder="Search" aria-controls="DataTables_Table_1">
                                                             </label>
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="col-md-6">
-                                                    <div id="tablepage">
-                                                        <div class="dataTables_paginate paging_simple_numbers" id="DataTables_Table_1_previous">
-                                                            <a href="~#" id="DataTables_Table_1_paginate">
-                                                                <ul class="pagination">
-                                                                    <li class="paginate_button page-item previous disabled"
-                                                                        aria-controls="DataTables_Table_1"
-                                                                        data-dt-idx="0" tabindex="0"
-                                                                        <class="page-link">
-                                                                        <i class="feather-chevrons-left"></i>
-                                                            </a>
+                                            </div>
+                                        </div>
+                                        <div class="tab-content">
+                                            <div class="tab-pane fade active show" id="nav-Recent" role="tabpanel"
+                                                 aria-labelledby="nav-Recent-tab" tabindex="0">
+                                                <div class="table-responsive table-datatble">
+                                                    <table class="table table-borderless dashboard-card-table">
+                                                        <thead class="thead-light">
+                                                            <tr>
+                                                                <th>過去活動名稱</th>
+                                                                <th>活動時間</th>
+                                                                <th>參加人數</th>
+                                                                <th>建團日期</th>
+                                                                <th>開團狀態</th>
+                                                                <th></th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr v-for="item in axiosBrowsepicture">
+                                                                <td>
+                                                                    <h2 class="table-avatar">
+                                                                        <a href="~/#" data-bs-toggle="modal"
+                                                                           data-bs-target="#upcoming-court"
+                                                                           class="avatar avatar-sm flex-shrink-0">
+                                                                            <img class="avatar-img"
+                                                                                 src="~/assets/img/booking/booking-02.jpg"
+                                                                                 alt="Booking">
+                                                                        </a>
+                                                                        <span class="table-head-name flex-grow-1">
+                                                                            <a data-bs-toggle="modal"
+                                                                               data-bs-target="#upcoming-court">{{item.activityName}}</a>
+                                                                            <span>{{item.MemberId}}</span>
+                                                                        </span>
+                                                                    </h2>
+                                                                </td>
+                                                                <td>
+                                                                    <p>{{item.startTime}}</p>
+                                                                </td>
+                                                                <td>
+                                                                    <h6>{{item.currentPeople}}</h6>
+                                                                </td>
+                                                                <td>{{item.created}}</td>
+                                                                <td class="paid-edit">
+                                                                    <span><i class="feather-edit"></i>{{item.activityStatus}}</span>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                </div>
+                                <div class="tab-footer" style="margin-top: 10px;">
+                                    <div class="tab-footer" style="margin-top: 10px;">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div id="tablelength">
+                                                    <div class="dataTables_length" id="DataTables_Table_1_length">
+                                                        <label>
+                                                            Show
+                                                            <select name="DataTables_Table_1_length"
+                                                                    aria-controls="DataTables_Table_1"
+                                                                    class="custom-select custom-select-sm form-control form-control-sm">
+                                                                <option value="10">10</option>
+                                                                <option value="25">25</option>
+                                                                <option value="50">50</option>
+                                                                <option value="-1">All</option>
+                                                            </select>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div id="tablepage">
+                                                    <div class="dataTables_paginate paging_simple_numbers"
+                                                         id="DataTables_Table_1_paginate">
+                                                        <ul class="pagination">
+                                                            <li class="paginate_button page-item previous disabled"
+                                                                id="DataTables_Table_1_previous">
+                                                                <a href="~#"
+                                                                   aria-controls="DataTables_Table_1" data-dt-idx="0"
+                                                                   tabindex="0" class="page-link">
+                                                                    <i class="feather-chevrons-left"></i>
+                                                                </a>
                                                             </li>
                                                             <li class="paginate_button page-item active">
-                                                                <a href="~#" aria-controls="DataTables_Table_1"
-                                                                   data-dt-idx="1" tabindex="0"
-                                                                   class="page-link">1</a>
+                                                                <a href="~#"
+                                                                   aria-controls="DataTables_Table_1" data-dt-idx="1"
+                                                                   tabindex="0" class="page-link">1</a>
                                                             </li>
                                                             <li class="paginate_button page-item next disabled"
                                                                 id="DataTables_Table_1_next">
                                                                 <a href="~#"
-                                                                   aria-controls="DataTables_Table_1"
-                                                                   data-dt-idx="2" tabindex="0"
-                                                                   class="page-link">
+                                                                   aria-controls="DataTables_Table_1" data-dt-idx="2"
+                                                                   tabindex="0" class="page-link">
                                                                     <i class="feather-chevrons-right"></i>
                                                                 </a>
                                                             </li>
-                                                            </ul>
-                                                        </div>
-                                                        <div class="dataTables_paginate paging_simple_numbers"
-                                                             id="DataTables_Table_0_paginate">
-                                                            <ul class="pagination">
-                                                                <li class="paginate_button page-item previous disabled"
-                                                                    id="DataTables_Table_0_previous">
-                                                                    <a href="~#"
-                                                                       aria-controls="DataTables_Table_0"
-                                                                       data-dt-idx="0" tabindex="0"
-                                                                       class="page-link">
-                                                                        <i class="feather-chevrons-left"></i>
-                                                                    </a>
-                                                                </li>
-                                                                <li class="paginate_button page-item active">
-                                                                    <a href="~#" aria-controls="DataTables_Table_0"
-                                                                       data-dt-idx="1" tabindex="0"
-                                                                       class="page-link">1</a>
-                                                                </li>
-                                                                <li class="paginate_button page-item next disabled"
-                                                                    id="DataTables_Table_0_next">
-                                                                    <a href="~#"
-                                                                       aria-controls="DataTables_Table_0"
-                                                                       data-dt-idx="2" tabindex="0"
-                                                                       class="page-link">
-                                                                        <i class="feather-chevrons-right"></i>
-                                                                    </a>
-                                                                </li>
-                                                            </ul>
-                                                        </div>
+                                                        </ul>
                                                     </div>
                                                 </div>
                                             </div>
@@ -326,141 +461,12 @@
                                     </div>
                                 </div>
                             </div>
-
                         </div>
+                        <!-- /Dashboard Table -->
                     </div>
-                    @* 開團歷史紀錄版面 *@
-                    <div class="row">
-                        <div class="col-lg-12">
-                            <li >
-                                <div class="card-header card-header-info border-0">
-                                    <div class="card-header-inner">
-                                        <h4>開團歷史紀錄</h4>
-                                        <p>Access recent invoices related to court bookings </p>
-                                    </div>
-                                    <div class="col-lg-6">
-                                        <div class="coach-active-blk">
-                                            <div id="tablefilter">
-                                                <div id="DataTables_Table_1_filter" class="dataTables_filter">
-                                                    <label>
-                                                        <input type="search" class="form-control form-control-sm"
-                                                               placeholder="Search" aria-controls="DataTables_Table_1">
-                                                    </label>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="tab-content" id="record">
-                                    <div class="tab-pane fade active show" id="nav-Recent" role="tabpanel"
-                                         aria-labelledby="nav-Recent-tab" tabindex="0">
-                                        <div class="table-responsive table-datatble">
-                                            <table class="table table-borderless dashboard-card-table">
-                                                <thead class="thead-light">
-                                                    <tr>
-                                                        <th>過去活動名稱</th>
-                                                        <th>活動時間</th>
-                                                        <th>參加人數</th>
-                                                        <th>建團日期</th>
-                                                        <th>開團狀態</th>
-                                                        <th></th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <tr  v-for="item in axiosBrowsepicture">
-                                                        <td>
-                                                            <h2 class="table-avatar">
-                                                                <a href="~/#" data-bs-toggle="modal"
-                                                                   data-bs-target="#upcoming-court"
-                                                                   class="avatar avatar-sm flex-shrink-0">
-                                                                    <img class="avatar-img"
-                                                                         src="~/assets/img/booking/booking-02.jpg"
-                                                                         alt="Booking" >
-                                                                </a>
-                                                                <span class="table-head-name flex-grow-1">
-                                                                    <a data-bs-toggle="modal"
-                                                                       data-bs-target="#upcoming-court">{{item.activityName}}</a>
-                                                                    <span>{{item.MemberId}}</span>
-                                                                </span>
-                                                            </h2>
-                                                        </td>
-                                                        <td>
-                                                            <p>{{item.startTime}}</p>
-                                                        </td>
-                                                        <td>
-                                                            <h6>{{item.currentPeople}}</h6>
-                                                        </td>
-                                                        <td>{{item.created}}</td>
-                                                        <td class="paid-edit">
-                                                            <span><i class="feather-edit"></i>{{item.activityStatus}}</span>
-                                                        </td> 
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="tab-footer" style="margin-top: 10px;">
-                                <div class="tab-footer" style="margin-top: 10px;">
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <div id="tablelength">
-                                                <div class="dataTables_length" id="DataTables_Table_1_length">
-                                                    <label>
-                                                        Show
-                                                        <select name="DataTables_Table_1_length"
-                                                                aria-controls="DataTables_Table_1"
-                                                                class="custom-select custom-select-sm form-control form-control-sm">
-                                                            <option value="10">10</option>
-                                                            <option value="25">25</option>
-                                                            <option value="50">50</option>
-                                                            <option value="-1">All</option>
-                                                        </select>
-                                                    </label>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div id="tablepage">
-                                                <div class="dataTables_paginate paging_simple_numbers"
-                                                     id="DataTables_Table_1_paginate">
-                                                    <ul class="pagination">
-                                                        <li class="paginate_button page-item previous disabled"
-                                                            id="DataTables_Table_1_previous">
-                                                            <a href="~#"
-                                                               aria-controls="DataTables_Table_1" data-dt-idx="0"
-                                                               tabindex="0" class="page-link">
-                                                                <i class="feather-chevrons-left"></i>
-                                                            </a>
-                                                        </li>
-                                                        <li class="paginate_button page-item active">
-                                                            <a href="~#"
-                                                               aria-controls="DataTables_Table_1" data-dt-idx="1"
-                                                               tabindex="0" class="page-link">1</a>
-                                                        </li>
-                                                        <li class="paginate_button page-item next disabled"
-                                                            id="DataTables_Table_1_next">
-                                                            <a href="~#"
-                                                               aria-controls="DataTables_Table_1" data-dt-idx="2"
-                                                               tabindex="0" class="page-link">
-                                                                <i class="feather-chevrons-right"></i>
-                                                            </a>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- /Dashboard Table -->
                 </div>
-            </div>
         </div>
-   
+
 
         <!-- /Main Wrapper -->
         <!-- 彈跳刪除開團 -->
@@ -572,7 +578,7 @@
                                                                                     aria-sort="ascending"
                                                                                     aria-label="Court Name: activate to sort column descending"
                                                                                     style="width: 208.688px;">
-                                                                                    開團名稱
+                                                                                    申請者名稱
                                                                                 </th>
 
                                                                                 <th class="sorting"
@@ -583,14 +589,14 @@
                                                                                     style="width: 121.615px;">
                                                                                     申請時間
                                                                                 </th>
-                                                                                <th class="sorting"
-                                                                                    tabindex="0"
-                                                                                    aria-controls="DataTables_Table_0"
-                                                                                    rowspan="1" colspan="1"
-                                                                                    aria-label="Date &amp;amp; Time : activate to sort column ascending"
-                                                                                    style="width: 121.615px;">
-                                                                                    審核確認時間
-                                                                                </th>
+                                                                                @* <th class="sorting"
+                                                                                tabindex="0"
+                                                                                aria-controls="DataTables_Table_0"
+                                                                                rowspan="1" colspan="1"
+                                                                                aria-label="Date &amp;amp; Time : activate to sort column ascending"
+                                                                                style="width: 121.615px;">
+                                                                                審核確認時間
+                                                                                </th> *@
                                                                                 <th class="sorting"
                                                                                     tabindex="0"
                                                                                     aria-controls="DataTables_Table_0"
@@ -599,19 +605,19 @@
                                                                                     style="width: 46.3229px;">
                                                                                     申請狀態
                                                                                 </th>
-                                                                                <th class="sorting"
-                                                                                    tabindex="0"
-                                                                                    aria-controls="DataTables_Table_0"
-                                                                                    rowspan="1" colspan="1"
-                                                                                    aria-label=": activate to sort column ascending"
-                                                                                    style="width: 193.062px;">
-                                                                                </th>
+                                                                                @*  <th class="sorting"
+                                                                                tabindex="0"
+                                                                                aria-controls="DataTables_Table_0"
+                                                                                rowspan="1" colspan="1"
+                                                                                aria-label=": activate to sort column ascending"
+                                                                                style="width: 193.062px;">
+                                                                                </th> *@
                                                                             </tr>
                                                                         </thead>
                                                                         <tbody>
                                                                             <!-- 參加人數展示卡片 -->
-                                                                            <tr role="row" class="odd">
-                                                                                <td class="sorting_1">
+                                                                            <tr role="row" class="odd" v-for="item in currentData">
+                                                                                <td class="sorting_1" >
                                                                                     <h2 class="table-avatar">
                                                                                         <a href="#"
                                                                                            class="avatar avatar-sm  flex-shrink-0">
@@ -620,99 +626,44 @@
                                                                                                  alt="User">
                                                                                         </a>
                                                                                         <span class="table-head-name flex-grow-1">
-                                                                                            <a href="javascript:;"
-                                                                                               data-bs-toggle="modal"
-                                                                                               data-bs-target="#request-court">王大明</a>
+                                                                                            <p>{{item.nickName}}</p>
                                                                                         </span>
                                                                                     </h2>
                                                                                 </td>
                                                                                 <td class="table-date-time">
-                                                                                    <h4>
-                                                                                        星期三, 六月
-                                                                                        11日<span>
-                                                                                            06:00
-                                                                                            PM - 08:00
-                                                                                            PM
-                                                                                        </span>
-                                                                                    </h4>
+                                                                                    <p>
+                                                                                        {{item.dateConvert}} 
+                                                                                        {{item.timeConvert}}
+                                                                                    </p>
                                                                                 </td>
-                                                                                <td class="table-date-time">
-                                                                                    <h4>
-                                                                                        星期三, 六月
-                                                                                        11日<span>
-                                                                                            06:00
-                                                                                            PM - 08:00
-                                                                                            PM
-                                                                                        </span>
-                                                                                    </h4>
-                                                                                </td>
+                                                                                @* <td class="table-date-time">
+                                                                                <h4>
+                                                                                星期三, 六月
+                                                                                11日<span>
+                                                                                06:00
+                                                                                PM - 08:00
+                                                                                PM
+                                                                                </span>
+                                                                                </h4>
+                                                                                </td> *@
                                                                                 <td class="paid-edit">
                                                                                     <span>
-                                                                                        <i class="feather-edit"></i>許可
+                                                                                        <i class="feather-edit"></i>{{item.reviewStatus}}
                                                                                     </span>
                                                                                 </td>
-                                                                                <td class="table-accept-btn text-end">
-                                                                                    <a href="javascript:;"
-                                                                                       class="btn cancel-table-btn"
-                                                                                       data-bs-toggle="modal"
-                                                                                       data-bs-target="#delete-particpate-check">
-                                                                                        <i class="feather-x-circle"></i>取消資格
-                                                                                    </a>
-                                                                                </td>
+                                                                                @* <td class="table-accept-btn text-end">
+                                                                                <a href="javascript:;"
+                                                                                class="btn cancel-table-btn"
+                                                                                data-bs-toggle="modal"
+                                                                                data-bs-target="#delete-particpate-check">
+                                                                                <i class="feather-x-circle"></i>取消資格
+                                                                                </a>
+                                                                                </td> *@
                                                                             </tr>
                                                                             <!-- /參加人數展示卡片 -->
                                                                             <!-- 填充參加人數卡片 -->
-                                                                            <tr role="row" class="odd">
-                                                                                <td class="sorting_1">
-                                                                                    <h2 class="table-avatar">
-                                                                                        <a href="#"
-                                                                                           class="avatar avatar-sm  flex-shrink-0">
-                                                                                            <img class="avatar-img"
-                                                                                                 src="~/assets/img/booking/booking-04.jpg"
-                                                                                                 alt="User">
-                                                                                        </a>
-                                                                                        <span class="table-head-name flex-grow-1">
-                                                                                            <a href="javascript:;"
-                                                                                               data-bs-toggle="modal"
-                                                                                               data-bs-target="#request-court">李小明</a>
-                                                                                        </span>
-                                                                                    </h2>
-                                                                                </td>
-                                                                                <td class="table-date-time">
-                                                                                    <h4>
-                                                                                        星期三, 六月
-                                                                                        11日<span>
-                                                                                            06:00
-                                                                                            PM - 08:00
-                                                                                            PM
-                                                                                        </span>
-                                                                                    </h4>
-                                                                                </td>
-                                                                                <td class="table-date-time">
-                                                                                    <h4>
-                                                                                        星期三, 六月
-                                                                                        11日<span>
-                                                                                            06:00
-                                                                                            PM - 08:00
-                                                                                            PM
-                                                                                        </span>
-                                                                                    </h4>
-                                                                                </td>
-                                                                                <td class="paid-edit">
-                                                                                    <span>
-                                                                                        <i class="feather-edit"></i>許可
-                                                                                    </span>
-                                                                                </td>
-                                                                                <td class="table-accept-btn text-end">
-                                                                                    <a href="javascript:;"
-                                                                                       class="btn cancel-table-btn"
-                                                                                       data-bs-toggle="modal"
-                                                                                       data-bs-target="#request-coche">
-                                                                                        <i class="feather-x-circle">
-                                                                                        </i>取消資格
-                                                                                    </a>
-                                                                                </td>
-                                                                            </tr>
+                                                                           
+                                                                            
                                                                             <!-- /填充參加人數卡片 -->
                                                                         </tbody>
                                                                     </table>
@@ -730,39 +681,39 @@
                                     </div>
                                     <div class="tab-footer" style=" margin-top: 10px;">
                                         <div class="row">
-                                            <div class="col-md-6">
-                                                <div id="tablelength">
-                                                    <div class="dataTables_length"
-                                                         id="DataTables_Table_1_length">
-                                                        <label>
-                                                            Show
-                                                            <select name="DataTables_Table_1_length"
-                                                                    aria-controls="DataTables_Table_1"
-                                                                    class="custom-select custom-select-sm form-control form-control-sm">
-                                                                <option value="10">10</option>
-                                                                <option value="25">25</option>
-                                                                <option value="50">50</option>
-                                                                <option value="-1">All</option>
-                                                            </select>
-                                                        </label>
-                                                    </div>
-                                                    <div class="dataTables_length"
-                                                         id="DataTables_Table_0_length">
-                                                        <label>
-                                                            Show
-                                                            <select name="DataTables_Table_0_length"
-                                                                    aria-controls="DataTables_Table_0"
-                                                                    class="custom-select custom-select-sm form-control form-control-sm">
-                                                                <option value="10">10</option>
-                                                                <option value="25">25</option>
-                                                                <option value="50">50</option>
-                                                                <option value="-1">All</option>
-                                                            </select>
-                                                        </label>
-                                                    </div>
+                                            @* <div class="col-md-6"> *@
+                                                @* <div id="tablelength">
+                                                <div class="dataTables_length"
+                                                id="DataTables_Table_1_length">
+                                                <label>
+                                                Show
+                                                <select name="DataTables_Table_1_length"
+                                                aria-controls="DataTables_Table_1"
+                                                class="custom-select custom-select-sm form-control form-control-sm">
+                                                <option value="10">10</option>
+                                                <option value="25">25</option>
+                                                <option value="50">50</option>
+                                                <option value="-1">All</option>
+                                                </select>
+                                                </label>
                                                 </div>
-                                            </div>
-                                            <div class="col-md-6">
+                                                <div class="dataTables_length"
+                                                id="DataTables_Table_0_length">
+                                                <label>
+                                                Show
+                                                <select name="DataTables_Table_0_length"
+                                                aria-controls="DataTables_Table_0"
+                                                class="custom-select custom-select-sm form-control form-control-sm">
+                                                <option value="10">10</option>
+                                                <option value="25">25</option>
+                                                <option value="50">50</option>
+                                                <option value="-1">All</option>
+                                                </select>
+                                                </label>
+                                                </div>
+                                                </div> *@
+                                            @* </div> *@
+                                            @* <div class="col-md-6">
                                                 <div id="tablepage">
                                                     <div class="dataTables_paginate paging_simple_numbers"
                                                          id="DataTables_Table_1_paginate">
@@ -822,8 +773,8 @@
                                                             </li>
                                                         </ul>
                                                     </div>
-                                                </div>
-                                            </div>
+                                                </div> *@
+                                            @* </div> *@
                                         </div>
                                     </div>
                                 </div>
@@ -833,7 +784,7 @@
                     </div>
                     <div class="modal-footer">
                         <div class="table-accept-btn">
-                            <a href="javascript:;" class="btn cancel-table-btn" data-bs-toggle="modal"
+                            <a  class="btn cancel-table-btn" data-bs-toggle="modal"
                                data-bs-target="#request-reject">上一頁</a>
                         </div>
 
@@ -873,11 +824,11 @@
         </div>
         <!-- /彈跳確定參團人數  -->
     </main>
+    </div>
 </div>
-
 <!-- Hot Member -->
 @section Scripts
-{
+    {
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/3.3.4/vue.global.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.6.0/axios.min.js" integrity="sha512-WrdC3CE9vf1nBf58JHepuWT4x24uTacky9fuzw2g/3L9JkihgwZ6Cfv+JGTtNyosOhEmttMtEZ6H3qJWfI7gIQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="~/assets/js/script.js"></script>
@@ -885,15 +836,16 @@
         var record = Vue.createApp({
             data() {   /* 顯示資料 */
                 return {
-                    axiosBrowsepicture: [{
-                       combination:[],
-                    },
-                    ]
+                    axiosBrowsepicture: [],
+                    combination: [],
+                    showUpdates:[],
+                    currentData:[],
                 };
             },
             mounted() {
                 let _this = this;
                 _this.logBrowsepicture();
+                _this.lookUpdates();
             },
             /* 事件 */
             methods: {
@@ -903,77 +855,43 @@
                     axios.get(`/LaunchaTeamApi/GetByIdOld/1`)
                         .then((result) => { _this.axiosBrowsepicture = result.data; })
                         .catch((error) => alert(`發生錯誤: ${error}`));
-                }
-            },
-        }).mount("#record")
-        var Updates = Vue.createApp({
-            data() {   /* 顯示資料 */
-                return {
-                    showUpdates: [{
-                        combination:[],
-                   
-                    },
-                    ]
-                };
-            },
-            mounted() {
-                let _this = this;
-                _this.lookUpdates();
-            },
-            /* 事件 */
-            methods: {
+                },
                 lookUpdates: function () {  /* 顯示 */
                     let _this = this;
                     axios.get(`/GroupStartingApi/GetByIdNow/1`)
                         .then((viewModel) => { _this.showUpdates = viewModel.data; })
                         .catch((error) => alert(`發生錯誤: ${error}`));
+                },
+                Current: function () {
+                    let _this = this;
+                    axios.get(`/GroupStartingApi/CurrentById/4/4`).then((res) => {_this.currentData=res.data })
+                        .catch((error) => alert(`發生錯誤: ${error}`));
                 }
             },
-        }).mount("#Updates")
-        
+        }).mount("#record")
+        // var Updates = Vue.createApp({
+        //     data() {   /* 顯示資料 */
+        //         return {
+        //             showUpdates: [{
+        //                 combination: [],
 
-            // updateCurrentPeople: function (CurrentPeople) {  /* 編輯 */
-            //     //alert("update");
-            //     let _this = this;
-            //     {
-            //         var item = _this.CurrentPeople[i]
-            //         if (CurrentPeople == _this.CurrentPeople[i].CurrentPeople) {
-            //             item.Edit = true;
-            //         }
-            //     }
-            // },
-
-                //   deletematerial: function () {  /* 刪除 */ 
-                //         let _this = this;
-                //          { 
-                //             axios.delete(`/GroupStartingApi/Delete/{id}`,)
-                //             .then(response => {
-                //              alert(response.data);
-                //             }).catch(err => {
-                //                alert(err);
-                //             }
-                //          }
-                //    });
-            
-
-        
-
-                // filterLaunchaTeam: function () {   /*篩選  放大鏡*/
-                //     let _this = this;
-                //     var request = {};
-                //     request.CurrentPeople = isNaN(Number(_this.filter)) ? -1 :
-                //         Number(_this.filter);
-                //     request.CurrentPeople = request.Activity = _this.filter;
-                //     request.Picture = null;
-                //     axios.post(`$`).then(   /* 發送呼叫 */
-                //         response => {
-                //             _this.filterCategories = response.data;
-                //             for (var i = 0; i < _this.categories[i];
-                //                 item.Edit = false;
-                //         }
-                //         }).catch(err => {
-                //             alert(err)
-                //         });
-                //  }
-                   </script>
+        //             },
+        //             ]
+        //         };
+        //     },
+        //     mounted() {
+        //         let _this = this;
+        //         _this.lookUpdates();
+        //     },
+        //     /* 事件 */
+        //     methods: {
+        //         lookUpdates: function () {  /* 顯示 */
+        //             let _this = this;
+        //             axios.get(`/GroupStartingApi/GetByIdNow/1`)
+        //                 .then((viewModel) => { _this.showUpdates = viewModel.data; })
+        //                 .catch((error) => alert(`發生錯誤: ${error}`));
+        //         }
+        //     },
+        // }).mount("#Updates")
+    </script>
 }
