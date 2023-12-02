@@ -26,38 +26,46 @@ namespace JHobby.Website.Controllers.Api
             _rootPath = $@"{webHostEnvironment.WebRootPath}\activityImages\";
         }
 
+        /// <summary>
+        /// 團主建立
+        /// </summary>
+        /// <param name="activityCreateViewModel"></param>
+        /// <returns></returns>
         [HttpPost]
-        public async Task<bool> Create([FromForm] ActivityCreateViewModel model)
+        public async Task<bool> LeaderCreate([FromForm] ActivityCreateViewModel activityCreateViewModel)
         {
-            try
+            //try
+            //{
+            var picPathList = new List<string>();
+
+            if (activityCreateViewModel.File != null)
             {
-                var picPathList = new List<string>();
-                //save pic
-                if (model.File != null)
+                foreach (var file in activityCreateViewModel.File)
                 {
-                    foreach (var file in model.File)
-                    {
-                        var fullFileName = _rootPath + DateTime.Now.Ticks + file.FileName;
-                        using var fs = new FileStream(fullFileName, FileMode.Create);
-                        await file.CopyToAsync(fs);
-                        picPathList.Add(fullFileName);
-                    }
+                    //var fullFileName = _rootPath + DateTime.Now.Ticks + file.FileName;
+
+                    var fullFileName = $"img{activityCreateViewModel.ActivityId}";
+
+                    using var fs = new FileStream(fullFileName, FileMode.Create);
+
+                    await file.CopyToAsync(fs);
+
+                    picPathList.Add(fullFileName);
                 }
-
-                var activityCreateModel = _mapper.Map<ActivityCreateModel>(model);
-                activityCreateModel.ActivityImages = picPathList.Select(x => new ActivityImageCreateModel { ImageName = x }).ToList();
-
-                var result = _activityService.ActivityCreate(activityCreateModel);
-                return result;
-            }
-            catch (Exception ex)
-            {
-
-                throw ex;
             }
 
-            
+            var activityCreateModel = _mapper.Map<ActivityCreateModel>(activityCreateViewModel);
+
+            activityCreateModel.ActivityImages = picPathList.Select(x => new ActivityImageCreateModel
+            { ImageName = x }).ToList();
+
+            var result = _activityService.ActivityCreate(activityCreateModel);
+
+            return result;
         }
+        //    catch (Exception ex) { throw ex; }
+        //}
+
         //[HttpPost]
         //public bool InsertActivity(ActivityBuildViewModel activityBuildViewModel)
         //{

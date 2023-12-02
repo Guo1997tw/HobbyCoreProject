@@ -9,8 +9,18 @@ namespace JHobby.Repository.Interfaces
 {
 	public interface IActivityRepository		
 	{
-		public bool Insert(ActivityCreateDto dto);
+        /// <summary>
+        /// 團主建立
+        /// </summary>
+        /// <param name="activityCreateDto"></param>
+        /// <returns></returns>
+		public bool ActivityBuild(ActivityCreateDto activityCreateDto);
 
+        /// <summary>
+        /// 活動頁面查詢
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public ActivityPageDto GetActivityPageById(int id);
 
         /// <summary>

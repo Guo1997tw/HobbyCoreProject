@@ -10,13 +10,24 @@ namespace JHobby.Service.Implements
     {
         public readonly IActivityRepository _activityRepository;
         public readonly IMapper _mapper;
+
         public ActivityService(IActivityRepository activityRepository, IMapper mapper)
         {
             _activityRepository = activityRepository;
             _mapper = mapper;
         }
 
-       
+        /// <summary>
+        /// 團主建立
+        /// </summary>
+        /// <param name="activityCreateModel"></param>
+        /// <returns></returns>
+        public bool ActivityCreate(ActivityCreateModel activityCreateModel)
+        {
+            var result = _mapper.Map<ActivityCreateDto>(activityCreateModel);
+
+            return _activityRepository.ActivityBuild(result);
+        }
 
         /// <summary>
         /// 活動頁面查詢
@@ -117,12 +128,6 @@ namespace JHobby.Service.Implements
             }
 
             return true;
-        }
-
-        public bool ActivityCreate(ActivityCreateModel dto)
-        {
-            var result = _mapper.Map<ActivityCreateDto>(dto);
-            return _activityRepository.Insert(result);
         }
     }
 }

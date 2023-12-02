@@ -11,8 +11,13 @@ namespace JHobby.Service.Interfaces
 {
 	public interface IActivityService
 	{
-		//public bool CreateActivityBuild(ActivityBuildModel activityBuildModel);
-        public bool ActivityCreate(ActivityCreateModel dto);
+        /// <summary>
+        /// 團主建立
+        /// </summary>
+        /// <param name="activityCreateModel"></param>
+        /// <returns></returns>
+        public bool ActivityCreate(ActivityCreateModel activityCreateModel);
+
         /// <summary>
         /// 活動頁面查詢
         /// </summary>
@@ -31,7 +36,6 @@ namespace JHobby.Service.Interfaces
         /// </summary>
         /// <param name="memberMsgModel"></param>
         /// <returns></returns>
-
         public bool CreateMsg(MemberInsertMsgModel memberInsertMsgDto);
 
 		/// <summary>

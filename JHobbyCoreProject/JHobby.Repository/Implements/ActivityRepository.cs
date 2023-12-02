@@ -11,172 +11,158 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace JHobby.Repository.Implements;
-
-public class ActivityRepository : IActivityRepository
+namespace JHobby.Repository.Implements
 {
-    private readonly JhobbyContext _dbContext;
-    private readonly IMapper _mapper;
-
-    public ActivityRepository(JhobbyContext dbContext, IMapper mapper)
+    public class ActivityRepository : IActivityRepository
     {
-        _dbContext = dbContext;
-        _mapper = mapper;
-    }
+        private readonly JhobbyContext _jhobbyContext;
+        private readonly IMapper _mapper;
 
-    public bool Insert(ActivityCreateDto dto)
-    {
-        try
+        public ActivityRepository(JhobbyContext jhobbyContext, IMapper mapper)
         {
-            _dbContext.Activities.Add(_mapper.Map<Activity>(dto));
-            _dbContext.SaveChanges();
-            return true;
+            _jhobbyContext = jhobbyContext;
+            _mapper = mapper;
         }
-        catch (Exception)
-        {
-            return false;
-        }
-    }
 
-    /// <summary>
-    /// 活動頁面查詢
-    /// </summary>
-    /// <param name="id"></param>
-    /// <returns></returns>
-    /// <exception cref="NotImplementedException"></exception>
-    public ActivityPageDto GetActivityPageById(int id)
-    {
-        var queryResult = _dbContext.Activities
-            .Include(a => a.ActivityImages)
-            .Where(a => a.ActivityId == id)
-            .Select(a => new ActivityPageDto
+        /// <summary>
+        /// 團主建立
+        /// </summary>
+        /// <param name="activityCreateDto"></param>
+        /// <returns></returns>
+        public bool ActivityBuild(ActivityCreateDto activityCreateDto)
+        {
+            try
             {
-                ActivityId = a.ActivityId,
-                MemberId = a.MemberId,
-                ActivityLocation = a.ActivityLocation,
-                CategoryId = a.CategoryId,
-                CategoryTypeId = a.CategoryTypeId,
-                ActivityName = a.ActivityName,
-                StartTime = a.StartTime,
-                JoinDeadLine = a.JoinDeadLine,
-                ActivityNotes = a.ActivityNotes,
-                ActivityImages = a.ActivityImages.Select(ai => new ActivityImageDto
+                _jhobbyContext.Activities.Add(_mapper.Map<Activity>(activityCreateDto));
+
+                _jhobbyContext.SaveChanges();
+
+                return true;
+            }
+            catch (Exception) { return false; }
+        }
+
+        /// <summary>
+        /// 活動頁面查詢
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        /// <exception cref="NotImplementedException"></exception>
+        public ActivityPageDto GetActivityPageById(int id)
+        {
+            var queryResult = _jhobbyContext.Activities
+                .Include(a => a.ActivityImages)
+                .Where(a => a.ActivityId == id)
+                .Select(a => new ActivityPageDto
                 {
-                    ActivityImageId = ai.ActivityImageId,
-                    AiActivity = ai.ActivityImageId,
-                    ImageName = ai.ImageName,
-                    IsCover = ai.IsCover,
-                    UploadTime = ai.UploadTime,
-                }).ToList()
-            }).FirstOrDefault();
+                    ActivityId = a.ActivityId,
+                    MemberId = a.MemberId,
+                    ActivityLocation = a.ActivityLocation,
+                    CategoryId = a.CategoryId,
+                    CategoryTypeId = a.CategoryTypeId,
+                    ActivityName = a.ActivityName,
+                    StartTime = a.StartTime,
+                    JoinDeadLine = a.JoinDeadLine,
+                    ActivityNotes = a.ActivityNotes,
+                    ActivityImages = a.ActivityImages.Select(ai => new ActivityImageDto
+                    {
+                        ActivityImageId = ai.ActivityImageId,
+                        AiActivity = ai.ActivityImageId,
+                        ImageName = ai.ImageName,
+                        IsCover = ai.IsCover,
+                        UploadTime = ai.UploadTime,
+                    }).ToList()
+                }).FirstOrDefault();
 
-        return queryResult;
-    }
-
-    /// <summary>
-    /// 會員留言板查詢
-    /// </summary>
-    /// <returns></returns>
-    public IEnumerable<MemberMsgDto> GetMsgList(int id)
-    {
-        var result = _dbContext.Members.Join(_dbContext.MsgBoards, m => m.MemberId, mb => mb.MemberId, (m, mb) => new MemberMsgDto
-        {
-            ActivityId = mb.ActivityId,
-            HeadShot = m.HeadShot,
-            MessageTime = mb.MessageTime,
-            MessageText = mb.MessageText,
-            NickName = m.NickName
-        }).Where(f => f.ActivityId == id).ToList();
-
-        return result;
-    }
-    /// <summary>
-    /// 會員留言板新增
-    /// </summary>
-    /// <param name="id"></param>
-    /// <param name="memberInsertMsgDto"></param>
-    /// <returns></returns>
-    public bool InsertMsg(MemberInsertMsgDto memberInsertMsgDto)
-    {
-        var mapper = new MsgBoard
-        {
-            MemberId = memberInsertMsgDto.MemberId,
-            ActivityId = memberInsertMsgDto.ActivityId,
-            MessageTime = memberInsertMsgDto.MessageTime,
-            MessageText = memberInsertMsgDto.MessageText,
-        };
-
-        _dbContext.MsgBoards.Add(mapper);
-        _dbContext.SaveChanges();
-
-        return true;
-    }
-
-    /// <summary>
-    /// 查詢會員活動申請者是否已參團或本身是開團者
-    /// </summary>
-    /// <returns></returns>
-    public bool GetStatusById(int memberId, int activityId)
-    {
-        if (_dbContext.Activities.Any(a => a.MemberId == memberId && a.ActivityId == activityId))
-        {
-            return true;
-        }
-        if (_dbContext.ActivityUsers.Any(a => a.MemberId == memberId && a.ActivityId == activityId))
-        {
-            return true;
+            return queryResult;
         }
 
-        return false;
-    }
-
-    /// <summary>
-    /// 活動申請
-    /// </summary>
-    /// <returns></returns>
-    public bool InsertActivityUser(ActivityUserInsertDto activityUserInsert)
-    {
-        if (_dbContext.ActivityUsers.Any(a=>a.ActivityId==activityUserInsert.ActivityId && a.MemberId==activityUserInsert.MemberId))
+        /// <summary>
+        /// 會員留言板查詢
+        /// </summary>
+        /// <returns></returns>
+        public IEnumerable<MemberMsgDto> GetMsgList(int id)
         {
-            return false;
-        }
-        try
-        {
-            var mapper = new ActivityUser
+            var result = _jhobbyContext.Members.Join(_jhobbyContext.MsgBoards, m => m.MemberId, mb => mb.MemberId, (m, mb) => new MemberMsgDto
             {
-                MemberId = activityUserInsert.MemberId,
-                ActivityId = activityUserInsert.ActivityId,
-                ReviewStatus = activityUserInsert.ReviewStatus,
-                ReviewTime = activityUserInsert.ReviewTime,
-            };
-            _dbContext.ActivityUsers.Add(mapper);
-            _dbContext.SaveChanges();
+                ActivityId = mb.ActivityId,
+                HeadShot = m.HeadShot,
+                MessageTime = mb.MessageTime,
+                MessageText = mb.MessageText,
+                NickName = m.NickName
+            }).Where(f => f.ActivityId == id).ToList();
+
+            return result;
         }
-        catch (Exception)
+
+        /// <summary>
+        /// 會員留言板新增
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="memberInsertMsgDto"></param>
+        /// <returns></returns>
+        public bool InsertMsg(MemberInsertMsgDto memberInsertMsgDto)
         {
+            var mapper = new MsgBoard
+            {
+                MemberId = memberInsertMsgDto.MemberId,
+                ActivityId = memberInsertMsgDto.ActivityId,
+                MessageTime = memberInsertMsgDto.MessageTime,
+                MessageText = memberInsertMsgDto.MessageText,
+            };
+
+            _jhobbyContext.MsgBoards.Add(mapper);
+            _jhobbyContext.SaveChanges();
+
+            return true;
+        }
+
+        /// <summary>
+        /// 查詢會員活動申請者是否已參團或本身是開團者
+        /// </summary>
+        /// <returns></returns>
+        public bool GetStatusById(int memberId, int activityId)
+        {
+            if (_jhobbyContext.Activities.Any(a => a.MemberId == memberId && a.ActivityId == activityId))
+            {
+                return true;
+            }
+            if (_jhobbyContext.ActivityUsers.Any(a => a.MemberId == memberId && a.ActivityId == activityId))
+            {
+                return true;
+            }
+
             return false;
         }
 
-        return true;
+        /// <summary>
+        /// 活動申請
+        /// </summary>
+        /// <returns></returns>
+        public bool InsertActivityUser(ActivityUserInsertDto activityUserInsert)
+        {
+            if (_jhobbyContext.ActivityUsers.Any(a => a.ActivityId == activityUserInsert.ActivityId && a.MemberId == activityUserInsert.MemberId))
+            {
+                return false;
+            }
+            try
+            {
+                var mapper = new ActivityUser
+                {
+                    MemberId = activityUserInsert.MemberId,
+                    ActivityId = activityUserInsert.ActivityId,
+                    ReviewStatus = activityUserInsert.ReviewStatus,
+                    ReviewTime = activityUserInsert.ReviewTime,
+                };
+                _jhobbyContext.ActivityUsers.Add(mapper);
+                _jhobbyContext.SaveChanges();
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+
+            return true;
+        }
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

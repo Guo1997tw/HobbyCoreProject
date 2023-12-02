@@ -17,5 +17,6 @@ public class RepositoryProfile : Profile
         CreateMap<WishCreateDto, Wish>();
         CreateMap<Activity, ActivityPageDto>();
         CreateMap<ActivityImage, ActivityPageDto>();
+        CreateMap<ActivityImageCreateDto, ActivityImage>();
     }
 }
