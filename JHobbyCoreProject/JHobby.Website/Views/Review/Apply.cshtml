@@ -243,7 +243,7 @@
             methods: {
                 axiosGetReviewById: function () {
                     axios
-                        .get(`/ReviewApi/GetReviewById/4`)
+                        .get(`/ReviewApi/GetReviewById/${@Model.MemberId}`)
                         .then((response) => {
                             let _this = this;
                             _this.reviewData = response.data;
