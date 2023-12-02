@@ -47,6 +47,8 @@ namespace JHobby.Service.Implements
                 .Select(s => new NowJoinAGroupModel
                 {
                     ActivityName = s.ActivityName,
+                    ActivityUserId = s.ActivityUserId,
+                    MemberId = s.MemberId,
                     ReviewStatus = _iCommonService.ConvertReviewStatus(s.ReviewStatus),
                     CurrentPeople = s.CurrentPeople,
                     MaxPeople = s.MaxPeople,
