@@ -49,7 +49,6 @@ namespace JHobby.Website
 
             // Interface DI
             builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
-			// Interface DI
 			builder.Services.AddScoped<IGroupStartingRepository, GroupStartingRepository>();
 			builder.Services.AddScoped<IGroupStartingService, GroupStartingService>();
 			builder.Services.AddScoped<ILaunchaTeamRepository, LaunchaTeamRepository>();
@@ -84,6 +83,7 @@ namespace JHobby.Website
             builder.Services.AddScoped<IWishListRepository, WishListRepository>();
             builder.Services.AddScoped<IWishListService, WishListService>();
             builder.Services.AddScoped<ISendMailService, SendMailService>();
+            builder.Services.AddHttpContextAccessor();
             builder.Services.AddScoped<IUserAuthenticationService, UserAuthenticationService>();
 
             // DI Authentication

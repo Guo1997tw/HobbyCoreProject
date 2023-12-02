@@ -21,17 +21,15 @@ namespace JHobby.Website.Controllers.Api
         private readonly IMemberRepository _memberRepository;
         private readonly ISendMailService _sendMailService;
         private readonly IMapper _mapper;
-        private readonly IUserAuthenticationService _userAuthenticationService;
 
-        public MemberApiController(IMemberService memberService, IMapper mapper, ISendMailService sendMailService, IMemberRepository memberRepository, IUserAuthenticationService userAuthenticationService)
+        public MemberApiController(IMemberService memberService, IMapper mapper, ISendMailService sendMailService, IMemberRepository memberRepository)
         {
             _memberService = memberService;
             _mapper = mapper;
             _sendMailService = sendMailService;
             _memberRepository = memberRepository;
-            _userAuthenticationService = userAuthenticationService;
         }
-
+        
         [HttpPost]
         public bool InsertRegister(MemberRegisterViewModel memberRegisterViewModel)
         {
@@ -56,8 +54,6 @@ namespace JHobby.Website.Controllers.Api
         {
             if (_memberService.CheckMemberLogin(memberLoginViewModel.Account, memberLoginViewModel.HashPassword))
             {
-                var memberId = _userAuthenticationService.GetUserId();
-
                 var member = _memberService.MemberStatus(memberLoginViewModel.Account);
 
                 // 快速會員

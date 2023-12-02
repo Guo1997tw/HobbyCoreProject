@@ -8,8 +8,6 @@ namespace JHobby.Repository.Models.Dto
 {
     public class MemberLoginDto
     {
-        public int MemberId { get; set; }
-
         public string Account { get; set; } = null!;
 
         public string HashPassword { get; set; } = null!;

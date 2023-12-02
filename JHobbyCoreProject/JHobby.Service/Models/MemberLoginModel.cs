@@ -8,8 +8,6 @@ namespace JHobby.Service.Models
 {
     public class MemberLoginModel
     {
-        public int MemberId { get; set; }
-
         public string Account { get; set; } = null!;
 
         public string HashPassword { get; set; } = null!;
