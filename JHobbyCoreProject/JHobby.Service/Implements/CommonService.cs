@@ -23,6 +23,7 @@ namespace JHobby.Service.Implements
                 "0" => "黑名單",
                 "1" => "進行中",
                 "2" => "已完成",
+                "3" => "已取消",
                 _ => "未知"
             };
         }
