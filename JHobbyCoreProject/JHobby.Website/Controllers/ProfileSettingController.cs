@@ -9,5 +9,14 @@ namespace JHobby.Website.Controllers
         {
             return View();
         }
+
+        /// <summary>
+        /// 修改密碼
+        /// </summary>
+        /// <returns></returns>
+        public IActionResult ChangePwd()
+        {
+            return View();
+        }
     }
 }
