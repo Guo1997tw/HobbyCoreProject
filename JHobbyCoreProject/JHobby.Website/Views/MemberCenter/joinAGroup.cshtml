@@ -77,10 +77,37 @@
                                                     </td>
                                                     <td>
                                                         <div class="dropdown dropdown-action">
-                                                            <a href="/#" class="action-icon dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-ellipsis"></i></a>
-                                                            <div class="dropdown-menu dropdown-menu-end" data-popper-placement="bottom-end" data-popper-escaped="" style="position: absolute; inset: 0px 0px auto auto; margin: 0px; transform: translate3d(-1440px, 2px, 0px);" data-popper-reference-hidden="">
-                                                                <a class="dropdown-item" href="/javascript:void(0);">
-                                                                    <i class="feather-x-circle"></i> Cancel
+                                                            <a href="#"
+                                                               class="action-icon dropdown-toggle"
+                                                               data-bs-toggle="dropdown"
+                                                               aria-expanded="false"
+                                                               @@click="setCurrentCard(filterCard[index])">
+                                                                <i class="fas fa-ellipsis"></i>
+                                                            </a>
+                                                            <div class="dropdown-menu dropdown-menu-end"
+                                                                 data-popper-placement="bottom-end"
+                                                                 data-popper-escaped=""
+                                                                 style="
+                                                                         position: absolute;
+                                                                         inset: 0px 0px auto auto;
+                                                                         margin: 0px;
+                                                                         transform: translate3d(
+                                                                           -1440px,
+                                                                           2px,
+                                                                           0px
+                                                                         );
+                                                                       "
+                                                                 data-popper-reference-hidden="">
+                                                                <a class="dropdown-item"
+                                                                   href="https://localhost:7097/Activity/ActivityPage/7">
+                                                                    <i class="feather-x-circle"></i>
+                                                                    前往頁面
+                                                                </a>
+                                                                <a class="dropdown-item"
+                                                                   href=""
+                                                                   @@click="joinAGroupCancel">
+                                                                    <i class="feather-x-circle"></i>
+                                                                    取消報名
                                                                 </a>
                                                             </div>
                                                         </div>
@@ -348,7 +375,7 @@
             </div>
         </div>
         <!-- /Page Content -->
-        
+
     </main>
 </div>
 
@@ -366,6 +393,7 @@
                     countPerPage: 2,
                     pageNumber: 1,
                     memberId: '2',
+                    currentCard: "",
                 };
             },
             mounted() {
@@ -391,7 +419,25 @@
                 },
                 pageClick(num) {
                     this.pageNumber = num;
-                }
+                },
+                joinAGroupCancel() {
+                    let _this = this;
+                    var form = new FormData();
+                    form.append("ReviewStatus", 3);
+                    axios
+                        .put(
+                            `/NowJoinAGroupApi/NowJoinAGroupCancel/${_this.currentCard.activityUserId}/${_this.currentCard.memberId}`,
+                            form,
+                            {
+                                headers: { "Content-Type": "multipart/Formdata" },
+                            }
+                        )
+                        .then((response) => alert("更新成功"))
+                        .catch((erro) => alert(`Erro: ${erro}`));
+                },
+                setCurrentCard(card) {
+                    this.currentCard = card;
+                },
             },
         })
             .component("paginate", VuejsPaginateNext)
