@@ -41,7 +41,7 @@ namespace JHobby.Repository.Implements
 
         public IEnumerable<NowJoinAGroupDto> GetNowJoinAGroupById(int memberId)
         {
-            var activityUser = _jhobbyContext.Members.Select(x => new { id=x.MemberId,nickName=x.NickName }) ;
+            var activityUser = _jhobbyContext.Members.Select(x => new { id = x.MemberId, nickName = x.NickName });
             return _jhobbyContext.ActivityUsers
             .Where(Au => Au.MemberId == memberId
             && (Au.ReviewStatus == "0")
@@ -58,6 +58,24 @@ namespace JHobby.Repository.Implements
                 NickName = activityUser.FirstOrDefault(z => z.id == a.Activity.MemberId).nickName,
                 StartTime = a.Activity.StartTime,
             });
+        }
+
+        public bool NowJoinAGroupCancel(int activityUserId, int memberId, NowJoinAGroupCancelDto aGroupCancelDto)
+        {
+            var cancelDto = _jhobbyContext.ActivityUsers
+                .FirstOrDefault(Au =>
+                Au.MemberId == memberId
+                && Au.ActivityUserId == activityUserId);
+
+            if (cancelDto != null)
+            {
+                cancelDto.ReviewStatus = aGroupCancelDto.ReviewStatus;
+                _jhobbyContext.SaveChanges();
+                return true;
+            }
+            else { return false; }
+           
+
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using JHobby.Service.Interfaces;
+using JHobby.Service.Models;
 using JHobby.Website.Models.ViewModels;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
@@ -54,6 +55,18 @@ namespace JHobby.Website.Controllers.Api
                     TimeConvert = s.TimeConvert,
                 }
             );
+        }
+
+        [HttpPut("{activityUserId}/{memberId}")]
+        public ActionResult NowJoinAGroupCancel(int activityUserId, int memberId, [FromForm] NowJoinAGroupCancelViewModel nowJoinAGroupCancel)
+        {
+            var mapping = new NowJoinAGroupCancelModel
+            {
+                ReviewStatus = nowJoinAGroupCancel.ReviewStatus,
+            };
+
+            _aNowJoinAGroupService.NowJoinAGroupCancel(activityUserId, memberId, mapping);
+            return Ok("修改成功");
         }
     }
 }
