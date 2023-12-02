@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal;
 
 namespace JHobby.Website.Controllers.Api
 {
-    [Route("api/ProfileSetting/[action]")]
+    [Route("[controller]/[action]")]
     [ApiController]
     public class ProfileSettingApiController : ControllerBase
     {
@@ -81,7 +81,7 @@ namespace JHobby.Website.Controllers.Api
         }
 
         [HttpPut("{id}")] //服務讓定義的方法成立
-        public bool UpdateProfileSetting(int id, [FromForm] UpdateProfileSettingViewModel updateProfileSettingViewModel)
+        public  bool  UpdateProfileSetting(int id, [FromForm] UpdateProfileSettingViewModel updateProfileSettingViewModel)
         {
             var mapper = new UpdateProfileSettingModel
             {
@@ -105,11 +105,12 @@ namespace JHobby.Website.Controllers.Api
             {
                 if (updateProfileSettingViewModel.File.Length > 0)
                 {
-                    string SavePath = $@"{_Path}{updateProfileSettingViewModel.File.FileName}";
-
+                    string fileName = mapper.HeadShot+".jpg";
+                    string SavePath = $@"{_Path}{fileName}";
+                    
                     using (var steam = new FileStream(SavePath, FileMode.Create))
                     {
-                        updateProfileSettingViewModel.File.CopyToAsync(steam);
+                         updateProfileSettingViewModel.File.CopyTo(steam);
                     }
                 }
             }

@@ -7,9 +7,8 @@ namespace JHobby.Website.Controllers
 {
     public class ProfileSettingController : Controller
     {
-        public IActionResult ProfileSetting(int id)
+        public IActionResult ProfileSetting()
         {
-            ViewBag.memberid=id;
             return View();
         }
     }
