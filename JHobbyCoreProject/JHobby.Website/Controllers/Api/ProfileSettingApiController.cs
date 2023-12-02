@@ -35,6 +35,7 @@ namespace JHobby.Website.Controllers.Api
             var viewModel = new ProfileSettingViewModel
             {
                 HeadShot = serviceModel.HeadShot,
+                Account = serviceModel.Account,
                 Status = serviceModel.Status,
                 MemberId = serviceModel.MemberId,
                 MemberName = serviceModel.MemberName,
@@ -79,13 +80,13 @@ namespace JHobby.Website.Controllers.Api
             return files;
         }
 
-        [HttpPut("{id}")]
+        [HttpPut("{id}")] //服務讓定義的方法成立
         public bool UpdateProfileSetting(int id, [FromForm] UpdateProfileSettingViewModel updateProfileSettingViewModel)
         {
             var mapper = new UpdateProfileSettingModel
             {
                 HeadShot = updateProfileSettingViewModel.HeadShot,
-                Status = updateProfileSettingViewModel.Status,
+                //Status = updateProfileSettingViewModel.Status,
                 MemberName = updateProfileSettingViewModel.MemberName,
                 NickName = updateProfileSettingViewModel.NickName,
                 Gender = updateProfileSettingViewModel.Gender,

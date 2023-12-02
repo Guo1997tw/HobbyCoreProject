@@ -1,4 +1,8 @@
-﻿<partial name="_BreadcrumbPartial" />
+﻿@{
+   int _memberId = ViewBag.memberid;
+}
+
+<partial name="_BreadcrumbPartial" />
 <partial name="_DashboardMenuPartial" />
 <partial name="_PersonalcrumbPartial" />
 <div id="global-loader" style="display: none;">
@@ -38,7 +42,7 @@
                                                 <p>請上傳您的個人照片</p>
                                                 <span>
                                                     <i class="feather-edit-3"></i>
-                                                    <input type="file" id="file-input" @@change="uploadPic">
+                                                    <input type="file" id="file-input" @@change="uploadPic" >
                                                 </span>
                                             </div>
                                             <h5>請上傳一個最小尺寸為 150 * 150 像素的圖檔（JPG、PNG、SVG）</h5>
@@ -47,8 +51,8 @@
                                 </div>
                                 <div class="col-lg-12 col-md-6">
                                     <div class="input-space">
-                                        <label class="form-label">會員編號</label>
-                                        <input type="text" class="form-control" id="name" v-model="ProfileSetting.memberId" readonly>
+                                        <label class="form-label">會員帳號</label>
+                                        <input type="text" class="form-control" id="name" v-model="ProfileSetting.account" readonly>
                                     </div>
                                 </div>
                                 <div class="col-lg-12 col-md-6">
@@ -71,9 +75,14 @@
                                 </div>
                                 <div class="col-lg-12 col-md-6">
                                     <div class="input-space">
-                                        <label class="form-label">性別</label>
-                                        <input type="text" class="form-control" id="name" v-model="ProfileSetting.gender" >
+                                        <label class="form-label">請填寫性別(女性、男性、雙性)</label>
                                         <hr>
+                                        <label class="form-label">性別</label>
+@*                                         <input type="text" class="form-control" id="name" v-model="ProfileSetting.gender" > *@
+                                        <select2 style="width:100%" :options="genderList" v-model:value="ProfileSetting.gender">
+                                            <option disabled value="XX">請選擇</option>
+@*                                             <option v-for="option in GenderOptions" :key="option.id" :value="option.text">{{ option.text }}</option> *@
+                                        </select2>
                                     </div>
                                 </div>
                                 <div class="col-lg-12 col-md-6">
@@ -85,7 +94,7 @@
                                 <div class="col-lg-12 col-md-6">
                                     <div class="input-space">
                                         <label class="form-label">出生年月日</label>
-                                        <input type="datetime" class="form-control" id="name" v-model="ProfileSetting.birthday" >
+                                        <input id="datatest" type="date" class="form-control" id="name" v-model="ProfileSetting.birthday" >
                                     </div>
                                 </div>
                                 <div class="col-lg-12 col-md-6">
@@ -148,9 +157,10 @@
                     file: null,
                     ProfileSetting: {
                         headShot: "",
+                        account:"",
                         status: "",
-                        memberId: "1",
-                        memberName: "XXX",
+                        memberId: "",
+                        memberName: "",
                         nickName: "",
                         gender: "",
                         identityCard: "",
@@ -161,6 +171,13 @@
                         phone: "",
                         personalProfile: ""
                     },
+                    GenderOptions: [
+                        { id: '0', text: '女性' },
+                        { id: '1', text: '男性' },
+                        { id: '2', text: '雙性' },
+                        // Add more options as needed
+                    ],
+                    test: ""
                 };
             },
             computed: {
@@ -181,7 +198,15 @@
                             text: x.AreaName
                         }
                     })
-                }
+                },
+                genderList() {
+                    return this.GenderOptions.map(x => {
+                        return {
+                            id: x.id,
+                            text: x.text
+                        }
+                    })
+                },
             },
             methods: {
                 uploadPic(e) {
@@ -190,11 +215,17 @@
                     this.defaultPic = URL.createObjectURL(e.target.files[0]);
                 },
                 Send() {
+                    this.img(this.ProfileSetting.memberId)
+                    // 檢查是否有上傳圖片
+                    if (!this.file) {
+                        alert("請上傳您的個人照片");
+                        return; // 阻止儲存操作
+                    }
                     var temp;
                     var formData = new FormData();
-                    if (this.file) formData.append('file', this.file);
+                    if (this.file) formData.append('file', this.file,this.test);
                     formData.append('headShot', this.ProfileSetting.headShot);
-                    formData.append('status', this.ProfileSetting.status);
+                    // formData.append('status', this.ProfileSetting.status);
                     formData.append('memberName', this.ProfileSetting.memberName);
                     formData.append('nickName', this.ProfileSetting.nickName);
                     formData.append('gender', this.ProfileSetting.gender);
@@ -212,7 +243,7 @@
                     // }
 
 
-                    fetch("/api/ProfileSetting/UpdateProfileSetting/1", {
+                    fetch("/api/ProfileSetting/UpdateProfileSetting/3", {
                         method: "put",
                         body: formData
                     })
@@ -226,7 +257,7 @@
                         this.file = null;
 
                         // 重新發起 API 請求
-                        fetch(`/api/ProfileSetting/GetById/1`)
+                    fetch("/api/ProfileSetting/GetById/3")
                             .then(r => r.json())
                             .then(d => {
                                 this.ProfileSetting = d;
@@ -235,19 +266,23 @@
                                 console.error('Error fetching data:', error);
                             });
                 },
+                img(id) {
+                    this.test = "HeadShot" + id + ".jpg"
+                }
 
             },
             mounted() {
                 let self = this;
 
                 // 使用 fetch API 來取得 API 的回應
-                fetch("/api/ProfileSetting/GetById/1")
+                fetch("/api/ProfileSetting/GetById/3")
                     .then(r => r.json())
                     .then(d => {
                         self.ProfileSetting = d;
                         // alert(JSON.stringify(d));
                     }); // 注意這裡是 d[0]
             },
+
         }).component('select2', select2).mount("#app");
     </script>
 }

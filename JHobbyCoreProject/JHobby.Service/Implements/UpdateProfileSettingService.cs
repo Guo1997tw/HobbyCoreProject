@@ -24,7 +24,7 @@ namespace JHobby.Service.Implements
             var mapper = new UpdateProfileSettingDto
             {
                 HeadShot = updateProfileSettingModel.HeadShot,
-                Status = updateProfileSettingModel.Status,
+                //Status = updateProfileSettingModel.Status,
                 MemberName = updateProfileSettingModel.MemberName,
                 NickName = updateProfileSettingModel.NickName,
                 Gender = updateProfileSettingModel.Gender,
