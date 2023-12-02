@@ -56,16 +56,17 @@ namespace JHobby.Repository.Implements
 
 			return false;
 		}
-		public bool Delete(int id)
+		public bool UpdateActivityStatus(int id, ActivityStatusDto activityStatusDto)
 		{
 			var queryResult = _jhobbyContext.Activities.FirstOrDefault(g => g.ActivityId == id);
 
-			if (queryResult == null) { return false; }
+			if (queryResult != null)
+			{
+				queryResult.ActivityStatus = activityStatusDto.ActivityStatus;
+				_jhobbyContext.SaveChanges();
+			}
 
-			_jhobbyContext.Activities.Remove(queryResult);
-			_jhobbyContext.SaveChanges();
-
-			return true;
+            return true;
 		}
 
 		public IEnumerable<GroupStartingDto?> GetByIdNow(int id)

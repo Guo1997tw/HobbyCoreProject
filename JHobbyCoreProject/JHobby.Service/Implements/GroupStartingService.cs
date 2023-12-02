@@ -35,16 +35,16 @@ namespace JHobby.Service.Implements
 			   });
 
 		}
-		public bool Delete(int id)
-		{
-			var queryResult = _groupStartingRepository.GetByIdNow(id);
+		//public bool Delete(int id)
+		//{
+		//	var queryResult = _groupStartingRepository.GetByIdNow(id);
 
-			if (queryResult == null) return false;
+		//	if (queryResult == null) return false;
 
-			_groupStartingRepository.Delete(id);
+		//	_groupStartingRepository.Delete(id);
 
-			return true;
-		}
+		//	return true;
+		//}
 
 		public bool Update(int id, GroupStartingModel GroupStartingModel)
 		{

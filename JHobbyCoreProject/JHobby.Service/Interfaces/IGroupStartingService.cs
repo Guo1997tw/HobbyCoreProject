@@ -12,7 +12,7 @@ namespace JHobby.Service.Interfaces
 	{
 		public IEnumerable<GroupStartingModel> GetGroupStartingAll();
 		public IEnumerable<GroupStartingModel?> GetByIdNow(int id);
-		public bool Delete(int id);
+		//public bool Delete(int id);
 		public bool Update(int id, GroupStartingModel groupStartingModel);
 
 	}

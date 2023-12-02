@@ -5,6 +5,8 @@ using JHobby.Service.Models;
 using JHobby.Website.Models.ViewModels;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
+using JHobby.Repository.Interfaces;
+using JHobby.Repository.Implements;
 
 namespace JHobby.Website.Controllers.Api
 {
@@ -14,11 +16,12 @@ namespace JHobby.Website.Controllers.Api
 	{
 		private readonly IGroupStartingService _GroupStartingService;
         private readonly IWebHostEnvironment _webHostEnvironment;
-        public GroupStartingApiController(IGroupStartingService GroupStartingService , IWebHostEnvironment webHostEnvironment)
+		private readonly IGroupStartingRepository _groupStartingRepository;
+        public GroupStartingApiController(IGroupStartingService GroupStartingService , IWebHostEnvironment webHostEnvironment, IGroupStartingRepository groupStartingRepository)
 		{
 			_GroupStartingService = GroupStartingService;
             _webHostEnvironment = webHostEnvironment;
-
+			_groupStartingRepository = groupStartingRepository;
         }
 
 		[HttpGet]
@@ -53,15 +56,16 @@ namespace JHobby.Website.Controllers.Api
 
 			return Ok(result);
 		}
-		[HttpDelete("{id}")]
-		public IActionResult Delete(int id)
+		[HttpPut("{id}")]
+		public IActionResult ActivityStatus(int id, ActivityStatusViewModel activityStatusViewModel)
 		{
-			if (id < 0) { return BadRequest(); }
+			var mapper = new ActivityStatusDto {
+            ActivityStatus = activityStatusViewModel.ActivityStatus,
+            };
 
-			var result = _GroupStartingService.Delete(id);
-
-			return Ok(result);
-		}
+            _groupStartingRepository.UpdateActivityStatus(id, mapper);
+            return Ok(mapper);
+        }
 		[HttpGet("{id}")]
 		public IEnumerable<GroupStartingViewModel> GetByIdNow(int id)
 		{
