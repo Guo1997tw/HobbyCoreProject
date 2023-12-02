@@ -1,14 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace JHobby.Repository.Models.Dto		
+namespace JHobby.Service.Models
 {
-	public class ActivityCreateDto
-	{
+    public class ActivityCreateModel
+    {
         public int MemberId { get; set; }
 
         public int CategoryId { get; set; }
@@ -41,8 +40,6 @@ namespace JHobby.Repository.Models.Dto
 
         public DateTime JoinDeadLine { get; set; }
 
-        public List<ActivityImageCreateDto> ActivityImages { get; set; }
-
-
+        public List<ActivityImageCreateModel> ActivityImages { get; set; }
     }
 }

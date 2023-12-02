@@ -17,64 +17,89 @@ namespace JHobby.Website.Controllers.Api
     {
         private readonly IActivityService _activityService;
         private readonly IMapper _mapper;
-        string _Path;
+        private readonly string _rootPath;
 
         public ActivityApiController(IActivityService activityService, IMapper mapper, IWebHostEnvironment webHostEnvironment)
         {
             _activityService = activityService;
             _mapper = mapper;
-            _Path = $@"{webHostEnvironment.WebRootPath}\profile\";
-        }
-
-        FileInfo[] GetFiles()
-        {
-            DirectoryInfo directoryInfo = new DirectoryInfo(_Path);
-            FileInfo[] files = directoryInfo.GetFiles();
-            return files;
+            _rootPath = $@"{webHostEnvironment.WebRootPath}\activityImages\";
         }
 
         [HttpPost]
-        public bool InsertActivity(ActivityBuildViewModel activityBuildViewModel)
+        public async Task<bool> Create([FromForm] ActivityCreateViewModel model)
         {
-            //        foreach (var activityBuildViewModel.File in activityBuildViewModel)
-            //{
-            var resultA = new ActivityBuildModel
+            try
             {
-                ActivityCity = activityBuildViewModel.ActivityCity,
-                ActivityArea = activityBuildViewModel.ActivityArea,
-                ActivityLocation = activityBuildViewModel.ActivityLocation,
-                StartTime = activityBuildViewModel.StartTime,
-                MaxPeople = activityBuildViewModel.MaxPeople,
-                CategoryId = activityBuildViewModel.CategoryId,
-                CategoryTypeId = activityBuildViewModel.CategoryTypeId,
-                JoinDeadLine = activityBuildViewModel.JoinDeadLine,
-                JoinFee = activityBuildViewModel.JoinFee,
-                ActivityNotes = activityBuildViewModel.ActivityNotes,
-                MemberId = activityBuildViewModel.MemberId,
-                ActivityStatus = activityBuildViewModel.ActivityStatus,
-                Payment = activityBuildViewModel.Payment,
-                Created = activityBuildViewModel.Created
-            };
-
-            _activityService.CreateActivityBuild(resultA);
-
-
-            //foreach (var activityBuildViewModel.File in activityBuildViewModel)
-            //{
-            if (activityBuildViewModel.File != null)
-            {
-                if (activityBuildViewModel.File.Length > 0)
+                var picPathList = new List<string>();
+                //save pic
+                if (model.File != null)
                 {
-                    string SavePath = $@"{_Path}{activityBuildViewModel.File.FileName}";
-
-                    using (var steam = new FileStream(SavePath, FileMode.Create))
+                    foreach (var file in model.File)
                     {
-                        activityBuildViewModel.File.CopyToAsync(steam);
+                        var fullFileName = _rootPath + DateTime.Now.Ticks + file.FileName;
+                        using var fs = new FileStream(fullFileName, FileMode.Create);
+                        await file.CopyToAsync(fs);
+                        picPathList.Add(fullFileName);
                     }
                 }
+
+                var activityCreateModel = _mapper.Map<ActivityCreateModel>(model);
+                activityCreateModel.ActivityImages = picPathList.Select(x => new ActivityImageCreateModel { ImageName = x }).ToList();
+
+                var result = _activityService.ActivityCreate(activityCreateModel);
+                return result;
             }
-            return true;
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+
+            
         }
+        //[HttpPost]
+        //public bool InsertActivity(ActivityBuildViewModel activityBuildViewModel)
+        //{
+        //    //        foreach (var activityBuildViewModel.File in activityBuildViewModel)
+        //    //{
+        //    var resultA = new ActivityBuildModel
+        //    {
+        //        ActivityCity = activityBuildViewModel.ActivityCity,
+        //        ActivityArea = activityBuildViewModel.ActivityArea,
+        //        ActivityLocation = activityBuildViewModel.ActivityLocation,
+        //        StartTime = activityBuildViewModel.StartTime,
+        //        MaxPeople = activityBuildViewModel.MaxPeople,
+        //        CategoryId = activityBuildViewModel.CategoryId,
+        //        CategoryTypeId = activityBuildViewModel.CategoryTypeId,
+        //        JoinDeadLine = activityBuildViewModel.JoinDeadLine,
+        //        JoinFee = activityBuildViewModel.JoinFee,
+        //        ActivityNotes = activityBuildViewModel.ActivityNotes,
+        //        MemberId = activityBuildViewModel.MemberId,
+        //        ActivityStatus = activityBuildViewModel.ActivityStatus,
+        //        Payment = activityBuildViewModel.Payment,
+        //        Created = activityBuildViewModel.Created
+        //    };
+
+        //    _activityService.CreateActivityBuild(resultA);
+
+
+        //    //foreach (var activityBuildViewModel.File in activityBuildViewModel)
+        //    //{
+        //    if (activityBuildViewModel.File != null)
+        //    {
+        //        if (activityBuildViewModel.File.Length > 0)
+        //        {
+        //            string SavePath = $@"{_Path}{activityBuildViewModel.File.FileName}";
+
+        //            using (var steam = new FileStream(SavePath, FileMode.Create))
+        //            {
+        //                activityBuildViewModel.File.CopyToAsync(steam);
+        //            }
+        //        }
+        //    }
+        //    return true;
+        //}
 
 
         /// <summary>

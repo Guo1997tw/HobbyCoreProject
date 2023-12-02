@@ -11,14 +11,6 @@ namespace JHobby.Repository.Interfaces
 	{
 		public bool Insert(ActivityCreateDto dto);
 
-        /// <summary>
-        /// 活動頁面查詢
-        /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
-        /// 
-        public bool InsertActivityBuild(ActivityBuildDto activityBuildDto);
-
         public ActivityPageDto GetActivityPageById(int id);
 
         /// <summary>

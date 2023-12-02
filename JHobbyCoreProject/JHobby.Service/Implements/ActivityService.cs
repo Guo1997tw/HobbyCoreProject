@@ -16,30 +16,7 @@ namespace JHobby.Service.Implements
             _mapper = mapper;
         }
 
-        public bool CreateActivityBuild(ActivityBuildModel activityBuildModel)
-        {
-            var resultA = new ActivityBuildDto
-            {
-                ActivityName = activityBuildModel.ActivityName,
-                ActivityCity = activityBuildModel.ActivityCity,
-                ActivityArea = activityBuildModel.ActivityArea,
-                ActivityLocation = activityBuildModel.ActivityLocation,
-                StartTime = activityBuildModel.StartTime,
-                MaxPeople = activityBuildModel.MaxPeople,
-                CategoryId = activityBuildModel.CategoryId,
-                CategoryTypeId = activityBuildModel.CategoryTypeId,
-                JoinDeadLine = activityBuildModel.JoinDeadLine,
-                JoinFee = activityBuildModel.JoinFee,
-                ActivityNotes = activityBuildModel.ActivityNotes,
-                MemberId = activityBuildModel.MemberId,
-                ActivityStatus = activityBuildModel.ActivityStatus,
-                Payment = activityBuildModel.Payment,
-                Created = activityBuildModel.Created
-            };
-            _activityRepository.InsertActivityBuild(resultA);
-            return true;
-        }
-    
+       
 
         /// <summary>
         /// 活動頁面查詢
@@ -140,6 +117,12 @@ namespace JHobby.Service.Implements
             }
 
             return true;
+        }
+
+        public bool ActivityCreate(ActivityCreateModel dto)
+        {
+            var result = _mapper.Map<ActivityCreateDto>(dto);
+            return _activityRepository.Insert(result);
         }
     }
 }
