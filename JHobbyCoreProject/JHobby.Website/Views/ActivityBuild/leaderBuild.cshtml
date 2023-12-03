@@ -31,20 +31,17 @@
                                     <span name="ActivityName" class="text-danger"></span>
                                 </div>
                             </div>
-
                             <div class="mb-3">
-                                <label for="date" class="form-label">舉辦縣/市</label>
-                                <div class="form-icon">
-                                    <input type="text" class="form-control" id="ActivityCity" v-model="activityBuild.activityCity">
-                                    <span name="ActivityCity" class="text-danger"></span>
-                                </div>
+                                <label for="court" class="form-label">舉辦縣/市</label>
+                                <select class="select select2" id="ActivityCity" aria-label="Default select example" v-model="activityBuild.activityCity">
+                                    <option value="" disabled selected>請選擇縣市</option>
+                                </select>
                             </div>
-
                             <div class="mb-3">
-                                <label for="date" class="form-label">舉辦區域</label>
-                                <div class="form-icon">
-                                    <input type="text" class="form-control" id="ActivityArea" v-model="activityBuild.activityArea">
-                                </div>
+                                <label for="court" class="form-label">舉辦區域</label>
+                                <select class="select select2" id="ActivityArea" aria-label="Default select example" v-model="activityBuild.activityCity">
+                                    <option value="" disabled selected>請選擇縣市</option>
+                                </select>
                             </div>
                             <div class="mb-3">
                                 <label for="date" class="form-label">舉辦地點</label>
@@ -179,8 +176,8 @@
                     memberId: "1",
                     payment: "1",
                     activityName: "麥噹噹團",
-                    activityCity: "台北市",
-                    activityArea: "中山區",
+                    activityCity: "",
+                    activityArea: "",
                     activityLocation: "麥當勞",
                     startTime: "2023-12-25",
                     maxPeople: "10",
