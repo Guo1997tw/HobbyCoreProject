@@ -337,7 +337,7 @@
                         alert("請上傳您的個人照片");
                         return; // 阻止儲存操作
                     }
-                    if (CheckPhone() === false) {
+                    if (CheckPhone() == false) { 
                         return;
                     };
                     _this.ProfileSetting.headShot = _this.ChangName(_this.ProfileSetting.memberId);
@@ -345,7 +345,7 @@
                     if (_this.file)
                         form.append('file', _this.file);
                     form.append('headShot', _this.ProfileSetting.headShot);
-                    form.append('status', _this.ProfileSetting.status);
+                    form.append('status', 1);
                     form.append('memberName', _this.ProfileSetting.memberName);
                     form.append('nickName', _this.ProfileSetting.nickName);
                     form.append('gender', _this.ProfileSetting.gender);
