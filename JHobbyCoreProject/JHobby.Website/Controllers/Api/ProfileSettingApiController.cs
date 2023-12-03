@@ -86,7 +86,7 @@ namespace JHobby.Website.Controllers.Api
             var mapper = new UpdateProfileSettingModel
             {
                 HeadShot = updateProfileSettingViewModel.HeadShot,
-                //Status = updateProfileSettingViewModel.Status,
+                Status = updateProfileSettingViewModel.Status,
                 MemberName = updateProfileSettingViewModel.MemberName,
                 NickName = updateProfileSettingViewModel.NickName,
                 Gender = updateProfileSettingViewModel.Gender,
