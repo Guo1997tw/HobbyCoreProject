@@ -263,7 +263,7 @@
         const profileSet = Vue.createApp({
             data() {
                 return {
-                    defaultPic: "/assets/img/icons/img-icon.svg",
+                    defaultPic: "",
                     file: null,
                     ProfileSetting: {},
                     GenderOptions: [{ id: '0', text: '女性' }, { id: '1', text: '男性' }, { id: '2', text: '雙性' }],
@@ -309,6 +309,7 @@
                         .then(d => {
                             _this.ProfileSetting = d
                             if (_this.ProfileSetting.status === "一般會員") { _this.blnStatus = true };
+                            _this.defaultPic = _this.ProfileSetting.headShot ? `/profile/${_this.ProfileSetting.headShot}.jpg` : "/assets/img/icons/img-icon.svg"
                         })
                         .catch(error => {
                             console.error("Error fetching data:", error);
@@ -335,7 +336,7 @@
                         return;
                     }
                     // 檢查是否有上傳圖片
-                    if (!_this.file) {
+                    if (!_this.file && _this.ProfileSetting.headShot =="") {
                         alert("請上傳您的個人照片");
                         return; // 阻止儲存操作
                     }
