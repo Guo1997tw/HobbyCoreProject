@@ -56,16 +56,17 @@ namespace JHobby.Repository.Implements
 
 			return false;
 		}
-		public bool Delete(int id)
+		public bool UpdateActivityStatus(int id, ActivityStatusDto activityStatusDto)
 		{
 			var queryResult = _jhobbyContext.Activities.FirstOrDefault(g => g.ActivityId == id);
 
-			if (queryResult == null) { return false; }
+			if (queryResult != null)
+			{
+				queryResult.ActivityStatus = activityStatusDto.ActivityStatus;
+				_jhobbyContext.SaveChanges();
+			}
 
-			_jhobbyContext.Activities.Remove(queryResult);
-			_jhobbyContext.SaveChanges();
-
-			return true;
+            return true;
 		}
 
 		public IEnumerable<GroupStartingDto?> GetByIdNow(int id)
@@ -77,7 +78,7 @@ namespace JHobby.Repository.Implements
 			   (a, m) => new GroupStartingDto
 			   {
 				   MemberId = a.MemberId,
-				   ActivityId = a.ActivityId,
+                   ActivityId = a.ActivityId,
 				   ActivityName = a.ActivityName,
 				   CurrentPeople = a.CurrentPeople,
 				   ActivityStatus = a.ActivityStatus,

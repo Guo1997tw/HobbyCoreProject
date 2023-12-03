@@ -16,10 +16,11 @@ namespace JHobby.Service.Implements
     public class LaunchaTeamService : ILaunchaTeamService
     {
         private readonly ILaunchaTeamRepository _LaunchaTeamRepostiory;
-
-        public LaunchaTeamService(ILaunchaTeamRepository launchaTeamRepostiory)
+        private readonly ICommonService _iCommonService;
+        public LaunchaTeamService(ILaunchaTeamRepository launchaTeamRepostiory, ICommonService commonService)
         {
             _LaunchaTeamRepostiory = launchaTeamRepostiory;
+            _iCommonService = commonService;
         }
 
 
@@ -33,11 +34,15 @@ namespace JHobby.Service.Implements
             MemberId = a.MemberId,
             ActivityName = a.ActivityName,
             CurrentPeople = a.CurrentPeople,
-            ActivityStatus = a.ActivityStatus,
+            ActivityStatus = _iCommonService.ConvertReviewStatus(a.ActivityStatus),
             StartTime = a.StartTime,
             IsCover = a.IsCover,
             ImageName = a.ImageName,
             ActivityImageId = a.ActivityImageId,
+            DateConvert = _iCommonService.ConvertTime(a.StartTime).FirstOrDefault().DateConvert,
+            TimeConvert = _iCommonService.ConvertTime(a.StartTime).FirstOrDefault().TimeConvert,
+            CreatedDateConvert = _iCommonService.ConvertTime(a.Created).FirstOrDefault().DateConvert,
+            CreatedTimeConvert = _iCommonService.ConvertTime(a.Created).FirstOrDefault().TimeConvert
 
         }); 
 

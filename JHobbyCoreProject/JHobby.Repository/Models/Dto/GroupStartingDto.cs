@@ -11,8 +11,9 @@ namespace JHobby.Repository.Models.Dto
 		public int ActivityId { get; set; }
 		public string ActivityName { get; set; } = null!;
 		public int? CurrentPeople { get; set; }
+        public string ReviewStatus { get; set; } = null!;
 
-		public int MemberId { get; set; }
+        public int MemberId { get; set; }
 		public DateTime StartTime { get; set; }
 		public int? MaxPeople { get; set; }
 		public string ActivityStatus { get; set; } = null!;

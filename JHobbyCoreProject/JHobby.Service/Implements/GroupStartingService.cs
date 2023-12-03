@@ -15,8 +15,8 @@ namespace JHobby.Service.Implements
 
         public GroupStartingService(IGroupStartingRepository groupStartingRepository, ICommonService commonService)
 		{
-
-			_groupStartingRepository = groupStartingRepository;
+            _iCommonService = commonService;
+            _groupStartingRepository = groupStartingRepository;
             _iCommonService = commonService;
         }
 		public IEnumerable<GroupStartingModel> GetGroupStartingAll()
@@ -36,16 +36,16 @@ namespace JHobby.Service.Implements
 			   });
 
 		}
-		public bool Delete(int id)
-		{
-			var queryResult = _groupStartingRepository.GetByIdNow(id);
+		//public bool Delete(int id)
+		//{
+		//	var queryResult = _groupStartingRepository.GetByIdNow(id);
 
-			if (queryResult == null) return false;
+		//	if (queryResult == null) return false;
 
-			_groupStartingRepository.Delete(id);
+		//	_groupStartingRepository.Delete(id);
 
-			return true;
-		}
+		//	return true;
+		//}
 
 		public bool Update(int id, GroupStartingModel GroupStartingModel)
 		{
@@ -73,14 +73,18 @@ namespace JHobby.Service.Implements
 				ActivityId = a.ActivityId,
 				ActivityName = a.ActivityName,
 				CurrentPeople = a.CurrentPeople,
-				ActivityStatus = a.ActivityStatus,
+				ActivityStatus = _iCommonService.ConvertReviewStatus(a.ActivityStatus),
 				StartTime = a.StartTime,
 				MaxPeople = a.MaxPeople,
 				IsCover = a.IsCover,
 				ImageName = a.ImageName,
 				ActivityImageId = a.ActivityImageId,
+                DateConvert = _iCommonService.ConvertTime(a.StartTime).First().DateConvert,
+                TimeConvert = _iCommonService.ConvertTime(a.StartTime).First().TimeConvert
 
-			});
+
+
+            });
 
 			return queryResult;
 		}

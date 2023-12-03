@@ -12,6 +12,7 @@ namespace JHobby.Repository.Models.Dto
         public string ActivityName { get; set; } = null!;
         public string ActivityStatus { get; set; } = null!;
 
+        public string ReviewStatus { get; set; } = null!;
         public int? CurrentPeople { get; set; }
         public DateTime StartTime { get; set; }
         public bool IsCover { get; set; }
