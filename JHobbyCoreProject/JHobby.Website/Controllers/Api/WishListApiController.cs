@@ -41,5 +41,20 @@ namespace JHobby.Website.Controllers.Api
                     SurplusQuota = wl.SurplusQuota,
                 });
         }
+
+        [HttpDelete]
+        public IActionResult WishListDelete(int memberId,int wishId)
+        {
+            if (memberId >= 0)
+            {
+                var result = _iWishListService.WishListDelete(memberId, wishId);
+
+                return Ok(result);
+            }
+            else
+            {
+                return BadRequest();
+            }
+        }
     }
 }

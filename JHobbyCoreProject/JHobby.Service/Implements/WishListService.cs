@@ -20,7 +20,7 @@ namespace JHobby.Service.Implements
             _commonService = commonService;
         }
 
-        public IEnumerable<WishListModel> GetWishListAll() 
+        public IEnumerable<WishListModel> GetWishListAll()
         {
             return _iWishListRepository.GetWishListAll().Select(gw => new WishListModel
             {
@@ -38,6 +38,18 @@ namespace JHobby.Service.Implements
                 ActivityName = gw.ActivityName,
                 SurplusQuota = _commonService.CountSurplusQuota(gw.MaxPeople, gw.CurrentPeople)
             });
+        }
+
+        public bool WishListDelete(int memberId,int wishId)
+        {
+            var wishListDto = _iWishListRepository.GetWishListById(memberId);
+
+            if (wishListDto != null)
+            {
+                _iWishListRepository.WishListDelete(memberId,wishId);
+                return true;
+            }
+            else { return false; }
         }
     }
 }

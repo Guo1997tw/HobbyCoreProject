@@ -48,5 +48,19 @@ namespace JHobby.Repository.Implements
                     CurrentPeople = w.Activity.CurrentPeople,
                 });
         }
+
+        public bool WishListDelete(int memberId, int wishId)
+        {
+            var wishListDelectDto = _jhobbyContext.Wishes
+                .FirstOrDefault(w => w.MemberId == memberId && w.WishId == wishId);
+
+            if (wishListDelectDto != null)
+            {
+                _jhobbyContext.Wishes.Remove(wishListDelectDto);
+                _jhobbyContext.SaveChanges();
+                return true;
+            }
+            else { return false; }
+        }
     }
 }
