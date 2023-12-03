@@ -19,7 +19,7 @@
                             <div class="mb-3">
                                 <label for="date" class="form-label">會員編號</label>
                                 <div class="form-icon">
-                                    <input type="text" class="form-control" id="MemberId" v-model="">
+                                    <input type="text" class="form-control" id="MemberId" v-model="activityBuild.memberId">
                                     <span name="ActivityName" class="text-danger"></span>
                                 </div>
                             </div>
@@ -27,7 +27,7 @@
                             <div class="mb-3">
                                 <label for="date" class="form-label">開團名稱</label>
                                 <div class="form-icon">
-                                    <input type="text" class="form-control" id="ActivityName" v-model="">
+                                    <input type="text" class="form-control" id="ActivityName" v-model="activityBuild.activityName">
                                     <span name="ActivityName" class="text-danger"></span>
                                 </div>
                             </div>
@@ -35,7 +35,7 @@
                             <div class="mb-3">
                                 <label for="date" class="form-label">舉辦縣/市</label>
                                 <div class="form-icon">
-                                    <input type="text" class="form-control" id="ActivityCity" v-model="">
+                                    <input type="text" class="form-control" id="ActivityCity" v-model="activityBuild.activityCity">
                                     <span name="ActivityCity" class="text-danger"></span>
                                 </div>
                             </div>
@@ -43,19 +43,19 @@
                             <div class="mb-3">
                                 <label for="date" class="form-label">舉辦區域</label>
                                 <div class="form-icon">
-                                    <input type="text" class="form-control" id="ActivityArea" v-model="">
+                                    <input type="text" class="form-control" id="ActivityArea" v-model="activityBuild.activityArea">
                                 </div>
                             </div>
                             <div class="mb-3">
                                 <label for="date" class="form-label">舉辦地點</label>
                                 <div class="form-icon">
-                                    <input type="text" class="form-control" id="ActivityLocation" v-model="">
+                                    <input type="text" class="form-control" id="ActivityLocation" v-model="activityBuild.activityLocation">
                                 </div>
                             </div>
                             <div class="mb-3">
                                 <label for="date" class="form-label">活動開始日期</label>
                                 <div class="form-icon">
-                                    <input type="text" class="form-control" v-model="">
+                                    <input type="text" class="form-control" v-model="activityBuild.startTime">
                                     <span class="cus-icon">
                                         <i class="feather-calendar icon-date"></i>
                                     </span>
@@ -64,27 +64,25 @@
                             <div class="mb-3">
                                 <label for="empty-field" class="form-label">最高人數</label>
                                 <div class="form-icon">
-                                    <input type="text" class="form-control" id="MaxPeople" v-model="">
+                                    <input type="text" class="form-control" id="MaxPeople" v-model="activityBuild.maxPeople">
                                 </div>
                             </div>
                             <div class="mb-3">
                                 <label for="court" class="form-label">活動類型</label>
-                                <select class="select select2" id="mainCategory" aria-label="Default select example" v-model="">
+                                <select class="select select2" id="mainCategory" aria-label="Default select example" v-model="activityBuild.categoryId">
                                     <option value="" disabled selected>請選擇活動類型</option>
                                 </select>
                             </div>
-
                             <div class="mb-3">
                                 <label for="court" class="form-label">活動項目</label>
                                 <select class="select select2" id="subCategory" aria-label="Default select example" v-model="activityBuild.categoryTypeId">
                                     <option value="" disabled selected>請選擇活動項目</option>
                                 </select>
                             </div>
-
                             <div class="mb-3">
                                 <label for="endterdate" class="form-label">報名截止日</label>
                                 <div class="form-icon">
-                                    <input type="text" class="form-control" v-model="">
+                                    <input type="text" class="form-control" v-model="activityBuild.joinDeadLine">
                                     <span class="cus-icon">
                                         <i class="feather-calendar icon-date"></i>
                                     </span>
@@ -93,20 +91,22 @@
                             <div class="mb-3">
                                 <label for="empty-field" class="form-label">活動花費</label>
                                 <div class="form-icon">
-                                    <input type="text" class="form-control" id="JoinFee" v-model="">
+                                    <input type="text" class="form-control" id="JoinFee" v-model="activityBuild.joinFee">
                                 </div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="court" class="form-label">付款方式</label>
+                                <select class="select select2" id="paymentMethod" aria-label="Default select example" v-model="activityBuild.payment">
+                                    <option value="" disabled selected>請選擇付款方式</option>
+                                </select>
                             </div>
                             <div class="mb-3">
                                 <label for="empty-field" class="form-label">活動說明</label>
                                 <div class="form-icon">
-                                    <textarea class="form-control" id="ActivityNotes" rows="4" maxlength="300" v-model=""></textarea>
+                                    <textarea class="form-control" id="ActivityNotes" rows="4" maxlength="300" v-model="activityBuild.activityNotes"></textarea>
                                 </div>
                             </div>
                             <div class="mb-3">
-                                <label for="empty-field" class="form-label">建立日期</label>
-                                <div class="form-icon">
-                                    <input type="text" class="form-control" id="Created" v-model="">
-                                </div>
                             </div>
                             <div class="col-md-12">
                                 <div class="appoint-head coach-top">上傳圖片</div>
@@ -176,34 +176,20 @@
                 fileThree: null,
 
                 activityBuild: {
-                    memberId: "",
-                    payment: "",
-                    activityName: "",
-                    activityCity: "",
-                    activityArea: "",
-                    activityLocation: "",
-                    startTime: "",
-                    maxPeople: "",
-                    categoryId: "",
-                    categoryTypeId: "",
-                    joinDeadLine: "",
-                    joinFee: "",
-                    activityNotes: "",
-                    // activityName: "1",
-                    // activityCity: "1",
-                    // activityArea: "1",
-                    // activityLocation: "1",
-                    // startTime: "2024-01-05 12:30:00",
-                    // maxPeople: "1",
-                    // categoryId: "1",
-                    // categoryTypeId: "1",
-                    // joinDeadLine: "2024-01-05 12:30:30",
-                    // joinFee: "54",
-                    // activityNotes: "87",
-                    // memberId: "666",
-                    // activityStatus: "1",
-                    // payment: "1",
-                    // created: "2024-01-05 12:30:30"
+                    memberId: "1",
+                    payment: "1",
+                    activityName: "麥噹噹團",
+                    activityCity: "台北市",
+                    activityArea: "中山區",
+                    activityLocation: "麥當勞",
+                    startTime: "2023-12-25",
+                    maxPeople: "10",
+                    categoryId: "5",
+                    categoryTypeId: "1",
+                    joinDeadLine: "2023-12-20",
+                    joinFee: "10000",
+                    payment: "1",
+                    activityNotes: "吃貨團"
                 },
             }
         },
