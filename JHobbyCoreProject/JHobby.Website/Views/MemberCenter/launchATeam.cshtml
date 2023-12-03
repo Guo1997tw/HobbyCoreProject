@@ -195,14 +195,14 @@
                                                                                                 </h4>
                                                                                             </td>
                                                                                             <td>
-                                                                                                <!-- 連接參團人數 -->
+                                                                                                <!-- 連接參團人數 -->@* 改 *@
                                                                                                 <button type="button" class="btn btn-secondary"
                                                                                                         data-bs-toggle="modal"
                                                                                                         data-bs-target="#add-particpate-check" @@click="Current()">
                                                                                                     <i class="feather-eye"></i>查看詳細狀態
                                                                                                     
                                                                                                 </button>
-                                                                                                
+                                                                                                @* 改 *@
                                                                                                 <!-- /連接參團人數 -->
                                                                                             </td>
                                                                                             <td>
@@ -589,14 +589,7 @@
                                                                                     style="width: 121.615px;">
                                                                                     申請時間
                                                                                 </th>
-                                                                                @* <th class="sorting"
-                                                                                tabindex="0"
-                                                                                aria-controls="DataTables_Table_0"
-                                                                                rowspan="1" colspan="1"
-                                                                                aria-label="Date &amp;amp; Time : activate to sort column ascending"
-                                                                                style="width: 121.615px;">
-                                                                                審核確認時間
-                                                                                </th> *@
+                                                                                
                                                                                 <th class="sorting"
                                                                                     tabindex="0"
                                                                                     aria-controls="DataTables_Table_0"
@@ -605,13 +598,7 @@
                                                                                     style="width: 46.3229px;">
                                                                                     申請狀態
                                                                                 </th>
-                                                                                @*  <th class="sorting"
-                                                                                tabindex="0"
-                                                                                aria-controls="DataTables_Table_0"
-                                                                                rowspan="1" colspan="1"
-                                                                                aria-label=": activate to sort column ascending"
-                                                                                style="width: 193.062px;">
-                                                                                </th> *@
+                                                                                
                                                                             </tr>
                                                                         </thead>
                                                                         <tbody>
@@ -636,29 +623,13 @@
                                                                                         {{item.timeConvert}}
                                                                                     </p>
                                                                                 </td>
-                                                                                @* <td class="table-date-time">
-                                                                                <h4>
-                                                                                星期三, 六月
-                                                                                11日<span>
-                                                                                06:00
-                                                                                PM - 08:00
-                                                                                PM
-                                                                                </span>
-                                                                                </h4>
-                                                                                </td> *@
+                                                                               
                                                                                 <td class="paid-edit">
                                                                                     <span>
                                                                                         <i class="feather-edit"></i>{{item.reviewStatus}}
                                                                                     </span>
                                                                                 </td>
-                                                                                @* <td class="table-accept-btn text-end">
-                                                                                <a href="javascript:;"
-                                                                                class="btn cancel-table-btn"
-                                                                                data-bs-toggle="modal"
-                                                                                data-bs-target="#delete-particpate-check">
-                                                                                <i class="feather-x-circle"></i>取消資格
-                                                                                </a>
-                                                                                </td> *@
+                                                                               
                                                                             </tr>
                                                                             <!-- /參加人數展示卡片 -->
                                                                             <!-- 填充參加人數卡片 -->
@@ -679,113 +650,17 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="tab-footer" style=" margin-top: 10px;">
-                                        <div class="row">
-                                            @* <div class="col-md-6"> *@
-                                                @* <div id="tablelength">
-                                                <div class="dataTables_length"
-                                                id="DataTables_Table_1_length">
-                                                <label>
-                                                Show
-                                                <select name="DataTables_Table_1_length"
-                                                aria-controls="DataTables_Table_1"
-                                                class="custom-select custom-select-sm form-control form-control-sm">
-                                                <option value="10">10</option>
-                                                <option value="25">25</option>
-                                                <option value="50">50</option>
-                                                <option value="-1">All</option>
-                                                </select>
-                                                </label>
-                                                </div>
-                                                <div class="dataTables_length"
-                                                id="DataTables_Table_0_length">
-                                                <label>
-                                                Show
-                                                <select name="DataTables_Table_0_length"
-                                                aria-controls="DataTables_Table_0"
-                                                class="custom-select custom-select-sm form-control form-control-sm">
-                                                <option value="10">10</option>
-                                                <option value="25">25</option>
-                                                <option value="50">50</option>
-                                                <option value="-1">All</option>
-                                                </select>
-                                                </label>
-                                                </div>
-                                                </div> *@
-                                            @* </div> *@
-                                            @* <div class="col-md-6">
-                                                <div id="tablepage">
-                                                    <div class="dataTables_paginate paging_simple_numbers"
-                                                         id="DataTables_Table_1_paginate">
-                                                        <ul class="pagination">
-                                                            <li class="paginate_button page-item previous disabled"
-                                                                id="DataTables_Table_1_previous">
-                                                                <a href="#"
-                                                                   aria-controls="DataTables_Table_1"
-                                                                   data-dt-idx="0" tabindex="0"
-                                                                   class="page-link">
-                                                                    <i class="feather-chevrons-left"></i>
-                                                                </a>
-                                                            </li>
-                                                            <li class="paginate_button page-item active">
-                                                                <a href="#"
-                                                                   aria-controls="DataTables_Table_1"
-                                                                   data-dt-idx="1" tabindex="0"
-                                                                   class="page-link">1</a>
-                                                            </li>
-                                                            <li class="paginate_button page-item next disabled"
-                                                                id="DataTables_Table_1_next">
-                                                                <a href="#"
-                                                                   aria-controls="DataTables_Table_1"
-                                                                   data-dt-idx="2" tabindex="0"
-                                                                   class="page-link">
-                                                                    <i class="feather-chevrons-right"></i>
-                                                                </a>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                    <div class="dataTables_paginate paging_simple_numbers"
-                                                         id="DataTables_Table_0_paginate">
-                                                        <ul class="pagination">
-                                                            <li class="paginate_button page-item previous disabled"
-                                                                id="DataTables_Table_0_previous">
-                                                                <a href="#"
-                                                                   aria-controls="DataTables_Table_0"
-                                                                   data-dt-idx="0" tabindex="0"
-                                                                   class="page-link">
-                                                                    <i class="feather-chevrons-left"></i>
-                                                                </a>
-                                                            </li>
-                                                            <li class="paginate_button page-item active">
-                                                                <a href="#"
-                                                                   aria-controls="DataTables_Table_0"
-                                                                   data-dt-idx="1" tabindex="0"
-                                                                   class="page-link">1</a>
-                                                            </li>
-                                                            <li class="paginate_button page-item next disabled"
-                                                                id="DataTables_Table_0_next">
-                                                                <a href="#"
-                                                                   aria-controls="DataTables_Table_0"
-                                                                   data-dt-idx="2" tabindex="0"
-                                                                   class="page-link">
-                                                                    <i class="feather-chevrons-right"></i>
-                                                                </a>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                </div> *@
-                                            @* </div> *@
-                                        </div>
-                                    </div>
                                 </div>
                             </div>
                         </div>
                         <!-- /開團標題欄&搜尋頁 -->
                     </div>
                     <div class="modal-footer">
+                        @* 改 *@
                         <div class="table-accept-btn">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">關閉</button>
                         </div>
+                        @* 改 *@
 
                     </div>
                 </div>
@@ -868,29 +743,6 @@
                 }
             },
         }).mount("#record")
-        // var Updates = Vue.createApp({
-        //     data() {   /* 顯示資料 */
-        //         return {
-        //             showUpdates: [{
-        //                 combination: [],
-
-        //             },
-        //             ]
-        //         };
-        //     },
-        //     mounted() {
-        //         let _this = this;
-        //         _this.lookUpdates();
-        //     },
-        //     /* 事件 */
-        //     methods: {
-        //         lookUpdates: function () {  /* 顯示 */
-        //             let _this = this;
-        //             axios.get(`/GroupStartingApi/GetByIdNow/1`)
-        //                 .then((viewModel) => { _this.showUpdates = viewModel.data; })
-        //                 .catch((error) => alert(`發生錯誤: ${error}`));
-        //         }
-        //     },
-        // }).mount("#Updates")
+        
     </script>
 }
