@@ -86,7 +86,7 @@
                                                     <tr v-for="item in filterCard">
                                                         <td>
                                                             <h2 class="table-avatar">
-                                                                <a href="#" class="avatar avatar-sm  flex-shrink-0"><img class="avatar-img" src="~/assets/img/booking/booking-01.jpg" alt="User"></a>
+                                                                <a :href='"/Activity/ActivityPage/"+item.activityId' class="avatar avatar-sm  flex-shrink-0"><img class="avatar-img" :src='"/activityimgs/"+item.imageName+".jpg"' alt="Image"></a>
                                                                 <span class="table-head-name flex-grow-1">
                                                                     <h5>{{item.activityName}}</h5>                                                                   
                                                                 </span>
@@ -94,8 +94,8 @@
                                                         </td>
                                                         <td>
                                                             <h2 class="table-avatar">
-                                                                <a href="my-profile.html"
-                                                                   class="avatar avatar-sm  flex-shrink-0"><img class="avatar-img" src="~/assets/img/profiles/avatar-01.jpg" alt="User"></a>
+                                                                <a :href='"/Profile/MemberProfile/"+item.applicantId'
+                                                                   class="avatar avatar-sm  flex-shrink-0"><img class="avatar-img" :src='"/profile/"+item.headShot+".jpg"' alt="Image"></a>
                                                                 <span class="table-head-name table-name-user flex-grow-1">                                                                    
                                                                     <h5>{{item.nickName}}</h5>
                                                                 </span>
@@ -243,7 +243,7 @@
             methods: {
                 axiosGetReviewById: function () {
                     axios
-                        .get(`/ReviewApi/GetReviewById/${@Model.MemberId}`)
+                        .get(`/ReviewApi/GetReviewById/4`)
                         .then((response) => {
                             let _this = this;
                             _this.reviewData = response.data;

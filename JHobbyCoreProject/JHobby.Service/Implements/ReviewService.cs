@@ -58,7 +58,7 @@ namespace JHobby.Service.Implements
                 NickName = dto.NickName,
                 HeadShot = dto.HeadShot,
                 DateConvert = _iCommonService.ConvertTime(dto.ReviewTime).First().DateConvert,
-                TimeConvert = _iCommonService.ConvertTime(dto.ReviewTime).First().TimeConvert
+                TimeConvert = _iCommonService.ConvertTime(dto.ReviewTime).First().TimeConvert                
             });
 
             return reviewModel;
