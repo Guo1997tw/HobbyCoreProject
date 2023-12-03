@@ -18,7 +18,7 @@ namespace JHobby.Website.Controllers.Api
 
 		private readonly ILaunchaTeamService _LaunchaTeamService;
 		private readonly IWebHostEnvironment _webHostEnvironment;  //內建不用DI註冊
-		public LaunchaTeamApiController(ILaunchaTeamService LaunchaTeamService , IWebHostEnvironment webHostEnvironment)
+        public LaunchaTeamApiController(ILaunchaTeamService LaunchaTeamService, IWebHostEnvironment webHostEnvironment)
 		{
 			_LaunchaTeamService = LaunchaTeamService;
 			_webHostEnvironment = webHostEnvironment;
@@ -35,6 +35,7 @@ namespace JHobby.Website.Controllers.Api
                 MemberId = x.MemberId,
                 ActivityName = x.ActivityName,
                 CurrentPeople = x.CurrentPeople,
+                ReviewStatus = x.ReviewStatus,
                 ActivityStatus = x.ActivityStatus,
                 StartTime = x.StartTime,
                 IsCover = x.IsCover,
@@ -50,11 +51,7 @@ namespace JHobby.Website.Controllers.Api
 
             return viewModel;
         }
-		//public async Task<IEnumerable<LaunchaTeamViewModel>> Filter([FromBody] LaunchaTeamViewModel launchaTeamViewModel)
-		//{
-		//	return _LaunchaTeamService.LaunchaTeamModel.Where(l => l.ActivityName == launchaTeamViewModel.ActivityName || l.launchaTeamViewModel.Contains(launchaTeamViewModel.ActivityStatus))
-		//	.Select(l => l);
-		//}
+		
 
 
 

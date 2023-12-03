@@ -34,7 +34,7 @@ namespace JHobby.Service.Implements
             MemberId = a.MemberId,
             ActivityName = a.ActivityName,
             CurrentPeople = a.CurrentPeople,
-            ActivityStatus = a.ActivityStatus,
+            ActivityStatus = _iCommonService.ConvertReviewStatus(a.ActivityStatus),
             StartTime = a.StartTime,
             IsCover = a.IsCover,
             ImageName = a.ImageName,

@@ -9,6 +9,7 @@ namespace JHobby.Service.Models
     public class LaunchaTeamModel
     {
         public int MemberId { get; set; }
+        public string ReviewStatus { get; set; } = null!;
         public string ActivityName { get; set; } = null!;
         public string ActivityStatus { get; set; } = null!;
         public int? CurrentPeople { get; set; }

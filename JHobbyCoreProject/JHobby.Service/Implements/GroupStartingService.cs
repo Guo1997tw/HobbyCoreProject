@@ -72,7 +72,7 @@ namespace JHobby.Service.Implements
 				ActivityId = a.ActivityId,
 				ActivityName = a.ActivityName,
 				CurrentPeople = a.CurrentPeople,
-				ActivityStatus = a.ActivityStatus,
+				ActivityStatus = _iCommonService.ConvertReviewStatus(a.ActivityStatus),
 				StartTime = a.StartTime,
 				MaxPeople = a.MaxPeople,
 				IsCover = a.IsCover,

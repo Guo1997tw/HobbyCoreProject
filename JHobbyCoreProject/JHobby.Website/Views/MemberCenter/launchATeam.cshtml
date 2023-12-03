@@ -1,7 +1,7 @@
 ﻿<partial name="_BreadcrumbPartial" />s
 <partial name="_DashboardMenuPartial" />
 @* MemberCenter/launchATeam *@
-<div b-q7camsv0h8="" class="container">
+<div b-q7camsv0h8="" class="container" id="record">
     <main b-q7camsv0h8="" role="main" class="pb-3">
         <div id="global-loader" style="display: none;">
             <div class="loader-img">
@@ -14,7 +14,7 @@
             <header class="header header-sticky fixed-top">
             </header>
             <!-- Page Content -->
-            <div class="content" style="padding-top: 10px;">
+            <div class="content" style="padding-top:">
                 <div class="container">
                     <!-- Statistics Card -->
                     <div class="row">
@@ -98,7 +98,7 @@
                                                                     <div class="col-sm-12 col-md-6"></div>
                                                                     <div class="col-sm-12 col-md-6"></div>
                                                                 </div>
-                                                                <div class="row" id="Updates">
+                                                                <div class="row">
                                                                     <div class="col-sm-12">
                                                                         <table class="table table-borderless no-footer"
                                                                                id="DataTables_Table_0" role="grid">
@@ -151,17 +151,15 @@
                                                                                 </tr>
                                                                             </thead>
                                                                             <tbody>
-                                                                                <tr role="row" class="odd" v-for="item in filterCard">
+                                                                                <tr role="row" class="odd" v-for="item in filterNowCard">
                                                                                     <td class="sorting_1">
                                                                                         <h2 class="table-avatar">
                                                                                             <a href="~#"
                                                                                                class="avatar avatar-sm  flex-shrink-0">
-                                                                                                <img class="avatar-img"
-                                                                                                     src="~/assets/img/booking/booking-04.jpg"
-                                                                                                     alt="User">
+                                                                                                @* <img class="avatar-img" src="{{item.isCover}}" alt="User"> *@
                                                                                             </a>
                                                                                             <span class="table-head-name flex-grow-1">
-                                                                                                <a href="~javascript:;"
+                                                                                                <a href="~javaScript:;"
                                                                                                    data-bs-toggle="modal"
                                                                                                    data-bs-target="#request-court">
                                                                                                 </a>
@@ -179,26 +177,24 @@
                                                                                     </td>
                                                                                     <td>
                                                                                         <!-- 連接參團人數 -->
-                                                                                        <a href="javascript:;"
-                                                                                           class="btn cancel-table-btn"
-                                                                                           data-bs-toggle="modal"
-                                                                                           data-bs-target="#add-particpate-check" v-show="item.currentPeople">
-                                                                                            2
-                                                                                        </a>
-
+                                                                                        <button type="button" class="feather-check-circle"
+                                                                                                data-bs-toggle="modal"
+                                                                                                data-bs-target="#add-particpate-check">
+                                                                                            查看
+                                                                                        </button>
                                                                                         <!-- /連接參團人數 -->
                                                                                     </td>
                                                                                     <td>
-                                                                                        <span class="pay-dark">{{item.maxPeople}}</span>
+                                                                                        <span class="pay-dark">{{item.result}}</span>
                                                                                     </td>
                                                                                     <td class="paid-edit">
                                                                                         <span>
-                                                                                            <i class="feather-edit"></i>{{item.activityStatus}}
+                                                                                            <i class="feather-edit">{{item.activityStatus}}</i>
                                                                                         </span>
                                                                                     </td>
                                                                                     <td class="table-accept-btn text-end">
                                                                                         <a href="https://localhost:7097/home/leaderedit" class="btn accept-btn"><i class="feather-check-circle"></i>編輯開團</a>
-                                                                                        <a href="javascript:;" class="btn cancel-table-btn" data-bs-toggle="modal" data-bs-target="#request-coche">
+                                                                                        <a href="javaScript:;" class="btn cancel-table-btn" data-bs-toggle="modal" data-bs-target="#request-coche">
                                                                                             <i class="feather-x-circle"></i>取消開團
                                                                                         </a>
                                                                                     </td>
@@ -245,6 +241,8 @@
 
                         </div>
                     </div>
+
+
                     @* 開團歷史紀錄版面 *@
                     <div class="row">
                         <div class="col-lg-12">
@@ -262,7 +260,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="tab-content" id="record">
+                            <div class="tab-content">
                                 <div class="tab-pane fade active show" id="nav-Recent" role="tabpanel"
                                      aria-labelledby="nav-Recent-tab" tabindex="0">
                                     <div class="table-responsive table-datatble">
@@ -278,7 +276,7 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <tr v-for="item in filterCard ">
+                                                <tr v-for="item in filteroldCard ">
                                                     <td>
                                                         <h2 class="table-avatar">
                                                             <a href="~/#" data-bs-toggle="modal"
@@ -407,7 +405,7 @@
                                 <button class="btn cancel-table-btn">刪除</button>
                             </div>
                             <div class="table-accept-btn">
-                                <a href="javascript:;" class="btn accept-btn me-0" data-bs-toggle="modal" data-bs-target="#request-reject">取消</a>
+                                <a href="javaScript:;" class="btn accept-btn me-0" data-bs-toggle="modal" data-bs-target="#request-reject">取消</a>
                             </div>
                         </div>
                     </div>
@@ -704,7 +702,7 @@
             </div>
             <!-- /彈跳確定參團人數  -->
             <!-- 彈跳確定刪除參團人員 -->
-            <div class="modal custom-modal fade request-modal" id="delete-particpate-check"
+            <div class="modal custom-modal fade request-modal" id="delete-particate-check"
                  style="display: none;" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered modal-md" style="max-width: 540px;">
                     <div class="modal-content">
@@ -732,7 +730,8 @@
                     </div>
                 </div>
             </div>
-            <!-- /彈跳確定參團人數  -->
+        </div>
+        <!-- /彈跳確定參團人數  -->
     </main>
 </div>
 
@@ -744,12 +743,12 @@
     <script src="https://unpkg.com/vuejs-paginate-next@latest/dist/vuejs-paginate-next.umd.js"></script>
     <script src="~/assets/js/script.js"></script>
     <script>
-        var record = Vue.createApp({
-            data() {   /* 顯示資料 */
+        const record = Vue.createApp({
+            data() {
                 return {
-                    axiosBrowsepicture: [{
-
-                    }],
+                    axiosBrowsepicture: [],
+                    showUpdates: [],
+                    sortOrder: 'asc',
                     countPerPage: 2,
                     pageNumber: 1,
                 };
@@ -757,23 +756,59 @@
             mounted() {
                 let _this = this;
                 _this.logBrowsepicture();
+                this.lookUpdates();
             },
             computed: {
                 total() {
-                    return Math.ceil(this.axiosBrowsepicture.length / this.countPerPage);
+                    let _this = this;
+                    return Math.ceil(_this.axiosBrowsepicture.length / _this.countPerPage);
                 },
-                filterCard() {
-                    var start = (this.pageNumber - 1) * this.countPerPage;
-                    var end = start + this.countPerPage;
-                    return this.axiosBrowsepicture.slice(start, end);
+                filteroldCard() {
+                    let _this = this;
+                    var start = (_this.pageNumber - 1) * _this.countPerPage;
+                    var end = start + _this.countPerPage;
+                    return _this.axiosBrowsepicture.sort(function (x, y) {
+                        if (_this.sortOrder == "asc") {
+                            return new Date(x.startTime).getTime() - new Date(y.startTime).getTime();
+                        }
+                        if (_this.sortOrder == "desc") {
+                            return new Date(y.startTime).getTime() - new Date(x.startTime).getTime();
+                        }
+                    }).slice(start, end);
+                },
+                filterNowCard() {
+                    let _this = this;
+                    var start = (_this.pageNumber - 1) * _this.countPerPage;
+                    var end = start + _this.countPerPage;
+                    return _this.showUpdates.sort(function (x, y) {
+                        if (_this.sortOrder == "asc") {
+                            return new Date(x.startTime).getTime() - new Date(y.startTime).getTime();
+                        }
+                        if (_this.sortOrder == "desc") {
+                            return new Date(y.startTime).getTime() - new Date(x.startTime).getTime();
+                        }
+                    }).slice(start, end);
                 }
             },
-            /* 事件 */
             methods: {
-                logBrowsepicture: function () {  /* 顯示 */
-                    let _this = this;
+                logBrowsepicture() {
                     axios.get(`/LaunchaTeamApi/GetByIdOld/1`)
-                        .then((result) => { _this.axiosBrowsepicture = result.data; })
+                        .then((result) => {
+                            this.axiosBrowsepicture = result.data;
+                            this.maxPeople = result.data.maxPeople;
+                        })
+                        .catch((error) => alert(`發生錯誤: ${error}`));
+                },
+                lookUpdates() {
+                    axios.get(`/GroupStartingApi/GetByIdNow/1`)
+                        .then((viewModel) => {
+                            this.showUpdates = viewModel.data;
+                            for (var i = 0; i < this.showUpdates.length; i++) {
+                                var item = this.showUpdates[i];
+                                item.result = this.showUpdates[i].maxPeople - this.showUpdates[i].currentPeople;
+                            }
+                            this.currentPeople = viewModel.data.currentPeople;
+                        })
                         .catch((error) => alert(`發生錯誤: ${error}`));
                 },
                 pageClick(num) {
@@ -789,62 +824,8 @@
 
 
 
-        var Updates = Vue.createApp({
-            data() {
-                return {
-                    showUpdates: [/* ... */],
-                    countPerPage: 2,
-                    pageNumber: 1,
-                    sortOrder: "desc", // 初始排序方式，可以根據需要調整
-                };
-            },
-            mounted() {
-                this.lookUpdates();
-            },
-            computed: {
-                total() {
-                    return Math.ceil(this.showUpdates.length / this.countPerPage);
-                },
-                filterCard() {
-                    const start = (this.pageNumber - 1) * this.countPerPage;
-                    const end = start + this.countPerPage;
 
-                    return this.showUpdates
-                        .slice()
-                        .sort((x, y) => {
-                            const dateX = new Date(x.reviewTime).getTime();
-                            const dateY = new Date(y.reviewTime).getTime();
 
-                            if (this.sortOrder === "desc") {
-                                return dateY - dateX;
-                            } else if (this.sortOrder === "asc") {
-                                return dateX - dateY;
-                            }
-                        })
-                        .slice(start, end);
-                }
-            },
-            methods: {
-                lookUpdates() {
-                    axios.get(`/GroupStartingApi/GetByIdNow/1`)
-                        .then((viewModel) => {
-                            this.showUpdates = viewModel.data;
-                        })
-                        .catch((error) => alert(`發生錯誤: ${error}`));
-                },
-                pageClick(num) {
-                    this.pageNumber = num;
-                },
-                setCurrentCard(card) {
-                    this.currentCard = card;
-                },
-                toggleSortOrder() {
-                    // 切換排序方式
-                    this.sortOrder = this.sortOrder === "desc" ? "asc" : "desc";
-                    this.pageNumber = 1; // 重設頁碼
-                }
-            }
-        }).component("paginate", VuejsPaginateNext).mount("#Updates");
 
         // 分頁
         // const PaginationApp = Vue.createApp({

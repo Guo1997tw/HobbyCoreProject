@@ -78,7 +78,7 @@ namespace JHobby.Repository.Implements
 			   (a, m) => new GroupStartingDto
 			   {
 				   MemberId = a.MemberId,
-				   ActivityId = a.ActivityId,
+                   ActivityId = a.ActivityId,
 				   ActivityName = a.ActivityName,
 				   CurrentPeople = a.CurrentPeople,
 				   ActivityStatus = a.ActivityStatus,
