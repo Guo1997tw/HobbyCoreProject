@@ -14,6 +14,8 @@ namespace JHobby.Service.Interfaces
 		public IEnumerable<GroupStartingModel?> GetByIdNow(int id);
 		//public bool Delete(int id);
 		public bool Update(int id, GroupStartingModel groupStartingModel);
+		public IEnumerable<GroupStartingCurrentModel> CurrentById(int id, int ActivityId);
 
-	}
+
+    }
 }

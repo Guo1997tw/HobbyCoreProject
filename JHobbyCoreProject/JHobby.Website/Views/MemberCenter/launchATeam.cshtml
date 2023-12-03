@@ -176,12 +176,14 @@
                                                                                         </h4>
                                                                                     </td>
                                                                                     <td>
-                                                                                        <!-- 連接參團人數 -->
-                                                                                        <button type="button" class="feather-check-circle"
+                                                                                        <!-- 連接參團人數 -->@* 改 *@
+                                                                                        <button type="button" class="btn btn-secondary"
                                                                                                 data-bs-toggle="modal"
-                                                                                                data-bs-target="#add-particpate-check">
-                                                                                            查看
+                                                                                                data-bs-target="#add-particpate-check" @@click="Current()">
+                                                                                            <i class="feather-eye"></i>查看詳細狀態
+
                                                                                         </button>
+                                                                                        @* 改 *@
                                                                                         <!-- /連接參團人數 -->
                                                                                     </td>
                                                                                     <td>
@@ -467,14 +469,7 @@
                                                                                         style="width: 121.615px;">
                                                                                         申請時間
                                                                                     </th>
-                                                                                    <th class="sorting"
-                                                                                        tabindex="0"
-                                                                                        aria-controls="DataTables_Table_0"
-                                                                                        rowspan="1" colspan="1"
-                                                                                        aria-label="Date &amp;amp; Time : activate to sort column ascending"
-                                                                                        style="width: 121.615px;">
-                                                                                        審核確認時間
-                                                                                    </th>
+                                                                                    
                                                                                     <th class="sorting"
                                                                                         tabindex="0"
                                                                                         aria-controls="DataTables_Table_0"
@@ -483,18 +478,12 @@
                                                                                         style="width: 46.3229px;">
                                                                                         申請狀態
                                                                                     </th>
-                                                                                    <th class="sorting"
-                                                                                        tabindex="0"
-                                                                                        aria-controls="DataTables_Table_0"
-                                                                                        rowspan="1" colspan="1"
-                                                                                        aria-label=": activate to sort column ascending"
-                                                                                        style="width: 193.062px;">
-                                                                                    </th>
+                                                                                    
                                                                                 </tr>
                                                                             </thead>
                                                                             <tbody>
                                                                                 <!-- 參加人數展示卡片 -->
-                                                                                <tr role="row" class="odd">
+                                                                                <tr role="row" class="odd" v-for="item in currentData">
                                                                                     <td class="sorting_1">
                                                                                         <h2 class="table-avatar">
                                                                                             <a href="#"
@@ -504,100 +493,27 @@
                                                                                                      alt="User">
                                                                                             </a>
                                                                                             <span class="table-head-name flex-grow-1">
-                                                                                                <a href="javascript:;"
-                                                                                                   data-bs-toggle="modal"
-                                                                                                   data-bs-target="#request-court">王大明</a>
+                                                                                                <p>{{item.nickName}}</p>
                                                                                             </span>
                                                                                         </h2>
                                                                                     </td>
                                                                                     <td class="table-date-time">
-                                                                                        <h4>
-                                                                                            星期三, 六月
-                                                                                            11日<span>
-                                                                                                06:00
-                                                                                                PM - 08:00
-                                                                                                PM
-                                                                                            </span>
-                                                                                        </h4>
+                                                                                        <p>
+                                                                                            {{item.dateConvert}}
+                                                                                            {{item.timeConvert}}
+                                                                                        </p>
                                                                                     </td>
-                                                                                    <td class="table-date-time">
-                                                                                        <h4>
-                                                                                            星期三, 六月
-                                                                                            11日<span>
-                                                                                                06:00
-                                                                                                PM - 08:00
-                                                                                                PM
-                                                                                            </span>
-                                                                                        </h4>
-                                                                                    </td>
+
                                                                                     <td class="paid-edit">
                                                                                         <span>
-                                                                                            <i class="feather-edit"></i>許可
+                                                                                            <i class="feather-edit"></i>{{item.reviewStatus}}
                                                                                         </span>
                                                                                     </td>
-                                                                                    <td class="table-accept-btn text-end">
-                                                                                        <a href="javascript:;"
-                                                                                           class="btn cancel-table-btn"
-                                                                                           data-bs-toggle="modal"
-                                                                                           data-bs-target="#delete-particpate-check">
-                                                                                            <i class="feather-x-circle"></i>取消資格
-                                                                                        </a>
-                                                                                    </td>
+
                                                                                 </tr>
+
                                                                                 <!-- /參加人數展示卡片 -->
-                                                                                <!-- 填充參加人數卡片 -->
-                                                                                <tr role="row" class="odd">
-                                                                                    <td class="sorting_1">
-                                                                                        <h2 class="table-avatar">
-                                                                                            <a href="#"
-                                                                                               class="avatar avatar-sm  flex-shrink-0">
-                                                                                                <img class="avatar-img"
-                                                                                                     src="~/assets/img/booking/booking-04.jpg"
-                                                                                                     alt="User">
-                                                                                            </a>
-                                                                                            <span class="table-head-name flex-grow-1">
-                                                                                                <a href="javascript:;"
-                                                                                                   data-bs-toggle="modal"
-                                                                                                   data-bs-target="#request-court">李小明</a>
-                                                                                            </span>
-                                                                                        </h2>
-                                                                                    </td>
-                                                                                    <td class="table-date-time">
-                                                                                        <h4>
-                                                                                            星期三, 六月
-                                                                                            11日<span>
-                                                                                                06:00
-                                                                                                PM - 08:00
-                                                                                                PM
-                                                                                            </span>
-                                                                                        </h4>
-                                                                                    </td>
-                                                                                    <td class="table-date-time">
-                                                                                        <h4>
-                                                                                            星期三, 六月
-                                                                                            11日<span>
-                                                                                                06:00
-                                                                                                PM - 08:00
-                                                                                                PM
-                                                                                            </span>
-                                                                                        </h4>
-                                                                                    </td>
-                                                                                    <td class="paid-edit">
-                                                                                        <span>
-                                                                                            <i class="feather-edit"></i>許可
-                                                                                        </span>
-                                                                                    </td>
-                                                                                    <td class="table-accept-btn text-end">
-                                                                                        <a href="javascript:;"
-                                                                                           class="btn cancel-table-btn"
-                                                                                           data-bs-toggle="modal"
-                                                                                           data-bs-target="#request-coche">
-                                                                                            <i class="feather-x-circle">
-                                                                                            </i>取消資格
-                                                                                        </a>
-                                                                                    </td>
-                                                                                </tr>
-                                                                                <!-- /填充參加人數卡片 -->
+                                                                                
                                                                             </tbody>
                                                                         </table>
                                                                     </div>
@@ -691,11 +607,11 @@
                             <!-- /開團標題欄&搜尋頁 -->
                         </div>
                         <div class="modal-footer">
+                            @* 改 *@
                             <div class="table-accept-btn">
-                                <a href="javascript:;" class="btn cancel-table-btn" data-bs-toggle="modal"
-                                   data-bs-target="#request-reject">上一頁</a>
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">關閉</button>
                             </div>
-
+                            @* 改 *@
                         </div>
                     </div>
                 </div>
@@ -751,6 +667,7 @@
                     sortOrder: 'asc',
                     countPerPage: 2,
                     pageNumber: 1,
+                    currentData: [],
                 };
             },
             mounted() {
@@ -792,7 +709,7 @@
             },
             methods: {
                 logBrowsepicture() {
-                    axios.get(`/LaunchaTeamApi/GetByIdOld/1`)
+                    axios.get(`/LaunchaTeamApi/GetByIdOld/4`)
                         .then((result) => {
                             this.axiosBrowsepicture = result.data;
                             this.maxPeople = result.data.maxPeople;
@@ -800,7 +717,7 @@
                         .catch((error) => alert(`發生錯誤: ${error}`));
                 },
                 lookUpdates() {
-                    axios.get(`/GroupStartingApi/GetByIdNow/1`)
+                    axios.get(`/GroupStartingApi/GetByIdNow/4`)
                         .then((viewModel) => {
                             this.showUpdates = viewModel.data;
                             for (var i = 0; i < this.showUpdates.length; i++) {
@@ -816,103 +733,14 @@
                 },
                 setCurrentCard(card) {
                     this.currentCard = card;
+                },
+                Current: function () {
+                    let _this = this;
+                    axios.get(`/GroupStartingApi/CurrentById/4/4`).then((res) => { _this.currentData = res.data })
+                        .catch((error) => alert(`發生錯誤: ${error}`));
                 }
             }
         }).component("paginate", VuejsPaginateNext).mount("#record");
 
-
-
-
-
-
-
-
-        // 分頁
-        // const PaginationApp = Vue.createApp({
-        //     data() {
-        //         return {
-        //             paginationCard: [],
-        //             countPerPage: 2,
-        //             pageNumber: 1,
-        //             memberId: '1',
-        //             currentCaard'',
-        //         }
-        //     },
-        //     mounted() {
-        //         this.axiospaginationCard();
-        //     },
-        //     computed: {
-        //         total() {
-        //             return Math.ceil(this.paginationCard.length / this.countPerPage);
-        //         },
-        //         filterCard() {
-        //             var start = (this.pageNumber - 1) * this.countPerPage;
-        //             var end = start + this.countPerPage;
-        //             return this.paginationCard.slice(start, end);
-        //         }
-        //     },
-        //     methods:
-        //     {
-        //         axiospaginationCard: function () {
-        //             var _this = this;
-        //             axios
-        //                 .get(`/WishListApi/GetWishListById?memberId=${_this.memberId}`)
-        //                 .then(response => _this.paginationCard = response.data)
-        //                 .catch(error => alert(`發生錯誤${error}`))
-
-        //         },
-        //         pageClick(num) {
-        //             this.pageNumber = num;
-        //         }
-        //     }
-        // })
-        //     .component("paginate", VuejsPaginateNext).mount("#PaginationApp");
-
-
-
-
-        // updateCurrentPeople: function (CurrentPeople) {  /* 編輯 */
-        //     //alert("update");
-        //     let _this = this;
-        //     {
-        //         var item = _this.CurrentPeople[i]
-        //         if (CurrentPeople == _this.CurrentPeople[i].CurrentPeople) {
-        //             item.Edit = true;
-        //         }
-        //     }
-        // },
-
-        // deletematerial: function () {  /* 刪除 */
-        //     let _this = this;
-        //     {
-        //         axios.delete(`/GroupStartingApi/Delete/{id}`,)
-        //             .then(response => {
-        //                 alert(response.data);
-        //             }).catch(err => {
-        //                 alert(err);
-        //             }
-        //                          }
-        // });
-
-
-
-
-        // filterLaunchaTeam: function () {   /*篩選  放大鏡*/
-        //     let _this = this;
-        //     var request = {};
-        //     request.CurrentPeople = isNaN(Number(_this.filter)) ? -1 :
-        //         Number(_this.filter);
-        //     request.CurrentPeople = request.Activity = _this.filter;
-        //     request.Picture = null;
-        //     axios.post(`$`).then(   /* 發送呼叫 */
-        //         response => {
-        //             _this.filterCategories = response.data;
-        //             for (var i = 0; i < _this.categories[i];
-        //                 item.Edit = false;
-        //         }
-        //         }).catch(err => {
-        //             alert(err)
-        //         });
-        //  }
     </script>
 }
