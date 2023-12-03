@@ -52,19 +52,22 @@
                                     </div>
                                     <div class="col-lg-12 col-md-6">
                                         <div class="input-space">
-                                            <label class="form-label">姓名(必填欄位)</label>
+                                            <label class="form-label">姓名</label>
+                                            <label class="mark-label">(必填欄位)</label>
                                             <input type="text" class="form-control" id="name" v-model="ProfileSetting.memberName" readonly>
                                         </div>
                                     </div>
                                     <div class="col-lg-12 col-md-6">
                                         <div class="input-space">
-                                            <label class="form-label">暱稱(必填欄位)</label>
+                                            <label class="form-label">暱稱</label>
+                                            <label class="mark-label">(必填欄位)</label>
                                             <input type="text" class="form-control" id="name" v-model="ProfileSetting.nickName">
                                         </div>
                                     </div>
                                     <div class="col-lg-12 col-md-6">
                                         <div class="input-space">
-                                            <label class="form-label">性別(必填欄位)</label>
+                                            <label class="form-label">性別</label>
+                                            <label class="mark-label">(必填欄位)</label>
                                             <select2 disabled style="width:100%" :options="genderList" v-model:value="ProfileSetting.gender">
                                                 <option disabled value="XX">請選擇</option>
                                             </select2>
@@ -72,36 +75,42 @@
                                     </div>
                                     <div class="col-lg-12 col-md-6">
                                         <div class="input-space">
-                                            <label class="form-label">身份證(必填欄位)</label>
+                                            <label class="form-label">身份證</label>
+                                            <label class="mark-label">(必填欄位)</label>
                                             <input readonly type="text" class="form-control" v-model="ProfileSetting.identityCard">
                                         </div>
                                     </div>
                                     <div class="col-lg-12 col-md-6">
                                         <div class="input-space">
-                                            <label class="form-label">出生年月日(必填欄位)</label>
+                                            <label class="form-label">出生年月日</label>
+                                            <label class="mark-label">(必填欄位)</label>
                                             <input readonly id="datatest" type="date" class="form-control" v-model="ProfileSetting.birthday">
                                         </div>
                                     </div>
                                     <div class="col-lg-12 col-md-6">
                                         <div class="input-space">
-                                            <label class="form-label">手機號碼(必填欄位)</label>
+                                            <label class="form-label">手機號碼</label>
+                                            <label class="mark-label">(必填欄位)</label>
                                             <input readonly type="text" maxlength="10" oninput="value=value.replace(/[^\d]/g,'')" class="form-control" id="phone" v-model="ProfileSetting.phone" placeholder="請輸入您的手機號碼" />
                                         </div>
                                     </div>
                                     <div class="col-lg-12 col-md-4">
                                         <div class="input-space">
-                                            <label class="form-label">請選擇縣市(必填欄位)</label>
+                                            <label class="form-label">請選擇縣市</label>
+                                            <label class="mark-label">(必填欄位)</label>
                                             <select2 style="width:100%" :options="cityList" v-model:value="ProfileSetting.activeCity">
                                                 <option disabled value="0">請選擇</option>
                                             </select2>
-                                            <label class="form-label">請選擇鄉鎮市區(必填欄位)</label>
+                                            <label class="form-label">請選擇鄉鎮市區</label>
+                                            <label class="mark-label">(必填欄位)</label>
                                             <select2 style="width:100%" :options="areaList" v-model:value="ProfileSetting.activeArea">
                                             </select2>
                                         </div>
                                     </div>
                                     <div class="col-lg-12 col-md-6">
                                         <div class="input-space">
-                                            <label class="form-label">請輸入地址(必填欄位)</label>
+                                            <label class="form-label">請輸入地址</label>
+                                            <label class="mark-label">(必填欄位)</label>
                                             <input type="text" class="form-control" id="city" placeholder="請輸入地址(範例:南京東路三段219號5樓)" v-model="ProfileSetting.address" />
                                         </div>
                                     </div>
@@ -160,19 +169,22 @@
                                     </div>
                                     <div class="col-lg-12 col-md-6">
                                         <div class="input-space">
-                                            <label class="form-label">姓名(必填欄位)</label>
+                                            <label class="form-label">姓名</label>
+                                            <label class="mark-label">(必填欄位)</label>
                                             <input type="text" class="form-control" id="name" v-model="ProfileSetting.memberName">
                                         </div>
                                     </div>
                                     <div class="col-lg-12 col-md-6">
                                         <div class="input-space">
-                                            <label class="form-label">暱稱(必填欄位)</label>
+                                            <label class="form-label">暱稱</label>
+                                            <label class="mark-label">(必填欄位)</label>
                                             <input type="text" class="form-control" id="name" v-model="ProfileSetting.nickName">
                                         </div>
                                     </div>
                                     <div class="col-lg-12 col-md-6">
                                         <div class="input-space">
-                                            <label class="form-label">性別(必填欄位)</label>
+                                            <label class="form-label">性別</label>
+                                            <label class="mark-label">(必填欄位)</label>
                                             <select2 style="width:100%" :options="genderList" v-model:value="ProfileSetting.gender">
                                                 <option disabled value="XX">請選擇</option>
                                             </select2>
@@ -180,19 +192,21 @@
                                     </div>
                                     <div class="col-lg-12 col-md-6">
                                         <div class="input-space">
-                                            <label class="form-label">身份證(必填欄位)</label>
+                                            <label class="form-label">身份證</label>
+                                            <label class="mark-label">(必填欄位)</label>
                                             <input type="text" class="form-control" v-model="ProfileSetting.identityCard">
                                         </div>
                                     </div>
                                     <div class="col-lg-12 col-md-6">
                                         <div class="input-space">
-                                            <label class="form-label">出生年月日(必填欄位)</label>
+                                            <label class="form-label">出生年月日</label>
+                                            <label class="mark-label">(必填欄位)</label>
                                             <input id="datatest" type="date" class="form-control" v-model="ProfileSetting.birthday">
                                         </div>
                                     </div>
                                     <div class="col-lg-12 col-md-6">
                                         <div class="input-space">
-                                            <label class="form-label">手機號碼(必填欄位)</label>
+                                            <label class="form-label">手機號碼</label>
                                             <label class="mark-label">(必填欄位)</label>
                                             <input type="text" maxlength="10" oninput="value=value.replace(/[^\d]/g,'')" class="form-control" id="phone" v-model="ProfileSetting.phone" placeholder="請輸入您的手機號碼" />
                                         </div>
@@ -204,14 +218,15 @@
                                             <select2 style="width:100%" :options="cityList" v-model:value="ProfileSetting.activeCity">
                                                 <option disabled value="0">請選擇</option>
                                             </select2>
-                                            <label class="form-label">請選擇鄉鎮市區(必填欄位)</label>
+                                            <label class="form-label">請選擇鄉鎮市區</label>
+                                            <label class="mark-label">(必填欄位)</label>
                                             <select2 style="width:100%" :options="areaList" v-model:value="ProfileSetting.activeArea">
                                             </select2>
                                         </div>
                                     </div>
                                     <div class="col-lg-12 col-md-6">
                                         <div class="input-space">
-                                            <label class="form-label">請輸入地址(必填欄位)</label>
+                                            <label class="form-label">請輸入地址</label>
                                             <label class="mark-label">(必填欄位)</label>
                                             <input type="text" class="form-control" id="city" placeholder="請輸入地址(範例:南京東路三段219號5樓)" v-model="ProfileSetting.address" />
                                         </div>
@@ -242,10 +257,6 @@
     <script src="~/js/jhobbyselect2component.js"></script>
     <script src="~/js/taiwancity.js"></script>
     <script>
-        $(document).ready(function () {
-            // 尋找 label 中包含 "(必填欄位)" 的元素，並將它們的文字顏色設置為紅色
-            $('label:contains("(必填欄位)")').css('color', 'red');
-        });
         const profileSet = Vue.createApp({
             data() {
                 return {
