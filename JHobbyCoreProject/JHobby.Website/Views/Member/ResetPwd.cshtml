@@ -1,0 +1,60 @@
+﻿<!-- Main Wrapper -->
+<div class="main-wrapper authendication-pages">
+
+    <!-- Page Content -->
+    <div class="content blur-ellipses" id="restPwd">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-lg-6 mx-auto vph-100 d-flex align-items-center">
+                    <div class="forgot-password w-100">
+                        <header class="text-center forgot-head-title">
+                            <img src="~/assets/img/logo-black.svg" class="img-fluid" alt="Logo">
+                        </header>
+                        <div class="shadow-card">
+                            <h2>找回密碼</h2>
+                            <p>請輸入您的電子信箱</p>
+                            <!-- Login Form -->
+                            <form action="login.html">
+                                <div class="form-group">
+                                    <div class="group-img">
+                                        <i class="feather-mail"></i>
+                                        <input type="text" class="form-control" placeholder="電子信箱" v-model="memberReset.account">
+                                    </div>
+                                </div>
+                                <button class="btn btn-secondary w-100 d-inline-flex justify-content-center align-items-center" type="button">送出<i class="feather-arrow-right-circle ms-2"></i></button>
+                            </form>
+                            <!-- /Login Form -->
+                        </div>
+                        <div class="bottom-text text-center">
+                            <p><a href="Login">登入</a></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /Page Content -->
+</div>
+<!-- /Main Wrapper -->
+
+<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+<script>
+    Vue.createApp({
+        data() {
+            return {
+                memberReset: {
+                    account: "1",
+                },
+            }
+        },
+        methods: {
+            // let self = this;
+
+            // fetch("", {
+            //     methods: "POST",
+            //     headers: { 'Content-Type': 'application/json' },
+            //     body:
+            // }).then().then();
+        },
+    }).mount("#restPwd");
+</script>

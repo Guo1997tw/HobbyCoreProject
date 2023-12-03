@@ -15,7 +15,10 @@ namespace JHobby.Service.Interfaces
 
         public MemberStatusModel MemberStatus(string account);
 
+        public bool ResetPwd(string account, MemberResetModel memberResetModel);
+
         public  MemberModel GetByIdDetail(int id);
+
         public bool UpdateMember(int id,UpdateMemberModel updateMemberModel);
     }
 }
