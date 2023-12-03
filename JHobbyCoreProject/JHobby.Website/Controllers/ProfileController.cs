@@ -15,7 +15,7 @@ namespace JHobby.Website.Controllers
 		}
 		public IActionResult MemberProfile(int id)
         {
-			ViewData["Title"] = "團主介紹";
+			ViewData["Title"] = "會員個人介紹";
 
 			return View(new ProfileTestViewModel
 			{

@@ -14,8 +14,11 @@
                         <div class="info w-100">
                             <div class="d-sm-flex justify-content-between align-items-start">
                                 <h3 class="d-flex align-items-center justify-content-start mb-0">{{memberProfile.nickName}}</h3>
+                                <template v-if="btnMemberProfile">
+                                    <button class="btn btn-gradient pull-right write-review add-review" data-bs-toggle="modal" data-bs-target="#add-review">編輯個人資訊</button>
+                                </template>
                             </div>
-                            @* <p>性別</p> *@
+
                             <ul class="d-sm-flex align-items-center">
                                 <li class="d-flex align-items-center">
                                     <div class="white-bg d-flex align-items-center review venue-coach-details">
@@ -53,12 +56,440 @@
                         </div>
                     </div>
                 </div>
-                <!-- Accordian Contents -->
-            </div>
-            <aside class="col-12 col-sm-12 col-md-12 col-lg-4 ">
-            </aside>
-        </div>
+                <!-- 活動照片 -->
+                <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+                    @* <h4 class="border-bottom">過去活動照片</h4> *@
+                    <h3 class="mb-40">會員過往活動照片</h3>
+                    <div class="accordion-body">
+                        <div class="owl-carousel gallery-slider owl-theme owl-loaded owl-drag">
+                            <div class="owl-stage-outer">
+                                <div class="owl-stage" style="transform: translate3d(-705px, 0px, 0px); transition: all 0s ease 0s; width: 2824px;">
+                                    <div class="owl-item cloned" style="width: 225.33px; margin-right: 10px;">
+                                        <div class="gallery-widget-item">
+                                            <a class="corner-radius-10" href="assets/img/gallery/gallery3/gallery-01.jpg" data-fancybox="gallery2">
+                                                <img class="img-fluid corner-radius-10" alt="Image" src="/assets/img/gallery/gallery3/gallery-01.jpg">
+                                            </a>
+                                        </div>
+                                    </div><div class="owl-item cloned" style="width: 225.33px; margin-right: 10px;">
+                                        <div class="gallery-widget-item">
+                                            <a class="corner-radius-10" href="assets/img/gallery/gallery3/gallery-02.jpg" data-fancybox="gallery2">
+                                                <img class="img-fluid corner-radius-10" alt="Image" src="/assets/img/gallery/gallery3/gallery-02.jpg">
+                                            </a>
+                                        </div>
+                                    </div><div class="owl-item cloned" style="width: 225.33px; margin-right: 10px;">
+                                        <div class="gallery-widget-item">
+                                            <a class="corner-radius-10" href="assets/img/gallery/gallery3/gallery-03.jpg" data-fancybox="gallery3">
+                                                <img class="~/img-fluid corner-radius-10" alt="Image" src="/assets/img/gallery/gallery3/gallery-03.jpg">
+                                            </a>
+                                        </div>
+                                    </div><div class="owl-item active" style="width: 225.33px; margin-right: 10px;">
+                                        <div class="gallery-widget-item">
+                                            <a class="corner-radius-10" href="assets/img/gallery/gallery3/gallery-01.jpg" data-fancybox="gallery2">
+                                                <img class="~/img-fluid corner-radius-10" alt="Image" src="/assets/img/gallery/gallery3/gallery-01.jpg">
+                                            </a>
+                                        </div>
+                                    </div><div class="owl-item active" style="width: 225.33px; margin-right: 10px;">
+                                        <div class="gallery-widget-item">
+                                            <a class="corner-radius-10" href="assets/img/gallery/gallery3/gallery-02.jpg" data-fancybox="gallery2">
+                                                <img class="~/img-fluid corner-radius-10" alt="Image" src="/assets/img/gallery/gallery3/gallery-02.jpg">
+                                            </a>
+                                        </div>
+                                    </div><div class="owl-item active" style="width: 225.33px; margin-right: 10px;">
+                                        <div class="gallery-widget-item">
+                                            <a class="corner-radius-10" href="assets/img/gallery/gallery3/gallery-03.jpg" data-fancybox="gallery2">
+                                                <img class="~/img-fluid corner-radius-10" alt="Image" src="/assets/img/gallery/gallery3/gallery-03.jpg">
+                                            </a>
+                                        </div>
+                                    </div><div class="owl-item" style="width: 225.33px; margin-right: 10px;">
+                                        <div class="gallery-widget-item">
+                                            <a class="corner-radius-10" href="assets/img/gallery/gallery3/gallery-01.jpg" data-fancybox="gallery2">
+                                                <img class="img-fluid corner-radius-10" alt="Image" src="/assets/img/gallery/gallery3/gallery-01.jpg">
+                                            </a>
+                                        </div>
+                                    </div><div class="owl-item" style="width: 225.33px; margin-right: 10px;">
+                                        <div class="gallery-widget-item">
+                                            <a class="corner-radius-10" href="assets/img/gallery/gallery3/gallery-02.jpg" data-fancybox="gallery2">
+                                                <img class="img-fluid corner-radius-10" alt="Image" src="/assets/img/gallery/gallery3/gallery-02.jpg">
+                                            </a>
+                                        </div>
+                                    </div><div class="owl-item" style="width: 225.33px; margin-right: 10px;">
+                                        <div class="gallery-widget-item">
+                                            <a class="corner-radius-10" href="assets/img/gallery/gallery3/gallery-03.jpg" data-fancybox="gallery3">
+                                                <img class="img-fluid corner-radius-10" alt="Image" src="/assets/img/gallery/gallery3/gallery-03.jpg">
+                                            </a>
+                                        </div>
+                                    </div><div class="owl-item cloned" style="width: 225.33px; margin-right: 10px;">
+                                        <div class="gallery-widget-item">
+                                            <a class="corner-radius-10" href="assets/img/gallery/gallery3/gallery-01.jpg" data-fancybox="gallery2">
+                                                <img class="img-fluid corner-radius-10" alt="Image" src="/assets/img/gallery/gallery3/gallery-01.jpg">
+                                            </a>
+                                        </div>
+                                    </div><div class="owl-item cloned" style="width: 225.33px; margin-right: 10px;">
+                                        <div class="gallery-widget-item">
+                                            <a class="corner-radius-10" href="assets/img/gallery/gallery3/gallery-02.jpg" data-fancybox="gallery2">
+                                                <img class="img-fluid corner-radius-10" alt="Image" src="/assets/img/gallery/gallery3/gallery-02.jpg">
+                                            </a>
+                                        </div>
+                                    </div><div class="owl-item cloned" style="width: 225.33px; margin-right: 10px;">
+                                        <div class="gallery-widget-item">
+                                            <a class="corner-radius-10" href="assets/img/gallery/gallery3/gallery-03.jpg" data-fancybox="gallery2">
+                                                <img class="img-fluid corner-radius-10" alt="Image" src="/assets/img/gallery/gallery3/gallery-03.jpg">
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div><div class="owl-nav"><button type="button" role="presentation" class="owl-prev"><i class="feather-chevron-left"></i></button><button type="button" role="presentation" class="owl-next"><i class="feather-chevron-right"></i></button></div><div class="owl-dots disabled"></div>
+                        </div>
+                    </div>
+                </div>
+                <!-- 活動照片 -->               
+				<!-- 會員過去活動 -->
+                <h3 class="mb-40">會員過往開團活動</h3>
+				<div class="col-lg-12">
+					<!-- Listing Content -->
+					<div class="row justify-content-center">
+						<!-- Featured Item -->
+						<div class="col-lg-12">
+							<div class="featured-venues-item">
+								<div class="listing-item listing-item-grid coach-listview">
+									<div class="listing-img">
+										<a href="coach-detail.html">
+											<img src="/assets/img/featured/featured-13.jpg" alt="Venue">
+										</a>
 
+									</div>
+									<div class="listing-content">
+										<div class="list-reviews near-review near-review-list">
+											<div class="d-flex align-items-center">
+												<span class="rating-bg">4.2</span><span>80 Reviews</span>
+											</div>
+
+										</div>
+										<h3 class="listing-title">
+											<a href="coach-detail.html">Jamal Dean</a>
+										</h3>
+										<ul class="mb-2">
+											<li>
+												<span>
+													<i class="feather-map-pin me-2"></i>Roseau, MN
+												</span>
+											</li>
+										</ul>
+										<div class="listing-details-group">
+											<p>Meticulous badminton enthusiast with a gentle coaching style</p>
+										</div>
+										<div class="avalbity-review avalbity-review-list">
+											<ul>
+												<li>
+													<div class="avalibity-date">
+														<span><i class="feather-calendar"></i></span>
+														<div class="avalibity-datecontent">
+															<h6>Next Availabilty</h6>
+															<h5>24 May 2023</h5>
+														</div>
+													</div>
+												</li>
+											</ul>
+											<ul class="profile-coache-list">
+												<li>
+													<a href="coach-detail.html" class="btn btn-primary w-100"><i class="feather-eye me-2"></i> View Profile</a>
+												</li>
+												<li>
+
+												</li>
+											</ul>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<!-- /Featured Item -->
+						<!-- Featured Item -->
+						<div class="col-lg-12">
+							<div class="featured-venues-item">
+								<div class="listing-item listing-item-grid coach-listview">
+									<div class="listing-img">
+										<a href="coach-detail.html">
+											<img src="/assets/img/featured/featured-13.jpg" alt="Venue">
+										</a>
+
+									</div>
+									<div class="listing-content">
+										<div class="list-reviews near-review near-review-list">
+											<div class="d-flex align-items-center">
+												<span class="rating-bg">4.2</span><span>80 Reviews</span>
+											</div>
+
+										</div>
+										<h3 class="listing-title">
+											<a href="coach-detail.html">Jamal Dean</a>
+										</h3>
+										<ul class="mb-2">
+											<li>
+												<span>
+													<i class="feather-map-pin me-2"></i>Roseau, MN
+												</span>
+											</li>
+										</ul>
+										<div class="listing-details-group">
+											<p>Meticulous badminton enthusiast with a gentle coaching style</p>
+										</div>
+										<div class="avalbity-review avalbity-review-list">
+											<ul>
+												<li>
+													<div class="avalibity-date">
+														<span><i class="feather-calendar"></i></span>
+														<div class="avalibity-datecontent">
+															<h6>Next Availabilty</h6>
+															<h5>24 May 2023</h5>
+														</div>
+													</div>
+												</li>
+											</ul>
+											<ul class="profile-coache-list">
+												<li>
+													<a href="coach-detail.html" class="btn btn-primary w-100"><i class="feather-eye me-2"></i> View Profile</a>
+												</li>
+												<li>
+
+												</li>
+											</ul>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<!-- /Featured Item -->
+						<!-- Featured Item -->
+						<div class="col-lg-12">
+							<div class="featured-venues-item">
+								<div class="listing-item listing-item-grid coach-listview">
+									<div class="listing-img">
+										<a href="coach-detail.html">
+											<img src="/assets/img/featured/featured-13.jpg" alt="Venue">
+										</a>
+
+									</div>
+									<div class="listing-content">
+										<div class="list-reviews near-review near-review-list">
+											<div class="d-flex align-items-center">
+												<span class="rating-bg">4.2</span><span>80 Reviews</span>
+											</div>
+
+										</div>
+										<h3 class="listing-title">
+											<a href="coach-detail.html">Jamal Dean</a>
+										</h3>
+										<ul class="mb-2">
+											<li>
+												<span>
+													<i class="feather-map-pin me-2"></i>Roseau, MN
+												</span>
+											</li>
+										</ul>
+										<div class="listing-details-group">
+											<p>Meticulous badminton enthusiast with a gentle coaching style</p>
+										</div>
+										<div class="avalbity-review avalbity-review-list">
+											<ul>
+												<li>
+													<div class="avalibity-date">
+														<span><i class="feather-calendar"></i></span>
+														<div class="avalibity-datecontent">
+															<h6>Next Availabilty</h6>
+															<h5>24 May 2023</h5>
+														</div>
+													</div>
+												</li>
+											</ul>
+											<ul class="profile-coache-list">
+												<li>
+													<a href="coach-detail.html" class="btn btn-primary w-100"><i class="feather-eye me-2"></i> View Profile</a>
+												</li>
+												<li>
+
+												</li>
+											</ul>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<!-- /Featured Item -->
+						<!-- Featured Item -->
+						<div class="col-lg-12">
+							<div class="featured-venues-item">
+								<div class="listing-item listing-item-grid coach-listview">
+									<div class="listing-img">
+										<a href="coach-detail.html">
+											<img src="/assets/img/featured/featured-13.jpg" alt="Venue">
+										</a>
+
+									</div>
+									<div class="listing-content">
+										<div class="list-reviews near-review near-review-list">
+											<div class="d-flex align-items-center">
+												<span class="rating-bg">4.2</span><span>80 Reviews</span>
+											</div>
+
+										</div>
+										<h3 class="listing-title">
+											<a href="coach-detail.html">Jamal Dean</a>
+										</h3>
+										<ul class="mb-2">
+											<li>
+												<span>
+													<i class="feather-map-pin me-2"></i>Roseau, MN
+												</span>
+											</li>
+										</ul>
+										<div class="listing-details-group">
+											<p>Meticulous badminton enthusiast with a gentle coaching style</p>
+										</div>
+										<div class="avalbity-review avalbity-review-list">
+											<ul>
+												<li>
+													<div class="avalibity-date">
+														<span><i class="feather-calendar"></i></span>
+														<div class="avalibity-datecontent">
+															<h6>Next Availabilty</h6>
+															<h5>24 May 2023</h5>
+														</div>
+													</div>
+												</li>
+											</ul>
+											<ul class="profile-coache-list">
+												<li>
+													<a href="coach-detail.html" class="btn btn-primary w-100"><i class="feather-eye me-2"></i> View Profile</a>
+												</li>
+												<li>
+
+												</li>
+											</ul>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<!-- /Featured Item -->
+						<!-- Featured Item -->
+                        <div class="col-lg-12">
+                            <div class="featured-venues-item">
+                                <div class="listing-item listing-item-grid coach-listview">
+                                    <div class="listing-img">
+                                        <a href="coach-detail.html">
+                                            <img src="/assets/img/featured/featured-13.jpg" alt="Venue">
+                                        </a>
+
+                                    </div>
+                                    <div class="listing-content">
+                                        <div class="list-reviews near-review near-review-list">
+                                            <div class="d-flex align-items-center">
+                                                <span class="rating-bg">4.2</span><span>80 Reviews</span>
+                                            </div>
+
+                                        </div>
+                                        <h3 class="listing-title">
+                                            <a href="coach-detail.html">Jamal Dean</a>
+                                        </h3>
+                                        <ul class="mb-2">
+                                            <li>
+                                                <span>
+                                                    <i class="feather-map-pin me-2"></i>Roseau, MN
+                                                </span>
+                                            </li>
+                                        </ul>
+                                        <div class="listing-details-group">
+                                            <p>Meticulous badminton enthusiast with a gentle coaching style</p>
+                                        </div>
+                                        <div class="avalbity-review avalbity-review-list">
+                                            <ul>
+                                                <li>
+                                                    <div class="avalibity-date">
+                                                        <span><i class="feather-calendar"></i></span>
+                                                        <div class="avalibity-datecontent">
+                                                            <h6>Next Availabilty</h6>
+                                                            <h5>24 May 2023</h5>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                            <ul class="profile-coache-list">
+                                                <li>
+                                                    <a href="coach-detail.html" class="btn btn-primary w-100"><i class="feather-eye me-2"></i> View Profile</a>
+                                                </li>
+                                                <li>
+
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+						<!-- /Featured Item -->
+						<!-- Featured Item -->
+                        <div class="col-lg-12">
+                            <div class="featured-venues-item">
+                                <div class="listing-item listing-item-grid coach-listview">
+                                    <div class="listing-img">
+                                        <a href="coach-detail.html">
+                                            <img src="/assets/img/featured/featured-13.jpg" alt="Venue">
+                                        </a>
+
+                                    </div>
+                                    <div class="listing-content">
+                                        <div class="list-reviews near-review near-review-list">
+                                            <div class="d-flex align-items-center">
+                                                <span class="rating-bg">4.2</span><span>80 Reviews</span>
+                                            </div>
+
+                                        </div>
+                                        <h3 class="listing-title">
+                                            <a href="coach-detail.html">Jamal Dean</a>
+                                        </h3>
+                                        <ul class="mb-2">
+                                            <li>
+                                                <span>
+                                                    <i class="feather-map-pin me-2"></i>Roseau, MN
+                                                </span>
+                                            </li>
+                                        </ul>
+                                        <div class="listing-details-group">
+                                            <p>Meticulous badminton enthusiast with a gentle coaching style</p>
+                                        </div>
+                                        <div class="avalbity-review avalbity-review-list">
+                                            <ul>
+                                                <li>
+                                                    <div class="avalibity-date">
+                                                        <span><i class="feather-calendar"></i></span>
+                                                        <div class="avalibity-datecontent">
+                                                            <h6>Next Availabilty</h6>
+                                                            <h5>24 May 2023</h5>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                            <ul class="profile-coache-list">
+                                                <li>
+                                                    <a href="coach-detail.html" class="btn btn-primary w-100"><i class="feather-eye me-2"></i> View Profile</a>
+                                                </li>
+                                                <li>
+
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+						<!-- /Featured Item -->						
+					</div>
+					<!-- /Listing Content -->
+				</div>
+				<!-- 其他會員活動 -->
+            </div>
+        </div>
         <!-- /Row -->
     </div>
     <!-- /container -->
@@ -71,12 +502,15 @@
 
 
 <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script>
     Vue.createApp({
         data() {
             return {
                 memberProfile: {},
                 star: 0,
+                btnMemberProfile: false,
+                activityList: [],
             }
         },
         mounted() {
@@ -84,7 +518,11 @@
             fetch(`/ProfileApi/GetProfileById/${@Model.MemberId}`).then(r => r.json()).then(d => {
                 _this.memberProfile = d;
                 _this.star = d.fraction;
+                if (_this.memberProfile.MemberId == @Model.MemberId) { _this.btnMemberProfile = ture }
             });
+        },
+        methods: {
+
         }
     }).mount("#app");
 
