@@ -42,6 +42,8 @@ namespace JHobby.Repository.Implements
                 .Include(a => a.Activity)
                 .Select(w => new WishListDto
                 {
+                    WishId = w.WishId,
+                    MemberId = w.MemberId,
                     ActivityName = w.Activity.ActivityName,
                     ActivityStatus = w.Activity.ActivityStatus,
                     MaxPeople = w.Activity.MaxPeople,

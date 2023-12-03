@@ -36,6 +36,8 @@ namespace JHobby.Website.Controllers.Api
             return _iWishListService.GetWishListById(memberId)
                 .Select(wl => new WishListViewModel
                 {
+                    WishId = wl.WishId,
+                    MemberId = wl.MemberId,
                     ActivityName = wl.ActivityName,
                     ActivityStatus = wl.ActivityStatus,
                     SurplusQuota = wl.SurplusQuota,

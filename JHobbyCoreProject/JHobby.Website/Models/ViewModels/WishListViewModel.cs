@@ -2,6 +2,10 @@
 {
     public class WishListViewModel
     {
+        public int WishId { get; set; }
+
+        public int MemberId { get; set; }
+
         //活動狀態
         public string ActivityStatus { get; set; } = null!;
 

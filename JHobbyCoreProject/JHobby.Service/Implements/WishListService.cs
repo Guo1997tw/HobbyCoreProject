@@ -34,6 +34,8 @@ namespace JHobby.Service.Implements
         {
             return _iWishListRepository.GetWishListById(memberId).Select(gw => new WishListModel
             {
+                WishId = gw.WishId,
+                MemberId = gw.MemberId,
                 ActivityStatus = _commonService.ConvertActivityStatus(gw.ActivityStatus),
                 ActivityName = gw.ActivityName,
                 SurplusQuota = _commonService.CountSurplusQuota(gw.MaxPeople, gw.CurrentPeople)

@@ -8,10 +8,14 @@ namespace JHobby.Repository.Models.Dto
 {
     public class WishListDto
     {
+        public int WishId { get; set; }
+
         //活動狀態
         public string ActivityStatus { get; set; } = null!;
 
         public string ActivityName { get; set; } = null!;
+
+        public int MemberId { get; set; }
 
         public int? CurrentPeople { get; set; }
 

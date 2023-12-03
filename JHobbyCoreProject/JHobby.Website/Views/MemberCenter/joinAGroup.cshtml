@@ -182,10 +182,41 @@
                                                         <span><i class="feather-edit"></i>{{card.activityStatus}}</span>
                                                     </td>
                                                     <td>
-                                                        <div class="academy-icon">
-                                                            <a href="/user-bookings.html">
-                                                                <i class="feather-chevron-right"></i>
+                                                        <div class="dropdown dropdown-action">
+                                                            <a href="#"
+                                                               class="action-icon dropdown-toggle"
+                                                               data-bs-toggle="dropdown"
+                                                               aria-expanded="false"
+                                                            @@click="setCurrentCard(filterCard[index])">
+                                                                <i class="fas fa-ellipsis"></i>
                                                             </a>
+                                                            <div class="dropdown-menu dropdown-menu-end"
+                                                                 data-popper-placement="bottom-end"
+                                                                 data-popper-escaped=""
+                                                                 style="
+                                                                       position: absolute;
+                                                                       inset: 0px 0px auto auto;
+                                                                       margin: 0px;
+                                                                       transform: translate3d(
+                                                                         -1440px,
+                                                                         2px,
+                                                                         0px
+                                                                       );
+                                                                     "
+                                                                 data-popper-reference-hidden="">
+                                                                <a class="dropdown-item"
+                                                                   :href="`https://localhost:7097/Activity/ActivityPage/${activityId}`"
+                                                                @@click="linkToGroupPage">
+                                                                    <i class="feather-x-circle"></i>
+                                                                    前往頁面
+                                                                </a>
+                                                                <a class="dropdown-item"
+                                                                   href=""
+                                                                @@click="collectAGroupCancel(filterCard[index])">
+                                                                    <i class="feather-x-circle"></i>
+                                                                    刪除收藏
+                                                                </a>
+                                                            </div>
                                                         </div>
                                                     </td>
                                                 </tr>
@@ -493,6 +524,13 @@
                 },
                 pageClick(num) {
                     this.pageNumber = num;
+                },
+                collectAGroupCancel(card) {
+                    let _this = this;
+                    alert(JSON.stringify(card));
+                    axios.delete(`https://localhost:7097/WishListApi/WishListDelete?memberId=${card.memberId}&wishId=${card.wishId}`)
+                        .then(alert("已取消收藏"))
+                        .catch(erro => alert(`${erro}`))
                 }
             }
         })
