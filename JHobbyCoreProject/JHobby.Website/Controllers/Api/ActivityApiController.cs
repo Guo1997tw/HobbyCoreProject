@@ -40,12 +40,19 @@ namespace JHobby.Website.Controllers.Api
 
             if (activityCreateViewModel.File != null)
             {
+                var i = 1;
+
                 foreach (var file in activityCreateViewModel.File)
                 {
-                    //var fullFileName = _rootPath + DateTime.Now.Ticks + file.FileName;
+                    var fullFileName = _rootPath + DateTime.Now.Ticks + file.FileName;
 
-                    var fullFileName = $"img{activityCreateViewModel.ActivityId}";
+                    //var fileString = Path.GetFileNameWithoutExtension(file.Name).ToString();
+                    //var fileExtension = Path.GetExtension(file.Name).ToString();
+                    //Console.WriteLine($"原始檔案名稱: {fileString}, 活動序號: {activityCreateViewModel.ActivityId}, 當前索引: {i}, 副檔名: {fileExtension}");
+                    //var fullFileName = $"{fileString}{activityCreateViewModel.ActivityId}{i}{fileExtension}";
+                    //i++;
 
+                    //var filePath = Path.Combine(_rootPath, fullFileName);
                     using var fs = new FileStream(fullFileName, FileMode.Create);
 
                     await file.CopyToAsync(fs);
