@@ -2,6 +2,7 @@
 using JHobby.Repository.Interfaces;
 using JHobby.Repository.Models.Dto;
 using JHobby.Repository.Models.Entity;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,17 +22,18 @@ namespace JHobby.Repository.Implements
 
         public void DailyCheck()
         {
-            var expireActivities = _jhobbyContext.Activities.Where(a => a.StartTime < DateTime.Now);
+            var expireActivities = _jhobbyContext.Activities.Include(z => z.ActivityUsers).Where(a => a.StartTime < DateTime.Now);
 
             foreach (var activity in expireActivities)
             {
-                activity.ActivityStatus = ActiveStatusEnum.Over.ToString();
+                activity.ActivityStatus = Convert.ToString((int)ActiveStatusEnum.Over);
 
                 var memberForScores = activity.ActivityUsers.Select(x => new Score
                 {
                     ActivityId = activity.ActivityId,
                     MemberId = x.MemberId,
                     Fraction = null,
+                    EvaluationTime = DateTime.Now,
                 }).ToList();
 
                 _jhobbyContext.Scores.AddRange(memberForScores);
