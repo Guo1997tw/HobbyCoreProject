@@ -67,7 +67,6 @@ public partial class JhobbyContext : DbContext
         {
             entity.ToTable("ActivityImage");
 
-            entity.Property(e => e.ImageName).HasMaxLength(100);
             entity.Property(e => e.IsCover).HasColumnName("isCover");
             entity.Property(e => e.UploadTime).HasColumnType("datetime");
 
@@ -129,7 +128,6 @@ public partial class JhobbyContext : DbContext
             entity.Property(e => e.Gender)
                 .HasMaxLength(2)
                 .IsUnicode(false);
-            entity.Property(e => e.HeadShot).HasMaxLength(13);
             entity.Property(e => e.IdentityCard).HasMaxLength(10);
             entity.Property(e => e.LastSignIn).HasColumnType("datetime");
             entity.Property(e => e.MemberName).HasMaxLength(16);
