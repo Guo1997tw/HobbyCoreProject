@@ -36,5 +36,21 @@ namespace JHobby.Repository.Implements
 			};			
 			return result;
 		}
+		public IEnumerable<ProfilePastActivityDto>  GetPastActivity(int id)
+		{
+			var result = _jobbycontext.Activities.Join(_jobbycontext.ActivityImages, a => a.ActivityId, ai => ai.ActivityId, (a, ai) => new ProfilePastActivityDto
+			{
+				MemberId = a.MemberId,
+				ActivityName = a.ActivityName,
+				ActivityId = a.ActivityId,
+				ActivityStatus = a.ActivityStatus,
+				IsCover = ai.IsCover,
+				ImageName = ai.ImageName,
+				ActivityCity = a.ActivityCity,
+				ActivityNotes = a.ActivityNotes,
+				StartTime = a.StartTime,
+			}).Where(m => m.MemberId == id && m.IsCover == true && m.ActivityStatus == "2");
+			return result;
+		}
 	}
 }

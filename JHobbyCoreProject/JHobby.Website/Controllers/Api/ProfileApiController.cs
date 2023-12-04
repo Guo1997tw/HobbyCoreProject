@@ -14,6 +14,7 @@ namespace JHobby.Website.Controllers.Api
 	public class ProfileApiController : ControllerBase
 	{
 		private readonly IProfileService _profileService;
+		
 		public ProfileApiController(IProfileService profileService)
 		{
 			_profileService = profileService;
@@ -35,5 +36,26 @@ namespace JHobby.Website.Controllers.Api
 				Fraction = servicesDto.Fraction,
 			};
 		}
-	}
+		[HttpGet("{id}")]
+		public IEnumerable<ProfilePastActivityViewModel> GetPastActivity(int id)
+		{
+			var res=_profileService.GetPastActivity(id);
+			var result = res.Select(a => new ProfilePastActivityViewModel
+			{
+				MemberId = a.MemberId,
+				ActivityName = a.ActivityName,
+				ActivityId = a.ActivityId,
+				ActivityStatus = a.ActivityStatus,
+				IsCover = a.IsCover,
+				ImageName = a.ImageName,
+				ActivityCity = a.ActivityCity,
+				ActivityNotes = a.ActivityNotes,
+				StartTime = a.StartTime,
+                DateConvert = a.DateConvert,
+                TimeConvert = a.TimeConvert,
+            });
+			return result;
+		}
+
+    }
 }

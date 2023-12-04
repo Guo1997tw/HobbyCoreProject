@@ -13,9 +13,11 @@ namespace JHobby.Service.Implements
     public class ProfileService: IProfileService
 	{
         private readonly IProfileRepository _profileRepository;
-        public ProfileService (IProfileRepository profileRepository)
+        private readonly ICommonService _commonService;
+        public ProfileService (IProfileRepository profileRepository,ICommonService commonService)
         {
             _profileRepository = profileRepository;
+            _commonService = commonService;
         }
         
 
@@ -36,7 +38,27 @@ namespace JHobby.Service.Implements
 				Fraction = Math.Round((decimal)res.Fraction,1)
 			};
         }
+		public IEnumerable<ProfilePastActivityModel> GetPastActivity(int id)
+        {
+            var result=_profileRepository.GetPastActivity(id);
+            var res = result.Select(a => new ProfilePastActivityModel
+            {
+                MemberId = a.MemberId,
+                ActivityName = a.ActivityName,
+                ActivityId = a.ActivityId,
+                ActivityStatus = a.ActivityStatus,
+                IsCover = a.IsCover,
+                ImageName = a.ImageName,
+                ActivityCity = a.ActivityCity,
+                ActivityNotes = a.ActivityNotes,
+                StartTime = a.StartTime,
+                DateConvert = _commonService.ConvertTime(a.StartTime).First().DateConvert,
+                TimeConvert=_commonService.ConvertTime(a.StartTime).First().TimeConvert,
+            });
+            return res;
+        }
 
-		
-	}
+
+
+    }
 }
