@@ -2,6 +2,6 @@
 {
     public class MemberResetViewModel
     {
-        public string HashPassword { get; set; } = null!;
+        public string Account { get; set; } = null!;
     }
 }

@@ -8,6 +8,8 @@ namespace JHobby.Service.Models
 {
     public class MemberResetModel
     {
+        public string Account { get; set; } = null!;
+
         public string HashPassword { get; set; } = null!;
 
         public string SaltPassword { get; set; } = null!;

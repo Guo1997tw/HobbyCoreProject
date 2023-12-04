@@ -52,9 +52,9 @@ namespace JHobby.Repository.Implements
             };
         }
 
-        public bool ResetByIdAndNewInsert(string account, MemberResetDto memberResetDto)
+        public bool ResetByIdAndNewInsert(MemberResetDto memberResetDto)
         {
-            var queryUsr = _jhobbyContext.Members.FirstOrDefault(x => x.Account == account);
+            var queryUsr = _jhobbyContext.Members.FirstOrDefault(x => x.Account == memberResetDto.Account);
 
             if (queryUsr == null) { return false; }
             

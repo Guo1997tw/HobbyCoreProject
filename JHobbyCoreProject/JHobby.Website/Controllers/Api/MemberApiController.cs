@@ -88,14 +88,14 @@ namespace JHobby.Website.Controllers.Api
             return Unauthorized(new { Message = "登入失敗!!" });
         }
 
-        [HttpPost]
-        public bool UseResetPwd(string account, MemberResetViewModel memberResetViewModel)
+        [HttpPost("{account}")]
+        public bool UseResetPwd(MemberResetViewModel memberResetViewModel)
         {
             var mapper = _mapper.Map<MemberResetModel>(memberResetViewModel);
 
-            var result = _memberService.ResetPwd(account, mapper);
+            var result = _memberService.ResetPwd(mapper);
 
-            if(result == false) { return false; }
+            if (result == false) { return false; }
 
             return true;
         }

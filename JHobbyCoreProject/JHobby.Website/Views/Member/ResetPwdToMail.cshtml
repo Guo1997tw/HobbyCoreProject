@@ -21,7 +21,7 @@
                                         <input type="text" class="form-control" placeholder="電子信箱" v-model="memberReset.account">
                                     </div>
                                 </div>
-                                <button class="btn btn-secondary w-100 d-inline-flex justify-content-center align-items-center" type="button">送出<i class="feather-arrow-right-circle ms-2"></i></button>
+                                <button class="btn btn-secondary w-100 d-inline-flex justify-content-center align-items-center" @@click="Reset()" type="button">送出<i class="feather-arrow-right-circle ms-2"></i></button>
                             </form>
                             <!-- /Login Form -->
                         </div>
@@ -43,18 +43,31 @@
         data() {
             return {
                 memberReset: {
-                    account: "1",
+                    account: "",
                 },
             }
         },
         methods: {
-            // let self = this;
+            Reset() {
+                var emailRule = /^[a-zA-Z0-9._-]+@@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
 
-            // fetch("", {
-            //     methods: "POST",
-            //     headers: { 'Content-Type': 'application/json' },
-            //     body:
-            // }).then().then();
+                if (!emailRule.test(this.memberReset.account)) {
+                    return alert("電子信箱格式有誤，請確認!!");
+                }
+
+                let self = this;
+
+                fetch(`/MemberApi/UseResetPwd/${self.memberReset.account}`, {
+                    method: "POST",
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(this.memberReset)
+                }).then(r => { if (!r.ok) throw new Error('Response Fail'); })
+                    .then(d => {
+                        console.log('Success');
+                        alert("信件已寄出，請確認。登入後請更改密碼，謝謝!!")
+                        self.memberReset.account = "";
+                    }).catch(e => { console.log(e); });
+            },
         },
     }).mount("#restPwd");
 </script>
