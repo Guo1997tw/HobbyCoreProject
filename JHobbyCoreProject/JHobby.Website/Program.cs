@@ -84,6 +84,8 @@ namespace JHobby.Website
             builder.Services.AddScoped<IWishListRepository, WishListRepository>();
             builder.Services.AddScoped<IWishListService, WishListService>();
             builder.Services.AddScoped<ISendMailService, SendMailService>();
+            builder.Services.AddScoped<IinputScoreRepository, InputScoreRepository>();
+            builder.Services.AddScoped<IinputScoreService, InputScoreService>();
 
             // DI Authentication
             builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(option =>
