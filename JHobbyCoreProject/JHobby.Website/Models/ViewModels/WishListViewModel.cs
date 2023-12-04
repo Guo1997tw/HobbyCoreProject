@@ -6,6 +6,8 @@
 
         public int MemberId { get; set; }
 
+        public int ActivityId { get; set; }
+
         //活動狀態
         public string ActivityStatus { get; set; } = null!;
 

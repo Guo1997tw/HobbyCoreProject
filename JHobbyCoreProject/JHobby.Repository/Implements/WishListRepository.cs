@@ -44,6 +44,7 @@ namespace JHobby.Repository.Implements
                 {
                     WishId = w.WishId,
                     MemberId = w.MemberId,
+                    ActivityId = w.ActivityId,
                     ActivityName = w.Activity.ActivityName,
                     ActivityStatus = w.Activity.ActivityStatus,
                     MaxPeople = w.Activity.MaxPeople,

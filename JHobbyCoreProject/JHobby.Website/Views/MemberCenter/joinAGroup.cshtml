@@ -54,12 +54,18 @@
                                                     :key="index">
                                                     <td>
                                                         <div class="academy-info">
-                                                            <a class="academy-img" :href="`/Activity/ActivityPage/${pictureActivityId}`"
-                                                            @@click="pictureLinkToGroupPage(filterCard[index])">
+                                                            <a class="academy-img"
+                                                               :href="`/Activity/ActivityPage/${pictureActivityId}`"
+                                                               @@click="pictureLinkToGroupPage(filterCard[index])">
                                                                 <img src="~/assets/img/booking/booking-02.jpg" alt="Booking">
                                                             </a>
                                                             <div class="academy-content">
-                                                                <h6><a href="/#" data-bs-toggle="modal" data-bs-target="#upcoming-court" @@click.prevent="titleLinkToGroupPage(filterCard[index])">{{card.activityName}}</a></h6>
+                                                                <h6>
+                                                                    <a @@click="titleLinkToGroupPage(filterCard[index])"
+                                                                       :href="`/Activity/ActivityPage/${titleActivityId}`">
+                                                                        {{card.activityName}}
+                                                                    </a>
+                                                                </h6>
                                                                 <span>團主: {{card.nickName}}</span>
                                                                 <ul>
                                                                     <li>活動人數上限 : {{card.maxPeople}}</li>
@@ -169,11 +175,18 @@
                                                     :key="index">
                                                     <td>
                                                         <div class="academy-info academy-info">
-                                                            <a href="/user-bookings.html" class="academy-img">
+                                                            <a class="academy-img"
+                                                               @@click="pictureLinkToGroupPage(filterCard[index])"
+                                                               :href="`/Activity/ActivityPage/${pictureActivityId}`">
                                                                 <img src="~/assets/img/booking/booking-03.jpg" alt="Booking">
                                                             </a>
                                                             <div class="academy-content">
-                                                                <h6><a href="/user-bookings.html">{{card.activityName}}</a></h6>
+                                                                <h6>
+                                                                    <a @@click="titleLinkToGroupPage(filterCard[index])"
+                                                                       :href="`/Activity/ActivityPage/${titleActivityId}`">
+                                                                        {{card.activityName}}
+                                                                    </a>
+                                                                </h6>
                                                                 <p>尚餘可參加人數 : {{card.surplusQuota}}人</p>
                                                             </div>
                                                         </div>
@@ -187,7 +200,7 @@
                                                                class="action-icon dropdown-toggle"
                                                                data-bs-toggle="dropdown"
                                                                aria-expanded="false"
-                                                            @@click="setCurrentCard(filterCard[index])">
+                                                               @@click="setCurrentCard(filterCard[index])">
                                                                 <i class="fas fa-ellipsis"></i>
                                                             </a>
                                                             <div class="dropdown-menu dropdown-menu-end"
@@ -205,14 +218,14 @@
                                                                      "
                                                                  data-popper-reference-hidden="">
                                                                 <a class="dropdown-item"
-                                                                   :href="`https://localhost:7097/Activity/ActivityPage/${activityId}`"
-                                                                @@click="linkToGroupPage">
+                                                                   :href="`/Activity/ActivityPage/${activityId}`"
+                                                                   @@click="linkToGroupPage">
                                                                     <i class="feather-x-circle"></i>
                                                                     前往頁面
                                                                 </a>
                                                                 <a class="dropdown-item"
                                                                    href=""
-                                                                @@click="collectAGroupCancel(filterCard[index])">
+                                                                   @@click="collectAGroupCancel(filterCard[index])">
                                                                     <i class="feather-x-circle"></i>
                                                                     刪除收藏
                                                                 </a>
@@ -482,7 +495,6 @@
                 },
                 titleLinkToGroupPage(card) {
                     this.titleActivityId = card.activityId;
-                    window.location.href = `/Activity/ActivityPage/${card.activityId}`;
                 }
             },
         })
@@ -497,6 +509,9 @@
                     countPerPage: 2,
                     pageNumber: 1,
                     memberId: '2',
+                    activityId: "",
+                    pictureActivityId: "",
+                    titleActivityId: ""
                 }
             },
             mounted() {
@@ -528,9 +543,21 @@
                 collectAGroupCancel(card) {
                     let _this = this;
                     alert(JSON.stringify(card));
-                    axios.delete(`https://localhost:7097/WishListApi/WishListDelete?memberId=${card.memberId}&wishId=${card.wishId}`)
+                    axios.delete(`/WishListApi/WishListDelete?memberId=${card.memberId}&wishId=${card.wishId}`)
                         .then(alert("已取消收藏"))
                         .catch(erro => alert(`${erro}`))
+                },
+                setCurrentCard(card) {
+                    this.currentCard = card;
+                },
+                linkToGroupPage() {
+                    this.activityId = this.currentCard.activityId;
+                },
+                pictureLinkToGroupPage(card) {
+                    this.pictureActivityId = card.activityId;
+                },
+                titleLinkToGroupPage(card) {
+                    this.titleActivityId = card.activityId;
                 }
             }
         })

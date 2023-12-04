@@ -40,6 +40,7 @@ namespace JHobby.Website.Controllers.Api
                     MemberId = wl.MemberId,
                     ActivityName = wl.ActivityName,
                     ActivityStatus = wl.ActivityStatus,
+                    ActivityId = wl.ActivityId,
                     SurplusQuota = wl.SurplusQuota,
                 });
         }

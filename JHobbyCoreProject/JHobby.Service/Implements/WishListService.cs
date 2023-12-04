@@ -36,6 +36,7 @@ namespace JHobby.Service.Implements
             {
                 WishId = gw.WishId,
                 MemberId = gw.MemberId,
+                ActivityId = gw.ActivityId,
                 ActivityStatus = _commonService.ConvertActivityStatus(gw.ActivityStatus),
                 ActivityName = gw.ActivityName,
                 SurplusQuota = _commonService.CountSurplusQuota(gw.MaxPeople, gw.CurrentPeople)
