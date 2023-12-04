@@ -76,7 +76,6 @@ namespace JHobby.Website.Controllers.Api
             {
                 MemberId = x.MemberId,
                 ActivityId = x.ActivityId,
-
                 ReviewStatus = x.ReviewStatus,
                 ActivityName = x.ActivityName,
                 CurrentPeople = x.CurrentPeople,

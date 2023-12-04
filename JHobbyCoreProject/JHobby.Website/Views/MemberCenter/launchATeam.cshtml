@@ -1,4 +1,5 @@
-﻿<partial name="_BreadcrumbPartial" />s
+﻿@model ReviewIdViewModel
+<partial name="_BreadcrumbPartial" />s
 <partial name="_DashboardMenuPartial" />
 @* MemberCenter/launchATeam *@
 <div b-q7camsv0h8="" class="container" id="record">
@@ -163,7 +164,7 @@
                                                                                                    data-bs-toggle="modal"
                                                                                                    data-bs-target="#request-court">
                                                                                                 </a>
-                                                                                                {{item.activityName}}
+                                                                                                {{item.activityName}}                                                                                
                                                                                                 <span>
                                                                                                 </span>
                                                                                             </span>
@@ -179,7 +180,7 @@
                                                                                         <!-- 連接參團人數 -->@* 改 *@
                                                                                         <button type="button" class="btn btn-secondary"
                                                                                                 data-bs-toggle="modal"
-                                                                                                data-bs-target="#add-particpate-check" @@click="Current()">
+                                                                                                data-bs-target="#add-particpate-check" @@click="Current();keepId(item.memberId,item.activityId)">
                                                                                             <i class="feather-eye"></i>查看詳細狀態
 
                                                                                         </button>
@@ -668,12 +669,14 @@
                     countPerPage: 2,
                     pageNumber: 1,
                     currentData: [],
+                    _activityId:0,
+                    _memberId:0,
                 };
             },
             mounted() {
                 let _this = this;
                 _this.logBrowsepicture();
-                this.lookUpdates();
+                _this.lookUpdates();
             },
             computed: {
                 total() {
@@ -736,9 +739,15 @@
                 },
                 Current: function () {
                     let _this = this;
-                    axios.get(`/GroupStartingApi/CurrentById/4/4`).then((res) => { _this.currentData = res.data })
+                    axios.get(`/GroupStartingApi/CurrentById/${_this._memberId}/${_this._activityId}`).then((res) => { _this.currentData = res.data })
                         .catch((error) => alert(`發生錯誤: ${error}`));
-                }
+                },
+                keepId: function (memberId, activityId) {
+                    let _this = this;
+                    _this._memberId = memberId
+                    _this._activityId = activityId
+                    
+                },
             }
         }).component("paginate", VuejsPaginateNext).mount("#record");
 
