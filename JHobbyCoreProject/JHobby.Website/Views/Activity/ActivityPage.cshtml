@@ -18,8 +18,8 @@
     <div class="bannergallery-section">
         <div class="main-gallery-slider owl-carousel owl-theme">
             <div class="gallery-widget-item" v-for="item in activity.activityImages">
-                <a :href='"/image/activityimages/"+item.imageName+".jpg"' data-fancybox="gallery1">
-                    <img class="img-fluid" alt="Image" :src='"/image/activityimages/"+item.imageName+".jpg"'>
+                <a :href="item.imageName" data-fancybox="gallery1">
+                    <img class="img-fluid" alt="Image" :src="item.imageName">
                 </a>
             </div>
         </div>
@@ -89,7 +89,7 @@
                                                 <ul>
                                                     <li class="author-group d-md-flex align-items-center justify-content-start" v-for="item in msgBord">
                                                         <div class="profile-pic">
-                                                            <a href="javascript:void(0);" class="d-inline-block"><img src="~/assets/img/profiles/avatar-04.jpg" alt="User"></a>
+                                                            <a href="javascript:void(0);" class="d-inline-block"><img :src="item.headShot" alt="User"></a>
                                                         </div>
                                                         <div class="info">
                                                             <div class="head d-flex align-items-center justify-content-start">
@@ -149,7 +149,7 @@
                         <h4 class="border-bottom">活動主評價</h4>
                         <div class="d-flex justify-content-start align-items-center">
                             <div class="profile-pic">
-                                <a href="javascript:void(0);"><img class="img-fluid" alt="User" src="~/image/avatar-05.jpg"></a>
+                                <a href="javascript:void(0);"><img class="img-fluid" alt="User" :src="profile.headShot"></a>
                             </div>
                             <div class="">
                                 <h5>{{profile.nickName}}</h5>
@@ -190,7 +190,7 @@
                                     <div class="listing-item mb-0">
                                         <div class="listing-img">
                                             <a v-bind:href='"/Activity/ActivityPage/"+item.activityId'>
-                                                <img :src='"/image/activityimages/"+item.activityImages[0].imageName+".jpg"' alt="Venue">
+                                                <img :src="item.activityImages[0].imageName".jpg"' alt="Venue">
                                             </a>
                                             <div class="fav-item-venues">
                                                 <div class="list-reviews">
@@ -226,7 +226,7 @@
                                             <div class="listing-button">
                                                 <div class="listing-venue-owner">
                                                     <a class="navigation" v-bind:href='"@Url.Action("MemberProfile","Profile")/"+item.memberId'>
-                                                        <img src="~/assets/img/profiles/avatar-01.jpg" alt="Venue">{{item.nickName}}
+                                                        <img :src="item.headShot" alt="Venue">{{item.nickName}}
                                                     </a>
                                                 </div>
                                             </div>

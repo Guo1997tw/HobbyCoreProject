@@ -1,4 +1,5 @@
-﻿using JHobby.Website.Models;
+﻿using JHobby.Service.Interfaces;
+using JHobby.Website.Models;
 using JHobby.Website.Models.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -9,15 +10,19 @@ namespace JHobby.Website.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly IUserAuthenticationService _userAuthenticationService;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger,IUserAuthenticationService userAuthenticationService)
         {
             _logger = logger;
+            _userAuthenticationService = userAuthenticationService;
         }
 
         // [Authorize(Roles = "Member")]
         public IActionResult Index()
         {
+            //ViewBag.memberId=_userAuthenticationService.GetUserId();
+            ViewBag.memberId = 1;
             return View();
         }
 

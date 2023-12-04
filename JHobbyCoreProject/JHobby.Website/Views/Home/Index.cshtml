@@ -1,4 +1,7 @@
-﻿@section Styles
+﻿@{
+    int memberId = ViewBag.memberId;
+}
+@section Styles
     {
     <style>
         .service-count-blk {
@@ -33,22 +36,14 @@
                                 <div class="search-input line">
                                     <div class="form-group mb-0">
                                         <label>縣市</label>
-@*                                         <select name="city" class="select">
-                                            <option value="1">台北市</option>
-                                            <option value="2">新北市</option>
-                                        </select> *@
                                         <select2 name="city" style="width:100%" :options="cityList" v-model:value="activeCity">
-                                            <option disabled  value="0">請選擇</option>
+                                            <option disabled value="0">請選擇</option>
                                         </select2>
                                     </div>
                                 </div>
                                 <div class="search-input">
                                     <div class="form-group mb-0">
                                         <label>區域 </label>
-@*                                         <select  class="form-control select">
-                                            <option value="1">中正區</option>
-                                            <option value="2">大同區</option>
-                                        </select> *@
                                         <select2 name="area" style="width:100%" :options="areaList">
                                         </select2>
                                     </div>
@@ -83,8 +78,9 @@
                     <div class="featured-venues-item aos" data-aos="fade-up" v-for="item in activityList">
                         <div class="listing-item mb-0">
                             <div class="listing-img">
+
                                 <a v-bind:href='"@Url.Action("ActivityPage","Activity")/"+item.activityId'>
-                                    <img :src='"/image/activityimages/"+item.activityImages[0].imageName+".jpg"' style="height:259px;width:417px" alt="Venue">
+                                    <img :src="item.activityImages[0].imageName" style="height:259px;width:417px" alt="Venue">
                                 </a>
                                 <div class="fav-item-venues">
                                     <span class="tag tag-yellow">精選</span>
@@ -121,10 +117,9 @@
                                 <div class="listing-button">
                                     <div class="listing-venue-owner">
                                         <a class="navigation" v-bind:href='"@Url.Action("MemberProfile","Profile")/"+item.memberId'>
-                                            <img src="~/assets/img/profiles/avatar-01.jpg" alt="Venue">{{item.nickName}}
+                                            <img :src="item.headShot" alt="Venue">{{item.nickName}}
                                         </a>
-                                    </div>
-                                    @* <a href="venue-details.html" class="user-book-now"><span><i class="feather-calendar me-2"></i></span>參加</a> *@
+                                    </div>                                    
                                 </div>
                             </div>
                         </div>
@@ -185,7 +180,7 @@
                         <div class="listing-item mb-0">
                             <div class="listing-img">
                                 <a v-bind:href='"@Url.Action("MemberProfile","Profile")/"+item.memberId'>
-                                    <img src="~/assets/img/profiles/user-01.jpg" alt="User">
+                                    <img style="height:371px;width:307px" :src="item.headShot" alt="User">
                                 </a>
                                 <div class="fav-item-venues">
                                     <span class="tag tag-blue">熱門</span>
@@ -265,10 +260,9 @@
                             .catch(err => alert(err));
                     }
                     else {
-                        //目前寫死會員ID_1，等待網頁狀態實作
                         let _this = this;
                         var form = new FormData();
-                        form.append("memberId", 1);
+                        form.append("memberId", @memberId);
                         form.append("activityId", id);
                         form.append("addTime", GetDateTime());
                         axios.post("/WishApi/InsertWish", form, {
@@ -279,7 +273,6 @@
                             .then(res => _this.QueryWish())
                             .catch(err => alert(err));
                     }
-                    //_this.QueryActivityList();
                 }
             }
         }).mount("#hotActivity")
@@ -336,11 +329,8 @@
         const cityArea = Vue.createApp({
             data() {
                 return {
-                    activeCity:""
+                    activeCity: ""
                 }
-            },
-            mounted() {
-
             },
             computed: {
                 cityList() {

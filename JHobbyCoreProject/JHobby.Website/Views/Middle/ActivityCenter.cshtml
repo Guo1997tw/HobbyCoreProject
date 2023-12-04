@@ -59,7 +59,7 @@
                     <div class="listing-item listing-item-grid">
                         <div class="listing-img">
                             <a v-bind:href='"@Url.Action("ActivityPage","Activity")/"+item.activityId'>
-                                <img :src='"/image/activityimages/"+item.activityImages[0].imageName+".jpg"' style="height:259px;width:417px" alt="Venue">
+                                <img :src="item.activityImages[0].imageName" style="height:259px;width:417px" alt="Venue">
                             </a>
                             <div class="fav-item-venues">
                                 <div class="list-reviews">
@@ -95,7 +95,7 @@
                             <div class="listing-button">
                                 <div class="listing-venue-owner">
                                     <a class="navigation" v-bind:href='"@Url.Action("MemberProfile","Profile")/"+item.memberId'>
-                                        <img src="~/assets/img/profiles/avatar-01.jpg" alt="Venue">{{item.nickName}}
+                                        <img :src="item.headShot" alt="Venue">{{item.nickName}}
                                     </a>
                                 </div>
                                 @* 									<a href="venue-details.html" class="user-book-now"><span><i class="feather-calendar me-2"></i></span>參加</a> *@
