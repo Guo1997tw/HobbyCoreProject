@@ -18,7 +18,7 @@ namespace JHobby.Repository.Implements
         {
             _jhobbyContext = jhobbyContext;
         }
-        public bool Update(int id, UpdateProfileSettingDto updateProfileSettingDto)
+        public bool Update(int id, UpdateProfileSettingDto updateProfileSettingDto) //bool 想要的結果 條件
         {
             var queryResult = _jhobbyContext.Members.FirstOrDefault(m => m.MemberId == id);
 

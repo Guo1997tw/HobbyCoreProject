@@ -113,7 +113,10 @@
                     console.log('Success', d);
                     alert("登入成功~~")
 
-                    window.location.href = '/Home/Index';
+                    const searchTemp = new URLSearchParams(window.location.search);
+                    const returnUrl = searchTemp.get('ReturnUrl');
+
+                    window.location.href = returnUrl ? decodeURIComponent(returnUrl) : '/Home/Index';
                 }).catch(e => {
                     console.log('Fail', e);
                     alert("登入失敗，請確認帳號、密碼是否正確!!");

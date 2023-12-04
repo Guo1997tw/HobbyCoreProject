@@ -85,5 +85,36 @@ namespace JHobby.Service.Implements
             }
             return len;
         }
+        public string ConvertGender(string Gender)
+        {
+            switch (Gender)
+            {
+                case "0":
+                    return "女";
+                case "1":
+                    return "男";
+                case "2":
+                    return "雙性";
+                default:
+                    return "無此編號";
+            }
+        }
+
+        public string ConvertStatus(string status)
+        {
+            switch (status)
+            {
+                case "0":
+                    return "快速會員";
+                case "1":
+                    return "一般會員";
+                case "2":
+                    return "黑名單";
+                case "9":
+                    return "管理員";
+                default:
+                    return "無此身分別代號";
+            }
+        }
     }
 }
