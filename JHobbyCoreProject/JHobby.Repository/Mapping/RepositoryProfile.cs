@@ -18,5 +18,6 @@ public class RepositoryProfile : Profile
         CreateMap<Activity, ActivityPageDto>();
         CreateMap<ActivityImage, ActivityPageDto>();
         CreateMap<ActivityImageCreateDto, ActivityImage>();
+        CreateMap<ActivityUpdateDto, Activity>();
     }
 }

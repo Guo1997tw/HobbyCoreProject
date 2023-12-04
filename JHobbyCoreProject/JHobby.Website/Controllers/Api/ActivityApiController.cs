@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using AutoMapper.Execution;
+using JHobby.Repository.Interfaces;
 using JHobby.Repository.Models.Dto;
 using JHobby.Repository.Models.Entity;
 using JHobby.Service.Implements;
@@ -18,6 +19,7 @@ namespace JHobby.Website.Controllers.Api
         private readonly IActivityService _activityService;
         private readonly IMapper _mapper;
         private readonly string _rootPath;
+        
 
         public ActivityApiController(IActivityService activityService, IMapper mapper, IWebHostEnvironment webHostEnvironment)
         {
@@ -40,7 +42,7 @@ namespace JHobby.Website.Controllers.Api
 
             if (activityCreateViewModel.File != null)
             {
-                var i = 1;
+                // var i = 1;
 
                 foreach (var file in activityCreateViewModel.File)
                 {
@@ -70,52 +72,14 @@ namespace JHobby.Website.Controllers.Api
 
             return result;
         }
-        //    catch (Exception ex) { throw ex; }
-        //}
 
-        //[HttpPost]
-        //public bool InsertActivity(ActivityBuildViewModel activityBuildViewModel)
-        //{
-        //    //        foreach (var activityBuildViewModel.File in activityBuildViewModel)
-        //    //{
-        //    var resultA = new ActivityBuildModel
-        //    {
-        //        ActivityCity = activityBuildViewModel.ActivityCity,
-        //        ActivityArea = activityBuildViewModel.ActivityArea,
-        //        ActivityLocation = activityBuildViewModel.ActivityLocation,
-        //        StartTime = activityBuildViewModel.StartTime,
-        //        MaxPeople = activityBuildViewModel.MaxPeople,
-        //        CategoryId = activityBuildViewModel.CategoryId,
-        //        CategoryTypeId = activityBuildViewModel.CategoryTypeId,
-        //        JoinDeadLine = activityBuildViewModel.JoinDeadLine,
-        //        JoinFee = activityBuildViewModel.JoinFee,
-        //        ActivityNotes = activityBuildViewModel.ActivityNotes,
-        //        MemberId = activityBuildViewModel.MemberId,
-        //        ActivityStatus = activityBuildViewModel.ActivityStatus,
-        //        Payment = activityBuildViewModel.Payment,
-        //        Created = activityBuildViewModel.Created
-        //    };
+        [HttpPut("id")]
+        public bool LeaderUpdate(int id, ActivityUpdateViewModel activityUpdateViewModel)
+        {
+            var mapper = _mapper.Map<ActivityUpdateModel>(activityUpdateViewModel);
 
-        //    _activityService.CreateActivityBuild(resultA);
-
-
-        //    //foreach (var activityBuildViewModel.File in activityBuildViewModel)
-        //    //{
-        //    if (activityBuildViewModel.File != null)
-        //    {
-        //        if (activityBuildViewModel.File.Length > 0)
-        //        {
-        //            string SavePath = $@"{_Path}{activityBuildViewModel.File.FileName}";
-
-        //            using (var steam = new FileStream(SavePath, FileMode.Create))
-        //            {
-        //                activityBuildViewModel.File.CopyToAsync(steam);
-        //            }
-        //        }
-        //    }
-        //    return true;
-        //}
-
+            return (_activityService.ActivityUpdate(id, mapper)) ? true : false;
+        }
 
         /// <summary>
         /// 活動頁面查詢

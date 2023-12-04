@@ -20,10 +20,11 @@ namespace JHobby.Service.Mapping
             CreateMap<MemberStatusDto, MemberStatusModel>();
             CreateMap<ActivityCreateModel, ActivityCreateDto>();
             CreateMap<ActivityImageCreateModel, ActivityImageCreateDto>();
+            CreateMap<ActivityUpdateModel, ActivityUpdateDto>();
 
             //CreateMap<ActivityCreateDto, ActivityCreateModel>()
             //    .ForMember(dest=>dest.ActivityImages,opt=>opt.MapFrom(src=> src.ActivityImages.Select(x=>x.ImageName)));
-            
+
         }
     }
 }

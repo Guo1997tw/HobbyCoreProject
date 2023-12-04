@@ -30,6 +30,19 @@ namespace JHobby.Service.Implements
         }
 
         /// <summary>
+        /// 團主編輯
+        /// </summary>
+        /// <param name="activityUpdateModel"></param>
+        /// <returns></returns>
+        /// <exception cref="NotImplementedException"></exception>
+        public bool ActivityUpdate(int id, ActivityUpdateModel activityUpdateModel)
+        {
+            var result = _mapper.Map<ActivityUpdateDto>(activityUpdateModel);
+
+            return (_activityRepository.ActivityUpdate(id, result)) ? true : false;
+        }
+
+        /// <summary>
         /// 活動頁面查詢
         /// </summary>
         /// <param name="id"></param>

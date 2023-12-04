@@ -7,6 +7,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel.Design;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -40,6 +41,27 @@ namespace JHobby.Repository.Implements
                 return true;
             }
             catch (Exception) { return false; }
+        }
+
+        /// <summary>
+        /// 團主修改
+        /// </summary>
+        /// <param name="activityUpdateDto"></param>
+        /// <returns></returns>
+        public bool ActivityUpdate(int id, ActivityUpdateDto activityUpdateDto)
+        {
+            var query = _jhobbyContext.Activities.FirstOrDefault(a => a.ActivityId == id);
+
+            if (query == null) return false;
+
+            try
+            {
+                _mapper.Map(activityUpdateDto, query);
+                _jhobbyContext.SaveChanges();
+            }
+            catch (Exception) { return false; }
+
+            return true;
         }
 
         /// <summary>

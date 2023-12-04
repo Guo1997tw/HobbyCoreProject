@@ -19,6 +19,13 @@ namespace JHobby.Service.Interfaces
         public bool ActivityCreate(ActivityCreateModel activityCreateModel);
 
         /// <summary>
+        /// 團主編輯
+        /// </summary>
+        /// <param name="activityUpdateModel"></param>
+        /// <returns></returns>
+        public bool ActivityUpdate(int id, ActivityUpdateModel activityUpdateModel);
+
+        /// <summary>
         /// 活動頁面查詢
         /// </summary>
         /// <param name="id"></param>

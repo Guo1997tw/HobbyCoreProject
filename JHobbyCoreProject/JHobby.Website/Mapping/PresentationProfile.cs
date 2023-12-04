@@ -13,7 +13,7 @@ namespace JHobby.Website.Mapping
             CreateMap<ActivityPageModel, ActivityPageViewModel>();
             CreateMap<MemberStatusModel, MemberStatusViewModel>();
             CreateMap<ActivityCreateViewModel, ActivityCreateModel>();
-            //CreateMap<ActivityImageCreateModel, ActivityImageCreateViewModel>();
+            CreateMap<ActivityUpdateViewModel, ActivityUpdateModel>();
         }
     }
 }
