@@ -25,7 +25,7 @@ namespace JHobby.Repository.Implements
             {
                 HeadShot = result.HeadShot,
                 Account = result.Account,
-                Status = _iCommonService.ConvertStatus(result.Status),
+                Status = result.Status,
                 MemberId = result.MemberId,
                 MemberName = result.MemberName,
                 NickName = result.NickName,

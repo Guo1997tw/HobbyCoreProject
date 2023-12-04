@@ -56,7 +56,8 @@ namespace JHobby.Website.Controllers
 
 		public IActionResult changePassword()
 		{
-			return View();
+            ViewData["BookMark"] = "ChangePassword";
+            return View();
 		}
 
 		[ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
