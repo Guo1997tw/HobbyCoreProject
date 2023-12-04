@@ -274,11 +274,17 @@
                                                 <tr v-for="(card, index) in filterCard" :key="index">
                                                     <td>
                                                         <h2 class="table-avatar">
-                                                            <a href="/#" data-bs-toggle="modal" data-bs-target="#upcoming-court" class="avatar avatar-sm flex-shrink-0">
+                                                            <a @@click="pictureLinkToGroupPage(filterCard[index])"
+                                                               :href="`https://localhost:7097/Activity/ActivityPage/${pictureActivityId}`"
+                                                            class="avatar avatar-sm flex-shrink-0"
+                                                            >
                                                                 <img class="avatar-img" src="~/assets/img/booking/booking-02.jpg" alt="Booking">
                                                             </a>
                                                             <span class="table-head-name flex-grow-1">
-                                                                <a data-bs-toggle="modal" data-bs-target="#upcoming-court">{{card.activityName}}</a>
+                                                                <a @@click="titleLinkToGroupPage(filterCard[index])"
+                                                                   :href="`https://localhost:7097/Activity/ActivityPage/${titleActivityId}`">
+                                                                {{card.activityName}}
+                                                            </a>
                                                                 <span>團主: {{card.nickName}}</span>
                                                             </span>
                                                         </h2>
@@ -297,14 +303,35 @@
                                                     <td>
                                                         <!-- 下拉圓形選單評團主 -->
                                                         <div class="dropdown dropdown-action">
-                                                            <a href="#" class="action-icon dropdown-toggle"
-                                                               data-bs-toggle="dropdown" aria-expanded="false">
+                                                            <a href="#"
+                                                               class="action-icon dropdown-toggle"
+                                                               data-bs-toggle="dropdown"
+                                                               aria-expanded="false"
+                                                               @@click="setCurrentCard(filterCard[index])">
                                                                 <i class="fas fa-ellipsis"></i>
                                                             </a>
-                                                            <div class="dropdown-menu dropdown-menu-end">
-                                                                <a class="dropdown-item" href="javascript:;" data-bs-toggle="modal"
-                                                                   data-bs-target="#request-reject">
-                                                                    <a href="javascript:;" class="btn cancel-table-btn" data-bs-toggle="modal" data-bs-target="#request-coche" @@click="setCurrentCard(filterCard[index])">評分</a>
+                                                            <div class="dropdown-menu dropdown-menu-end"
+                                                                 data-popper-placement="bottom-end"
+                                                                 style="
+                                                                        position: absolute;
+                                                                        inset: 0px 0px auto auto;
+                                                                        margin: 0px;
+                                                                        transform: translate3d(
+                                                                          -1440px,
+                                                                          2px,
+                                                                          0px
+                                                                        );
+                                                                      ">
+                                                                <a class="dropdown-item"
+                                                                   @@click="linkToGroupPage"
+                                                                   :href="`https://localhost:7097/Activity/ActivityPage/${activityId}`">
+                                                                    前往頁面
+                                                                </a>
+                                                                <a href="javascript:;"
+                                                                   class="dropdown-item"
+                                                                   data-bs-toggle="modal"
+                                                                   data-bs-target="#request-coche">
+                                                                    團主評分
                                                                 </a>
                                                             </div>
                                                         </div>
@@ -573,6 +600,9 @@
                     pageNumber: 1,
                     memberId: '2',
                     currentCard: '',
+                    activityId: "",
+                    pictureActivityId: "",
+                    titleActivityId: "",
                 };
             },
             mounted() {
@@ -601,7 +631,18 @@
                 setCurrentCard(card) {
                     this.currentCard = card;
                 },
+                linkToGroupPage() {
+                    this.activityId = this.currentCard.activityId;
+                },
+                pictureLinkToGroupPage(card) {
+                    this.pictureActivityId = card.activityId;
+                },
+                titleLinkToGroupPage(card) {
+                    this.titleActivityId = card.activityId;
+                },
             },
-        }).component("paginate", VuejsPaginateNext).mount("#idPastJoinAGroupCard");
+        })
+        .component("paginate", VuejsPaginateNext)
+        .mount("#idPastJoinAGroupCard");
     </script>
 }

@@ -39,6 +39,7 @@ namespace JHobby.Website.Controllers.Api
         {
             return _aPastJoinAGroupService.GetPastJoinAGroupById(memberId).Select(x => new PastJoinAGroupViewModel
             {
+                ActivityId = x.ActivityId,
                 ActivityCity = x.ActivityCity,
                 ActivityName = x.ActivityName,
                 ActivityStatus = x.ActivityStatus,
