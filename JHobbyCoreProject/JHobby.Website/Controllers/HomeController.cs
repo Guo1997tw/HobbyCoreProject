@@ -1,7 +1,5 @@
 ﻿using JHobby.Service.Interfaces;
 using JHobby.Website.Models;
-using JHobby.Website.Models.ViewModels;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
@@ -12,7 +10,7 @@ namespace JHobby.Website.Controllers
         private readonly ILogger<HomeController> _logger;
         private readonly IUserAuthenticationService _userAuthenticationService;
 
-        public HomeController(ILogger<HomeController> logger,IUserAuthenticationService userAuthenticationService)
+        public HomeController(ILogger<HomeController> logger, IUserAuthenticationService userAuthenticationService)
         {
             _logger = logger;
             _userAuthenticationService = userAuthenticationService;
@@ -21,8 +19,16 @@ namespace JHobby.Website.Controllers
         // [Authorize(Roles = "Member")]
         public IActionResult Index()
         {
-            //ViewBag.memberId=_userAuthenticationService.GetUserId();
-            ViewBag.memberId = 1;
+            try
+            {
+                ViewBag.logIn = true;
+                ViewBag.memberId = _userAuthenticationService.GetUserId();
+            }
+            catch (Exception)
+            {
+                ViewBag.logIn = false;
+                ViewBag.memberId = 0;
+            }
             return View();
         }
 
@@ -54,20 +60,20 @@ namespace JHobby.Website.Controllers
             return View();
         }
 
-		public IActionResult DashboardMenu()
-		{
-			return View();
-		}
+        public IActionResult DashboardMenu()
+        {
+            return View();
+        }
 
-		public IActionResult changePassword()
-		{
-			return View();
-		}
+        public IActionResult changePassword()
+        {
+            return View();
+        }
 
-		[ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-		public IActionResult Error()
-		{
-			return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
-		}
-	}
+        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
+        public IActionResult Error()
+        {
+            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        }
+    }
 }

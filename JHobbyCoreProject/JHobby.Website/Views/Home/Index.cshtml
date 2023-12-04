@@ -1,5 +1,6 @@
 ﻿@{
     int memberId = ViewBag.memberId;
+    bool blnlogIn = ViewBag.logIn;
 }
 @section Styles
     {
@@ -229,14 +230,14 @@
             data() {
                 return {
                     activityList: [],
-                    wish: []
+                    wish: [],
                 }
             },
             mounted() {
                 let _this = this;
                 _this.QueryActivityList();
             },
-            methods: {
+            methods: {               
                 QueryActivityList() {
                     let _this = this;
                     axios.get("/IndexApi/GetActivityList")
@@ -244,18 +245,21 @@
                             _this.activityList = res.data;
                         })
                         .catch(err => alert(err));
+                    if (`@blnlogIn`=="False") return
                     _this.QueryWish();
                 },
                 QueryWish() {
+                    if (`@blnlogIn` == "False") return
                     let _this = this;
-                    axios.get("/WishApi/GetWishList")
+                    axios.get(`/WishApi/GetWishList/@memberId`)
                         .then(res => _this.wish = res.data)
                         .catch(err => alert(err));
                 },
                 Fav(id) {
+                    if (`@blnlogIn` == "False") return
                     let _this = this;
                     if (_this.wish.includes(id)) {
-                        axios.delete(`/WishApi/DeleteWish/${id}`)
+                        axios.delete(`/WishApi/DeleteWish/@memberId/${id}`)
                             .then(res => _this.QueryWish())
                             .catch(err => alert(err));
                     }

@@ -1,4 +1,6 @@
 ﻿@{
+    int memberId = ViewBag.memberId;
+    bool blnlogIn = ViewBag.logIn;
     var search = ViewBag.search;
     ViewData["Title"] = "活動搜尋";
 }
@@ -173,23 +175,24 @@
                     _this.QueryWish();
                 },
                 QueryWish() {
+                    if (`@blnlogIn` == "False") return
                     let _this = this;
-                    axios.get("/WishApi/GetWishList")
+                    axios.get(`/WishApi/GetWishList/@memberId`)
                         .then(res => _this.wish = res.data)
                         .catch(err => alert(err));
                 },
                 Fav(id) {
+                    if (`@blnlogIn` == "False") return
                     let _this = this;
                     if (_this.wish.includes(id)) {
-                        axios.delete(`/WishApi/DeleteWish/${id}`)
+                        axios.delete(`/WishApi/DeleteWish/@memberId/${id}`)
                             .then(res => _this.QueryWish())
                             .catch(err => alert(err));
                     }
                     else {
-                        //目前寫死會員ID_1，等待網頁狀態實作
                         let _this = this;
                         var form = new FormData();
-                        form.append("memberId", 1);
+                        form.append("memberId", @memberId);
                         form.append("activityId", id);
                         form.append("addTime", GetDateTime());
                         axios.post("/WishApi/InsertWish", form, {
@@ -200,14 +203,11 @@
                             .then(res => _this.QueryWish())
                             .catch(err => alert(err));
                     }
-                    //_this.GetCategoryTypeList();
                 },
                 More() {
                     let _this = this;
                     _this.listEnd += 6;
                     _this.activityList = _this.originList.slice(_this.listStar, _this.listEnd)
-                    // _this.top += 6;
-                    //_this.GetCategoryTypeList();
                     Jhobby_Animation()
                 },
                 Sort() {
