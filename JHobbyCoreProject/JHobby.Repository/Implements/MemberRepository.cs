@@ -23,19 +23,26 @@ namespace JHobby.Repository.Implements
 
         public bool InsertMemberRegister(MemberRegisterDto memberRegisterDto)
         {
-            var mapper = new Member
+            var query = _jhobbyContext.Members.FirstOrDefault(m => m.Account == memberRegisterDto.Account);
+
+            if (query == null)
             {
-                Account = memberRegisterDto.Account,
-                HashPassword = memberRegisterDto.HashPassword,
-                SaltPassword = memberRegisterDto.SaltPassword,
-                Status = memberRegisterDto.Status,
-                CreationDate = memberRegisterDto.CreationDate,
-            };
+                var mapper = new Member
+                {
+                    Account = memberRegisterDto.Account,
+                    HashPassword = memberRegisterDto.HashPassword,
+                    SaltPassword = memberRegisterDto.SaltPassword,
+                    Status = memberRegisterDto.Status,
+                    CreationDate = memberRegisterDto.CreationDate,
+                };
 
-			_jhobbyContext.Members.Add(mapper);
-			_jhobbyContext.SaveChanges();
+                _jhobbyContext.Members.Add(mapper);
+                _jhobbyContext.SaveChanges();
 
-			return true;
+                return true;
+            }
+
+            return false;
 		}
 
 		public MemberLoginDto? GetMemberLogin(string account)

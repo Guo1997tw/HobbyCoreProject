@@ -44,9 +44,11 @@ namespace JHobby.Website.Controllers.Api
             if(_memberService.CreateMemberRegister(mapper))
             {
                 _sendMailService.SendLetter(memberRegisterViewModel.Account);
+
+                return true;
             }
 
-            return true;
+            return false;
         }
 
         [HttpPost]
