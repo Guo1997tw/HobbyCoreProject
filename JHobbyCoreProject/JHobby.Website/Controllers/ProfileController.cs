@@ -18,7 +18,7 @@ namespace JHobby.Website.Controllers
             _userAuthenticationService = userAuthenticationService;
         }
 
-        //[Authorize(Roles = "Member")]
+        [Authorize(Roles = "Member")]
         public IActionResult MemberProfile(int id)
         {
             var view = new ProfileTestViewModel();

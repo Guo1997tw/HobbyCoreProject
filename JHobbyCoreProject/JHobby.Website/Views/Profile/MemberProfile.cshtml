@@ -65,9 +65,9 @@
                             <h3 class="mb-40">會員過往開團活動</h3>
 							<div class="featured-venues-item">
 								<div class="listing-item listing-item-grid coach-listview">
-									<div class="listing-img">
+                                    <div class="listing-img" style="width: 300px; height: 300px;">
 										@* <a href="coach-detail.html"> *@
-											<img src="/assets/img/featured/featured-13.jpg" alt="Venue">
+                                        <img :src=`${past.imageName}` alt="Venue" style="width: 300px; height: 300px;">
 										@* </a> *@
 
 									</div>
@@ -88,7 +88,7 @@
 										<div class="avalbity-review avalbity-review-list">
 											<ul>
 												<li>
-													<div class="avalibity-date">
+													<div>
 														<span><i class="feather-calendar"></i></span>
 														<div class="avalibity-datecontent">
                                                             <h6>{{past.dateConvert}}</h6>
