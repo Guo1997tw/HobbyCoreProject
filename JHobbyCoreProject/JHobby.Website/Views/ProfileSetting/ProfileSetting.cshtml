@@ -1,166 +1,274 @@
-﻿<partial name="_BreadcrumbPartial" />
+﻿@{
+    int memberId = 1;
+}
+
+<partial name="_BreadcrumbPartial" />
 <partial name="_DashboardMenuPartial" />
 <partial name="_PersonalcrumbPartial" />
-<div id="global-loader" style="display: none;">
-    <div class="loader-img">
-        <img src="~/assets/img/loader.png" class="img-fluid" alt="Global">
-    </div>
-</div>
+@section styles{
+    <style>
+        .mark-label {
+            color: red;
+        }
+    </style>
+}
 
-
-<!-- Main Wrapper -->
-<div class="main-wrapper" data-select2-id="22">
-
-    <!-- Header -->
-    <header class="header header-sticky">
-        <div class="container-fluid"></div>
-
-	</header>
-	<!-- /Header -->
-	<!-- Breadcrumb -->
-	<!-- /Breadcrumb -->
-	<!-- Dashboard Menu -->
-	<!-- /Dashboard Menu -->
-	<!-- Page Content -->
-	<div class="content court-bg" data-select2-id="18">
-		<div class="container" data-select2-id="17">
-            <div id="app" class="row" data-select2-id="16">
-                <div class="col-sm-12" data-select2-id="15">
-                    <div class="profile-detail-group" data-select2-id="14">
-                        <div class="card " data-select2-id="26">
-                            <form data-select2-id="13">
-                                <div class="row" data-select2-id="25">
-                                    <div class="col-md-12">
-                                        <div class="file-upload-text">
-                                            <div class="file-upload" style="position:relative">
-                                                <img :src="defaultPic" style="width:100%;height:100%;position:absolute;top:0%;left:0%;object-fit:contain"
-                                                     alt="">
-                                                <p>請上傳您的個人照片</p>
-                                                <span>
-                                                    <i class="feather-edit-3"></i>
-                                                    <input type="file" id="file-input" @@change="uploadPic">
-                                                </span>
+<!-- Page Content -->
+<div id="profileSet">
+    <template v-if="blnStatus">
+        <div class="content court-bg" data-select2-id="18">
+            <div class="container" data-select2-id="17">
+                <div class="row" data-select2-id="16">
+                    <div class="col-sm-12" data-select2-id="15">
+                        <div class="profile-detail-group" data-select2-id="14">
+                            <div class="card " data-select2-id="26">
+                                <form data-select2-id="13">
+                                    <div class="row" data-select2-id="25">
+                                        <div class="col-md-12">
+                                            <div class="file-upload-text">
+                                                <div class="file-upload" style="position:relative">
+                                                    <img :src="defaultPic" style="width:100%;height:100%;position:absolute;top:0%;left:0%;object-fit:contain"
+                                                         alt="">
+                                                    <span>
+                                                        <i class="feather-edit-3"></i>
+                                                        <input type="file" accept=".jpeg,.png,.jpg,.svg" id="file-input" @@change="UploadPic">
+                                                    </span>
+                                                </div>
+                                                <label class="mark-label">(必填欄位)</label>
+                                                <h5>請上傳一個最小尺寸為 150 * 150 像素的個人照片（JPG、PNG、SVG）</h5>
                                             </div>
-                                            <h5>請上傳一個最小尺寸為 150 * 150 像素的圖檔（JPG、PNG、SVG）</h5>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="col-lg-12 col-md-6">
-                                    <div class="input-space">
-                                        <label class="form-label">會員編號</label>
-                                        <input type="text" class="form-control" id="name" v-model="ProfileSetting.memberId" readonly>
+                                    <div class="col-lg-12 col-md-6">
+                                        <div class="input-space">
+                                            <label class="form-label bold-label">會員帳號</label>
+                                            <input type="text" class="form-control" id="name" v-model="ProfileSetting.account" readonly>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="col-lg-12 col-md-6">
-                                    <div class="input-space">
-                                        <label class="form-label">身份別</label>
-                                        <input type="text" class="form-control" id="name" placeholder="系統帶入" v-model="ProfileSetting.status" readonly>
+                                    <div class="col-lg-12 col-md-6">
+                                        <div class="input-space">
+                                            <label class="form-label">身份別</label>
+                                            <input type="text" class="form-control" id="name" placeholder="系統帶入" v-model="ProfileSetting.status" readonly>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="col-lg-12 col-md-6">
-                                    <div class="input-space">
-                                        <label class="form-label">姓名</label>
-                                        <input type="text" class="form-control" id="name" v-model="ProfileSetting.memberName" >
+                                    <div class="col-lg-12 col-md-6">
+                                        <div class="input-space">
+                                            <label class="form-label">姓名</label>
+                                            <label class="mark-label">(必填欄位)</label>
+                                            <input type="text" class="form-control" id="name" v-model="ProfileSetting.memberName" readonly>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="col-lg-12 col-md-6">
-                                    <div class="input-space">
-                                        <label class="form-label">暱稱(前端設定必填)</label>
-                                        <input type="text" class="form-control" id="name" v-model="ProfileSetting.nickName">
+                                    <div class="col-lg-12 col-md-6">
+                                        <div class="input-space">
+                                            <label class="form-label">暱稱</label>
+                                            <label class="mark-label">(必填欄位)</label>
+                                            <input type="text" class="form-control" id="name" v-model="ProfileSetting.nickName">
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="col-lg-12 col-md-6">
-                                    <div class="input-space">
-                                        <label class="form-label">性別</label>
-                                        <input type="text" class="form-control" id="name" v-model="ProfileSetting.gender" >
-                                        <hr>
+                                    <div class="col-lg-12 col-md-6">
+                                        <div class="input-space">
+                                            <label class="form-label">性別</label>
+                                            <label class="mark-label">(必填欄位)</label>
+                                            <select2 disabled style="width:100%" :options="genderList" v-model:value="ProfileSetting.gender">
+                                                <option disabled value="XX">請選擇</option>
+                                            </select2>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="col-lg-12 col-md-6">
-                                    <div class="input-space">
-                                        <label class="form-label">身份證</label>
-                                        <input type="text" class="form-control" id="name" v-model="ProfileSetting.identityCard" >
+                                    <div class="col-lg-12 col-md-6">
+                                        <div class="input-space">
+                                            <label class="form-label">身份證</label>
+                                            <label class="mark-label">(必填欄位)</label>
+                                            <input readonly type="text" class="form-control" v-model="ProfileSetting.identityCard">
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="col-lg-12 col-md-6">
-                                    <div class="input-space">
-                                        <label class="form-label">出生年月日</label>
-                                        <input type="datetime" class="form-control" id="name" v-model="ProfileSetting.birthday" >
+                                    <div class="col-lg-12 col-md-6">
+                                        <div class="input-space">
+                                            <label class="form-label">出生年月日</label>
+                                            <label class="mark-label">(必填欄位)</label>
+                                            <input readonly id="datatest" type="date" class="form-control" v-model="ProfileSetting.birthday">
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="col-lg-12 col-md-6">
-                                    <div class="input-space">
-                                        <label class="form-label">手機號碼</label>
-                                        <input type="text" class="form-control" id="phone" v-model="ProfileSetting.phone" placeholder="請輸入您的手機號碼" />
+                                    <div class="col-lg-12 col-md-6">
+                                        <div class="input-space">
+                                            <label class="form-label">手機號碼</label>
+                                            <label class="mark-label">(必填欄位)</label>
+                                            <input readonly type="text" maxlength="10" oninput="value=value.replace(/[^\d]/g,'')" class="form-control" id="phone" v-model="ProfileSetting.phone" placeholder="請輸入您的手機號碼" />
+                                        </div>
                                     </div>
-                                </div>
-
-                                <div class="col-lg-12 col-md-4">
-                                    <div class="input-space">
-                                        <label class="form-label">請選擇縣市</label>
-                                        <select2 style="width:100%" :options="cityList" v-model:value="ProfileSetting.activeCity">
-                                            <option disabled value="0">請選擇</option>
-                                        </select2>
-
-                                        <label class="form-label">請選擇鄉鎮市區</label>
-                                        <select2 style="width:100%" :options="areaList" v-model:value="ProfileSetting.activeArea">
-                                            <option disabled value="1"></option>
-                                        </select2>
+                                    <div class="col-lg-12 col-md-4">
+                                        <div class="input-space">
+                                            <label class="form-label">請選擇縣市</label>
+                                            <label class="mark-label">(必填欄位)</label>
+                                            <select2 style="width:100%" :options="cityList" v-model:value="ProfileSetting.activeCity">
+                                                <option disabled value="0">請選擇</option>
+                                            </select2>
+                                            <label class="form-label">請選擇鄉鎮市區</label>
+                                            <label class="mark-label">(必填欄位)</label>
+                                            <select2 style="width:100%" :options="areaList" v-model:value="ProfileSetting.activeArea">
+                                            </select2>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="col-lg-12 col-md-6">
-                                    <div class="input-space">
-                                        <label class="form-label">請輸入地址</label>
-                                        <input type="text" class="form-control" id="city" placeholder="請輸入地址(範例:南京東路三段219號5樓)" v-model="ProfileSetting.address" />
+                                    <div class="col-lg-12 col-md-6">
+                                        <div class="input-space">
+                                            <label class="form-label">請輸入地址</label>
+                                            <label class="mark-label">(必填欄位)</label>
+                                            <input type="text" class="form-control" id="city" placeholder="請輸入地址(範例:南京東路三段219號5樓)" v-model="ProfileSetting.address" />
+                                        </div>
                                     </div>
-                                </div>
-
-                                <div class="col-lg-12 col-md-12">
-                                    <div class="info-about">
-                                        <label for="comments" class="form-label">個人簡介</label>
-                                        <textarea class="form-control" id="comments" rows="3" v-model="ProfileSetting.personalProfile" placeholder="請填寫自我介紹"></textarea>
+                                    <div class="col-lg-12 col-md-12">
+                                        <div class="info-about">
+                                            <label for="comments" class="form-label">個人簡介</label>
+                                            <textarea class="form-control" id="comments" rows="3" v-model="ProfileSetting.personalProfile" placeholder="請填寫自我介紹"></textarea>
+                                        </div>
                                     </div>
-                                </div>
-                            </form>
+                                </form>
+                            </div>
                         </div>
-
-                    </div>
-                    <div class="save-changes text-end">
-                        <button class="btn btn-primary reset-profile" @@click="Reset">重置</button>
-                        <button class="btn btn-secondary save-profile" @@click="Send">儲存</button>
+                        <div class="save-changes text-end">
+                            <a href="#" class="btn btn-primary reset-profile" @@click="Reset">重置</a>
+                            <button class="btn btn-primary reset-profile" @@click="Send">儲存</button>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
+    </template>
+    <template v-else>
+        <div class="content court-bg" data-select2-id="18">
+            <div class="container" data-select2-id="17">
+                <div id="app" class="row" data-select2-id="16">
+                    <div class="col-sm-12" data-select2-id="15">
+                        <div class="profile-detail-group" data-select2-id="14">
+                            <div class="card " data-select2-id="26">
+                                <form data-select2-id="13">
+                                    <div class="row" data-select2-id="25">
+                                        <div class="col-md-12">
+                                            <div class="file-upload-text">
+                                                <div class="file-upload" style="position:relative">
+                                                    <img :src="defaultPic" style="width:100%;height:100%;position:absolute;top:0%;left:0%;object-fit:contain"
+                                                         alt="">
+                                                    <span>
+                                                        <i class="feather-edit-3"></i>
+                                                        <input type="file" accept=".jpeg,.png,.jpg,.svg" id="file-input" @@change="UploadPic">
+                                                    </span>
+                                                </div>
+                                                <label class="mark-label">(必填欄位)</label>
+                                                <h5>請上傳一個最小尺寸為 150 * 150 像素的個人照片（JPG、PNG、SVG）</h5>
 
-    </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12 col-md-6">
+                                        <div class="input-space">
+                                            <label class="form-label">會員帳號</label>
+                                            <input type="text" class="form-control" id="name" v-model="ProfileSetting.account" readonly>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12 col-md-6">
+                                        <div class="input-space">
+                                            <label class="form-label">身份別</label>
+                                            <input type="text" class="form-control" id="name" placeholder="系統帶入" v-model="ProfileSetting.status" readonly>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12 col-md-6">
+                                        <div class="input-space">
+                                            <label class="form-label">姓名</label>
+                                            <label class="mark-label">(必填欄位)</label>
+                                            <input type="text" class="form-control" id="name" v-model="ProfileSetting.memberName">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12 col-md-6">
+                                        <div class="input-space">
+                                            <label class="form-label">暱稱</label>
+                                            <label class="mark-label">(必填欄位)</label>
+                                            <input type="text" class="form-control" id="name" v-model="ProfileSetting.nickName">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12 col-md-6">
+                                        <div class="input-space">
+                                            <label class="form-label">性別</label>
+                                            <label class="mark-label">(必填欄位)</label>
+                                            <select2 style="width:100%" :options="genderList" v-model:value="ProfileSetting.gender">
+                                                <option disabled value="XX">請選擇</option>
+                                            </select2>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12 col-md-6">
+                                        <div class="input-space">
+                                            <label class="form-label">身份證</label>
+                                            <label class="mark-label">(必填欄位)</label>
+                                            <input type="text" class="form-control" v-model="ProfileSetting.identityCard">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12 col-md-6">
+                                        <div class="input-space">
+                                            <label class="form-label">出生年月日</label>
+                                            <label class="mark-label">(必填欄位)</label>
+                                            <input id="datatest" type="date" class="form-control" v-model="ProfileSetting.birthday">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12 col-md-6">
+                                        <div class="input-space">
+                                            <label class="form-label">手機號碼</label>
+                                            <label class="mark-label">(必填欄位)</label>
+                                            <input type="text" maxlength="10" oninput="value=value.replace(/[^\d]/g,'')" class="form-control" id="phone" v-model="ProfileSetting.phone" placeholder="請輸入您的手機號碼" />
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12 col-md-4">
+                                        <div class="input-space">
+                                            <label class="form-label">請選擇縣市</label>
+                                            <label class="mark-label">(必填欄位)</label>
+                                            <select2 style="width:100%" :options="cityList" v-model:value="ProfileSetting.activeCity">
+                                                <option disabled value="0">請選擇</option>
+                                            </select2>
+                                            <label class="form-label">請選擇鄉鎮市區</label>
+                                            <label class="mark-label">(必填欄位)</label>
+                                            <select2 style="width:100%" :options="areaList" v-model:value="ProfileSetting.activeArea">
+                                            </select2>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12 col-md-6">
+                                        <div class="input-space">
+                                            <label class="form-label">請輸入地址</label>
+                                            <label class="mark-label">(必填欄位)</label>
+                                            <input type="text" class="form-control" id="city" placeholder="請輸入地址(範例:南京東路三段219號5樓)" v-model="ProfileSetting.address" />
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12 col-md-12">
+                                        <div class="info-about">
+                                            <label for="comments" class="form-label">個人簡介</label>
+                                            <textarea class="form-control" id="comments" rows="3" v-model="ProfileSetting.personalProfile" placeholder="請填寫自我介紹"></textarea>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="save-changes text-end">
+                            <a href="#" class="btn btn-primary reset-profile" @@click="Reset">重置</a>
+                            <button class="btn btn-primary reset-profile" @@click="Send">儲存</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </template>
 </div>
 
 @section Scripts{
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.6.0/axios.min.js" integrity="sha512-WrdC3CE9vf1nBf58JHepuWT4x24uTacky9fuzw2g/3L9JkihgwZ6Cfv+JGTtNyosOhEmttMtEZ6H3qJWfI7gIQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="~/js/jhobbyselect2component.js"></script>
     <script src="~/js/taiwancity.js"></script>
     <script>
-        const app = Vue.createApp({
+        const profileSet = Vue.createApp({
             data() {
                 return {
-                    defaultPic: "/assets/img/icons/img-icon.svg",
+                    defaultPic: "",
                     file: null,
-                    ProfileSetting: {
-                        headShot: "",
-                        status: "",
-                        memberId: "1",
-                        memberName: "XXX",
-                        nickName: "",
-                        gender: "",
-                        identityCard: "",
-                        birthday: "",
-                        activeCity: "",
-                        activeArea: "",
-                        address: "",
-                        phone: "",
-                        personalProfile: ""
-                    },
+                    ProfileSetting: {},
+                    GenderOptions: [{ id: '0', text: '女性' }, { id: '1', text: '男性' }, { id: '2', text: '雙性' }],
+                    headShotName: "",
+                    blnStatus: false,
                 };
             },
             computed: {
@@ -181,73 +289,120 @@
                             text: x.AreaName
                         }
                     })
-                }
+                },
+                genderList() {
+                    return this.GenderOptions.map(x => {
+                        return {
+                            id: x.id,
+                            text: x.text
+                        }
+                    })
+                },
             },
             methods: {
-                uploadPic(e) {
+                GetProfile() {
+                    let _this = this;
+                    //寫死ID待身分驗證實作
+                    // 使用 fetch API 來取得 API 的回應
+                    fetch("/ProfileSettingApi/GetById/@memberId")
+                        .then(r => r.json())
+                        .then(d => {
+                            _this.ProfileSetting = d
+                            if (_this.ProfileSetting.status === "一般會員") { _this.blnStatus = true };
+                            _this.defaultPic = _this.ProfileSetting.headShot ? `/profile/${_this.ProfileSetting.headShot}.jpg` : "/assets/img/icons/img-icon.svg"
+                        })
+                        .catch(error => {
+                            console.error("Error fetching data:", error);
+                        });
+                },
+                UploadPic(e) {
+                    let _this = this
                     console.log(URL.createObjectURL(e.target.files[0]));
-                    this.file = e.target.files[0];
-                    this.defaultPic = URL.createObjectURL(e.target.files[0]);
+                    _this.file = e.target.files[0];
+                    _this.defaultPic = URL.createObjectURL(e.target.files[0]);
+                    _this.CheckFileName();
                 },
                 Send() {
-                    var temp;
-                    var formData = new FormData();
-                    if (this.file) formData.append('file', this.file);
-                    formData.append('headShot', this.ProfileSetting.headShot);
-                    formData.append('status', this.ProfileSetting.status);
-                    formData.append('memberName', this.ProfileSetting.memberName);
-                    formData.append('nickName', this.ProfileSetting.nickName);
-                    formData.append('gender', this.ProfileSetting.gender);
-                    formData.append('identityCard', this.ProfileSetting.identityCard);
-                    formData.append('birthday', this.ProfileSetting.birthday);
-                    formData.append('activeCity', this.ProfileSetting.activeCity);
-                    formData.append('activeArea', this.ProfileSetting.activeArea);
-                    formData.append('address', this.ProfileSetting.address);
-                    formData.append('phone', this.ProfileSetting.phone);
-                    formData.append('personalProfile', this.ProfileSetting.personalProfile);
+                    _this = this;
+                    if (!_this.ProfileSetting.nickName ||
+                        !_this.ProfileSetting.gender ||
+                        !_this.ProfileSetting.identityCard ||
+                        !_this.ProfileSetting.birthday ||
+                        !_this.ProfileSetting.activeCity ||
+                        !_this.ProfileSetting.activeArea ||
+                        !_this.ProfileSetting.address ||
+                        !_this.ProfileSetting.phone) {
+                        alert("請填寫所有必填欄位");
+                        return;
+                    }
+                    // 檢查是否有上傳圖片
+                    if (!_this.file && _this.ProfileSetting.headShot =="") {
+                        alert("請上傳您的個人照片");
+                        return; // 阻止儲存操作
+                    }
+                    if (CheckPhone() == false) { 
+                        return;
+                    };
+                    _this.ProfileSetting.headShot = _this.ChangName(_this.ProfileSetting.memberId);
+                    var form = new FormData();
+                    if (_this.file)
+                        form.append('file', _this.file);
+                    form.append('headShot', _this.ProfileSetting.headShot);
+                    form.append('status', 1);
+                    form.append('memberName', _this.ProfileSetting.memberName);
+                    form.append('nickName', _this.ProfileSetting.nickName);
+                    form.append('gender', _this.ProfileSetting.gender);
+                    form.append('identityCard', _this.ProfileSetting.identityCard);
+                    form.append('birthday', _this.ProfileSetting.birthday);
+                    form.append('activeCity', _this.ProfileSetting.activeCity);
+                    form.append('activeArea', _this.ProfileSetting.activeArea);
+                    form.append('address', _this.ProfileSetting.address);
+                    form.append('phone', _this.ProfileSetting.phone);
+                    form.append('personalProfile', _this.ProfileSetting.personalProfile);
 
                     // var form_data = new FormData();
                     // for (var key in this.ProfileSetting) {
                     //     form_data.append(key, this.ProfileSetting[key]);
                     // }
 
-
-                    fetch("/api/ProfileSetting/UpdateProfileSetting/1", {
-                        method: "put",
-                        body: formData
+                    axios.put("/ProfileSettingApi/UpdateProfileSetting/@memberId", form, {
+                        headers: {
+                            "Content-Type": "multipart/form-data"
+                        }
                     })
-                    // fetch("xxx", {
-                    //     method: "put",
-                    //     body: form_data
-                    // })
+                        .then(res => {
+                            _this.Reset();
+                            alert("修改成功");
+                            javascript: location.href = "/Profile/MemberProfile/@memberId"
+                        })
+                        .catch(err => alert(err));
                 },
-                    Reset() {
-                        this.defaultPic = "/assets/img/icons/img-icon.svg";
-                        this.file = null;
-
-                        // 重新發起 API 請求
-                        fetch(`/api/ProfileSetting/GetById/1`)
-                            .then(r => r.json())
-                            .then(d => {
-                                this.ProfileSetting = d;
-                            })
-                            .catch(error => {
-                                console.error('Error fetching data:', error);
-                            });
+                Reset() {
+                    let _this = this;
+                    _this.defaultPic = "/assets/img/icons/img-icon.svg";
+                    _this.file = null;
+                    _this.blnStatus = false;
+                    // 重新發起 API 請求
+                    _this.GetProfile();
                 },
-
+                ChangName(id) {
+                    return "HeadShot" + id;
+                },
+                CheckFileName() {
+                    let _this = this;
+                    let validExts = new Array(".jpeg", ".png", ".jpg", ".svg");
+                    let fileExt = _this.file.name
+                    fileExt = fileExt.substring(fileExt.lastIndexOf('.'))
+                    if (validExts.indexOf(fileExt) < 0) {
+                        alert("檔案類型錯誤，請重新選擇");
+                        _this.Reset();
+                    }
+                }
             },
             mounted() {
-                let self = this;
-
-                // 使用 fetch API 來取得 API 的回應
-                fetch("/api/ProfileSetting/GetById/1")
-                    .then(r => r.json())
-                    .then(d => {
-                        self.ProfileSetting = d;
-                        // alert(JSON.stringify(d));
-                    }); // 注意這裡是 d[0]
+                let _this = this;
+                _this.GetProfile();
             },
-        }).component('select2', select2).mount("#app");
+        }).component('select2', select2).mount("#profileSet");
     </script>
 }
