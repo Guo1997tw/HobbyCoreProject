@@ -24,5 +24,6 @@ namespace JHobby.Repository.Models.Dto
 
         public int MemberId { get; set; }
 
+        public int? Fraction { get; set; }
     }
 }

@@ -49,6 +49,7 @@ namespace JHobby.Website.Controllers.Api
                     MemberId = x.MemberId,
                     DateConvert = x.DateConvert,
                     TimeConvert = x.TimeConvert,
+                    Fraction = x.Fraction,
                 });
         }
     }

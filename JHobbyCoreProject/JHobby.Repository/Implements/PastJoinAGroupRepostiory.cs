@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace JHobby.Repository.Implements
 {
@@ -42,10 +43,13 @@ namespace JHobby.Repository.Implements
         public IEnumerable<PastJoinAGroupDto> GetPastJoinAGroupById(int memberId)
         {
             var activityUsers = _JhobbyContext.Members.Select(m => new { id = m.MemberId, nikeName = m.NickName });
+            var scoreByMemberId = _JhobbyContext.Scores.Select(s => new { id = s.MemberId, score = s.Fraction, activityid = s.ActivityId });
+
             return _JhobbyContext.ActivityUsers
                 .Where(Au => Au.MemberId == memberId)
                 .Include(Au => Au.Activity)
                 .Include(Au => Au.Member)
+                .Include(Au => Au.Activity.Scores)
                 .Select(a => new PastJoinAGroupDto
                 {
                     ActivityId = a.ActivityId,
@@ -54,8 +58,14 @@ namespace JHobby.Repository.Implements
                     ActivityCity = a.Activity.ActivityCity,
                     CurrentPeople = a.Activity.CurrentPeople,
                     StartTime = a.Activity.StartTime,
-                    NickName = activityUsers.FirstOrDefault(ac => ac.id == a.Activity.MemberId).nikeName,
-                    MemberId = a.Activity.MemberId
+                    NickName = activityUsers
+                    .FirstOrDefault(ac => ac.id == a.Activity.MemberId)
+                    .nikeName,
+                    MemberId = a.Activity.MemberId,
+                    Fraction = scoreByMemberId
+                    .FirstOrDefault(s => s.id == a.Activity.MemberId
+                    && s.activityid == a.ActivityId)
+                    .score,
                 });
         }
 

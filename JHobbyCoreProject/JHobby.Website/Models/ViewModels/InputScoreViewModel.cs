@@ -6,6 +6,6 @@
 
         public int ActivityId { get; set; }
 
-        public int? Fraction { get; set; }
+        public int Fraction { get; set; }
     }
 }

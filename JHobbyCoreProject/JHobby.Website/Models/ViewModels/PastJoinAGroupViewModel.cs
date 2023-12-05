@@ -19,5 +19,7 @@
         public string? DateConvert { get; set; }
 
         public string? TimeConvert { get; set; }
+
+        public int? Fraction { get; set; }
     }
 }

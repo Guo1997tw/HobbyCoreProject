@@ -22,14 +22,20 @@ namespace JHobby.Website.Controllers.Api
         [HttpPost]
         public bool NewInputScoreById(InputScoreViewModel inputScoreViewModel)
         {
-            var inputScore = new InputScoreModel
+            if (inputScoreViewModel.Fraction != 0)
             {
-                ActivityId = inputScoreViewModel.ActivityId,
-                Fraction = inputScoreViewModel.Fraction,
-                MemberId = inputScoreViewModel.MemberId,
-            };
-
-            return _iInputScoreService.NewInputScoreById(inputScore);
+                var inputScore = new InputScoreModel
+                {
+                    ActivityId = inputScoreViewModel.ActivityId,
+                    Fraction = inputScoreViewModel.Fraction,
+                    MemberId = inputScoreViewModel.MemberId,
+                };
+                return _iInputScoreService.NewInputScoreById(inputScore);
+            }
+            else
+            {
+                return false;
+            }
         }
 
     }
