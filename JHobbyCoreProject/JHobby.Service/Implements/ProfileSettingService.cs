@@ -4,14 +4,16 @@ using JHobby.Service.Models;
 
 namespace JHobby.Repository.Implements
 {
-    public class ProfileSettingService : IProfileSettingService //繼承介面
+    //繼承介面
+    public class ProfileSettingService : IProfileSettingService
     {
-        private readonly IProfileSettingRepository _iProfileSettingRepository; //int _a;  將介面定義一個變數接口
+        //int _a;  將介面定義一個全域變數接口
+        private readonly IProfileSettingRepository _iProfileSettingRepository;
         private readonly ICommonService _iCommonService;
 
         public ProfileSettingService(IProfileSettingRepository iProfileSettingRepository, ICommonService iCommonService)//public int abc(int b)
         {
-            _iProfileSettingRepository = iProfileSettingRepository; //_a = b;
+            _iProfileSettingRepository = iProfileSettingRepository;
             _iCommonService = iCommonService;
 
         }
