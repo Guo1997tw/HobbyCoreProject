@@ -13,7 +13,8 @@
         public string? ActivityNotes { get; set; }
         public DateTime StartTime { get; set; }
         public string? DateConvert { get; set; }
-
         public string? TimeConvert { get; set; }
+        public int CategoryId { get; set; }
+        public int CategoryTypeId { get; set; }
     }
 }

@@ -18,5 +18,7 @@ namespace JHobby.Repository.Models.Dto
         public string ActivityCity { get; set; } = null!;
         public string? ActivityNotes { get; set; }
         public DateTime StartTime { get; set; }
+        public int CategoryId { get; set; }
+        public int CategoryTypeId { get; set; }
     }
 }

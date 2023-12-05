@@ -14,17 +14,17 @@ namespace JHobby.Website.Controllers.Api
 	public class ProfileApiController : ControllerBase
 	{
 		private readonly IProfileService _profileService;
-		
-		public ProfileApiController(IProfileService profileService)
+        
+        public ProfileApiController(IProfileService profileService)
 		{
-			_profileService = profileService;
-		}
+			_profileService = profileService;           
+        }
 
 		// GET: api/<ProfileApiController>
 		[HttpGet("{id}")]
 		public ProfileViewModel GetProfileById(int id)     //ById拿團主資料API
-		{
-			var servicesDto = _profileService.GetProfileById(id);
+		{			
+            var servicesDto = _profileService.GetProfileById(id);
 			return new ProfileViewModel
 			{
 				MemberId = servicesDto.MemberId,
@@ -53,6 +53,8 @@ namespace JHobby.Website.Controllers.Api
 				StartTime = a.StartTime,
                 DateConvert = a.DateConvert,
                 TimeConvert = a.TimeConvert,
+                CategoryId = a.CategoryId,
+                CategoryTypeId = a.CategoryTypeId,
             });
 			return result;
 		}

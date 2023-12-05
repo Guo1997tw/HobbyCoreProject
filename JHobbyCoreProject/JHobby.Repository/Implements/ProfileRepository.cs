@@ -49,7 +49,9 @@ namespace JHobby.Repository.Implements
 				ActivityCity = a.ActivityCity,
 				ActivityNotes = a.ActivityNotes,
 				StartTime = a.StartTime,
-			}).Where(m => m.MemberId == id && m.IsCover == true && m.ActivityStatus == "2");
+                CategoryId=a.CategoryId,
+                CategoryTypeId=a.CategoryTypeId,
+            }).Where(m => m.MemberId == id && m.IsCover == true && m.ActivityStatus == "2");
 			return result;
 		}
 	}

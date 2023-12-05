@@ -9,13 +9,13 @@
                 <div class="content">
                     <div class="dull-bg corner-radius-10 coach-info d-md-flex justify-content-start align-items-start ">
                         <div class="profile-pic">
-                            <img :src=" memberProfile.headShot ? `/profile/${memberProfile.headShot}.jpg` :''" alt="Image" style="width: 139px; height: 160px;" class=" corner-radius-10">
+                            <img :src=" memberProfile.headShot ? `${memberProfile.headShot}` :''" alt="Image" style="width: 139px; height: 160px;" class=" corner-radius-10">
                         </div>
                         <div class="info w-100">
                             <div class="d-sm-flex justify-content-between align-items-start">
                                 <h3 class="d-flex align-items-center justify-content-start mb-0">{{memberProfile.nickName}}</h3>
                                 <template v-if="btnMemberProfile">
-                                    <button class="btn btn-gradient pull-right write-review add-review" data-bs-toggle="modal" data-bs-target="#add-review">編輯個人資訊</button>
+                                    <button class="btn btn-gradient pull-right write-review add-review" data-bs-toggle="modal" data-bs-target="#add-review"><a href="/profilesetting/profilesetting">編輯個人資訊</a></button>
                                 </template>
                             </div>
 
@@ -51,7 +51,6 @@
                                         {{memberProfile.personalProfile}}
                                     </p>
                                 </div>
-                                @* <div class="show-more d align-items-center primary-text"><i class="feather-plus-circle"></i>Show More</div> *@
                             </div>
                         </div>
                     </div>
@@ -98,11 +97,16 @@
 												</li>
 											</ul>
 											<ul class="profile-coache-list">
-												<li>
-													<a href="coach-detail.html" class="btn btn-primary w-100"><i class="feather-eye me-2"></i>查看其他開團中活動</a>
-												</li>
-												<li>
-
+												<li>                                                    
+                                                    @* submit *@
+                                                    <form action="/Middle/ActivityCenter" method="post">
+                                                        <input type="hidden" name="categoryId" :value="past.categoryId">
+                                                        <input type="hidden" name="categoryTypeId" :value="past.categoryTypeId">
+                                                        <button type="submit" class="btn btn-primary w-100">
+                                                            <i class="feather-eye me-2"></i>查看其他開團中類似活動
+                                                        </button>
+                                                    </form>
+                                                    @* submit *@
 												</li>
 											</ul>
 										</div>
@@ -135,7 +139,7 @@
             return {
                 memberProfile: {},
                 star: 0,
-				btnMemberProfile: true,
+				btnMemberProfile: false,
                 activityList: [],
             }
         },
@@ -150,7 +154,7 @@
 				fetch(`/ProfileApi/GetProfileById/${@Model.MemberId}`).then(r => r.json()).then(d => {
 					_this.memberProfile = d;
 					_this.star = d.fraction;
-					if (_this.memberProfile.MemberId == @Model.MemberId) { _this.btnMemberProfile = true }
+                    if (@Model.MemberId == @Model.VerifyMemberId) { _this.btnMemberProfile = true }
 				});
 			},
 			getPastActivity() {

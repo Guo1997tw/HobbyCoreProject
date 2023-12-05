@@ -52,6 +52,8 @@ namespace JHobby.Service.Implements
                 ActivityCity = a.ActivityCity,
                 ActivityNotes = a.ActivityNotes,
                 StartTime = a.StartTime,
+                CategoryId = a.CategoryId,
+                CategoryTypeId = a.CategoryTypeId,
                 DateConvert = _commonService.ConvertTime(a.StartTime).First().DateConvert,
                 TimeConvert=_commonService.ConvertTime(a.StartTime).First().TimeConvert,
             });
