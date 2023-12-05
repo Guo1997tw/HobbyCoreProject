@@ -1,6 +1,6 @@
 ﻿const select2 = {
     props: ["options", "value"],
-    emits: ['update:modelValue'],
+    /*emits: ['update:modelValue'],*/
     template: "<select><slot></slot></select>",
     mounted() {
         var vm = this;
@@ -14,7 +14,7 @@
             $(this.$el).val(value).trigger("change");
         },
         options(options) {
-            $(this.$el).empty().select2({ data: options });
+            $(this.$el).empty().select2({ data: options }).trigger("change");
         }
     },
     destroyed() {

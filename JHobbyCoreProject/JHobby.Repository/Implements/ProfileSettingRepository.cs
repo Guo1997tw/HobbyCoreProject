@@ -25,6 +25,7 @@ namespace JHobby.Repository.Implements
 			return new ProfileSettingDto
 			{
 				HeadShot = result.HeadShot,
+				Account = result.Account,
 				Status = result.Status,
 				MemberId = result.MemberId,
 				MemberName = result.MemberName,

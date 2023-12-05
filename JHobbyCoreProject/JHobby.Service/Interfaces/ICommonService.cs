@@ -12,5 +12,9 @@ namespace JHobby.Service.Interfaces
 
         public IEnumerable<TimeModelDto> ConvertTime(DateTime dateTime);
         public int ShotCheck(int len, string str);
+
+        public string ConvertGender(string Gender);
+
+        public string ConvertStatus(string status);
     }
 }
