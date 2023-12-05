@@ -1,5 +1,5 @@
 ﻿@{
-    int memberId = ViewBag.memberId;
+    int verifyMemberId = ViewBag.verifyMemberId;
     bool blnlogIn = ViewBag.logIn;
 }
 @section Styles
@@ -251,7 +251,7 @@
                 QueryWish() {
                     if (`@blnlogIn` == "False") return
                     let _this = this;
-                    axios.get(`/WishApi/GetWishList/@memberId`)
+                    axios.get(`/WishApi/GetWishList/@verifyMemberId`)
                         .then(res => _this.wish = res.data)
                         .catch(err => alert(err));
                 },
@@ -259,14 +259,14 @@
                     if (`@blnlogIn` == "False") return
                     let _this = this;
                     if (_this.wish.includes(id)) {
-                        axios.delete(`/WishApi/DeleteWish/@memberId/${id}`)
+                        axios.delete(`/WishApi/DeleteWish/@verifyMemberId/${id}`)
                             .then(res => _this.QueryWish())
                             .catch(err => alert(err));
                     }
                     else {
                         let _this = this;
                         var form = new FormData();
-                        form.append("memberId", @memberId);
+                        form.append("memberId", @verifyMemberId);
                         form.append("activityId", id);
                         form.append("addTime", GetDateTime());
                         axios.post("/WishApi/InsertWish", form, {

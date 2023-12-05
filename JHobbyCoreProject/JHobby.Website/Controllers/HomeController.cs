@@ -22,12 +22,12 @@ namespace JHobby.Website.Controllers
             try
             {
                 ViewBag.logIn = true;
-                ViewBag.memberId = _userAuthenticationService.GetUserId();
+                ViewBag.verifyMemberId = _userAuthenticationService.GetUserId();
             }
             catch (Exception)
             {
                 ViewBag.logIn = false;
-                ViewBag.memberId = 0;
+                ViewBag.verifyMemberId = 0;
             }
             return View();
         }

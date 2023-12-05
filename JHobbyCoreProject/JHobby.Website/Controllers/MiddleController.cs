@@ -4,7 +4,6 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace JHobby.Website.Controllers
 {
-	//[Route("/{controller}/{action}/{_categoyId}/{_categoryTypeId}/{_city}/{_area}")]
 
 	public class MiddleController : Controller
 	{
@@ -19,12 +18,12 @@ namespace JHobby.Website.Controllers
             try
             {
                 ViewBag.logIn = true;
-                ViewBag.memberId = _userAuthenticationService.GetUserId();
+                ViewBag.verifyMemberId = _userAuthenticationService.GetUserId();
             }
             catch (Exception)
             {
                 ViewBag.logIn = false;
-                ViewBag.memberId = 0;
+                ViewBag.verifyMemberId = 0;
             }
             ViewBag.search = SearchArgs;
 			return View();

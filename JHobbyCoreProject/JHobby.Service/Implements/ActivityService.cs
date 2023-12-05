@@ -83,6 +83,7 @@ namespace JHobby.Service.Implements
         {
             return _activityRepository.GetMsgList(id).Select(r => new MemberMsgModel
             {
+                MemberId=r.MemberId,
                 ActivityId = r.ActivityId,
                 HeadShot = r.HeadShot,
                 MessageTime = r.MessageTime,
