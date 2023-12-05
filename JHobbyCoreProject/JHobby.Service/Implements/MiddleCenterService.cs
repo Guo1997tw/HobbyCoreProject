@@ -27,9 +27,9 @@ namespace JHobby.Service.Implements
 		{
 			var resporitory = _middleCenterRepository.GetCategoryTypeAll();
 			var query = resporitory.Where(res => res.JoinDeadLine >= DateTime.Now);
-			if (search.categoyId != 0 && search.categoryTypeId != 0)
+			if (search.categoryId != 0 && search.categoryTypeId != 0)
 			{
-				query = query.Where(res => res.CategoryId == search.categoyId && res.CategoryTypeId == search.categoryTypeId);
+				query = query.Where(res => res.CategoryId == search.categoryId && res.CategoryTypeId == search.categoryTypeId);
 			}
 			if (!string.IsNullOrEmpty(search.city) && !string.IsNullOrEmpty(search.area))
 			{

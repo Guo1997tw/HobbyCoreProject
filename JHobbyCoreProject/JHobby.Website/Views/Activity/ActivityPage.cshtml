@@ -327,7 +327,7 @@
                 GetCategoryTypeList() {
                     let _this = this;
                     var form = new FormData();
-                    form.append("categoyId", _this.activity.categoryId);
+                    form.append("categoryId", _this.activity.categoryId);
                     form.append("categoryTypeId", _this.activity.categoryTypeId);
                     axios.post("/MiddleCenterApi/GetCategoryTypeList", form, {
                         headers: {
