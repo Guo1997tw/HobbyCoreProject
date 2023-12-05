@@ -426,7 +426,7 @@
                                                                     <i v-for="index in 5"
                                                                        :key="index"
                                                                        :class="getClass(index)"
-                                                                    @@click="selectScore(index)"></i>
+                                                                       @@click="selectScore(index)"></i>
                                                                     <span>({{ tempStar }})</span>
                                                                 </div>
                                                                 <div class="rating" v-else>
@@ -679,7 +679,20 @@
                                 headers: { "Content-Type": "application/json" },
                             }
                         )
-                        .then((response) => alert(response.data === false ? "操作失敗的訊息" : "增加成功"))
+                        .then(response => {
+                            if (response.data === false) {
+                                alert("重複輸入");
+                            }
+                            else {
+                                let cardListChange = _this.pastJoinAGroupCard
+                                    .findIndex(id => id.activityId === _this.currentCard.activityId);
+
+                                if (cardListChange != null) {
+                                    _this.pastJoinAGroupCard[cardListChange].fraction = _this.star;
+                                }
+                                alert("評分成功");
+                            }
+                        })
                         .catch((erro) => alert(`Erro: ${erro}`));
                     $('#request-coche').modal('hide');
                 },
