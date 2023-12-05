@@ -19,6 +19,11 @@ namespace JHobby.Website.Controllers
             return View();
         }
 
+        public IActionResult ResetPwdToMail()
+        {
+            return View();
+        }
+
         public IActionResult VerifyMail()
         {
             return View();

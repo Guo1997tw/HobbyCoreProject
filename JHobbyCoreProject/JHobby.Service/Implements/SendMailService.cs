@@ -1,4 +1,5 @@
 ﻿using JHobby.Service.Interfaces;
+using JHobby.Service.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -29,6 +30,29 @@ namespace JHobby.Service.Implements
             mail.From = new MailAddress("JHobby.THM103@gmail.com", "JHobbyGM");
             mail.To.Add(account);
             mail.Body = "<h1>恭喜您成為會員~</h1><br><a href=\"https://localhost:7097/member/VerifyMail\" target=\"_blank\">帳號驗證</a>";
+            mail.IsBodyHtml = true;
+            mail.BodyEncoding = Encoding.UTF8;
+            smtpClient.Send(mail);
+            return true;
+        }
+
+        public bool ResetPwdSendLetter(string account, string newPwd)
+        {
+            SmtpClient smtpClient = new SmtpClient();
+
+            smtpClient.Host = "smtp.gmail.com";
+
+            smtpClient.Port = 587;
+            smtpClient.EnableSsl = true;
+
+            smtpClient.Credentials = new NetworkCredential("JHobby.THM103@gmail.com", "qbay cfun ebum bjhj");
+
+            var mail = new MailMessage();
+
+            mail.Subject = "JHobby會員密碼重置";
+            mail.From = new MailAddress("JHobby.THM103@gmail.com", "JHobbyGM");
+            mail.To.Add(account);
+            mail.Body = $"您的新密碼為{newPwd}";
             mail.IsBodyHtml = true;
             mail.BodyEncoding = Encoding.UTF8;
             smtpClient.Send(mail);
