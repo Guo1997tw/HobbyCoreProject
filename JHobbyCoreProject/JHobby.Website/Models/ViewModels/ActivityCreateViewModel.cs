@@ -2,8 +2,6 @@
 {
     public class ActivityCreateViewModel
     {
-        public int ActivityId { get; set; }
-
         public int MemberId { get; set; }
 
         public string ActivityStatus { get; set; } = "1";
@@ -32,7 +30,7 @@
 
         public string? ActivityNotes { get; set; }
 
-        public DateTime Created { get; set; }
+        public DateTime Created { get; set; } = DateTime.UtcNow;
 
         public List<IFormFile> File { get; set; }
     }

@@ -8,11 +8,9 @@ namespace JHobby.Service.Models
 {
     public class ActivityCreateModel
     {
-        public int ActivityId { get; set; }
-
         public int MemberId { get; set; }
 
-        public string ActivityStatus { get; set; } = null!;
+        public string ActivityStatus { get; set; } = "1";
 
         public string Payment { get; set; } = null!;
 
@@ -38,7 +36,7 @@ namespace JHobby.Service.Models
 
         public string? ActivityNotes { get; set; }
 
-        public DateTime Created { get; set; }
+        public DateTime Created { get; set; } = DateTime.UtcNow;
 
         public List<ActivityImageCreateModel>? ActivityImages { get; set; }
     }

@@ -255,7 +255,7 @@
                 categoryTypeList() {
                     let area = this.categorySource.filter(x => x.categoryId == this.activityBuild.categoryId);
                     if (area.length < 1) return [];
-                    return area[0].detail.map(x => {
+                    return area[0].categoryDetails.map(x => {
                         return {
                             id: x.categoryTypeId,
                             text: x.typeName
@@ -313,7 +313,6 @@
 
                     fetch("/ActivityApi/LeaderCreate", {
                         method: "POST",
-                        // headers: { "Content-Type": "multipart/form-data" }
                         body: formData
                     }).then(r => r.json())
                         .then(d => {

@@ -8,13 +8,11 @@ namespace JHobby.Service.Models
 {
     public class ActivityImageCreateModel
     {
-        public int BuildId { get; set; }
-
         public string ImageName { get; set; } = null!;
 
         public bool IsCover { get; set; } = false;
 
-        public DateTime UploadTime { get; set; } = DateTime.Now;
+        public DateTime UploadTime { get; set; } = DateTime.UtcNow;
 
     }
 }
