@@ -2,7 +2,7 @@
 {
     public class UpdateProfileSettingViewModel
     {
-        public IFormFile File { get; set; }
+        public IFormFile? File { get; set; }
 
         public string? HeadShot { get; set; }
 
