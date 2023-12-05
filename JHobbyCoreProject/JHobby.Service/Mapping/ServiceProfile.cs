@@ -18,6 +18,7 @@ namespace JHobby.Service.Mapping
 			CreateMap<CategoryCreateDto, CreateCategoryModel>();
             CreateMap<ActivityPageDto, ActivityPageModel>();
             CreateMap<MemberStatusDto, MemberStatusModel>();
+            CreateMap<MemberResetDto, MemberResetModel>().ReverseMap();
         }
     }
 }
