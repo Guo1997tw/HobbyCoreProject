@@ -52,7 +52,7 @@ namespace JHobby.Website.Controllers.Api
         }
 
         [HttpPost]
-        public IActionResult CheckMember(MemberLoginViewModel memberLoginViewModel)
+        public bool CheckMember(MemberLoginViewModel memberLoginViewModel)
         {
             if (_memberService.CheckMemberLogin(memberLoginViewModel.Account, memberLoginViewModel.HashPassword))
             {
@@ -84,10 +84,10 @@ namespace JHobby.Website.Controllers.Api
                     new AuthenticationProperties { ExpiresUtc = DateTimeOffset.UtcNow.AddMinutes(60) }
                 );
 
-                return Ok(new { Message = "登入成功~~" });
+                return true;
             }
 
-            return Unauthorized(new { Message = "登入失敗!!" });
+            return false;
         }
 
         [HttpPost("{account}")]
