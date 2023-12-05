@@ -421,12 +421,20 @@
                                                         <!-- 分數星星 -->
                                                         <div class="ratings-info corner-radius-10 text-center venue-coach-details">
                                                             <div class="ratings-info corner-radius-10 text-center">
-                                                                <div class="rating">
+                                                                <div class="rating"
+                                                                     v-if="checkFraction === null">
                                                                     <i v-for="index in 5"
                                                                        :key="index"
                                                                        :class="getClass(index)"
-                                                                       @@click="selectScore(index)"></i>
+                                                                    @@click="selectScore(index)"></i>
                                                                     <span>({{ tempStar }})</span>
+                                                                </div>
+                                                                <div class="rating" v-else>
+                                                                    <i class="fas fa-star filled"
+                                                                       v-for="n in Math.floor(checkFraction)"></i>
+                                                                    <i class="fa-regular fa-star filled"
+                                                                       v-for="x in 5-Math.ceil(checkFraction)"></i>
+                                                                    <span>({{checkFraction}})</span>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -614,6 +622,7 @@
                     titleActivityId: "",
                     Star: 0,
                     tempStar: 0,
+                    checkFraction: "",
                 };
             },
             mounted() {
@@ -641,7 +650,9 @@
                     this.pageNumber = num;
                 },
                 setCurrentCard(card) {
-                    this.currentCard = card;
+                    let _this = this;
+                    _this.currentCard = card;
+                    _this.showStartScore(card);
                 },
                 linkToGroupPage() {
                     this.activityId = this.currentCard.activityId;
@@ -658,18 +669,19 @@
                     const payload = {
                         fraction: _this.star,
                         activityId: _this.currentCard.activityId,
-                        memberId: _this.currentCard.memberId,
+                        memberId: 2,
                     };
                     axios
                         .post(
-                            `https://localhost:7097/InputScoreApi/NewInputScoreById`,
+                            `/InputScoreApi/NewInputScoreById`,
                             payload,
                             {
                                 headers: { "Content-Type": "application/json" },
                             }
                         )
-                        .then((response) => alert("增加成功"))
+                        .then((response) => alert(response.data === false ? "操作失敗的訊息" : "增加成功"))
                         .catch((erro) => alert(`Erro: ${erro}`));
+                    $('#request-coche').modal('hide');
                 },
                 getClass(index) {
                     if (index <= this.tempStar) {
@@ -678,13 +690,18 @@
                         return 'fa-regular fa-star';
                     }
                 },
-                selectScore(score) {
-                    this.tempStar = score;
+                selectScore(index) {
+                    if (this.checkFraction === null) {
+                        this.tempStar = index;
+                    }
                 },
                 resetStarRating() {
                     this.tempStar = 0;
                     this.star = 0;
                 },
+                showStartScore() {
+                    this.checkFraction = this.currentCard.fraction;
+                }
             },
         })
             .component("paginate", VuejsPaginateNext)
