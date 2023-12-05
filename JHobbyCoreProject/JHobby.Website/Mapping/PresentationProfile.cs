@@ -14,6 +14,7 @@ namespace JHobby.Website.Mapping
             CreateMap<MemberStatusModel, MemberStatusViewModel>();
             CreateMap<ActivityCreateViewModel, ActivityCreateModel>();
             CreateMap<ActivityUpdateViewModel, ActivityUpdateModel>();
+            CreateMap<MemberResetModel, MemberResetViewModel>().ReverseMap();
         }
     }
 }

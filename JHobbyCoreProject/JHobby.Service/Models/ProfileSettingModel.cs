@@ -10,7 +10,10 @@ namespace JHobby.Service.Models
     {
         public string? HeadShot { get; set; }
 
+        public string Account { get; set; } = null!;
+
         public string Status { get; set; } = null!;
+
         public int MemberId { get; set; }
 
         public string? MemberName { get; set; }
@@ -21,7 +24,7 @@ namespace JHobby.Service.Models
 
         public string? IdentityCard { get; set; }
 
-        public DateTime? Birthday { get; set; }
+        public string? Birthday { get; set; }
 
         public string? ActiveCity { get; set; }
 

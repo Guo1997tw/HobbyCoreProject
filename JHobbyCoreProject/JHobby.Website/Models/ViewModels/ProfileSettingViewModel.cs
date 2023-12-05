@@ -4,7 +4,9 @@
 	{
 		public string? HeadShot { get; set; }
 
-		public string Status { get; set; } = null!;
+        public string Account { get; set; } = null!;
+
+        public string Status { get; set; } = null!;
 
 		public int MemberId { get; set; }
 
@@ -16,7 +18,7 @@
 
 		public string? IdentityCard { get; set; }
 
-		public DateTime? Birthday { get; set; }
+		public string? Birthday { get; set; }
 
 		public string? ActiveCity { get; set; }
 

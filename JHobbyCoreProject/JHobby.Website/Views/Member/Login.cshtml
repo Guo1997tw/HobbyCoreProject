@@ -41,10 +41,10 @@
                                                 </div>
                                                 <div class="form-group d-sm-flex align-items-center justify-content-between">
                                                     <div class="form-check form-switch d-flex align-items-center justify-content-start">
-                                                        <input class="form-check-input" type="checkbox" id="user-pass">
-                                                        <label class="form-check-label" for="user-pass">記住我</label>
+                                                        <input class="form-check-input" type="checkbox" id="user-pass" hidden>
+                                                        <label class="form-check-label" for="user-pass" hidden>記住我</label>
                                                     </div>
-                                                    <span><a href="forgot-password.html" class="forgot-pass">忘記密碼？</a></span>
+                                                    <span><a href="ResetPwdToMail" class="forgot-pass">忘記密碼？</a></span>
                                                 </div>
                                                 <button class="btn btn-secondary register-btn d-inline-flex justify-content-center align-items-center w-100 btn-block" @@click="Login()" type="button">登入<i class="feather-arrow-right-circle ms-2"></i></button>
                                                 <div class="form-group">
@@ -113,7 +113,10 @@
                     console.log('Success', d);
                     alert("登入成功~~")
 
-                    window.location.href = '/Home/Index';
+                    const searchTemp = new URLSearchParams(window.location.search);
+                    const returnUrl = searchTemp.get('ReturnUrl');
+
+                    window.location.href = returnUrl ? decodeURIComponent(returnUrl) : '/Home/Index';
                 }).catch(e => {
                     console.log('Fail', e);
                     alert("登入失敗，請確認帳號、密碼是否正確!!");
