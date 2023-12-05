@@ -36,34 +36,29 @@ namespace JHobby.Website.Controllers.Api
         [HttpPost]
         public async Task<bool> LeaderCreate([FromForm] ActivityCreateViewModel activityCreateViewModel)
         {
-            //try
-            //{
             var picPathList = new List<string>();
+            var activityCreateModel = _mapper.Map<ActivityCreateModel>(activityCreateViewModel);
 
             if (activityCreateViewModel.File != null)
             {
-                // var i = 1;
+                var i = 1;
 
                 foreach (var file in activityCreateViewModel.File)
                 {
-                    var fullFileName = _rootPath + DateTime.Now.Ticks + file.FileName;
+                    var fileName = file.FileName;
+                    fileName = $"activity{i}.jpg";
+                    var filePath = $"{_rootPath}{fileName}";
+                    var fullFileName = $"\\activityImages\\{fileName}";
 
-                    //var fileString = Path.GetFileNameWithoutExtension(file.Name).ToString();
-                    //var fileExtension = Path.GetExtension(file.Name).ToString();
-                    //Console.WriteLine($"原始檔案名稱: {fileString}, 活動序號: {activityCreateViewModel.ActivityId}, 當前索引: {i}, 副檔名: {fileExtension}");
-                    //var fullFileName = $"{fileString}{activityCreateViewModel.ActivityId}{i}{fileExtension}";
-                    //i++;
-
-                    //var filePath = Path.Combine(_rootPath, fullFileName);
-                    using var fs = new FileStream(fullFileName, FileMode.Create);
+                    using var fs = new FileStream(filePath, FileMode.Create);
 
                     await file.CopyToAsync(fs);
 
                     picPathList.Add(fullFileName);
+
+                    i++;
                 }
             }
-
-            var activityCreateModel = _mapper.Map<ActivityCreateModel>(activityCreateViewModel);
 
             activityCreateModel.ActivityImages = picPathList.Select(x => new ActivityImageCreateModel
             { ImageName = x }).ToList();
