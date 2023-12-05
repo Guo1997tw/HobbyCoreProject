@@ -29,13 +29,13 @@
                             </div>
                             <div class="mb-3">
                                 <label for="court" class="form-label">舉辦縣/市</label>
-                                <select2 id="ActivityCity" style="width:100%" :options="cityList" aria-label="Default select example" v-model="activityBuild.activityCity">
+                                <select2 id="ActivityCity" style="width:100%" :options="cityList" aria-label="Default select example" v-model:value="activityBuild.activityCity">
                                     <option disabled value="0" selected>請選擇縣市</option>
                                 </select2>
                             </div>
                             <div class="mb-3">
                                 <label for="court" class="form-label">舉辦區域</label>
-                                <select2 id="ActivityArea" style="width:100%" :options="areaList" aria-label="Default select example" v-model="activityBuild.activityArea">
+                                <select2 id="ActivityArea" style="width:100%" :options="areaList" aria-label="Default select example" v-model:value="activityBuild.activityArea">
                                     <option disabled value="0" selected>請選擇區</option>
                                 </select2>
                             </div>
@@ -70,15 +70,15 @@
                             </div>
                             <div class="mb-3">
                                 <label for="court" class="form-label">活動類型</label>
-                                <select class="select select2" id="mainCategory" aria-label="Default select example" v-model="activityBuild.categoryId">
-                                    <option value="0" disabled selected>請選擇活動類型</option>
-                                </select>
+                                <select2 id="CategoryId" style="width:100%" :options="categoryList" aria-label="Default select example" v-model:value="activityBuild.categoryId">
+                                    <option disabled value="0" selected>請選擇類型</option>
+                                </select2>
                             </div>
                             <div class="mb-3">
                                 <label for="court" class="form-label">活動項目</label>
-                                <select class="select select2" id="subCategory" aria-label="Default select example" v-model="activityBuild.categoryTypeId">
-                                    <option value="0" disabled selected>請選擇活動項目</option>
-                                </select>
+                                <select2 id="CategoryTypeId" style="width:100%" :options="categoryTypeList" aria-label="Default select example" v-model:value="activityBuild.categoryTypeId">
+                                    <option disabled value="0" selected>請選擇活動項目</option>
+                                </select2>
                             </div>
                             <div class="mb-3">
                                 <label for="endterdate" class="form-label">報名截止日</label>
@@ -104,25 +104,31 @@
                                 </div>
                             </div>
                             <div class="mb-3">
+                                <label for="empty-field" class="form-label">付款方式</label>
+                                <div class="form-icon">
+                                    <input type="text" class="form-control" id="pay" v-model="activityBuild.payment">
+                                </div>
+                            </div>
+                            @* <div class="mb-3">
                                 <label for="court" class="form-label">付款方式</label>
                                 <select class="select select2" id="paymentMethod" aria-label="Default select example" v-model="activityBuild.payment">
                                     <option value="0" disabled selected>請選擇付款方式</option>
                                 </select>
-                            </div>
+                            </div> *@
                             <div class="mb-3">
                                 <label for="empty-field" class="form-label">活動說明</label>
                                 <div class="form-icon">
                                     <textarea class="form-control" id="ActivityNotes" rows="4" maxlength="300" v-model="activityBuild.activityNotes"></textarea>
                                 </div>
                             </div>
-                            <div class="mb-3">
+                            @* <div class="mb-3">
                                 <label for="endterdate" class="form-label">建立日期</label>
                                 <div class="col-lg-12 col-md-6">
                                     <div class="input-space">
                                         <input id="Created" type="date" class="form-control" v-model="activityBuild.created">
                                     </div>
                                 </div>
-                            </div>
+                            </div> *@
                             @* <div class="mb-3">
                                 <label for="endterdate" class="form-label">建立日期</label>
                                 <div class="form-icon">
@@ -190,7 +196,7 @@
     <script src="~/js/taiwancity.js"></script>
 
     <script>
-        Vue.createApp({
+        const leaderCreate = Vue.createApp({
             data() {
                 return {
                     defaultPicOne: "/images/NoImage.jpg",
@@ -199,6 +205,7 @@
                     fileOne: null,
                     fileTwo: null,
                     fileThree: null,
+                    categorySource: [],
                     activityBuild: {
                         memberId: "1",
                         payment: "1",
@@ -206,14 +213,14 @@
                         activityCity: "",
                         activityArea: "",
                         activityLocation: "麥當勞",
-                        startTime: "2023/12/31",
+                        startTime: "",
                         maxPeople: "10",
                         categoryId: "5",
                         categoryTypeId: "1",
-                        joinDeadLine: "2023/12/20",
+                        joinDeadLine: "",
                         joinFee: "10000",
                         activityNotes: "吃貨團",
-                        created: "2023/12/05"
+                        // created: ""
                     },
                 }
             },
@@ -236,7 +243,29 @@
                             text: x.AreaName
                         }
                     })
-                }
+                },
+                categoryList() {
+                    return this.categorySource.map(x => {
+                        return {
+                            id: x.categoryId,
+                            text: x.categoryName
+                        }
+                    })
+                },
+                categoryTypeList() {
+                    let area = this.categorySource.filter(x => x.categoryId == this.activityBuild.categoryId);
+                    if (area.length < 1) return [];
+                    return area[0].detail.map(x => {
+                        return {
+                            id: x.categoryTypeId,
+                            text: x.typeName
+                        }
+                    })
+                },
+            },
+
+            mounted() {
+                this.categoryApi();
             },
 
             methods: {
@@ -254,6 +283,11 @@
                     console.log(URL.createObjectURL(e.target.files[0]));
                     this.fileThree = e.target.files[0];
                     this.defaultPicThree = URL.createObjectURL(e.target.files[0]);
+                },
+                categoryApi() {
+                    let self = this;
+
+                    fetch("/CategoryApi/GetCategoriesAllIncludeDetail").then(r => r.json()).then(d => { self.categorySource = d; });
                 },
                 leaderBuild() {
                     let self = this;
@@ -275,14 +309,17 @@
                     formData.append('joinDeadLine', self.activityBuild.joinDeadLine);
                     formData.append('joinFee', self.activityBuild.joinFee);
                     formData.append('activityNotes', self.activityBuild.activityNotes);
-                    formData.append('created', self.activityBuild.created);
+                    // formData.append('created', self.activityBuild.created);
 
                     fetch("/ActivityApi/LeaderCreate", {
                         method: "POST",
+                        // headers: { "Content-Type": "multipart/form-data" }
                         body: formData
                     }).then(r => r.json())
                         .then(d => {
+                            self.activityBuild = d;
                             console.log('Success', d);
+                            alert("建立成功");
                         });
                 }
             },

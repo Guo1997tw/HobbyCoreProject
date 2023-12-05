@@ -6,7 +6,7 @@
 
         public int MemberId { get; set; }
 
-        public string ActivityStatus { get; set; } = null!;
+        public string ActivityStatus { get; set; } = "1";
 
         public string Payment { get; set; } = null!;
 

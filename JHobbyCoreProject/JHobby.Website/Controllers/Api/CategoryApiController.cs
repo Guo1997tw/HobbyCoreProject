@@ -1,9 +1,11 @@
 ﻿using AutoMapper;
+using JHobby.Repository.Models.Entity;
 using JHobby.Service.Interfaces;
 using JHobby.Service.Models;
 using JHobby.Website.Models.ViewModels;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 
 namespace JHobby.Website.Controllers.Api
@@ -14,12 +16,14 @@ namespace JHobby.Website.Controllers.Api
 	{
 		private readonly ICategoryService _categoryService;
 		private readonly IMapper _mapper;
+        private readonly JhobbyContext _jhobbyContext;
 
-		public CategoryApiController(ICategoryService categoryService, IMapper mapper)
+        public CategoryApiController(ICategoryService categoryService, IMapper mapper, JhobbyContext jhobbyContext)
 		{
 			_categoryService = categoryService;
 			_mapper = mapper;
-		}
+            _jhobbyContext = jhobbyContext;
+        }
 
 		[HttpGet]
 		public IEnumerable<CategoryViewModel> GetCategoriesAll()
@@ -27,7 +31,23 @@ namespace JHobby.Website.Controllers.Api
 			return _mapper.Map<IEnumerable<CategoryViewModel>>(_categoryService.GetList());
 		}
 
-		[HttpGet("{id}")]
+        [HttpGet]
+        public object GetCategoriesAllIncludeDetail()
+        {
+			return _jhobbyContext.Categories.Include(c => c.CategoryDetails).Select(cd => new
+			{
+				cd.CategoryId,
+				cd.CategoryName,
+				 
+				detail = cd.CategoryDetails.Select(x => new
+				{
+					x.CategoryTypeId,
+					x.TypeName
+				})
+			});
+        }
+
+        [HttpGet("{id}")]
 		public ActionResult<IEnumerable<CategoryViewModel>> GetCategoriesById(int id)
 		{
 			var servicesDto = _categoryService.GetDetail(id);

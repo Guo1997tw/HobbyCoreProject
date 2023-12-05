@@ -39,7 +39,7 @@ namespace JHobby.Repository.Models.Dto
 
         public string? ActivityNotes { get; set; }
 
-        public DateTime Created { get; set; }
+        public DateTime Created { get; set; } = DateTime.Now;
 
         public List<ActivityImageCreateDto>? ActivityImages { get; set; }
     }
