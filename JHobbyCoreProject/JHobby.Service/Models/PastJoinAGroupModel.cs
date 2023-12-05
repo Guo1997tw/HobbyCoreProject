@@ -20,6 +20,8 @@ namespace JHobby.Service.Models
 
         public string? NickName { get; set; }
 
+        public int MemberId { get; set; }
+
         public string? DateConvert { get; set;}
 
         public string? TimeConvert { get; set; }

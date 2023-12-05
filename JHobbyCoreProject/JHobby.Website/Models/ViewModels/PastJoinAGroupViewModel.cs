@@ -12,6 +12,8 @@
 
         public int? CurrentPeople { get; set; }
 
+        public int MemberId { get; set; }
+
         public string? NickName { get; set; }
 
         public string? DateConvert { get; set; }

@@ -54,7 +54,8 @@ namespace JHobby.Repository.Implements
                     ActivityCity = a.Activity.ActivityCity,
                     CurrentPeople = a.Activity.CurrentPeople,
                     StartTime = a.Activity.StartTime,
-                    NickName = activityUsers.FirstOrDefault(ac => ac.id == a.Activity.MemberId).nikeName
+                    NickName = activityUsers.FirstOrDefault(ac => ac.id == a.Activity.MemberId).nikeName,
+                    MemberId = a.Activity.MemberId
                 });
         }
 

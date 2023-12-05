@@ -37,17 +37,19 @@ namespace JHobby.Website.Controllers.Api
         [HttpGet]
         public IEnumerable<PastJoinAGroupViewModel> GetPastJoinAGroupById(int memberId)
         {
-            return _aPastJoinAGroupService.GetPastJoinAGroupById(memberId).Select(x => new PastJoinAGroupViewModel
-            {
-                ActivityId = x.ActivityId,
-                ActivityCity = x.ActivityCity,
-                ActivityName = x.ActivityName,
-                ActivityStatus = x.ActivityStatus,
-                CurrentPeople = x.CurrentPeople,
-                NickName = x.NickName,
-                DateConvert = x.DateConvert,
-                TimeConvert = x.TimeConvert,
-            });
+            return _aPastJoinAGroupService.GetPastJoinAGroupById(memberId)
+                .Select(x => new PastJoinAGroupViewModel
+                {
+                    ActivityId = x.ActivityId,
+                    ActivityCity = x.ActivityCity,
+                    ActivityName = x.ActivityName,
+                    ActivityStatus = x.ActivityStatus,
+                    CurrentPeople = x.CurrentPeople,
+                    NickName = x.NickName,
+                    MemberId = x.MemberId,
+                    DateConvert = x.DateConvert,
+                    TimeConvert = x.TimeConvert,
+                });
         }
     }
 }

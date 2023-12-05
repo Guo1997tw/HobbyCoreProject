@@ -367,7 +367,11 @@
                         </div>
                     </div>
                     <!-- 有分數星星的彈跳視窗V1.1 -->
-                    <div class="modal custom-modal fade request-modal" id="request-coche" style="display: none;" aria-hidden="true">
+                    <div class="modal custom-modal fade request-modal"
+                         id="request-coche"
+                         style="display: none;"
+                         aria-hidden="true"
+                         ref="modal">
                         <div class="modal-dialog modal-dialog-centered modal-md">
                             <div class="modal-content">
                                 <div class="modal-header">
@@ -614,6 +618,7 @@
             },
             mounted() {
                 this.axiosPastJoinAGroupCard();
+                $(this.$refs.modal).on('hidden.bs.modal', this.resetStarRating);
             },
             computed: {
                 total() {
@@ -647,13 +652,13 @@
                 titleLinkToGroupPage(card) {
                     this.titleActivityId = card.activityId;
                 },
-                submitScore(score) {
+                submitScore() {
                     let _this = this;
                     _this.star = _this.tempStar;
                     const payload = {
                         fraction: _this.star,
-                        activityId: 1, //寫死活動Id
-                        memberId: 1,//寫死會員Id
+                        activityId: _this.currentCard.activityId,
+                        memberId: _this.currentCard.memberId,
                     };
                     axios
                         .post(
@@ -668,13 +673,17 @@
                 },
                 getClass(index) {
                     if (index <= this.tempStar) {
-                        return 'fas fa-star filled'; 
+                        return 'fas fa-star filled';
                     } else {
-                        return 'fa-regular fa-star'; 
+                        return 'fa-regular fa-star';
                     }
                 },
                 selectScore(score) {
                     this.tempStar = score;
+                },
+                resetStarRating() {
+                    this.tempStar = 0;
+                    this.star = 0;
                 },
             },
         })

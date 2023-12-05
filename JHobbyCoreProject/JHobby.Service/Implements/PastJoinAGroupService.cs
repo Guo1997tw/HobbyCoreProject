@@ -50,6 +50,7 @@ namespace JHobby.Service.Implements
                 ActivityCity = r.ActivityCity,
                 CurrentPeople = r.CurrentPeople,
                 NickName = r.NickName,
+                MemberId = r.MemberId,
 
                 //將StartTime轉成日期格式和時間格式
                 DateConvert = _iCommonService.ConvertTime(r.StartTime).FirstOrDefault().DateConvert,
