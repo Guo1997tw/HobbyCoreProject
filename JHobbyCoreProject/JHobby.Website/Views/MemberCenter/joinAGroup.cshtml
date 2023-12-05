@@ -276,15 +276,14 @@
                                                         <h2 class="table-avatar">
                                                             <a @@click="pictureLinkToGroupPage(filterCard[index])"
                                                                :href="`https://localhost:7097/Activity/ActivityPage/${pictureActivityId}`"
-                                                            class="avatar avatar-sm flex-shrink-0"
-                                                            >
+                                                               class="avatar avatar-sm flex-shrink-0">
                                                                 <img class="avatar-img" src="~/assets/img/booking/booking-02.jpg" alt="Booking">
                                                             </a>
                                                             <span class="table-head-name flex-grow-1">
                                                                 <a @@click="titleLinkToGroupPage(filterCard[index])"
                                                                    :href="`https://localhost:7097/Activity/ActivityPage/${titleActivityId}`">
-                                                                {{card.activityName}}
-                                                            </a>
+                                                                    {{card.activityName}}
+                                                                </a>
                                                                 <span>團主: {{card.nickName}}</span>
                                                             </span>
                                                         </h2>
@@ -416,13 +415,15 @@
                                                     </div>
                                                     <div class="ratings-info corner-radius-10 text-center">
                                                         <!-- 分數星星 -->
-                                                        <div class="ratings-info corner-radius-10 text-center">
-                                                            <div class="rating">
-                                                                <i class="fas fa-star filled"></i>
-                                                                <i class="fas fa-star filled"></i>
-                                                                <i class="fas fa-star filled"></i>
-                                                                <i class="fas fa-star filled"></i>
-                                                                <i class="fas fa-star filled"></i>
+                                                        <div class="ratings-info corner-radius-10 text-center venue-coach-details">
+                                                            <div class="ratings-info corner-radius-10 text-center">
+                                                                <div class="rating">
+                                                                    <i v-for="index in 5"
+                                                                       :key="index"
+                                                                       :class="getClass(index)"
+                                                                       @@click="selectScore(index)"></i>
+                                                                    <span>({{ tempStar }})</span>
+                                                                </div>
                                                             </div>
                                                         </div>
                                                         <!-- 分數星星 -->
@@ -435,7 +436,11 @@
                                 </div>
                                 <div class="modal-footer">
                                     <div class="table-accept-btn">
-                                        <a href="javascript:;" class="btn accept-btn me-0">送出</a>
+                                        <a href="javascript:;"
+                                           class="btn accept-btn me-0"
+                                           @@click="submitScore">
+                                            送出
+                                        </a>
                                     </div>
                                 </div>
                             </div>
@@ -603,6 +608,8 @@
                     activityId: "",
                     pictureActivityId: "",
                     titleActivityId: "",
+                    Star: 0,
+                    tempStar: 0,
                 };
             },
             mounted() {
@@ -640,9 +647,38 @@
                 titleLinkToGroupPage(card) {
                     this.titleActivityId = card.activityId;
                 },
+                submitScore(score) {
+                    let _this = this;
+                    _this.star = _this.tempStar;
+                    const payload = {
+                        fraction: _this.star,
+                        activityId: 1, //寫死活動Id
+                        memberId: 1,//寫死會員Id
+                    };
+                    axios
+                        .post(
+                            `https://localhost:7097/InputScoreApi/NewInputScoreById`,
+                            payload,
+                            {
+                                headers: { "Content-Type": "application/json" },
+                            }
+                        )
+                        .then((response) => alert("增加成功"))
+                        .catch((erro) => alert(`Erro: ${erro}`));
+                },
+                getClass(index) {
+                    if (index <= this.tempStar) {
+                        return 'fas fa-star filled'; 
+                    } else {
+                        return 'fa-regular fa-star'; 
+                    }
+                },
+                selectScore(score) {
+                    this.tempStar = score;
+                },
             },
         })
-        .component("paginate", VuejsPaginateNext)
-        .mount("#idPastJoinAGroupCard");
+            .component("paginate", VuejsPaginateNext)
+            .mount("#idPastJoinAGroupCard");
     </script>
 }
