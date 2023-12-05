@@ -9,8 +9,6 @@ namespace JHobby.Repository.Models.Dto
 {
     public class ActivityCreateDto
     {
-        public int ActivityId { get; set; }
-
         public int MemberId { get; set; }
 
         public string ActivityStatus { get; set; } = null!;
@@ -39,7 +37,7 @@ namespace JHobby.Repository.Models.Dto
 
         public string? ActivityNotes { get; set; }
 
-        public DateTime Created { get; set; } = DateTime.Now;
+        public DateTime Created { get; set; }
 
         public List<ActivityImageCreateDto>? ActivityImages { get; set; }
     }

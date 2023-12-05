@@ -1,4 +1,7 @@
 ﻿using AutoMapper;
+using AutoMapper.QueryableExtensions;
+using JHobby.Repository.Interfaces;
+using JHobby.Repository.Models.Dto;
 using JHobby.Repository.Models.Entity;
 using JHobby.Service.Interfaces;
 using JHobby.Service.Models;
@@ -17,12 +20,14 @@ namespace JHobby.Website.Controllers.Api
 		private readonly ICategoryService _categoryService;
 		private readonly IMapper _mapper;
         private readonly JhobbyContext _jhobbyContext;
+        private readonly ICategoryRepository _categoryRepository;
 
-        public CategoryApiController(ICategoryService categoryService, IMapper mapper, JhobbyContext jhobbyContext)
+        public CategoryApiController(ICategoryService categoryService, IMapper mapper, JhobbyContext jhobbyContext, ICategoryRepository categoryRepository)
 		{
 			_categoryService = categoryService;
 			_mapper = mapper;
             _jhobbyContext = jhobbyContext;
+            _categoryRepository = categoryRepository;
         }
 
 		[HttpGet]
@@ -31,20 +36,18 @@ namespace JHobby.Website.Controllers.Api
 			return _mapper.Map<IEnumerable<CategoryViewModel>>(_categoryService.GetList());
 		}
 
+        /// <summary>
+        /// 取得類型配細項
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
-        public object GetCategoriesAllIncludeDetail()
+        public IQueryable<CategoryTypeViewModel> GetCategoriesAllIncludeDetail()
         {
-			return _jhobbyContext.Categories.Include(c => c.CategoryDetails).Select(cd => new
-			{
-				cd.CategoryId,
-				cd.CategoryName,
-				 
-				detail = cd.CategoryDetails.Select(x => new
-				{
-					x.CategoryTypeId,
-					x.TypeName
-				})
-			});
+			var result = _categoryService.GetCategoryType();
+
+			var mapper = result.ProjectTo<CategoryTypeViewModel>(_mapper.ConfigurationProvider);
+
+			return mapper;
         }
 
         [HttpGet("{id}")]

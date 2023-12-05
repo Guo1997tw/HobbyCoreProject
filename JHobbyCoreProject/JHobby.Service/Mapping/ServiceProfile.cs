@@ -24,6 +24,8 @@ namespace JHobby.Service.Mapping
             //CreateMap<ActivityCreateDto, ActivityCreateModel>()
             //    .ForMember(dest=>dest.ActivityImages,opt=>opt.MapFrom(src=> src.ActivityImages.Select(x=>x.ImageName)));
             CreateMap<MemberResetDto, MemberResetModel>().ReverseMap();
+            CreateMap<CategoryTypeDto, CategoryTypeModel>().ReverseMap();
+            CreateMap<CategoryDetailDto, CategoryDetailModel>().ReverseMap();
         }
     }
 }

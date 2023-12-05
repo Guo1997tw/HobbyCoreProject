@@ -19,5 +19,7 @@ namespace JHobby.Service.Interfaces
 		public bool UpdateCategory(int id, UpdateCategoryModel updateCategoryModel);
 
 		public bool DeleteCategory(int id);
+
+		public IQueryable<CategoryTypeModel> GetCategoryType();
     }
 }
