@@ -14,5 +14,7 @@
         public string ActivityName { get; set; } = null!;
 
         public int SurplusQuota { get; set;}
+
+        public string ImageName { get; set; } = null!;
     }
 }

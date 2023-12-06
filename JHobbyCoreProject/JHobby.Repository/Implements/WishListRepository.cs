@@ -38,6 +38,8 @@ namespace JHobby.Repository.Implements
 
         public IEnumerable<WishListDto> GetWishListById(int memberId)
         {
+            var imageName = _jhobbyContext.ActivityImages.Select(ai =>new { id = ai.ActivityId, imageName = ai.ImageName });
+
             return _jhobbyContext.Wishes.Where(w => w.MemberId == memberId)
                 .Include(a => a.Activity)
                 .Select(w => new WishListDto
@@ -49,6 +51,7 @@ namespace JHobby.Repository.Implements
                     ActivityStatus = w.Activity.ActivityStatus,
                     MaxPeople = w.Activity.MaxPeople,
                     CurrentPeople = w.Activity.CurrentPeople,
+                    ImageName = imageName.FirstOrDefault(iN => iN.id == w.ActivityId).imageName,
                 });
         }
 

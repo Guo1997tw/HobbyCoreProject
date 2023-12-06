@@ -39,7 +39,8 @@ namespace JHobby.Service.Implements
                 ActivityId = gw.ActivityId,
                 ActivityStatus = _commonService.ConvertActivityStatus(gw.ActivityStatus),
                 ActivityName = gw.ActivityName,
-                SurplusQuota = _commonService.CountSurplusQuota(gw.MaxPeople, gw.CurrentPeople)
+                SurplusQuota = _commonService.CountSurplusQuota(gw.MaxPeople, gw.CurrentPeople),
+                ImageName = gw.ImageName,
             });
         }
 

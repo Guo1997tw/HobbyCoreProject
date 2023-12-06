@@ -22,5 +22,7 @@ namespace JHobby.Repository.Models.Dto
         public int? CurrentPeople { get; set; }
 
         public int? MaxPeople { get; set; }
+
+        public string ImageName { get; set; } = null!;
     }
 }
