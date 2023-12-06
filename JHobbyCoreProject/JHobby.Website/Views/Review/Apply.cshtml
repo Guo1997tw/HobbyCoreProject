@@ -56,7 +56,7 @@
                                     <div class="row align-items-center">
                                         <div class="col-lg-6">
                                             <div class="court-table-head">
-                                                <h4>資格審核</h4>
+                                                <h4>報名審核</h4>
                                                 <p>活動報名審核</p>
                                             </div>
                                         </div>
@@ -86,7 +86,7 @@
                                                     <tr v-for="item in filterCard">
                                                         <td>
                                                             <h2 class="table-avatar">
-                                                                <a :href='"/Activity/ActivityPage/"+item.activityId' class="avatar avatar-sm  flex-shrink-0"><img class="avatar-img" :src='"/activityimgs/"+item.imageName+".jpg"' alt="Image"></a>
+                                                                <a :href='"/Activity/ActivityPage/"+item.activityId' class="avatar avatar-sm  flex-shrink-0"><img class="avatar-img" :src='item.imageName' alt="Image"></a>
                                                                 <span class="table-head-name flex-grow-1">
                                                                     <h5>{{item.activityName}}</h5>                                                                   
                                                                 </span>
@@ -95,7 +95,7 @@
                                                         <td>
                                                             <h2 class="table-avatar">
                                                                 <a :href='"/Profile/MemberProfile/"+item.applicantId'
-                                                                   class="avatar avatar-sm  flex-shrink-0"><img class="avatar-img" :src='"/profile/"+item.headShot+".jpg"' alt="Image"></a>
+                                                                   class="avatar avatar-sm  flex-shrink-0"><img class="avatar-img" :src='item.headShot' alt="Image"></a>
                                                                 <span class="table-head-name table-name-user flex-grow-1">                                                                    
                                                                     <h5>{{item.nickName}}</h5>
                                                                 </span>
@@ -243,7 +243,7 @@
             methods: {
                 axiosGetReviewById: function () {
                     axios
-                        .get(`/ReviewApi/GetReviewById/4`)
+                        .get(`/ReviewApi/GetReviewById/${@Model.MemberId}`)
                         .then((response) => {
                             let _this = this;
                             _this.reviewData = response.data;
