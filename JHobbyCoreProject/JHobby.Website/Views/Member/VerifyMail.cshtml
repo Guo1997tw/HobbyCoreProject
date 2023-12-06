@@ -1,1 +1,64 @@
-﻿<h1>此頁面為驗證信件</h1>
+﻿@model VerifyViewModel;
+@{
+    string message = ViewBag.message;
+}
+<div id="verify" class="content">
+    <div class="container">
+        <div data-aos="fade-up" class="row justify-content-center">
+            <div class="row">
+                <div class="col-sm-12 col-md-6 col-lg-5 mx-auto text-center">
+                    <h3>@message</h3>
+                    <template v-if="blnReSend==false">
+                        <a @@click="ReSendVerify()">重送驗證信</a>
+                        <br />
+                        <br />
+                        <br />
+                    </template>
+                    <a href="/" class="btn btn-primary d-inline-flex align-items-center">返回首頁<i class="feather-arrow-right-circle ms-2"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/3.3.4/vue.global.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.6.0/axios.min.js" integrity="sha512-WrdC3CE9vf1nBf58JHepuWT4x24uTacky9fuzw2g/3L9JkihgwZ6Cfv+JGTtNyosOhEmttMtEZ6H3qJWfI7gIQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script>
+        const verify = Vue.createApp({
+            data() {
+                return {
+                    blnReSend:true,
+                    tempSuccess:"",
+                    account:""
+                }
+            },
+            mounted() {
+                let _this = this;
+                _this.tempSuccess = `@Model.Success`;
+                _this.blnChange();
+            },
+            methods: {
+                ReSendVerify() {
+                    let _this = this;
+                    var form = new FormData();
+                    form.append("Account", `@Model.Account`);
+                    axios.post("/MemberApi/reSendVerifyMail", form, {
+                        headers: {
+                            "Content-Type": "multipart/form-data"
+                        }
+                    })
+                    .catch(err => alert(err));
+                    alert("重送成功，請點選新信件內網址重新驗證")
+                },
+                blnChange() { 
+                    let _this = this;
+                    if (_this.tempSuccess == "True") {
+                        return _this.blnReSend = true;
+                    }
+                    return _this.blnReSend = false;
+                }
+            }
+        }).mount("#verify")
+    </script>
+}
