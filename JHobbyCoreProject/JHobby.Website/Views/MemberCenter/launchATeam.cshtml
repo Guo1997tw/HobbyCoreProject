@@ -648,12 +648,9 @@
                     sortOrder: 'asc',
                     countPerPage: 2,
                     pageNumber: 1,
-<<<<<<< HEAD
                     _activityId: "",
                     _ActivityName: 0,
-=======
                     currentData: [],
->>>>>>> c87a220e3ebe65cbf8f14fd3ea09d31969db2413
                 };
             },
             mounted() {
@@ -699,7 +696,7 @@
             },
             methods: {
                 logBrowsepicture() {
-                    axios.get(`/LaunchaTeamApi/GetByIdOld/4`)
+                    axios.get(`/LaunchaTeamApi/GetByIdOld/1`)
                         .then((result) => {
                             this.axiosBrowsepicture = result.data;
                             this.maxPeople = result.data.maxPeople;
@@ -707,7 +704,7 @@
                         .catch((error) => alert(`發生錯誤: ${error}`));
                 },
                 lookUpdates() {
-                    axios.get(`/GroupStartingApi/GetByIdNow/4`)
+                    axios.get(`/GroupStartingApi/GetByIdNow/1`)
                         .then((viewModel) => {
                             this.showUpdates = viewModel.data;
                             for (var i = 0; i < this.showUpdates.length; i++) {
