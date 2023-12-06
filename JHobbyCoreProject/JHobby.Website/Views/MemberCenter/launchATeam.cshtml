@@ -705,7 +705,7 @@
             },
             methods: {
                 logBrowsepicture() {
-                    axios.get(`/LaunchaTeamApi/GetByIdOld/${@Model.LeaderId}`)
+                    axios.get(`/LaunchaTeamApi/GetByIdOld/${@Model.MemberId}`)
                         .then((result) => {
                             this.axiosBrowsepicture = result.data;
                             this.maxPeople = result.data.maxPeople;
@@ -713,7 +713,7 @@
                         .catch((error) => alert(`發生錯誤: ${error}`));
                 },
                 lookUpdates() {
-                    axios.get(`/GroupStartingApi/GetByIdNow/${@Model.LeaderId}`)
+                    axios.get(`/GroupStartingApi/GetByIdNow/${@Model.MemberId}`)
                         .then((viewModel) => {
                             this.showUpdates = viewModel.data;
                             for (var i = 0; i < this.showUpdates.length; i++) {
