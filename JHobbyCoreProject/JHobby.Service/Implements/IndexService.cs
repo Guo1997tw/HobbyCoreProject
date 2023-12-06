@@ -25,6 +25,7 @@ namespace JHobby.Service.Implements
 				ActivityId = res.ActivityId,
 				MemberId = res.MemberId,
 				NickName = res.NickName,
+				HeadShot=res.HeadShot,
 				ActivityName= res.ActivityName.Trim(),
 				ActivityStatus=res.ActivityStatus,
 				ActivityLocation=res.ActivityLocation.Trim(),

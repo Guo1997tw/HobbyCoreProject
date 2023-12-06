@@ -2,6 +2,7 @@
 {
     public class MemberMsgViewModel
     {
+        public int MemberId { get; set; }
         public string? HeadShot { get; set; }
 
         public DateTime MessageTime { get; set; }
