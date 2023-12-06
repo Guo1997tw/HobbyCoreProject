@@ -1,4 +1,5 @@
-﻿using JHobby.Repository.Interfaces;
+﻿using AutoMapper;
+using JHobby.Repository.Interfaces;
 using JHobby.Repository.Models.Dto;
 using JHobby.Repository.Models.Entity;
 using System;
@@ -13,12 +14,14 @@ namespace JHobby.Repository.Implements
 	public class GroupStartingRepository : IGroupStartingRepository
 	{
 		private readonly JhobbyContext _jhobbyContext;
+        private readonly IMapper _mapper;
 
-		public GroupStartingRepository(JhobbyContext jhobbyContext)
+        public GroupStartingRepository(JhobbyContext jhobbyContext, IMapper mapper)
 		{
 
 			_jhobbyContext = jhobbyContext;
-		}
+            _mapper = mapper;
+        }
 
 		public IEnumerable<GroupStartingDto> GetGroupStartingAll()
 		{
@@ -41,32 +44,19 @@ namespace JHobby.Repository.Implements
 			   });
 
 		}
-		public bool Update(int id, GroupStartingDto GroupStartingDto)
-		{
-			var queryResult = _jhobbyContext.Categories.FirstOrDefault(c => c.CategoryId == id);
-
-			if (queryResult != null)
-			{
-				queryResult.CategoryName = GroupStartingDto.ActivityName;
-
-				_jhobbyContext.SaveChanges();
-
-				return true;
-			};
-
-			return false;
-		}
 		public bool UpdateActivityStatus(int id, ActivityStatusDto activityStatusDto)
 		{
 			var queryResult = _jhobbyContext.Activities.FirstOrDefault(g => g.ActivityId == id);
 
 			if (queryResult != null)
 			{
-				queryResult.ActivityStatus = activityStatusDto.ActivityStatus;
+				_mapper.Map(activityStatusDto, queryResult);
 				_jhobbyContext.SaveChanges();
+
+				return true;
 			}
 
-            return true;
+			return false;
 		}
 
 		public IEnumerable<GroupStartingDto?> GetByIdNow(int id)

@@ -2,7 +2,7 @@
 {
     public class ActivityStatusViewModel
     {
-        public int ActivityId { get; set; }
+        //public int ActivityId { get; set; }
         public string ActivityStatus { get; set; } = null!;
     }
 }

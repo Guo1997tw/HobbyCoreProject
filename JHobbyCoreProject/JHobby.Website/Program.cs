@@ -49,8 +49,8 @@ namespace JHobby.Website
 
             // Interface DI
             builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
-			// Interface DI
-			builder.Services.AddScoped<IGroupStartingRepository, GroupStartingRepository>();
+            // Interface DI
+            builder.Services.AddScoped<IGroupStartingRepository, GroupStartingRepository>();
 			builder.Services.AddScoped<IGroupStartingService, GroupStartingService>();
 			builder.Services.AddScoped<ILaunchaTeamRepository, LaunchaTeamRepository>();
 			builder.Services.AddScoped<ILaunchaTeamService, LaunchaTeamService>();

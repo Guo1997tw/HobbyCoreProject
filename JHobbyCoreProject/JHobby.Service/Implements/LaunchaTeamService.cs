@@ -34,7 +34,7 @@ namespace JHobby.Service.Implements
             MemberId = a.MemberId,
             ActivityName = a.ActivityName,
             CurrentPeople = a.CurrentPeople,
-            ActivityStatus = _iCommonService.ConvertReviewStatus(a.ActivityStatus),
+            ActivityStatus = _iCommonService.ConvertActivityStatus(a.ActivityStatus),
             StartTime = a.StartTime,
             IsCover = a.IsCover,
             ImageName = a.ImageName,
@@ -49,6 +49,7 @@ namespace JHobby.Service.Implements
 			return (IEnumerable<LaunchaTeamModel>)queryResult;
 		}
 
-}
+ 
+    }
 }
 

@@ -4,11 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace JHobby.Repository.Models.Dto
+namespace JHobby.Service.Models
 {
-    public class ActivityStatusDto
+    public class ActivityStatusModel
     {
         //public int ActivityId { get; set; }
         public string ActivityStatus { get; set; } = null!;
     }
 }
+
