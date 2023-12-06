@@ -336,7 +336,7 @@
                     if (chineseRegex.test(identityCard)) {
                         this.ProfileSetting.identityCard = identityCard.replace(chineseRegex, '');
                         // 插入一個用來顯示警告的元素
-                        identityCardInput.insertAdjacentHTML("afterend", '<div style="color: red;">請不要輸入中文!</div>');
+                        identityCardInput.insertAdjacentHTML("afterend", '<div style="color: red;">★請不要輸入中文★</div>');
                     } else {
                         // 如果不包含中文字符，移除警告元素
                         const warningElement = identityCardInput.nextElementSibling;

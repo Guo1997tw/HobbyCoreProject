@@ -12,7 +12,6 @@ namespace JHobby.Website.Controllers.Api
         private readonly IProfileSettingService _iProfileSettingService;
         private readonly IUpdateProfileSettingService _iUpdateProfileSettingService;
 
-
         string _Path;
 
         public ProfileSettingApiController(IProfileSettingService iProfileSettingService,
@@ -27,7 +26,7 @@ namespace JHobby.Website.Controllers.Api
         [HttpGet("{id}")]
         public ActionResult<ProfileSettingViewModel> GetById(int id)
         {
-            var serviceModel = _iProfileSettingService.GetById(id); //GetByIdService
+            var serviceModel = _iProfileSettingService.GetById(id);
 
             var viewModel = new ProfileSettingViewModel
             {
@@ -77,7 +76,8 @@ namespace JHobby.Website.Controllers.Api
             return files;
         }
 
-        [HttpPut("{id}")] //服務讓定義的方法成立
+        //服務讓定義的方法成立
+        [HttpPut("{id}")]
         public bool UpdateProfileSetting(int id, [FromForm] UpdateProfileSettingViewModel updateProfileSettingViewModel)
         {
 
