@@ -8,7 +8,8 @@ namespace JHobby.Repository.Models.Dto
 
 		public int MemberId { get; set; }
 		public string? NickName { get; set; }
-		public string ActivityName { get; set; } = null!;
+        public string? HeadShot { get; set; }
+        public string ActivityName { get; set; } = null!;
 		public string ActivityStatus { get; set; } = null!;
 
 		public string ActivityLocation { get; set; } = null!;
