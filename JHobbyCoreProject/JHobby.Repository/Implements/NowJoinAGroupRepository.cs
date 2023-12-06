@@ -42,7 +42,8 @@ namespace JHobby.Repository.Implements
         public IEnumerable<NowJoinAGroupDto> GetNowJoinAGroupById(int memberId)
         {
             var activityUser = _jhobbyContext.Members.Select(x => new { id = x.MemberId, nickName = x.NickName });
-            
+            var activityImage = _jhobbyContext.ActivityImages.Select(a => new { id = a.ActivityId, imageName = a.ImageName });
+
             return _jhobbyContext.ActivityUsers
             .Where(Au => Au.MemberId == memberId
             && (Au.ReviewStatus == "0"
@@ -61,6 +62,7 @@ namespace JHobby.Repository.Implements
                 MaxPeople = a.Activity.MaxPeople,
                 NickName = activityUser.FirstOrDefault(z => z.id == a.Activity.MemberId).nickName,
                 StartTime = a.Activity.StartTime,
+                ImageName = activityImage.FirstOrDefault(i => i.id == a.Activity.ActivityId).imageName
             });
         }
 
@@ -78,8 +80,6 @@ namespace JHobby.Repository.Implements
                 return true;
             }
             else { return false; }
-           
-
         }
     }
 }

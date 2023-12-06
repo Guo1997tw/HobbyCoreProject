@@ -55,7 +55,8 @@ namespace JHobby.Service.Implements
                     MaxPeople = s.MaxPeople,
                     NickName = s.NickName,
                     DateConvert = _iCommonService.ConvertTime(s.StartTime).First().DateConvert,
-                    TimeConvert = _iCommonService.ConvertTime(s.StartTime).First().TimeConvert
+                    TimeConvert = _iCommonService.ConvertTime(s.StartTime).First().TimeConvert,
+                    ImageName = s.ImageName,
                 });
         }
 

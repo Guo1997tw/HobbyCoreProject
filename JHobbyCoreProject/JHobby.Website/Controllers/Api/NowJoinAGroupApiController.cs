@@ -36,6 +36,7 @@ namespace JHobby.Website.Controllers.Api
                     NickName = s.NickName,
                     DateConvert = s.DateConvert,
                     TimeConvert = s.TimeConvert,
+                    ImageName = s.ImageName,
                 }
             );
         }
@@ -58,6 +59,7 @@ namespace JHobby.Website.Controllers.Api
                     NickName = s.NickName,
                     DateConvert = s.DateConvert,
                     TimeConvert = s.TimeConvert,
+                    ImageName = s.ImageName,
                 }
             );
         }

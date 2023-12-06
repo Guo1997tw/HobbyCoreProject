@@ -28,5 +28,7 @@ namespace JHobby.Website.Models.ViewModels
         public string? DateConvert { get; set; }
 
         public string? TimeConvert { get; set; }
+
+        public string ImageName { get; set; } = null!;
     }
 }
