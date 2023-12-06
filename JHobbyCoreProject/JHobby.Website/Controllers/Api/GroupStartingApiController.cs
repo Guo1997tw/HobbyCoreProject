@@ -81,7 +81,30 @@ namespace JHobby.Website.Controllers.Api
 
             });
 
-            return viewModel;
+			return viewModel;
+		}
+
+        [HttpGet("{id}/{ActivityId}")]
+        public IEnumerable<GroupStartingCurrentViewModel> CurrentById(int id, int ActivityId)
+        {
+            var resultDto = _GroupStartingService.CurrentById(id, ActivityId);
+            var reviewModel = resultDto.Select(dto => new GroupStartingCurrentViewModel
+            {
+                ActivityId = dto.ActivityId,
+                LeaderId = dto.LeaderId,
+                ActivityName = dto.ActivityName,
+                ReviewStatus = dto.ReviewStatus,
+                ReviewTime = dto.ReviewTime,
+                ApplicantId = dto.ApplicantId,
+                ActivityImageId = dto.ActivityImageId,
+                ImageName = dto.ImageName,
+                IsCover = dto.IsCover,
+                NickName = dto.NickName,
+                HeadShot = dto.HeadShot,
+                DateConvert = dto.DateConvert,
+                TimeConvert = dto.TimeConvert,
+            });
+            return reviewModel;
         }
     }
 }

@@ -6,6 +6,7 @@ using JHobby.Service.Implements;
 using JHobby.Service.Interfaces;
 using JHobby.Website.Controllers.Api;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 
 namespace JHobby.Website
@@ -84,6 +85,8 @@ namespace JHobby.Website
             builder.Services.AddScoped<IWishListRepository, WishListRepository>();
             builder.Services.AddScoped<IWishListService, WishListService>();
             builder.Services.AddScoped<ISendMailService, SendMailService>();
+            builder.Services.AddScoped<IGroupStartingRepository, GroupStartingRepository>();
+            builder.Services.AddScoped<IGroupStartingService, GroupStartingService>();
  
 
             // DI Authentication

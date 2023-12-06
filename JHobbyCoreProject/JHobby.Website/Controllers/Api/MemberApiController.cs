@@ -56,11 +56,24 @@ namespace JHobby.Website.Controllers.Api
             {
                 var member = _memberService.MemberStatus(memberLoginViewModel.Account);
 
-                var role = member.Status == "1" ? "Member" : "NoMember";
+                // 快速會員
+                var roleFast = member.Status == "0" ? "FastMember" : "NoFastMember";
+
+                // 一般會員 (未填寫資料)
+                var roleGeneral = member.Status == "1" ? "Member" : "NoMember";
+
+                // 黑名單
+                var roleBlack = member.Status == "2" ? "BlackMember" : "NoBlackMember";
+                
+                // 管理員
+                var roleAdmin = member.Status == "99" ? "Admin" : "NoAdmin";
 
                 var claims = new List<Claim>
                 {
-                    new Claim(ClaimTypes.Role, role)
+                    new Claim(ClaimTypes.Role, roleFast),
+                    new Claim(ClaimTypes.Role, roleGeneral),
+                    new Claim(ClaimTypes.Role, roleBlack),
+                    new Claim(ClaimTypes.Role, roleAdmin),
                 };
 
                 var identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);

@@ -20,20 +20,21 @@ namespace JHobby.Service.Implements
             _iCommonService = commonService;
             _mapper = mapper;
             _groupStartingRepository = groupStartingRepository;
+            _iCommonService = commonService;
         }
-        public IEnumerable<GroupStartingModel> GetGroupStartingAll()
-        {
-            return _groupStartingRepository.GetGroupStartingAll().Select(a => new GroupStartingModel
-            {
-                ActivityId = a.ActivityId,
-                ActivityName = a.ActivityName,
-                CurrentPeople = a.CurrentPeople,
-                ActivityStatus = a.ActivityStatus,
-                StartTime = a.StartTime,
-                MaxPeople = a.MaxPeople,
-                IsCover = a.IsCover,
-                ImageName = a.ImageName,
-                ActivityImageId = a.ActivityImageId,
+		public IEnumerable<GroupStartingModel> GetGroupStartingAll()
+		{
+			return _groupStartingRepository.GetGroupStartingAll().Select(a => new GroupStartingModel
+			{
+				   ActivityId = a.ActivityId,
+				   ActivityName = a.ActivityName,
+				   CurrentPeople = a.CurrentPeople,
+				   ActivityStatus = a.ActivityStatus,
+				   StartTime = a.StartTime,
+				   MaxPeople = a.MaxPeople,
+				   IsCover = a.IsCover,
+				   ImageName = a.ImageName,
+				   ActivityImageId = a.ActivityImageId,
 
             });
 
@@ -63,8 +64,34 @@ namespace JHobby.Service.Implements
 
             });
 
-            return queryResult;
+			return queryResult;
+		}
+        public IEnumerable<GroupStartingCurrentModel> CurrentById(int id, int ActivityId)
+        {
+            var resultDto = _groupStartingRepository.CurrentById(id, ActivityId);
+
+
+            var reviewModel = resultDto.OrderByDescending(dto => dto.ReviewTime).Select(dto => new GroupStartingCurrentModel
+            {
+                ActivityId = dto.ActivityId,
+                LeaderId = dto.LeaderId,
+                ActivityName = dto.ActivityName.Trim(),
+                ReviewStatus = _iCommonService.ConvertReviewStatus(dto.ReviewStatus),
+                ReviewTime = dto.ReviewTime.ToString("yyyy-MM-dd HH:mm:ss"),
+                ApplicantId = dto.ApplicantId,
+                ActivityImageId = dto.ActivityImageId,
+                ImageName = dto.ImageName,
+                IsCover = dto.IsCover,
+                NickName = dto.NickName,
+                HeadShot = dto.HeadShot,
+                DateConvert = _iCommonService.ConvertTime(dto.ReviewTime).First().DateConvert,
+                TimeConvert = _iCommonService.ConvertTime(dto.ReviewTime).First().TimeConvert
+            });
+
+            return reviewModel;
         }
+    }
+}
 
         public bool UpdateActivityStatus(int id, ActivityStatusModel activityStatusModel)
         {
