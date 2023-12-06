@@ -1,4 +1,5 @@
-﻿using JHobby.Repository.Implements;
+﻿using AutoMapper;
+using JHobby.Repository.Implements;
 using JHobby.Repository.Interfaces;
 using JHobby.Repository.Models.Dto;
 using JHobby.Repository.Models.Entity;
@@ -8,14 +9,16 @@ using JHobby.Service.Models.Dto;
 
 namespace JHobby.Service.Implements
 {
-	public class GroupStartingService : IGroupStartingService
-	{
-		private readonly IGroupStartingRepository _groupStartingRepository;
+    public class GroupStartingService : IGroupStartingService
+    {
+        private readonly IGroupStartingRepository _groupStartingRepository;
         private readonly ICommonService _iCommonService;
+        private readonly IMapper _mapper;
 
-        public GroupStartingService(IGroupStartingRepository groupStartingRepository, ICommonService commonService)
-		{
+        public GroupStartingService(IGroupStartingRepository groupStartingRepository, ICommonService commonService, IMapper mapper)
+        {
             _iCommonService = commonService;
+            _mapper = mapper;
             _groupStartingRepository = groupStartingRepository;
             _iCommonService = commonService;
         }
@@ -33,52 +36,27 @@ namespace JHobby.Service.Implements
 				   ImageName = a.ImageName,
 				   ActivityImageId = a.ActivityImageId,
 
-			   });
+            });
 
-		}
-		//public bool Delete(int id)
-		//{
-		//	var queryResult = _groupStartingRepository.GetByIdNow(id);
+        }
 
-		//	if (queryResult == null) return false;
 
-		//	_groupStartingRepository.Delete(id);
+        public IEnumerable<GroupStartingModel> GetByIdNow(int id)    /*IEnumerable多筆*/
+        {
+            var result = _groupStartingRepository.GetByIdNow(id);
+            var queryResult = result.Select(a => new GroupStartingModel
 
-		//	return true;
-		//}
-
-		public bool Update(int id, GroupStartingModel GroupStartingModel)
-		{
-			var queryResult = _groupStartingRepository.GetByIdNow(id);
-
-			if (queryResult == null) return false;
-
-			var dto = new GroupStartingDto
-			{
-				CurrentPeople = GroupStartingModel.CurrentPeople
-			};
-
-			_groupStartingRepository.Update(id, dto);
-
-			return true;
-		}
-
-		public IEnumerable<GroupStartingModel> GetByIdNow(int id)    /*IEnumerable多筆*/
-		{
-			var result = _groupStartingRepository.GetByIdNow(id);
-			var queryResult = result.Select(a => new GroupStartingModel
-
-			{
-				MemberId = a.MemberId,
-				ActivityId = a.ActivityId,
-				ActivityName = a.ActivityName,
-				CurrentPeople = a.CurrentPeople,
-				ActivityStatus = _iCommonService.ConvertReviewStatus(a.ActivityStatus),
-				StartTime = a.StartTime,
-				MaxPeople = a.MaxPeople,
-				IsCover = a.IsCover,
-				ImageName = a.ImageName,
-				ActivityImageId = a.ActivityImageId,
+            {
+                MemberId = a.MemberId,
+                ActivityId = a.ActivityId,
+                ActivityName = a.ActivityName,
+                CurrentPeople = a.CurrentPeople,
+                ActivityStatus = _iCommonService.ConvertActivityStatus(a.ActivityStatus),
+                StartTime = a.StartTime,
+                MaxPeople = a.MaxPeople,
+                IsCover = a.IsCover,
+                ImageName = a.ImageName,
+                ActivityImageId = a.ActivityImageId,
                 DateConvert = _iCommonService.ConvertTime(a.StartTime).First().DateConvert,
                 TimeConvert = _iCommonService.ConvertTime(a.StartTime).First().TimeConvert
 
@@ -115,9 +93,11 @@ namespace JHobby.Service.Implements
     }
 }
 
+        public bool UpdateActivityStatus(int id, ActivityStatusModel activityStatusModel)
+        {
+            var mapper = _mapper.Map<ActivityStatusDto>(activityStatusModel);
 
-
-
-
-
-
+            return (_groupStartingRepository.UpdateActivityStatus(id, mapper)) ? true : false;
+        }
+    }
+}

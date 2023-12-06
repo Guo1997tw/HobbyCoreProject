@@ -197,8 +197,8 @@
                                                                                     </td>
                                                                                     <td class="table-accept-btn text-end">
                                                                                         <a href="https://localhost:7097/home/leaderedit" class="btn accept-btn"><i class="feather-check-circle"></i>編輯開團</a>
-                                                                                        <a href="javaScript:;" class="btn cancel-table-btn" data-bs-toggle="modal" data-bs-target="#request-coche">
-                                                                                            <i class="feather-x-circle"></i>取消開團
+                                                                                        <a href="javaScript:;" class="btn cancel-table-btn" data-bs-toggle="modal" data-bs-target="#request-coche" @@click="keepId(item.activityId)">
+                                                                                            <i class="feather-x-circle" ></i>取消開團
                                                                                         </a>
                                                                                     </td>
 
@@ -210,7 +210,7 @@
                                                                             <div class="row">
                                                                                 <div class="col-md-12">
                                                                                     <div id="tablepage">
-                                                                                        <div class="dataTables_paginate paging_simple_numbers" id="DataTables_Table_1_paginate">
+                                                                                        <div class="dataTables_paginate paging_simple_numbers" id="DataTables_Table_1_paginate1">
                                                                                             <!--分頁按鈕-->
                                                                                             <paginate :page-count="total"
                                                                                                       :prev-text="'<'"
@@ -322,10 +322,10 @@
                                             <div id="tablepage">
                                                 <div class="dataTables_paginate paging_simple_numbers" id="DataTables_Table_1_paginate">
                                                     <!--分頁按鈕-->
-                                                    <paginate :page-count="total"
+                                                    <paginate :page-count="total2"
                                                               :prev-text="'<'"
                                                               :next-text="'>'"
-                                                              :click-handler="pageClick">
+                                                              :click-handler="pageClick2">
                                                         <span slot="prevContent"><i class="feather-chevrons-left"></i></span>
                                                         <span slot="nextContent"><i class="feather-chevrons-right"></i></span>
                                                     </paginate>
@@ -374,27 +374,7 @@
                                             </div>
                                             <div class="appointment-info">
                                                 <!-- 訊息欄位 -->
-                                                <ul>
-                                                    <li>
-                                                        <div class="appointment-item">
-                                                            <div class="appointment-img">
-                                                                <img src="~/assets/img/booking/booking-01.jpg" alt="User">
-                                                            </div>
-                                                            <div class="appointment-content">
-                                                                <h6>放生老鼠法會</h6>
-                                                                <p class="color-green">愛貓咪大法師</p>
-                                                            </div>
-                                                        </div>
-                                                    </li>
-                                                    <li>
-                                                        <h6>活動時間</h6>
-                                                        <p>星期五, 七月 15日</p>
-                                                    </li>
-                                                    <li>
-                                                        <h6>活動地點</h6>
-                                                        <p>傷心太平洋的某個角落</p>
-                                                    </li>
-                                                </ul>
+                                               
                                                 <!-- 訊息欄位 -->
                                             </div>
                                         </div>
@@ -405,7 +385,7 @@
                         </div>
                         <div class="modal-footer">
                             <div class="table-accept-btn">
-                                <button class="btn cancel-table-btn">刪除</button>
+                                <button class="btn cancel-table-btn" data-bs-dismiss="modal" @@click="updateno(item)">刪除</button>
                             </div>
                             <div class="table-accept-btn">
                                 <a href="javaScript:;" class="btn accept-btn me-0" data-bs-toggle="modal" data-bs-target="#request-reject">取消</a>
@@ -665,9 +645,14 @@
                 return {
                     axiosBrowsepicture: [],
                     showUpdates: [],
+                    cancelTableBtnText: '刪除',
                     sortOrder: 'asc',
                     countPerPage: 2,
                     pageNumber: 1,
+<<<<<<< HEAD
+                    _activityId: "",
+                    _ActivityName: 0,
+=======
                     currentData: [],
                     _activityId:0,
                     _memberId:0,
@@ -682,6 +667,10 @@
                 total() {
                     let _this = this;
                     return Math.ceil(_this.axiosBrowsepicture.length / _this.countPerPage);
+                },
+                total2() {
+                    let _this = this;
+                    return Math.ceil(_this.showUpdates.length / _this.countPerPage);
                 },
                 filteroldCard() {
                     let _this = this;
@@ -731,7 +720,34 @@
                         })
                         .catch((error) => alert(`發生錯誤: ${error}`));
                 },
+                updateno: function (item) {
+                    let _this = this;
+                    var form = new FormData();
+                    form.append("ActivityStatus", 2);
+                    axios.put(`/GroupStartingApi/ActivityStatus/${_this._activityId}`, form,
+                        {
+                            headers: {
+                                "Content-Type": "multipart/form-data"
+                            }
+                        }).then((response) => {
+                            _this.showUpdates = response.data;
+                            // _this.logBrowsepicture();
+                        })
+                        .catch((error) => {
+                            alert(`發生錯誤: ${error}`);
+                        });
+                    // _this._activityId = 0;
+
+                },
+                keepId: function (activityId) {
+                    let _this = this;
+                    _this._activityId = activityId
+
+                },
                 pageClick(num) {
+                    this.pageNumber = num;
+                }, 
+                pageClick2(num) {
                     this.pageNumber = num;
                 },
                 setCurrentCard(card) {

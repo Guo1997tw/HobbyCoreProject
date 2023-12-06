@@ -17,6 +17,6 @@ public class RepositoryProfile : Profile
         CreateMap<WishCreateDto, Wish>();
         CreateMap<Activity, ActivityPageDto>();
         CreateMap<ActivityImage, ActivityPageDto>();
-        CreateMap<Member, MemberResetDto>().ReverseMap();
+        CreateMap<Activity, ActivityStatusDto>().ReverseMap();
     }
 }

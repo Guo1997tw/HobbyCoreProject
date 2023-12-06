@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using JHobby.Repository.Interfaces;
 using JHobby.Repository.Implements;
+using ActivityStatusModel = JHobby.Service.Models.ActivityStatusModel;
+using AutoMapper;
 
 namespace JHobby.Website.Controllers.Api
 {
@@ -17,11 +19,15 @@ namespace JHobby.Website.Controllers.Api
         private readonly IGroupStartingService _GroupStartingService;
         private readonly IWebHostEnvironment _webHostEnvironment;
         private readonly IGroupStartingRepository _groupStartingRepository;
-        public GroupStartingApiController(IGroupStartingService GroupStartingService, IWebHostEnvironment webHostEnvironment, IGroupStartingRepository groupStartingRepository)
+        private readonly IMapper _mapper;
+
+        public GroupStartingApiController(IGroupStartingService GroupStartingService, IWebHostEnvironment webHostEnvironment, IGroupStartingRepository groupStartingRepository, IMapper mapper)
         {
             _GroupStartingService = GroupStartingService;
             _webHostEnvironment = webHostEnvironment;
             _groupStartingRepository = groupStartingRepository;
+            _mapper = mapper;
+
         }
 
         [HttpGet]
@@ -42,31 +48,14 @@ namespace JHobby.Website.Controllers.Api
                 });
         }
 
-        [HttpPut("{CurrentPeople}")]
-        public IActionResult UpdateGroupStarting(int CurrentPeople, [FromBody] GroupStartingModel GroupStartingModel)
-        {
-            if (CurrentPeople < 0) { return BadRequest(); }
-
-            var mapper = new GroupStartingModel
-            {
-                CurrentPeople = GroupStartingModel.CurrentPeople
-            };
-
-            var result = _GroupStartingService.Update(CurrentPeople, mapper);
-
-            return Ok(result);
-        }
         [HttpPut("{id}")]
-        public IActionResult ActivityStatus(int id, ActivityStatusViewModel activityStatusViewModel)
+        public bool ActivityStatus(int id, [FromForm] ActivityStatusViewModel activityStatusViewModel)
         {
-            var mapper = new ActivityStatusDto
-            {
-                ActivityStatus = activityStatusViewModel.ActivityStatus,
-            };
+            var mapper = _mapper.Map<ActivityStatusModel>(activityStatusViewModel);
 
-            _groupStartingRepository.UpdateActivityStatus(id, mapper);
-            return Ok(mapper);
+            return (_GroupStartingService.UpdateActivityStatus(id, mapper)) ? true : false;
         }
+
         [HttpGet("{id}")]
         public IEnumerable<GroupStartingViewModel> GetByIdNow(int id)
         {
