@@ -155,18 +155,17 @@
                                                                                 <tr role="row" class="odd" v-for="item in filterNowCard">
                                                                                     <td class="sorting_1">
                                                                                         <h2 class="table-avatar">
-                                                                                            <a href="~#"
+                                                                                            <a href='"/Activity/ActivityPage/"+item.activityId'
                                                                                                class="avatar avatar-sm  flex-shrink-0">
+                                                                                                <img class="avatar-img" :src='item.imageName' alt="Image">
                                                                                                 @* <img class="avatar-img" src="{{item.isCover}}" alt="User"> *@
                                                                                             </a>
                                                                                             <span class="table-head-name flex-grow-1">
-                                                                                                <a href="~javaScript:;"
+                                                                                                <a href='"/Activity/ActivityPage/"+item.activityId'
                                                                                                    data-bs-toggle="modal"
                                                                                                    data-bs-target="#request-court">
                                                                                                 </a>
                                                                                                 {{item.activityName}}
-                                                                                                <span>
-                                                                                                </span>
                                                                                             </span>
                                                                                         </h2>
                                                                                     </td>
