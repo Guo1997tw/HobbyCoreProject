@@ -44,12 +44,12 @@ namespace JHobby.Repository.Implements
         {
             var activityUsers = _JhobbyContext.Members.Select(m => new { id = m.MemberId, nikeName = m.NickName });
             var scoreByMemberId = _JhobbyContext.Scores.Select(s => new { id = s.MemberId, score = s.Fraction, activityid = s.ActivityId });
+            var imageName = _JhobbyContext.ActivityImages.Select(ai => new { id = ai.ActivityId, imageName = ai.ImageName });
 
             return _JhobbyContext.ActivityUsers
                 .Where(Au => Au.MemberId == memberId)
                 .Include(Au => Au.Activity)
                 .Include(Au => Au.Member)
-                .Include(Au => Au.Activity.Scores)
                 .Select(a => new PastJoinAGroupDto
                 {
                     ActivityId = a.ActivityId,
@@ -66,6 +66,7 @@ namespace JHobby.Repository.Implements
                     .FirstOrDefault(s => s.id == a.Activity.MemberId
                     && s.activityid == a.ActivityId)
                     .score,
+                    ImageName = imageName.FirstOrDefault(i => i.id == a.Activity.ActivityId).imageName,
                 });
         }
 

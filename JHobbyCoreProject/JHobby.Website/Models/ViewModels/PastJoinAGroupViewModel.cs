@@ -21,5 +21,7 @@
         public string? TimeConvert { get; set; }
 
         public int? Fraction { get; set; }
+
+        public string ImageName { get; set; } = null!;
     }
 }
