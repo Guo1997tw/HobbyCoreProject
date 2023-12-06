@@ -57,7 +57,9 @@
                                                             <a class="academy-img"
                                                                :href="`/Activity/ActivityPage/${pictureActivityId}`"
                                                                @@click="pictureLinkToGroupPage(filterCard[index])">
-                                                                <img src="~/assets/img/booking/booking-02.jpg" alt="Booking">
+                                                                <img :src="`/activityImgs/${card.imageName}.jpg`"
+                                                                     style="height: 80px; width: 80px"
+                                                                     alt="Activity Picture">
                                                             </a>
                                                             <div class="academy-content">
                                                                 <h6>
