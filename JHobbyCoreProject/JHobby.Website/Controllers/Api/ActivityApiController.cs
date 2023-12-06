@@ -68,12 +68,18 @@ namespace JHobby.Website.Controllers.Api
             return result;
         }
 
+        /// <summary>
+        /// 團主編輯
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="activityUpdateViewModel"></param>
+        /// <returns></returns>
         [HttpPut("id")]
-        public bool LeaderUpdate(int id, ActivityUpdateViewModel activityUpdateViewModel)
+        public bool LeaderUpdate([FromForm] ActivityUpdateViewModel activityUpdateViewModel)
         {
             var mapper = _mapper.Map<ActivityUpdateModel>(activityUpdateViewModel);
 
-            return (_activityService.ActivityUpdate(id, mapper)) ? true : false;
+            return (_activityService.ActivityUpdate(mapper)) ? true : false;
         }
 
         /// <summary>

@@ -1,10 +1,10 @@
 ﻿@{
-    ViewData["Title"] = "團主建立";
+    ViewData["Title"] = "團主編輯";
 }
 
 <partial name="_BreadcrumbPartial" />
 
-<div id="Create" class="main-wrapper authendication-pages">
+<div id="Update" class="main-wrapper authendication-pages">
     <div class="content book-cage" data-select2-id="16">
         <div class="container" data-select2-id="15">
             <div class="row" data-select2-id="14">
@@ -54,13 +54,13 @@
                                 </div>
                             </div>
                             @* <div class="mb-3">
-                                <label for="date" class="form-label">活動開始日期</label>
-                                <div class="form-icon">
-                                    <input type="date" class="form-control" v-model="activityBuild.startTime">
-                                    <span class="cus-icon">
-                                        <i class="feather-calendar icon-date"></i>
-                                    </span>
-                                </div>
+                            <label for="date" class="form-label">活動開始日期</label>
+                            <div class="form-icon">
+                            <input type="date" class="form-control" v-model="activityBuild.startTime">
+                            <span class="cus-icon">
+                            <i class="feather-calendar icon-date"></i>
+                            </span>
+                            </div>
                             </div> *@
                             <div class="mb-3">
                                 <label for="empty-field" class="form-label">最高人數</label>
@@ -88,14 +88,14 @@
                                     </div>
                                 </div>
                             </div>
-                           @*  <div class="mb-3">
-                                <label for="endterdate" class="form-label">報名截止日</label>
-                                <div class="form-icon">
-                                    <input type="text" class="form-control" v-model="activityBuild.joinDeadLine">
-                                    <span class="cus-icon">
-                                        <i class="feather-calendar icon-date"></i>
-                                    </span>
-                                </div>
+                            @*  <div class="mb-3">
+                            <label for="endterdate" class="form-label">報名截止日</label>
+                            <div class="form-icon">
+                            <input type="text" class="form-control" v-model="activityBuild.joinDeadLine">
+                            <span class="cus-icon">
+                            <i class="feather-calendar icon-date"></i>
+                            </span>
+                            </div>
                             </div> *@
                             <div class="mb-3">
                                 <label for="empty-field" class="form-label">活動花費</label>
@@ -110,10 +110,10 @@
                                 </div>
                             </div>
                             @* <div class="mb-3">
-                                <label for="court" class="form-label">付款方式</label>
-                                <select class="select select2" id="paymentMethod" aria-label="Default select example" v-model="activityBuild.payment">
-                                    <option value="0" disabled selected>請選擇付款方式</option>
-                                </select>
+                            <label for="court" class="form-label">付款方式</label>
+                            <select class="select select2" id="paymentMethod" aria-label="Default select example" v-model="activityBuild.payment">
+                            <option value="0" disabled selected>請選擇付款方式</option>
+                            </select>
                             </div> *@
                             <div class="mb-3">
                                 <label for="empty-field" class="form-label">活動說明</label>
@@ -122,25 +122,25 @@
                                 </div>
                             </div>
                             @* <div class="mb-3">
-                                <label for="endterdate" class="form-label">建立日期</label>
-                                <div class="col-lg-12 col-md-6">
-                                    <div class="input-space">
-                                        <input id="Created" type="date" class="form-control" v-model="activityBuild.created">
-                                    </div>
-                                </div>
+                            <label for="endterdate" class="form-label">建立日期</label>
+                            <div class="col-lg-12 col-md-6">
+                            <div class="input-space">
+                            <input id="Created" type="date" class="form-control" v-model="activityBuild.created">
+                            </div>
+                            </div>
                             </div> *@
                             @* <div class="mb-3">
-                                <label for="endterdate" class="form-label">建立日期</label>
-                                <div class="form-icon">
-                                    <input type="text" class="form-control" v-model="activityBuild.created">
-                                    <span class="cus-icon">
-                                        <i class="feather-calendar icon-date"></i>
-                                    </span>
-                                </div>
+                            <label for="endterdate" class="form-label">建立日期</label>
+                            <div class="form-icon">
+                            <input type="text" class="form-control" v-model="activityBuild.created">
+                            <span class="cus-icon">
+                            <i class="feather-calendar icon-date"></i>
+                            </span>
+                            </div>
                             </div> *@
                             <div class="mb-3">
                             </div>
-                            <div class="col-md-12">
+                            @* <div class="col-md-12">
                                 <div class="appoint-head coach-top">上傳圖片</div>
                                 <div class="row" data-select2-id="25">
                                     <div class="col-md-12">
@@ -172,13 +172,13 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </div> *@
                         </form>
                     </section>
                 </div>
             </div>
             <div class="text-center btn-row">
-                <button class="btn btn-primary me-3 btn-icon" style="padding: 10px; width: 100px; justify-content: center;" type="submit" @@click="leaderBuild()">確認</button>
+                <button class="btn btn-primary me-3 btn-icon" style="padding: 10px; width: 100px; justify-content: center;" type="submit" @@click="leaderEdit()">確認</button>
                 <button class="btn btn-primary me-3 btn-icon" style="padding: 10px; width: 100px; justify-content: center;" type="submit">取消</button>
             </div>
         </div>
@@ -189,22 +189,21 @@
     <!-- /Footer -->
 </div>
 <!-- /Main Wrapper -->
-
 @section Scripts {
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
     <script src="~/js/jhobbyselect2component.js"></script>
     <script src="~/js/taiwancity.js"></script>
 
     <script>
-        const leaderCreate = Vue.createApp({
+        const leaderUpdate = Vue.createApp({
             data() {
                 return {
-                    defaultPicOne: "/images/NoImage.jpg",
-                    defaultPicTwo: "/images/NoImage.jpg",
-                    defaultPicThree: "/images/NoImage.jpg",
-                    fileOne: null,
-                    fileTwo: null,
-                    fileThree: null,
+                    // defaultPicOne: "/images/NoImage.jpg",
+                    // defaultPicTwo: "/images/NoImage.jpg",
+                    // defaultPicThree: "/images/NoImage.jpg",
+                    // fileOne: null,
+                    // fileTwo: null,
+                    // fileThree: null,
                     categorySource: [],
                     activityBuild: {
                         memberId: "1",
@@ -269,33 +268,33 @@
             },
 
             methods: {
-                uploadPicOne(e) {
-                    console.log(URL.createObjectURL(e.target.files[0]));
-                    this.fileOne = e.target.files[0];
-                    this.defaultPicOne = URL.createObjectURL(e.target.files[0]);
-                },
-                uploadPicTwo(e) {
-                    console.log(URL.createObjectURL(e.target.files[0]));
-                    this.fileTwo = e.target.files[0];
-                    this.defaultPicTwo = URL.createObjectURL(e.target.files[0]);
-                },
-                uploadPicThree(e) {
-                    console.log(URL.createObjectURL(e.target.files[0]));
-                    this.fileThree = e.target.files[0];
-                    this.defaultPicThree = URL.createObjectURL(e.target.files[0]);
-                },
+                // uploadPicOne(e) {
+                //     console.log(URL.createObjectURL(e.target.files[0]));
+                //     this.fileOne = e.target.files[0];
+                //     this.defaultPicOne = URL.createObjectURL(e.target.files[0]);
+                // },
+                // uploadPicTwo(e) {
+                //     console.log(URL.createObjectURL(e.target.files[0]));
+                //     this.fileTwo = e.target.files[0];
+                //     this.defaultPicTwo = URL.createObjectURL(e.target.files[0]);
+                // },
+                // uploadPicThree(e) {
+                //     console.log(URL.createObjectURL(e.target.files[0]));
+                //     this.fileThree = e.target.files[0];
+                //     this.defaultPicThree = URL.createObjectURL(e.target.files[0]);
+                // },
                 categoryApi() {
                     let self = this;
 
                     fetch("/CategoryApi/GetCategoriesAllIncludeDetail").then(r => r.json()).then(d => { self.categorySource = d; });
                 },
-                leaderBuild() {
+                leaderEdit() {
                     let self = this;
                     var formData = new FormData();
 
-                    if (this.fileOne) formData.append('file', self.fileOne);
-                    if (this.fileTwo) formData.append('file', self.fileTwo);
-                    if (this.fileThree) formData.append('file', self.fileThree);
+                    // if (this.fileOne) formData.append('file', self.fileOne);
+                    // if (this.fileTwo) formData.append('file', self.fileTwo);
+                    // if (this.fileThree) formData.append('file', self.fileThree);
                     formData.append('memberId', self.activityBuild.memberId);
                     formData.append('payment', self.activityBuild.payment);
                     formData.append('activityName', self.activityBuild.activityName);
@@ -312,16 +311,16 @@
                     // formData.append('created', self.activityBuild.created);
 
                     fetch("/ActivityApi/LeaderCreate", {
-                        method: "POST",
+                        method: "PUT",
                         body: formData
                     }).then(r => r.json())
                         .then(d => {
                             self.activityBuild = d;
                             console.log('Success', d);
-                            alert("建立成功");
+                            alert("修改成功");
                         });
                 }
             },
-        }).component('select2', select2).mount("#Create");
+        }).component('select2', select2).mount("#Update");
     </script>
 }

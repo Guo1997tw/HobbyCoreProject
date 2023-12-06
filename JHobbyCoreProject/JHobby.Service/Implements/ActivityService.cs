@@ -35,11 +35,11 @@ namespace JHobby.Service.Implements
         /// <param name="activityUpdateModel"></param>
         /// <returns></returns>
         /// <exception cref="NotImplementedException"></exception>
-        public bool ActivityUpdate(int id, ActivityUpdateModel activityUpdateModel)
+        public bool ActivityUpdate(ActivityUpdateModel activityUpdateModel)
         {
             var result = _mapper.Map<ActivityUpdateDto>(activityUpdateModel);
 
-            return (_activityRepository.ActivityUpdate(id, result)) ? true : false;
+            return (_activityRepository.ActivityUpdate(result)) ? true : false;
         }
 
         /// <summary>

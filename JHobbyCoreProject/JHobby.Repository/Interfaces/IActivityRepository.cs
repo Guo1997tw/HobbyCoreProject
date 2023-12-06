@@ -21,7 +21,7 @@ namespace JHobby.Repository.Interfaces
         /// </summary>
         /// <param name="activityUpdateDto"></param>
         /// <returns></returns>
-        public bool ActivityUpdate(int id, ActivityUpdateDto activityUpdateDto);
+        public bool ActivityUpdate(ActivityUpdateDto activityUpdateDto);
 
         /// <summary>
         /// 活動頁面查詢
