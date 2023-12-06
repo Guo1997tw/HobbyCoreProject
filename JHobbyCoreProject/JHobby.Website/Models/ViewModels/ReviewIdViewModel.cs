@@ -6,5 +6,6 @@
 
         public int ApplicantId { get; set; } //申請者Id
         public int ActivityId { get; set; }
+        public int MemberId { get; set; }
     }
 }

@@ -164,7 +164,7 @@
                                                                                                    data-bs-toggle="modal"
                                                                                                    data-bs-target="#request-court">
                                                                                                 </a>
-                                                                                                {{item.activityName}}                                                                                
+                                                                                                {{item.activityName}}
                                                                                                 <span>
                                                                                                 </span>
                                                                                             </span>
@@ -180,7 +180,7 @@
                                                                                         <!-- 連接參團人數 -->@* 改 *@
                                                                                         <button type="button" class="btn btn-secondary"
                                                                                                 data-bs-toggle="modal"
-                                                                                                data-bs-target="#add-particpate-check" @@click="keepId(item.memberId,item.activityId);Current()">
+                                                                                                data-bs-target="#add-particpate-check" @@click="keepId2(item.memberId,item.activityId);Current()">
                                                                                             <i class="feather-eye"></i>查看詳細狀態
 
                                                                                         </button>
@@ -196,9 +196,9 @@
                                                                                         </span>
                                                                                     </td>
                                                                                     <td class="table-accept-btn text-end">
-                                                                                        <a href="https://localhost:7097/home/leaderedit" class="btn accept-btn"><i class="feather-check-circle"></i>編輯開團</a>
-                                                                                        <a href="javaScript:;" class="btn cancel-table-btn" data-bs-toggle="modal" data-bs-target="#request-coche" @@click="keepId(item.activityId)">
-                                                                                            <i class="feather-x-circle" ></i>取消開團
+                                                                                        <a href="/home/leaderedit" class="btn accept-btn"><i class="feather-check-circle"></i>編輯開團</a>
+                                                                                        <a  class="btn cancel-table-btn" data-bs-toggle="modal" data-bs-target="#request-coche" @@click="keepId(item.activityId)">
+                                                                                            <i class="feather-x-circle"></i>取消開團
                                                                                         </a>
                                                                                     </td>
 
@@ -374,7 +374,6 @@
                                             </div>
                                             <div class="appointment-info">
                                                 <!-- 訊息欄位 -->
-                                               
                                                 <!-- 訊息欄位 -->
                                             </div>
                                         </div>
@@ -439,9 +438,8 @@
                                                                                         aria-sort="ascending"
                                                                                         aria-label="Court Name: activate to sort column descending"
                                                                                         style="width: 208.688px;">
-                                                                                        開團名稱
+                                                                                        申請者名稱
                                                                                     </th>
-
                                                                                     <th class="sorting"
                                                                                         tabindex="0"
                                                                                         aria-controls="DataTables_Table_0"
@@ -450,7 +448,6 @@
                                                                                         style="width: 121.615px;">
                                                                                         申請時間
                                                                                     </th>
-                                                                                    
                                                                                     <th class="sorting"
                                                                                         tabindex="0"
                                                                                         aria-controls="DataTables_Table_0"
@@ -459,11 +456,11 @@
                                                                                         style="width: 46.3229px;">
                                                                                         申請狀態
                                                                                     </th>
-                                                                                    
                                                                                 </tr>
                                                                             </thead>
                                                                             <tbody>
                                                                                 <!-- 參加人數展示卡片 -->
+                                                                                <div v-if="currentData.length > 0">
                                                                                 <tr role="row" class="odd" v-for="item in currentData">
                                                                                     <td class="sorting_1">
                                                                                         <h2 class="table-avatar">
@@ -484,99 +481,32 @@
                                                                                             {{item.timeConvert}}
                                                                                         </p>
                                                                                     </td>
-
                                                                                     <td class="paid-edit">
                                                                                         <span>
                                                                                             <i class="feather-edit"></i>{{item.reviewStatus}}
                                                                                         </span>
                                                                                     </td>
-
                                                                                 </tr>
-
-                                                                                <!-- /參加人數展示卡片 -->
-                                                                                
-                                                                            </tbody>
-                                                                        </table>
+                                                                    </div>
+                                                                    <div v-else>
+                                                                        <td class="sorting_1">
+                                                                            <h2 class="table-avatar">                                                                        
+                                                                                    <img src="~/profile/noprofile.png" class="avatar avatar-sm  flex-shrink-0" />
+                                                                                <span class="table-head-name flex-grow-1">
+                                                                                    <p>目前沒有報名者</p>
+                                                                                </span>
+                                                                            </h2>
+                                                                        </td>
                                                                     </div>
                                                                 </div>
-                                                                <div class="row">
-                                                                    <div class="col-sm-12 col-md-5"></div>
-                                                                    <div class="col-sm-12 col-md-7"></div>
-                                                                </div>
+                                                                <!-- /參加人數展示卡片 -->
+                                                                </tbody>
+                                                                </table>
                                                             </div>
                                                         </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="tab-footer" style=" margin-top: 10px;">
-                                            <div class="row">
-                                                <div class="col-md-6">
-                                                    <div id="tablelength">
-                                                        <div class="dataTables_length"
-                                                             id="DataTables_Table_0_length">
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-6">
-                                                    <div id="tablepage">
-                                                        <div class="dataTables_paginate paging_simple_numbers"
-                                                             id="DataTables_Table_1_paginate">
-                                                            <ul class="pagination">
-                                                                <li class="paginate_button page-item previous disabled"
-                                                                    id="DataTables_Table_1_previous">
-                                                                    <a href="#"
-                                                                       aria-controls="DataTables_Table_1"
-                                                                       data-dt-idx="0" tabindex="0"
-                                                                       class="page-link">
-                                                                        <i class="feather-chevrons-left"></i>
-                                                                    </a>
-                                                                </li>
-                                                                <li class="paginate_button page-item active">
-                                                                    <a href="#"
-                                                                       aria-controls="DataTables_Table_1"
-                                                                       data-dt-idx="1" tabindex="0"
-                                                                       class="page-link">1</a>
-                                                                </li>
-                                                                <li class="paginate_button page-item next disabled"
-                                                                    id="DataTables_Table_1_next">
-                                                                    <a href="#"
-                                                                       aria-controls="DataTables_Table_1"
-                                                                       data-dt-idx="2" tabindex="0"
-                                                                       class="page-link">
-                                                                        <i class="feather-chevrons-right"></i>
-                                                                    </a>
-                                                                </li>
-                                                            </ul>
-                                                        </div>
-                                                        <div class="dataTables_paginate paging_simple_numbers"
-                                                             id="DataTables_Table_0_paginate">
-                                                            <ul class="pagination">
-                                                                <li class="paginate_button page-item previous disabled"
-                                                                    id="DataTables_Table_0_previous">
-                                                                    <a href="#"
-                                                                       aria-controls="DataTables_Table_0"
-                                                                       data-dt-idx="0" tabindex="0"
-                                                                       class="page-link">
-                                                                        <i class="feather-chevrons-left"></i>
-                                                                    </a>
-                                                                </li>
-                                                                <li class="paginate_button page-item active">
-                                                                    <a href="#"
-                                                                       aria-controls="DataTables_Table_0"
-                                                                       data-dt-idx="1" tabindex="0"
-                                                                       class="page-link">1</a>
-                                                                </li>
-                                                                <li class="paginate_button page-item next disabled"
-                                                                    id="DataTables_Table_0_next">
-                                                                    <a href="#"
-                                                                       aria-controls="DataTables_Table_0"
-                                                                       data-dt-idx="2" tabindex="0"
-                                                                       class="page-link">
-                                                                        <i class="feather-chevrons-right"></i>
-                                                                    </a>
-                                                                </li>
-                                                            </ul>
+                                                        <div class="row">
+                                                            <div class="col-sm-12 col-md-5"></div>
+                                                            <div class="col-sm-12 col-md-7"></div>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -584,57 +514,132 @@
                                         </div>
                                     </div>
                                 </div>
+                                <div class="tab-footer" style=" margin-top: 10px;">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div id="tablelength">
+                                                <div class="dataTables_length"
+                                                     id="DataTables_Table_0_length">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div id="tablepage">
+                                                <div class="dataTables_paginate paging_simple_numbers"
+                                                     id="DataTables_Table_1_paginate">
+                                                    <ul class="pagination">
+                                                        <li class="paginate_button page-item previous disabled"
+                                                            id="DataTables_Table_1_previous">
+                                                            <a href="#"
+                                                               aria-controls="DataTables_Table_1"
+                                                               data-dt-idx="0" tabindex="0"
+                                                               class="page-link">
+                                                                <i class="feather-chevrons-left"></i>
+                                                            </a>
+                                                        </li>
+                                                        <li class="paginate_button page-item active">
+                                                            <a href="#"
+                                                               aria-controls="DataTables_Table_1"
+                                                               data-dt-idx="1" tabindex="0"
+                                                               class="page-link">1</a>
+                                                        </li>
+                                                        <li class="paginate_button page-item next disabled"
+                                                            id="DataTables_Table_1_next">
+                                                            <a href="#"
+                                                               aria-controls="DataTables_Table_1"
+                                                               data-dt-idx="2" tabindex="0"
+                                                               class="page-link">
+                                                                <i class="feather-chevrons-right"></i>
+                                                            </a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                                <div class="dataTables_paginate paging_simple_numbers"
+                                                     id="DataTables_Table_0_paginate">
+                                                    <ul class="pagination">
+                                                        <li class="paginate_button page-item previous disabled"
+                                                            id="DataTables_Table_0_previous">
+                                                            <a href="#"
+                                                               aria-controls="DataTables_Table_0"
+                                                               data-dt-idx="0" tabindex="0"
+                                                               class="page-link">
+                                                                <i class="feather-chevrons-left"></i>
+                                                            </a>
+                                                        </li>
+                                                        <li class="paginate_button page-item active">
+                                                            <a href="#"
+                                                               aria-controls="DataTables_Table_0"
+                                                               data-dt-idx="1" tabindex="0"
+                                                               class="page-link">1</a>
+                                                        </li>
+                                                        <li class="paginate_button page-item next disabled"
+                                                            id="DataTables_Table_0_next">
+                                                            <a href="#"
+                                                               aria-controls="DataTables_Table_0"
+                                                               data-dt-idx="2" tabindex="0"
+                                                               class="page-link">
+                                                                <i class="feather-chevrons-right"></i>
+                                                            </a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                            <!-- /開團標題欄&搜尋頁 -->
-                        </div>
-                        <div class="modal-footer">
-                            @* 改 *@
-                            <div class="table-accept-btn">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">關閉</button>
-                            </div>
-                            @* 改 *@
                         </div>
                     </div>
+                    <!-- /開團標題欄&搜尋頁 -->
                 </div>
-            </div>
-            <!-- /彈跳確定參團人數  -->
-            <!-- 彈跳確定刪除參團人員 -->
-            <div class="modal custom-modal fade request-modal" id="delete-particate-check"
-                 style="display: none;" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered modal-md" style="max-width: 540px;">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <div class="form-header modal-header-title">
-                                <h4 class="mb-0">確定參團人數</h4>
-                            </div>
-                            <a class="close" data-bs-dismiss="modal" aria-label="Close">
-                                <span class="align-center" aria-hidden="true"><i class="feather-x"></i></span>
-                            </a>
-                        </div>
-                        <div class="modal-body">
-                            <span>確定要取消這個人的資格嗎?</span>
-                        </div>
-                        <div class="modal-footer">
-                            <div class="table-accept-btn">
-                                <a href="javascript:;" class="btn cancel-table-btn" data-bs-toggle="modal"
-                                   data-bs-target="#request-reject">取消資格</a>
-                            </div>
-                            <div class="table-accept-btn">
-                                <a href="javascript:;" class="btn accept-btn" data-bs-toggle="modal"
-                                   data-bs-target="#request-reject">上一頁</a>
-                            </div>
-                        </div>
+                <div class="modal-footer">
+                        @* 改 *@
+                    <div class="table-accept-btn">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">關閉</button>
                     </div>
+                        @* 改 *@
                 </div>
             </div>
         </div>
-        <!-- /彈跳確定參團人數  -->
+</div>
+<!-- /彈跳確定參團人數  -->
+<!-- 彈跳確定刪除參團人員 -->
+<div class="modal custom-modal fade request-modal" id="delete-particate-check"
+     style="display: none;" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-md" style="max-width: 540px;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="form-header modal-header-title">
+                    <h4 class="mb-0">確定參團人數</h4>
+                </div>
+                <a class="close" data-bs-dismiss="modal" aria-label="Close">
+                    <span class="align-center" aria-hidden="true"><i class="feather-x"></i></span>
+                </a>
+            </div>
+            <div class="modal-body">
+                <span>確定要取消這個人的資格嗎?</span>
+            </div>
+            <div class="modal-footer">
+                <div class="table-accept-btn">
+                    <a href="javascript:;" class="btn cancel-table-btn" data-bs-toggle="modal"
+                       data-bs-target="#request-reject">取消資格</a>
+                </div>
+                <div class="table-accept-btn">
+                    <a href="javascript:;" class="btn accept-btn" data-bs-toggle="modal"
+                       data-bs-target="#request-reject">上一頁</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+        </div>
+<!-- /彈跳確定參團人數  -->
     </main>
 </div>
 
 <!-- Hot Member -->
 @section Scripts
-{
+    {
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/3.3.4/vue.global.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.6.0/axios.min.js" integrity="sha512-WrdC3CE9vf1nBf58JHepuWT4x24uTacky9fuzw2g/3L9JkihgwZ6Cfv+JGTtNyosOhEmttMtEZ6H3qJWfI7gIQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://unpkg.com/vuejs-paginate-next@latest/dist/vuejs-paginate-next.umd.js"></script>
@@ -649,13 +654,12 @@
                     sortOrder: 'asc',
                     countPerPage: 2,
                     pageNumber: 1,
-<<<<<<< HEAD
                     _activityId: "",
                     _ActivityName: 0,
-=======
                     currentData: [],
-                    _activityId:0,
-                    _memberId:0,
+                    _activityId: 0,
+                    _memberId: 0,
+                    // _no:"目前沒有報名者",
                 };
             },
             mounted() {
@@ -701,7 +705,7 @@
             },
             methods: {
                 logBrowsepicture() {
-                    axios.get(`/LaunchaTeamApi/GetByIdOld/4`)
+                    axios.get(`/LaunchaTeamApi/GetByIdOld/${@Model.LeaderId}`)
                         .then((result) => {
                             this.axiosBrowsepicture = result.data;
                             this.maxPeople = result.data.maxPeople;
@@ -709,7 +713,7 @@
                         .catch((error) => alert(`發生錯誤: ${error}`));
                 },
                 lookUpdates() {
-                    axios.get(`/GroupStartingApi/GetByIdNow/4`)
+                    axios.get(`/GroupStartingApi/GetByIdNow/${@Model.LeaderId}`)
                         .then((viewModel) => {
                             this.showUpdates = viewModel.data;
                             for (var i = 0; i < this.showUpdates.length; i++) {
@@ -723,7 +727,7 @@
                 updateno: function (item) {
                     let _this = this;
                     var form = new FormData();
-                    form.append("ActivityStatus", 2);
+                    form.append("ActivityStatus", 3);
                     axios.put(`/GroupStartingApi/ActivityStatus/${_this._activityId}`, form,
                         {
                             headers: {
@@ -731,7 +735,7 @@
                             }
                         }).then((response) => {
                             _this.showUpdates = response.data;
-                            // _this.logBrowsepicture();
+                            _this.lookUpdates();
                         })
                         .catch((error) => {
                             alert(`發生錯誤: ${error}`);
@@ -746,7 +750,7 @@
                 },
                 pageClick(num) {
                     this.pageNumber = num;
-                }, 
+                },
                 pageClick2(num) {
                     this.pageNumber = num;
                 },
@@ -755,14 +759,13 @@
                 },
                 Current: function () {
                     let _this = this;
-                    axios.get(`/GroupStartingApi/CurrentById/${_this._memberId}/${_this._activityId}`).then((res) => { _this.currentData = res.data })
+                    axios.get(`/GroupStartingApi/CurrentById/${_this._memberId}/${_this._activityId}`).then((res) => { _this.currentData = res.data.length > 0 ? res.data : "" })
                         .catch((error) => alert(`發生錯誤: ${error}`));
                 },
-                keepId: function (memberId, activityId) {
+                keepId2: function (memberId, activityId) {
                     let _this = this;
                     _this._memberId = memberId
                     _this._activityId = activityId
-                    
                 },
             }
         }).component("paginate", VuejsPaginateNext).mount("#record");

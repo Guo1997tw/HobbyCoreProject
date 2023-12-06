@@ -66,7 +66,15 @@ namespace JHobby.Service.Implements
 
 			return queryResult;
 		}
-        public IEnumerable<GroupStartingCurrentModel> CurrentById(int id, int ActivityId)
+        public bool UpdateActivityStatus(int id, ActivityStatusModel activityStatusModel)
+        {
+            var mapper = _mapper.Map<ActivityStatusDto>(activityStatusModel);
+
+            return (_groupStartingRepository.UpdateActivityStatus(id, mapper)) ? true : false;
+        }
+    
+
+public IEnumerable<GroupStartingCurrentModel> CurrentById(int id, int ActivityId)
         {
             var resultDto = _groupStartingRepository.CurrentById(id, ActivityId);
 
@@ -93,11 +101,4 @@ namespace JHobby.Service.Implements
     }
 }
 
-        public bool UpdateActivityStatus(int id, ActivityStatusModel activityStatusModel)
-        {
-            var mapper = _mapper.Map<ActivityStatusDto>(activityStatusModel);
-
-            return (_groupStartingRepository.UpdateActivityStatus(id, mapper)) ? true : false;
-        }
-    }
-}
+      
