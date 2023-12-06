@@ -20,7 +20,7 @@ namespace JHobby.Website.Controllers
         {
 			ViewData["Title"] = "開團紀錄";
             var model = new ReviewIdViewModel();
-            model.LeaderId = id;
+            model.MemberId = id;
 			return View(model);
         }
 
