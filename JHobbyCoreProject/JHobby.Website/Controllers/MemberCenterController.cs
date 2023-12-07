@@ -1,5 +1,6 @@
 ﻿using JHobby.Service.Interfaces;
 using JHobby.Website.Models.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace JHobby.Website.Controllers
@@ -28,6 +29,7 @@ namespace JHobby.Website.Controllers
         ///  TODO : 參團紀錄
         /// </summary>
         /// <returns></returns>
+        [Authorize(Roles = "Member, FastMember,Admin")]
         public IActionResult joinAGroup()
         {
             ViewBag.loginMemberId = _userAuthenticationService.GetUserId();
