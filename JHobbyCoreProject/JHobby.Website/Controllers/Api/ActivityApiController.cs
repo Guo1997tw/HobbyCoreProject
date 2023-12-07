@@ -74,12 +74,12 @@ namespace JHobby.Website.Controllers.Api
         /// <param name="id"></param>
         /// <param name="activityUpdateViewModel"></param>
         /// <returns></returns>
-        [HttpPut("id")]
-        public bool LeaderUpdate([FromForm] ActivityUpdateViewModel activityUpdateViewModel)
+        [HttpPut("{id}")]
+        public bool LeaderUpdate(int id, [FromForm] ActivityUpdateViewModel activityUpdateViewModel)
         {
             var mapper = _mapper.Map<ActivityUpdateModel>(activityUpdateViewModel);
 
-            return (_activityService.ActivityUpdate(mapper)) ? true : false;
+            return (_activityService.ActivityUpdate(id, mapper)) ? true : false;
         }
 
         /// <summary>

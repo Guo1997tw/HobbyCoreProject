@@ -48,9 +48,9 @@ namespace JHobby.Repository.Implements
         /// </summary>
         /// <param name="activityUpdateDto"></param>
         /// <returns></returns>
-        public bool ActivityUpdate(ActivityUpdateDto activityUpdateDto)
+        public bool ActivityUpdate(int id, ActivityUpdateDto activityUpdateDto)
         {
-            var query = _jhobbyContext.Activities.FirstOrDefault(a => a.ActivityId == activityUpdateDto.ActivityId);
+            var query = _jhobbyContext.Activities.FirstOrDefault(a => a.ActivityId == id);
 
             if (query == null) return false;
 

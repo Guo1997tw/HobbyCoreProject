@@ -23,7 +23,7 @@ namespace JHobby.Service.Interfaces
         /// </summary>
         /// <param name="activityUpdateModel"></param>
         /// <returns></returns>
-        public bool ActivityUpdate(ActivityUpdateModel activityUpdateModel);
+        public bool ActivityUpdate(int id, ActivityUpdateModel activityUpdateModel);
 
         /// <summary>
         /// 活動頁面查詢

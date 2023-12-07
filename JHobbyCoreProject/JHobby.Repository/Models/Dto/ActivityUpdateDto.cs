@@ -8,8 +8,6 @@ namespace JHobby.Repository.Models.Dto
 {
     public class ActivityUpdateDto
     {
-        public int ActivityId { get; set; }
-
         public string Payment { get; set; } = null!;
 
         public string ActivityName { get; set; } = null!;
