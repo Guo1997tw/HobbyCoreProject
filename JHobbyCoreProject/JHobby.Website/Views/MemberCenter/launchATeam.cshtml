@@ -325,7 +325,7 @@
                                                         <p> {{item.createdDateConvert}}</p>
                                                         <p> {{item.createdTimeConvert}}</p>
                                                     </td>
-                                                    <td class="paid-edit">
+                                                    <td class="paid-edit text-start">
                                                         <span><i class="feather-edit"></i>{{item.activityStatus}}</span>
                                                     </td>
                                                 </tr>
@@ -484,7 +484,7 @@
                                                                                             <a href="#"
                                                                                                class="avatar avatar-sm  flex-shrink-0">
                                                                                                 <img class="avatar-img"
-                                                                                                     src="~/assets/img/booking/booking-04.jpg"
+                                                                                                     :src='item.headShot'
                                                                                                      alt="User">
                                                                                             </a>
                                                                                             <span class="table-head-name flex-grow-1">
@@ -531,79 +531,6 @@
                                         </div>
                                     </div>
                                 </div>
-                                @* <div class="tab-footer" style=" margin-top: 10px;">
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <div id="tablelength">
-                                                <div class="dataTables_length"
-                                                     id="DataTables_Table_0_length">
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div id="tablepage">
-                                                <div class="dataTables_paginate paging_simple_numbers"
-                                                     id="DataTables_Table_1_paginate">
-                                                    <ul class="pagination">
-                                                        <li class="paginate_button page-item previous disabled"
-                                                            id="DataTables_Table_1_previous">
-                                                            <a href="#"
-                                                               aria-controls="DataTables_Table_1"
-                                                               data-dt-idx="0" tabindex="0"
-                                                               class="page-link">
-                                                                <i class="feather-chevrons-left"></i>
-                                                            </a>
-                                                        </li>
-                                                        <li class="paginate_button page-item active">
-                                                            <a href="#"
-                                                               aria-controls="DataTables_Table_1"
-                                                               data-dt-idx="1" tabindex="0"
-                                                               class="page-link">1</a>
-                                                        </li>
-                                                        <li class="paginate_button page-item next disabled"
-                                                            id="DataTables_Table_1_next">
-                                                            <a href="#"
-                                                               aria-controls="DataTables_Table_1"
-                                                               data-dt-idx="2" tabindex="0"
-                                                               class="page-link">
-                                                                <i class="feather-chevrons-right"></i>
-                                                            </a>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                                <div class="dataTables_paginate paging_simple_numbers"
-                                                     id="DataTables_Table_0_paginate">
-                                                    <ul class="pagination">
-                                                        <li class="paginate_button page-item previous disabled"
-                                                            id="DataTables_Table_0_previous">
-                                                            <a href="#"
-                                                               aria-controls="DataTables_Table_0"
-                                                               data-dt-idx="0" tabindex="0"
-                                                               class="page-link">
-                                                                <i class="feather-chevrons-left"></i>
-                                                            </a>
-                                                        </li>
-                                                        <li class="paginate_button page-item active">
-                                                            <a href="#"
-                                                               aria-controls="DataTables_Table_0"
-                                                               data-dt-idx="1" tabindex="0"
-                                                               class="page-link">1</a>
-                                                        </li>
-                                                        <li class="paginate_button page-item next disabled"
-                                                            id="DataTables_Table_0_next">
-                                                            <a href="#"
-                                                               aria-controls="DataTables_Table_0"
-                                                               data-dt-idx="2" tabindex="0"
-                                                               class="page-link">
-                                                                <i class="feather-chevrons-right"></i>
-                                                            </a>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div> *@
                             </div>
                         </div>
                     </div>
@@ -777,8 +704,9 @@
                 },
                 Current: function () {
                     let _this = this;
-                    axios.get(`/GroupStartingApi/CurrentById/${_this._memberId}/${_this._activityId}`).then((res) => { _this.currentData = res.data.length > 0 ? res.data : "" })
-                        .catch((error) => alert(`發生錯誤: ${error}`));
+                    axios.get(`/GroupStartingApi/CurrentById/${_this._memberId}/${_this._activityId}`).then((res) => {
+                        // alert(_this.currentData.length);
+                        _this.currentData = res.data}).catch((error) => alert(`發生錯誤: ${error}`));
                 },
                 keepId2: function (memberId, activityId) {
                     let _this = this;
