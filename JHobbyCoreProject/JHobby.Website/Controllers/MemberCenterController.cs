@@ -30,19 +30,8 @@ namespace JHobby.Website.Controllers
         /// <returns></returns>
         public IActionResult joinAGroup()
         {
-            var model = new JoinInAGroupMemberViewModel();
-            if (model != null)
-            {
-                model.LoginMemberId = _userAuthenticationService.GetUserId();
-                return View();
-            }
-            else 
-            {
-                return RedirectToAction("ErrorPage"); 
-            }
-
-
+            ViewBag.loginMemberId = _userAuthenticationService.GetUserId();
+            return View();
         }
-
     }
 }

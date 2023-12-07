@@ -1,4 +1,6 @@
-﻿@model JoinInAGroupMemberViewModel;
+﻿@{
+    int loginMemberId = ViewBag.loginMemberId;
+}
 <partial name="_BreadcrumbPartial" />
 <partial name="_DashboardMenuPartial" />
 <div b-q7camsv0h8="" class="container">
@@ -491,7 +493,7 @@
                     nowJoinAGroupCard: [],
                     countPerPage: 2,
                     pageNumber: 1,
-                    memberId: '@Model.LoginMemberId',
+                    memberId: @loginMemberId,
                     currentCard: "",
                     activityId: "",
                     pictureActivityId: "",
@@ -561,7 +563,7 @@
                     wishListCard: [],
                     countPerPage: 2,
                     pageNumber: 1,
-                    memberId: '@Model.LoginMemberId',
+                    memberId: @loginMemberId,
                     activityId: "",
                     pictureActivityId: "",
                     titleActivityId: ""
@@ -624,7 +626,7 @@
                     pastJoinAGroupCard: [],
                     countPerPage: 2,
                     pageNumber: 1,
-                    memberId: '@Model.LoginMemberId',
+                    memberId: @loginMemberId,
                     currentCard: '',
                     activityId: "",
                     pictureActivityId: "",
