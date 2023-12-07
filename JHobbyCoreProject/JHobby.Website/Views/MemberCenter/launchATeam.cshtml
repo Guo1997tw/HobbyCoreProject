@@ -156,10 +156,11 @@
                                                                                                 <img class="avatar-img" :src='item.imageName' alt="Image">
                                                                                             </a>
                                                                                             <span class="table-head-name flex-grow-1">
-                                                                                                <a :href='"/Activity/ActivityPage/"+item.activityId'> @* 點擊後有error *@
+                                                                                                <a :href='"/Activity/ActivityPage/"+item.activityId'>
+                                                                                                    @* 點擊後有error *@
                                                                                                     {{item.activityName}}
                                                                                                 </a>
-                                                                                                
+
                                                                                             </span>
                                                                                         </h2>
                                                                                     </td>
@@ -190,15 +191,15 @@
                                                                                     </td>
                                                                                     <td class="table-accept-btn text-end">
                                                                                         @* submit *@
-                                                                                        <form action="/home/leaderedit" method="post">
-                                                                                            <input type="hidden" name="activityId" :value="item.activityId">    
+                                                                                        <form action="ActivityLeader/LeaderEdit" method="post">
+                                                                                            <input type="hidden" name="activityId" :value="item.activityId">
                                                                                             <button type="submit" class="btn btn-primary w-100">
                                                                                                 <i class="feather-check-circle"></i>編輯開團
                                                                                             </button>
                                                                                         </form>
                                                                                         @* submit *@
                                                                                         @* <a href="/home/leaderedit" class="btn accept-btn"><i class="feather-check-circle"></i>編輯開團</a> *@
-                                                                                        <a  class="btn cancel-table-btn" data-bs-toggle="modal" data-bs-target="#request-coche" @@click="keepId(item.activityId)">
+                                                                                        <a class="btn cancel-table-btn" data-bs-toggle="modal" data-bs-target="#request-coche" @@click="keepId(item.activityId)">
                                                                                             <i class="feather-x-circle"></i>取消開團
                                                                                         </a>
                                                                                     </td>
@@ -477,8 +478,7 @@
                                                                             </thead>
                                                                             <tbody>
                                                                                 <!-- 參加人數展示卡片 -->
-                                                                                <div v-if="currentData.length > 0">
-                                                                                <tr role="row" class="odd" v-for="item in currentData">
+                                                                                <tr v-if="currentData.length > 0" role="row" class="odd" v-for="item in currentData">
                                                                                     <td class="sorting_1">
                                                                                         <h2 class="table-avatar">
                                                                                             <a href="#"
@@ -504,16 +504,16 @@
                                                                                         </span>
                                                                                     </td>
                                                                                 </tr>
-                                                                    </div>
-                                                                    <div v-else>
-                                                                        <td class="sorting_1">
-                                                                            <h2 class="table-avatar">                                                                        
-                                                                                    <img src="~/profile/noprofile.png" class="avatar avatar-sm  flex-shrink-0" />
-                                                                                <span class="table-head-name flex-grow-1">
-                                                                                    <p>目前沒有報名者</p>
-                                                                                </span>
-                                                                            </h2>
-                                                                        </td>
+                                                                                <tr v-else>
+                                                                                    <td class="sorting_1">
+                                                                                        <h2 class="table-avatar">
+                                                                                            <img src="~/profile/noprofile.png" class="avatar avatar-sm  flex-shrink-0" />
+                                                                                            <span class="table-head-name flex-grow-1">
+                                                                                                <p>目前沒有報名者</p>
+                                                                                            </span>
+                                                                                        </h2>
+                                                                                    </td>
+                                                                                </tr>
                                                                     </div>
                                                                 </div>
                                                                 <!-- /參加人數展示卡片 -->
@@ -537,11 +537,11 @@
                     <!-- /開團標題欄&搜尋頁 -->
                 </div>
                 <div class="modal-footer">
-                        @* 改 *@
+                    @* 改 *@
                     <div class="table-accept-btn">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">關閉</button>
                     </div>
-                        @* 改 *@
+                    @* 改 *@
                 </div>
             </div>
         </div>
@@ -583,7 +583,7 @@
 
 <!-- Hot Member -->
 @section Scripts
-    {
+{
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/3.3.4/vue.global.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.6.0/axios.min.js" integrity="sha512-WrdC3CE9vf1nBf58JHepuWT4x24uTacky9fuzw2g/3L9JkihgwZ6Cfv+JGTtNyosOhEmttMtEZ6H3qJWfI7gIQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://unpkg.com/vuejs-paginate-next@latest/dist/vuejs-paginate-next.umd.js"></script>
@@ -706,7 +706,8 @@
                     let _this = this;
                     axios.get(`/GroupStartingApi/CurrentById/${_this._memberId}/${_this._activityId}`).then((res) => {
                         // alert(_this.currentData.length);
-                        _this.currentData = res.data}).catch((error) => alert(`發生錯誤: ${error}`));
+                        _this.currentData = res.data
+                    }).catch((error) => alert(`發生錯誤: ${error}`));
                 },
                 keepId2: function (memberId, activityId) {
                     let _this = this;
