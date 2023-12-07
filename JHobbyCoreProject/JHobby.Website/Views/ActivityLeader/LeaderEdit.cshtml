@@ -1,5 +1,7 @@
 ﻿@{
     ViewData["Title"] = "團主編輯";
+
+    int activityId = ViewBag.ActivityId;
 }
 
 <partial name="_BreadcrumbPartial" />
@@ -206,19 +208,19 @@
                     // fileThree: null,
                     categorySource: [],
                     activityUpdate: {
-                        memberId: "1",
-                        payment: "1",
-                        activityName: "麥噹噹團",
+                        memberId: "",
+                        payment: "",
+                        activityName: "",
                         activityCity: "",
                         activityArea: "",
-                        activityLocation: "麥當勞",
+                        activityLocation: "",
                         startTime: "",
-                        maxPeople: "10",
-                        categoryId: "5",
-                        categoryTypeId: "1",
+                        maxPeople: "",
+                        categoryId: "",
+                        categoryTypeId: "",
                         joinDeadLine: "",
-                        joinFee: "10000",
-                        activityNotes: "吃貨團",
+                        joinFee: "",
+                        activityNotes: "",
                     },
                 }
             },
@@ -264,6 +266,7 @@
 
             mounted() {
                 this.categoryApi();
+                this.getActivityById();
             },
 
             methods: {
@@ -308,15 +311,22 @@
                     formData.append('joinFee', self.activityUpdate.joinFee);
                     formData.append('activityNotes', self.activityUpdate.activityNotes);
 
-                    fetch("/ActivityApi/LeaderUpdate/26", {
+                    fetch("/ActivityApi/LeaderUpdate/@activityId", {
                         method: "PUT",
                         body: formData
                     }).then(r => r.json())
                         .then(d => {
-                            self.activityBuild = d;
+                            self.activityUpdate = d;
                             console.log('Success', d);
                             alert("修改成功");
                         });
+
+                    window.location.href = "/MemberCenter/launchATeam";
+                },
+                getActivityById() {
+                    self = this;
+
+                    fetch("/ActivityApi/GetActivityStatus/@activityId").then(r => r.json()).then(d => { self.activityUpdate = d });
                 }
             },
         }).component('select2', select2).mount("#Update");

@@ -1,4 +1,5 @@
 ﻿using JHobby.Service.Interfaces;
+using JHobby.Website.Models.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 
 namespace JHobby.Website.Controllers
@@ -9,25 +10,39 @@ namespace JHobby.Website.Controllers
 
 		public ActivityLeaderController(IUserAuthenticationService userAuthenticationService)
 		{
-			_userAuthenticationService = userAuthenticationService;		
+			_userAuthenticationService = userAuthenticationService;
 		}
 
 		public IActionResult LeaderBuild()
 		{
 			try
 			{
-                ViewBag.buildMemberId = _userAuthenticationService.GetUserId();
-            }
+				ViewBag.buildMemberId = _userAuthenticationService.GetUserId();
+			}
 			catch (Exception)
 			{
 
 				throw new Exception("Error!");
-            }
+			}
 
 			return View();
 		}
-		public IActionResult LeaderEdit()
+
+		[HttpPost]
+		public IActionResult LeaderEdit([FromForm] int id)
         {
+			try
+			{
+				//ViewBag.buildMemberId = _userAuthenticationService.GetUserId();
+
+				ViewBag.ActivityId = id;
+
+            }
+			catch (Exception)
+			{
+				throw new Exception("Error!");
+			}
+
             return View();
         }
     }
