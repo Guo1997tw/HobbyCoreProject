@@ -15,7 +15,7 @@
                             <div class="mb-3">
                                 <label for="date" class="form-label">會員編號</label>
                                 <div class="form-icon">
-                                    <input type="text" class="form-control" id="MemberId" v-model="activityBuild.memberId">
+                                    <input type="text" class="form-control" id="MemberId" v-model="activityUpdate.memberId">
                                     <span name="ActivityName" class="text-danger"></span>
                                 </div>
                             </div>
@@ -23,33 +23,33 @@
                             <div class="mb-3">
                                 <label for="date" class="form-label">開團名稱</label>
                                 <div class="form-icon">
-                                    <input type="text" class="form-control" id="ActivityName" v-model="activityBuild.activityName">
+                                    <input type="text" class="form-control" id="ActivityName" v-model="activityUpdate.activityName">
                                     <span name="ActivityName" class="text-danger"></span>
                                 </div>
                             </div>
                             <div class="mb-3">
                                 <label for="court" class="form-label">舉辦縣/市</label>
-                                <select2 id="ActivityCity" style="width:100%" :options="cityList" aria-label="Default select example" v-model:value="activityBuild.activityCity">
+                                <select2 id="ActivityCity" style="width:100%" :options="cityList" aria-label="Default select example" v-model:value="activityUpdate.activityCity">
                                     <option disabled value="0" selected>請選擇縣市</option>
                                 </select2>
                             </div>
                             <div class="mb-3">
                                 <label for="court" class="form-label">舉辦區域</label>
-                                <select2 id="ActivityArea" style="width:100%" :options="areaList" aria-label="Default select example" v-model:value="activityBuild.activityArea">
+                                <select2 id="ActivityArea" style="width:100%" :options="areaList" aria-label="Default select example" v-model:value="activityUpdate.activityArea">
                                     <option disabled value="0" selected>請選擇區</option>
                                 </select2>
                             </div>
                             <div class="mb-3">
                                 <label for="date" class="form-label">舉辦地點</label>
                                 <div class="form-icon">
-                                    <input type="text" class="form-control" id="ActivityLocation" v-model="activityBuild.activityLocation">
+                                    <input type="text" class="form-control" id="ActivityLocation" v-model="activityUpdate.activityLocation">
                                 </div>
                             </div>
                             <div class="mb-3">
                                 <label for="endterdate" class="form-label">活動開始日期</label>
                                 <div class="col-lg-12 col-md-6">
                                     <div class="input-space">
-                                        <input id="StartTime" type="date" class="form-control" v-model="activityBuild.startTime">
+                                        <input id="StartTime" type="date" class="form-control" v-model="activityUpdate.startTime">
                                     </div>
                                 </div>
                             </div>
@@ -65,18 +65,18 @@
                             <div class="mb-3">
                                 <label for="empty-field" class="form-label">最高人數</label>
                                 <div class="form-icon">
-                                    <input type="text" class="form-control" id="MaxPeople" v-model="activityBuild.maxPeople">
+                                    <input type="text" class="form-control" id="MaxPeople" v-model="activityUpdate.maxPeople">
                                 </div>
                             </div>
                             <div class="mb-3">
                                 <label for="court" class="form-label">活動類型</label>
-                                <select2 id="CategoryId" style="width:100%" :options="categoryList" aria-label="Default select example" v-model:value="activityBuild.categoryId">
+                                <select2 id="CategoryId" style="width:100%" :options="categoryList" aria-label="Default select example" v-model:value="activityUpdate.categoryId">
                                     <option disabled value="0" selected>請選擇類型</option>
                                 </select2>
                             </div>
                             <div class="mb-3">
                                 <label for="court" class="form-label">活動項目</label>
-                                <select2 id="CategoryTypeId" style="width:100%" :options="categoryTypeList" aria-label="Default select example" v-model:value="activityBuild.categoryTypeId">
+                                <select2 id="CategoryTypeId" style="width:100%" :options="categoryTypeList" aria-label="Default select example" v-model:value="activityUpdate.categoryTypeId">
                                     <option disabled value="0" selected>請選擇活動項目</option>
                                 </select2>
                             </div>
@@ -84,7 +84,7 @@
                                 <label for="endterdate" class="form-label">報名截止日</label>
                                 <div class="col-lg-12 col-md-6">
                                     <div class="input-space">
-                                        <input id="JoinDeadLine" type="date" class="form-control" v-model="activityBuild.joinDeadLine">
+                                        <input id="JoinDeadLine" type="date" class="form-control" v-model="activityUpdate.joinDeadLine">
                                     </div>
                                 </div>
                             </div>
@@ -100,13 +100,13 @@
                             <div class="mb-3">
                                 <label for="empty-field" class="form-label">活動花費</label>
                                 <div class="form-icon">
-                                    <input type="text" class="form-control" id="JoinFee" v-model="activityBuild.joinFee">
+                                    <input type="text" class="form-control" id="JoinFee" v-model="activityUpdate.joinFee">
                                 </div>
                             </div>
                             <div class="mb-3">
                                 <label for="empty-field" class="form-label">付款方式</label>
                                 <div class="form-icon">
-                                    <input type="text" class="form-control" id="pay" v-model="activityBuild.payment">
+                                    <input type="text" class="form-control" id="pay" v-model="activityUpdate.payment">
                                 </div>
                             </div>
                             @* <div class="mb-3">
@@ -118,7 +118,7 @@
                             <div class="mb-3">
                                 <label for="empty-field" class="form-label">活動說明</label>
                                 <div class="form-icon">
-                                    <textarea class="form-control" id="ActivityNotes" rows="4" maxlength="300" v-model="activityBuild.activityNotes"></textarea>
+                                    <textarea class="form-control" id="ActivityNotes" rows="4" maxlength="300" v-model="activityUpdate.activityNotes"></textarea>
                                 </div>
                             </div>
                             @* <div class="mb-3">
@@ -205,7 +205,7 @@
                     // fileTwo: null,
                     // fileThree: null,
                     categorySource: [],
-                    activityBuild: {
+                    activityUpdate: {
                         memberId: "1",
                         payment: "1",
                         activityName: "麥噹噹團",
@@ -234,7 +234,7 @@
                     })
                 },
                 areaList() {
-                    let area = taiwanCity.filter(x => x.CityName == this.activityBuild.activityCity);
+                    let area = taiwanCity.filter(x => x.CityName == this.activityUpdate.activityCity);
                     if (area.length < 1) return [];
                     return area[0].AreaList.map(x => {
                         return {
@@ -252,7 +252,7 @@
                     })
                 },
                 categoryTypeList() {
-                    let area = this.categorySource.filter(x => x.categoryId == this.activityBuild.categoryId);
+                    let area = this.categorySource.filter(x => x.categoryId == this.activityUpdate.categoryId);
                     if (area.length < 1) return [];
                     return area[0].categoryDetails.map(x => {
                         return {
@@ -295,22 +295,21 @@
                     // if (this.fileOne) formData.append('file', self.fileOne);
                     // if (this.fileTwo) formData.append('file', self.fileTwo);
                     // if (this.fileThree) formData.append('file', self.fileThree);
-                    formData.append('memberId', self.activityBuild.memberId);
-                    formData.append('payment', self.activityBuild.payment);
-                    formData.append('activityName', self.activityBuild.activityName);
-                    formData.append('activityCity', self.activityBuild.activityCity);
-                    formData.append('activityArea', self.activityBuild.activityArea);
-                    formData.append('activityLocation', self.activityBuild.activityLocation);
-                    formData.append('startTime', self.activityBuild.startTime);
-                    formData.append('maxPeople', self.activityBuild.maxPeople);
-                    formData.append('categoryId', self.activityBuild.categoryId);
-                    formData.append('categoryTypeId', self.activityBuild.categoryTypeId);
-                    formData.append('joinDeadLine', self.activityBuild.joinDeadLine);
-                    formData.append('joinFee', self.activityBuild.joinFee);
-                    formData.append('activityNotes', self.activityBuild.activityNotes);
-                    // formData.append('created', self.activityBuild.created);
+                    formData.append('memberId', self.activityUpdate.memberId);
+                    formData.append('payment', self.activityUpdate.payment);
+                    formData.append('activityName', self.activityUpdate.activityName);
+                    formData.append('activityCity', self.activityUpdate.activityCity);
+                    formData.append('activityArea', self.activityUpdate.activityArea);
+                    formData.append('activityLocation', self.activityUpdate.activityLocation);
+                    formData.append('startTime', self.activityUpdate.startTime);
+                    formData.append('maxPeople', self.activityUpdate.maxPeople);
+                    formData.append('categoryId', self.activityUpdate.categoryId);
+                    formData.append('categoryTypeId', self.activityUpdate.categoryTypeId);
+                    formData.append('joinDeadLine', self.activityUpdate.joinDeadLine);
+                    formData.append('joinFee', self.activityUpdate.joinFee);
+                    formData.append('activityNotes', self.activityUpdate.activityNotes);
 
-                    fetch("/ActivityApi/LeaderCreate", {
+                    fetch("/ActivityApi/LeaderUpdate/26", {
                         method: "PUT",
                         body: formData
                     }).then(r => r.json())
