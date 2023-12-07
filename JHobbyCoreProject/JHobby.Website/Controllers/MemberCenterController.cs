@@ -1,18 +1,26 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using JHobby.Service.Interfaces;
+using JHobby.Website.Models.ViewModels;
+using Microsoft.AspNetCore.Mvc;
 
 namespace JHobby.Website.Controllers
 {
     public class MemberCenterController : Controller
     {
-        
+        private readonly IUserAuthenticationService _userAuthenticationService;
+
+        public MemberCenterController(IUserAuthenticationService userAuthenticationService)
+        {
+            _userAuthenticationService = userAuthenticationService;
+        }
+
         // MemberCenter/launchATeam
         /// <summary>
         /// TODO : 開團紀錄
         /// </summary>
         public IActionResult launchATeam()
         {
-			ViewData["Title"] = "開團紀錄";
-			return View();
+            ViewData["Title"] = "開團紀錄";
+            return View();
         }
 
         // MemberCenter/joinAGroup
@@ -22,8 +30,19 @@ namespace JHobby.Website.Controllers
         /// <returns></returns>
         public IActionResult joinAGroup()
         {
-            return View();
+            var model = new JoinInAGroupMemberViewModel();
+            if (model != null)
+            {
+                model.LoginMemberId = _userAuthenticationService.GetUserId();
+                return View();
+            }
+            else 
+            {
+                return RedirectToAction("ErrorPage"); 
+            }
+
+
         }
 
-	}
+    }
 }
