@@ -111,6 +111,7 @@ namespace JHobby.Website.Controllers.Api
                 CategoryId = result.CategoryId,
                 CategoryTypeId = result.CategoryTypeId,
                 ActivityName = result.ActivityName,
+                StartDate=result.StartDate,
                 StartTime = result.StartTime,
                 JoinDeadLine = result.JoinDeadLine,
                 ActivityNotes = result.ActivityNotes,

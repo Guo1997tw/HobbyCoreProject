@@ -35,7 +35,7 @@
                     <h1 class="d-flex align-items-center justify-content-start">{{activity.activityName}}</h1>
                     <ul class="d-sm-flex justify-content-start align-items-center">
                         <li><i class="feather-map-pin"></i>{{activity.activityLocation}}</li>
-                        <li><i class="feather-clock"></i>活動開始日：{{activity.startTime}}</li>
+                        <li><i class="feather-clock"></i>活動開始日：{{activity.startDate}} {{activity.startTime}}</li>
                         <li><i class="feather-clock"></i>報名截止日：{{activity.joinDeadLine}}</li>
                     </ul>
                 </div>
@@ -96,7 +96,7 @@
                                                             <div class="head d-flex align-items-center justify-content-start">
                                                                 <h5>{{item.nickName}}</h5>
                                                                 <i class="fa-solid fa-circle"></i>
-                                                                <span>{{item.messageTime}}</span>
+                                                                <span>{{item.messageDate}} {{item.messageTime}}</span>
                                                             </div>
                                                             <p>{{item.messageText}}</p>
                                                         </div>

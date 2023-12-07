@@ -12,6 +12,8 @@ namespace JHobby.Website.Controllers
             _userAuthenticationService = userAuthenticationService;
         }
 
+        [Authorize(Roles = "Member")]
+        //[Authorize(Roles = "Admin")]
         public IActionResult ActivityPage(int id)
         {
             ViewData["Title"] = "活動說明";
