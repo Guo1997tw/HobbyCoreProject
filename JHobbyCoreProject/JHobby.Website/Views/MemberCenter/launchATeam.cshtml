@@ -189,7 +189,15 @@
                                                                                         </span>
                                                                                     </td>
                                                                                     <td class="table-accept-btn text-end">
-                                                                                        <a href="/home/leaderedit" class="btn accept-btn"><i class="feather-check-circle"></i>編輯開團</a>
+                                                                                        @* submit *@
+                                                                                        <form action="/home/leaderedit" method="post">
+                                                                                            <input type="hidden" name="activityId" :value="item.activityId">    
+                                                                                            <button type="submit" class="btn btn-primary w-100">
+                                                                                                <i class="feather-check-circle"></i>編輯開團
+                                                                                            </button>
+                                                                                        </form>
+                                                                                        @* submit *@
+                                                                                        @* <a href="/home/leaderedit" class="btn accept-btn"><i class="feather-check-circle"></i>編輯開團</a> *@
                                                                                         <a  class="btn cancel-table-btn" data-bs-toggle="modal" data-bs-target="#request-coche" @@click="keepId(item.activityId)">
                                                                                             <i class="feather-x-circle"></i>取消開團
                                                                                         </a>
