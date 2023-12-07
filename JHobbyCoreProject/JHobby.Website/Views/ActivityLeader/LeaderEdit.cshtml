@@ -12,7 +12,7 @@
             <div class="row" data-select2-id="14">
                 <div class="col-12 col-sm-12 col-md-12 col-lg-12" data-select2-id="13">
                     <section class="card booking-form" data-select2-id="12">
-                        <h3 class="border-bottom" style="font-size: 35px; text-align: center;">開團內容</h3>
+                        <h3 class="border-bottom" style="font-size: 35px; text-align: center;">活動內容</h3>
                         <form data-select2-id="11">
                             <div class="mb-3">
                                 <label for="date" class="form-label">會員編號</label>
@@ -294,6 +294,20 @@
                     let self = this;
                     var formData = new FormData();
 
+                    if (!self.activityBuild.activityName ||
+                        !self.activityBuild.activityCity ||
+                        !self.activityBuild.activityArea ||
+                        !self.activityBuild.activityLocation ||
+                        !self.activityBuild.startTime ||
+                        !self.activityBuild.maxPeople ||
+                        !self.activityBuild.categoryId ||
+                        !self.activityBuild.categoryTypeId ||
+                        !self.activityBuild.joinDeadLine ||
+                        !self.activityBuild.joinFee ||
+                        !self.activityBuild.activityNotes) { return alert("請填寫所有欄位!!"); }
+
+                    if (isNaN(self.activityBuild.joinFee)) { return alert("請輸入正確金額!!"); }
+
                     // if (this.fileOne) formData.append('file', self.fileOne);
                     // if (this.fileTwo) formData.append('file', self.fileTwo);
                     // if (this.fileThree) formData.append('file', self.fileThree);
@@ -321,7 +335,7 @@
                             alert("修改成功");
                         });
 
-                    window.location.href = "/MemberCenter/launchATeam";
+                    javascript: location.href = "/MemberCenter/launchATeam";
                 },
                 getActivityById() {
                     self = this;
