@@ -1,5 +1,6 @@
 ﻿using JHobby.Service.Interfaces;
 using JHobby.Website.Models.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace JHobby.Website.Controllers
@@ -12,10 +13,6 @@ namespace JHobby.Website.Controllers
             _userAuthenticationService = userAuthenticationService;
         }
 
-        // MemberCenter/launchATeam
-        /// <summary>
-        /// TODO : 開團紀錄
-        /// </summary>
         public IActionResult launchATeam(int id)
         {
 			ViewData["Title"] = "開團紀錄";
