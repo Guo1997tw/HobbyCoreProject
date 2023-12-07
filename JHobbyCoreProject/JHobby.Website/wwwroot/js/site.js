@@ -165,3 +165,10 @@ function CheckPhone() {
     }
     return true;
 }
+//ViewBagbool轉換
+function blnChange(str) {
+    if (str === "True") {
+        return true;
+    }
+    return false;
+}

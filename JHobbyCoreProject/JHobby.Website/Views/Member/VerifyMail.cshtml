@@ -29,14 +29,12 @@
             data() {
                 return {
                     blnReSend:true,
-                    tempSuccess:"",
                     account:""
                 }
             },
             mounted() {
                 let _this = this;
-                _this.tempSuccess = `@Model.Success`;
-                _this.blnChange();
+                _this.blnReSend=blnChange(`@Model.Success`);
             },
             methods: {
                 ReSendVerify() {
@@ -51,13 +49,6 @@
                     .catch(err => alert(err));
                     alert("重送成功，請點選新信件內網址重新驗證")
                 },
-                blnChange() { 
-                    let _this = this;
-                    if (_this.tempSuccess == "True") {
-                        return _this.blnReSend = true;
-                    }
-                    return _this.blnReSend = false;
-                }
             }
         }).mount("#verify")
     </script>
