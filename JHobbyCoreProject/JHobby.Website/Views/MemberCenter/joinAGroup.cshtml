@@ -277,13 +277,15 @@
                                                     <td>
                                                         <h2 class="table-avatar">
                                                             <a @@click="pictureLinkToGroupPage(filterCard[index])"
-                                                               :href="`https://localhost:7097/Activity/ActivityPage/${pictureActivityId}`"
+                                                               :href="`/Activity/ActivityPage/${pictureActivityId}`"
                                                                class="avatar avatar-sm flex-shrink-0">
-                                                                <img class="avatar-img" src="~/assets/img/booking/booking-02.jpg" alt="Booking">
+                                                                <img class="avatar-img"
+                                                                     :src="`/activityImgs/${card.imageName}.jpg`"
+                                                                     alt="Activity Picture">
                                                             </a>
                                                             <span class="table-head-name flex-grow-1">
                                                                 <a @@click="titleLinkToGroupPage(filterCard[index])"
-                                                                   :href="`https://localhost:7097/Activity/ActivityPage/${titleActivityId}`">
+                                                                   :href="`/Activity/ActivityPage/${titleActivityId}`">
                                                                     {{card.activityName}}
                                                                 </a>
                                                                 <span>團主: {{card.nickName}}</span>
@@ -325,7 +327,7 @@
                                                                       ">
                                                                 <a class="dropdown-item"
                                                                    @@click="linkToGroupPage"
-                                                                   :href="`https://localhost:7097/Activity/ActivityPage/${activityId}`">
+                                                                   :href="`/Activity/ActivityPage/${activityId}`">
                                                                     前往頁面
                                                                 </a>
                                                                 <a href="javascript:;"
@@ -391,7 +393,9 @@
                                             <div class="card dashboard-card court-information">
                                                 <div class="d-flex align-items-center justify-content-between">
                                                     <div class="card-header">
-                                                        <h4>評分注意事項:<br>送出後就無法再進行更改</h4>
+                                                        <h5>評分注意事項:</h5>
+                                                        <p>1.請點擊進行評分星星。</p>
+                                                        <p>2.送出後就無法再進行更改。</p>
                                                     </div>
                                                     <div class="appointment-info">
                                                         <!-- 訊息欄位 -->
@@ -399,7 +403,8 @@
                                                             <li>
                                                                 <div class="appointment-item">
                                                                     <div class="appointment-img">
-                                                                        <img src="~/assets/img/booking/booking-01.jpg" alt="User">
+                                                                        <img :src="`/activityImgs/${currentCard.imageName}.jpg`"
+                                                                             alt="Activity Picture">
                                                                     </div>
                                                                     <div class="appointment-content">
                                                                         <h6>{{currentCard.activityName}}</h6>
