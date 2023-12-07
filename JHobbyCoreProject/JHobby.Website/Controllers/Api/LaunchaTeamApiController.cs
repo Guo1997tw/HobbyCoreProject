@@ -45,7 +45,7 @@ namespace JHobby.Website.Controllers.Api
                 TimeConvert = x.TimeConvert,
                 CreatedDateConvert = x.CreatedDateConvert,
                 CreatedTimeConvert = x.CreatedTimeConvert,
-
+                ActivityId = x.ActivityId,
 
             });
 

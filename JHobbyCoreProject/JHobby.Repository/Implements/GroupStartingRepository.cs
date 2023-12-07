@@ -78,7 +78,7 @@ namespace JHobby.Repository.Implements
 				   ImageName = m.ImageName,
 				   ActivityImageId = m.ActivityImageId,
 
-			   }).Where(g => g.MemberId == id);
+			   }).Where(g => g.MemberId == id && g.ActivityStatus=="1" && g.IsCover == true);
 
 			return result;
 

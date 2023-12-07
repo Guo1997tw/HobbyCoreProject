@@ -19,7 +19,8 @@ namespace JHobby.Repository.Models.Dto
         public string ImageName { get; set; } = null!;
     	public int ActivityImageId { get; set; }
 		public DateTime Created { get; set; }
+        public int ActivityId { get; set; }
 
-		
+
     }
 }
