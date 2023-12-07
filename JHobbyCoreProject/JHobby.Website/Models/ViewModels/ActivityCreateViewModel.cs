@@ -6,7 +6,7 @@
 
         public string ActivityStatus { get; set; } = "1";
 
-        public string Payment { get; set; } = null!;
+        public string Payment { get; set; } = "1";
 
         public string ActivityName { get; set; } = null!;
 

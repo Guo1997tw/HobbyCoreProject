@@ -1,12 +1,6 @@
 ﻿using AutoMapper;
-using AutoMapper.Execution;
-using JHobby.Repository.Interfaces;
-using JHobby.Repository.Models.Dto;
-using JHobby.Repository.Models.Entity;
-using JHobby.Service.Implements;
 using JHobby.Service.Interfaces;
 using JHobby.Service.Models;
-using JHobby.Service.Models.Dto;
 using JHobby.Website.Models.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 
@@ -61,7 +55,10 @@ namespace JHobby.Website.Controllers.Api
             }
 
             activityCreateModel.ActivityImages = picPathList.Select(x => new ActivityImageCreateModel
-            { ImageName = x }).ToList();
+            {
+                ImageName = x,
+                IsCover = (x == "\\activityImages\\activity1.jpg") ? true : false
+            }).ToList();
 
             var result = _activityService.ActivityCreate(activityCreateModel);
 

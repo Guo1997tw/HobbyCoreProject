@@ -14,7 +14,7 @@
                     <section class="card booking-form" data-select2-id="12">
                         <h3 class="border-bottom" style="font-size: 35px; text-align: center;">活動內容</h3>
                         <form data-select2-id="11">
-                            <div class="mb-3">
+                            <div class="mb-3" hidden>
                                 <label for="date" class="form-label">會員編號</label>
                                 <div class="form-icon">
                                     <input type="text" class="form-control" id="MemberId" v-model="activityUpdate.memberId">
@@ -51,7 +51,7 @@
                                 <label for="endterdate" class="form-label">活動開始日期</label>
                                 <div class="col-lg-12 col-md-6">
                                     <div class="input-space">
-                                        <input id="StartTime" type="date" class="form-control" v-model="activityUpdate.startTime">
+                                        <input id="StartTime" type="datetime-local" class="form-control" v-model="activityUpdate.startTime">
                                     </div>
                                 </div>
                             </div>
@@ -86,7 +86,7 @@
                                 <label for="endterdate" class="form-label">報名截止日</label>
                                 <div class="col-lg-12 col-md-6">
                                     <div class="input-space">
-                                        <input id="JoinDeadLine" type="date" class="form-control" v-model="activityUpdate.joinDeadLine">
+                                        <input id="JoinDeadLine" type="datetime-local" class="form-control" v-model="activityUpdate.joinDeadLine">
                                     </div>
                                 </div>
                             </div>
@@ -105,7 +105,7 @@
                                     <input type="text" class="form-control" id="JoinFee" v-model="activityUpdate.joinFee">
                                 </div>
                             </div>
-                            <div class="mb-3">
+                            <div class="mb-3" hidden>
                                 <label for="empty-field" class="form-label">付款方式</label>
                                 <div class="form-icon">
                                     <input type="text" class="form-control" id="pay" v-model="activityUpdate.payment">
@@ -209,7 +209,7 @@
                     categorySource: [],
                     activityUpdate: {
                         memberId: "",
-                        payment: "",
+                        payment: "1",
                         activityName: "",
                         activityCity: "",
                         activityArea: "",
