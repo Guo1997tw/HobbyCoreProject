@@ -1,6 +1,6 @@
 ﻿@{
     int verifyMemberId = ViewBag.verifyMemberId;
-    bool blnlogIn = ViewBag.logIn;
+    bool blnLogIn = ViewBag.logIn;
 }
 @section Styles
     {
@@ -120,7 +120,7 @@
                                         <a class="navigation" v-bind:href='"@Url.Action("MemberProfile","Profile")/"+item.memberId'>
                                             <img :src="item.headShot" alt="Venue">{{item.nickName}}
                                         </a>
-                                    </div>                                    
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -207,16 +207,19 @@
     </div>
 </section>
 <!-- Hot Member -->
-<footer class="footer">
-    <div class="container">
-        <!-- Footer Join -->
-        <div class="footer-join aos" data-aos="fade-up">
-            <h2>無論是交友、聚會，還是各種體驗活動，我們的揪團網站應有盡有。</h2>
-            <p class="sub-title">快來加入 JHobby，立刻享受完整功能，打造屬於你的精彩社交時刻。</p>
-            <a href="https://localhost:7097/Member/Register" class="btn btn-primary"><i class="feather-user-plus"></i> 加入我們</a>
+<div id="footShow">
+    <footer class="footer" v-if="blnFootShow==false">
+        <div class="container">
+            <!-- Footer Join -->
+            <div class="footer-join aos" data-aos="fade-up">
+                <h2>無論是交友、聚會，還是各種體驗活動，我們的揪團網站應有盡有。</h2>
+                <p class="sub-title">快來加入 JHobby，立刻享受完整功能，打造屬於你的精彩社交時刻。</p>
+                <a href="https://localhost:7097/Member/Register" class="btn btn-primary"><i class="feather-user-plus"></i> 加入我們</a>
+            </div>
         </div>
-    </div>
-</footer>
+    </footer>
+</div>
+
 <!-- /Footer Join -->
 @section Scripts
     {
@@ -231,13 +234,15 @@
                 return {
                     activityList: [],
                     wish: [],
+                    blnAction: true
                 }
             },
             mounted() {
                 let _this = this;
                 _this.QueryActivityList();
+                _this.blnAction = blnChange(`@blnLogIn`);
             },
-            methods: {               
+            methods: {
                 QueryActivityList() {
                     let _this = this;
                     axios.get("/IndexApi/GetActivityList")
@@ -245,19 +250,19 @@
                             _this.activityList = res.data;
                         })
                         .catch(err => alert(err));
-                    if (`@blnlogIn`=="False") return
+                    if (!_this.blnAction) return
                     _this.QueryWish();
                 },
                 QueryWish() {
-                    if (`@blnlogIn` == "False") return
                     let _this = this;
+                    if (!_this.blnAction) return
                     axios.get(`/WishApi/GetWishList/@verifyMemberId`)
                         .then(res => _this.wish = res.data)
                         .catch(err => alert(err));
                 },
                 Fav(id) {
-                    if (`@blnlogIn` == "False") return
                     let _this = this;
+                    if (!_this.blnAction) return
                     if (_this.wish.includes(id)) {
                         axios.delete(`/WishApi/DeleteWish/@verifyMemberId/${id}`)
                             .then(res => _this.QueryWish())
@@ -356,7 +361,18 @@
                     })
                 }
             }
-        }).component('select2', select2).mount("#cityArea");
+        }).component('select2', select2).mount("#cityArea")
+        const footShow = Vue.createApp({
+            data() {
+                return {
+                    blnFootShow: false,
+                }
+            },
+            mounted() {
+                let _this = this;
+                _this.blnFootShow = blnChange(`@blnLogIn`);
+            },
+        }).mount("#footShow")
 
     </script>
 }

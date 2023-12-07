@@ -12,7 +12,7 @@ namespace JHobby.Website.Controllers
             _userAuthenticationService = userAuthenticationService;
         }
 
-        [Authorize(Roles = "Member")]
+        [Authorize(Roles = "Member,Admin")]
         //[Authorize(Roles = "Admin")]
         public IActionResult ActivityPage(int id)
         {
