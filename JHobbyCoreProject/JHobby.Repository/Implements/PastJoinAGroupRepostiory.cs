@@ -47,7 +47,9 @@ namespace JHobby.Repository.Implements
             var imageName = _JhobbyContext.ActivityImages.Select(ai => new { id = ai.ActivityId, imageName = ai.ImageName });
 
             return _JhobbyContext.ActivityUsers
-                .Where(Au => Au.MemberId == memberId)
+                .Where(Au => Au.MemberId == memberId
+                && Au.Activity.ActivityStatus == "2"
+                || Au.Activity.ActivityStatus == "3")
                 .Include(Au => Au.Activity)
                 .Include(Au => Au.Member)
                 .Select(a => new PastJoinAGroupDto
