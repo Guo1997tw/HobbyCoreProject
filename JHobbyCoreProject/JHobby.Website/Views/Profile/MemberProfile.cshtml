@@ -66,14 +66,13 @@
 							<div class="featured-venues-item">
 								<div class="listing-item listing-item-grid coach-listview">
                                     <div class="listing-img" style="width: 300px; height: 300px;">
-										@* <a href="coach-detail.html"> *@
-                                        <img :src=`${past.imageName}` alt="Venue" style="width: 300px; height: 300px;">
-										@* </a> *@
-
+                                        <a :href='"/Activity/ActivityPage/"+past.activityId' class="avatar avatar-sm  flex-shrink-0">
+                                            <img :src=`${past.imageName}` alt="Venue" style="width: 300px; height: 300px;">
+                                        </a>
 									</div>
 									<div class="listing-content">
 										<h3 class="listing-title">
-                                            <a href="coach-detail.html">{{past.activityName}}</a>
+                                            <a :href='"/Activity/ActivityPage/"+past.activityId'>{{past.activityName}}</a>
 										</h3>
 										<ul class="mb-2">
 											<li>
