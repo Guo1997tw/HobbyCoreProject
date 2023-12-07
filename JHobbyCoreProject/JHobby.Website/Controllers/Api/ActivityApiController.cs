@@ -19,7 +19,7 @@ namespace JHobby.Website.Controllers.Api
         private readonly IActivityService _activityService;
         private readonly IMapper _mapper;
         private readonly string _rootPath;
-        
+
 
         public ActivityApiController(IActivityService activityService, IMapper mapper, IWebHostEnvironment webHostEnvironment)
         {
@@ -80,6 +80,19 @@ namespace JHobby.Website.Controllers.Api
             var mapper = _mapper.Map<ActivityUpdateModel>(activityUpdateViewModel);
 
             return (_activityService.ActivityUpdate(id, mapper)) ? true : false;
+        }
+
+        /// <summary>
+        /// 取得開團資料
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="ActivityStatusViewModel"></param>
+        [HttpGet("{id}")]
+        public ActivityStatusViewModel GetActivityStatus(int id)
+        {
+            var result = _activityService.GetActivityStatus(id);
+
+            return _mapper.Map<ActivityStatusViewModel>(result);
         }
 
         /// <summary>

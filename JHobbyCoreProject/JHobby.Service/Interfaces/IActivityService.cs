@@ -26,6 +26,13 @@ namespace JHobby.Service.Interfaces
         public bool ActivityUpdate(int id, ActivityUpdateModel activityUpdateModel);
 
         /// <summary>
+        /// 取得開團資料
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public ActivityStatusModel GetActivityStatus(int id);
+
+        /// <summary>
         /// 活動頁面查詢
         /// </summary>
         /// <param name="id"></param>

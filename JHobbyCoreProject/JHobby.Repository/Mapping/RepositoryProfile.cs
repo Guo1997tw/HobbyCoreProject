@@ -20,5 +20,6 @@ public class RepositoryProfile : Profile
         CreateMap<ActivityImageCreateDto, ActivityImage>();
         CreateMap<ActivityUpdateDto, Activity>();
         CreateMap<Member, MemberResetDto>().ReverseMap();
+        CreateMap<Activity, ActivityStatusDto>().ReverseMap();
     }
 }

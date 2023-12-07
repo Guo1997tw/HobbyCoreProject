@@ -65,6 +65,22 @@ namespace JHobby.Repository.Implements
         }
 
         /// <summary>
+        /// 取得開團資料
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="ActivityStatusDto"></param>
+        /// <returns></returns>
+        /// <exception cref="NotImplementedException"></exception>
+        public ActivityStatusDto ActivityStatus(int id)
+        {
+            var queryResult = _jhobbyContext.Activities.FirstOrDefault(a => a.ActivityId == id);
+
+            if (queryResult == null) { return null; }
+
+            return _mapper.Map<ActivityStatusDto>(queryResult);
+        }
+
+        /// <summary>
         /// 活動頁面查詢
         /// </summary>
         /// <param name="id"></param>

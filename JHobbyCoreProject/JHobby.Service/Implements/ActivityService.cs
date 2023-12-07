@@ -43,6 +43,21 @@ namespace JHobby.Service.Implements
         }
 
         /// <summary>
+        /// 取得開團資料
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        /// <exception cref="NotImplementedException"></exception>
+        public ActivityStatusModel GetActivityStatus(int id)
+        {
+            var result = _activityRepository.ActivityStatus(id);
+
+            if(result == null) { return null; }
+
+            return _mapper.Map<ActivityStatusModel>(result);
+        }
+
+        /// <summary>
         /// 活動頁面查詢
         /// </summary>
         /// <param name="id"></param>
