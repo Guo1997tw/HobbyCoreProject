@@ -599,6 +599,7 @@
                     sortOrder2: 'asc',
                     countPerPage: 2,
                     pageNumber: 1,
+                    pageNumber2:1,
                     _activityId: "",
                     _ActivityName: 0,
                     currentData: [],
@@ -623,7 +624,7 @@
                 },
                 filteroldCard() {
                     let _this = this;
-                    var start = (_this.pageNumber - 1) * _this.countPerPage;
+                    var start = (_this.pageNumber2 - 1) * _this.countPerPage;
                     var end = start + _this.countPerPage;
                     return _this.axiosBrowsepicture.sort(function (x, y) {
                         if (_this.sortOrder2 == "asc") {
@@ -697,7 +698,7 @@
                     this.pageNumber = num;
                 },
                 pageClick2(num) {
-                    this.pageNumber = num;
+                    this.pageNumber2 = num;
                 },
                 setCurrentCard(card) {
                     this.currentCard = card;
