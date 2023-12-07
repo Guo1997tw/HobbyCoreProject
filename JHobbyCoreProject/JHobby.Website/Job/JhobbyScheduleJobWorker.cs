@@ -16,7 +16,7 @@ namespace JHobby.Website.Job
         public void ExecuteAllJob()
         {
             //backgroundJobs.Enqueue(() => Console.WriteLine("Hello world from Hangfire!"));
-            RecurringJob.AddOrUpdate("ActiveityStatusCheckJob", () => _dailyScheduleService.ActivityEndCheck(), "*/10 * * * *");
+            RecurringJob.AddOrUpdate("ActiveityStatusCheckJob", () => _dailyScheduleService.ActivityEndCheck(), "0 0 0 * * ?", TimeZoneInfo.Local);
         }
     }
 }
