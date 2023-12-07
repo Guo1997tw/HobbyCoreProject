@@ -9,6 +9,8 @@ using JHobby.Repository.Interfaces;
 using JHobby.Repository.Implements;
 using ActivityStatusModel = JHobby.Service.Models.ActivityStatusModel;
 using AutoMapper;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication;
 
 namespace JHobby.Website.Controllers.Api
 {
