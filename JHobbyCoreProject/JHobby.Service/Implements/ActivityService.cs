@@ -10,34 +10,52 @@ namespace JHobby.Service.Implements
     {
         public readonly IActivityRepository _activityRepository;
         public readonly IMapper _mapper;
-        public ActivityService(IActivityRepository activityRepository, IMapper mapper)
+        public readonly ICommonService _commonService;
+        public ActivityService(IActivityRepository activityRepository, IMapper mapper, ICommonService commonService)
         {
             _activityRepository = activityRepository;
             _mapper = mapper;
+            _commonService = commonService;
         }
 
-        public bool CreateActivityBuild(ActivityBuildModel activityBuildModel)
+        /// <summary>
+        /// 團主建立
+        /// </summary>
+        /// <param name="activityCreateModel"></param>
+        /// <returns></returns>
+        public bool ActivityCreate(ActivityCreateModel activityCreateModel)
         {
-            var mapper = new ActivityCreateDto
-            {
-                ActivityName = activityBuildModel.ActivityName,
-                ActivityCity = activityBuildModel.ActivityCity,
-                ActivityArea = activityBuildModel.ActivityArea,
-                ActivityLocation = activityBuildModel.ActivityLocation,
-                StartTime = activityBuildModel.StartTime,
-                MaxPeople = activityBuildModel.MaxPeople,
-                CategoryId = activityBuildModel.CategoryId,
-                CategoryTypeId = activityBuildModel.CategoryTypeId,
-                JoinDeadLine = activityBuildModel.JoinDeadLine,
-                JoinFee = activityBuildModel.JoinFee,
-                ActivityNotes = activityBuildModel.ActivityNotes,
-                MemberId = activityBuildModel.MemberId,
-                ActivityStatus = activityBuildModel.ActivityStatus,
-                Payment = activityBuildModel.Payment,
-                Created = activityBuildModel.Created
-            };
-            _activityRepository.Insert(mapper);
-            return true;
+            var result = _mapper.Map<ActivityCreateDto>(activityCreateModel);
+
+            return _activityRepository.ActivityBuild(result);
+        }
+
+        /// <summary>
+        /// 團主編輯
+        /// </summary>
+        /// <param name="activityUpdateModel"></param>
+        /// <returns></returns>
+        /// <exception cref="NotImplementedException"></exception>
+        public bool ActivityUpdate(int id, ActivityUpdateModel activityUpdateModel)
+        {
+            var result = _mapper.Map<ActivityUpdateDto>(activityUpdateModel);
+
+            return (_activityRepository.ActivityUpdate(id, result)) ? true : false;
+        }
+
+        /// <summary>
+        /// 取得開團資料
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        /// <exception cref="NotImplementedException"></exception>
+        public ActivityStatusModel GetActivityStatus(int id)
+        {
+            var result = _activityRepository.ActivityStatus(id);
+
+            if(result == null) { return null; }
+
+            return _mapper.Map<ActivityStatusModel>(result);
         }
 
         /// <summary>
@@ -50,17 +68,19 @@ namespace JHobby.Service.Implements
         {
             var result = _activityRepository.GetActivityPageById(id);
 
+
             var mapper = new ActivityPageModel
             {
                 ActivityId = result.ActivityId,
                 MemberId = result.MemberId,
-                ActivityLocation = result.ActivityLocation,
+                ActivityLocation = result.ActivityLocation.Trim(),
                 CategoryId = result.CategoryId,
                 CategoryTypeId = result.CategoryTypeId,
-                ActivityName = result.ActivityName,
-                StartTime = result.StartTime,
-                JoinDeadLine = result.JoinDeadLine,
-                ActivityNotes = result.ActivityNotes,
+                ActivityName = result.ActivityName.Trim(),
+                StartDate = _commonService.ConvertTime(result.StartTime).First().DateConvert,
+                StartTime = _commonService.ConvertTime(result.StartTime).First().TimeConvert,
+                JoinDeadLine = _commonService.ConvertTime(result.JoinDeadLine).First().DateConvert,
+                ActivityNotes = result.ActivityNotes.Trim(),
                 ActivityImages = result.ActivityImages.Select(ai => new ActivityImageModel
                 {
                     ActivityImageId = ai.ActivityImageId,
@@ -86,7 +106,8 @@ namespace JHobby.Service.Implements
                 MemberId=r.MemberId,
                 ActivityId = r.ActivityId,
                 HeadShot = r.HeadShot,
-                MessageTime = r.MessageTime,
+                MessageDate=_commonService.ConvertTime(r.MessageTime).First().DateConvert,
+                MessageTime = _commonService.ConvertTime(r.MessageTime).First().TimeConvert,
                 MessageText = r.MessageText,
                 NickName = r.NickName,
             }).ToList();

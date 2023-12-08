@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using AutoMapper.QueryableExtensions;
 using JHobby.Repository.Interfaces;
 using JHobby.Repository.Models.Dto;
 using JHobby.Service.Interfaces;
@@ -83,5 +84,17 @@ namespace JHobby.Service.Implements
 
 			return true;
 		}
-	}
+
+        /// <summary>
+        /// 取得類型配細項
+        /// </summary>
+        /// <returns></returns>
+        public IQueryable<CategoryTypeModel> GetCategoryType()
+        {
+			var result = _categoryRepository.GetCategoryIncludeType();
+			var mapper = result.ProjectTo<CategoryTypeModel>(_mapper.ConfigurationProvider);
+
+			return mapper;
+        }
+    }
 }

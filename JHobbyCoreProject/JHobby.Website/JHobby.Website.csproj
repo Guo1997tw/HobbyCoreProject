@@ -24,8 +24,10 @@
   </ItemGroup>
 
   <ItemGroup>
+	<Folder Include="wwwroot\activityImages\" />
 	<Folder Include="wwwroot\css\" />
     <Folder Include="wwwroot\images\register\" />
+    <Folder Include="wwwroot\NewFolder\" />
     <Folder Include="wwwroot\profile\" />
   </ItemGroup>
 

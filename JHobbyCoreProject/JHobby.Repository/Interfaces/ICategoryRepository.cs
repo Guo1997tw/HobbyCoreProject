@@ -19,5 +19,7 @@ namespace JHobby.Repository.Interfaces
         public bool Update(int id, CategoryUpdateDto dto);
 
 		public bool Delete(int id);
+
+		public IQueryable<CategoryTypeDto> GetCategoryIncludeType();
     }
 }
