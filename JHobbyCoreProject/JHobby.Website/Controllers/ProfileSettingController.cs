@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace JHobby.Website.Controllers
 {
+    [Authorize(Roles = "Admin,Member, FastMember")]
     public class ProfileSettingController : Controller
     {
         private readonly IUserAuthenticationService _UserAuthenticationService;
