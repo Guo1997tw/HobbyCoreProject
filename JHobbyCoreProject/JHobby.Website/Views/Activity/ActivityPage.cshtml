@@ -6,8 +6,9 @@
 }
 
 @{
-    int ActivityId = ViewBag.ActivityId;
-    ViewData["Title"] = "活動頁面";
+    int activityId = ViewBag.activityId;
+    int verifyMemberId = ViewBag.verifyMemberId;
+    bool blnlogIn = ViewBag.logIn;
 }
 
 <partial name="_BreadcrumbPartial" />
@@ -18,8 +19,8 @@
     <div class="bannergallery-section">
         <div class="main-gallery-slider owl-carousel owl-theme">
             <div class="gallery-widget-item" v-for="item in activity.activityImages">
-                <a :href='"/image/activityimages/"+item.imageName+".jpg"' data-fancybox="gallery1">
-                    <img class="img-fluid" alt="Image" :src='"/image/activityimages/"+item.imageName+".jpg"'>
+                <a :href="item.imageName" data-fancybox="gallery1">
+                    <img class="img-fluid" alt="Image" :src="item.imageName">
                 </a>
             </div>
         </div>
@@ -89,7 +90,7 @@
                                                 <ul>
                                                     <li class="author-group d-md-flex align-items-center justify-content-start" v-for="item in msgBord">
                                                         <div class="profile-pic">
-                                                            <a href="javascript:void(0);" class="d-inline-block"><img src="~/assets/img/profiles/avatar-04.jpg" alt="User"></a>
+                                                            <a :href='"@Url.Action("MemberProfile","Profile")/"+item.memberId' class="d-inline-block"><img :src="item.headShot" alt="User"></a>
                                                         </div>
                                                         <div class="info">
                                                             <div class="head d-flex align-items-center justify-content-start">
@@ -149,7 +150,7 @@
                         <h4 class="border-bottom">活動主評價</h4>
                         <div class="d-flex justify-content-start align-items-center">
                             <div class="profile-pic">
-                                <a href="javascript:void(0);"><img class="img-fluid" alt="User" src="~/image/avatar-05.jpg"></a>
+                                <a :href='"@Url.Action("MemberProfile","Profile")/"+profile.memberId'><img class="img-fluid" alt="User" :src="profile.headShot"></a>
                             </div>
                             <div class="">
                                 <h5>{{profile.nickName}}</h5>
@@ -190,7 +191,7 @@
                                     <div class="listing-item mb-0">
                                         <div class="listing-img">
                                             <a v-bind:href='"/Activity/ActivityPage/"+item.activityId'>
-                                                <img :src='"/image/activityimages/"+item.activityImages[0].imageName+".jpg"' alt="Venue">
+                                                <img :src="item.activityImages[0].imageName".jpg"' alt="Venue">
                                             </a>
                                             <div class="fav-item-venues">
                                                 <div class="list-reviews">
@@ -226,7 +227,7 @@
                                             <div class="listing-button">
                                                 <div class="listing-venue-owner">
                                                     <a class="navigation" v-bind:href='"@Url.Action("MemberProfile","Profile")/"+item.memberId'>
-                                                        <img src="~/assets/img/profiles/avatar-01.jpg" alt="Venue">{{item.nickName}}
+                                                        <img :src="item.headShot" alt="Venue">{{item.nickName}}
                                                     </a>
                                                 </div>
                                             </div>
@@ -275,14 +276,13 @@
             mounted() {
                 let _this = this;
                 _this.QueryActivity();
-                _this.QueryProfile();
                 _this.QueryMsgBord();
                 _this.QueryMemeberStatus();
             },
             methods: {
                 QueryActivity() {
                     let _this = this;
-                    axios.get("/ActivityApi/ActivitySearch/@ActivityId")
+                    axios.get("/ActivityApi/ActivitySearch/@activityId")
                         .then(res => {
                             _this.activity = res.data;
                             let strSrc1 = "https://www.google.com/maps?q=";
@@ -290,22 +290,24 @@
                             let strSrc3 = "&hl=zh-TW&z=18&t=p&output=embed";
                             _this.resultSrc = strSrc1 + strSrc2 + strSrc3;
                             _this.GetCategoryTypeList();
+                            _this.QueryProfile();
                         })
                         .catch(err => alert(err));
                 },
                 QueryMsgBord() {
                     let _this = this;
-                    axios.get(`/ActivityApi/MemberMsg/@ActivityId`)
+                    axios.get("/ActivityApi/MemberMsg/@activityId")
                         .then(res => {
                             _this.msgBord = res.data;
-                            if (_this.msgBord.length === 0) { _this.blnMsg = false }
+                            if (_this.msgBord.length == 0) {
+                                _this.blnMsg = false;
+                            }                            
                         })
                         .catch(err => alert(err));
                 },
                 QueryProfile() {
-                    //目前寫死會員ID_1，等待網頁狀態實作
                     let _this = this;
-                    axios.get("/ProfileApi/GetProfileById/1")
+                    axios.get(`/ProfileApi/GetProfileById/${_this.activity.memberId}`)
                         .then(res => {
                             _this.profile = res.data;
                             _this.star = _this.profile.fraction;
@@ -314,9 +316,9 @@
                 },
                 QueryMemeberStatus() 
                 {
-                    //目前寫死會員ID_1，等待網頁狀態實作
+                    if (`@blnlogIn` == "False") return
                     let _this = this;
-                    axios.get(`/ActivityApi/GetMemberJoinStatus/1/@ActivityId`)
+                    axios.get("/ActivityApi/GetMemberJoinStatus/@verifyMemberId/@activityId")
                         .then(res => {
                             _this.blnMemberStatus = res.data;
                         })
@@ -325,10 +327,8 @@
                 GetCategoryTypeList() {
                     let _this = this;
                     var form = new FormData();
-                    form.append("categoyId", _this.activity.categoryId);
+                    form.append("categoryId", _this.activity.categoryId);
                     form.append("categoryTypeId", _this.activity.categoryTypeId);
-                    form.append("city", 0);
-                    form.append("area", 0);
                     axios.post("/MiddleCenterApi/GetCategoryTypeList", form, {
                         headers: {
                             "Content-Type": "multipart/form-data"
@@ -341,23 +341,24 @@
                     _this.QueryWish();
                 },
                 QueryWish() {
+                    if (`@blnlogIn` == "False") return
                     let _this = this;
-                    axios.get("/WishApi/GetWishList")
+                    axios.get("/WishApi/GetWishList/@verifyMemberId")
                         .then(res => _this.wish = res.data)
                         .catch(err => alert(err));
                 },
                 Fav(id) {
+                    if (`@blnlogIn` == "False") return
                     let _this = this;
                     if (_this.wish.includes(id)) {
-                        axios.delete(`/WishApi/DeleteWish/${id}`)
+                        axios.delete(`/WishApi/DeleteWish/@verifyMemberId/${id}`)
                             .then(res => _this.QueryWish())
                             .catch(err => alert(err));
                     }
                     else {
-                        //目前寫死會員ID_1，等待網頁狀態實作
                         let _this = this;
                         var form = new FormData();
-                        form.append("memberId", 1);
+                        form.append("memberId", @verifyMemberId);
                         form.append("activityId", id);
                         form.append("addTime", GetDateTime());
                         axios.post("/WishApi/InsertWish", form, {
@@ -371,11 +372,11 @@
                     //_this.GetCategoryTypeList();
                 },
                 CreateMsg() {
-                    //目前寫死會員ID_1，等待網頁狀態實作
+                    if (`@blnlogIn` == "False") return
                     let _this = this;
                     if (_this.message !== "") {
                         var form = new FormData();
-                        form.append("memberId", 1);
+                        form.append("memberId", @verifyMemberId);
                         form.append("activityId", _this.activity.activityId);
                         form.append("messageTime", GetDateTime());
                         form.append("messageText", _this.message);
@@ -383,8 +384,10 @@
                             headers: {
                                 "Content-Type": "multipart/form-data"
                             }
-                        }).then(res => _this.QueryMsgBord())
-                            .catch(err => alert("請重新輸入"));
+                        }).then(res => {
+                            _this.blnMsg = true;
+                            _this.QueryMsgBord();
+                        }).catch(err => alert("請重新輸入"));
                         //_this.QueryActivity();
 
                     } else {
@@ -393,11 +396,11 @@
                     _this.message = "";
                 },
                 CreateActivityUser() {
-                    //目前寫死會員ID_4，等待網頁狀態實作
+                    if (`@blnlogIn` == "False") return
                     let _this = this;
                     var form = new FormData();
-                    form.append("memberId", 1);
-                    form.append("activityId", @ActivityId);
+                    form.append("memberId", @verifyMemberId);
+                    form.append("activityId", @activityId);
                     form.append("reviewStatus", 2);
                     form.append("reviewTime", GetDateTime());
                     axios.post("/ActivityApi/ActivityUserCreate", form, {

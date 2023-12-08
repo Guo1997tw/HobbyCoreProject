@@ -10,5 +10,7 @@ namespace JHobby.Service.Interfaces
     public interface ISendMailService
     {
         public bool SendLetter(string account);
+
+        public bool ResetPwdSendLetter(string account, string newPwd);
     }
 }

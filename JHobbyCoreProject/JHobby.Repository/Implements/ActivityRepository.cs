@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using AutoMapper.Execution;
 using JHobby.Repository.Interfaces;
 using JHobby.Repository.Models.Dto;
 using JHobby.Repository.Models.Entity;
@@ -81,6 +82,7 @@ public class ActivityRepository : IActivityRepository
     {
         var result = _dbContext.Members.Join(_dbContext.MsgBoards, m => m.MemberId, mb => mb.MemberId, (m, mb) => new MemberMsgDto
         {
+            MemberId=mb.MemberId,
             ActivityId = mb.ActivityId,
             HeadShot = m.HeadShot,
             MessageTime = mb.MessageTime,

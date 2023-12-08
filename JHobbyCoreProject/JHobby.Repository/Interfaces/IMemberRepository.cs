@@ -13,6 +13,8 @@ namespace JHobby.Repository.Interfaces
 
         public MemberLoginDto? GetMemberLogin(string account);
 
+        public bool ResetByIdAndNewInsert(MemberResetDto memberResetDto);
+
         public MemberStatusDto? GetMemberStatus(string account);
 
         public MemberDto? GetById(int id);
