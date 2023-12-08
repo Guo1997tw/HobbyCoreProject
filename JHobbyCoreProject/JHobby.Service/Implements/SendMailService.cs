@@ -1,20 +1,25 @@
 ﻿using JHobby.Service.Interfaces;
-using JHobby.Service.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net;
 using System.Net.Mail;
-using System.Reflection.Metadata;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace JHobby.Service.Implements
 {
     public class SendMailService : ISendMailService
     {
+        private readonly ICommonService _commonService;
+        public SendMailService(ICommonService commonService)
+        {
+            _commonService = commonService;
+        }
         public bool SendLetter(string account)
         {
+            string registerDate = DateTime.Now.ToString("yyyy-MM-dd");
+            string encryption = $"{account}&{registerDate}";
+            string verify = _commonService.Encrypt(encryption);
+            verify = _commonService.EncodeBase64Url(verify);
+            string strVerify = $"?verify={verify}";
+
             SmtpClient smtpClient = new SmtpClient();
 
             smtpClient.Host = "smtp.gmail.com";
@@ -25,11 +30,11 @@ namespace JHobby.Service.Implements
             smtpClient.Credentials = new NetworkCredential("JHobby.THM103@gmail.com", "qbay cfun ebum bjhj");
 
             var mail = new MailMessage();
-            
+
             mail.Subject = "JHobby帳號註冊成功";
             mail.From = new MailAddress("JHobby.THM103@gmail.com", "JHobbyGM");
             mail.To.Add(account);
-            mail.Body = "<h1>恭喜您成為會員~</h1><br><a href=\"https://localhost:7097/member/VerifyMail\" target=\"_blank\">帳號驗證</a>";
+            mail.Body = $"<h1>恭喜您成為會員~</h1><br><a href=\"https://localhost:7097/member/VerifyMail/{verify}\" target=\"_blank\">帳號驗證</a>";
             mail.IsBodyHtml = true;
             mail.BodyEncoding = Encoding.UTF8;
             smtpClient.Send(mail);

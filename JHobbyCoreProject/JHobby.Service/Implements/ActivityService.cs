@@ -10,11 +10,12 @@ namespace JHobby.Service.Implements
     {
         public readonly IActivityRepository _activityRepository;
         public readonly IMapper _mapper;
-
-        public ActivityService(IActivityRepository activityRepository, IMapper mapper)
+        public readonly ICommonService _commonService;
+        public ActivityService(IActivityRepository activityRepository, IMapper mapper, ICommonService commonService)
         {
             _activityRepository = activityRepository;
             _mapper = mapper;
+            _commonService = commonService;
         }
 
         /// <summary>
@@ -67,17 +68,19 @@ namespace JHobby.Service.Implements
         {
             var result = _activityRepository.GetActivityPageById(id);
 
+
             var mapper = new ActivityPageModel
             {
                 ActivityId = result.ActivityId,
                 MemberId = result.MemberId,
-                ActivityLocation = result.ActivityLocation,
+                ActivityLocation = result.ActivityLocation.Trim(),
                 CategoryId = result.CategoryId,
                 CategoryTypeId = result.CategoryTypeId,
-                ActivityName = result.ActivityName,
-                StartTime = result.StartTime,
-                JoinDeadLine = result.JoinDeadLine,
-                ActivityNotes = result.ActivityNotes,
+                ActivityName = result.ActivityName.Trim(),
+                StartDate = _commonService.ConvertTime(result.StartTime).First().DateConvert,
+                StartTime = _commonService.ConvertTime(result.StartTime).First().TimeConvert,
+                JoinDeadLine = _commonService.ConvertTime(result.JoinDeadLine).First().DateConvert,
+                ActivityNotes = result.ActivityNotes.Trim(),
                 ActivityImages = result.ActivityImages.Select(ai => new ActivityImageModel
                 {
                     ActivityImageId = ai.ActivityImageId,
@@ -100,9 +103,11 @@ namespace JHobby.Service.Implements
         {
             return _activityRepository.GetMsgList(id).Select(r => new MemberMsgModel
             {
+                MemberId=r.MemberId,
                 ActivityId = r.ActivityId,
                 HeadShot = r.HeadShot,
-                MessageTime = r.MessageTime,
+                MessageDate=_commonService.ConvertTime(r.MessageTime).First().DateConvert,
+                MessageTime = _commonService.ConvertTime(r.MessageTime).First().TimeConvert,
                 MessageText = r.MessageText,
                 NickName = r.NickName,
             }).ToList();

@@ -111,7 +111,7 @@
                 memberRegister: {
                     account: "",
                     hashPassword: "",
-                    status: "0",
+                    status: "8",
                     creationDate: this.GetDay(),
                     passwordConfirm: "",
                     policy: false
@@ -133,6 +133,8 @@
                 if (!this.memberRegister.policy) {
                     return alert("您必須同意使用條款和隱私權政策才能註冊!!");
                 }
+
+                this.memberRegister.account = this.memberRegister.account.toLowerCase();
 
                 let self = this;
 

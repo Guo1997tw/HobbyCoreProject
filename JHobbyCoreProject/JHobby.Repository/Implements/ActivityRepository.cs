@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using AutoMapper.Execution;
 using JHobby.Repository.Interfaces;
 using JHobby.Repository.Models.Dto;
 using JHobby.Repository.Models.Entity;
@@ -42,6 +43,21 @@ namespace JHobby.Repository.Implements
             }
             catch (Exception) { return false; }
         }
+    /// <summary>
+    /// 會員留言板查詢
+    /// </summary>
+    /// <returns></returns>
+    public IEnumerable<MemberMsgDto> GetMsgList(int id)
+    {
+        var result = _dbContext.Members.Join(_dbContext.MsgBoards, m => m.MemberId, mb => mb.MemberId, (m, mb) => new MemberMsgDto
+        {
+            MemberId=mb.MemberId,
+            ActivityId = mb.ActivityId,
+            HeadShot = m.HeadShot,
+            MessageTime = mb.MessageTime,
+            MessageText = mb.MessageText,
+            NickName = m.NickName
+        }).Where(f => f.ActivityId == id).ToList();
 
         /// <summary>
         /// 團主修改
@@ -203,4 +219,5 @@ namespace JHobby.Repository.Implements
             return true;
         }
     }
+}
 }

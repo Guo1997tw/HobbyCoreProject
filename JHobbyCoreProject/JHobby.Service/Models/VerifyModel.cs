@@ -6,14 +6,9 @@ using System.Threading.Tasks;
 
 namespace JHobby.Service.Models
 {
-    public class MemberStatusModel
+    public class VerifyModel
     {
-        public int MemberId { get; set; }
-
         public string Account { get; set; } = null!;
-
-        public string NickName { get; set; } = null!;
-
-        public string Status { get; set; } = null!;
+        public bool Success { get; set; }
     }
 }
