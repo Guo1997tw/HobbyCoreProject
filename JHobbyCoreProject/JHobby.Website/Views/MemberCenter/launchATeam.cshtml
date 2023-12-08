@@ -1,4 +1,6 @@
-﻿@model ReviewIdViewModel
+﻿@{
+    int VerifyMemberId = ViewBag.VerifyMemberId;
+}
 <partial name="_BreadcrumbPartial" />s
 <partial name="_DashboardMenuPartial" />
 @* MemberCenter/launchATeam *@
@@ -191,7 +193,7 @@
                                                                                     </td>
                                                                                     <td class="table-accept-btn text-end">
                                                                                         @* submit *@
-                                                                                        <form action="ActivityLeader/LeaderEdit" method="post">
+                                                                                        <form action="/ActivityLeader/LeaderEdit" method="post">
                                                                                             <input type="hidden" name="activityId" :value="item.activityId">
                                                                                             <button type="submit" class="btn btn-primary w-100">
                                                                                                 <i class="feather-check-circle"></i>編輯開團
@@ -650,7 +652,7 @@
             },
             methods: {
                 logBrowsepicture() {
-                    axios.get(`/LaunchaTeamApi/GetByIdOld/${@Model.MemberId}`)
+                    axios.get(`/LaunchaTeamApi/GetByIdOld/${@VerifyMemberId}`)
                         .then((result) => {
                             this.axiosBrowsepicture = result.data;
                             this.maxPeople = result.data.maxPeople;
@@ -658,7 +660,7 @@
                         .catch((error) => alert(`發生錯誤: ${error}`));
                 },
                 lookUpdates() {
-                    axios.get(`/GroupStartingApi/GetByIdNow/${@Model.MemberId}`)
+                    axios.get(`/GroupStartingApi/GetByIdNow/${@VerifyMemberId}`)
                         .then((viewModel) => {
                             this.showUpdates = viewModel.data;
                             for (var i = 0; i < this.showUpdates.length; i++) {

@@ -21,21 +21,11 @@ namespace JHobby.Website.Controllers
         [Authorize(Roles = "Member")]
         public IActionResult MemberProfile(int id)
         {
-            var view = new ProfileTestViewModel();
-
             
-
             ViewData["Title"] = "會員個人介紹";
-			//try
-			//{
-                view.VerifyMemberId = _userAuthenticationService.GetUserId();
-                view.MemberId = id;
-   //         }
-			//catch (Exception ex)
-			//{
-
-			//}
-            return View(view);
+            ViewBag.VerifyMemberId = _userAuthenticationService.GetUserId();
+            ViewBag.MemberId = id;
+            return View();
 
         }
 	}
