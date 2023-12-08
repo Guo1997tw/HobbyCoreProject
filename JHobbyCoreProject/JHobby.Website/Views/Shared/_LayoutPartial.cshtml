@@ -1,8 +1,10 @@
-﻿ @if (User.Identity.IsAuthenticated)
+﻿@* 
+
+ @if (User.Identity.IsAuthenticated)
 {  
-  @* var u = User.Claims.Where(x => x.Type == ClaimTypes.Name).FirstOrDefault();  *@
- 
-@*       <ul class="nav header-navbar-rht logged-in">
+    var u = User.Claims.Where(x => x.Type == MemberId).FirstOrDefault();
+
+    <ul class="nav header-navbar-rht logged-in">
         <li class="has-submenu">
             <a href="#">會員中心 <i class="fas fa-chevron-down"></i></a>
             <ul class="submenu">
@@ -24,7 +26,7 @@
                 <span class="user-img">
                     <img class="rounded-circle" src="~/image/avatar-05.jpg" width="31" alt="Darren Elder">
                 </span>
-            </a>  *@
+            </a>  
             <div class="dropdown-menu dropdown-menu-end">
                 <div class="user-header">
                     <div class="avatar avatar-sm">
@@ -37,10 +39,10 @@
                 </div>
                 <p><a class="dropdown-item" href="login.html">登出</a></p>
             </div>
-   @*     </li>
-    </ul>  *@
+        </li>
+    </ul>  
 } 
- else
+ else *@
 { 
     <li class="nav-item">
         <div class="nav-link btn btn-white log-register">

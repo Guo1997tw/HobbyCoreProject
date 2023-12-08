@@ -22,5 +22,10 @@ namespace JHobby.Repository.Models.Dto
 
         public string? NickName { get; set; }
 
+        public int MemberId { get; set; }
+
+        public int? Fraction { get; set; }
+
+        public string ImageName { get; set; } = null!;
     }
 }

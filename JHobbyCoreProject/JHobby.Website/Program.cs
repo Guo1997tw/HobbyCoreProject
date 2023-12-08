@@ -8,6 +8,7 @@ using JHobby.Service.Interfaces;
 using JHobby.Website.Controllers.Api;
 using JHobby.Website.Job;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -61,11 +62,12 @@ namespace JHobby.Website
 
             // Interface DI
             builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
+            // Interface DI
             builder.Services.AddScoped<IGroupStartingRepository, GroupStartingRepository>();
-            builder.Services.AddScoped<IGroupStartingService, GroupStartingService>();
-            builder.Services.AddScoped<ILaunchaTeamRepository, LaunchaTeamRepository>();
-            builder.Services.AddScoped<ILaunchaTeamService, LaunchaTeamService>();
-            builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
+			builder.Services.AddScoped<IGroupStartingService, GroupStartingService>();
+			builder.Services.AddScoped<ILaunchaTeamRepository, LaunchaTeamRepository>();
+			builder.Services.AddScoped<ILaunchaTeamService, LaunchaTeamService>();
+			builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
             builder.Services.AddScoped<ICategoryService, CategoryService>();
             builder.Services.AddScoped<IIndexRepository, IndexRepository>();
             builder.Services.AddScoped<IIndexService, IndexService>();
@@ -95,7 +97,8 @@ namespace JHobby.Website
             builder.Services.AddScoped<IWishListRepository, WishListRepository>();
             builder.Services.AddScoped<IWishListService, WishListService>();
             builder.Services.AddScoped<ISendMailService, SendMailService>();
-
+            builder.Services.AddScoped<IinputScoreRepository, InputScoreRepository>();
+            builder.Services.AddScoped<IinputScoreService, InputScoreService>();
             builder.Services.AddHttpContextAccessor();
             builder.Services.AddScoped<IUserAuthenticationService, UserAuthenticationService>();
 

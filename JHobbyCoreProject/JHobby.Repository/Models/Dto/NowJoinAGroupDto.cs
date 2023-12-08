@@ -37,8 +37,6 @@ namespace JHobby.Repository.Models.Dto
 
         public DateTime StartTime { get; set; }
 
-        public virtual Activity Activity { get; set; } = null!;
-
-        public virtual Member Member { get; set; } = null!;
+        public string ImageName { get; set; } = null!;
     }
 }

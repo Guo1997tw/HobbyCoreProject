@@ -1,4 +1,7 @@
-﻿
+﻿@{
+    int loginMemberId = ViewBag.loginMemberId;
+    ViewData["Title"] = "參團管理";
+}
 <partial name="_BreadcrumbPartial" />
 <partial name="_DashboardMenuPartial" />
 <div b-q7camsv0h8="" class="container">
@@ -15,7 +18,9 @@
                             <div class="card-header card-header-info">
                                 <div class="card-header-inner">
                                     <h4>報名紀錄</h4>
-                                    <p>Court Reservations Made Easy</p>
+                                    <p>
+                                        Participate in activities made easy
+                                    </p>
                                 </div>
                                 <div class="card-header-btns">
                                     <nav>
@@ -54,15 +59,24 @@
                                                     :key="index">
                                                     <td>
                                                         <div class="academy-info">
-                                                            <a href="/user-bookings.html" class="academy-img">
-                                                                <img src="~/assets/img/booking/booking-02.jpg" alt="Booking">
+                                                            <a class="academy-img"
+                                                               :href="`/Activity/ActivityPage/${pictureActivityId}`"
+                                                               @@click="pictureLinkToGroupPage(filterCard[index])">
+                                                                <img :src="`/activityImgs/${card.imageName}.jpg`"
+                                                                     style="height: 80px; width: 80px"
+                                                                     alt="Activity Picture">
                                                             </a>
                                                             <div class="academy-content">
-                                                                <h6><a href="/#" data-bs-toggle="modal" data-bs-target="#upcoming-court">{{card.activityName}}</a></h6>
+                                                                <h6>
+                                                                    <a @@click="titleLinkToGroupPage(filterCard[index])"
+                                                                       :href="`/Activity/ActivityPage/${titleActivityId}`">
+                                                                        {{card.activityName}}
+                                                                    </a>
+                                                                </h6>
                                                                 <span>團主: {{card.nickName}}</span>
                                                                 <ul>
-                                                                    <li>活動人數上限 : {{card.maxPeople}}</li>
-                                                                    <li>目前人數: {{card.currentPeople}}</li>
+                                                                    <li>活動人數上限 : {{card.maxPeople}}人</li>
+                                                                    <li>目前人數: {{card.currentPeople}}人</li>
                                                                 </ul>
                                                             </div>
                                                         </div>
@@ -77,10 +91,38 @@
                                                     </td>
                                                     <td>
                                                         <div class="dropdown dropdown-action">
-                                                            <a href="/#" class="action-icon dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-ellipsis"></i></a>
-                                                            <div class="dropdown-menu dropdown-menu-end" data-popper-placement="bottom-end" data-popper-escaped="" style="position: absolute; inset: 0px 0px auto auto; margin: 0px; transform: translate3d(-1440px, 2px, 0px);" data-popper-reference-hidden="">
-                                                                <a class="dropdown-item" href="/javascript:void(0);">
-                                                                    <i class="feather-x-circle"></i> Cancel
+                                                            <a href="#"
+                                                               class="action-icon dropdown-toggle"
+                                                               data-bs-toggle="dropdown"
+                                                               aria-expanded="false"
+                                                               @@click="setCurrentCard(filterCard[index])">
+                                                                <i class="fas fa-ellipsis"></i>
+                                                            </a>
+                                                            <div class="dropdown-menu dropdown-menu-end"
+                                                                 data-popper-placement="bottom-end"
+                                                                 data-popper-escaped=""
+                                                                 style="
+                                                                         position: absolute;
+                                                                         inset: 0px 0px auto auto;
+                                                                         margin: 0px;
+                                                                         transform: translate3d(
+                                                                           -1440px,
+                                                                           2px,
+                                                                           0px
+                                                                         );
+                                                                       "
+                                                                 data-popper-reference-hidden="">
+                                                                <a class="dropdown-item"
+                                                                   :href="`/Activity/ActivityPage/${activityId}`"
+                                                                   @@click="linkToGroupPage">
+                                                                    <i class="feather-chevron-right"></i>
+                                                                    前往頁面
+                                                                </a>
+                                                                <a class="dropdown-item"
+                                                                   href=""
+                                                                   @@click="joinAGroupCancel">
+                                                                    <i class="feather-corner-down-left"></i>
+                                                                    取消報名
                                                                 </a>
                                                             </div>
                                                         </div>
@@ -102,7 +144,7 @@
                             <div class="card-header card-header-info">
                                 <div class="card-header-inner">
                                     <h4>心願單</h4>
-                                    <p>My favourite court lists </p>
+                                    <p>My favourite group lists </p>
                                 </div>
                                 <div class="card-header-btns">
                                     <nav>
@@ -140,11 +182,20 @@
                                                     :key="index">
                                                     <td>
                                                         <div class="academy-info academy-info">
-                                                            <a href="/user-bookings.html" class="academy-img">
-                                                                <img src="~/assets/img/booking/booking-03.jpg" alt="Booking">
+                                                            <a class="academy-img"
+                                                               @@click="pictureLinkToGroupPage(filterCard[index])"
+                                                               :href="`/Activity/ActivityPage/${pictureActivityId}`">
+                                                                <img :src="`/activityImgs/${card.imageName}.jpg`"
+                                                                     style="height: 80px; width: 80px"
+                                                                     alt="Activity Picture">
                                                             </a>
                                                             <div class="academy-content">
-                                                                <h6><a href="/user-bookings.html">{{card.activityName}}</a></h6>
+                                                                <h6>
+                                                                    <a @@click="titleLinkToGroupPage(filterCard[index])"
+                                                                       :href="`/Activity/ActivityPage/${titleActivityId}`">
+                                                                        {{card.activityName}}
+                                                                    </a>
+                                                                </h6>
                                                                 <p>尚餘可參加人數 : {{card.surplusQuota}}人</p>
                                                             </div>
                                                         </div>
@@ -153,10 +204,41 @@
                                                         <span><i class="feather-edit"></i>{{card.activityStatus}}</span>
                                                     </td>
                                                     <td>
-                                                        <div class="academy-icon">
-                                                            <a href="/user-bookings.html">
-                                                                <i class="feather-chevron-right"></i>
+                                                        <div class="dropdown dropdown-action">
+                                                            <a href="#"
+                                                               class="action-icon dropdown-toggle"
+                                                               data-bs-toggle="dropdown"
+                                                               aria-expanded="false"
+                                                               @@click="setCurrentCard(filterCard[index])">
+                                                                <i class="fas fa-ellipsis"></i>
                                                             </a>
+                                                            <div class="dropdown-menu dropdown-menu-end"
+                                                                 data-popper-placement="bottom-end"
+                                                                 data-popper-escaped=""
+                                                                 style="
+                                                                       position: absolute;
+                                                                       inset: 0px 0px auto auto;
+                                                                       margin: 0px;
+                                                                       transform: translate3d(
+                                                                         -1440px,
+                                                                         2px,
+                                                                         0px
+                                                                       );
+                                                                     "
+                                                                 data-popper-reference-hidden="">
+                                                                <a class="dropdown-item"
+                                                                   :href="`/Activity/ActivityPage/${activityId}`"
+                                                                   @@click="linkToGroupPage">
+                                                                    <i class="feather-chevron-right"></i>
+                                                                    前往頁面
+                                                                </a>
+                                                                <a class="dropdown-item"
+                                                                   href=""
+                                                                   @@click="collectAGroupCancel(filterCard[index])">
+                                                                   <i class="feather-trash"></i>
+                                                                    刪除收藏
+                                                                </a>
+                                                            </div>
                                                         </div>
                                                     </td>
                                                 </tr>
@@ -178,7 +260,7 @@
                             <div class="card-header card-header-info border-0">
                                 <div class="card-header-inner">
                                     <h4>參團紀錄</h4>
-                                    <p>Access recent invoices related to court bookings </p>
+                                    <p>Group participation record save your memories</p>
                                 </div>
                             </div>
                             <div class="tab-content">
@@ -201,11 +283,18 @@
                                                 <tr v-for="(card, index) in filterCard" :key="index">
                                                     <td>
                                                         <h2 class="table-avatar">
-                                                            <a href="/#" data-bs-toggle="modal" data-bs-target="#upcoming-court" class="avatar avatar-sm flex-shrink-0">
-                                                                <img class="avatar-img" src="~/assets/img/booking/booking-02.jpg" alt="Booking">
+                                                            <a @@click="pictureLinkToGroupPage(filterCard[index])"
+                                                               :href="`/Activity/ActivityPage/${pictureActivityId}`"
+                                                               class="avatar avatar-sm flex-shrink-0">
+                                                                <img class="avatar-img"
+                                                                     :src="`/activityImgs/${card.imageName}.jpg`"
+                                                                     alt="Activity Picture">
                                                             </a>
                                                             <span class="table-head-name flex-grow-1">
-                                                                <a data-bs-toggle="modal" data-bs-target="#upcoming-court">{{card.activityName}}</a>
+                                                                <a @@click="titleLinkToGroupPage(filterCard[index])"
+                                                                   :href="`/Activity/ActivityPage/${titleActivityId}`">
+                                                                    {{card.activityName}}
+                                                                </a>
                                                                 <span>團主: {{card.nickName}}</span>
                                                             </span>
                                                         </h2>
@@ -224,14 +313,37 @@
                                                     <td>
                                                         <!-- 下拉圓形選單評團主 -->
                                                         <div class="dropdown dropdown-action">
-                                                            <a href="#" class="action-icon dropdown-toggle"
-                                                               data-bs-toggle="dropdown" aria-expanded="false">
+                                                            <a href="#"
+                                                               class="action-icon dropdown-toggle"
+                                                               data-bs-toggle="dropdown"
+                                                               aria-expanded="false"
+                                                               @@click="setCurrentCard(filterCard[index])">
                                                                 <i class="fas fa-ellipsis"></i>
                                                             </a>
-                                                            <div class="dropdown-menu dropdown-menu-end">
-                                                                <a class="dropdown-item" href="javascript:;" data-bs-toggle="modal"
-                                                                   data-bs-target="#request-reject">
-                                                                    <a href="javascript:;" class="btn cancel-table-btn" data-bs-toggle="modal" data-bs-target="#request-coche" @@click="setCurrentCard(filterCard[index])">評分</a>
+                                                            <div class="dropdown-menu dropdown-menu-end"
+                                                                 data-popper-placement="bottom-end"
+                                                                 style="
+                                                                        position: absolute;
+                                                                        inset: 0px 0px auto auto;
+                                                                        margin: 0px;
+                                                                        transform: translate3d(
+                                                                          -1440px,
+                                                                          2px,
+                                                                          0px
+                                                                        );
+                                                                      ">
+                                                                <a class="dropdown-item"
+                                                                   @@click="linkToGroupPage"
+                                                                   :href="`/Activity/ActivityPage/${activityId}`">
+                                                                    <i class="feather-chevron-right"></i>
+                                                                    前往頁面
+                                                                </a>
+                                                                <a href="javascript:;"
+                                                                   class="dropdown-item"
+                                                                   data-bs-toggle="modal"
+                                                                   data-bs-target="#request-coche">
+                                                                    <i class="fa-regular fa-star"></i>
+                                                                    團主評分
                                                                 </a>
                                                             </div>
                                                         </div>
@@ -252,8 +364,8 @@
                                             <div class="dataTables_paginate paging_simple_numbers" id="DataTables_Table_1_paginate">
                                                 <!--分頁按鈕-->
                                                 <paginate :page-count="total"
-                                                @* :prev-text="'上一頁'"
-                                                          :next-text="'下一頁'" *@
+                                                          :prev-text="'<'"
+                                                          :next-text="'>'"
                                                           :click-handler="pageClick">
                                                     <span slot="prevContent"><i class="feather-chevrons-left"></i></span>
                                                     <span slot="nextContent"><i class="feather-chevrons-right"></i></span>
@@ -268,7 +380,11 @@
                         </div>
                     </div>
                     <!-- 有分數星星的彈跳視窗V1.1 -->
-                    <div class="modal custom-modal fade request-modal" id="request-coche" style="display: none;" aria-hidden="true">
+                    <div class="modal custom-modal fade request-modal"
+                         id="request-coche"
+                         style="display: none;"
+                         aria-hidden="true"
+                         ref="modal">
                         <div class="modal-dialog modal-dialog-centered modal-md">
                             <div class="modal-content">
                                 <div class="modal-header">
@@ -286,7 +402,9 @@
                                             <div class="card dashboard-card court-information">
                                                 <div class="d-flex align-items-center justify-content-between">
                                                     <div class="card-header">
-                                                        <h4>評分注意事項:<br>送出後就無法再進行更改</h4>
+                                                        <h5>評分注意事項:</h5>
+                                                        <p>1.請點擊進行評分星星。</p>
+                                                        <p>2.送出後就無法再進行更改。</p>
                                                     </div>
                                                     <div class="appointment-info">
                                                         <!-- 訊息欄位 -->
@@ -294,7 +412,8 @@
                                                             <li>
                                                                 <div class="appointment-item">
                                                                     <div class="appointment-img">
-                                                                        <img src="~/assets/img/booking/booking-01.jpg" alt="User">
+                                                                        <img :src="`/activityImgs/${currentCard.imageName}.jpg`"
+                                                                             alt="Activity Picture">
                                                                     </div>
                                                                     <div class="appointment-content">
                                                                         <h6>{{currentCard.activityName}}</h6>
@@ -316,13 +435,23 @@
                                                     </div>
                                                     <div class="ratings-info corner-radius-10 text-center">
                                                         <!-- 分數星星 -->
-                                                        <div class="ratings-info corner-radius-10 text-center">
-                                                            <div class="rating">
-                                                                <i class="fas fa-star filled"></i>
-                                                                <i class="fas fa-star filled"></i>
-                                                                <i class="fas fa-star filled"></i>
-                                                                <i class="fas fa-star filled"></i>
-                                                                <i class="fas fa-star filled"></i>
+                                                        <div class="ratings-info corner-radius-10 text-center venue-coach-details">
+                                                            <div class="ratings-info corner-radius-10 text-center">
+                                                                <div class="rating"
+                                                                     v-if="checkFraction === null">
+                                                                    <i v-for="index in 5"
+                                                                       :key="index"
+                                                                       :class="getClass(index)"
+                                                                       @@click="selectScore(index)"></i>
+                                                                    <span>({{ tempStar }})</span>
+                                                                </div>
+                                                                <div class="rating" v-else>
+                                                                    <i class="fas fa-star filled"
+                                                                       v-for="n in Math.floor(checkFraction)"></i>
+                                                                    <i class="fa-regular fa-star filled"
+                                                                       v-for="x in 5-Math.ceil(checkFraction)"></i>
+                                                                    <span>({{checkFraction}})</span>
+                                                                </div>
                                                             </div>
                                                         </div>
                                                         <!-- 分數星星 -->
@@ -335,7 +464,11 @@
                                 </div>
                                 <div class="modal-footer">
                                     <div class="table-accept-btn">
-                                        <a href="javascript:;" class="btn accept-btn me-0">送出</a>
+                                        <a href="javascript:;"
+                                           class="btn accept-btn me-0"
+                                           @@click="submitScore">
+                                            送出
+                                        </a>
                                     </div>
                                 </div>
                             </div>
@@ -348,7 +481,7 @@
             </div>
         </div>
         <!-- /Page Content -->
-        
+
     </main>
 </div>
 
@@ -365,7 +498,11 @@
                     nowJoinAGroupCard: [],
                     countPerPage: 2,
                     pageNumber: 1,
-                    memberId: '2',
+                    memberId: @loginMemberId,
+                    currentCard: "",
+                    activityId: "",
+                    pictureActivityId: "",
+                    titleActivityId: ""
                 };
             },
             mounted() {
@@ -391,6 +528,33 @@
                 },
                 pageClick(num) {
                     this.pageNumber = num;
+                },
+                joinAGroupCancel() {
+                    let _this = this;
+                    var form = new FormData();
+                    form.append("ReviewStatus", 3);
+                    axios
+                        .put(
+                            `/NowJoinAGroupApi/NowJoinAGroupCancel/${_this.currentCard.activityUserId}/${_this.currentCard.memberId}`,
+                            form,
+                            {
+                                headers: { "Content-Type": "multipart/Formdata" },
+                            }
+                        )
+                        .then((response) => alert("更新成功"))
+                        .catch((erro) => alert(`Erro: ${erro}`));
+                },
+                setCurrentCard(card) {
+                    this.currentCard = card;
+                },
+                linkToGroupPage() {
+                    this.activityId = this.currentCard.activityId;
+                },
+                pictureLinkToGroupPage(card) {
+                    this.pictureActivityId = card.activityId;
+                },
+                titleLinkToGroupPage(card) {
+                    this.titleActivityId = card.activityId;
                 }
             },
         })
@@ -404,7 +568,10 @@
                     wishListCard: [],
                     countPerPage: 2,
                     pageNumber: 1,
-                    memberId: '2',
+                    memberId: @loginMemberId,
+                    activityId: "",
+                    pictureActivityId: "",
+                    titleActivityId: ""
                 }
             },
             mounted() {
@@ -432,6 +599,25 @@
                 },
                 pageClick(num) {
                     this.pageNumber = num;
+                },
+                collectAGroupCancel(card) {
+                    let _this = this;
+                    alert(JSON.stringify(card));
+                    axios.delete(`/WishListApi/WishListDelete?memberId=${card.memberId}&wishId=${card.wishId}`)
+                        .then(alert("已取消收藏"))
+                        .catch(erro => alert(`${erro}`))
+                },
+                setCurrentCard(card) {
+                    this.currentCard = card;
+                },
+                linkToGroupPage() {
+                    this.activityId = this.currentCard.activityId;
+                },
+                pictureLinkToGroupPage(card) {
+                    this.pictureActivityId = card.activityId;
+                },
+                titleLinkToGroupPage(card) {
+                    this.titleActivityId = card.activityId;
                 }
             }
         })
@@ -445,12 +631,19 @@
                     pastJoinAGroupCard: [],
                     countPerPage: 2,
                     pageNumber: 1,
-                    memberId: '2',
+                    memberId: @loginMemberId,
                     currentCard: '',
+                    activityId: "",
+                    pictureActivityId: "",
+                    titleActivityId: "",
+                    Star: 0,
+                    tempStar: 0,
+                    checkFraction: "",
                 };
             },
             mounted() {
                 this.axiosPastJoinAGroupCard();
+                $(this.$refs.modal).on('hidden.bs.modal', this.resetStarRating);
             },
             computed: {
                 total() {
@@ -473,9 +666,74 @@
                     this.pageNumber = num;
                 },
                 setCurrentCard(card) {
-                    this.currentCard = card;
+                    let _this = this;
+                    _this.currentCard = card;
+                    _this.showStartScore(card);
                 },
+                linkToGroupPage() {
+                    this.activityId = this.currentCard.activityId;
+                },
+                pictureLinkToGroupPage(card) {
+                    this.pictureActivityId = card.activityId;
+                },
+                titleLinkToGroupPage(card) {
+                    this.titleActivityId = card.activityId;
+                },
+                submitScore() {
+                    let _this = this;
+                    _this.star = _this.tempStar;
+                    const payload = {
+                        fraction: _this.star,
+                        activityId: _this.currentCard.activityId,
+                        memberId: 2,
+                    };
+                    axios
+                        .post(
+                            `/InputScoreApi/NewInputScoreById`,
+                            payload,
+                            {
+                                headers: { "Content-Type": "application/json" },
+                            }
+                        )
+                        .then(response => {
+                            if (response.data === false) {
+                                alert("重複輸入");
+                            }
+                            else {
+                                let cardListChange = _this.pastJoinAGroupCard
+                                    .findIndex(id => id.activityId === _this.currentCard.activityId);
+
+                                if (cardListChange != null) {
+                                    _this.pastJoinAGroupCard[cardListChange].fraction = _this.star;
+                                }
+                                alert("評分成功");
+                            }
+                        })
+                        .catch((erro) => alert(`Erro: ${erro}`));
+                    $('#request-coche').modal('hide');
+                },
+                getClass(index) {
+                    if (index <= this.tempStar) {
+                        return 'fas fa-star filled';
+                    } else {
+                        return 'fa-regular fa-star';
+                    }
+                },
+                selectScore(index) {
+                    if (this.checkFraction === null) {
+                        this.tempStar = index;
+                    }
+                },
+                resetStarRating() {
+                    this.tempStar = 0;
+                    this.star = 0;
+                },
+                showStartScore() {
+                    this.checkFraction = this.currentCard.fraction;
+                }
             },
-        }).component("paginate", VuejsPaginateNext).mount("#idPastJoinAGroupCard");
+        })
+            .component("paginate", VuejsPaginateNext)
+            .mount("#idPastJoinAGroupCard");
     </script>
 }
