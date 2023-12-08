@@ -27,11 +27,11 @@ namespace JHobby.Service.Implements
 		{
 			var resporitory = _middleCenterRepository.GetCategoryTypeAll();
 			var query = resporitory.Where(res => res.JoinDeadLine >= DateTime.Now);
-			if (search.categoyId != 0 && search.categoryTypeId != 0)
+			if (search.categoryId != 0 && search.categoryTypeId != 0)
 			{
-				query = query.Where(res => res.CategoryId == search.categoyId && res.CategoryTypeId == search.categoryTypeId);
+				query = query.Where(res => res.CategoryId == search.categoryId && res.CategoryTypeId == search.categoryTypeId);
 			}
-			if (search.city !="0" && search.area !="0")
+			if (!string.IsNullOrEmpty(search.city) && !string.IsNullOrEmpty(search.area))
 			{
 				query = query.Where(res => res.ActivityCity == search.city && res.ActivityArea == search.area);
 			}
@@ -44,7 +44,8 @@ namespace JHobby.Service.Implements
 				ActivityId = res.ActivityId,
 				MemberId = res.MemberId,
 				NickName = res.NickName,
-				CategoryId = res.CategoryId,
+                HeadShot = res.HeadShot,
+                CategoryId = res.CategoryId,
 				CategoryTypeId = res.CategoryTypeId,
 				ActivityName = res.ActivityName.Trim(),
 				ActivityStatus = res.ActivityStatus,

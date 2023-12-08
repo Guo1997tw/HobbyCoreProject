@@ -20,6 +20,8 @@ namespace JHobby.Repository.Interfaces
         public MemberDto? GetById(int id);
 
 		public bool Update(int id,UpdateMemberDto updateMemberDto);
-       
+
+        public bool updateVerify(UpdateVerifyDto UpdateVerifyDto);
+
     }
 }

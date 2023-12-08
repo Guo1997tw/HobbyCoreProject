@@ -1,6 +1,8 @@
 ﻿@{
+    int verifyMemberId = ViewBag.verifyMemberId;
+    bool blnLogIn = ViewBag.logIn;
     var search = ViewBag.search;
-    ViewData["Title"] = "活動";
+    ViewData["Title"] = "活動搜尋";
 }
 @section Styles
     {
@@ -59,7 +61,7 @@
                     <div class="listing-item listing-item-grid">
                         <div class="listing-img">
                             <a v-bind:href='"@Url.Action("ActivityPage","Activity")/"+item.activityId'>
-                                <img :src='"/image/activityimages/"+item.activityImages[0].imageName+".jpg"' style="height:259px;width:417px" alt="Venue">
+                                <img :src="item.activityImages[0].imageName" style="height:259px;width:417px" alt="Venue">
                             </a>
                             <div class="fav-item-venues">
                                 <div class="list-reviews">
@@ -95,7 +97,7 @@
                             <div class="listing-button">
                                 <div class="listing-venue-owner">
                                     <a class="navigation" v-bind:href='"@Url.Action("MemberProfile","Profile")/"+item.memberId'>
-                                        <img src="~/assets/img/profiles/avatar-01.jpg" alt="Venue">{{item.nickName}}
+                                        <img :src="item.headShot" alt="Venue">{{item.nickName}}
                                     </a>
                                 </div>
                                 @* 									<a href="venue-details.html" class="user-book-now"><span><i class="feather-calendar me-2"></i></span>參加</a> *@
@@ -142,20 +144,22 @@
                     wish: [],
                     sort: "asc",
                     blnData: true,
+                    blnAction: true
                 }
             },
             mounted() {
                 let _this = this;
                 _this.GetCategoryTypeList();
+                _this.blnAction = blnChange(`@blnLogIn`);
             },
             methods: {
                 GetCategoryTypeList() {
                     let _this = this;
                     var form = new FormData();
-                    form.append("categoyId", @search.categoyId);
+                    form.append("categoryId", @search.categoryId);
                     form.append("categoryTypeId", @search.categoryTypeId);
-                    form.append("city", @search.city);
-                    form.append("area", @search.area);
+                    form.append("city", _this.decodeHtml(`@search.city`));
+                    form.append("area", _this.decodeHtml(`@search.area`));
                     form.append("sort", _this.sort);
                     axios.post("/MiddleCenterApi/GetCategoryTypeList", form, {
                         headers: {
@@ -174,22 +178,23 @@
                 },
                 QueryWish() {
                     let _this = this;
-                    axios.get("/WishApi/GetWishList")
+                    if (!_this.blnAction) return
+                    axios.get(`/WishApi/GetWishList/@verifyMemberId`)
                         .then(res => _this.wish = res.data)
                         .catch(err => alert(err));
                 },
                 Fav(id) {
                     let _this = this;
+                    if (!_this.blnAction) return
                     if (_this.wish.includes(id)) {
-                        axios.delete(`/WishApi/DeleteWish/${id}`)
+                        axios.delete(`/WishApi/DeleteWish/@verifyMemberId/${id}`)
                             .then(res => _this.QueryWish())
                             .catch(err => alert(err));
                     }
                     else {
-                        //目前寫死會員ID_1，等待網頁狀態實作
                         let _this = this;
                         var form = new FormData();
-                        form.append("memberId", 1);
+                        form.append("memberId", @verifyMemberId);
                         form.append("activityId", id);
                         form.append("addTime", GetDateTime());
                         axios.post("/WishApi/InsertWish", form, {
@@ -200,21 +205,23 @@
                             .then(res => _this.QueryWish())
                             .catch(err => alert(err));
                     }
-                    //_this.GetCategoryTypeList();
                 },
                 More() {
                     let _this = this;
                     _this.listEnd += 6;
                     _this.activityList = _this.originList.slice(_this.listStar, _this.listEnd)
-                    // _this.top += 6;
-                    //_this.GetCategoryTypeList();
                     Jhobby_Animation()
                 },
                 Sort() {
                     let _this = this;
                     _this.GetCategoryTypeList()
                     _this.QueryWish();
-                }
+                },
+                decodeHtml(str) {
+                    let txt = document.createElement("textarea");
+                    txt.innerHTML=str;
+                    return txt.value;
+                },
             }
         }).mount("#activity")
 
