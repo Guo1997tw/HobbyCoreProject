@@ -12,7 +12,7 @@ namespace JHobby.Website.Controllers
         {
             _userAuthenticationService = userAuthenticationService;
         }
-
+        [Authorize(Roles = "Member, FastMember,Admin")]
         public IActionResult launchATeam(int id)
         {
 			ViewData["Title"] = "開團紀錄";
@@ -20,7 +20,6 @@ namespace JHobby.Website.Controllers
             model.MemberId = _userAuthenticationService.GetUserId();
 			return View(model);
         }
-
         // MemberCenter/joinAGroup
         /// <summary>
         ///  TODO : 參團紀錄
