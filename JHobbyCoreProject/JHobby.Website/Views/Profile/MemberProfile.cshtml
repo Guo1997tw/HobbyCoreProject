@@ -1,4 +1,7 @@
-﻿@model ProfileTestViewModel
+﻿@{
+    int VerifyMemberId = ViewBag.VerifyMemberId;
+    int MemberId = ViewBag.MemberId;
+}
 <partial name="_BreadcrumbPartial" />
 <div id="app" class="content">
     <div class="container">
@@ -150,15 +153,15 @@
         methods: {
 			getProfileById() {
 				let _this = this;
-				fetch(`/ProfileApi/GetProfileById/${@Model.MemberId}`).then(r => r.json()).then(d => {
+				fetch(`/ProfileApi/GetProfileById/${@MemberId}`).then(r => r.json()).then(d => {
 					_this.memberProfile = d;
 					_this.star = d.fraction;
-                    if (@Model.MemberId == @Model.VerifyMemberId) { _this.btnMemberProfile = true }
+                    if (@MemberId == @VerifyMemberId) { _this.btnMemberProfile = true }
 				});
 			},
 			getPastActivity() {
 				let _this = this;
-				fetch(`/ProfileApi/GetPastActivity/${@Model.MemberId}`).then(r => r.json()).then(d => {
+				fetch(`/ProfileApi/GetPastActivity/${@MemberId}`).then(r => r.json()).then(d => {
 					_this.activityList = d;
 				});
 			}
