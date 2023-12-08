@@ -8,5 +8,10 @@ namespace JHobby.Website.Controllers
         {
             return View();
         }
+
+        public IActionResult NotPermissions()
+        {
+            return View();
+        }
     }
 }

@@ -136,6 +136,11 @@ namespace JHobby.Service.Implements
             return mapper;
         }
 
+        public bool CheckAccountIsRepeat(string account)
+        {
+            return _memberRepository.GetAccountIsRepeat(account);
+        }
+
         private int RandomNumberSize(int minNum, int maxNum)
         {
             byte[] intBytes = new byte[4];
@@ -242,7 +247,6 @@ namespace JHobby.Service.Implements
 
                 throw new InvalidOperationException("錯誤網址");
             }
-            
         }
     }
 }
