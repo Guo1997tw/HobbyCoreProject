@@ -1,5 +1,5 @@
-﻿@model ReviewIdViewModel
-@{
+﻿@{
+    int loginMemberId = ViewBag.loginMemberId;
     ViewData["Title"] = "報名審核";
 }
 @section Styles{
@@ -215,6 +215,7 @@
                     sortOrder: 'asc',
                     countPerPage: 5,
                     pageNumber: 1,
+                    memberId: @loginMemberId,
                 };
             },
             mounted() {
@@ -243,7 +244,7 @@
             methods: {
                 axiosGetReviewById: function () {
                     axios
-                        .get(`/ReviewApi/GetReviewById/${@Model.MemberId}`)
+                        .get(`/ReviewApi/GetReviewById/${@loginMemberId}`)
                         .then((response) => {
                             let _this = this;
                             _this.reviewData = response.data;

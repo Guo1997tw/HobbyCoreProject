@@ -13,14 +13,11 @@ namespace JHobby.Website.Controllers
 		{
 			_userAuthenticationService = userAuthenticationService;
 		}
-		public IActionResult Apply(int id)
+		public IActionResult Apply()
 		{
 			ViewData["Title"] = "報名審核";
-
-            return View(new ReviewIdViewModel
-            {
-                MemberId =_userAuthenticationService.GetUserId(),
-            });
+            ViewBag.loginMemberId = _userAuthenticationService.GetUserId();
+            return View();
             
 		}
 	}
