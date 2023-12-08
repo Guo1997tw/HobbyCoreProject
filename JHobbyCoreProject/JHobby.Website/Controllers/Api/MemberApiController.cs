@@ -146,5 +146,15 @@ namespace JHobby.Website.Controllers.Api
 
             return Ok(done);
         }
+
+        [HttpPost]
+        public bool reSendVerifyMail([FromForm] ReSendVerifyMailViewModel reSendVerifyMailViewModel) {
+            var result = _sendMailService.SendLetter(reSendVerifyMailViewModel.Account);
+            if (result)
+            { 
+                return true;
+            }                
+         return false;
+        }
 	}
 }
