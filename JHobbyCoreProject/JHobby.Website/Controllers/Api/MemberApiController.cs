@@ -39,6 +39,11 @@ namespace JHobby.Website.Controllers.Api
         [HttpPost]
         public bool InsertRegister(MemberRegisterViewModel memberRegisterViewModel)
         {
+            if(!(_memberService.CheckAccountIsRepeat(memberRegisterViewModel.Account)))
+            {
+                return false;
+            }
+
             var mapper = new MemberRegisterModel
             {
                 Account = memberRegisterViewModel.Account,
