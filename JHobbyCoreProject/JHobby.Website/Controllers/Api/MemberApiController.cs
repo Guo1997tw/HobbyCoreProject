@@ -71,7 +71,7 @@ namespace JHobby.Website.Controllers.Api
 
                 var claims = new List<Claim>
                 {
-                    new Claim(ClaimTypes.Name, $"{ member.MemberId }"),
+                    new Claim(ClaimTypes.NameIdentifier, $"{ member.MemberId }"),
                     new Claim(ClaimTypes.Role, roleFast),
                     new Claim(ClaimTypes.Role, roleGeneral),
                     new Claim(ClaimTypes.Role, roleAdmin),
