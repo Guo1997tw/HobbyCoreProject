@@ -1226,24 +1226,24 @@ div.dataTables_filter .form-control {
   margin: 0 15px 0;
 }
 @media (max-width: 991.98px) {
-  .header .main-menu-wrapper {
-    width: 260px;
-    position: fixed;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    overflow-x: hidden;
-    overflow-y: auto;
-    z-index: 11111;
-    background-color: #177c82;
-    transform: translateX(-260px);
-    -webkit-transform: translateX(-260px);
-    -ms-transform: translateX(-260px);
-    -webkit-transition: ease all 0.5s;
-    -ms-transition: ease all 0.5s;
-    transition: ease all 0.5s;
-    margin: 0;
-  }
+    .header .main-menu-wrapper {
+        width: 260px;
+        position: fixed;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        overflow-x: hidden;
+        overflow-y: auto;
+        z-index: 11111;
+        background-color: #FFEBCD;
+        transform: translateX(-260px);
+        -webkit-transform: translateX(-260px);
+        -ms-transform: translateX(-260px);
+        -webkit-transition: ease all 0.5s;
+        -ms-transition: ease all 0.5s;
+        transition: ease all 0.5s;
+        margin: 0;
+    }
 }
 .header .main-menu-wrapper .menu-header {
   -webkit-box-align: center;
@@ -1268,7 +1268,7 @@ div.dataTables_filter .form-control {
 }
 @media (max-width: 991.98px) {
   .header .main-menu-wrapper .menu-header .menu-logo img {
-    width: 160px;
+    width: 60px;
   }
 }
 .header .main-menu-wrapper .menu-header .menu-close {
@@ -1287,13 +1287,13 @@ div.dataTables_filter .form-control {
   }
 }
 .header .main-menu-wrapper .main-nav > li .submenu > li.has-submenu > a::after {
-  content: "";
+ /* content: "";
   font-family: "Font Awesome 5 Free";
   font-weight: 900;
   position: absolute;
   right: 15px;
   top: 12px;
-  font-size: 13px;
+  font-size: 13px;*/
 }
 .header .main-menu-wrapper .main-nav {
   display: -webkit-box;
@@ -1341,7 +1341,7 @@ div.dataTables_filter .form-control {
     line-height: 20px;
     padding: 12px 15px;
     font-weight: 500;
-    color: #FFFFFF;
+    color: #000000;
   }
   .header .main-menu-wrapper .main-nav > li a i {
     font-size: 14px;
@@ -1415,7 +1415,7 @@ div.dataTables_filter .form-control {
 @media (max-width: 991.98px) {
   .header .main-menu-wrapper .main-nav .has-submenu ul {
     display: none;
-    background: #097E52;
+    background: #FFFFFF;
   }
 }
 .header .main-menu-wrapper .main-nav li.login-link {
@@ -9155,7 +9155,7 @@ span.icon-bg-40 img {
   }
 }
 .authendication-pages .content .wrapper header {
-  margin-top: 80px;
+  /*margin-top: 80px;*/
 }
 @media (max-width: 991.98px) {
   .authendication-pages .content .wrapper header {
@@ -9375,8 +9375,8 @@ span.icon-bg-40 img {
   margin-right: 5px;
 }
 .authendication-pages .content .forgot-password header, .authendication-pages .content .change-password header {
-  padding-bottom: 40px;
-  padding-top: 60px;
+ /* padding-bottom: 40px;
+  padding-top: 60px;*/
 }
 @media (max-width: 767.98px) {
   .authendication-pages .content .forgot-password header, .authendication-pages .content .change-password header {
@@ -9410,7 +9410,7 @@ span.icon-bg-40 img {
   margin-bottom: 0;
 }
 .authendication-pages .content .bottom-text p a {
-  color: #097E52;
+  color: #000000;
 }
 .authendication-pages .content .bottom-text p a:hover {
   color: #19C83F;
