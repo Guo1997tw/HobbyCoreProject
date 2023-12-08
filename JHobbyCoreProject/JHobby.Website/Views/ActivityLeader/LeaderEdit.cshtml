@@ -1,0 +1,348 @@
+﻿@{
+    ViewData["Title"] = "團主編輯";
+
+    int activityId = ViewBag.ActivityId;
+}
+
+<partial name="_BreadcrumbPartial" />
+
+<div id="Update" class="main-wrapper authendication-pages">
+    <div class="content book-cage" data-select2-id="16">
+        <div class="container" data-select2-id="15">
+            <div class="row" data-select2-id="14">
+                <div class="col-12 col-sm-12 col-md-12 col-lg-12" data-select2-id="13">
+                    <section class="card booking-form" data-select2-id="12">
+                        <h3 class="border-bottom" style="font-size: 35px; text-align: center;">活動內容</h3>
+                        <form data-select2-id="11">
+                            <div class="mb-3" hidden>
+                                <label for="date" class="form-label">會員編號</label>
+                                <div class="form-icon">
+                                    <input type="text" class="form-control" id="MemberId" v-model="activityUpdate.memberId">
+                                    <span name="ActivityName" class="text-danger"></span>
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="date" class="form-label">開團名稱</label>
+                                <div class="form-icon">
+                                    <input type="text" class="form-control" id="ActivityName" v-model="activityUpdate.activityName">
+                                    <span name="ActivityName" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="court" class="form-label">舉辦縣/市</label>
+                                <select2 id="ActivityCity" style="width:100%" :options="cityList" aria-label="Default select example" v-model:value="activityUpdate.activityCity">
+                                    <option disabled value="0" selected>請選擇縣市</option>
+                                </select2>
+                            </div>
+                            <div class="mb-3">
+                                <label for="court" class="form-label">舉辦區域</label>
+                                <select2 id="ActivityArea" style="width:100%" :options="areaList" aria-label="Default select example" v-model:value="activityUpdate.activityArea">
+                                    <option disabled value="0" selected>請選擇區</option>
+                                </select2>
+                            </div>
+                            <div class="mb-3">
+                                <label for="date" class="form-label">舉辦地點</label>
+                                <div class="form-icon">
+                                    <input type="text" class="form-control" id="ActivityLocation" v-model="activityUpdate.activityLocation">
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="endterdate" class="form-label">活動開始日期</label>
+                                <div class="col-lg-12 col-md-6">
+                                    <div class="input-space">
+                                        <input id="StartTime" type="datetime-local" class="form-control" v-model="activityUpdate.startTime">
+                                    </div>
+                                </div>
+                            </div>
+                            @* <div class="mb-3">
+                            <label for="date" class="form-label">活動開始日期</label>
+                            <div class="form-icon">
+                            <input type="date" class="form-control" v-model="activityBuild.startTime">
+                            <span class="cus-icon">
+                            <i class="feather-calendar icon-date"></i>
+                            </span>
+                            </div>
+                            </div> *@
+                            <div class="mb-3">
+                                <label for="empty-field" class="form-label">最高人數</label>
+                                <div class="form-icon">
+                                    <input type="text" class="form-control" id="MaxPeople" v-model="activityUpdate.maxPeople">
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="court" class="form-label">活動類型</label>
+                                <select2 id="CategoryId" style="width:100%" :options="categoryList" aria-label="Default select example" v-model:value="activityUpdate.categoryId">
+                                    <option disabled value="0" selected>請選擇類型</option>
+                                </select2>
+                            </div>
+                            <div class="mb-3">
+                                <label for="court" class="form-label">活動項目</label>
+                                <select2 id="CategoryTypeId" style="width:100%" :options="categoryTypeList" aria-label="Default select example" v-model:value="activityUpdate.categoryTypeId">
+                                    <option disabled value="0" selected>請選擇活動項目</option>
+                                </select2>
+                            </div>
+                            <div class="mb-3">
+                                <label for="endterdate" class="form-label">報名截止日</label>
+                                <div class="col-lg-12 col-md-6">
+                                    <div class="input-space">
+                                        <input id="JoinDeadLine" type="datetime-local" class="form-control" v-model="activityUpdate.joinDeadLine">
+                                    </div>
+                                </div>
+                            </div>
+                            @*  <div class="mb-3">
+                            <label for="endterdate" class="form-label">報名截止日</label>
+                            <div class="form-icon">
+                            <input type="text" class="form-control" v-model="activityBuild.joinDeadLine">
+                            <span class="cus-icon">
+                            <i class="feather-calendar icon-date"></i>
+                            </span>
+                            </div>
+                            </div> *@
+                            <div class="mb-3">
+                                <label for="empty-field" class="form-label">活動花費</label>
+                                <div class="form-icon">
+                                    <input type="text" class="form-control" id="JoinFee" v-model="activityUpdate.joinFee">
+                                </div>
+                            </div>
+                            <div class="mb-3" hidden>
+                                <label for="empty-field" class="form-label">付款方式</label>
+                                <div class="form-icon">
+                                    <input type="text" class="form-control" id="pay" v-model="activityUpdate.payment">
+                                </div>
+                            </div>
+                            @* <div class="mb-3">
+                            <label for="court" class="form-label">付款方式</label>
+                            <select class="select select2" id="paymentMethod" aria-label="Default select example" v-model="activityBuild.payment">
+                            <option value="0" disabled selected>請選擇付款方式</option>
+                            </select>
+                            </div> *@
+                            <div class="mb-3">
+                                <label for="empty-field" class="form-label">活動說明</label>
+                                <div class="form-icon">
+                                    <textarea class="form-control" id="ActivityNotes" rows="4" maxlength="300" v-model="activityUpdate.activityNotes"></textarea>
+                                </div>
+                            </div>
+                            @* <div class="mb-3">
+                            <label for="endterdate" class="form-label">建立日期</label>
+                            <div class="col-lg-12 col-md-6">
+                            <div class="input-space">
+                            <input id="Created" type="date" class="form-control" v-model="activityBuild.created">
+                            </div>
+                            </div>
+                            </div> *@
+                            @* <div class="mb-3">
+                            <label for="endterdate" class="form-label">建立日期</label>
+                            <div class="form-icon">
+                            <input type="text" class="form-control" v-model="activityBuild.created">
+                            <span class="cus-icon">
+                            <i class="feather-calendar icon-date"></i>
+                            </span>
+                            </div>
+                            </div> *@
+                            <div class="mb-3">
+                            </div>
+                            @* <div class="col-md-12">
+                                <div class="appoint-head coach-top">上傳圖片</div>
+                                <div class="row" data-select2-id="25">
+                                    <div class="col-md-12">
+                                        <div class="file-upload-text">
+                                            <div class="file-upload" style="position:relative ; display: inline-block; width: 300px; height: 200px ; margin-right: 20px;">
+                                                <img :src="defaultPicOne" style="width:100%;height:100%;position:absolute;top:0%;left:0%;object-fit:contain">
+                                                <p>請上傳圖片</p>
+                                                <span>
+                                                    <i class="feather-edit-3"></i>
+                                                    <input type="file" id="file-input" v-on:change="uploadPicOne">
+                                                </span>
+                                            </div>
+                                            <div class="file-upload" style="position:relative; display: inline-block; width: 300px; height: 200px; margin-right: 20px;">
+                                                <img :src="defaultPicTwo" style="width:100%;height:100%;position:absolute;top:0%;left:0%;object-fit:contain">
+                                                <p>請上傳活動圖片</p>
+                                                <span>
+                                                    <i class="feather-edit-3"></i>
+                                                    <input type="file" id="file-input" v-on:change="uploadPicTwo">
+                                                </span>
+                                            </div>
+                                            <div class="file-upload" style="position:relative; display: inline-block; width: 300px; height: 200px; margin-right: 20px;">
+                                                <img :src="defaultPicThree" style="width:100%;height:100%;position:absolute;top:0%;left:0%;object-fit:contain">
+                                                <p>請上傳活動圖片</p>
+                                                <span>
+                                                    <i class="feather-edit-3"></i>
+                                                    <input type="file" id="file-input" v-on:change="uploadPicThree">
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div> *@
+                        </form>
+                    </section>
+                </div>
+            </div>
+            <div class="text-center btn-row">
+                <button class="btn btn-primary me-3 btn-icon" style="padding: 10px; width: 100px; justify-content: center;" type="submit" @@click="leaderEdit()">確認</button>
+                <button class="btn btn-primary me-3 btn-icon" style="padding: 10px; width: 100px; justify-content: center;" type="submit">取消</button>
+            </div>
+        </div>
+        <!-- /Container -->
+    </div>
+    <!-- /Page Content -->
+    <!-- Footer -->
+    <!-- /Footer -->
+</div>
+<!-- /Main Wrapper -->
+@section Scripts {
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="~/js/jhobbyselect2component.js"></script>
+    <script src="~/js/taiwancity.js"></script>
+
+    <script>
+        const leaderUpdate = Vue.createApp({
+            data() {
+                return {
+                    // defaultPicOne: "/images/NoImage.jpg",
+                    // defaultPicTwo: "/images/NoImage.jpg",
+                    // defaultPicThree: "/images/NoImage.jpg",
+                    // fileOne: null,
+                    // fileTwo: null,
+                    // fileThree: null,
+                    categorySource: [],
+                    activityUpdate: {
+                        memberId: "",
+                        payment: "1",
+                        activityName: "",
+                        activityCity: "",
+                        activityArea: "",
+                        activityLocation: "",
+                        startTime: "",
+                        maxPeople: "",
+                        categoryId: "",
+                        categoryTypeId: "",
+                        joinDeadLine: "",
+                        joinFee: "",
+                        activityNotes: "",
+                    },
+                }
+            },
+
+            computed: {
+                cityList() {
+                    return taiwanCity.map(x => {
+                        return {
+                            id: x.CityName,
+                            text: x.CityName
+                        }
+                    })
+                },
+                areaList() {
+                    let area = taiwanCity.filter(x => x.CityName == this.activityUpdate.activityCity);
+                    if (area.length < 1) return [];
+                    return area[0].AreaList.map(x => {
+                        return {
+                            id: x.AreaName,
+                            text: x.AreaName
+                        }
+                    })
+                },
+                categoryList() {
+                    return this.categorySource.map(x => {
+                        return {
+                            id: x.categoryId,
+                            text: x.categoryName
+                        }
+                    })
+                },
+                categoryTypeList() {
+                    let area = this.categorySource.filter(x => x.categoryId == this.activityUpdate.categoryId);
+                    if (area.length < 1) return [];
+                    return area[0].categoryDetails.map(x => {
+                        return {
+                            id: x.categoryTypeId,
+                            text: x.typeName
+                        }
+                    })
+                },
+            },
+
+            mounted() {
+                this.categoryApi();
+                this.getActivityById();
+            },
+
+            methods: {
+                // uploadPicOne(e) {
+                //     console.log(URL.createObjectURL(e.target.files[0]));
+                //     this.fileOne = e.target.files[0];
+                //     this.defaultPicOne = URL.createObjectURL(e.target.files[0]);
+                // },
+                // uploadPicTwo(e) {
+                //     console.log(URL.createObjectURL(e.target.files[0]));
+                //     this.fileTwo = e.target.files[0];
+                //     this.defaultPicTwo = URL.createObjectURL(e.target.files[0]);
+                // },
+                // uploadPicThree(e) {
+                //     console.log(URL.createObjectURL(e.target.files[0]));
+                //     this.fileThree = e.target.files[0];
+                //     this.defaultPicThree = URL.createObjectURL(e.target.files[0]);
+                // },
+                categoryApi() {
+                    let self = this;
+
+                    fetch("/CategoryApi/GetCategoriesAllIncludeDetail").then(r => r.json()).then(d => { self.categorySource = d; });
+                },
+                leaderEdit() {
+                    let self = this;
+                    var formData = new FormData();
+
+                    if (!self.activityBuild.activityName ||
+                        !self.activityBuild.activityCity ||
+                        !self.activityBuild.activityArea ||
+                        !self.activityBuild.activityLocation ||
+                        !self.activityBuild.startTime ||
+                        !self.activityBuild.maxPeople ||
+                        !self.activityBuild.categoryId ||
+                        !self.activityBuild.categoryTypeId ||
+                        !self.activityBuild.joinDeadLine ||
+                        !self.activityBuild.joinFee ||
+                        !self.activityBuild.activityNotes) { return alert("請填寫所有欄位!!"); }
+
+                    if (isNaN(self.activityBuild.joinFee)) { return alert("請輸入正確金額!!"); }
+
+                    // if (this.fileOne) formData.append('file', self.fileOne);
+                    // if (this.fileTwo) formData.append('file', self.fileTwo);
+                    // if (this.fileThree) formData.append('file', self.fileThree);
+                    formData.append('memberId', self.activityUpdate.memberId);
+                    formData.append('payment', self.activityUpdate.payment);
+                    formData.append('activityName', self.activityUpdate.activityName);
+                    formData.append('activityCity', self.activityUpdate.activityCity);
+                    formData.append('activityArea', self.activityUpdate.activityArea);
+                    formData.append('activityLocation', self.activityUpdate.activityLocation);
+                    formData.append('startTime', self.activityUpdate.startTime);
+                    formData.append('maxPeople', self.activityUpdate.maxPeople);
+                    formData.append('categoryId', self.activityUpdate.categoryId);
+                    formData.append('categoryTypeId', self.activityUpdate.categoryTypeId);
+                    formData.append('joinDeadLine', self.activityUpdate.joinDeadLine);
+                    formData.append('joinFee', self.activityUpdate.joinFee);
+                    formData.append('activityNotes', self.activityUpdate.activityNotes);
+
+                    fetch("/ActivityApi/LeaderUpdate/@activityId", {
+                        method: "PUT",
+                        body: formData
+                    }).then(r => r.json())
+                        .then(d => {
+                            self.activityUpdate = d;
+                            console.log('Success', d);
+                            alert("修改成功");
+                        });
+
+                    javascript: location.href = "/MemberCenter/launchATeam";
+                },
+                getActivityById() {
+                    self = this;
+
+                    fetch("/ActivityApi/GetActivityStatus/@activityId").then(r => r.json()).then(d => { self.activityUpdate = d });
+                }
+            },
+        }).component('select2', select2).mount("#Update");
+    </script>
+}

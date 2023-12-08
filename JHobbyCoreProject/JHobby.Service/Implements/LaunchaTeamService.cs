@@ -42,7 +42,8 @@ namespace JHobby.Service.Implements
             DateConvert = _iCommonService.ConvertTime(a.StartTime).FirstOrDefault().DateConvert,
             TimeConvert = _iCommonService.ConvertTime(a.StartTime).FirstOrDefault().TimeConvert,
             CreatedDateConvert = _iCommonService.ConvertTime(a.Created).FirstOrDefault().DateConvert,
-            CreatedTimeConvert = _iCommonService.ConvertTime(a.Created).FirstOrDefault().TimeConvert
+            CreatedTimeConvert = _iCommonService.ConvertTime(a.Created).FirstOrDefault().TimeConvert,
+            ActivityId=a.ActivityId,
 
         }); 
 

@@ -19,5 +19,6 @@
         public string? CreatedDateConvert { get; set; }
 
         public string? CreatedTimeConvert { get; set; }
+        public int ActivityId { get; set; }
     }
 }

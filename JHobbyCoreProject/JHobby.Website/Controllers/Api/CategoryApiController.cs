@@ -1,9 +1,15 @@
 ﻿using AutoMapper;
+using Hangfire;
+using AutoMapper.QueryableExtensions;
+using JHobby.Repository.Interfaces;
+using JHobby.Repository.Models.Dto;
+using JHobby.Repository.Models.Entity;
 using JHobby.Service.Interfaces;
 using JHobby.Service.Models;
 using JHobby.Website.Models.ViewModels;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 
 namespace JHobby.Website.Controllers.Api
@@ -14,20 +20,48 @@ namespace JHobby.Website.Controllers.Api
 	{
 		private readonly ICategoryService _categoryService;
 		private readonly IMapper _mapper;
+        private readonly IBackgroundJobClient backgroundJobs;
+        private readonly ISendMailService _sendMailService;
+        private readonly JhobbyContext _jhobbyContext;
+        private readonly ICategoryRepository _categoryRepository;
 
-		public CategoryApiController(ICategoryService categoryService, IMapper mapper)
+        public CategoryApiController(JhobbyContext jhobbyContext, ICategoryRepository categoryRepository, ICategoryService categoryService, IMapper mapper, IBackgroundJobClient backgroundJobs, ISendMailService sendMailService)
 		{
 			_categoryService = categoryService;
 			_mapper = mapper;
-		}
+            this.backgroundJobs = backgroundJobs;
+            _sendMailService = sendMailService;
+            _jhobbyContext = jhobbyContext;
+            _categoryRepository = categoryRepository;
+        }
 
-		[HttpGet]
+        [HttpGet]
+        public string ExecJob()
+        {
+            return backgroundJobs.Enqueue(() => _sendMailService.SendLetter("Guo1997tw@gmail.com"));
+        }
+
+        [HttpGet]
 		public IEnumerable<CategoryViewModel> GetCategoriesAll()
 		{
 			return _mapper.Map<IEnumerable<CategoryViewModel>>(_categoryService.GetList());
 		}
 
-		[HttpGet("{id}")]
+        /// <summary>
+        /// 取得類型配細項
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        public IQueryable<CategoryTypeViewModel> GetCategoriesAllIncludeDetail()
+        {
+			var result = _categoryService.GetCategoryType();
+
+			var mapper = result.ProjectTo<CategoryTypeViewModel>(_mapper.ConfigurationProvider);
+
+			return mapper;
+        }
+
+        [HttpGet("{id}")]
 		public ActionResult<IEnumerable<CategoryViewModel>> GetCategoriesById(int id)
 		{
 			var servicesDto = _categoryService.GetDetail(id);

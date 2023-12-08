@@ -22,6 +22,7 @@ public class IndexRepository : IIndexRepository
                 ActivityId = a.ActivityId,
                 MemberId = a.MemberId,
                 NickName = m.NickName,
+                HeadShot=m.HeadShot,
                 ActivityName = a.ActivityName,
                 ActivityStatus = a.ActivityStatus,
                 ActivityLocation = a.ActivityLocation,

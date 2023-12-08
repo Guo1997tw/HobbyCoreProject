@@ -12,5 +12,17 @@ namespace JHobby.Service.Interfaces
 
         public IEnumerable<TimeModelDto> ConvertTime(DateTime dateTime);
         public int ShotCheck(int len, string str);
+
+        public string ConvertGender(string Gender);
+
+        public string ConvertStatus(string status);
+
+        public string Encrypt(string text);
+
+        public string Decrypt(string encryptText);
+
+        public string EncodeBase64Url(string input);
+
+        public string DecodeBase64Url(string input);
     }
 }

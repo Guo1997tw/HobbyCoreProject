@@ -1,16 +1,11 @@
-﻿using JHobby.Repository.Interfaces;
-using JHobby.Repository.Models.Dto;
-using JHobby.Service.Implements;
-using JHobby.Service.Interfaces;
+﻿using JHobby.Service.Interfaces;
 using JHobby.Service.Models;
 using JHobby.Website.Models.ViewModels;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal;
 
 namespace JHobby.Website.Controllers.Api
 {
-    [Route("api/ProfileSetting/[action]")]
+    [Route("[controller]/[action]")]
     [ApiController]
     public class ProfileSettingApiController : ControllerBase
     {
@@ -19,22 +14,24 @@ namespace JHobby.Website.Controllers.Api
 
         string _Path;
 
-        public ProfileSettingApiController(IProfileSettingService iProfileSettingService, IUpdateProfileSettingService iUpdateProfileSettingService, IWebHostEnvironment hostEnvironment)
+        public ProfileSettingApiController(IProfileSettingService iProfileSettingService,
+                                           IUpdateProfileSettingService iUpdateProfileSettingService,
+                                           IWebHostEnvironment hostEnvironment)
         {
             _iProfileSettingService = iProfileSettingService;
             _iUpdateProfileSettingService = iUpdateProfileSettingService;
-
             _Path = $@"{hostEnvironment.WebRootPath}\profile\";
         }
 
         [HttpGet("{id}")]
         public ActionResult<ProfileSettingViewModel> GetById(int id)
         {
-            var serviceModel = _iProfileSettingService.GetById(id); //GetByIdService
+            var serviceModel = _iProfileSettingService.GetById(id);
 
             var viewModel = new ProfileSettingViewModel
             {
                 HeadShot = serviceModel.HeadShot,
+                Account = serviceModel.Account,
                 Status = serviceModel.Status,
                 MemberId = serviceModel.MemberId,
                 MemberName = serviceModel.MemberName,
@@ -79,36 +76,37 @@ namespace JHobby.Website.Controllers.Api
             return files;
         }
 
+        //服務讓定義的方法成立
         [HttpPut("{id}")]
         public bool UpdateProfileSetting(int id, [FromForm] UpdateProfileSettingViewModel updateProfileSettingViewModel)
         {
-            var mapper = new UpdateProfileSettingModel
-            {
-                HeadShot = updateProfileSettingViewModel.HeadShot,
-                Status = updateProfileSettingViewModel.Status,
-                MemberName = updateProfileSettingViewModel.MemberName,
-                NickName = updateProfileSettingViewModel.NickName,
-                Gender = updateProfileSettingViewModel.Gender,
-                IdentityCard = updateProfileSettingViewModel.IdentityCard,
-                Birthday = updateProfileSettingViewModel.Birthday,
-                ActiveCity = updateProfileSettingViewModel.ActiveCity,
-                ActiveArea = updateProfileSettingViewModel.ActiveArea,
-                Address = updateProfileSettingViewModel.Address,
-                Phone = updateProfileSettingViewModel.Phone,
-                PersonalProfile = updateProfileSettingViewModel.PersonalProfile,
-            };
 
+            var mapper = new UpdateProfileSettingModel();
+            string fileNamePath = $"/profile/HeadShot{id}.jpg";
+            mapper.HeadShot = fileNamePath;
+            mapper.Status = updateProfileSettingViewModel.Status;
+            mapper.MemberName = updateProfileSettingViewModel.MemberName;
+            mapper.NickName = updateProfileSettingViewModel.NickName;
+            mapper.Gender = updateProfileSettingViewModel.Gender;
+            mapper.IdentityCard = updateProfileSettingViewModel.IdentityCard;
+            mapper.Birthday = updateProfileSettingViewModel.Birthday;
+            mapper.ActiveCity = updateProfileSettingViewModel.ActiveCity;
+            mapper.ActiveArea = updateProfileSettingViewModel.ActiveArea;
+            mapper.Address = updateProfileSettingViewModel.Address;
+            mapper.Phone = updateProfileSettingViewModel.Phone;
+            mapper.PersonalProfile = updateProfileSettingViewModel.PersonalProfile;
+ 
             _iUpdateProfileSettingService.Update(id, mapper);
 
             if (updateProfileSettingViewModel.File != null)
             {
                 if (updateProfileSettingViewModel.File.Length > 0)
                 {
-                    string SavePath = $@"{_Path}{updateProfileSettingViewModel.File.FileName}";
-
+                    string fileName = $"HeadShot{id}.jpg";
+                    string SavePath = $@"{_Path}{fileName}";
                     using (var steam = new FileStream(SavePath, FileMode.Create))
                     {
-                        updateProfileSettingViewModel.File.CopyToAsync(steam);
+                        updateProfileSettingViewModel.File.CopyTo(steam);
                     }
                 }
             }

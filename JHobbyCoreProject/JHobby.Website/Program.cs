@@ -1,3 +1,4 @@
+﻿using Hangfire;
 using JHobby.Repository.Implements;
 using JHobby.Repository.Interfaces;
 using JHobby.Repository.Mapping;
@@ -5,9 +6,11 @@ using JHobby.Repository.Models.Entity;
 using JHobby.Service.Implements;
 using JHobby.Service.Interfaces;
 using JHobby.Website.Controllers.Api;
+using JHobby.Website.Job;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace JHobby.Website
 {
@@ -26,6 +29,15 @@ namespace JHobby.Website
                 option.UseSqlServer(builder.Configuration.GetConnectionString("JHobby"));
             });
 
+            // Hangfire DI
+            builder.Services.AddHangfire(configuration => configuration
+            .SetDataCompatibilityLevel(CompatibilityLevel.Version_180)
+            .UseSimpleAssemblyNameTypeSerializer()
+            .UseRecommendedSerializerSettings()
+            .UseSqlServerStorage(builder.Configuration.GetConnectionString("JHobby")));
+
+            builder.Services.AddHangfireServer();
+
             //CORS
             var allowCors = "allowCors";
             builder.Services.AddCors(opt =>
@@ -37,7 +49,7 @@ namespace JHobby.Website
             });
 
             // Swagger DI
-            builder.Services.AddEndpointsApiExplorer();     
+            builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
 
             // AutoMapper DI
@@ -61,18 +73,18 @@ namespace JHobby.Website
             builder.Services.AddScoped<IIndexService, IndexService>();
             builder.Services.AddScoped<IProfileRepository, ProfileRepository>();
             builder.Services.AddScoped<IProfileService, ProfileService>();
-            builder.Services.AddScoped<IIndexRepository,IndexRepository>();
-            builder.Services.AddScoped<IIndexService,IndexService>();
+            builder.Services.AddScoped<IIndexRepository, IndexRepository>();
+            builder.Services.AddScoped<IIndexService, IndexService>();
             builder.Services.AddScoped<IMemberRepository, MemberRepository>();
             builder.Services.AddScoped<IMemberService, MemberService>();
-			builder.Services.AddScoped<IActivityRepository, ActivityRepository>();          
-			builder.Services.AddScoped<IActivityService, ActivityService>();
+            builder.Services.AddScoped<IActivityRepository, ActivityRepository>();
+            builder.Services.AddScoped<IActivityService, ActivityService>();
             builder.Services.AddScoped<IProfileSettingRepository, ProfileSettingRepository>();
             builder.Services.AddScoped<IProfileSettingService, ProfileSettingService>();
             builder.Services.AddScoped<IWishRepository, WishRepository>();
-            builder.Services.AddScoped<IWishService,WishSerive>();
-            builder.Services.AddScoped<IMiddleCenterRepository,MiddleCenterRepository>();
-            builder.Services.AddScoped<IMiddleCenterService,MiddleCenterService>();
+            builder.Services.AddScoped<IWishService, WishSerive>();
+            builder.Services.AddScoped<IMiddleCenterRepository, MiddleCenterRepository>();
+            builder.Services.AddScoped<IMiddleCenterService, MiddleCenterService>();
             builder.Services.AddScoped<IPastJoinAGroupRepostiory, PastJoinAGroupRepostiory>();
             builder.Services.AddScoped<IPastJoinAGroupService, PastJoinAGroupService>();
             builder.Services.AddScoped<ICommonService, CommonService>();
@@ -85,9 +97,13 @@ namespace JHobby.Website
             builder.Services.AddScoped<IWishListRepository, WishListRepository>();
             builder.Services.AddScoped<IWishListService, WishListService>();
             builder.Services.AddScoped<ISendMailService, SendMailService>();
-            builder.Services.AddScoped<IGroupStartingRepository, GroupStartingRepository>();
-            builder.Services.AddScoped<IGroupStartingService, GroupStartingService>();
- 
+            builder.Services.AddScoped<IinputScoreRepository, InputScoreRepository>();
+            builder.Services.AddScoped<IinputScoreService, InputScoreService>();
+            builder.Services.AddHttpContextAccessor();
+            builder.Services.AddScoped<IUserAuthenticationService, UserAuthenticationService>();
+
+            // Customization DI
+            builder.Services.AddJhobbyScheduleJob();
 
             // DI Authentication
             builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(option =>
@@ -98,6 +114,9 @@ namespace JHobby.Website
 
             var app = builder.Build();
 
+            // Customization Use
+            app.UseJhobbyDailyJob();
+            
             // Swagger Use
             if (app.Environment.IsDevelopment())
             {
@@ -114,6 +133,7 @@ namespace JHobby.Website
             }
 
             app.UseHttpsRedirection();
+
             app.UseStaticFiles();
 
             app.UseRouting();
@@ -125,6 +145,8 @@ namespace JHobby.Website
             app.UseAuthentication();
 
             app.UseAuthorization();
+
+            app.UseHangfireDashboard();
 
             app.MapControllerRoute(
                 name: "default",

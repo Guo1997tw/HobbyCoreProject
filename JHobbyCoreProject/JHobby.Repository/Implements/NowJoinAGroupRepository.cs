@@ -41,18 +41,45 @@ namespace JHobby.Repository.Implements
 
         public IEnumerable<NowJoinAGroupDto> GetNowJoinAGroupById(int memberId)
         {
-            var activityUser = _jhobbyContext.Members.Select(x => new { id=x.MemberId,nickName=x.NickName }) ;
-            return _jhobbyContext.ActivityUsers.Where(Au => Au.MemberId == memberId)
-                .Include(Au => Au.Activity)
-                .Select(a => new NowJoinAGroupDto
-                {
-                    ActivityName = a.Activity.ActivityName,
-                    ReviewStatus = a.ReviewStatus,
-                    CurrentPeople = a.Activity.CurrentPeople,
-                    MaxPeople = a.Activity.MaxPeople,
-                    NickName = activityUser.FirstOrDefault(z=> z.id==a.Activity.MemberId).nickName,
-                    StartTime = a.Activity.StartTime,
-                });
+            var activityUser = _jhobbyContext.Members.Select(x => new { id = x.MemberId, nickName = x.NickName });
+            var activityImage = _jhobbyContext.ActivityImages.Select(a => new { id = a.ActivityId, imageName = a.ImageName });
+
+            return _jhobbyContext.ActivityUsers
+            .Where(Au => Au.MemberId == memberId
+            && (Au.ReviewStatus == "0"
+            || Au.ReviewStatus == "1"
+            || Au.ReviewStatus == "2"
+            || Au.ReviewStatus == "4"))
+            .Include(Au => Au.Activity)
+            .Select(a => new NowJoinAGroupDto
+            {
+                ActivityName = a.Activity.ActivityName,
+                ActivityUserId= a.ActivityUserId,
+                ActivityId = a.ActivityId,
+                MemberId = a.MemberId,
+                ReviewStatus = a.ReviewStatus,
+                CurrentPeople = a.Activity.CurrentPeople,
+                MaxPeople = a.Activity.MaxPeople,
+                NickName = activityUser.FirstOrDefault(z => z.id == a.Activity.MemberId).nickName,
+                StartTime = a.Activity.StartTime,
+                ImageName = activityImage.FirstOrDefault(i => i.id == a.Activity.ActivityId).imageName
+            });
+        }
+
+        public bool NowJoinAGroupCancel(int activityUserId, int memberId, NowJoinAGroupCancelDto aGroupCancelDto)
+        {
+            var cancelDto = _jhobbyContext.ActivityUsers
+                .FirstOrDefault(Au =>
+                Au.MemberId == memberId
+                && Au.ActivityUserId == activityUserId);
+
+            if (cancelDto != null)
+            {
+                cancelDto.ReviewStatus = aGroupCancelDto.ReviewStatus;
+                _jhobbyContext.SaveChanges();
+                return true;
+            }
+            else { return false; }
         }
     }
 }

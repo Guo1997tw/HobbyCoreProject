@@ -36,7 +36,7 @@ namespace JHobby.Service.Implements
                 Phone = updateProfileSettingModel.Phone,
                 PersonalProfile = updateProfileSettingModel.PersonalProfile,
             };
-
+            //目的地.方法像船需要同個國家的船(承接乘客)乘客要轉變為同個國家，資料才能傳進去
             return  _iUpdateProfileSettingRepository.Update(id, mapper);
         }
     }

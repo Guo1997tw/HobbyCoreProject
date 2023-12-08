@@ -29,7 +29,7 @@ namespace JHobby.Website.Controllers.Api
             _sendMailService = sendMailService;
             _memberRepository = memberRepository;
         }
-
+        
         [HttpPost]
         public bool InsertRegister(MemberRegisterViewModel memberRegisterViewModel)
         {
@@ -44,13 +44,15 @@ namespace JHobby.Website.Controllers.Api
             if(_memberService.CreateMemberRegister(mapper))
             {
                 _sendMailService.SendLetter(memberRegisterViewModel.Account);
+
+                return true;
             }
 
-            return true;
+            return false;
         }
 
         [HttpPost]
-        public IActionResult CheckMember(MemberLoginViewModel memberLoginViewModel)
+        public bool CheckMember(MemberLoginViewModel memberLoginViewModel)
         {
             if (_memberService.CheckMemberLogin(memberLoginViewModel.Account, memberLoginViewModel.HashPassword))
             {
@@ -61,19 +63,19 @@ namespace JHobby.Website.Controllers.Api
 
                 // 一般會員 (未填寫資料)
                 var roleGeneral = member.Status == "1" ? "Member" : "NoMember";
-
-                // 黑名單
-                var roleBlack = member.Status == "2" ? "BlackMember" : "NoBlackMember";
                 
                 // 管理員
                 var roleAdmin = member.Status == "99" ? "Admin" : "NoAdmin";
 
+                var roleVerifyMail = member.Status == "8" ? "NoVerify" : "Verify";
+
                 var claims = new List<Claim>
                 {
+                    new Claim(ClaimTypes.NameIdentifier, $"{ member.MemberId }"),
                     new Claim(ClaimTypes.Role, roleFast),
                     new Claim(ClaimTypes.Role, roleGeneral),
-                    new Claim(ClaimTypes.Role, roleBlack),
                     new Claim(ClaimTypes.Role, roleAdmin),
+                    new Claim(ClaimTypes.Role, roleVerifyMail)
                 };
 
                 var identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
@@ -85,10 +87,22 @@ namespace JHobby.Website.Controllers.Api
                     new AuthenticationProperties { ExpiresUtc = DateTimeOffset.UtcNow.AddMinutes(60) }
                 );
 
-                return Ok(new { Message = "登入成功~~" });
+                return true;
             }
 
-            return Unauthorized(new { Message = "登入失敗!!" });
+            return false;
+        }
+
+        [HttpPost("{account}")]
+        public bool UseResetPwd(MemberResetViewModel memberResetViewModel)
+        {
+            var mapper = _mapper.Map<MemberResetModel>(memberResetViewModel);
+
+            var result = _memberService.ResetPwd(mapper);
+
+            if (result == false) { return false; }
+
+            return true;
         }
 
         [HttpGet]
@@ -134,6 +148,16 @@ namespace JHobby.Website.Controllers.Api
             var done = _memberService.UpdateMember(id, result);       //會跑到Service層裡的方法
 
             return Ok(done);
+        }
+
+        [HttpPost]
+        public bool reSendVerifyMail([FromForm] ReSendVerifyMailViewModel reSendVerifyMailViewModel) {
+            var result = _sendMailService.SendLetter(reSendVerifyMailViewModel.Account);
+            if (result)
+            { 
+                return true;
+            }                
+         return false;
         }
 	}
 }

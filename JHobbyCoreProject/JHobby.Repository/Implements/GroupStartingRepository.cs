@@ -78,7 +78,7 @@ namespace JHobby.Repository.Implements
 				   ImageName = m.ImageName,
 				   ActivityImageId = m.ActivityImageId,
 
-			   }).Where(g => g.MemberId == id);
+			   }).Where(g => g.MemberId == id && g.ActivityStatus=="1" && g.IsCover == true);
 
 			return result;
 
@@ -117,7 +117,7 @@ namespace JHobby.Repository.Implements
                 ImageName = ai.ImageName,
                 IsCover = ai.IsCover,
                 ActivityImageId = ai.ActivityImageId,
-            }).Where(d => (d.LeaderId == id) && (d.ReviewStatus == "1" || d.ReviewStatus == "3")&& d.IsCover==true);
+            }).Where(d => (d.LeaderId == id)&&(d.ActivityId==ActivityId) && (d.ReviewStatus == "1" || d.ReviewStatus == "3")&& d.IsCover==true);
             return Dtoresult;
         }
     }
