@@ -228,7 +228,7 @@
                                                                     前往頁面
                                                                 </a>
                                                                 <a class="dropdown-item"
-                                                                   href=""
+                                                                   href="javascript:void(0)"
                                                                    @@click="collectAGroupCancel(filterCard[index])">
                                                                     <i class="feather-trash"></i>
                                                                     刪除收藏
@@ -613,7 +613,17 @@
                 collectAGroupCancel(card) {
                     let _this = this;
                     axios.delete(`/WishListApi/WishListDelete?memberId=${card.memberId}&wishId=${card.wishId}`)
-                        .then(alert("已取消收藏"))
+                        .then(response => {
+                            if (response.status === 200) {
+                                _this.wishListCard = _this.wishListCard.filter(card =>
+                                    !(card.activityId === _this.currentCard.activityId
+                                        && card.memberId === _this.currentCard.memberId))
+                            }
+                            if (_this.filterCard.length === 0 && _this.pageNumber > 1) {
+                                _this.pageClick(_this.pageNumber - 1);
+                            }
+                            ; alert("已取消收藏")
+                        })
                         .catch(erro => alert(`${erro}`))
                 },
                 setCurrentCard(card) {
