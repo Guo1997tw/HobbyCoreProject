@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Hangfire;
 using JHobby.Service.Interfaces;
 using JHobby.Service.Models;
 using JHobby.Website.Models.ViewModels;
@@ -14,14 +15,24 @@ namespace JHobby.Website.Controllers.Api
 	{
 		private readonly ICategoryService _categoryService;
 		private readonly IMapper _mapper;
+        private readonly IBackgroundJobClient backgroundJobs;
+        private readonly ISendMailService _sendMailService;
 
-		public CategoryApiController(ICategoryService categoryService, IMapper mapper)
+        public CategoryApiController(ICategoryService categoryService, IMapper mapper, IBackgroundJobClient backgroundJobs, ISendMailService sendMailService)
 		{
 			_categoryService = categoryService;
 			_mapper = mapper;
-		}
+            this.backgroundJobs = backgroundJobs;
+            _sendMailService = sendMailService;
+        }
 
-		[HttpGet]
+        [HttpGet]
+        public string ExecJob()
+        {
+            return backgroundJobs.Enqueue(() => _sendMailService.SendLetter("Guo1997tw@gmail.com"));
+        }
+
+        [HttpGet]
 		public IEnumerable<CategoryViewModel> GetCategoriesAll()
 		{
 			return _mapper.Map<IEnumerable<CategoryViewModel>>(_categoryService.GetList());

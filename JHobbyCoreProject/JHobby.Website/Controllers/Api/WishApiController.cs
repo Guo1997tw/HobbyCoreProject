@@ -23,10 +23,9 @@ namespace JHobby.Website.Controllers.Api
 			_WishService = WishService;
 		}
 		// GET: api/<WishApiController>
-		[HttpGet]
-		public int[] GetWishList()
+		[HttpGet("{id}")]
+		public int[] GetWishList(int id)
 		{
-			var id = 1;
 			var services = _WishService.GetWishByIdResult(id);
 			var viewModel = services.Select(s => s.ActivityId).ToArray();
 			return viewModel;
@@ -47,10 +46,10 @@ namespace JHobby.Website.Controllers.Api
 			return Ok(result);
 		}
 
-		[HttpDelete("{activityId}")]
-		public IActionResult DeleteWish(int activityId)
+		[HttpDelete("{memberId}/{activityId}")]
+		public IActionResult DeleteWish(int memberId ,int activityId)
 		{
-			var memberId = 1;
+
 			if (memberId <= 0 || activityId <= 0) { return BadRequest(); }
 
 			var result = _WishService.DeleteWish(memberId, activityId);
