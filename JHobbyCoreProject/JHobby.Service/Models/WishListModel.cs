@@ -14,20 +14,13 @@ namespace JHobby.Service.Models
 
         public int ActivityId { get; set; }
 
-        public DateTime AddTime { get; set; }
-
         //活動狀態
         public string ActivityStatus { get; set; } = null!;
 
         public string ActivityName { get; set; } = null!;
 
-        public DateTime StartTime { get; set; }
-
-        public DateTime JoinDeadLine { get; set; }
-
-        public string? NickName { get; set; }
-
         public int SurplusQuota { get; set; }
 
+        public string ImageName { get; set; } = null!;
     }
 }

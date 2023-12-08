@@ -66,9 +66,9 @@ namespace JHobby.Service.Implements
 
 			return queryResult;
 		}
-        public bool UpdateActivityStatus(int id, ActivityStatusModel activityStatusModel)
+        public bool UpdateActivityStatus(int id, ActivityConditionModel activityConditionModel)
         {
-            var mapper = _mapper.Map<ActivityStatusDto>(activityStatusModel);
+            var mapper = _mapper.Map<ActivityConditionDto>(activityConditionModel);
 
             return (_groupStartingRepository.UpdateActivityStatus(id, mapper)) ? true : false;
         }
@@ -101,4 +101,3 @@ public IEnumerable<GroupStartingCurrentModel> CurrentById(int id, int ActivityId
     }
 }
 
-      

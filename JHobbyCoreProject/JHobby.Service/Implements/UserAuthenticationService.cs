@@ -21,7 +21,7 @@ namespace JHobby.Service.Implements
 
         public int GetUserId()
         {
-            Claim userClaim = _httpContextAccessor.HttpContext.User.Claims.FirstOrDefault(u => u.Type == ClaimTypes.Name);
+            Claim userClaim = _httpContextAccessor.HttpContext.User.Claims.FirstOrDefault(u => u.Type == ClaimTypes.NameIdentifier);
             
             if (userClaim != null && int.TryParse(userClaim.Value, out int id)) return id;
             

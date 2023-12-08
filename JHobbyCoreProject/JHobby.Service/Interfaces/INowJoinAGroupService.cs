@@ -6,5 +6,7 @@ namespace JHobby.Service.Interfaces
     {
         public IEnumerable<NowJoinAGroupModel> GetNowJoinAGroupAll();
         public IEnumerable<NowJoinAGroupModel> GetNowJoinAGroupById(int memberId);
+
+        public bool NowJoinAGroupCancel(int activityUserId, int memberId, NowJoinAGroupCancelModel nowJoinAGroupCancel);
     }
 }

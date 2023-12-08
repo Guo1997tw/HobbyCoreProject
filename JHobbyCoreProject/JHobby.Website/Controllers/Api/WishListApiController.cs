@@ -36,10 +36,29 @@ namespace JHobby.Website.Controllers.Api
             return _iWishListService.GetWishListById(memberId)
                 .Select(wl => new WishListViewModel
                 {
+                    WishId = wl.WishId,
+                    MemberId = wl.MemberId,
                     ActivityName = wl.ActivityName,
                     ActivityStatus = wl.ActivityStatus,
+                    ActivityId = wl.ActivityId,
                     SurplusQuota = wl.SurplusQuota,
+                    ImageName = wl.ImageName,
                 });
+        }
+
+        [HttpDelete]
+        public IActionResult WishListDelete(int memberId,int wishId)
+        {
+            if (memberId >= 0)
+            {
+                var result = _iWishListService.WishListDelete(memberId, wishId);
+
+                return Ok(result);
+            }
+            else
+            {
+                return BadRequest();
+            }
         }
     }
 }

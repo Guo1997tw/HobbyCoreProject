@@ -101,6 +101,12 @@
 
         methods: {
             Login() {
+                var emailRule = /^[a-zA-Z0-9._-]+@@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+
+                if (!emailRule.test(this.memberLogin.account)) {
+                    return alert("電子信箱格式有誤，請確認!!");
+                }
+
                 let self = this;
 
                 fetch("/MemberApi/CheckMember", {
@@ -111,12 +117,19 @@
                     if (!r.ok) { throw new Error('Fail'); } return r.json();
                 }).then(d => {
                     console.log('Success', d);
-                    alert("登入成功~~")
+                    if (d == true) {
+                        alert("登入成功~~");
 
-                    const searchTemp = new URLSearchParams(window.location.search);
-                    const returnUrl = searchTemp.get('ReturnUrl');
+                        // const searchTemp = new URLSearchParams(window.location.search);
+                        // const returnUrl = searchTemp.get('ReturnUrl');
 
-                    window.location.href = returnUrl ? decodeURIComponent(returnUrl) : '/Home/Index';
+                        // window.location.href = returnUrl ? decodeURIComponent(returnUrl) : '/Home/Index';
+
+                        window.location.href = "/Home/Index"
+                    }
+                    else {
+                        alert("請確認帳號及密碼是否正確!!");
+                    }
                 }).catch(e => {
                     console.log('Fail', e);
                     alert("登入失敗，請確認帳號、密碼是否正確!!");

@@ -1,4 +1,5 @@
 ﻿using JHobby.Repository.Interfaces;
+using JHobby.Repository.Models.Dto;
 using JHobby.Service.Interfaces;
 using JHobby.Service.Models;
 using System;
@@ -46,13 +47,28 @@ namespace JHobby.Service.Implements
                 .Select(s => new NowJoinAGroupModel
                 {
                     ActivityName = s.ActivityName,
+                    ActivityUserId = s.ActivityUserId,
+                    ActivityId= s.ActivityId,
+                    MemberId = s.MemberId,
                     ReviewStatus = _iCommonService.ConvertReviewStatus(s.ReviewStatus),
                     CurrentPeople = s.CurrentPeople,
                     MaxPeople = s.MaxPeople,
                     NickName = s.NickName,
                     DateConvert = _iCommonService.ConvertTime(s.StartTime).First().DateConvert,
-                    TimeConvert = _iCommonService.ConvertTime(s.StartTime).First().TimeConvert
+                    TimeConvert = _iCommonService.ConvertTime(s.StartTime).First().TimeConvert,
+                    ImageName = s.ImageName,
                 });
+        }
+
+        public bool NowJoinAGroupCancel(int activityUserId, int memberId, NowJoinAGroupCancelModel nowJoinAGroupCancel)
+        {
+            var mapping = new NowJoinAGroupCancelDto
+            {
+                ReviewStatus = nowJoinAGroupCancel.ReviewStatus,
+            };
+            _nowJoinAGroupRepository.NowJoinAGroupCancel(activityUserId, memberId, mapping);
+
+            return true;
         }
     }
 }

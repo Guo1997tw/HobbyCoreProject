@@ -97,7 +97,8 @@ namespace JHobby.Website
             builder.Services.AddScoped<IWishListRepository, WishListRepository>();
             builder.Services.AddScoped<IWishListService, WishListService>();
             builder.Services.AddScoped<ISendMailService, SendMailService>();
-
+            builder.Services.AddScoped<IinputScoreRepository, InputScoreRepository>();
+            builder.Services.AddScoped<IinputScoreService, InputScoreService>();
             builder.Services.AddHttpContextAccessor();
             builder.Services.AddScoped<IUserAuthenticationService, UserAuthenticationService>();
 
