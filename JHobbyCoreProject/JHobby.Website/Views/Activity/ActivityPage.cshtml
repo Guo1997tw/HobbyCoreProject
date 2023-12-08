@@ -24,8 +24,8 @@
                 </a>
             </div>
         </div>
-@*         <div class="showphotos corner-radius-10">
-            <a href="~/assets/img/gallery/gallery1/gallery-03.png" data-fancybox="gallery1"><i class="fa-regular fa-images"></i>More Photos</a>
+        @*         <div class="showphotos corner-radius-10">
+        <a href="~/assets/img/gallery/gallery1/gallery-03.png" data-fancybox="gallery1"><i class="fa-regular fa-images"></i>More Photos</a>
         </div> *@
     </div>
     <div class="venue-info white-bg d-block">
@@ -83,7 +83,7 @@
                             <div id="panelsStayOpen-comments" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-comments">
                                 <div class="accordion-body">
                                     <!-- Comments -->
-                                    <div class="blog-comments">                                        
+                                    <div class="blog-comments">
                                         <template v-if="blnMsg">
                                             <div class="dull-bg">
                                                 <hr>
@@ -120,7 +120,7 @@
                                                 <div class="mb-3">
                                                     <textarea v-model="message" class="form-control" id="comments" rows="3" placeholder="留下您想說的話"></textarea>
                                                 </div>
-                                                <button type="button" class="btn btn-gradient"  v-on:click="CreateMsg()">送出</button>
+                                                <button type="button" class="btn btn-gradient" v-on:click="CreateMsg()">送出</button>
                                             </form>
                                         </div>
                                     </div>
@@ -165,7 +165,7 @@
                     </div>
                     <template v-if="blnMemberStatus">
                         <div class="d-grid btn-block">
-                            <button disabled class="btn btn-secondary d-inline-flex justify-content-center align-items-center" type="submit">您已參加</button>
+                            <button disabled class="btn btn-secondary d-inline-flex justify-content-center align-items-center" type="submit">您已參加或活動已結束</button>
                         </div>
                     </template>
                     <template v-else>
@@ -191,7 +191,7 @@
                                     <div class="listing-item mb-0">
                                         <div class="listing-img">
                                             <a v-bind:href='"/Activity/ActivityPage/"+item.activityId'>
-                                                <img :src="item.activityImages[0].imageName".jpg"' alt="Venue">
+                                                <img :src="item.activityImages[0].imageName" .jpg"' alt="Venue">
                                             </a>
                                             <div class="fav-item-venues">
                                                 <div class="list-reviews">
@@ -266,7 +266,7 @@
                     activityList: [],
                     wish: [],
                     profile: [],
-                    blnMemberStatus:true,
+                    blnMemberStatus: true,
                     resultSrc: "",
                     star: 0,
                     blnMsg: true,
@@ -279,7 +279,7 @@
                 _this.QueryActivity();
                 _this.QueryMsgBord();
                 _this.QueryMemeberStatus();
-                _this.blnAction= blnChange(`@blnLogIn`);
+                _this.blnAction = blnChange(`@blnLogIn`);
             },
             methods: {
                 QueryActivity() {
@@ -303,7 +303,7 @@
                             _this.msgBord = res.data;
                             if (_this.msgBord.length == 0) {
                                 _this.blnMsg = false;
-                            }                            
+                            }
                         })
                         .catch(err => alert(err));
                 },
@@ -316,8 +316,7 @@
                         })
                         .catch(err => alert(err));
                 },
-                QueryMemeberStatus() 
-                {
+                QueryMemeberStatus() {
                     let _this = this;
                     if (!_this.blnAction) return
                     axios.get("/ActivityApi/GetMemberJoinStatus/@verifyMemberId/@activityId")
@@ -410,11 +409,11 @@
                             "Content-Type": "multipart/form-data"
                         }
                     })
-                        .then(res => { 
+                        .then(res => {
                             if (res.data == true) {
                                 alert("參加成功");
                                 _this.QueryMemeberStatus()
-                            } else { 
+                            } else {
                                 alert("您已參加過")
                             }
                         })
