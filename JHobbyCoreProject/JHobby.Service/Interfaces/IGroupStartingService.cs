@@ -15,7 +15,7 @@ namespace JHobby.Service.Interfaces
 		public IEnumerable<GroupStartingModel?> GetByIdNow(int id);
 		public IEnumerable<GroupStartingCurrentModel> CurrentById(int id, int ActivityId);
 
-		public bool UpdateActivityStatus(int id, ActivityStatusModel activityStatusModel);
+		public bool UpdateActivityStatus(int id, ActivityConditionModel activityConditionModel);
 
 	}
 }

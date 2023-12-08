@@ -44,7 +44,7 @@ namespace JHobby.Repository.Implements
 			   });
 
 		}
-		public bool UpdateActivityStatus(int id, ActivityStatusDto activityStatusDto)
+		public bool UpdateActivityStatus(int id, ActivityConditionDto activityStatusDto)
 		{
 			var queryResult = _jhobbyContext.Activities.FirstOrDefault(g => g.ActivityId == id);
 

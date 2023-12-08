@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace JHobby.Service.Models
 {
-    public class ActivityStatusModel
-    {
-        //public int ActivityId { get; set; }
+    public class ActivityConditionModel
+	{
         public string ActivityStatus { get; set; } = null!;
     }
+    
 }
 

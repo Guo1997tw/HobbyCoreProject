@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 
 namespace JHobby.Repository.Models.Dto
 {
-    public class ActivityStatusDto
+    public class ActivityConditionDto
     {
-        //public int ActivityId { get; set; }
         public string ActivityStatus { get; set; } = null!;
     }
 }

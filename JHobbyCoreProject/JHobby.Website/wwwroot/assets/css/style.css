@@ -647,9 +647,9 @@ ul li {
 }
 
 .btn-primary {
-  color: #FFFFFF;
-  background: #097E52;
-  border-color: #097E52;
+    color: #FFFFFF;
+    background: #9BD1F2;
+    border-color: #9BD1F2;
 }
 .btn-primary:hover {
   background: #192335;
@@ -1829,10 +1829,10 @@ header.header-sticky.fixed-top { /*換表頭*/
     7. Footer
 -----------------------*/
 .footer {
-  background-color: #0A1A38;
-  padding: 60px 0 0;
-  float: left;
-  width: 100%;
+    background-color: #0A1A38;
+    padding: 60px 0 0;
+    float: left;
+    width: 100%;
 }
 @media (max-width: 767.98px) {
   .footer {
@@ -1880,7 +1880,7 @@ header.header-sticky.fixed-top { /*換表頭*/
   margin-bottom: 0;
 }
 .footer .footer-top .footer-menu ul li a {
-  color: #6B7385;
+  color: #FFFFFF;
 }
 .footer .footer-top .footer-menu ul li a:hover {
   color: #097E52;
@@ -2426,12 +2426,12 @@ div#global-loader {
   margin: 0 0 15px;
   z-index: 1;
 }
-.section-heading h2 span {
-  font-size: inherit;
-  background: linear-gradient(105.55deg, #085A6C -6.68%, #269089 43.13%, #7ABC82 96.15%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
+    .section-heading h2 span {
+        font-size: inherit;
+        background: linear-gradient(105.55deg, #5C82F2 -6.68%, #07DBF2 43.13%, #07F2B0 96.15%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
 .section-heading h2:after {
   content: "";
   position: absolute;
@@ -2631,13 +2631,13 @@ div#global-loader {
   transition: all 0.5s ease;
 }
 .hero-section .section-search .search-box .search-btn .btn {
-  border: 0;
-  background: linear-gradient(105.55deg, #085A6C -6.68%, #269089 43.13%, #7ABC82 96.15%);
-  font-size: 18px;
-  width: 60px;
-  height: 60px;
-  color: #FFFFFF;
-  padding: 0;
+    border: 0;
+    background: linear-gradient(105.55deg, #5C82F2 -6.68%, #07DBF2 43.13%, #07F2B0 96.15%);
+    font-size: 18px;
+    width: 60px;
+    height: 60px;
+    color: #FFFFFF;
+    padding: 0;
 }
 .hero-section .section-search .search-box .search-btn .btn:hover {
   background: linear-gradient(105.55deg, #7ABC82 -6.68%, #269089 43.13%, #085A6C 96.15%);

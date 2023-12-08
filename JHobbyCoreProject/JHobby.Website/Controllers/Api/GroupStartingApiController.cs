@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using JHobby.Repository.Interfaces;
 using JHobby.Repository.Implements;
-using ActivityStatusModel = JHobby.Service.Models.ActivityStatusModel;
+using ActivityConditionModel = JHobby.Service.Models.ActivityConditionModel;
 using AutoMapper;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication;
@@ -51,9 +51,9 @@ namespace JHobby.Website.Controllers.Api
         }
 
         [HttpPut("{id}")]
-        public bool ActivityStatus(int id, [FromForm] ActivityStatusViewModel activityStatusViewModel)
+        public bool ActivityStatus(int id, [FromForm] ActivityConditionViewModel activityConditionViewModel)
         {
-            var mapper = _mapper.Map<ActivityStatusModel>(activityStatusViewModel);
+            var mapper = _mapper.Map<ActivityConditionModel>(activityConditionViewModel);
 
             return (_GroupStartingService.UpdateActivityStatus(id, mapper)) ? true : false;
         }

@@ -1,8 +1,8 @@
 ﻿namespace JHobby.Website.Models.ViewModels
 {
-    public class ActivityStatusViewModel
+    public class ActivityConditionViewModel
     {
-        //public int ActivityId { get; set; }
+
         public string ActivityStatus { get; set; } = null!;
     }
 }
