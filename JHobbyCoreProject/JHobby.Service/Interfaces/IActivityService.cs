@@ -11,14 +11,33 @@ namespace JHobby.Service.Interfaces
 {
 	public interface IActivityService
 	{
-		public bool CreateActivityBuild(ActivityBuildModel activityBuildModel);
+        /// <summary>
+        /// 團主建立
+        /// </summary>
+        /// <param name="activityCreateModel"></param>
+        /// <returns></returns>
+        public bool ActivityCreate(ActivityCreateModel activityCreateModel);
 
-		/// <summary>
-		/// 活動頁面查詢
-		/// </summary>
-		/// <param name="id"></param>
-		/// <returns></returns>
-		public ActivityPageModel GetActivityPageSearch(int id);
+        /// <summary>
+        /// 團主編輯
+        /// </summary>
+        /// <param name="activityUpdateModel"></param>
+        /// <returns></returns>
+        public bool ActivityUpdate(int id, ActivityUpdateModel activityUpdateModel);
+
+        /// <summary>
+        /// 取得開團資料
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public ActivityStatusModel GetActivityStatus(int id);
+
+        /// <summary>
+        /// 活動頁面查詢
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public ActivityPageModel GetActivityPageSearch(int id);
 
 		/// <summary>
 		/// 會員留言板查詢
@@ -31,7 +50,6 @@ namespace JHobby.Service.Interfaces
         /// </summary>
         /// <param name="memberMsgModel"></param>
         /// <returns></returns>
-
         public bool CreateMsg(MemberInsertMsgModel memberInsertMsgDto);
 
 		/// <summary>

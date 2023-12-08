@@ -8,31 +8,31 @@ namespace JHobby.Repository.Implements;
 
 public class CategoryRepository : ICategoryRepository
 {
-    private readonly JhobbyContext _dbContext;
+    private readonly JhobbyContext _jhobbyContext;
     private readonly IMapper _mapper;
 
-    public CategoryRepository(JhobbyContext dbContext, IMapper mapper)
+    public CategoryRepository(JhobbyContext jhobbyContext, IMapper mapper)
     {
-        _dbContext = dbContext;
+        _jhobbyContext = jhobbyContext;
         _mapper = mapper;
     }
 
     public IEnumerable<CategoryDto> GetAll()
     {
-        return _mapper.Map<IEnumerable<CategoryDto>>(_dbContext.Categories.AsNoTracking());
+        return _mapper.Map<IEnumerable<CategoryDto>>(_jhobbyContext.Categories.AsNoTracking());
     }
 
     public CategoryDto GetById(int id)
     {
-        return _mapper.Map<CategoryDto>(_dbContext.Categories.FirstOrDefault(c => c.CategoryId == id));
+        return _mapper.Map<CategoryDto>(_jhobbyContext.Categories.FirstOrDefault(c => c.CategoryId == id));
     }
 
     public bool Insert(CategoryCreateDto dto)
     {
         try
         {
-            _dbContext.Categories.Add(_mapper.Map<Category>(dto));
-            _dbContext.SaveChanges();
+            _jhobbyContext.Categories.Add(_mapper.Map<Category>(dto));
+            _jhobbyContext.SaveChanges();
             return true;
         }
         catch (Exception)
@@ -45,10 +45,10 @@ public class CategoryRepository : ICategoryRepository
     {
         try
         {
-            var category = _dbContext.Categories.FirstOrDefault(c => c.CategoryId == id);
+            var category = _jhobbyContext.Categories.FirstOrDefault(c => c.CategoryId == id);
             if (category == null) return false;
             _mapper.Map(dto, category);
-            _dbContext.SaveChanges();
+            _jhobbyContext.SaveChanges();
             return true;
         }
         catch (Exception)
@@ -61,15 +61,34 @@ public class CategoryRepository : ICategoryRepository
     {
         try
         {
-            var category = _dbContext.Categories.FirstOrDefault(c => c.CategoryId == id);
+            var category = _jhobbyContext.Categories.FirstOrDefault(c => c.CategoryId == id);
             if (category == null) return false;
-            _dbContext.Categories.Remove(category);
-            _dbContext.SaveChanges();
+            _jhobbyContext.Categories.Remove(category);
+            _jhobbyContext.SaveChanges();
             return true;
         }
         catch (Exception)
         {
             return false;
         }
+    }
+
+    /// <summary>
+    /// 取得類型配細項
+    /// </summary>
+    /// <returns></returns>
+    public IQueryable<CategoryTypeDto> GetCategoryIncludeType()
+    {
+        return _jhobbyContext.Categories.Include(c => c.CategoryDetails).Select(cd => new CategoryTypeDto
+        {
+            CategoryId = cd.CategoryId,
+            CategoryName = cd.CategoryName,
+            CategoryDetails = cd.CategoryDetails.Select(x => new CategoryDetailDto
+            {
+                CategoryTypeId = x.CategoryTypeId,
+                CategoryId = x.CategoryId,
+                TypeName = x.TypeName
+            }).ToList()
+        });
     }
 }

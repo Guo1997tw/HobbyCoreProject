@@ -1,0 +1,122 @@
+﻿@{
+    ViewData["Title"] = "修改密碼";
+}
+
+<partial name="_BreadcrumbPartial" />
+<partial name="_DashboardMenuPartial" />
+<partial name="_PersonalcrumbPartial" />
+
+<!-- Page Content -->
+<div id="app" class="main-wrapper authendication-pages">
+    <div class="content court-bg">
+        <div class="container">
+
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="profile-detail-group">
+                        <div class="card ">
+                            <form>
+                                <div class="row">
+                                    <div class="col-lg-7 col-md-7">
+                                    </div>
+                                    <div class="col-lg-13 col-md-13">
+                                        <div class="form-group">
+                                            <label class="form-label">原先密碼</label>
+                                            <div class="pass-group group-img">
+                                                <i class="toggle-password feather-eye-off"></i>
+                                                <input type="password" class="form-control pass-input" placeholder="請輸入原先密碼" v-model="updateMember.oldpassword">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-label">新的密碼</label>
+                                        <div class="pass-group group-img">
+                                            <i class="toggle-password-confirm feather-eye-off"></i>
+                                            <input type="password" class="form-control pass-confirm" placeholder="請輸入新密碼" v-model="updateMember.newpassword">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-label">新密碼再次確認</label>
+                                        <div class="pass-group group-img">
+                                            <i class="toggle-password-confirm feather-eye-off"></i>
+                                            <input type="password" class="form-control pass-confirm" placeholder="請再次輸入新密碼" v-model="updateMember.passwordtwo">
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="save-changes text-end">
+                            <button class="btn btn-primary save-profile" v-on:click="changePassword">儲存</button>
+                            <button onclick="window.location.href='/'" class="btn btn-secondary reset-profile">取消</button>
+
+                        </div>
+                        <div style="height: 60px;"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /Page Content -->
+
+<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+<script>
+    Vue.createApp({
+        data() {
+            return {
+                updateMember: {
+                    oldpassword: "",
+                    newpassword: "",
+                    passwordtwo: ""
+                },
+            }
+        },
+
+        methods: {
+            changePassword() {
+                if (!this.updateMember.oldpassword) {
+                    return alert("請輸入原先的密碼");
+                }
+
+                if (this.updateMember.oldpassword === this.updateMember.newpassword) {
+                    return alert("舊密碼與新密碼不可以一樣");
+                }
+
+                if (this.updateMember.newpassword !== this.updateMember.passwordtwo) {
+                    return alert("新的密碼與確認密碼欄位必須一樣");
+                }
+
+                let self = this;
+
+                fetch("/MemberApi/UpdateMember/7", {
+                    method: "PUT",
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(this.updateMember)
+                })
+                    .then(r => {
+                        if (!r.ok) {
+                            throw new Error('Fail');
+                        }
+                        return r.json();
+                    })
+                    .then(d => {
+                        console.log('Success', d);
+                        if (d == true) {
+                            alert("密碼修改成功~~");
+                            window.location.href = '/Home/Index';
+                        }
+                        else {
+                            alert("修改密碼失敗,請重新確認三個欄位輸入是否正確");
+                            self.updateMember.newpassword = "";
+                            self.updateMember.passwordtwo = "";
+                            self.updateMember.oldpassword = "";
+                        }
+                    })
+                    .catch(e => {
+                        console.log('Fail', e);
+                        alert("修改密碼失敗,請重新嘗試");
+                    });
+            },
+        },
+    }).mount("#app");
+</script>

@@ -21,5 +21,15 @@ namespace JHobby.Website.Controllers
             ViewData["BookMark"] = "ProfileSetting";
             return View();
         }
+
+        /// <summary>
+        /// 修改密碼
+        /// </summary>
+        /// <returns></returns>
+        public IActionResult ChangePwd()
+        {
+            ViewData["BookMark"] = "ChangePassword";
+            return View();
+        }
     }
 }
