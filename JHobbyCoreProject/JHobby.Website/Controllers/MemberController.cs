@@ -57,7 +57,7 @@ namespace JHobby.Website.Controllers
             }
             catch (Exception)
             {
-                return RedirectToAction("NotFounds", "Home");
+                return RedirectToAction("NotFounds", "ErrorPage");
             }
            
         }
