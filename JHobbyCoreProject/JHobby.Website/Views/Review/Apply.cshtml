@@ -83,7 +83,7 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    <tr v-for="item in filterCard">
+                                                    <tr v-for="item in filterCard" v-if="reviewData.length > 0">
                                                         <td>
                                                             <h2 class="table-avatar">
                                                                 <a :href='"/Activity/ActivityPage/"+item.activityId' class="avatar avatar-sm  flex-shrink-0"><img class="avatar-img" :src='item.imageName' alt="Image"></a>
@@ -110,6 +110,16 @@
                                                         <td class="table-accept-btn text-end">
                                                             <a href="javascript:;" class="btn accept-btn" @@click="updateOk(item)">接受</a>
                                                             <a href="javascript:;" class="btn cancel-table-btn" data-bs-toggle="modal" data-bs-target="#request-reject" @@click="keepId(item.activityId,item.applicantId)">拒絕</a>
+                                                        </td>
+                                                    </tr>
+                                                    <tr v-else>
+                                                        <td class="sorting_1">
+                                                            <h2 class="table-avatar">
+                                                                <img src="~/profile/noprofile.png" class="avatar avatar-sm  flex-shrink-0" />
+                                                                <span class="table-head-name flex-grow-1">
+                                                                    <p>目前沒有報名者</p>
+                                                                </span>
+                                                            </h2>
                                                         </td>
                                                     </tr>
                                                 </tbody>
