@@ -116,7 +116,6 @@
                                                                     前往頁面
                                                                 </a>
                                                                 <a class="dropdown-item"
-                                                                   href=""
                                                                    @@click="joinAGroupCancel">
                                                                     <i class="feather-corner-down-left"></i>
                                                                     取消報名
@@ -231,7 +230,7 @@
                                                                 <a class="dropdown-item"
                                                                    href=""
                                                                    @@click="collectAGroupCancel(filterCard[index])">
-                                                                   <i class="feather-trash"></i>
+                                                                    <i class="feather-trash"></i>
                                                                     刪除收藏
                                                                 </a>
                                                             </div>
@@ -536,7 +535,23 @@
                                 headers: { "Content-Type": "multipart/Formdata" },
                             }
                         )
-                        .then((response) => alert("更新成功"))
+                        .then((response) => {
+                            if (response.status === 200) {
+                            // 直接從現有的 nowJoinAGroupCard 中移除該項目
+                            _this.nowJoinAGroupCard = _this.nowJoinAGroupCard.filter(
+                                (card) =>
+                                    !(
+                                        card.activityUserId === _this.currentCard.activityUserId &&
+                                        card.memberId === _this.currentCard.memberId
+                                    )
+                            );
+                            if (_this.filterCard.length === 0 && _this.pageNumber > 1) {
+                                _this.pageClick(_this.pageNumber - 1);
+                                };
+                        } else {
+                        alert("取消參加失敗");
+                            };
+                })
                         .catch((erro) => alert(`Erro: ${erro}`));
                 },
                 setCurrentCard(card) {
