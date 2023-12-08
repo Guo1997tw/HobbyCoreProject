@@ -29,7 +29,13 @@ namespace JHobby.Website.Controllers.Api
             _sendMailService = sendMailService;
             _memberRepository = memberRepository;
         }
-        
+
+        [HttpPost]
+        public bool CheckAccountStatus(string account)
+        {
+            return _memberService.CheckAccountIsRepeat(account);
+        }
+
         [HttpPost]
         public bool InsertRegister(MemberRegisterViewModel memberRegisterViewModel)
         {

@@ -17,6 +17,8 @@ namespace JHobby.Repository.Interfaces
 
         public MemberStatusDto? GetMemberStatus(string account);
 
+        public bool GetAccountIsRepeat(string account);
+
         public MemberDto? GetById(int id);
 
 		public bool Update(int id,UpdateMemberDto updateMemberDto);
