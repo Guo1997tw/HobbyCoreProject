@@ -1,4 +1,5 @@
-﻿using JHobby.Website.Models.ViewModels;
+﻿using JHobby.Service.Interfaces;
+using JHobby.Website.Models.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
@@ -7,6 +8,13 @@ namespace JHobby.Website.Controllers
 {
     public class ProfileSettingController : Controller
     {
+        private readonly IUserAuthenticationService _userAuthenticationService;
+
+        public ProfileSettingController(IUserAuthenticationService userAuthenticationService)
+        {
+            _userAuthenticationService = userAuthenticationService;
+        }
+
         public IActionResult ProfileSetting()
         {
             return View();
@@ -18,6 +26,8 @@ namespace JHobby.Website.Controllers
         /// <returns></returns>
         public IActionResult ChangePwd()
         {
+            ViewBag.memberId = _userAuthenticationService.GetUserId();
+
             return View();
         }
     }
