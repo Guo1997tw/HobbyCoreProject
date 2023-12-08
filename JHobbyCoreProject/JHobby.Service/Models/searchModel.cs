@@ -8,7 +8,7 @@ namespace JHobby.Service.Models
 {
 	public class SearchModel
 	{
-		public int categoyId { get; set; }
+		public int categoryId { get; set; }
 		public int categoryTypeId { get; set; }
 		public string? city { get; set; }
 		public string? area { get; set; }

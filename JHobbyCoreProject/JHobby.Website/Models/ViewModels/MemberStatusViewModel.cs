@@ -6,6 +6,8 @@
 
         public string Account { get; set; } = null!;
 
+        public string NickName { get; set; } = null!;
+        
         public string Status { get; set; } = null!;
     }
 }

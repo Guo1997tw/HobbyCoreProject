@@ -1,4 +1,8 @@
-﻿@section Styles
+﻿@{
+    int verifyMemberId = ViewBag.verifyMemberId;
+    bool blnLogIn = ViewBag.logIn;
+}
+@section Styles
     {
     <style>
         .service-count-blk {
@@ -6,11 +10,18 @@
             left: 30px;
             bottom: 30px;
         }
+
+        .footer {
+            background-color: #0A1A38;
+            padding: 60px 0 0;
+            float: left;
+            width: 100%;
+        }
     </style>
 }
 
 <!-- CityArea Search -->
-<section class="hero-section">
+<section id="cityArea" class="hero-section">
     @* 1920x1080 *@
     <div class="container">
         <div class="home-banner">
@@ -26,19 +37,16 @@
                                 <div class="search-input line">
                                     <div class="form-group mb-0">
                                         <label>縣市</label>
-                                        <select name="city" class="select">
-                                            <option value="1">台北市</option>
-                                            <option value="2">新北市</option>
-                                        </select>
+                                        <select2 name="city" style="width:100%" :options="cityList" v-model:value="activeCity">
+                                            <option disabled value="0">請選擇</option>
+                                        </select2>
                                     </div>
                                 </div>
                                 <div class="search-input">
                                     <div class="form-group mb-0">
                                         <label>區域 </label>
-                                        <select name="area" class="form-control select">
-                                            <option value="1">中正區</option>
-                                            <option value="2">大同區</option>
-                                        </select>
+                                        <select2 name="area" style="width:100%" :options="areaList">
+                                        </select2>
                                     </div>
                                 </div>
                                 <div class="search-btn">
@@ -71,8 +79,9 @@
                     <div class="featured-venues-item aos" data-aos="fade-up" v-for="item in activityList">
                         <div class="listing-item mb-0">
                             <div class="listing-img">
+
                                 <a v-bind:href='"@Url.Action("ActivityPage","Activity")/"+item.activityId'>
-                                    <img :src='"/image/activityimages/"+item.activityImages[0].imageName+".jpg"' style="height:259px;width:417px" alt="Venue">
+                                    <img :src="item.activityImages[0].imageName" style="height:259px;width:417px" alt="Venue">
                                 </a>
                                 <div class="fav-item-venues">
                                     <span class="tag tag-yellow">精選</span>
@@ -109,10 +118,9 @@
                                 <div class="listing-button">
                                     <div class="listing-venue-owner">
                                         <a class="navigation" v-bind:href='"@Url.Action("MemberProfile","Profile")/"+item.memberId'>
-                                            <img src="~/assets/img/profiles/avatar-01.jpg" alt="Venue">{{item.nickName}}
+                                            <img :src="item.headShot" alt="Venue">{{item.nickName}}
                                         </a>
                                     </div>
-                                    @* <a href="venue-details.html" class="user-book-now"><span><i class="feather-calendar me-2"></i></span>參加</a> *@
                                 </div>
                             </div>
                         </div>
@@ -124,8 +132,6 @@
         <!-- View More -->
         <div class="view-all text-center aos" data-aos="fade-up">
             <form name="more" action="/Middle/ActivityCenter" method="post">
-                <input type="hidden" name="city" value="0" />
-                <input type="hidden" name="area" value="0" />
                 <a href="javascript:document.more.submit();" class="btn btn-secondary d-inline-flex align-items-center">更多揪團<span class="lh-1"><i class="feather-arrow-right-circle ms-2"></i></span></a>
             </form>
 
@@ -175,7 +181,7 @@
                         <div class="listing-item mb-0">
                             <div class="listing-img">
                                 <a v-bind:href='"@Url.Action("MemberProfile","Profile")/"+item.memberId'>
-                                    <img src="~/assets/img/profiles/user-01.jpg" alt="User">
+                                    <img style="height:371px;width:307px" :src="item.headShot" alt="User">
                                 </a>
                                 <div class="fav-item-venues">
                                     <span class="tag tag-blue">熱門</span>
@@ -201,22 +207,40 @@
     </div>
 </section>
 <!-- Hot Member -->
+<div id="footShow">
+    <footer class="footer" v-if="blnFootShow==false">
+        <div class="container">
+            <!-- Footer Join -->
+            <div class="footer-join aos" data-aos="fade-up">
+                <h2>無論是交友、聚會，還是各種體驗活動，我們的揪團網站應有盡有。</h2>
+                <p class="sub-title">快來加入 JHobby，立刻享受完整功能，打造屬於你的精彩社交時刻。</p>
+                <a href="https://localhost:7097/Member/Register" class="btn btn-primary"><i class="feather-user-plus"></i> 加入我們</a>
+            </div>
+        </div>
+    </footer>
+</div>
+
+<!-- /Footer Join -->
 @section Scripts
     {
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/3.3.4/vue.global.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.6.0/axios.min.js" integrity="sha512-WrdC3CE9vf1nBf58JHepuWT4x24uTacky9fuzw2g/3L9JkihgwZ6Cfv+JGTtNyosOhEmttMtEZ6H3qJWfI7gIQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="~/assets/js/script.js"></script>
+    <script src="~/js/jhobbyselect2component.js"></script>
+    <script src="~/js/taiwancity.js"></script>
     <script>
         const hotActivity = Vue.createApp({
             data() {
                 return {
                     activityList: [],
-                    wish: []
+                    wish: [],
+                    blnAction: true
                 }
             },
             mounted() {
                 let _this = this;
                 _this.QueryActivityList();
+                _this.blnAction = blnChange(`@blnLogIn`);
             },
             methods: {
                 QueryActivityList() {
@@ -226,26 +250,28 @@
                             _this.activityList = res.data;
                         })
                         .catch(err => alert(err));
+                    if (!_this.blnAction) return
                     _this.QueryWish();
                 },
                 QueryWish() {
                     let _this = this;
-                    axios.get("/WishApi/GetWishList")
+                    if (!_this.blnAction) return
+                    axios.get(`/WishApi/GetWishList/@verifyMemberId`)
                         .then(res => _this.wish = res.data)
                         .catch(err => alert(err));
                 },
                 Fav(id) {
                     let _this = this;
+                    if (!_this.blnAction) return
                     if (_this.wish.includes(id)) {
-                        axios.delete(`/WishApi/DeleteWish/${id}`)
+                        axios.delete(`/WishApi/DeleteWish/@verifyMemberId/${id}`)
                             .then(res => _this.QueryWish())
                             .catch(err => alert(err));
                     }
                     else {
-                        //目前寫死會員ID_1，等待網頁狀態實作
                         let _this = this;
                         var form = new FormData();
-                        form.append("memberId", 1);
+                        form.append("memberId", @verifyMemberId);
                         form.append("activityId", id);
                         form.append("addTime", GetDateTime());
                         axios.post("/WishApi/InsertWish", form, {
@@ -256,7 +282,6 @@
                             .then(res => _this.QueryWish())
                             .catch(err => alert(err));
                     }
-                    //_this.QueryActivityList();
                 }
             }
         }).mount("#hotActivity")
@@ -310,6 +335,44 @@
                 }
             }
         }).mount("#hotMember")
+        const cityArea = Vue.createApp({
+            data() {
+                return {
+                    activeCity: ""
+                }
+            },
+            computed: {
+                cityList() {
+                    return taiwanCity.map(x => {
+                        return {
+                            id: x.CityName,
+                            text: x.CityName
+                        }
+                    })
+                },
+                areaList() {
+                    let area = taiwanCity.filter(x => x.CityName == this.activeCity);
+                    if (area.length < 1) return [];
+                    return area[0].AreaList.map(x => {
+                        return {
+                            id: x.AreaName,
+                            text: x.AreaName
+                        }
+                    })
+                }
+            }
+        }).component('select2', select2).mount("#cityArea")
+        const footShow = Vue.createApp({
+            data() {
+                return {
+                    blnFootShow: false,
+                }
+            },
+            mounted() {
+                let _this = this;
+                _this.blnFootShow = blnChange(`@blnLogIn`);
+            },
+        }).mount("#footShow")
 
     </script>
 }

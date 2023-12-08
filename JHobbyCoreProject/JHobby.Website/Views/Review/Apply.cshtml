@@ -7,6 +7,7 @@
         .request-modal.modal .modal-dialog {
             max-width: 540px;
         }
+
     </style>
 
 }
@@ -55,7 +56,7 @@
                                     <div class="row align-items-center">
                                         <div class="col-lg-6">
                                             <div class="court-table-head">
-                                                <h4>資格審核</h4>
+                                                <h4>報名審核</h4>
                                                 <p>活動報名審核</p>
                                             </div>
                                         </div>
@@ -85,24 +86,24 @@
                                                     <tr v-for="item in filterCard">
                                                         <td>
                                                             <h2 class="table-avatar">
-                                                                <a href="#" class="avatar avatar-sm  flex-shrink-0"><img class="avatar-img" src="~/assets/img/booking/booking-01.jpg" alt="User"></a>
+                                                                <a :href='"/Activity/ActivityPage/"+item.activityId' class="avatar avatar-sm  flex-shrink-0"><img class="avatar-img" :src='item.imageName' alt="Image"></a>
                                                                 <span class="table-head-name flex-grow-1">
-                                                                    <a href="javascript:;" data-bs-toggle="modal"
-                                                                       data-bs-target="#request-court">{{item.activityName}}</a>
+                                                                    <a :href='"/Activity/ActivityPage/"+item.activityId'><h5>{{item.activityName}}</h5></a>
                                                                 </span>
                                                             </h2>
                                                         </td>
                                                         <td>
                                                             <h2 class="table-avatar">
-                                                                <a href="my-profile.html"
-                                                                   class="avatar avatar-sm  flex-shrink-0"><img class="avatar-img" src="~/assets/img/profiles/avatar-01.jpg" alt="User"></a>
-                                                                <span class="table-head-name table-name-user flex-grow-1">
-                                                                    <a href="">{{item.nickName}}</a>
+                                                                <a :href='"/Profile/MemberProfile/"+item.applicantId'
+                                                                   class="avatar avatar-sm  flex-shrink-0"><img class="avatar-img" :src='item.headShot' alt="Image"></a>
+                                                                <span class="table-head-name table-name-user flex-grow-1">                                                                    
+                                                                    <a :href='"/Profile/MemberProfile/"+item.applicantId'><h5>{{item.nickName}}</h5></a>
                                                                 </span>
                                                             </h2>
                                                         </td>
-                                                        <td class="table-date-time">
-                                                            <h4>{{item.reviewTime}}</h4>
+                                                        <td class="table-date-time">                                                           
+                                                            <h5>{{item.dateConvert}}</h5>
+                                                            <h5>{{item.timeConvert}}</h5>
                                                             <h4 hidden readonly>{{item.activityId}}</h4>
                                                             <h4 hidden readonly>{{item.applicantId}}</h4>
                                                         </td>
@@ -199,10 +200,12 @@
 
         const app = Vue.createApp({
             data() {
-                let self = this;
+                let _this = this;
                 return {
                     reviewData: [],
                     activityName: "",
+                    dateConvert:"",
+                    timeConvert:"",
                     reviewTime: "",
                     nickName: "",
                     headShot: "",
@@ -240,7 +243,7 @@
             methods: {
                 axiosGetReviewById: function () {
                     axios
-                        .get(`/ReviewApi/GetReviewById/5`)
+                        .get(`/ReviewApi/GetReviewById/${@Model.MemberId}`)
                         .then((response) => {
                             let _this = this;
                             _this.reviewData = response.data;

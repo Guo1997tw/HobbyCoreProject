@@ -9,6 +9,7 @@ namespace JHobby.Repository.Models.Dto
 {
     public class MemberMsgDto
     {
+        public int MemberId { get; set; }
         public int ActivityId { get; set; }
 
         public string? HeadShot { get; set; }
