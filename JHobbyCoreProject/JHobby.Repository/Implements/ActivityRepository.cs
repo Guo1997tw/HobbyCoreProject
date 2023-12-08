@@ -43,21 +43,25 @@ namespace JHobby.Repository.Implements
             }
             catch (Exception) { return false; }
         }
-    /// <summary>
-    /// 會員留言板查詢
-    /// </summary>
-    /// <returns></returns>
-    public IEnumerable<MemberMsgDto> GetMsgList(int id)
-    {
-        var result = _dbContext.Members.Join(_dbContext.MsgBoards, m => m.MemberId, mb => mb.MemberId, (m, mb) => new MemberMsgDto
+
+        /// <summary>
+        /// 會員留言板查詢
+        /// </summary>
+        /// <returns></returns>
+        public IEnumerable<MemberMsgDto> GetMsgList(int id)
         {
-            MemberId=mb.MemberId,
-            ActivityId = mb.ActivityId,
-            HeadShot = m.HeadShot,
-            MessageTime = mb.MessageTime,
-            MessageText = mb.MessageText,
-            NickName = m.NickName
-        }).Where(f => f.ActivityId == id).ToList();
+            var result = _jhobbyContext.Members.Join(_jhobbyContext.MsgBoards, m => m.MemberId, mb => mb.MemberId, (m, mb) => new MemberMsgDto
+            {
+                MemberId = mb.MemberId,
+                ActivityId = mb.ActivityId,
+                HeadShot = m.HeadShot,
+                MessageTime = mb.MessageTime,
+                MessageText = mb.MessageText,
+                NickName = m.NickName
+            }).Where(f => f.ActivityId == id).ToList();
+
+            return result;
+        }
 
         /// <summary>
         /// 團主修改
@@ -132,24 +136,6 @@ namespace JHobby.Repository.Implements
         }
 
         /// <summary>
-        /// 會員留言板查詢
-        /// </summary>
-        /// <returns></returns>
-        public IEnumerable<MemberMsgDto> GetMsgList(int id)
-        {
-            var result = _jhobbyContext.Members.Join(_jhobbyContext.MsgBoards, m => m.MemberId, mb => mb.MemberId, (m, mb) => new MemberMsgDto
-            {
-                ActivityId = mb.ActivityId,
-                HeadShot = m.HeadShot,
-                MessageTime = mb.MessageTime,
-                MessageText = mb.MessageText,
-                NickName = m.NickName
-            }).Where(f => f.ActivityId == id).ToList();
-
-            return result;
-        }
-
-        /// <summary>
         /// 會員留言板新增
         /// </summary>
         /// <param name="id"></param>
@@ -219,5 +205,4 @@ namespace JHobby.Repository.Implements
             return true;
         }
     }
-}
 }
