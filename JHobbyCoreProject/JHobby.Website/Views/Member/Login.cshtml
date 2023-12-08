@@ -101,6 +101,12 @@
 
         methods: {
             Login() {
+                var emailRule = /^[a-zA-Z0-9._-]+@@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+
+                if (!emailRule.test(this.memberLogin.account)) {
+                    return alert("電子信箱格式有誤，請確認!!");
+                }
+
                 let self = this;
 
                 fetch("/MemberApi/CheckMember", {
