@@ -67,12 +67,15 @@ namespace JHobby.Website.Controllers.Api
                 // 管理員
                 var roleAdmin = member.Status == "99" ? "Admin" : "NoAdmin";
 
+                var roleVerifyMail = member.Status == "8" ? "NoVerify" : "Verify";
+
                 var claims = new List<Claim>
                 {
-                    new Claim(ClaimTypes.Name, $"{ member.MemberId }"),
+                    new Claim(ClaimTypes.Name, $"{ member.NickName }"),
                     new Claim(ClaimTypes.Role, roleFast),
                     new Claim(ClaimTypes.Role, roleGeneral),
-                    new Claim(ClaimTypes.Role, roleAdmin)
+                    new Claim(ClaimTypes.Role, roleAdmin),
+                    new Claim(ClaimTypes.Role, roleVerifyMail)
                 };
 
                 var identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
@@ -145,6 +148,16 @@ namespace JHobby.Website.Controllers.Api
             var done = _memberService.UpdateMember(id, result);       //會跑到Service層裡的方法
 
             return Ok(done);
+        }
+
+        [HttpPost]
+        public bool reSendVerifyMail([FromForm] ReSendVerifyMailViewModel reSendVerifyMailViewModel) {
+            var result = _sendMailService.SendLetter(reSendVerifyMailViewModel.Account);
+            if (result)
+            { 
+                return true;
+            }                
+         return false;
         }
 	}
 }

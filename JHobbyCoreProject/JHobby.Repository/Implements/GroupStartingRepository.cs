@@ -1,4 +1,5 @@
-﻿using JHobby.Repository.Interfaces;
+﻿using AutoMapper;
+using JHobby.Repository.Interfaces;
 using JHobby.Repository.Models.Dto;
 using JHobby.Repository.Models.Entity;
 using System;
@@ -13,12 +14,14 @@ namespace JHobby.Repository.Implements
 	public class GroupStartingRepository : IGroupStartingRepository
 	{
 		private readonly JhobbyContext _jhobbyContext;
+        private readonly IMapper _mapper;
 
-		public GroupStartingRepository(JhobbyContext jhobbyContext)
+        public GroupStartingRepository(JhobbyContext jhobbyContext, IMapper mapper)
 		{
 
 			_jhobbyContext = jhobbyContext;
-		}
+            _mapper = mapper;
+        }
 
 		public IEnumerable<GroupStartingDto> GetGroupStartingAll()
 		{
@@ -41,31 +44,19 @@ namespace JHobby.Repository.Implements
 			   });
 
 		}
-		public bool Update(int id, GroupStartingDto GroupStartingDto)
-		{
-			var queryResult = _jhobbyContext.Categories.FirstOrDefault(c => c.CategoryId == id);
-
-			if (queryResult != null)
-			{
-				queryResult.CategoryName = GroupStartingDto.ActivityName;
-
-				_jhobbyContext.SaveChanges();
-
-				return true;
-			};
-
-			return false;
-		}
-		public bool Delete(int id)
+		public bool UpdateActivityStatus(int id, ActivityStatusDto activityStatusDto)
 		{
 			var queryResult = _jhobbyContext.Activities.FirstOrDefault(g => g.ActivityId == id);
 
-			if (queryResult == null) { return false; }
+			if (queryResult != null)
+			{
+				_mapper.Map(activityStatusDto, queryResult);
+				_jhobbyContext.SaveChanges();
 
-			_jhobbyContext.Activities.Remove(queryResult);
-			_jhobbyContext.SaveChanges();
+				return true;
+			}
 
-			return true;
+			return false;
 		}
 
 		public IEnumerable<GroupStartingDto?> GetByIdNow(int id)
@@ -77,7 +68,7 @@ namespace JHobby.Repository.Implements
 			   (a, m) => new GroupStartingDto
 			   {
 				   MemberId = a.MemberId,
-				   ActivityId = a.ActivityId,
+                   ActivityId = a.ActivityId,
 				   ActivityName = a.ActivityName,
 				   CurrentPeople = a.CurrentPeople,
 				   ActivityStatus = a.ActivityStatus,
@@ -87,11 +78,47 @@ namespace JHobby.Repository.Implements
 				   ImageName = m.ImageName,
 				   ActivityImageId = m.ActivityImageId,
 
-			   }).Where(g => g.MemberId == id);
+			   }).Where(g => g.MemberId == id && g.ActivityStatus=="1" && g.IsCover == true);
 
 			return result;
 
 
-		}     
+		}
+        public IEnumerable<GroupStartingCurrentDto> CurrentById(int id, int ActivityId)
+        {
+            var Dtoresult = _jhobbyContext.Members.Join(_jhobbyContext.ActivityUsers, m => m.MemberId, au => au.MemberId, (m, au) => new
+            {
+                ApplicantId = m.MemberId,
+                NickName = m.NickName,
+                HeadShot = m.HeadShot,
+                ReviewStatus = au.ReviewStatus,
+                ReviewTime = au.ReviewTime,
+                ActivityId = au.ActivityId,
+            }).Join(_jhobbyContext.Activities, mau => mau.ActivityId, a => a.ActivityId, (mau, a) => new
+            {
+                ApplicantId = mau.ApplicantId,
+                NickName = mau.NickName,
+                HeadShot = mau.HeadShot,
+                ReviewStatus = mau.ReviewStatus,
+                ReviewTime = mau.ReviewTime,
+                ActivityId = mau.ActivityId,
+                ActivityName = a.ActivityName,
+                LeaderId = a.MemberId,
+            }).Join(_jhobbyContext.ActivityImages, maua => maua.ActivityId, ai => ai.ActivityId, (maua, ai) => new GroupStartingCurrentDto
+            {
+                ApplicantId = maua.ApplicantId,
+                NickName = maua.NickName,
+                HeadShot = maua.HeadShot,
+                ReviewStatus = maua.ReviewStatus,
+                ReviewTime = maua.ReviewTime,
+                ActivityId = maua.ActivityId,
+                ActivityName = maua.ActivityName,
+                LeaderId = maua.LeaderId,
+                ImageName = ai.ImageName,
+                IsCover = ai.IsCover,
+                ActivityImageId = ai.ActivityImageId,
+            }).Where(d => (d.LeaderId == id)&&(d.ActivityId==ActivityId) && (d.ReviewStatus == "1" || d.ReviewStatus == "3")&& d.IsCover==true);
+            return Dtoresult;
+        }
     }
 }

@@ -101,52 +101,95 @@
                                 <ul class="submenu">
                                     <li><a href="https://localhost:7097/home/newcomer">新手上路</a></li>
                                     <li><a href="https://localhost:7097/home/conceptpage">經營理念</a></li>
-
                                 </ul>
 
                             </li>
                             <li class="has-submenu">
                                 <a href="#">食 <i class="fas fa-chevron-down"></i></a>
                                 <ul class="submenu">
-                                    <li><a href="/home/NotFounds">團購</a></li>
+                                    <li>
+                                        <form name="eat_buy" action="/Middle/ActivityCenter" method="post">
+                                            <input type="hidden" name="categoryId" value="2" />
+                                            <input type="hidden" name="categoryTypeId" value="2" />
+                                            <a href="javascript:document.eat_buy.submit();">團購</a>
+                                        </form>
+                                    </li>
                                 </ul>
-
                             </li>
                             <li class="has-submenu">
                                 <a href="#">住 <i class="fas fa-chevron-down"></i></a>
                                 <ul class="submenu">
-                                    <li><a href="/home/NotFounds">露營</a></li>
-                                    <li><a href="/home/NotFounds">合租</a></li>
-                                    <li><a href="/home/NotFounds">共生公寓</a></li>
+                                    <li>
+                                        <form name="live_camping" action="/Middle/ActivityCenter" method="post">
+                                            <input type="hidden" name="categoryId" value="2" />
+                                            <input type="hidden" name="categoryTypeId" value="2" />
+                                            <a href="javascript:document.live_camping.submit();">露營</a>
+                                        </form>
+                                    </li>
+                                    <li>
+                                        <form name="live_cooperate" action="/Middle/ActivityCenter" method="post">
+                                            <input type="hidden" name="categoryId" value="2" />
+                                            <input type="hidden" name="categoryTypeId" value="3" />
+                                            <a href="javascript:document.live_cooperate.submit();">合租</a>
+                                        </form>
+                                    </li>
+                                    <li>
+                                        <form name="live_share" action="/Middle/ActivityCenter" method="post">
+                                            <input type="hidden" name="categoryId" value="2" />
+                                            <input type="hidden" name="categoryTypeId" value="4" />
+                                            <a href="javascript:document.live_share.submit();">共生公寓</a>
+                                        </form>
+                                    </li>
                                 </ul>
                             </li>
                             <li class="has-submenu">
                                 <a href="#">行 <i class="fas fa-chevron-down"></i></a>
                                 <ul class="submenu">
-                                    <li><a href="/home/NotFounds">共乘</a></li>
-
+                                    <li>
+                                        <form name="traffic_share" action="/Middle/ActivityCenter" method="post">
+                                            <input type="hidden" name="categoryId" value="3" />
+                                            <input type="hidden" name="categoryTypeId" value="5" />
+                                            <a href="javascript:document.traffic_share.submit();">共乘</a>
+                                        </form>
+                                    </li>
                                 </ul>
                             </li>
                             <li class="has-submenu">
                                 <a href="#">育 <i class="fas fa-chevron-down"></i></a>
                                 <ul class="submenu">
-                                    <li><a href="/home/NotFounds">讀書會</a></li>
-                                    <li><a href="/home/NotFounds">技能交換</a></li>
+                                    <li>
+                                        <form name="edu_book" action="/Middle/ActivityCenter" method="post">
+                                            <input type="hidden" name="categoryId" value="4" />
+                                            <input type="hidden" name="categoryTypeId" value="6" />
+                                            <a href="javascript:document.edu_book.submit();">讀書會</a>
+                                        </form>
+                                    </li>
+                                    <li>
+                                        <form name="edu_change" action="/Middle/ActivityCenter" method="post">
+                                            <input type="hidden" name="categoryId" value="4" />
+                                            <input type="hidden" name="categoryTypeId" value="7" />
+                                            <a href="javascript:document.edu_change.submit();">技能交換</a>
+                                        </form>
+                                    </li>
                                 </ul>
                             </li>
                             <li class="has-submenu">
                                 <a href="#">樂<i class="fas fa-chevron-down"></i></a>
                                 <ul class="submenu">
-                                    <form name="play_inhouse" action="/Middle/ActivityCenter" method="post">
-                                        <input type="hidden" name="categoryId" value="5" />
-                                        <input type="hidden" name="categoryTypeId" value="8" />
-                                    <li><a href="javascript:document.play_inhouse.submit();">室內運動</a></li>
-                                    </form>
-                                    <form name="play_water" action="/Middle/ActivityCenter" method="post">
-                                        <input type="hidden" name="categoryId" value="5" />
-                                        <input type="hidden" name="categoryTypeId" value="9" />
-                                    <li><a href="javascript:document.play_water.submit();">水上運動</a></li>
-                                    </form>
+                                    <li>
+                                        <form name="play_inhouse" action="/Middle/ActivityCenter" method="post">
+                                            <input type="hidden" name="categoryId" value="5" />
+                                            <input type="hidden" name="categoryTypeId" value="8" />
+                                            <a href="javascript:document.play_inhouse.submit();">室內運動</a>
+                                        </form>
+                                    </li>
+                                    <li>
+                                        <form name="play_water" action="/Middle/ActivityCenter" method="post">
+                                            <input type="hidden" name="categoryId" value="5" />
+                                            <input type="hidden" name="categoryTypeId" value="9" />
+                                            <a href="javascript:document.play_water.submit();">水上運動</a>
+                                        </form>
+                                    </li>
                                 </ul>
                             </li>
                             <li class="has-submenu">
@@ -225,7 +268,11 @@
                                 <h4 class="footer-title">食</h4>
                                 <ul>
                                     <li>
-                                        <a href="https://localhost:7097/home/notfounds">團購</a>
+                                        <form name="foot_eat_buy" action="/Middle/ActivityCenter" method="post">
+                                            <input type="hidden" name="categoryId" value="2" />
+                                            <input type="hidden" name="categoryTypeId" value="2" />
+                                            <a href="javascript:document.foot_eat_buy.submit();">團購</a>
+                                        </form>
                                     </li>
                                 </ul>
                             </div>
@@ -237,13 +284,25 @@
                                 <h4 class="footer-title">住</h4>
                                 <ul>
                                     <li>
-                                        <a href="https://localhost:7097/home/notfounds">露營</a>
+                                        <form name="foot_live_camping" action="/Middle/ActivityCenter" method="post">
+                                            <input type="hidden" name="categoryId" value="2" />
+                                            <input type="hidden" name="categoryTypeId" value="2" />
+                                            <a href="javascript:document.foot_live_camping.submit();">露營</a>
+                                        </form>
                                     </li>
                                     <li>
-                                        <a href="https://localhost:7097/home/notfounds">合租</a>
+                                        <form name="foot_live_cooperate" action="/Middle/ActivityCenter" method="post">
+                                            <input type="hidden" name="categoryId" value="2" />
+                                            <input type="hidden" name="categoryTypeId" value="3" />
+                                            <a href="javascript:document.foot_live_cooperate.submit();">合租</a>
+                                        </form>
                                     </li>
                                     <li>
-                                        <a href="https://localhost:7097/home/notfounds">共生公寓</a>
+                                        <form name="foot_live_share" action="/Middle/ActivityCenter" method="post">
+                                            <input type="hidden" name="categoryId" value="2" />
+                                            <input type="hidden" name="categoryTypeId" value="4" />
+                                            <a href="javascript:document.foot_live_share.submit();">共生公寓</a>
+                                        </form>
                                     </li>
                                 </ul>
                             </div>
@@ -255,7 +314,11 @@
                                 <h4 class="footer-title">行</h4>
                                 <ul>
                                     <li>
-                                        <a href="https://localhost:7097/home/notfounds">共乘</a>
+                                        <form name="foot_traffic_share" action="/Middle/ActivityCenter" method="post">
+                                            <input type="hidden" name="categoryId" value="3" />
+                                            <input type="hidden" name="categoryTypeId" value="5" />
+                                            <a href="javascript:document.foot_traffic_share.submit();">共乘</a>
+                                        </form>
                                     </li>
                                 </ul>
                             </div>
@@ -267,10 +330,18 @@
                                 <h4 class="footer-title">育</h4>
                                 <ul>
                                     <li>
-                                        <a href="https://localhost:7097/home/notfounds">讀書會</a>
+                                        <form name="foot_edu_book" action="/Middle/ActivityCenter" method="post">
+                                            <input type="hidden" name="categoryId" value="4" />
+                                            <input type="hidden" name="categoryTypeId" value="6" />
+                                            <a href="javascript:document.foot_edu_book.submit();">讀書會</a>
+                                        </form>
                                     </li>
                                     <li>
-                                        <a href="https://localhost:7097/home/notfounds">技能交換</a>
+                                        <form name="foot_edu_change" action="/Middle/ActivityCenter" method="post">
+                                            <input type="hidden" name="categoryId" value="4" />
+                                            <input type="hidden" name="categoryTypeId" value="7" />
+                                            <a href="javascript:document.foot_edu_change.submit();">技能交換</a>
+                                        </form>
                                     </li>
                                 </ul>
                             </div>
@@ -281,20 +352,20 @@
                             <div class="footer-widget footer-menu">
                                 <h4 class="footer-title">樂</h4>
                                 <ul>
-                                    <form name="foot_play_inhouse" action="/Middle/ActivityCenter" method="post">
-                                        <input type="hidden" name="categoryId" value="5" />
-                                        <input type="hidden" name="categoryTypeId" value="8" />
-                                        <input type="hidden" name="city" value="0" />
-                                        <input type="hidden" name="area" value="0" />
-                                    <li><a href="javascript:document.foot_play_inhouse.submit();">室內運動</a></li>
-                                    </form>
-                                    <form name="foot_play_water" action="/Middle/ActivityCenter" method="post">
-                                        <input type="hidden" name="categoryId" value="5" />
-                                        <input type="hidden" name="categoryTypeId" value="9" />
-                                        <input type="hidden" name="city" value="0" />
-                                        <input type="hidden" name="area" value="0" />
-                                    <li><a href="javascript:document.foot_play_water.submit();">水上運動</a></li>
-                                    </form>
+                                    <li>
+                                        <form name="foot_play_inhouse" action="/Middle/ActivityCenter" method="post">
+                                            <input type="hidden" name="categoryId" value="5" />
+                                            <input type="hidden" name="categoryTypeId" value="8" />
+                                            <a href="javascript:document.foot_play_inhouse.submit();">室內運動</a>
+                                        </form>
+                                    </li>
+                                    <li>
+                                        <form name="foot_play_water" action="/Middle/ActivityCenter" method="post">
+                                            <input type="hidden" name="categoryId" value="5" />
+                                            <input type="hidden" name="categoryTypeId" value="9" />
+                                            <a href="javascript:document.foot_play_water.submit();">水上運動</a>
+                                        </form>
+                                    </li>
                                 </ul>
                             </div>
                         </div>
@@ -347,7 +418,6 @@
         </footer>
         <!-- /Footer -->
     </div>
-
     <!-- scrollToTop start -->
     <div class="progress-wrap active-progress">
         <svg class="progress-circle svg-content" width="100%" height="100%" viewBox="-1 -1 102 102">
@@ -355,7 +425,7 @@
         </svg>
     </div>
     <!-- scrollToTop end -->
-
+	<!-- scrollToTop end -->
     <script src="~/js/site.js" asp-append-version="true"></script>
     <!-- jQuery -->
     <script src="~/assets/js/jquery-3.7.0.min.js"></script>
@@ -378,6 +448,5 @@
     <script>
         Jhobby_Animation()
     </script>
-
 </body>
 </html>

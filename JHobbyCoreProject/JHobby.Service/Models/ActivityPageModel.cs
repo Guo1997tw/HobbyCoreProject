@@ -22,9 +22,11 @@ namespace JHobby.Service.Models
 
 		public string ActivityLocation { get; set; } = null!;
 
-		public DateTime StartTime { get; set; }
+        public string? StartDate { get; set; }
 
-		public DateTime JoinDeadLine { get; set; }
+        public string? StartTime { get; set; }
+
+        public string? JoinDeadLine { get; set; }
 
 		public string? ActivityNotes { get; set; }
 

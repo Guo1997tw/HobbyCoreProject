@@ -1,6 +1,6 @@
 ﻿@{
     int verifyMemberId = ViewBag.verifyMemberId;
-    bool blnlogIn = ViewBag.logIn;
+    bool blnLogIn = ViewBag.logIn;
     var search = ViewBag.search;
     ViewData["Title"] = "活動搜尋";
 }
@@ -144,11 +144,13 @@
                     wish: [],
                     sort: "asc",
                     blnData: true,
+                    blnAction: true
                 }
             },
             mounted() {
                 let _this = this;
                 _this.GetCategoryTypeList();
+                _this.blnAction = blnChange(`@blnLogIn`);
             },
             methods: {
                 GetCategoryTypeList() {
@@ -175,15 +177,15 @@
                     _this.QueryWish();
                 },
                 QueryWish() {
-                    if (`@blnlogIn` == "False") return
                     let _this = this;
+                    if (!_this.blnAction) return
                     axios.get(`/WishApi/GetWishList/@verifyMemberId`)
                         .then(res => _this.wish = res.data)
                         .catch(err => alert(err));
                 },
                 Fav(id) {
-                    if (`@blnlogIn` == "False") return
                     let _this = this;
+                    if (!_this.blnAction) return
                     if (_this.wish.includes(id)) {
                         axios.delete(`/WishApi/DeleteWish/@verifyMemberId/${id}`)
                             .then(res => _this.QueryWish())

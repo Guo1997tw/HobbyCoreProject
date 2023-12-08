@@ -8,7 +8,7 @@
 @{
     int activityId = ViewBag.activityId;
     int verifyMemberId = ViewBag.verifyMemberId;
-    bool blnlogIn = ViewBag.logIn;
+    bool blnLogIn = ViewBag.logIn;
 }
 
 <partial name="_BreadcrumbPartial" />
@@ -35,7 +35,7 @@
                     <h1 class="d-flex align-items-center justify-content-start">{{activity.activityName}}</h1>
                     <ul class="d-sm-flex justify-content-start align-items-center">
                         <li><i class="feather-map-pin"></i>{{activity.activityLocation}}</li>
-                        <li><i class="feather-clock"></i>活動開始日：{{activity.startTime}}</li>
+                        <li><i class="feather-clock"></i>活動開始日：{{activity.startDate}} {{activity.startTime}}</li>
                         <li><i class="feather-clock"></i>報名截止日：{{activity.joinDeadLine}}</li>
                     </ul>
                 </div>
@@ -96,7 +96,7 @@
                                                             <div class="head d-flex align-items-center justify-content-start">
                                                                 <h5>{{item.nickName}}</h5>
                                                                 <i class="fa-solid fa-circle"></i>
-                                                                <span>{{item.messageTime}}</span>
+                                                                <span>{{item.messageDate}} {{item.messageTime}}</span>
                                                             </div>
                                                             <p>{{item.messageText}}</p>
                                                         </div>
@@ -270,7 +270,8 @@
                     resultSrc: "",
                     star: 0,
                     blnMsg: true,
-                    message: ""
+                    message: "",
+                    blnAction: true
                 }
             },
             mounted() {
@@ -278,6 +279,7 @@
                 _this.QueryActivity();
                 _this.QueryMsgBord();
                 _this.QueryMemeberStatus();
+                _this.blnAction= blnChange(`@blnLogIn`);
             },
             methods: {
                 QueryActivity() {
@@ -316,8 +318,8 @@
                 },
                 QueryMemeberStatus() 
                 {
-                    if (`@blnlogIn` == "False") return
                     let _this = this;
+                    if (!_this.blnAction) return
                     axios.get("/ActivityApi/GetMemberJoinStatus/@verifyMemberId/@activityId")
                         .then(res => {
                             _this.blnMemberStatus = res.data;
@@ -341,15 +343,15 @@
                     _this.QueryWish();
                 },
                 QueryWish() {
-                    if (`@blnlogIn` == "False") return
                     let _this = this;
+                    if (!_this.blnAction) return
                     axios.get("/WishApi/GetWishList/@verifyMemberId")
                         .then(res => _this.wish = res.data)
                         .catch(err => alert(err));
                 },
                 Fav(id) {
-                    if (`@blnlogIn` == "False") return
                     let _this = this;
+                    if (!_this.blnAction) return
                     if (_this.wish.includes(id)) {
                         axios.delete(`/WishApi/DeleteWish/@verifyMemberId/${id}`)
                             .then(res => _this.QueryWish())
@@ -372,8 +374,8 @@
                     //_this.GetCategoryTypeList();
                 },
                 CreateMsg() {
-                    if (`@blnlogIn` == "False") return
                     let _this = this;
+                    if (!_this.blnAction) return
                     if (_this.message !== "") {
                         var form = new FormData();
                         form.append("memberId", @verifyMemberId);
@@ -396,8 +398,8 @@
                     _this.message = "";
                 },
                 CreateActivityUser() {
-                    if (`@blnlogIn` == "False") return
                     let _this = this;
+                    if (!_this.blnAction) return
                     var form = new FormData();
                     form.append("memberId", @verifyMemberId);
                     form.append("activityId", @activityId);

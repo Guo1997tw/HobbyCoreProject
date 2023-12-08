@@ -1,11 +1,6 @@
 ﻿using AutoMapper;
-using AutoMapper.Execution;
-using JHobby.Repository.Models.Dto;
-using JHobby.Repository.Models.Entity;
-using JHobby.Service.Implements;
 using JHobby.Service.Interfaces;
 using JHobby.Service.Models;
-using JHobby.Service.Models.Dto;
 using JHobby.Website.Models.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 
@@ -17,82 +12,86 @@ namespace JHobby.Website.Controllers.Api
     {
         private readonly IActivityService _activityService;
         private readonly IMapper _mapper;
-        string _Path;
+        private readonly string _rootPath;
+
 
         public ActivityApiController(IActivityService activityService, IMapper mapper, IWebHostEnvironment webHostEnvironment)
         {
             _activityService = activityService;
             _mapper = mapper;
-            _Path = $@"{webHostEnvironment.WebRootPath}\profile\";
+            _rootPath = $@"{webHostEnvironment.WebRootPath}\activityImages\";
         }
+
+        /// <summary>
+        /// 團主建立
+        /// </summary>
+        /// <param name="activityCreateViewModel"></param>
+        /// <returns></returns>
         [HttpPost]
-        public bool InsertActivity(ActivityBuildViewModel activityBuildViewModel)
+        public async Task<bool> LeaderCreate([FromForm] ActivityCreateViewModel activityCreateViewModel)
         {
-            //        foreach (var activityBuildViewModel.File in activityBuildViewModel)
-            //{
-            if (activityBuildViewModel.File != null)
+            var picPathList = new List<string>();
+            var activityCreateModel = _mapper.Map<ActivityCreateModel>(activityCreateViewModel);
+
+            if (activityCreateViewModel.File != null)
             {
-                if (activityBuildViewModel.File.Length > 0)
+                var i = 1;
+
+                foreach (var file in activityCreateViewModel.File)
                 {
-                    string SavePath = $@"{_Path}\{activityBuildViewModel.File.FileName}";
-                    using (var steam = new FileStream(SavePath, FileMode.Create))
-                    {
-                        activityBuildViewModel.File.CopyToAsync(steam);
-                        //ActivityCity = activityBuildViewModel.ActivityCity,
-                        //ActivityArea = activityBuildViewModel.ActivityArea,
-                        //ActivityLocation = activityBuildViewModel.ActivityLocation,
-                        //StartTime = activityBuildViewModel.StartTime,
-                        //MaxPeople = activityBuildViewModel.MaxPeople,
-                        //CategoryId = activityBuildViewModel.CategoryId,
-                        //CategoryTypeId = activityBuildViewModel.CategoryTypeId,
-                        //JoinDeadLine = activityBuildViewModel.JoinDeadLine,
-                        //JoinFee = activityBuildViewModel.JoinFee,
-                        //ActivityNotes = activityBuildViewModel.ActivityNotes,
-                        //MemberId = activityBuildViewModel.MemberId,
-                        //ActivityStatus = activityBuildViewModel.ActivityStatus,
-                        //Payment = activityBuildViewModel.Payment,
-                        //Created = activityBuildViewModel.Created
+                    var fileName = file.FileName;
+                    fileName = $"activity{i}.jpg";
+                    var filePath = $"{_rootPath}{fileName}";
+                    var fullFileName = $"\\activityImages\\{fileName}";
 
+                    using var fs = new FileStream(filePath, FileMode.Create);
 
-                    }
+                    await file.CopyToAsync(fs);
+
+                    picPathList.Add(fullFileName);
+
+                    i++;
                 }
             }
 
-            return true;
+            activityCreateModel.ActivityImages = picPathList.Select(x => new ActivityImageCreateModel
+            {
+                ImageName = x,
+                IsCover = (x == "\\activityImages\\activity1.jpg") ? true : false
+            }).ToList();
+
+            var result = _activityService.ActivityCreate(activityCreateModel);
+
+            return result;
         }
 
-        //[HttpPost]
-        //public IActionResult InsertActivity(ActivityBuildViewModel activityBuildViewModel)
-        //{
-        //    var mapper = new ActivityBuildModel
-        //    {
-        //        ActivityName = activityBuildViewModel.ActivityName,
-        //        ActivityCity = activityBuildViewModel.ActivityCity,
-        //        ActivityArea = activityBuildViewModel.ActivityArea,
-        //        ActivityLocation = activityBuildViewModel.ActivityLocation,
-        //        StartTime = activityBuildViewModel.StartTime,
-        //        MaxPeople = activityBuildViewModel.MaxPeople,
-        //        CategoryId = activityBuildViewModel.CategoryId,
-        //        CategoryTypeId = activityBuildViewModel.CategoryTypeId,
-        //        JoinDeadLine = activityBuildViewModel.JoinDeadLine,
-        //        JoinFee = activityBuildViewModel.JoinFee,
-        //        ActivityNotes = activityBuildViewModel.ActivityNotes,
-        //        MemberId = activityBuildViewModel.MemberId,
-        //        ActivityStatus = activityBuildViewModel.ActivityStatus,
-        //        Payment = activityBuildViewModel.Payment,
-        //        Created = activityBuildViewModel.Created
-        //    };
-
-        //    var result = _activityService.CreateActivityBuild(mapper);
-        //    return Ok(result);
-        //}
-
-        FileInfo[] GetFiles()
+        /// <summary>
+        /// 團主編輯
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="activityUpdateViewModel"></param>
+        /// <returns></returns>
+        [HttpPut("{id}")]
+        public bool LeaderUpdate(int id, [FromForm] ActivityUpdateViewModel activityUpdateViewModel)
         {
-            DirectoryInfo directoryInfo = new DirectoryInfo(_Path);
-            FileInfo[] files = directoryInfo.GetFiles();
-            return files;
+            var mapper = _mapper.Map<ActivityUpdateModel>(activityUpdateViewModel);
+
+            return (_activityService.ActivityUpdate(id, mapper)) ? true : false;
         }
+
+        /// <summary>
+        /// 取得開團資料
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="ActivityStatusViewModel"></param>
+        [HttpGet("{id}")]
+        public ActivityStatusViewModel GetActivityStatus(int id)
+        {
+            var result = _activityService.GetActivityStatus(id);
+
+            return _mapper.Map<ActivityStatusViewModel>(result);
+        }
+
         /// <summary>
         /// 活動頁面查詢
         /// </summary>
@@ -111,6 +110,7 @@ namespace JHobby.Website.Controllers.Api
                 CategoryId = result.CategoryId,
                 CategoryTypeId = result.CategoryTypeId,
                 ActivityName = result.ActivityName,
+                StartDate=result.StartDate,
                 StartTime = result.StartTime,
                 JoinDeadLine = result.JoinDeadLine,
                 ActivityNotes = result.ActivityNotes,

@@ -43,15 +43,10 @@ namespace JHobby.Website.Controllers
             return View();
         }
 
-        public IActionResult NotFounds()
-        {
-            return View();
-        }
         public IActionResult leaderEdit()
         {
             return View();
         }
-
 
         public IActionResult Newcomer()
         {
@@ -61,11 +56,6 @@ namespace JHobby.Website.Controllers
         }
 
         public IActionResult DashboardMenu()
-        {
-            return View();
-        }
-
-        public IActionResult changePassword()
         {
             return View();
         }

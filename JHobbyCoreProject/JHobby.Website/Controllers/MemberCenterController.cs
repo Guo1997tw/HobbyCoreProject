@@ -18,12 +18,14 @@ namespace JHobby.Website.Controllers
         /// <summary>
         /// TODO : 開團紀錄
         /// </summary>
-        public IActionResult launchATeam()
+        [Authorize(Roles = "Member, FastMember,Admin")]
+        public IActionResult launchATeam(int id)
         {
-            ViewData["Title"] = "開團紀錄";
-            return View();
+			ViewData["Title"] = "開團紀錄";
+            var model = new ReviewIdViewModel();
+            model.MemberId = _userAuthenticationService.GetUserId();
+			return View(model);
         }
-
         // MemberCenter/joinAGroup
         /// <summary>
         ///  TODO : 參團紀錄

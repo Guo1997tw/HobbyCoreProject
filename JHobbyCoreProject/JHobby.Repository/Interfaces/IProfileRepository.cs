@@ -10,5 +10,7 @@ namespace JHobby.Repository.Interfaces
 	public interface IProfileRepository
 	{
 		public ProfileDto GetById(int id);
-	}
+		public IEnumerable<ProfilePastActivityDto> GetPastActivity(int id);
+
+    }
 }
