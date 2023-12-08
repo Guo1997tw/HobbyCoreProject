@@ -18,9 +18,6 @@
                             <div class="card-header card-header-info">
                                 <div class="card-header-inner">
                                     <h4>報名紀錄</h4>
-                                    <p>
-                                        Participate in activities made easy
-                                    </p>
                                 </div>
                                 <div class="card-header-btns">
                                     <nav>
@@ -144,7 +141,6 @@
                             <div class="card-header card-header-info">
                                 <div class="card-header-inner">
                                     <h4>心願單</h4>
-                                    <p>My favourite group lists </p>
                                 </div>
                                 <div class="card-header-btns">
                                     <nav>
@@ -260,7 +256,6 @@
                             <div class="card-header card-header-info border-0">
                                 <div class="card-header-inner">
                                     <h4>參團紀錄</h4>
-                                    <p>Group participation record save your memories</p>
                                 </div>
                             </div>
                             <div class="tab-content">
@@ -602,7 +597,6 @@
                 },
                 collectAGroupCancel(card) {
                     let _this = this;
-                    alert(JSON.stringify(card));
                     axios.delete(`/WishListApi/WishListDelete?memberId=${card.memberId}&wishId=${card.wishId}`)
                         .then(alert("已取消收藏"))
                         .catch(erro => alert(`${erro}`))
