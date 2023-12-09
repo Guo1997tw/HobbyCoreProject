@@ -51,6 +51,7 @@ namespace JHobby.Repository.Implements
                 Account = queryResult.Account,
                 HashPassword = queryResult.HashPassword,
                 SaltPassword = queryResult.SaltPassword,
+                Status = queryResult.Status,
             };
         }
 

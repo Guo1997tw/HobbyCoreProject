@@ -97,13 +97,15 @@ namespace JHobby.Service.Implements
 
             if (queryResult != null)
             {
-                var hashTemp = queryResult.HashPassword;
-                var saltTemp = queryResult.SaltPassword;
-                var hashPwd = HashPwdWithHMACSHA256(password, saltTemp);
+                if (queryResult.Status != "8")
+                {
+                    var hashTemp = queryResult.HashPassword;
+                    var saltTemp = queryResult.SaltPassword;
+                    var hashPwd = HashPwdWithHMACSHA256(password, saltTemp);
 
-                return hashPwd == hashTemp;
+                    return hashPwd == hashTemp;
+                }
             }
-
             return false;
         }
 
@@ -209,7 +211,7 @@ namespace JHobby.Service.Implements
             {
                 //dataCode = dataCode.Replace(" ", "+");
                 //dataCode=dataCode.Replace("\\", "/");
-                dataCode=_commonService.DecodeBase64Url(dataCode);
+                dataCode = _commonService.DecodeBase64Url(dataCode);
                 string dataCodeDecrypt = _commonService.Decrypt(dataCode);
                 string[] strArr = dataCodeDecrypt.Split("&");
                 string account = strArr[0];
