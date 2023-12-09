@@ -1,5 +1,6 @@
 ﻿using JHobby.Service.Interfaces;
 using JHobby.Website.Models.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace JHobby.Website.Controllers
@@ -13,6 +14,7 @@ namespace JHobby.Website.Controllers
 			_userAuthenticationService = userAuthenticationService;
 		}
 
+		[Authorize(Roles = "Member")]
 		public IActionResult LeaderBuild()
 		{
 			try
@@ -28,7 +30,8 @@ namespace JHobby.Website.Controllers
 			return View();
 		}
 
-		[HttpPost]
+        [Authorize(Roles = "Member")]
+        [HttpPost]
 		public IActionResult LeaderEdit([FromForm] int id)
         {
 			try

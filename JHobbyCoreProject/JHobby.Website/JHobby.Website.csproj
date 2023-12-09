@@ -7,6 +7,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="wwwroot\activityImages\**" />
+    <Content Remove="wwwroot\activityImages\**" />
+    <EmbeddedResource Remove="wwwroot\activityImages\**" />
+    <None Remove="wwwroot\activityImages\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Content Remove="Views\Shared\_Personalboard.cshtml" />
   </ItemGroup>
 
@@ -24,7 +31,6 @@
   </ItemGroup>
 
   <ItemGroup>
-	<Folder Include="wwwroot\activityImages\" />
 	<Folder Include="wwwroot\css\" />
     <Folder Include="wwwroot\images\register\" />
     <Folder Include="wwwroot\NewFolder\" />
