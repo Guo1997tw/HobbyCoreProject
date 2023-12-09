@@ -64,15 +64,15 @@ namespace JHobby.Website.Controllers.Api
             );
         }
 
-        [HttpPut("{activityUserId}/{memberId}")]
-        public ActionResult NowJoinAGroupCancel(int activityUserId, int memberId, [FromForm] NowJoinAGroupCancelViewModel nowJoinAGroupCancel)
+        [HttpPut("{activityId}/{memberId}")]
+        public ActionResult NowJoinAGroupCancel(int activityId, int memberId, [FromForm] NowJoinAGroupCancelViewModel nowJoinAGroupCancel)
         {
             var mapping = new NowJoinAGroupCancelModel
             {
                 ReviewStatus = nowJoinAGroupCancel.ReviewStatus,
             };
 
-            _aNowJoinAGroupService.NowJoinAGroupCancel(activityUserId, memberId, mapping);
+            _aNowJoinAGroupService.NowJoinAGroupCancel(activityId, memberId, mapping);
             return Ok("修改成功");
         }
     }

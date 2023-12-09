@@ -18,7 +18,7 @@ namespace JHobby.Service.Implements
         {
             var resporitory = _IidexResporitory.GetActivityAll();
             //var _joinDeadline = resporitory.Where(res => res.JoinDeadLine > DateTime.Now);
-            var resultModel = resporitory.Where(res => res.JoinDeadLine >= DateTime.Now)
+            var resultModel = resporitory.Where(res => res.JoinDeadLine >= DateTime.Now && res.ActivityStatus=="1")
                                         .Select(res => new QueryActivityModel
                                         {
                                             ActivityId = res.ActivityId,
