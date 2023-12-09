@@ -113,6 +113,8 @@ namespace JHobby.Repository.Implements
                     StartTime = a.StartTime,
                     JoinDeadLine = a.JoinDeadLine,
                     ActivityNotes = a.ActivityNotes,
+                    CurrentPeople=a.CurrentPeople,
+                    MaxPeople=a.MaxPeople,
                     ActivityImages = a.ActivityImages.Select(ai => new ActivityImageDto
                     {
                         ActivityImageId = ai.ActivityImageId,
@@ -149,25 +151,43 @@ namespace JHobby.Repository.Implements
         }
 
         /// <summary>
-        /// 查詢會員活動申請者是否已參團或本身是開團者(回傳false代表活動頁面按鈕可以按)
+        /// 回傳false代表活動頁面按鈕可以按
         /// </summary>
         /// <returns></returns>
-        public bool GetStatusById(int memberId, int activityId)
+        public JoinBtnCheckDto GetStatusById(int memberId, int activityId)
         {
-            if (_jhobbyContext.Activities.Any(a => a.ActivityId == activityId && a.JoinDeadLine < DateTime.Now))
+            JoinBtnCheckDto JoinBtnCheck = new JoinBtnCheckDto
             {
-                return true;
+                Message = "參加",
+                BlnMemberStatus = false
+            };
+            if (_jhobbyContext.Activities.Any(a => a.ActivityId == activityId && a.JoinDeadLine < DateTime.Now.AddDays(-1)))
+            {
+                JoinBtnCheck.Message = "活動已結束";
+                JoinBtnCheck.BlnMemberStatus = true;
+                return JoinBtnCheck;
             }
             if (_jhobbyContext.Activities.Any(a => a.MemberId == memberId && a.ActivityId == activityId))
             {
-                return true;
+                JoinBtnCheck.Message = "團主不可再次參加";
+                JoinBtnCheck.BlnMemberStatus = true;
+                return JoinBtnCheck;
             }
             if (_jhobbyContext.ActivityUsers.Any(a => a.MemberId == memberId && a.ActivityId == activityId))
             {
-                return true;
+                JoinBtnCheck.Message = "您已參加";
+                JoinBtnCheck.BlnMemberStatus = true;
+                return JoinBtnCheck;
             }
-
-            return false;
+            var CurrentPeople = _jhobbyContext.Activities.FirstOrDefault(a => a.ActivityId == activityId).CurrentPeople;
+            var maxPeople = _jhobbyContext.Activities.FirstOrDefault(a => a.ActivityId == activityId).MaxPeople;
+            if (CurrentPeople >= maxPeople)
+            {
+                JoinBtnCheck.Message = "參加人數已滿";
+                JoinBtnCheck.BlnMemberStatus = true;
+                return JoinBtnCheck;
+            }
+            return JoinBtnCheck;
         }
 
         /// <summary>

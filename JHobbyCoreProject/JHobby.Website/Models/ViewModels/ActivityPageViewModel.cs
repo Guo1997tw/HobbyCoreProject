@@ -22,6 +22,8 @@ namespace JHobby.Website.Models.ViewModels
 		public string? JoinDeadLine { get; set; }
 
 		public string? ActivityNotes { get; set; }
+        public int? CurrentPeople { get;  set; }
+        public int? MaxPeople { get;  set; }
 
         public virtual IEnumerable<ActivityImageViewModel> ActivityImages { get; set; } = new List<ActivityImageViewModel>();
     }

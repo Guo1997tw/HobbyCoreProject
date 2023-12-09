@@ -118,6 +118,8 @@ namespace JHobby.Website.Controllers.Api
                 StartTime = result.StartTime,
                 JoinDeadLine = result.JoinDeadLine,
                 ActivityNotes = result.ActivityNotes,
+                CurrentPeople = result.CurrentPeople,
+                MaxPeople = result.MaxPeople,
                 ActivityImages = result.ActivityImages.Select(ai => new ActivityImageViewModel
                 {
                     ActivityImageId = ai.ActivityImageId,
@@ -163,13 +165,18 @@ namespace JHobby.Website.Controllers.Api
         }
 
         /// <summary>
-        /// 查詢會員活動申請者是否已參團或本身是開團者
+        /// 回傳false代表活動頁面按鈕可以按
         /// </summary>
         /// <returns></returns>
         [HttpGet("{memberId}/{activityId}")]
-        public bool GetMemberJoinStatus(int memberId, int activityId)
+        public JoinBtnCheckViewModel GetMemberJoinStatus(int memberId, int activityId)
         {
-            return _activityService.GetMemberStatus(memberId, activityId);
+            var result = _activityService.GetMemberStatus(memberId, activityId);
+            return new JoinBtnCheckViewModel
+            {
+                Message = result.Message,
+                BlnMemberStatus = result.BlnMemberStatus,
+            };
         }
 
         /// <summary>

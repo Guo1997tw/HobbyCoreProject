@@ -34,6 +34,10 @@
                 <div class="col-12 col-sm-12 col-md-12 col-lg-12">
                     <h1 class="d-flex align-items-center justify-content-start">{{activity.activityName}}</h1>
                     <ul class="d-sm-flex justify-content-start align-items-center">
+                        <li><i class="feather-users"></i>活動人數上限：{{activity.maxPeople}}</li>
+                        <li><i class="feather-user-plus"></i>目前人數：{{activity.currentPeople}}</li>
+                    </ul>
+                    <ul class="d-sm-flex justify-content-start align-items-center">
                         <li><i class="feather-map-pin"></i>{{activity.activityLocation}}</li>
                         <li><i class="feather-clock"></i>活動開始日：{{activity.startDate}} {{activity.startTime}}</li>
                         <li><i class="feather-clock"></i>報名截止日：{{activity.joinDeadLine}}</li>
@@ -163,14 +167,14 @@
                             </div>
                         </div>
                     </div>
-                    <template v-if="blnMemberStatus">
+                    <template v-if="joinBtnCheck.blnMemberStatus">
                         <div class="d-grid btn-block">
-                            <button disabled class="btn btn-secondary d-inline-flex justify-content-center align-items-center" type="submit">您已參加或活動已結束</button>
+                            <button disabled class="btn btn-secondary d-inline-flex justify-content-center align-items-center" type="submit">{{joinBtnCheck.message}}</button>
                         </div>
                     </template>
                     <template v-else>
                         <div class="d-grid btn-block">
-                            <button v-on:click="CreateActivityUser()" class="btn btn-secondary d-inline-flex justify-content-center align-items-center" type="submit">參加<i class="feather-arrow-right-circle ms-1"></i></button>
+                            <button v-on:click="CreateActivityUser()" class="btn btn-secondary d-inline-flex justify-content-center align-items-center" type="submit">{{joinBtnCheck.message}}<i class="feather-arrow-right-circle ms-1"></i></button>
                         </div>
                     </template>
 
@@ -266,7 +270,7 @@
                     activityList: [],
                     wish: [],
                     profile: [],
-                    blnMemberStatus: true,
+                    joinBtnCheck: {},
                     resultSrc: "",
                     star: 0,
                     blnMsg: true,
@@ -321,7 +325,7 @@
                     if (!_this.blnAction) return
                     axios.get("/ActivityApi/GetMemberJoinStatus/@verifyMemberId/@activityId")
                         .then(res => {
-                            _this.blnMemberStatus = res.data;
+                            _this.joinBtnCheck = res.data;
                         })
                         .catch(err => alert(err));
                 },

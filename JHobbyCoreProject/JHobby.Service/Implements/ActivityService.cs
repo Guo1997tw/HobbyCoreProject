@@ -53,7 +53,7 @@ namespace JHobby.Service.Implements
         {
             var result = _activityRepository.ActivityStatus(id);
 
-            if(result == null) { return null; }
+            if (result == null) { return null; }
 
             return _mapper.Map<ActivityStatusModel>(result);
         }
@@ -81,6 +81,8 @@ namespace JHobby.Service.Implements
                 StartTime = _commonService.ConvertTime(result.StartTime).First().TimeConvert,
                 JoinDeadLine = _commonService.ConvertTime(result.JoinDeadLine).First().DateConvert,
                 ActivityNotes = result.ActivityNotes.Trim(),
+                CurrentPeople = result.CurrentPeople,
+                MaxPeople = result.MaxPeople,
                 ActivityImages = result.ActivityImages.Select(ai => new ActivityImageModel
                 {
                     ActivityImageId = ai.ActivityImageId,
@@ -103,10 +105,10 @@ namespace JHobby.Service.Implements
         {
             return _activityRepository.GetMsgList(id).Select(r => new MemberMsgModel
             {
-                MemberId=r.MemberId,
+                MemberId = r.MemberId,
                 ActivityId = r.ActivityId,
                 HeadShot = r.HeadShot,
-                MessageDate=_commonService.ConvertTime(r.MessageTime).First().DateConvert,
+                MessageDate = _commonService.ConvertTime(r.MessageTime).First().DateConvert,
                 MessageTime = _commonService.ConvertTime(r.MessageTime).First().TimeConvert,
                 MessageText = r.MessageText,
                 NickName = r.NickName,
@@ -132,12 +134,17 @@ namespace JHobby.Service.Implements
         }
 
         /// <summary>
-        /// 查詢會員活動申請者是否已參團或本身是開團者
+        /// 回傳false代表活動頁面按鈕可以按
         /// </summary>
         /// <returns></returns>
-        public bool GetMemberStatus(int memberId, int activityId)
+        public JoinBtnCheckModel GetMemberStatus(int memberId, int activityId)
         {
-            return _activityRepository.GetStatusById(memberId, activityId);
+            var result = _activityRepository.GetStatusById(memberId, activityId);
+            return new JoinBtnCheckModel
+            {
+                Message = result.Message,
+                BlnMemberStatus = result.BlnMemberStatus
+            };
         }
 
         /// <summary>

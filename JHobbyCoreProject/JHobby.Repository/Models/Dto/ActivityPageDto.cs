@@ -26,6 +26,8 @@ namespace JHobby.Repository.Models.Dto
 		public DateTime JoinDeadLine { get; set; }
 
 		public string? ActivityNotes { get; set; }
+        public int? CurrentPeople { get; internal set; }
+        public int? MaxPeople { get; internal set; }
 
         public virtual IEnumerable<ActivityImageDto> ActivityImages { get; set; } = new List<ActivityImageDto>();
     }
