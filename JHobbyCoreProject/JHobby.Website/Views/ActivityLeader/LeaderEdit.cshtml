@@ -86,7 +86,7 @@
                                 <label for="endterdate" class="form-label">報名截止日</label>
                                 <div class="col-lg-12 col-md-6">
                                     <div class="input-space">
-                                        <input id="JoinDeadLine" type="datetime-local" class="form-control" v-model="activityUpdate.joinDeadLine">
+                                        <input id="JoinDeadLine" type="date" class="form-control" v-model="activityUpdate.joinDeadLine">
                                     </div>
                                 </div>
                             </div>
@@ -181,7 +181,7 @@
             </div>
             <div class="text-center btn-row">
                 <button class="btn btn-primary me-3 btn-icon" style="padding: 10px; width: 100px; justify-content: center;" type="submit" @@click="leaderEdit()">確認</button>
-                <button class="btn btn-primary me-3 btn-icon" style="padding: 10px; width: 100px; justify-content: center;" type="submit">取消</button>
+                <button class="btn btn-primary me-3 btn-icon" style="padding: 10px; width: 100px; justify-content: center;" type="submit" @@click="cancelUpdate()">取消</button>
             </div>
         </div>
         <!-- /Container -->
@@ -348,7 +348,10 @@
                     self = this;
 
                     fetch("/ActivityApi/GetActivityStatus/@activityId").then(r => r.json()).then(d => { self.activityUpdate = d });
-                }
+                },
+                cancelUpdate() {
+                    window.location.href = "/MemberCenter/launchATeam";
+                },
             },
         }).component('select2', select2).mount("#Update");
     </script>

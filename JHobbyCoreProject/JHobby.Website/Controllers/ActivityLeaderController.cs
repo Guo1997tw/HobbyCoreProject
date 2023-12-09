@@ -30,7 +30,8 @@ namespace JHobby.Website.Controllers
 			return View();
 		}
 
-		[HttpPost]
+        [Authorize(Roles = "Member")]
+        [HttpPost]
 		public IActionResult LeaderEdit([FromForm] int id)
         {
 			try
