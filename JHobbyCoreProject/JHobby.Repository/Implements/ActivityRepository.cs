@@ -1,17 +1,8 @@
 ﻿using AutoMapper;
-using AutoMapper.Execution;
 using JHobby.Repository.Interfaces;
 using JHobby.Repository.Models.Dto;
 using JHobby.Repository.Models.Entity;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
-using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.ComponentModel.Design;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace JHobby.Repository.Implements
 {
@@ -158,11 +149,15 @@ namespace JHobby.Repository.Implements
         }
 
         /// <summary>
-        /// 查詢會員活動申請者是否已參團或本身是開團者
+        /// 查詢會員活動申請者是否已參團或本身是開團者(回傳false代表活動頁面按鈕可以按)
         /// </summary>
         /// <returns></returns>
         public bool GetStatusById(int memberId, int activityId)
         {
+            if (_jhobbyContext.Activities.Any(a => a.ActivityId == activityId && a.JoinDeadLine < DateTime.Now))
+            {
+                return true;
+            }
             if (_jhobbyContext.Activities.Any(a => a.MemberId == memberId && a.ActivityId == activityId))
             {
                 return true;

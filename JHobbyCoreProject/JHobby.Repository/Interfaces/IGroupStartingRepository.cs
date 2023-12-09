@@ -11,7 +11,7 @@ namespace JHobby.Repository.Interfaces
 	{
 		public IEnumerable<GroupStartingDto> GetGroupStartingAll();
 		public IEnumerable<GroupStartingDto?> GetByIdNow(int id);
-		public bool UpdateActivityStatus(int ActivityId, ActivityStatusDto activityStatusDto);
+		public bool UpdateActivityStatus(int ActivityId, ActivityConditionDto activityConditionDto);
 		public IEnumerable<GroupStartingCurrentDto> CurrentById(int id, int ActivityId);
 
 

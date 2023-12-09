@@ -143,37 +143,37 @@
                             <div class="mb-3">
                             </div>
                             @* <div class="col-md-12">
-                                <div class="appoint-head coach-top">上傳圖片</div>
-                                <div class="row" data-select2-id="25">
-                                    <div class="col-md-12">
-                                        <div class="file-upload-text">
-                                            <div class="file-upload" style="position:relative ; display: inline-block; width: 300px; height: 200px ; margin-right: 20px;">
-                                                <img :src="defaultPicOne" style="width:100%;height:100%;position:absolute;top:0%;left:0%;object-fit:contain">
-                                                <p>請上傳圖片</p>
-                                                <span>
-                                                    <i class="feather-edit-3"></i>
-                                                    <input type="file" id="file-input" v-on:change="uploadPicOne">
-                                                </span>
-                                            </div>
-                                            <div class="file-upload" style="position:relative; display: inline-block; width: 300px; height: 200px; margin-right: 20px;">
-                                                <img :src="defaultPicTwo" style="width:100%;height:100%;position:absolute;top:0%;left:0%;object-fit:contain">
-                                                <p>請上傳活動圖片</p>
-                                                <span>
-                                                    <i class="feather-edit-3"></i>
-                                                    <input type="file" id="file-input" v-on:change="uploadPicTwo">
-                                                </span>
-                                            </div>
-                                            <div class="file-upload" style="position:relative; display: inline-block; width: 300px; height: 200px; margin-right: 20px;">
-                                                <img :src="defaultPicThree" style="width:100%;height:100%;position:absolute;top:0%;left:0%;object-fit:contain">
-                                                <p>請上傳活動圖片</p>
-                                                <span>
-                                                    <i class="feather-edit-3"></i>
-                                                    <input type="file" id="file-input" v-on:change="uploadPicThree">
-                                                </span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                            <div class="appoint-head coach-top">上傳圖片</div>
+                            <div class="row" data-select2-id="25">
+                            <div class="col-md-12">
+                            <div class="file-upload-text">
+                            <div class="file-upload" style="position:relative ; display: inline-block; width: 300px; height: 200px ; margin-right: 20px;">
+                            <img :src="defaultPicOne" style="width:100%;height:100%;position:absolute;top:0%;left:0%;object-fit:contain">
+                            <p>請上傳圖片</p>
+                            <span>
+                            <i class="feather-edit-3"></i>
+                            <input type="file" id="file-input" v-on:change="uploadPicOne">
+                            </span>
+                            </div>
+                            <div class="file-upload" style="position:relative; display: inline-block; width: 300px; height: 200px; margin-right: 20px;">
+                            <img :src="defaultPicTwo" style="width:100%;height:100%;position:absolute;top:0%;left:0%;object-fit:contain">
+                            <p>請上傳活動圖片</p>
+                            <span>
+                            <i class="feather-edit-3"></i>
+                            <input type="file" id="file-input" v-on:change="uploadPicTwo">
+                            </span>
+                            </div>
+                            <div class="file-upload" style="position:relative; display: inline-block; width: 300px; height: 200px; margin-right: 20px;">
+                            <img :src="defaultPicThree" style="width:100%;height:100%;position:absolute;top:0%;left:0%;object-fit:contain">
+                            <p>請上傳活動圖片</p>
+                            <span>
+                            <i class="feather-edit-3"></i>
+                            <input type="file" id="file-input" v-on:change="uploadPicThree">
+                            </span>
+                            </div>
+                            </div>
+                            </div>
+                            </div>
                             </div> *@
                         </form>
                     </section>
@@ -294,19 +294,19 @@
                     let self = this;
                     var formData = new FormData();
 
-                    if (!self.activityBuild.activityName ||
-                        !self.activityBuild.activityCity ||
-                        !self.activityBuild.activityArea ||
-                        !self.activityBuild.activityLocation ||
-                        !self.activityBuild.startTime ||
-                        !self.activityBuild.maxPeople ||
-                        !self.activityBuild.categoryId ||
-                        !self.activityBuild.categoryTypeId ||
-                        !self.activityBuild.joinDeadLine ||
-                        !self.activityBuild.joinFee ||
-                        !self.activityBuild.activityNotes) { return alert("請填寫所有欄位!!"); }
+                    if (!self.activityUpdate.activityName ||
+                        !self.activityUpdate.activityCity ||
+                        !self.activityUpdate.activityArea ||
+                        !self.activityUpdate.activityLocation ||
+                        !self.activityUpdate.startTime ||
+                        !self.activityUpdate.maxPeople ||
+                        !self.activityUpdate.categoryId ||
+                        !self.activityUpdate.categoryTypeId ||
+                        !self.activityUpdate.joinDeadLine ||
+                        // !self.activityUpdate.joinFee ||
+                        !self.activityUpdate.activityNotes) { return alert("請填寫所有欄位!!"); }
 
-                    if (isNaN(self.activityBuild.joinFee)) { return alert("請輸入正確金額!!"); }
+                    if (isNaN(self.activityUpdate.joinFee)) { return alert("請輸入正確金額!!"); }
 
                     // if (this.fileOne) formData.append('file', self.fileOne);
                     // if (this.fileTwo) formData.append('file', self.fileTwo);
@@ -331,11 +331,18 @@
                     }).then(r => r.json())
                         .then(d => {
                             self.activityUpdate = d;
-                            console.log('Success', d);
-                            alert("修改成功");
-                        });
+                            if (d == true) {
+                                console.log('Success', d);
+                                alert("修改成功");
 
-                    javascript: location.href = "/MemberCenter/launchATeam";
+                                javascript: location.href = "/MemberCenter/launchATeam";
+                            }
+                            else {
+                                alert("修改失敗");
+
+                                self.getActivityById();
+                            }
+                        });
                 },
                 getActivityById() {
                     self = this;
