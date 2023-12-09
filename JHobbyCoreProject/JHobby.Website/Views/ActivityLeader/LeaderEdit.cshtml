@@ -219,7 +219,7 @@
                         categoryId: "",
                         categoryTypeId: "",
                         joinDeadLine: "",
-                        joinFee: "0",
+                        joinFee: "",
                         activityNotes: "",
                     },
                 }
@@ -306,7 +306,7 @@
                         !self.activityUpdate.joinFee ||
                         !self.activityUpdate.activityNotes) { return alert("請填寫所有欄位!!"); }
 
-                    if (isNaN(self.activityUpdate.joinFee)) { return alert("請輸入正確金額!!"); }
+                    if (!isNaN(self.activityUpdate.joinFee)) { return alert("請輸入正確金額!!"); }
 
                     // if (this.fileOne) formData.append('file', self.fileOne);
                     // if (this.fileTwo) formData.append('file', self.fileTwo);
