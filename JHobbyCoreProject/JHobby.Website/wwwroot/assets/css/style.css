@@ -1136,7 +1136,7 @@ div.dataTables_filter .form-control {
 @media (max-width: 991.98px) {
   .header .header-nav .main-nav > li .submenu li a {
     padding: 12px 15px;
-    color: #FFFFFF;
+    color: #000000;
     font-size: 14px;
   }
 }
@@ -1815,7 +1815,7 @@ header.header-sticky { /*換表頭*/
     }
 @media (max-width: 991.98px) {
   header.header-sticky .header-nav .main-nav > li > a {
-    color: #FFFFFF;
+    color: #000000;
   }
 }
 header.header-sticky.fixed-top { /*換表頭*/
