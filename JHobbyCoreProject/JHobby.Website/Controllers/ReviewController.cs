@@ -16,7 +16,7 @@ namespace JHobby.Website.Controllers
 		public IActionResult Apply()
 		{
 			ViewData["Title"] = "報名審核";
-            ViewBag.loginMemberId = _userAuthenticationService.GetUserId();
+            ViewBag.VerifyMemberId = _userAuthenticationService.GetUserId();
             return View();
             
 		}

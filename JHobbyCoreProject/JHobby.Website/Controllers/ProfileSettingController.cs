@@ -16,7 +16,7 @@ namespace JHobby.Website.Controllers
         }
         public IActionResult ProfileSetting()
         {
-            ViewBag.memberId=_UserAuthenticationService.GetUserId();
+            ViewBag.VerifyMemberId = _UserAuthenticationService.GetUserId();
             ViewData["Title"] = "修改資訊";
             ViewData["BookMark"] = "ProfileSetting";
             return View();
