@@ -265,7 +265,7 @@
                                                 <div class="sortbyset">
                                                     <span class="sortbytitle">活動時間排序</span>
                                                     <div class="sorting-select">
-                                                        <select id="selectSort" v-model="sortOrder2" class="form-select">
+                                                        <select id="selectSort" v-model="sortOrdertwo" class="form-select">
                                                             <option value="asc">近到遠</option>
                                                             <option value="desc">遠到近</option>
                                                         </select>
@@ -358,7 +358,7 @@
                                             <div id="tablepage">
                                                 <div class="dataTables_paginate paging_simple_numbers" id="DataTables_Table_1_paginate">
                                                     <!--分頁按鈕-->
-                                                    <paginate :page-count="total2"
+                                                    <paginate :page-count="totaltwo"
                                                               :prev-text="'<'"
                                                               :next-text="'>'"
                                                               :click-handler="pageClick2">
@@ -609,14 +609,14 @@
                     showUpdates: [],
                     cancelTableBtnText: '刪除',
                     sortOrder: 'asc',
-                    sortOrder2: 'asc',
+                    sortOrdertwo: 'asc',
                     countPerPage: 5,
                     pageNumber: 1,
-                    pageNumber2: 1,
+                    pageNumbertwo: 1,
                     _activityId: "",
                     _activityName: 0,
                     currentData: [],
-                    _activityId: 0,
+
                     _memberId: 0,
                 };
             },
@@ -628,21 +628,22 @@
             computed: {
                 total() {
                     let _this = this;
-                    return Math.ceil(_this.axiosBrowsepicture.length / _this.countPerPage);
-                },
-                total2() {
-                    let _this = this;
                     return Math.ceil(_this.showUpdates.length / _this.countPerPage);
+                    
+                },
+                totaltwo() {
+                    let _this = this;
+                    return Math.ceil(_this.axiosBrowsepicture.length / _this.countPerPage);
                 },
                 filteroldCard() {
                     let _this = this;
-                    var start = (_this.pageNumber2 - 1) * _this.countPerPage;
+                    var start = (_this.pageNumbertwo - 1) * _this.countPerPage;
                     var end = start + _this.countPerPage;
                     return _this.axiosBrowsepicture.sort(function (x, y) {
-                        if (_this.sortOrder2 == "asc") {
+                        if (_this.sortOrdertwo == "asc") {
                             return new Date(x.startTime).getTime() - new Date(y.startTime).getTime();
                         }
-                        if (_this.sortOrder2 == "desc") {
+                        if (_this.sortOrdertwo == "desc") {
                             return new Date(y.startTime).getTime() - new Date(x.startTime).getTime();
                         }
                     }).slice(start, end);
@@ -694,6 +695,7 @@
                         }).then((response) => {
                             _this.showUpdates = response.data;
                             _this.lookUpdates();
+                            _this.logBrowsepicture();
                         })
                         .catch((error) => {
                             alert(`發生錯誤: ${error}`);
@@ -710,7 +712,7 @@
                     this.pageNumber = num;
                 },
                 pageClick2(num) {
-                    this.pageNumber2 = num;
+                    this.pageNumbertwo = num;
                 },
                 setCurrentCard(card) {
                     this.currentCard = card;
