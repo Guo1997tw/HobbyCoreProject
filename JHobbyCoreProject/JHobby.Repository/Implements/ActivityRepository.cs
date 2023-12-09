@@ -113,8 +113,8 @@ namespace JHobby.Repository.Implements
                     StartTime = a.StartTime,
                     JoinDeadLine = a.JoinDeadLine,
                     ActivityNotes = a.ActivityNotes,
-                    CurrentPeople=a.CurrentPeople,
-                    MaxPeople=a.MaxPeople,
+                    CurrentPeople = a.CurrentPeople,
+                    MaxPeople = a.MaxPeople,
                     ActivityImages = a.ActivityImages.Select(ai => new ActivityImageDto
                     {
                         ActivityImageId = ai.ActivityImageId,
@@ -161,7 +161,10 @@ namespace JHobby.Repository.Implements
                 Message = "參加",
                 BlnMemberStatus = false
             };
-            if (_jhobbyContext.Activities.Any(a => a.ActivityId == activityId && a.JoinDeadLine < DateTime.Now.AddDays(-1)))
+            if (_jhobbyContext.Activities.Any(a => (a.ActivityId == activityId &&
+                                                   a.JoinDeadLine < DateTime.Now.AddDays(-1)) ||
+                                                   (a.ActivityId == activityId &&
+                                                   a.ActivityStatus != "1")))
             {
                 JoinBtnCheck.Message = "活動已結束";
                 JoinBtnCheck.BlnMemberStatus = true;
