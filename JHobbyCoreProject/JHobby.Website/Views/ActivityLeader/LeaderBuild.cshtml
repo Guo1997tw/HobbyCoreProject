@@ -51,7 +51,7 @@
                                 <label for="endterdate" class="form-label">活動開始日期</label>
                                 <div class="col-lg-12 col-md-6">
                                     <div class="input-space">
-                                        <input id="StartTime" type="datetime-local" class="form-control" v-model="activityBuild.startTime">
+                                        <input id="StartTime" type="datetime-local" :min="startMinDate" class="form-control" v-model="activityBuild.startTime">
                                     </div>
                                 </div>
                             </div>
@@ -86,7 +86,7 @@
                                 <label for="endterdate" class="form-label">報名截止日</label>
                                 <div class="col-lg-12 col-md-6">
                                     <div class="input-space">
-                                        <input id="JoinDeadLine" type="date" class="form-control" v-model="activityBuild.joinDeadLine">
+                                        <input id="JoinDeadLine" type="date" :min="joinMinDate" class="form-control" v-model="activityBuild.joinDeadLine">
                                     </div>
                                 </div>
                             </div>
@@ -207,6 +207,8 @@
                     fileTwo: null,
                     fileThree: null,
                     categorySource: [],
+                    startMinDate: new Date().toISOString().substr(0, 16),
+                    joinMinDate: new Date().toISOString().substr(0, 10),
                     activityBuild: {
                         memberId: "",
                         payment: "1",
@@ -214,7 +216,7 @@
                         activityCity: "",
                         activityArea: "",
                         activityLocation: "",
-                        startTime: "",
+                        startTime: null,
                         maxPeople: "",
                         categoryId: "",
                         categoryTypeId: "",
