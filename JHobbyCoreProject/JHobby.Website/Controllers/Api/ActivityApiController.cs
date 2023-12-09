@@ -19,7 +19,7 @@ namespace JHobby.Website.Controllers.Api
         {
             _activityService = activityService;
             _mapper = mapper;
-            _rootPath = $@"{webHostEnvironment.WebRootPath}\activityImages\";
+            _rootPath = $@"{webHostEnvironment.WebRootPath}\activityImgs\";
         }
 
         /// <summary>
@@ -42,7 +42,7 @@ namespace JHobby.Website.Controllers.Api
                     var fileName = file.FileName;
                     fileName = $"activity{i}.jpg";
                     var filePath = $"{_rootPath}{fileName}";
-                    var fullFileName = $"\\activityImages\\{fileName}";
+                    var fullFileName = $"\\activityImgs\\{fileName}";
 
                     using var fs = new FileStream(filePath, FileMode.Create);
 
@@ -57,7 +57,7 @@ namespace JHobby.Website.Controllers.Api
             activityCreateModel.ActivityImages = picPathList.Select(x => new ActivityImageCreateModel
             {
                 ImageName = x,
-                IsCover = (x == "\\activityImages\\activity1.jpg") ? true : false
+                IsCover = (x == "\\activityImgs\\activity1.jpg") ? true : false
             }).ToList();
 
             var result = _activityService.ActivityCreate(activityCreateModel);
