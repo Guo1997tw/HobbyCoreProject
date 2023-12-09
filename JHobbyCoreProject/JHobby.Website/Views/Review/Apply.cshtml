@@ -283,7 +283,7 @@
                 updateNo: function (item) {
                     let _this = this;
                     var form = new FormData();
-                    form.append("ReviewStatus", 2);
+                    form.append("ReviewStatus", 0);
                     axios.put(`/ReviewApi/Update/${_this._activityId}/${_this._applicantId}`, form,
                         {
                             headers: {
