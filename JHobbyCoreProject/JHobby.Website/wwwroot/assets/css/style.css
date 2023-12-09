@@ -1433,7 +1433,7 @@ div.dataTables_filter .form-control {
   --bs-nav-link-padding-y: 0;
 }
 .header .header-navbar-rht .logged-in .nav-link {
-  padding: 0;
+  /*padding: 0;*/
 }
 @media (max-width: 575.98px) {
   .header .header-navbar-rht {
@@ -9841,10 +9841,10 @@ span.icon-bg-40 img {
 .dashboard-card-table tbody tr td:first-child {
   padding-left: 0;
 }
-.dashboard-card-table tbody tr td:last-child {
-  padding-right: 0;
-  text-align: right;
-}
+    .dashboard-card-table tbody tr td:last-child {
+        padding-right: 0;
+        text-align: left;
+    }
 .dashboard-card-table tbody tr td h6 {
   margin-bottom: 15px;
 }
