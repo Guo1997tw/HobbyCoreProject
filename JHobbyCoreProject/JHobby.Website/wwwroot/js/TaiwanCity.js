@@ -346,22 +346,6 @@
                 "ZipCode": "272",
                 "AreaName": "南澳鄉",
                 "AreaEngName": "Nan’ao Township"
-            },
-            {
-                "ZipCode": "290",
-                "AreaName": "釣魚臺",
-                "AreaEngName": "Diaoyutai"
-            }
-        ]
-    },
-    {
-        "CityName": "釣魚臺",
-        "CityEngName": "Diauyutai",
-        "AreaList": [
-            {
-                "ZipCode": "290",
-                "AreaName": "釣魚臺",
-                "AreaEngName": "Diaoyutai"
             }
         ]
     },
@@ -1594,22 +1578,6 @@
                 "ZipCode": "852",
                 "AreaName": "茄萣區",
                 "AreaEngName": "Qieding Dist."
-            }
-        ]
-    },
-    {
-        "CityName": "南海島",
-        "CityEngName": "Nanhai",
-        "AreaList": [
-            {
-                "ZipCode": "817",
-                "AreaName": "東沙群島",
-                "AreaEngName": "Dongsha Islands"
-            },
-            {
-                "ZipCode": "819",
-                "AreaName": "南沙群島",
-                "AreaEngName": "Nansha Islands"
             }
         ]
     },
