@@ -40,7 +40,8 @@ namespace JHobby.Website.Controllers.Api
                 foreach (var file in activityCreateViewModel.File)
                 {
                     var fileName = file.FileName;
-                    fileName = $"activity{i}.jpg";
+                    var dateTime = DateTime.Now.ToString("yyyyMMddHHmmssffff");
+                    fileName = $"activity{i}{dateTime}.jpg";
                     var filePath = $"{_rootPath}{fileName}";
                     var fullFileName = $"\\activityImgs\\{fileName}";
 
@@ -54,11 +55,14 @@ namespace JHobby.Website.Controllers.Api
                 }
             }
 
+            string picTemp = picPathList.FirstOrDefault();
+
             activityCreateModel.ActivityImages = picPathList.Select(x => new ActivityImageCreateModel
             {
                 ImageName = x,
-                IsCover = (x == "\\activityImgs\\activity1.jpg") ? true : false
+                IsCover = (x == picTemp) ? true : false
             }).ToList();
+
 
             var result = _activityService.ActivityCreate(activityCreateModel);
 
@@ -110,7 +114,7 @@ namespace JHobby.Website.Controllers.Api
                 CategoryId = result.CategoryId,
                 CategoryTypeId = result.CategoryTypeId,
                 ActivityName = result.ActivityName,
-                StartDate=result.StartDate,
+                StartDate = result.StartDate,
                 StartTime = result.StartTime,
                 JoinDeadLine = result.JoinDeadLine,
                 ActivityNotes = result.ActivityNotes,

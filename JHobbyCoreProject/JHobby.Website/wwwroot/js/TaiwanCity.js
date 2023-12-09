@@ -1582,22 +1582,6 @@
         ]
     },
     {
-        "CityName": "南海島",
-        "CityEngName": "Nanhai",
-        "AreaList": [
-            {
-                "ZipCode": "817",
-                "AreaName": "東沙群島",
-                "AreaEngName": "Dongsha Islands"
-            },
-            {
-                "ZipCode": "819",
-                "AreaName": "南沙群島",
-                "AreaEngName": "Nansha Islands"
-            }
-        ]
-    },
-    {
         "CityName": "澎湖縣",
         "CityEngName": "Penghu County",
         "AreaList": [
