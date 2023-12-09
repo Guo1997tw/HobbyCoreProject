@@ -13,10 +13,11 @@
         .message-label {
             color: red;
             font-weight: bold;
-            font-size:20px;
+            font-size: 20px;
         }
-        .warntext-label{
-            color:red;
+
+        .warntext-label {
+            color: red;
             font-size: 20px;
         }
     </style>
@@ -70,7 +71,7 @@
                                 <div class="col-lg-12 col-md-6">
                                     <div class="input-space">
                                         <label class="form-label">暱稱</label>
-                                        <label class="mark-label">(不可為空)</label>
+                                        <label class="mark-label">(*必填欄位)</label>
                                         <input type="text" class="form-control" id="name" v-model="ProfileSetting.nickName">
                                     </div>
                                 </div>
@@ -85,7 +86,7 @@
                                 <div class="col-lg-12 col-md-6">
                                     <div class="input-space">
                                         <label class="form-label">身份證</label>
-                                        <input readonly type="text" class="form-control" v-model="ProfileSetting.identityCard" >
+                                        <input readonly type="text" class="form-control" v-model="ProfileSetting.identityCard">
                                     </div>
                                 </div>
                                 <div class="col-lg-12 col-md-6">
@@ -103,12 +104,12 @@
                                 <div class="col-lg-12 col-md-4">
                                     <div class="input-space">
                                         <label class="form-label">請選擇縣市</label>
-                                        <label class="mark-label">(不可為空)</label>
+                                        <label class="mark-label">(*必填欄位)</label>
                                         <select2 style="width:100%" :options="cityList" v-model:value="ProfileSetting.activeCity">
                                             <option disabled value="0">請選擇</option>
                                         </select2>
                                         <label class="form-label">請選擇鄉鎮市區</label>
-                                        <label class="mark-label">(不可為空)</label>
+                                        <label class="mark-label">(*必填欄位)</label>
                                         <select2 style="width:100%" :options="areaList" v-model:value="ProfileSetting.activeArea">
                                         </select2>
                                     </div>
@@ -116,7 +117,7 @@
                                 <div class="col-lg-12 col-md-6">
                                     <div class="input-space">
                                         <label class="form-label">請輸入地址</label>
-                                        <label class="mark-label">(不可為空)</label>
+                                        <label class="mark-label">(*必填欄位)</label>
                                         <input type="text" class="form-control" id="city" placeholder="請輸入地址(範例:南京東路三段219號5樓)" v-model="ProfileSetting.address" />
                                     </div>
                                 </div>
@@ -273,7 +274,6 @@
                     headShotName: "",
                     blnStatus: false,
                     message: "",
-                    showChineseWarning:"false",
                 };
             },
             computed: {
@@ -328,11 +328,18 @@
                     const identityCard = this.ProfileSetting.identityCard;
 
                     // 使用正則表達式檢查是否包含中文字符
-                    const chineseRegex = /[\u4e00-\u9fa5]/g;
+                    const chineseRegex = /[\u4e00-\u9fa5\u3100-\u312F]/g;
 
-                    // 如果包含中文字符，清除中文字符
+                    // 如果包含中文字符或注音符號
                     if (chineseRegex.test(identityCard)) {
+                        // 清除中文字符或注音符號
                         this.ProfileSetting.identityCard = identityCard.replace(chineseRegex, '');
+
+                        // 移除先前的警告訊息
+                        const warningElement = identityCardInput.nextElementSibling;
+                        if (warningElement && warningElement.tagName === 'DIV') {
+                            warningElement.remove();
+                        }
                         // 插入一個用來顯示警告的元素
                         identityCardInput.insertAdjacentHTML("afterend", '<div style="color: red;">★請不要輸入中文★</div>');
                     } else {
@@ -366,7 +373,8 @@
                 },
                 Send() {
                     _this = this;
-                    if (!_this.ProfileSetting.nickName ||
+                    if (!_this.ProfileSetting.memberName ||
+                        !_this.ProfileSetting.nickName ||
                         !_this.ProfileSetting.gender ||
                         !_this.ProfileSetting.identityCard ||
                         !_this.ProfileSetting.birthday ||
@@ -374,7 +382,21 @@
                         !_this.ProfileSetting.activeArea ||
                         !_this.ProfileSetting.address ||
                         !_this.ProfileSetting.phone) {
-                        alert("請填寫所有必填欄位");
+                        alert("請填寫所有必填欄位！");
+                        return;
+                    }
+                    if (
+                        /\s/.test(_this.ProfileSetting.memberName) ||
+                        /\s/.test(_this.ProfileSetting.nickName) ||
+                        /\s/.test(_this.ProfileSetting.gender) ||
+                        /\s/.test(_this.ProfileSetting.identityCard) ||
+                        /\s/.test(_this.ProfileSetting.birthday) ||
+                        /\s/.test(_this.ProfileSetting.activeCity) ||
+                        /\s/.test(_this.ProfileSetting.activeArea) ||
+                        /\s/.test(_this.ProfileSetting.address) ||
+                        /\s/.test(_this.ProfileSetting.phone)
+                    ) {
+                        alert("請檢查欄位不可包含空白字元！");
                         return;
                     }
                     // 檢查是否有上傳圖片
