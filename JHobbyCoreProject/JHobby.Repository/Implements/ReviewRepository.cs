@@ -122,7 +122,7 @@ namespace JHobby.Repository.Implements
                 ImageName = ai.ImageName,
                 IsCover = ai.IsCover,
                 ActivityImageId = ai.ActivityImageId,
-            }).Where(d => d.LeaderId == id && d.ReviewStatus == "0" &&d.IsCover==true);
+            }).Where(d => d.LeaderId == id && d.ReviewStatus == "2" &&d.IsCover==true);
             return Dtoresult;
         }
         public bool UpdateReviewStatus(int ActivityId, int ApplicantId, ReviewStatusDto reviewStatusDto)
