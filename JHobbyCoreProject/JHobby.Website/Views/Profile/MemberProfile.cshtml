@@ -1,99 +1,172 @@
-﻿@model ProfileTestViewModel
+﻿@{
+    int VerifyMemberId = ViewBag.VerifyMemberId;
+    int MemberId = ViewBag.MemberId;
+}
 <partial name="_BreadcrumbPartial" />
 <div id="app" class="content">
-	<div class="container">
-		<!-- Row -->
-		
-			<div class="row move-top">
-				<div class="col-12 col-sm-12 col-md-12 col-lg-12">
-					<div class="content">
-						<div class="dull-bg corner-radius-10 coach-info d-md-flex justify-content-start align-items-start ">
-							<div class="profile-pic">
-								<a href="javascript:void(0);"><img alt="User" class="corner-radius-10" src="~/assets/img/profiles/avatar-coach-detail.jpg"></a>
-							</div>
-							<div class="info w-100">
-								<div class="d-sm-flex justify-content-between align-items-start">
-								<h3 class="d-flex align-items-center justify-content-start mb-0">{{memberProfile.nickName}}</h3>
-								</div>
-								@* <p>性別</p> *@
-								<ul class="d-sm-flex align-items-center">
-									<li class="d-flex align-items-center">
-									<div class="white-bg d-flex align-items-center review venue-coach-details">
-										<span>個人評價:</span>@* <span class="white-bg dark-yellow-bg d-flex align-items-center">{{memberProfile.fraction}}</span> *@
-										<div class=" rating ">
-											<i class="fas fa-star filled" v-for="n in Math.floor(star)"></i>
-											<i class="fas fa-star-half-alt" v-if="!Number.isInteger(star)"></i>
-											<i class="fa-regular fa-star filled" v-for="x in 5-Math.ceil(star)"></i>
-											<span>({{star}})</span>
-										</div>
-										</div>
-									</li>
-								</ul>
-							<img src="~/assets/img/icons/location.svg" />{{memberProfile.acitveCity}}
-							</div>
-						</div>
-					</div>
-					<!-- Accordian Contents -->
-					<div class="accordion" id="accordionPanel">
-						<div class="accordion-item mb-4" id="short-bio">
-							<h4 class="accordion-header" id="panelsStayOpen-short-bio">
-								<button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
-									會員個人簡介
-								</button>
-							</h4>
-							<div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-short-bio">
-								<div class="accordion-body">
-									<div class="text show-more-height">
-										<p>
-										{{memberProfile.personalProfile}}
-										</p>
-									</div>
-									@* <div class="show-more d align-items-center primary-text"><i class="feather-plus-circle"></i>Show More</div> *@
-								</div>
-							</div>
-						</div>
-					</div>
-					<!-- Accordian Contents -->
-				</div>
-				<aside class="col-12 col-sm-12 col-md-12 col-lg-4 ">
-				</aside>
-			</div>
-		
-		<!-- /Row -->
-	</div>
-	<!-- /container -->
+    <div class="container">
+        <!-- Row -->
 
-	<section class="visually-hidden section innerpagebg">
-		<div class="container">
-		</div>
-	</section>
+        <div class="row move-top">
+            <div class="col-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="content">
+                    <div class="dull-bg corner-radius-10 coach-info d-md-flex justify-content-start align-items-start ">
+                        <div class="profile-pic">
+                            <img :src=" memberProfile.headShot ? `${memberProfile.headShot}` :''" alt="Image" style="width: 139px; height: 160px;" class=" corner-radius-10">
+                        </div>
+                        <div class="info w-100">
+                            <div class="d-sm-flex justify-content-between align-items-start">
+                                <h3 class="d-flex align-items-center justify-content-start mb-0">{{memberProfile.nickName}}</h3>
+                                <template v-if="btnMemberProfile">
+                                    <button class="btn btn-gradient pull-right write-review add-review" data-bs-toggle="modal" data-bs-target="#add-review"><a href="/profilesetting/profilesetting">編輯個人資訊</a></button>
+                                </template>
+                            </div>
+
+                            <ul class="d-sm-flex align-items-center">
+                                <li class="d-flex align-items-center">
+                                    <div class="white-bg d-flex align-items-center review venue-coach-details">
+                                        <span>個人評價:</span>
+                                        <div class=" rating ">
+                                            <i class="fas fa-star filled" v-for="n in Math.floor(star)"></i>
+                                            <i class="fas fa-star-half-alt" v-if="!Number.isInteger(star)"></i>
+                                            <i class="fa-regular fa-star filled" v-for="x in 5-Math.ceil(star)"></i>
+                                            <span>({{star}})</span>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                            <img src="~/assets/img/icons/location.svg" />{{memberProfile.acitveCity}}
+                        </div>
+                    </div>
+                </div>
+                <!-- Accordian Contents -->
+                <div class="accordion" id="accordionPanel">
+                    <div class="accordion-item mb-4" id="short-bio">
+                        <h4 class="accordion-header" id="panelsStayOpen-short-bio">
+                            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
+                                會員個人簡介
+                            </button>
+                        </h4>
+                        <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-short-bio">
+                            <div class="accordion-body">
+                                <div class="text show-more-height">
+                                    <p>
+                                        {{memberProfile.personalProfile}}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+				<!-- 會員過去活動 -->
+                
+				<div class="col-lg-12">
+					<!-- Listing Content -->
+					<div class="row justify-content-center">
+						<!-- Featured Item -->
+                        <div class="col-lg-12" v-for="past in activityList">
+                            <h3 class="mb-40">會員過往開團活動</h3>
+							<div class="featured-venues-item">
+								<div class="listing-item listing-item-grid coach-listview">
+                                    <div class="listing-img" style="width: 300px; height: 300px;">
+                                        <a :href='"/Activity/ActivityPage/"+past.activityId' class="avatar avatar-sm  flex-shrink-0">
+                                            <img :src=`${past.imageName}` alt="Venue" style="width: 300px; height: 300px;">
+                                        </a>
+									</div>
+									<div class="listing-content">
+										<h3 class="listing-title">
+                                            <a :href='"/Activity/ActivityPage/"+past.activityId'>{{past.activityName}}</a>
+										</h3>
+										<ul class="mb-2">
+											<li>
+												<span>
+                                                    <i class="feather-map-pin me-2"></i>{{past.activityCity}}
+												</span>
+											</li>
+										</ul>
+										<div class="listing-details-group">
+                                            <p>{{past.activityNotes}}</p>
+										</div>
+										<div class="avalbity-review avalbity-review-list">
+											<ul>
+												<li>
+													<div>
+														<span><i class="feather-calendar"></i></span>
+														<div class="avalibity-datecontent">
+                                                            <h6>{{past.dateConvert}}</h6>
+														</div>
+													</div>
+												</li>
+											</ul>
+											<ul class="profile-coache-list">
+												<li>                                                    
+                                                    @* submit *@
+                                                    <form action="/Middle/ActivityCenter" method="post">
+                                                        <input type="hidden" name="categoryId" :value="past.categoryId">
+                                                        <input type="hidden" name="categoryTypeId" :value="past.categoryTypeId">
+                                                        <button type="submit" class="btn btn-primary w-100">
+                                                            <i class="feather-eye me-2"></i>查看其他開團中類似活動
+                                                        </button>
+                                                    </form>
+                                                    @* submit *@
+												</li>
+											</ul>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<!-- /Featured Item -->									
+					</div>
+					<!-- /Listing Content -->
+				</div>
+				<!-- 其他會員活動 -->
+            </div>
+        </div>
+        <!-- /Row -->
+    </div>
+    <!-- /container -->
+
+    <section class="visually-hidden section innerpagebg">
+        <div class="container">
+        </div>
+    </section>
 </div>
 
-
 <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 <script>
-	Vue.createApp({
-		data() {
-			return {
-				memberProfile: {
-					nickName: "",
-					gender: "",
-					personalProfile: "",
-					fraction: "",
-					acitveCity:"",					
-				},
-					star: 0,
-			}
-		},
-		mounted() {
+    Vue.createApp({
+        data() {
+            return {
+                memberProfile: {},
+                star: 0,
+				btnMemberProfile: false,
+                activityList: [],
+            }
+        },
+        mounted() {
 			let _this = this;
-			fetch(`/ProfileApi/GetProfileById/${@Model.MemberId}`).then(r => r.json()).then(d => {
-				_this.memberProfile = d; _this.star = d.fraction
-				
-			});
-		}
-
-	}).mount("#app");
+			_this.getProfileById();
+            _this.getPastActivity();
+        },
+        methods: {
+			getProfileById() {
+				let _this = this;
+				fetch(`/ProfileApi/GetProfileById/${@MemberId}`).then(r => r.json()).then(d => {
+					_this.memberProfile = d;
+					_this.star = d.fraction;
+                    if (@MemberId == @VerifyMemberId) { _this.btnMemberProfile = true }
+				});
+			},
+			getPastActivity() {
+				let _this = this;
+				fetch(`/ProfileApi/GetPastActivity/${@MemberId}`).then(r => r.json()).then(d => {
+					_this.activityList = d;
+				});
+			}
+        }
+    }).mount("#app");
 
 </script>
 

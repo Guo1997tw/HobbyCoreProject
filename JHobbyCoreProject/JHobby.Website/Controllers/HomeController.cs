@@ -43,15 +43,10 @@ namespace JHobby.Website.Controllers
             return View();
         }
 
-        public IActionResult NotFounds()
-        {
-            return View();
-        }
         public IActionResult leaderEdit()
         {
             return View();
         }
-
 
         public IActionResult Newcomer()
         {

@@ -1,4 +1,5 @@
 ﻿using JHobby.Service.Interfaces;
+using JHobby.Service.Models;
 using JHobby.Website.Models.ViewModels;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
@@ -25,6 +26,8 @@ namespace JHobby.Website.Controllers.Api
                 .Select(s => new NowJoinAGroupViewModel
                 {
                     ActivityName = s.ActivityName,
+                    ActivityUserId = s.ActivityUserId,
+                    MemberId = s.MemberId,
                     ReviewStatus = s.ReviewStatus,
                     ReviewTime = s.ReviewTime,
                     CurrentPeople = s.CurrentPeople,
@@ -33,6 +36,7 @@ namespace JHobby.Website.Controllers.Api
                     NickName = s.NickName,
                     DateConvert = s.DateConvert,
                     TimeConvert = s.TimeConvert,
+                    ImageName = s.ImageName,
                 }
             );
         }
@@ -43,6 +47,9 @@ namespace JHobby.Website.Controllers.Api
             return _aNowJoinAGroupService.GetNowJoinAGroupById(memberId)
                 .Select(s => new NowJoinAGroupViewModel
                 {
+                    ActivityUserId = s.ActivityUserId,
+                    ActivityId = s.ActivityId,
+                    MemberId = s.MemberId,
                     ActivityName = s.ActivityName,
                     ReviewStatus = s.ReviewStatus,
                     ReviewTime = s.ReviewTime,
@@ -52,8 +59,21 @@ namespace JHobby.Website.Controllers.Api
                     NickName = s.NickName,
                     DateConvert = s.DateConvert,
                     TimeConvert = s.TimeConvert,
+                    ImageName = s.ImageName,
                 }
             );
+        }
+
+        [HttpPut("{activityUserId}/{memberId}")]
+        public ActionResult NowJoinAGroupCancel(int activityUserId, int memberId, [FromForm] NowJoinAGroupCancelViewModel nowJoinAGroupCancel)
+        {
+            var mapping = new NowJoinAGroupCancelModel
+            {
+                ReviewStatus = nowJoinAGroupCancel.ReviewStatus,
+            };
+
+            _aNowJoinAGroupService.NowJoinAGroupCancel(activityUserId, memberId, mapping);
+            return Ok("修改成功");
         }
     }
 }

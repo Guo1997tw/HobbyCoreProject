@@ -57,7 +57,10 @@ namespace JHobby.Website.Controllers.Api
 				IsCover = dto.IsCover,
 				NickName = dto.NickName,
 				HeadShot = dto.HeadShot,
-			});
+                DateConvert =dto.DateConvert,
+                TimeConvert=dto.TimeConvert,
+
+            });
 			return reviewModel;
 		}
 

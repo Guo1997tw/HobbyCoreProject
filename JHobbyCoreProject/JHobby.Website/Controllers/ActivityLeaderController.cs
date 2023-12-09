@@ -14,7 +14,7 @@ namespace JHobby.Website.Controllers
 			_userAuthenticationService = userAuthenticationService;
 		}
 
-		[Authorize(Roles ="Member")]
+		[Authorize(Roles = "Member")]
 		public IActionResult LeaderBuild()
 		{
 			try

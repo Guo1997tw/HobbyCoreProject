@@ -103,6 +103,11 @@ namespace JHobby.Repository.Implements
             return mapper;
         }
 
+        public bool GetAccountIsRepeat(string account)
+        {
+            return (_jhobbyContext.Members.Any(m => m.Account == account)) ? false : true;
+        }
+
         public bool updateVerify(UpdateVerifyDto UpdateVerifyDto)
         {
             var queryAccount = _jhobbyContext.Members.FirstOrDefault(m => m.Account == UpdateVerifyDto.Account);

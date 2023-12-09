@@ -68,41 +68,40 @@
         </div>
     </div>
 
-    <div class="main-wrapper">
-        <!-- Header  網站導覽列內容 -->
-        <header class="header header-sticky">
-            <div class="container-fluid">
-                <nav class="navbar navbar-expand-lg header-nav">
-                    <div class="navbar-header">
-                        <a id="mobile_btn" href="javascript:void(0);">
-                            <span class="bar-icon">
-                                <span></span>
-                                <span></span>
-                                <span></span>
-                            </span>
-                        </a>
-                        <a href="https://localhost:7097/" class="navbar-brand logo">
-                            <img src="~/image/logo.svg" style="width: 300px;height: 95px" class="rounded float-left"
-                                 alt="Logo"> <!-- 左邊Logo -->
-                        </a>
-                    </div>
-                    <div class="main-menu-wrapper">
-                        <div class="menu-header">
-                            <a href="index.html" class="menu-logo">
-                                <img src="~/image/loader.jpg" class="img-fluid" alt="Logo">  @* n *@
-                            </a>
-                            <a id="menu_close" class="menu-close" href="javascript:void(0);">
-                                <i class="fas fa-times"></i>
-                            </a>
-                        </div>
-                        <ul class="main-nav">
-                            <li class="has-submenu">
-                                <a href="#">網站介紹 <i class="fas fa-chevron-down"></i></a>
-                                <ul class="submenu">
-                                    <li><a href="https://localhost:7097/home/newcomer">新手上路</a></li>
-                                    <li><a href="https://localhost:7097/home/conceptpage">經營理念</a></li>
-                                </ul>
-
+	<div class="main-wrapper">
+		<!-- Header  網站導覽列內容 -->
+		<header class="header header-sticky">
+			<div class="container-fluid">
+				<nav class="navbar navbar-expand-lg header-nav">
+					<div class="navbar-header">
+						<a id="mobile_btn" href="javascript:void(0);">
+							<span class="bar-icon">
+								<span></span>
+								<span></span>
+								<span></span>
+							</span>
+						</a>
+						<a href="/" class="navbar-brand logo">
+							<img src="~/image/logo.svg" style="width: 300px;height: 80px" class="rounded float-left"
+								 alt="Logo" > <!-- 左邊Logo -->
+						</a>
+					</div>				
+					<div class="main-menu-wrapper">
+						<div class="menu-header">
+							<a href="index.html" class="menu-logo">
+								<img src="~/image/loader.jpg" class="img-fluid" alt="Logo">  @* n *@
+							</a>
+							<a id="menu_close" class="menu-close" href="javascript:void(0);">
+								<i class="fas fa-times"></i>
+							</a>
+						</div>
+						<ul class="main-nav">
+							<li class="has-submenu">
+								<a href="#">網站介紹 <i class="fas fa-chevron-down"></i></a>
+								<ul class="submenu">
+									<li><a href="/home/newcomer">新手上路</a></li>
+									<li><a href="/home/conceptpage">經營理念</a></li>
+                                    </ul>
                             </li>
                             <li class="has-submenu">
                                 <a href="#">食 <i class="fas fa-chevron-down"></i></a>
@@ -187,6 +186,13 @@
                                         <form name="play_water" action="/Middle/ActivityCenter" method="post">
                                             <input type="hidden" name="categoryId" value="5" />
                                             <input type="hidden" name="categoryTypeId" value="9" />
+                                            <a href="javascript:document.play_water.submit();">戶外運動</a>
+                                        </form>
+                                    </li>
+                                    <li>
+                                        <form name="play_water" action="/Middle/ActivityCenter" method="post">
+                                            <input type="hidden" name="categoryId" value="5" />
+                                            <input type="hidden" name="categoryTypeId" value="9" />
                                             <a href="javascript:document.play_water.submit();">水上運動</a>
                                         </form>
                                     </li>
@@ -196,29 +202,21 @@
                                 <a href="#">會員中心 <i class="fas fa-chevron-down"></i></a>
                                 <ul class="submenu">
                                     <li class="has-submenu">
-                                        <a href="https://localhost:7097/ProfileSetting/ProfileSetting">個人資料</a>
+                                        <a href="/Profile/MemberProfile/@ViewBag.VerifyMemberId">個人介紹</a>
                                         <ul class="submenu inner-submenu">
-                                            <li><a href="https://localhost:7097/profilesetting/profilesetting">編輯資料</a></li>
-                                            <li><a href="https://localhost:7097/home/changePassword">修改密碼</a></li>
+                                            <li><a href="/profilesetting/profilesetting">編輯資料</a></li>
+                                            <li><a href="/profilesetting/ChangePwd">修改密碼</a></li>
                                         </ul>
                                     </li>
-                                    <li><a href="https://localhost:7097/MemberCenter/launchATeam">開團管理</a></li>
-                                    <li><a href="https://localhost:7097/MemberCenter/joinAGroup">參團管理</a></li>
-                                    <li><a href="https://localhost:7097/REVIEW/APPLY">報名審核</a></li>
+                                    <li><a href="/MemberCenter/launchATeam">開團管理</a></li>
+                                    <li><a href="/MemberCenter/joinAGroup">參團管理</a></li>
+                                    <li><a href="/REVIEW/APPLY">報名審核</a></li>
                                 </ul>
                             </li>
                         </ul>
                     </div>
                     <ul class="nav header-navbar-rht">
                         <partial name="_LayoutPartial" />
-                        <li>&nbsp;</li>
-                        <li class="nav-item">
-                            <a class="nav-link btn btn-secondary" href="https://localhost:7097/ActivityBuild/leaderBuild">
-                                <span>
-                                    <i class="feather-check-circle"></i>
-                                </span>立即開團
-                            </a>
-                        </li>
                     </ul>
                 </nav>
             </div>
@@ -238,12 +236,12 @@
                                 <h4 class="footer-title">網站介紹</h4>
                                 <ul>
                                     <li>
-                                        <a href="https://localhost:7097/home/newcomer">新手上路</a>
+                                        <a href="/home/newcomer">新手上路</a>
                                     </li>
                                 </ul>
                                 <ul>
                                     <li>
-                                        <a href="https://localhost:7097/home/conceptpage">經營理念</a>
+                                        <a href="/home/conceptpage">經營理念</a>
                                     </li>
                                 </ul>
                                 <div class="social-icon">
@@ -374,16 +372,16 @@
                                 <h4 class="footer-title">會員中心</h4>
                                 <ul>
                                     <li>
-                                        <a href="https://localhost:7097/ProfileSetting/ProfileSetting">個人資料</a>
+                                        <a href="/ProfileSetting/ProfileSetting">個人資料</a>
                                     </li>
                                     <li>
-                                        <a href="https://localhost:7097/MemberCenter/launchATeam">開團管理</a>
+                                        <a href="/MemberCenter/launchATeam">開團管理</a>
                                     </li>
                                     <li>
-                                        <a href="https://localhost:7097/MemberCenter/joinAGroup">參團管理</a>
+                                        <a href="/MemberCenter/joinAGroup">參團管理</a>
                                     </li>
                                     <li>
-                                        <a href="https://localhost:7097/REVIEW/APPLY">報名審核</a>
+                                        <a href="/REVIEW/APPLY">報名審核</a>
                                     </li>
                                 </ul>
                             </div>
@@ -418,7 +416,6 @@
         </footer>
         <!-- /Footer -->
     </div>
-
     <!-- scrollToTop start -->
     <div class="progress-wrap active-progress">
         <svg class="progress-circle svg-content" width="100%" height="100%" viewBox="-1 -1 102 102">
@@ -426,7 +423,7 @@
         </svg>
     </div>
     <!-- scrollToTop end -->
-
+	<!-- scrollToTop end -->
     <script src="~/js/site.js" asp-append-version="true"></script>
     <!-- jQuery -->
     <script src="~/assets/js/jquery-3.7.0.min.js"></script>
@@ -449,6 +446,5 @@
     <script>
         Jhobby_Animation()
     </script>
-
 </body>
 </html>

@@ -38,15 +38,35 @@ namespace JHobby.Repository.Implements
 
         public IEnumerable<WishListDto> GetWishListById(int memberId)
         {
+            var imageName = _jhobbyContext.ActivityImages.Select(ai =>new { id = ai.ActivityId, imageName = ai.ImageName });
+
             return _jhobbyContext.Wishes.Where(w => w.MemberId == memberId)
                 .Include(a => a.Activity)
                 .Select(w => new WishListDto
                 {
+                    WishId = w.WishId,
+                    MemberId = w.MemberId,
+                    ActivityId = w.ActivityId,
                     ActivityName = w.Activity.ActivityName,
                     ActivityStatus = w.Activity.ActivityStatus,
                     MaxPeople = w.Activity.MaxPeople,
                     CurrentPeople = w.Activity.CurrentPeople,
+                    ImageName = imageName.FirstOrDefault(iN => iN.id == w.ActivityId).imageName,
                 });
+        }
+
+        public bool WishListDelete(int memberId, int wishId)
+        {
+            var wishListDelectDto = _jhobbyContext.Wishes
+                .FirstOrDefault(w => w.MemberId == memberId && w.WishId == wishId);
+
+            if (wishListDelectDto != null)
+            {
+                _jhobbyContext.Wishes.Remove(wishListDelectDto);
+                _jhobbyContext.SaveChanges();
+                return true;
+            }
+            else { return false; }
         }
     }
 }

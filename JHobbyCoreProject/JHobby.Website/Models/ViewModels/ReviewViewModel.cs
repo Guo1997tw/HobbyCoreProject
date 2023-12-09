@@ -13,5 +13,8 @@
 		public int ApplicantId { get; set; } //申請者Id
 		public string? NickName { get; set; }
 		public string? HeadShot { get; set; }
-	}
+        public string? DateConvert { get; set; }
+
+        public string? TimeConvert { get; set; }
+    }
 }
