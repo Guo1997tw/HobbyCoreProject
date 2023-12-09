@@ -128,10 +128,13 @@ namespace JHobby.Repository.Implements
         public bool UpdateReviewStatus(int ActivityId, int ApplicantId, ReviewStatusDto reviewStatusDto)
         {
             var queryResult = _jhobbyContext.ActivityUsers.FirstOrDefault(au => au.ActivityId == ActivityId && au.MemberId == ApplicantId);
-
+            var activityCurrentPeople = _jhobbyContext.Activities.FirstOrDefault(a => a.ActivityId == ActivityId);
+           
             if (queryResult != null)
             {
                 queryResult.ReviewStatus=reviewStatusDto.ReviewStatus;
+                _jhobbyContext.SaveChanges();
+                activityCurrentPeople.CurrentPeople = _jhobbyContext.ActivityUsers.Where(a => a.ReviewStatus == "1").Count();
                 _jhobbyContext.SaveChanges();
                 return true;
             }
