@@ -301,12 +301,14 @@
                         !self.activityUpdate.activityArea ||
                         !self.activityUpdate.activityLocation ||
                         !self.activityUpdate.startTime ||
-                        !self.activityUpdate.maxPeople ||
+                        // !self.activityUpdate.maxPeople ||
                         !self.activityUpdate.categoryId ||
                         !self.activityUpdate.categoryTypeId ||
                         !self.activityUpdate.joinDeadLine ||
                         // !self.activityUpdate.joinFee ||
                         !self.activityUpdate.activityNotes) { return alert("請填寫所有欄位!!"); }
+
+                    if (isNaN(self.activityUpdate.maxPeople)) { return alert("請輸入正確人數!!"); }
 
                     if (isNaN(self.activityUpdate.joinFee)) { return alert("請輸入正確金額!!"); }
 
