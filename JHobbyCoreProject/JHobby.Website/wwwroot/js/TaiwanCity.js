@@ -346,22 +346,6 @@
                 "ZipCode": "272",
                 "AreaName": "南澳鄉",
                 "AreaEngName": "Nan’ao Township"
-            },
-            {
-                "ZipCode": "290",
-                "AreaName": "釣魚臺",
-                "AreaEngName": "Diaoyutai"
-            }
-        ]
-    },
-    {
-        "CityName": "釣魚臺",
-        "CityEngName": "Diauyutai",
-        "AreaList": [
-            {
-                "ZipCode": "290",
-                "AreaName": "釣魚臺",
-                "AreaEngName": "Diaoyutai"
             }
         ]
     },
