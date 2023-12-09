@@ -46,9 +46,12 @@ namespace JHobby.Repository.Implements
             var scoreByMemberId = _JhobbyContext.Scores.Select(s => new { id = s.MemberId, score = s.Fraction, activityid = s.ActivityId });
             var imageName = _JhobbyContext.ActivityImages.Select(ai => new { id = ai.ActivityId, imageName = ai.ImageName });
 
-            return _JhobbyContext.ActivityUsers
-                .Where(Au => Au.MemberId == memberId
-                && Au.Activity.ActivityStatus == "2"
+            var getPastJoinAGroup = _JhobbyContext.ActivityUsers.Where(Au => Au.MemberId == memberId);
+
+            if (getPastJoinAGroup != null)
+            {
+                return getPastJoinAGroup.Where(Au =>
+                 Au.Activity.ActivityStatus == "2"
                 || Au.Activity.ActivityStatus == "3")
                 .Include(Au => Au.Activity)
                 .Include(Au => Au.Member)
@@ -70,6 +73,11 @@ namespace JHobby.Repository.Implements
                     .score,
                     ImageName = imageName.FirstOrDefault(i => i.id == a.Activity.ActivityId).imageName,
                 });
+            }
+            else
+            {
+                return null;
+            }
         }
 
     }
