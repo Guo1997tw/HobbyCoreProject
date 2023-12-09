@@ -35,6 +35,7 @@ namespace JHobby.Website.Controllers
         // Home/ConceptPage
         public IActionResult ConceptPage()
         {
+            ViewBag.verifyMemberId = _userAuthenticationService.GetUserId();
             return View();
         }
 
@@ -50,8 +51,8 @@ namespace JHobby.Website.Controllers
 
         public IActionResult Newcomer()
         {
+            ViewBag.verifyMemberId = _userAuthenticationService.GetUserId();
             ViewData["Title"] = "新手上路";
-
             return View();
         }
 
