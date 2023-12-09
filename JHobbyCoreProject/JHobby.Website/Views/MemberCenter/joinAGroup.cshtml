@@ -529,7 +529,7 @@
                     form.append("ReviewStatus", 3);
                     axios
                         .put(
-                            `/NowJoinAGroupApi/NowJoinAGroupCancel/${_this.currentCard.activityUserId}/${_this.currentCard.memberId}`,
+                            `/NowJoinAGroupApi/NowJoinAGroupCancel/${_this.currentCard.activityId}/${_this.currentCard.memberId}`,
                             form,
                             {
                                 headers: { "Content-Type": "multipart/Formdata" },
