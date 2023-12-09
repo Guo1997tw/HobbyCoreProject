@@ -1,5 +1,7 @@
 ﻿@{
     ViewData["Title"] = "修改密碼";
+
+    int memberId = ViewBag.memberId;
 }
 
 <partial name="_BreadcrumbPartial" />
@@ -88,7 +90,7 @@
 
                 let self = this;
 
-                fetch("/MemberApi/UpdateMember/7", {
+                fetch("/MemberApi/UpdateMember/@memberId", {
                     method: "PUT",
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(this.updateMember)

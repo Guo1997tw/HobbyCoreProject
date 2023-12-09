@@ -9,14 +9,16 @@ namespace JHobby.Website.Controllers
     [Authorize(Roles = "Admin,Member, FastMember")]
     public class ProfileSettingController : Controller
     {
-        private readonly IUserAuthenticationService _UserAuthenticationService;
+        private readonly IUserAuthenticationService _userAuthenticationService;
+
         public ProfileSettingController(IUserAuthenticationService userAuthenticationService)
         {
-            _UserAuthenticationService = userAuthenticationService;
+            _userAuthenticationService = userAuthenticationService;
         }
+
         public IActionResult ProfileSetting()
         {
-            ViewBag.VerifyMemberId = _UserAuthenticationService.GetUserId();
+            ViewBag.VerifyMemberId = _userAuthenticationService.GetUserId();
             ViewData["Title"] = "修改資訊";
             ViewData["BookMark"] = "ProfileSetting";
             return View();
@@ -29,6 +31,8 @@ namespace JHobby.Website.Controllers
         public IActionResult ChangePwd()
         {
             ViewData["BookMark"] = "ChangePassword";
+            ViewBag.memberId = _userAuthenticationService.GetUserId();
+
             return View();
         }
     }
