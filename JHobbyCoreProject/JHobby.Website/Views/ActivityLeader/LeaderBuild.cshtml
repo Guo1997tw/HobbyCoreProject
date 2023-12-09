@@ -181,7 +181,7 @@
             </div>
             <div class="text-center btn-row">
                 <button class="btn btn-primary me-3 btn-icon" style="padding: 10px; width: 100px; justify-content: center;" type="submit" @@click="leaderBuild()">確認</button>
-                <button class="btn btn-primary me-3 btn-icon" style="padding: 10px; width: 100px; justify-content: center;" type="submit">取消</button>
+                <button class="btn btn-primary me-3 btn-icon" style="padding: 10px; width: 100px; justify-content: center;" type="submit" @@click="cancelBuild()">取消</button>
             </div>
         </div>
         <!-- /Container -->
@@ -337,7 +337,11 @@
                             alert("建立成功");
                             javascript: location.href = "/MemberCenter/launchATeam";
                         });
-                }
+                },
+
+                cancelBuild() {
+                    window.location.href = "/MemberCenter/launchATeam";
+                },
             },
         }).component('select2', select2).mount("#Create");
     </script>

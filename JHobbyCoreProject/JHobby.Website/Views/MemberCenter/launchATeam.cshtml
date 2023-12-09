@@ -13,15 +13,15 @@
         </div>
         <!-- Main Wrapper -->
         <div class="main-wrapper">
-            <!-- Header -->
+@*             <!-- Header -->
             <header class="header header-sticky fixed-top">
-            </header>
+            </header> *@
             <!-- Page Content -->
             <div class="content" style="padding-top:">
                 <div class="container">
                     <!-- Statistics Card -->
-                    <div class="row">
-                    </div>
+                    @* <div class="row">
+                    </div> *@
                     <!-- /Statistics Card -->
                     <!-- Appointment -->
                     <div class="row">
@@ -150,68 +150,76 @@
                                                                                 </tr>
                                                                             </thead>
                                                                             <tbody>
-                                                                                <tr role="row" class="odd" v-for="item in filterNowCard">
-                                                                                    <td class="sorting_1">
-                                                                                        <h2 class="table-avatar">
-                                                                                            <a :href='"/Activity/ActivityPage/"+item.activityId'
-                                                                                               class="avatar avatar-sm  flex-shrink-0">
-                                                                                                <img class="avatar-img" :src='item.imageName' alt="Image">
-                                                                                            </a>
-                                                                                            <span class="table-head-name flex-grow-1">
-                                                                                                <a :href='"/Activity/ActivityPage/"+item.activityId'>
-                                                                                                    @* 點擊後有error *@
-                                                                                                    {{item.activityName}}
-                                                                                                </a>
-
-                                                                                            </span>
-                                                                                        </h2>
-                                                                                    </td>
-                                                                                    <td class="table-date-time">
-                                                                                        <h4>
-                                                                                            <p>{{item.dateConvert}}</p>
-                                                                                            <p> {{item.timeConvert}}</p>
-                                                                                        </h4>
-                                                                                    </td>
-                                                                                    <td>
-                                                                                        <!-- 連接參團人數 -->@* 改 *@
-                                                                                        <button type="button" class="btn btn-secondary"
-                                                                                                data-bs-toggle="modal"
-                                                                                                data-bs-target="#add-particpate-check" @@click="keepId2(item.memberId,item.activityId);Current()">
-                                                                                            <i class="feather-eye"></i>查看詳細狀態
-
-                                                                                        </button>
-                                                                                        @* 改 *@
-                                                                                        <!-- /連接參團人數 -->
-                                                                                    </td>
-                                                                                    <td>
-                                                                                        <span class="pay-dark">{{item.result}}</span>
-                                                                                    </td>
-                                                                                    <td class="paid-edit">
-                                                                                        <span>
-                                                                                            <i class="feather-edit">{{item.activityStatus}}</i>
-                                                                                        </span>
-                                                                                    </td>
-                                                                                    <td class="table-accept-btn text-end">
-                                                                                        @* submit *@
-                                                                                        <form action="/ActivityLeader/LeaderEdit" method="post">
-                                                                                            <input type="hidden" name="id" :value="item.activityId">
-                                                                                            <button type="submit" class="btn btn-primary w-100">
-                                                                                                <i class="feather-check-circle"></i>編輯開團
-                                                                                            </button>
-                                                                                        </form>
-                                                                                        @* submit *@
-                                                                                        @* <a href="/home/leaderedit" class="btn accept-btn"><i class="feather-check-circle"></i>編輯開團</a> *@
-                                                                                        <a class="btn cancel-table-btn" data-bs-toggle="modal" data-bs-target="#request-coche" @@click="keepId(item.activityId)">
-                                                                                            <i class="feather-x-circle"></i>取消開團
+                                                                            <tr role="row" class="odd" v-for="item in filterNowCard" v-if="filterNowCard.length > 0">
+                                                                                <td class="sorting_1">
+                                                                                    <h2 class="table-avatar">
+                                                                                        <a :href='"/Activity/ActivityPage/"+item.activityId'
+                                                                                           class="avatar avatar-sm  flex-shrink-0">
+                                                                                            <img class="avatar-img" :src='item.imageName' alt="Image">
                                                                                         </a>
-                                                                                    </td>
-                                                                                </tr>
+                                                                                        <span class="table-head-name flex-grow-1">
+                                                                                            <a :href='"/Activity/ActivityPage/"+item.activityId'>
+                                                                                                @* 點擊後有error *@
+                                                                                                {{item.activityName}}
+                                                                                            </a>
+                                                                                        </span>
+                                                                                    </h2>
+                                                                                </td>
+                                                                                <td class="table-date-time">
+                                                                                    <h4>
+                                                                                        <p>{{item.dateConvert}}</p>
+                                                                                        <p> {{item.timeConvert}}</p>
+                                                                                    </h4>
+                                                                                </td>
+                                                                                <td>
+                                                                                    <!-- 連接參團人數 -->@* 改 *@
+                                                                                    <button type="button" class="btn btn-secondary"
+                                                                                            data-bs-toggle="modal"
+                                                                                            data-bs-target="#add-particpate-check" @@click="keepId2(item.memberId,item.activityId);Current()">
+                                                                                        <i class="feather-eye"></i>查看詳細狀態
+
+                                                                                    </button>
+                                                                                    @* 改 *@
+                                                                                    <!-- /連接參團人數 -->
+                                                                                </td>
+                                                                                <td>
+                                                                                    <span class="pay-dark">{{item.result}}</span>
+                                                                                </td>
+                                                                                <td class="paid-edit">
+                                                                                    <span>
+                                                                                        <i class="feather-edit">{{item.activityStatus}}</i>
+                                                                                    </span>
+                                                                                </td>
+                                                                                <td class="table-accept-btn text-end">
+                                                                                    @* submit *@
+                                                                                    <form action="/ActivityLeader/LeaderEdit" method="post">
+                                                                                        <input type="hidden" name="id" :value="item.activityId">
+                                                                                        <button type="submit" class="btn btn-primary w-100">
+                                                                                            <i class="feather-check-circle"></i>編輯開團
+                                                                                        </button>
+                                                                                    </form>
+                                                                                    @* submit *@
+                                                                                    @* <a href="/home/leaderedit" class="btn accept-btn"><i class="feather-check-circle"></i>編輯開團</a> *@
+                                                                                    <a class="btn cancel-table-btn" data-bs-toggle="modal" data-bs-target="#request-coche" @@click="keepId(item.activityId)">
+                                                                                        <i class="feather-x-circle"></i>取消開團
+                                                                                    </a>
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr v-else>
+                                                                                <td class="sorting_1">
+                                                                                    <h2 class="table-avatar">
+                                                                                        <span class="table-head-name flex-grow-1" align=left>
+                                                                                            <p>尚未擁有開團紀錄</p>
+                                                                                        </span>
+                                                                                    </h2>
+                                                                                </td>
+                                                                            </tr>
                                                                             </tbody>
                                                                         </table>
                                                                         <div class="tab-footer" style="margin-top: 10px;">
                                                                             <div class="row">
                                                                                 <div class="col-md-12">
-                                                                                    <div id="tablepage">
+                                                                                    <div id="tablePage">
                                                                                         <div class="dataTables_paginate paging_simple_numbers" id="DataTables_Table_1_paginate1">
                                                                                             <!--分頁按鈕-->
                                                                                             <paginate :page-count="total"
@@ -236,7 +244,6 @@
                                                             </div>
                                                         </div>
                                                     </div>
-
                                                 </div>
                                             </div>
                                         </div>
@@ -280,7 +287,7 @@
                                 </div>
                                 <div class="col-lg-6">
                                     <div class="coach-active-blk">
-                                        <div id="tablefilter">
+                                        <div id="tableFilter">
                                             <div id="DataTables_Table_1_filter" class="dataTables_filter">
                                             </div>
                                         </div>
@@ -302,36 +309,45 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <tr v-for="item in filteroldCard ">
-                                                    <td>
-                                                        <h2 class="table-avatar">
-                                                            <a :href='"/Activity/ActivityPage/"+item.activityId'
-                                                               class="avatar avatar-sm  flex-shrink-0">
-                                                                <img class="avatar-img" :src='item.imageName' alt="Image">
-                                                            </a>
-                                                            <span class="table-head-name flex-grow-1">
-                                                                <a :href='"/Activity/ActivityPage/"+item.activityId' data-bs-toggle="modal"
-                                                                   data-bs-target="#upcoming-court">{{item.activityName}}</a>
-                                                                <span>{{item.MemberId}}</span>
-                                                            </span>
-                                                        </h2>
-                                                    </td>
-                                                    <td>
-                                                        <p> {{item.dateConvert}}</p>
-                                                        <p> {{item.timeConvert}}</p>
+                                                <tr v-for="item in filteroldCard" v-if="filteroldCard.length > 0">
+                                                <td>
+                                                    <h2 class="table-avatar">
+                                                        <a :href='"/Activity/ActivityPage/"+item.activityId'
+                                                           class="avatar avatar-sm  flex-shrink-0">
+                                                            <img class="avatar-img" :src='item.imageName' alt="Image">
+                                                        </a>
+                                                        <span class="table-head-name flex-grow-1">
+                                                            <a :href='"/Activity/ActivityPage/"+item.activityId' data-bs-toggle="modal"
+                                                               data-bs-target="#upcoming-court">{{item.activityName}}</a>
+                                                            <span>{{item.MemberId}}</span>
+                                                        </span>
+                                                    </h2>
+                                                </td>
+                                                <td>
+                                                    <p> {{item.dateConvert}}</p>
+                                                    <p> {{item.timeConvert}}</p>
 
-                                                    </td>
-                                                    <td>
-                                                        <h6>{{item.currentPeople}}</h6>
-                                                    </td>
-                                                    <td>
-                                                        <p> {{item.createdDateConvert}}</p>
-                                                        <p> {{item.createdTimeConvert}}</p>
-                                                    </td>
-                                                    <td class="paid-edit text-start">
-                                                        <span><i class="feather-edit"></i>{{item.activityStatus}}</span>
-                                                    </td>
-                                                </tr>
+                                                </td>
+                                                <td>
+                                                    <h6>{{item.currentPeople}}</h6>
+                                                </td>
+                                                <td>
+                                                    <p> {{item.createdDateConvert}}</p>
+                                                    <p> {{item.createdTimeConvert}}</p>
+                                                </td>
+                                                <td class="paid-edit text-start">
+                                                    <span><i class="feather-edit"></i>{{item.activityStatus}}</span>
+                                                </td>
+                                            </tr>
+                                            <tr v-else>
+                                                <td class="sorting_1">
+                                                    <h2 class="table-avatar">
+                                                        <span class="table-head-name flex-grow-1" align=left>
+                                                            <p>尚未擁有開團歷史紀錄</p>
+                                                        </span>
+                                                    </h2>
+                                                </td>
+                                            </tr>
                                             </tbody>
                                         </table>
                                     </div>
@@ -357,7 +373,6 @@
                                 </div>
                             </div>
                         </div>
-
                         <div class="row">
                             <div class="col-sm-12 col-md-5"></div>
                             <div class="col-sm-12 col-md-7"></div>
@@ -365,10 +380,6 @@
                     </div>
                 </div>
             </div>
-
-
-
-
             <!-- /Main Wrapper -->
             <!-- 彈跳刪除開團 -->
             <div class="modal custom-modal fade request-modal" id="request-coche" style="display: none;" aria-hidden="true">
@@ -383,7 +394,6 @@
                             </a>
                         </div>
                         <div class="modal-body">
-
                             <!-- Court Request -->
                             <div class="row">
                                 <div class="col-lg-12">
@@ -516,11 +526,12 @@
                                                                                         </h2>
                                                                                     </td>
                                                                                 </tr>
+                                                                            </tbody>
+                                                                        </table>
                                                                     </div>
                                                                 </div>
                                                                 <!-- /參加人數展示卡片 -->
-                                                                </tbody>
-                                                                </table>
+                                                              
                                                             </div>
                                                         </div>
                                                         <div class="row">
@@ -547,6 +558,7 @@
                 </div>
             </div>
         </div>
+    </main>
 </div>
 <!-- /彈跳確定參團人數  -->
 <!-- 彈跳確定刪除參團人員 -->
@@ -578,10 +590,9 @@
         </div>
     </div>
 </div>
-        </div>
+
 <!-- /彈跳確定參團人數  -->
-    </main>
-</div>
+
 
 <!-- Hot Member -->
 @section Scripts
@@ -601,9 +612,9 @@
                     sortOrder2: 'asc',
                     countPerPage: 5,
                     pageNumber: 1,
-                    pageNumber2:1,
+                    pageNumber2: 1,
                     _activityId: "",
-                    _ActivityName: 0,
+                    _activityName: 0,
                     currentData: [],
                     _activityId: 0,
                     _memberId: 0,
@@ -710,6 +721,7 @@
                         // alert(_this.currentData.length);
                         _this.currentData = res.data
                     }).catch((error) => alert(`發生錯誤: ${error}`));
+                
                 },
                 keepId2: function (memberId, activityId) {
                     let _this = this;
