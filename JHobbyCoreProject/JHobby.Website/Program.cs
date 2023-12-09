@@ -109,7 +109,7 @@ namespace JHobby.Website
             builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(option =>
             {
                 option.LoginPath = "/Member/Login";
-                option.AccessDeniedPath = "/Home/NotFounds";
+                option.AccessDeniedPath = "/ErrorPage/NotPermissions";
             });
 
             var app = builder.Build();
