@@ -97,13 +97,15 @@ namespace JHobby.Service.Implements
 
             if (queryResult != null)
             {
-                var hashTemp = queryResult.HashPassword;
-                var saltTemp = queryResult.SaltPassword;
-                var hashPwd = HashPwdWithHMACSHA256(password, saltTemp);
+                if (queryResult.Status != "8")
+                {
+                    var hashTemp = queryResult.HashPassword;
+                    var saltTemp = queryResult.SaltPassword;
+                    var hashPwd = HashPwdWithHMACSHA256(password, saltTemp);
 
-                return hashPwd == hashTemp;
+                    return hashPwd == hashTemp;
+                }
             }
-
             return false;
         }
 
@@ -134,6 +136,11 @@ namespace JHobby.Service.Implements
             var mapper = _mapper.Map<MemberStatusModel>(queryResult);
 
             return mapper;
+        }
+
+        public bool CheckAccountIsRepeat(string account)
+        {
+            return _memberRepository.GetAccountIsRepeat(account);
         }
 
         private int RandomNumberSize(int minNum, int maxNum)
@@ -204,7 +211,7 @@ namespace JHobby.Service.Implements
             {
                 //dataCode = dataCode.Replace(" ", "+");
                 //dataCode=dataCode.Replace("\\", "/");
-                dataCode=_commonService.DecodeBase64Url(dataCode);
+                dataCode = _commonService.DecodeBase64Url(dataCode);
                 string dataCodeDecrypt = _commonService.Decrypt(dataCode);
                 string[] strArr = dataCodeDecrypt.Split("&");
                 string account = strArr[0];
@@ -242,7 +249,6 @@ namespace JHobby.Service.Implements
 
                 throw new InvalidOperationException("錯誤網址");
             }
-            
         }
     }
 }

@@ -86,7 +86,7 @@
                                 <label for="endterdate" class="form-label">報名截止日</label>
                                 <div class="col-lg-12 col-md-6">
                                     <div class="input-space">
-                                        <input id="JoinDeadLine" type="datetime-local" class="form-control" v-model="activityUpdate.joinDeadLine">
+                                        <input id="JoinDeadLine" type="date" class="form-control" v-model="activityUpdate.joinDeadLine">
                                     </div>
                                 </div>
                             </div>
@@ -181,7 +181,7 @@
             </div>
             <div class="text-center btn-row">
                 <button class="btn btn-primary me-3 btn-icon" style="padding: 10px; width: 100px; justify-content: center;" type="submit" @@click="leaderEdit()">確認</button>
-                <button class="btn btn-primary me-3 btn-icon" style="padding: 10px; width: 100px; justify-content: center;" type="submit">取消</button>
+                <button class="btn btn-primary me-3 btn-icon" style="padding: 10px; width: 100px; justify-content: center;" type="submit" @@click="cancelUpdate()">取消</button>
             </div>
         </div>
         <!-- /Container -->
@@ -303,7 +303,7 @@
                         !self.activityUpdate.categoryId ||
                         !self.activityUpdate.categoryTypeId ||
                         !self.activityUpdate.joinDeadLine ||
-                        !self.activityUpdate.joinFee ||
+                        // !self.activityUpdate.joinFee ||
                         !self.activityUpdate.activityNotes) { return alert("請填寫所有欄位!!"); }
 
                     if (isNaN(self.activityUpdate.joinFee)) { return alert("請輸入正確金額!!"); }
@@ -331,17 +331,27 @@
                     }).then(r => r.json())
                         .then(d => {
                             self.activityUpdate = d;
-                            console.log('Success', d);
-                            alert("修改成功");
-                        });
+                            if (d == true) {
+                                console.log('Success', d);
+                                alert("修改成功");
 
-                    javascript: location.href = "/MemberCenter/launchATeam";
+                                javascript: location.href = "/MemberCenter/launchATeam";
+                            }
+                            else {
+                                alert("修改失敗");
+
+                                self.getActivityById();
+                            }
+                        });
                 },
                 getActivityById() {
                     self = this;
 
                     fetch("/ActivityApi/GetActivityStatus/@activityId").then(r => r.json()).then(d => { self.activityUpdate = d });
-                }
+                },
+                cancelUpdate() {
+                    window.location.href = "/MemberCenter/launchATeam";
+                },
             },
         }).component('select2', select2).mount("#Update");
     </script>

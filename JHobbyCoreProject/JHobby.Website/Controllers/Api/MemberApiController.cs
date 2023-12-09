@@ -29,10 +29,21 @@ namespace JHobby.Website.Controllers.Api
             _sendMailService = sendMailService;
             _memberRepository = memberRepository;
         }
-        
+
+        [HttpPost]
+        public bool CheckAccountStatus(string account)
+        {
+            return _memberService.CheckAccountIsRepeat(account);
+        }
+
         [HttpPost]
         public bool InsertRegister(MemberRegisterViewModel memberRegisterViewModel)
         {
+            if(!(_memberService.CheckAccountIsRepeat(memberRegisterViewModel.Account)))
+            {
+                return false;
+            }
+
             var mapper = new MemberRegisterModel
             {
                 Account = memberRegisterViewModel.Account,
@@ -58,16 +69,23 @@ namespace JHobby.Website.Controllers.Api
             {
                 var member = _memberService.MemberStatus(memberLoginViewModel.Account);
 
+                //var roleAll = member.Status switch
+                //{
+                //    "0" => "FastMember",
+                //    "1" => "Member",
+                //    "8" => "NoVerify",
+                //    "99" => "Admin",
+                //    _ => "NoMember"
+                //};
+
                 // 快速會員
                 var roleFast = member.Status == "0" ? "FastMember" : "NoFastMember";
 
                 // 一般會員 (未填寫資料)
                 var roleGeneral = member.Status == "1" ? "Member" : "NoMember";
-                
+
                 // 管理員
                 var roleAdmin = member.Status == "99" ? "Admin" : "NoAdmin";
-
-                var roleVerifyMail = member.Status == "8" ? "NoVerify" : "Verify";
 
                 var claims = new List<Claim>
                 {
@@ -75,7 +93,6 @@ namespace JHobby.Website.Controllers.Api
                     new Claim(ClaimTypes.Role, roleFast),
                     new Claim(ClaimTypes.Role, roleGeneral),
                     new Claim(ClaimTypes.Role, roleAdmin),
-                    new Claim(ClaimTypes.Role, roleVerifyMail)
                 };
 
                 var identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);

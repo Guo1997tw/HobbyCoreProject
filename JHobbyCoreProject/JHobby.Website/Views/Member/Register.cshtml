@@ -40,7 +40,7 @@
                                                 </div>
                                                 <div class="form-group">
                                                     <div class="pass-group group-img">
-                                                        <i class="toggle-password feather-eye-off"></i>         
+                                                        <i class="toggle-password feather-eye-off"></i>
                                                         <input type="password" class="form-control pass-input" placeholder="密碼" v-model="memberRegister.hashPassword">
                                                     </div>
                                                 </div>
@@ -63,12 +63,12 @@
                                                     <label class="form-check-label" for="policy">我已閱讀並同意<a href="XXXXX">《使用條款》</a>與<a href="XXXXX">《隱私權政策》</a></label>
                                                 </div>
                                                 <button class="btn btn-secondary register-btn d-inline-flex justify-content-center align-items-center w-100 btn-block" @@click="Registe()" type="button">建立帳號<i class="feather-arrow-right-circle ms-2"></i></button>
-                                                <div class="form-group">
+                                                <div class="form-group" hidden>
                                                     <div class="login-options text-center">
                                                         <span class="text">或使用以下帳號登入</span>
                                                     </div>
                                                 </div>
-                                                <div class="form-group mb-0">
+                                                <div class="form-group mb-0" hidden>
                                                     <ul class="social-login d-flex justify-content-center align-items-center">
                                                         <li class="text-center">
                                                             <button type="button" class="btn btn-social d-flex align-items-center justify-content-center">
@@ -117,16 +117,20 @@
                     policy: false
                 },
             }
-        },                              
+        },
 
         methods: {
+            CheckAccount() {
+                fetch("/MemberApi/CheckAccountStatus")
+            },
+
             Registe() {
                 var emailRule = /^[a-zA-Z0-9._-]+@@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
 
                 if (!emailRule.test(this.memberRegister.account)) {
                     return alert("電子信箱格式有誤，請確認!!");
                 }
-                
+
                 if ((this.memberRegister.passwordConfirm === null) || (this.memberRegister.hashPassword !== this.memberRegister.passwordConfirm)) {
                     return alert("密碼欄位需一致!!");
                 }
@@ -143,12 +147,24 @@
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(this.memberRegister)
                 })
-                    .then(r => r.json())
+                    .then(r => {
+                        if (!r.ok) { throw new Error('Fail'); } return r.json();
+                    })
                     .then(d => {
                         console.log('Success', d);
-                        alert("註冊成功");
-
-                        window.location.href = '/Home/Index';
+                        if (d == true) {
+                            alert("註冊成功~~");
+                            window.location.href = '/Home/Index';
+                        }
+                        else {
+                            alert("帳號重複，請重新輸入!!");
+                            self.memberRegister.account = "";
+                            self.memberRegister.hashPassword = "",
+                                self.memberRegister.passwordConfirm = ""
+                        }
+                    }).catch(e => {
+                        console.log('Fail', e);
+                        alert("帳號重複，請重新輸入!!");
                     })
             },
 

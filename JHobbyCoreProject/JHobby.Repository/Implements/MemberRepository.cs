@@ -51,6 +51,7 @@ namespace JHobby.Repository.Implements
                 Account = queryResult.Account,
                 HashPassword = queryResult.HashPassword,
                 SaltPassword = queryResult.SaltPassword,
+                Status = queryResult.Status,
             };
         }
 
@@ -101,6 +102,11 @@ namespace JHobby.Repository.Implements
             var mapper = _mapper.Map<MemberStatusDto>(queryResult);
 
             return mapper;
+        }
+
+        public bool GetAccountIsRepeat(string account)
+        {
+            return (_jhobbyContext.Members.Any(m => m.Account == account)) ? false : true;
         }
 
         public bool updateVerify(UpdateVerifyDto UpdateVerifyDto)
