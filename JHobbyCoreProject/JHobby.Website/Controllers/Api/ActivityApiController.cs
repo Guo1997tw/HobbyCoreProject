@@ -19,7 +19,7 @@ namespace JHobby.Website.Controllers.Api
         {
             _activityService = activityService;
             _mapper = mapper;
-            _rootPath = $@"{webHostEnvironment.WebRootPath}\activityImages\";
+            _rootPath = $@"{webHostEnvironment.WebRootPath}\activityImgs\";
         }
 
         /// <summary>
@@ -40,9 +40,10 @@ namespace JHobby.Website.Controllers.Api
                 foreach (var file in activityCreateViewModel.File)
                 {
                     var fileName = file.FileName;
-                    fileName = $"activity{i}.jpg";
+                    var dateTime = DateTime.Now.ToString("yyyyMMddHHmmssffff");
+                    fileName = $"activity{i}{dateTime}.jpg";
                     var filePath = $"{_rootPath}{fileName}";
-                    var fullFileName = $"\\activityImages\\{fileName}";
+                    var fullFileName = $"\\activityImgs\\{fileName}";
 
                     using var fs = new FileStream(filePath, FileMode.Create);
 
@@ -54,11 +55,14 @@ namespace JHobby.Website.Controllers.Api
                 }
             }
 
+            string picTemp = picPathList.FirstOrDefault();
+
             activityCreateModel.ActivityImages = picPathList.Select(x => new ActivityImageCreateModel
             {
                 ImageName = x,
-                IsCover = (x == "\\activityImages\\activity1.jpg") ? true : false
+                IsCover = (x == picTemp) ? true : false
             }).ToList();
+
 
             var result = _activityService.ActivityCreate(activityCreateModel);
 
@@ -110,7 +114,7 @@ namespace JHobby.Website.Controllers.Api
                 CategoryId = result.CategoryId,
                 CategoryTypeId = result.CategoryTypeId,
                 ActivityName = result.ActivityName,
-                StartDate=result.StartDate,
+                StartDate = result.StartDate,
                 StartTime = result.StartTime,
                 JoinDeadLine = result.JoinDeadLine,
                 ActivityNotes = result.ActivityNotes,

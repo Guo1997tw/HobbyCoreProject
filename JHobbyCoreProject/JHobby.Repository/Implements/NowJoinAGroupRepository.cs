@@ -2,11 +2,6 @@
 using JHobby.Repository.Models.Dto;
 using JHobby.Repository.Models.Entity;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace JHobby.Repository.Implements
 {
@@ -54,7 +49,7 @@ namespace JHobby.Repository.Implements
             .Select(a => new NowJoinAGroupDto
             {
                 ActivityName = a.Activity.ActivityName,
-                ActivityUserId= a.ActivityUserId,
+                ActivityUserId = a.ActivityUserId,
                 ActivityId = a.ActivityId,
                 MemberId = a.MemberId,
                 ReviewStatus = a.ReviewStatus,
@@ -66,16 +61,19 @@ namespace JHobby.Repository.Implements
             });
         }
 
-        public bool NowJoinAGroupCancel(int activityUserId, int memberId, NowJoinAGroupCancelDto aGroupCancelDto)
+        public bool NowJoinAGroupCancel(int activityId, int memberId, NowJoinAGroupCancelDto aGroupCancelDto)
         {
             var cancelDto = _jhobbyContext.ActivityUsers
                 .FirstOrDefault(Au =>
                 Au.MemberId == memberId
-                && Au.ActivityUserId == activityUserId);
+                && Au.ActivityId == activityId);
+            var activityCurrentPeople = _jhobbyContext.Activities.FirstOrDefault(a => a.ActivityId == activityId);
 
             if (cancelDto != null)
             {
                 cancelDto.ReviewStatus = aGroupCancelDto.ReviewStatus;
+                _jhobbyContext.SaveChanges();
+                activityCurrentPeople.CurrentPeople = _jhobbyContext.ActivityUsers.Where(a => a.ReviewStatus == "1").Count();
                 _jhobbyContext.SaveChanges();
                 return true;
             }

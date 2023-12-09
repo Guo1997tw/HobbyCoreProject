@@ -60,13 +60,13 @@ namespace JHobby.Service.Implements
                 });
         }
 
-        public bool NowJoinAGroupCancel(int activityUserId, int memberId, NowJoinAGroupCancelModel nowJoinAGroupCancel)
+        public bool NowJoinAGroupCancel(int activityId, int memberId, NowJoinAGroupCancelModel nowJoinAGroupCancel)
         {
             var mapping = new NowJoinAGroupCancelDto
             {
                 ReviewStatus = nowJoinAGroupCancel.ReviewStatus,
             };
-            _nowJoinAGroupRepository.NowJoinAGroupCancel(activityUserId, memberId, mapping);
+            _nowJoinAGroupRepository.NowJoinAGroupCancel(activityId, memberId, mapping);
 
             return true;
         }
