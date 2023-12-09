@@ -433,10 +433,11 @@
                             _this.GetProfile();
                             //_this.ProfileSetting = res.data;
                             _this.ProfileSetting = {};
-                            _this.message = "儲存完成"
-                            alert("儲存完成");
+                            _this.message = "儲存完成，請重新登入後再次使用"
+                            alert("儲存完成，請重新登入後再次使用");
                             // _this.$forceUpdate();
                             //javascript: location.href = "/Profile/MemberProfile/@verifyMemberId"
+                            javascript: location.href = "/Member/Login"
                         })
                         .catch(err => alert("儲存失敗"));
                 },
