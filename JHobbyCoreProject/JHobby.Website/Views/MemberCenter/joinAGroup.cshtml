@@ -18,9 +18,6 @@
                             <div class="card-header card-header-info">
                                 <div class="card-header-inner">
                                     <h4>報名紀錄</h4>
-                                    <p>
-                                        Participate in activities made easy
-                                    </p>
                                 </div>
                                 <div class="card-header-btns">
                                     <nav>
@@ -62,7 +59,7 @@
                                                             <a class="academy-img"
                                                                :href="`/Activity/ActivityPage/${pictureActivityId}`"
                                                                @@click="pictureLinkToGroupPage(filterCard[index])">
-                                                                <img :src="`/activityImgs/${card.imageName}.jpg`"
+                                                                <img :src="`${card.imageName}`"
                                                                      style="height: 80px; width: 80px"
                                                                      alt="Activity Picture">
                                                             </a>
@@ -119,7 +116,6 @@
                                                                     前往頁面
                                                                 </a>
                                                                 <a class="dropdown-item"
-                                                                   href=""
                                                                    @@click="joinAGroupCancel">
                                                                     <i class="feather-corner-down-left"></i>
                                                                     取消報名
@@ -144,7 +140,6 @@
                             <div class="card-header card-header-info">
                                 <div class="card-header-inner">
                                     <h4>心願單</h4>
-                                    <p>My favourite group lists </p>
                                 </div>
                                 <div class="card-header-btns">
                                     <nav>
@@ -185,7 +180,7 @@
                                                             <a class="academy-img"
                                                                @@click="pictureLinkToGroupPage(filterCard[index])"
                                                                :href="`/Activity/ActivityPage/${pictureActivityId}`">
-                                                                <img :src="`/activityImgs/${card.imageName}.jpg`"
+                                                                <img :src="`${card.imageName}`"
                                                                      style="height: 80px; width: 80px"
                                                                      alt="Activity Picture">
                                                             </a>
@@ -233,9 +228,9 @@
                                                                     前往頁面
                                                                 </a>
                                                                 <a class="dropdown-item"
-                                                                   href=""
+                                                                   href="javascript:void(0)"
                                                                    @@click="collectAGroupCancel(filterCard[index])">
-                                                                   <i class="feather-trash"></i>
+                                                                    <i class="feather-trash"></i>
                                                                     刪除收藏
                                                                 </a>
                                                             </div>
@@ -260,7 +255,6 @@
                             <div class="card-header card-header-info border-0">
                                 <div class="card-header-inner">
                                     <h4>參團紀錄</h4>
-                                    <p>Group participation record save your memories</p>
                                 </div>
                             </div>
                             <div class="tab-content">
@@ -287,7 +281,7 @@
                                                                :href="`/Activity/ActivityPage/${pictureActivityId}`"
                                                                class="avatar avatar-sm flex-shrink-0">
                                                                 <img class="avatar-img"
-                                                                     :src="`/activityImgs/${card.imageName}.jpg`"
+                                                                     :src="`${card.imageName}`"
                                                                      alt="Activity Picture">
                                                             </a>
                                                             <span class="table-head-name flex-grow-1">
@@ -412,7 +406,7 @@
                                                             <li>
                                                                 <div class="appointment-item">
                                                                     <div class="appointment-img">
-                                                                        <img :src="`/activityImgs/${currentCard.imageName}.jpg`"
+                                                                        <img :src="`${currentCard.imageName}`"
                                                                              alt="Activity Picture">
                                                                     </div>
                                                                     <div class="appointment-content">
@@ -496,7 +490,7 @@
             data() {
                 return {
                     nowJoinAGroupCard: [],
-                    countPerPage: 2,
+                    countPerPage: 5,
                     pageNumber: 1,
                     memberId: @loginMemberId,
                     currentCard: "",
@@ -541,7 +535,23 @@
                                 headers: { "Content-Type": "multipart/Formdata" },
                             }
                         )
-                        .then((response) => alert("更新成功"))
+                        .then((response) => {
+                            if (response.status === 200) {
+                            // 直接從現有的 nowJoinAGroupCard 中移除該項目
+                            _this.nowJoinAGroupCard = _this.nowJoinAGroupCard.filter(
+                                (card) =>
+                                    !(
+                                        card.activityUserId === _this.currentCard.activityUserId &&
+                                        card.memberId === _this.currentCard.memberId
+                                    )
+                            );
+                            if (_this.filterCard.length === 0 && _this.pageNumber > 1) {
+                                _this.pageClick(_this.pageNumber - 1);
+                                };
+                        } else {
+                        alert("取消參加失敗");
+                            };
+                })
                         .catch((erro) => alert(`Erro: ${erro}`));
                 },
                 setCurrentCard(card) {
@@ -566,7 +576,7 @@
             data() {
                 return {
                     wishListCard: [],
-                    countPerPage: 2,
+                    countPerPage: 5,
                     pageNumber: 1,
                     memberId: @loginMemberId,
                     activityId: "",
@@ -602,9 +612,18 @@
                 },
                 collectAGroupCancel(card) {
                     let _this = this;
-                    alert(JSON.stringify(card));
                     axios.delete(`/WishListApi/WishListDelete?memberId=${card.memberId}&wishId=${card.wishId}`)
-                        .then(alert("已取消收藏"))
+                        .then(response => {
+                            if (response.status === 200) {
+                                _this.wishListCard = _this.wishListCard.filter(card =>
+                                    !(card.activityId === _this.currentCard.activityId
+                                        && card.memberId === _this.currentCard.memberId))
+                            }
+                            if (_this.filterCard.length === 0 && _this.pageNumber > 1) {
+                                _this.pageClick(_this.pageNumber - 1);
+                            }
+                            ; alert("已取消收藏")
+                        })
                         .catch(erro => alert(`${erro}`))
                 },
                 setCurrentCard(card) {
@@ -629,7 +648,7 @@
             data() {
                 return {
                     pastJoinAGroupCard: [],
-                    countPerPage: 2,
+                    countPerPage: 5,
                     pageNumber: 1,
                     memberId: @loginMemberId,
                     currentCard: '',
