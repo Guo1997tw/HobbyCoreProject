@@ -33,7 +33,7 @@ namespace JHobby.Website.Controllers
         [Authorize(Roles = "Member, FastMember,Admin")]
         public IActionResult joinAGroup()
         {
-            ViewBag.loginMemberId = _userAuthenticationService.GetUserId();
+            ViewBag.VerifyMemberId = _userAuthenticationService.GetUserId();
             return View();
         }
     }
