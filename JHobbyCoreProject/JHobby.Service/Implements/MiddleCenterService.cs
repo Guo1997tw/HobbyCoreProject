@@ -26,7 +26,7 @@ namespace JHobby.Service.Implements
 		public IEnumerable<QueryCategoryTypeModel> GetCategoryTypeResult(SearchModel search)
 		{
 			var resporitory = _middleCenterRepository.GetCategoryTypeAll();
-			var query = resporitory.Where(res => res.JoinDeadLine >= DateTime.Now);
+			var query = resporitory.Where(res => res.JoinDeadLine >= DateTime.Now && res.ActivityStatus=="1");
 			if (search.categoryId != 0 && search.categoryTypeId != 0)
 			{
 				query = query.Where(res => res.CategoryId == search.categoryId && res.CategoryTypeId == search.categoryTypeId);
