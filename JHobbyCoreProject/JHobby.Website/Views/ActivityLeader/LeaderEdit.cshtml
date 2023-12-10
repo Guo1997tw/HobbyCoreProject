@@ -351,7 +351,14 @@
                 getActivityById() {
                     self = this;
 
-                    fetch("/ActivityApi/GetActivityStatus/@activityId").then(r => r.json()).then(d => { self.activityUpdate = d });
+                    fetch("/ActivityApi/GetActivityStatus/@activityId")
+                    .then(r => r.json())
+                    .then(d => {
+                        if (d.joinDeadLine) {
+                            d.joinDeadLine = d.joinDeadLine.split('T')[0];
+                        }
+                        self.activityUpdate = d
+                    });
                 },
                 cancelUpdate() {
                     window.location.href = "/MemberCenter/launchATeam";
