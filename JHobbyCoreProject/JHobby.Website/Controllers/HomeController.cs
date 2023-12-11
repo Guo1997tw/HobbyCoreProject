@@ -35,7 +35,16 @@ namespace JHobby.Website.Controllers
         // Home/ConceptPage
         public IActionResult ConceptPage()
         {
-            ViewBag.verifyMemberId = _userAuthenticationService.GetUserId();
+            try
+            {
+                ViewBag.verifyMemberId = _userAuthenticationService.GetUserId();
+            }
+            catch (Exception)
+            {
+
+                return View();
+            }
+           
             return View();
         }
 
@@ -51,8 +60,17 @@ namespace JHobby.Website.Controllers
 
         public IActionResult Newcomer()
         {
-            ViewBag.verifyMemberId = _userAuthenticationService.GetUserId();
             ViewData["Title"] = "新手上路";
+            try
+            {
+                ViewBag.verifyMemberId = _userAuthenticationService.GetUserId();
+            }
+            catch (Exception)
+            {
+
+                return View();
+            }
+
             return View();
         }
 
