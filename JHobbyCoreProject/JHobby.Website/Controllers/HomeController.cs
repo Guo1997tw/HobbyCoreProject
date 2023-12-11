@@ -44,17 +44,7 @@ namespace JHobby.Website.Controllers
 
                 return View();
             }
-           
-            return View();
-        }
 
-        public IActionResult Privacy()
-        {
-            return View();
-        }
-
-        public IActionResult leaderEdit()
-        {
             return View();
         }
 
@@ -71,11 +61,6 @@ namespace JHobby.Website.Controllers
                 return View();
             }
 
-            return View();
-        }
-
-        public IActionResult DashboardMenu()
-        {
             return View();
         }
 
