@@ -63,17 +63,22 @@ namespace JHobby.Repository.Implements
 
         public bool NowJoinAGroupCancel(int activityId, int memberId, NowJoinAGroupCancelDto aGroupCancelDto)
         {
-            var cancelDto = _jhobbyContext.ActivityUsers
-                .FirstOrDefault(Au =>
-                Au.MemberId == memberId
-                && Au.ActivityId == activityId);
-            var activityCurrentPeople = _jhobbyContext.Activities.FirstOrDefault(a => a.ActivityId == activityId);
+            List<ActivityUser> cancelUsers = _jhobbyContext.ActivityUsers.
+                Where(Au => Au.ActivityId == activityId).ToList();
 
-            if (cancelDto != null)
+            var activityCurrentPeople = _jhobbyContext.Activities.
+                FirstOrDefault(a => a.ActivityId == activityId);
+
+            if (activityCurrentPeople != null)
             {
-                cancelDto.ReviewStatus = aGroupCancelDto.ReviewStatus;
-                _jhobbyContext.SaveChanges();
-                activityCurrentPeople.CurrentPeople = _jhobbyContext.ActivityUsers.Where(a => a.ReviewStatus == "1").Count();
+                foreach (var activityUser in cancelUsers)
+                {
+                    if (activityUser.MemberId == memberId)
+                    {
+                        activityUser.ReviewStatus = aGroupCancelDto.ReviewStatus;
+                    }
+                }
+                activityCurrentPeople.CurrentPeople = cancelUsers.Where(Cu => Cu.ReviewStatus == "1").Count();
                 _jhobbyContext.SaveChanges();
                 return true;
             }

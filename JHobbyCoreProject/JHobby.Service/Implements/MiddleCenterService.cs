@@ -26,7 +26,7 @@ namespace JHobby.Service.Implements
 		public IEnumerable<QueryCategoryTypeModel> GetCategoryTypeResult(SearchModel search)
 		{
 			var resporitory = _middleCenterRepository.GetCategoryTypeAll();
-			var query = resporitory.Where(res => res.JoinDeadLine >= DateTime.Now && res.ActivityStatus=="1");
+			var query = resporitory.Where(res => res.JoinDeadLine >= DateTime.Now.AddDays(-1) && res.ActivityStatus=="1");
 			if (search.categoryId != 0 && search.categoryTypeId != 0)
 			{
 				query = query.Where(res => res.CategoryId == search.categoryId && res.CategoryTypeId == search.categoryTypeId);
@@ -35,10 +35,14 @@ namespace JHobby.Service.Implements
 			{
 				query = query.Where(res => res.ActivityCity == search.city && res.ActivityArea == search.area);
 			}
-			if (search.sort=="desc" )
+			if (search.sort == "desc")
 			{
 				query = query.OrderByDescending(res => res.JoinDeadLine);
 			}
+			else 
+			{
+                query = query.OrderBy(res => res.JoinDeadLine);
+            }
 			return  query.Select(res => new QueryCategoryTypeModel
 			{
 				ActivityId = res.ActivityId,

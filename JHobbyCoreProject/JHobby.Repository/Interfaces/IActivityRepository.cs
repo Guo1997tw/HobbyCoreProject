@@ -1,14 +1,9 @@
 ﻿using JHobby.Repository.Models.Dto;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace JHobby.Repository.Interfaces
 {
-	public interface IActivityRepository		
-	{
+    public interface IActivityRepository
+    {
         /// <summary>
         /// 團主建立
         /// </summary>
@@ -52,10 +47,10 @@ namespace JHobby.Repository.Interfaces
         public bool InsertMsg(MemberInsertMsgDto memberInsertMsgDto);
 
         /// <summary>
-        /// 查詢會員活動申請者是否已參團或本身是開團者
+        /// 回傳false代表活動頁面按鈕可以按
         /// </summary>
         /// <returns></returns>
-        public bool GetStatusById(int _memberId, int _activityId);
+        public JoinBtnCheckDto GetStatusById(int memberId, int activityId);
 
         /// <summary>
         /// 活動申請
