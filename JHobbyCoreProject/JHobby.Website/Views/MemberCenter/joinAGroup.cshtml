@@ -490,8 +490,8 @@
             data() {
                 return {
                     nowJoinAGroupCard: [],
-                    countPerPage: 5,
                     pageNumber: 1,
+                    total: "",
                     memberId: @loginMemberId,
                     currentCard: "",
                     activityId: "",
@@ -503,25 +503,26 @@
                 this.axiosNowJoinAGroupCard();
             },
             computed: {
-                total() {
-                    return Math.ceil(this.nowJoinAGroupCard.length / this.countPerPage);
-                },
                 filterCard() {
-                    var start = (this.pageNumber - 1) * this.countPerPage;
-                    var end = start + this.countPerPage;
-                    return this.nowJoinAGroupCard.slice(start, end);
-                }
+                    return this.nowJoinAGroupCard;
+                },
             },
             methods: {
                 axiosNowJoinAGroupCard: function () {
                     let _this = this;
                     axios
-                        .get(`/NowJoinAGroupApi/GetNowJoinAGroupById?memberId=${_this.memberId}`)
-                        .then((response) => { _this.nowJoinAGroupCard = response.data; })
+                        .get(`/NowJoinAGroupApi/GetNowJoinAGroupById?memberId=${_this.memberId}&pageNumber=${_this.pageNumber}`)
+                        .then(response => 
+                            {
+                            _this.nowJoinAGroupCard = response.data.items;
+                            _this.total = response.data.totalPages;
+                            _this.pageNumber = response.data.currentPage
+                            })
                         .catch((erro) => { alert(`Erro: ${erro}`); });
                 },
                 pageClick(num) {
                     this.pageNumber = num;
+                    this.axiosNowJoinAGroupCard();
                 },
                 joinAGroupCancel() {
                     let _this = this;

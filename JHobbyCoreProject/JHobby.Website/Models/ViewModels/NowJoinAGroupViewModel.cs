@@ -14,16 +14,12 @@ namespace JHobby.Website.Models.ViewModels
 
         public string ReviewStatus { get; set; } = null!;
 
-        public DateTime ReviewTime { get; set; }
-
         public int? CurrentPeople { get; set; }
 
         public int? MaxPeople { get; set; }
 
         //團主NickName
         public string? NickName { get; set; }
-
-        public DateTime StartTime { get; set; }
 
         public string? DateConvert { get; set; }
 

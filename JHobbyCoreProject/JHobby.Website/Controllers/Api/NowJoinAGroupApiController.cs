@@ -29,10 +29,8 @@ namespace JHobby.Website.Controllers.Api
                     ActivityUserId = s.ActivityUserId,
                     MemberId = s.MemberId,
                     ReviewStatus = s.ReviewStatus,
-                    ReviewTime = s.ReviewTime,
                     CurrentPeople = s.CurrentPeople,
                     MaxPeople = s.MaxPeople,
-                    StartTime = s.StartTime,
                     NickName = s.NickName,
                     DateConvert = s.DateConvert,
                     TimeConvert = s.TimeConvert,
@@ -41,28 +39,28 @@ namespace JHobby.Website.Controllers.Api
             );
         }
 
-        [HttpGet]
-        public IEnumerable<NowJoinAGroupViewModel> GetNowJoinAGroupById(int memberId)
-        {
-            return _aNowJoinAGroupService.GetNowJoinAGroupById(memberId)
-                .Select(s => new NowJoinAGroupViewModel
-                {
-                    ActivityUserId = s.ActivityUserId,
-                    ActivityId = s.ActivityId,
-                    MemberId = s.MemberId,
-                    ActivityName = s.ActivityName,
-                    ReviewStatus = s.ReviewStatus,
-                    ReviewTime = s.ReviewTime,
-                    CurrentPeople = s.CurrentPeople,
-                    MaxPeople = s.MaxPeople,
-                    StartTime = s.StartTime,
-                    NickName = s.NickName,
-                    DateConvert = s.DateConvert,
-                    TimeConvert = s.TimeConvert,
-                    ImageName = s.ImageName,
-                }
-            );
-        }
+        //[HttpGet]
+        //public IEnumerable<NowJoinAGroupViewModel> GetNowJoinAGroupById(int memberId)
+        //{
+        //    return _aNowJoinAGroupService.GetNowJoinAGroupById(memberId)
+        //        .Select(s => new NowJoinAGroupViewModel
+        //        {
+        //            ActivityUserId = s.ActivityUserId,
+        //            ActivityId = s.ActivityId,
+        //            MemberId = s.MemberId,
+        //            ActivityName = s.ActivityName,
+        //            ReviewStatus = s.ReviewStatus,
+        //            ReviewTime = s.ReviewTime,
+        //            CurrentPeople = s.CurrentPeople,
+        //            MaxPeople = s.MaxPeople,
+        //            StartTime = s.StartTime,
+        //            NickName = s.NickName,
+        //            DateConvert = s.DateConvert,
+        //            TimeConvert = s.TimeConvert,
+        //            ImageName = s.ImageName,
+        //        }
+        //    );
+        //}
 
         [HttpPut("{activityId}/{memberId}")]
         public ActionResult NowJoinAGroupCancel(int activityId, int memberId, [FromForm] NowJoinAGroupCancelViewModel nowJoinAGroupCancel)
@@ -74,6 +72,32 @@ namespace JHobby.Website.Controllers.Api
 
             _aNowJoinAGroupService.NowJoinAGroupCancel(activityId, memberId, mapping);
             return Ok("修改成功");
+        }
+
+        [HttpGet]
+        public PageFilterViewModel<NowJoinAGroupViewModel>  GetNowJoinAGroupById(int memberId, int pageNumber, int countPerPage = 3)
+        {
+            var queryResult = _aNowJoinAGroupService.GetNowJoinAGroupById(memberId, pageNumber, countPerPage);
+            
+            return new PageFilterViewModel<NowJoinAGroupViewModel>
+            {
+                PageNumber = queryResult.PageNumber,
+                TotalPages = queryResult.TotalPages,
+                Items = queryResult.Items.Select(s => new NowJoinAGroupViewModel
+                {
+                    ActivityUserId = s.ActivityUserId,
+                    ActivityId = s.ActivityId,
+                    MemberId = s.MemberId,
+                    ActivityName = s.ActivityName,
+                    ReviewStatus = s.ReviewStatus,
+                    CurrentPeople = s.CurrentPeople,
+                    MaxPeople = s.MaxPeople,
+                    NickName = s.NickName,
+                    DateConvert = s.DateConvert,
+                    TimeConvert = s.TimeConvert,
+                    ImageName = s.ImageName,
+                })
+            };
         }
     }
 }

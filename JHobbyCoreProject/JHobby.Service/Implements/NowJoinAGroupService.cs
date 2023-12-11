@@ -32,7 +32,6 @@ namespace JHobby.Service.Implements
                     MemberId = s.MemberId,
                     ActivityName = s.ActivityName,
                     ReviewStatus = _iCommonService.ConvertReviewStatus(s.ReviewStatus),
-                    ReviewTime = s.ReviewTime,
                     CurrentPeople = s.CurrentPeople,
                     MaxPeople = s.MaxPeople,
                     NickName = s.NickName,
@@ -41,24 +40,24 @@ namespace JHobby.Service.Implements
                 });
         }
 
-        public IEnumerable<NowJoinAGroupModel> GetNowJoinAGroupById(int memberId)
-        {
-            return _nowJoinAGroupRepository.GetNowJoinAGroupById(memberId)
-                .Select(s => new NowJoinAGroupModel
-                {
-                    ActivityName = s.ActivityName,
-                    ActivityUserId = s.ActivityUserId,
-                    ActivityId= s.ActivityId,
-                    MemberId = s.MemberId,
-                    ReviewStatus = _iCommonService.ConvertReviewStatus(s.ReviewStatus),
-                    CurrentPeople = s.CurrentPeople,
-                    MaxPeople = s.MaxPeople,
-                    NickName = s.NickName,
-                    DateConvert = _iCommonService.ConvertTime(s.StartTime).First().DateConvert,
-                    TimeConvert = _iCommonService.ConvertTime(s.StartTime).First().TimeConvert,
-                    ImageName = s.ImageName,
-                });
-        }
+        //public IEnumerable<NowJoinAGroupModel> GetNowJoinAGroupById(int memberId)
+        //{
+        //    return _nowJoinAGroupRepository.GetNowJoinAGroupById(memberId)
+        //        .Select(s => new NowJoinAGroupModel
+        //        {
+        //            ActivityName = s.ActivityName,
+        //            ActivityUserId = s.ActivityUserId,
+        //            ActivityId= s.ActivityId,
+        //            MemberId = s.MemberId,
+        //            ReviewStatus = _iCommonService.ConvertReviewStatus(s.ReviewStatus),
+        //            CurrentPeople = s.CurrentPeople,
+        //            MaxPeople = s.MaxPeople,
+        //            NickName = s.NickName,
+        //            DateConvert = _iCommonService.ConvertTime(s.StartTime).First().DateConvert,
+        //            TimeConvert = _iCommonService.ConvertTime(s.StartTime).First().TimeConvert,
+        //            ImageName = s.ImageName,
+        //        });
+        //}
 
         public bool NowJoinAGroupCancel(int activityId, int memberId, NowJoinAGroupCancelModel nowJoinAGroupCancel)
         {
@@ -69,6 +68,31 @@ namespace JHobby.Service.Implements
             _nowJoinAGroupRepository.NowJoinAGroupCancel(activityId, memberId, mapping);
 
             return true;
+        }
+
+        public PageFilterDto<NowJoinAGroupModel> GetNowJoinAGroupById(int memberId, int pageNumber, int pageSize)
+        {
+            var queryResult = _nowJoinAGroupRepository.GetNowJoinAGroupById(memberId, pageNumber, pageSize);
+
+            return new PageFilterDto<NowJoinAGroupModel>
+            {
+                PageNumber = queryResult.PageNumber,
+                TotalPages = queryResult.TotalPages,
+                Items = queryResult.Items.Select(s => new NowJoinAGroupModel
+                {
+                    ActivityName = s.ActivityName,
+                    ActivityUserId = s.ActivityUserId,
+                    ActivityId = s.ActivityId,
+                    MemberId = s.MemberId,
+                    ReviewStatus = _iCommonService.ConvertReviewStatus(s.ReviewStatus),
+                    CurrentPeople = s.CurrentPeople,
+                    MaxPeople = s.MaxPeople,
+                    NickName = s.NickName,
+                    DateConvert = _iCommonService.ConvertTime(s.StartTime).First().DateConvert,
+                    TimeConvert = _iCommonService.ConvertTime(s.StartTime).First().TimeConvert,
+                    ImageName = s.ImageName,
+                })
+            };
         }
     }
 }

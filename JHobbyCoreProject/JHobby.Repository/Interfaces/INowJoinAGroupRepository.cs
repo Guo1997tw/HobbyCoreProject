@@ -5,8 +5,11 @@ namespace JHobby.Repository.Interfaces
     public interface INowJoinAGroupRepository
     {
         public IEnumerable<NowJoinAGroupDto> GetNowJoinAGroupAll();
-        public IEnumerable<NowJoinAGroupDto> GetNowJoinAGroupById(int memberId);
+        //public IEnumerable<NowJoinAGroupDto> GetNowJoinAGroupById(int memberId);
 
         public bool NowJoinAGroupCancel(int activityId, int memberId, NowJoinAGroupCancelDto aGroupCancelDto);
+
+        public PageFilterDto<NowJoinAGroupDto> GetNowJoinAGroupById(int memberId, int pageNumber, int pageSize);
+
     }
 }
