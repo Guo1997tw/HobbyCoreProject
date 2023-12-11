@@ -40,36 +40,6 @@ namespace JHobby.Service.Implements
                 });
         }
 
-        //public IEnumerable<NowJoinAGroupModel> GetNowJoinAGroupById(int memberId)
-        //{
-        //    return _nowJoinAGroupRepository.GetNowJoinAGroupById(memberId)
-        //        .Select(s => new NowJoinAGroupModel
-        //        {
-        //            ActivityName = s.ActivityName,
-        //            ActivityUserId = s.ActivityUserId,
-        //            ActivityId= s.ActivityId,
-        //            MemberId = s.MemberId,
-        //            ReviewStatus = _iCommonService.ConvertReviewStatus(s.ReviewStatus),
-        //            CurrentPeople = s.CurrentPeople,
-        //            MaxPeople = s.MaxPeople,
-        //            NickName = s.NickName,
-        //            DateConvert = _iCommonService.ConvertTime(s.StartTime).First().DateConvert,
-        //            TimeConvert = _iCommonService.ConvertTime(s.StartTime).First().TimeConvert,
-        //            ImageName = s.ImageName,
-        //        });
-        //}
-
-        public bool NowJoinAGroupCancel(int activityId, int memberId, NowJoinAGroupCancelModel nowJoinAGroupCancel)
-        {
-            var mapping = new NowJoinAGroupCancelDto
-            {
-                ReviewStatus = nowJoinAGroupCancel.ReviewStatus,
-            };
-            _nowJoinAGroupRepository.NowJoinAGroupCancel(activityId, memberId, mapping);
-
-            return true;
-        }
-
         public PageFilterDto<NowJoinAGroupModel> GetNowJoinAGroupById(int memberId, int pageNumber, int pageSize)
         {
             var queryResult = _nowJoinAGroupRepository.GetNowJoinAGroupById(memberId, pageNumber, pageSize);
@@ -93,6 +63,17 @@ namespace JHobby.Service.Implements
                     ImageName = s.ImageName,
                 })
             };
+        }
+
+        public bool NowJoinAGroupCancel(int activityId, int memberId, NowJoinAGroupCancelModel nowJoinAGroupCancel)
+        {
+            var mapping = new NowJoinAGroupCancelDto
+            {
+                ReviewStatus = nowJoinAGroupCancel.ReviewStatus,
+            };
+            _nowJoinAGroupRepository.NowJoinAGroupCancel(activityId, memberId, mapping);
+
+            return true;
         }
     }
 }

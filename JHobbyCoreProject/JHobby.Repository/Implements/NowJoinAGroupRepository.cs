@@ -34,57 +34,6 @@ namespace JHobby.Repository.Implements
             return nowDto;
         }
 
-        //public IEnumerable<NowJoinAGroupDto> GetNowJoinAGroupById(int memberId)
-        //{
-        //    var activityUser = _jhobbyContext.Members.Select(x => new { id = x.MemberId, nickName = x.NickName });
-        //    var activityImage = _jhobbyContext.ActivityImages.Select(a => new { id = a.ActivityId, imageName = a.ImageName });
-
-        //    return _jhobbyContext.ActivityUsers
-        //    .Where(Au => Au.MemberId == memberId
-        //    && (Au.ReviewStatus == "0"
-        //    || Au.ReviewStatus == "1"
-        //    || Au.ReviewStatus == "2"
-        //    || Au.ReviewStatus == "4"))
-        //    .Include(Au => Au.Activity)
-        //    .Select(a => new NowJoinAGroupDto
-        //    {
-        //        ActivityName = a.Activity.ActivityName,
-        //        ActivityUserId = a.ActivityUserId,
-        //        ActivityId = a.ActivityId,
-        //        MemberId = a.MemberId,
-        //        ReviewStatus = a.ReviewStatus,
-        //        CurrentPeople = a.Activity.CurrentPeople,
-        //        MaxPeople = a.Activity.MaxPeople,
-        //        NickName = activityUser.FirstOrDefault(z => z.id == a.Activity.MemberId).nickName,
-        //        StartTime = a.Activity.StartTime,
-        //        ImageName = activityImage.FirstOrDefault(i => i.id == a.Activity.ActivityId).imageName
-        //    });
-        //}
-
-        public bool NowJoinAGroupCancel(int activityId, int memberId, NowJoinAGroupCancelDto aGroupCancelDto)
-        {
-            List<ActivityUser> cancelUsers = _jhobbyContext.ActivityUsers.
-                Where(Au => Au.ActivityId == activityId).ToList();
-
-            var activityCurrentPeople = _jhobbyContext.Activities.
-                FirstOrDefault(a => a.ActivityId == activityId);
-
-            if (activityCurrentPeople != null)
-            {
-                foreach (var activityUser in cancelUsers)
-                {
-                    if (activityUser.MemberId == memberId)
-                    {
-                        activityUser.ReviewStatus = aGroupCancelDto.ReviewStatus;
-                    }
-                }
-                activityCurrentPeople.CurrentPeople = cancelUsers.Where(Cu => Cu.ReviewStatus == "1").Count();
-                _jhobbyContext.SaveChanges();
-                return true;
-            }
-            else { return false; }
-        }
-
         public PageFilterDto<NowJoinAGroupDto> GetNowJoinAGroupById(int memberId, int pageNumber, int pageSize)
         {
             var activityUser = _jhobbyContext.Members.Select(x => new { id = x.MemberId, nickName = x.NickName });
@@ -124,5 +73,29 @@ namespace JHobby.Repository.Implements
                 Items = filterPage
             };
         }
+
+        public bool NowJoinAGroupCancel(int activityId, int memberId, NowJoinAGroupCancelDto aGroupCancelDto)
+        {
+            List<ActivityUser> cancelUsers = _jhobbyContext.ActivityUsers.
+                Where(Au => Au.ActivityId == activityId).ToList();
+
+            var activityCurrentPeople = _jhobbyContext.Activities.
+                FirstOrDefault(a => a.ActivityId == activityId);
+
+            if (activityCurrentPeople != null)
+            {
+                foreach (var activityUser in cancelUsers)
+                {
+                    if (activityUser.MemberId == memberId)
+                    {
+                        activityUser.ReviewStatus = aGroupCancelDto.ReviewStatus;
+                    }
+                }
+                activityCurrentPeople.CurrentPeople = cancelUsers.Where(Cu => Cu.ReviewStatus == "1").Count();
+                _jhobbyContext.SaveChanges();
+                return true;
+            }
+            else { return false; }
+        } 
     }
 }
