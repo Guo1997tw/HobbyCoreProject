@@ -10,7 +10,7 @@ namespace JHobby.Service.Interfaces
 
         public bool NowJoinAGroupCancel(int activityId, int memberId, NowJoinAGroupCancelModel nowJoinAGroupCancel);
 
-        public PageFilterDto<NowJoinAGroupModel> GetNowJoinAGroupById(int memberId, int pageNumber, int pageSize);
+        public PageFilterDto<NowJoinAGroupModel> GetNowJoinAGroupById(int memberId, int pageNumber, int countPerPage);
 
     }
 }

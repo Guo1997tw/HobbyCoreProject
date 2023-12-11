@@ -40,9 +40,9 @@ namespace JHobby.Service.Implements
                 });
         }
 
-        public PageFilterDto<NowJoinAGroupModel> GetNowJoinAGroupById(int memberId, int pageNumber, int pageSize)
+        public PageFilterDto<NowJoinAGroupModel> GetNowJoinAGroupById(int memberId, int pageNumber, int countPerPage)
         {
-            var queryResult = _nowJoinAGroupRepository.GetNowJoinAGroupById(memberId, pageNumber, pageSize);
+            var queryResult = _nowJoinAGroupRepository.GetNowJoinAGroupById(memberId, pageNumber, countPerPage);
 
             return new PageFilterDto<NowJoinAGroupModel>
             {
