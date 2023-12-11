@@ -11,6 +11,8 @@ namespace JHobby.Repository.Interfaces
     {
         IEnumerable<PastJoinAGroupDto> GetPastJoinAGroupAll();
 
-        public IEnumerable<PastJoinAGroupDto> GetPastJoinAGroupById(int memberId);
+        //public IEnumerable<PastJoinAGroupDto> GetPastJoinAGroupById(int memberId);
+
+        public PageFilterDto<PastJoinAGroupDto> GetPastJoinAGroupById(int memberId, int pageNumber, int pageSize);
     }
 }

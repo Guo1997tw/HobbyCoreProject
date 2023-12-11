@@ -34,11 +34,36 @@ namespace JHobby.Website.Controllers.Api
 
         }
 
+        //[HttpGet]
+        //public IEnumerable<PastJoinAGroupViewModel> GetPastJoinAGroupById(int memberId)
+        //{
+        //    return _aPastJoinAGroupService.GetPastJoinAGroupById(memberId)
+        //        .Select(x => new PastJoinAGroupViewModel
+        //        {
+        //            ActivityId = x.ActivityId,
+        //            ActivityCity = x.ActivityCity,
+        //            ActivityName = x.ActivityName,
+        //            ActivityStatus = x.ActivityStatus,
+        //            CurrentPeople = x.CurrentPeople,
+        //            NickName = x.NickName,
+        //            MemberId = x.MemberId,
+        //            DateConvert = x.DateConvert,
+        //            TimeConvert = x.TimeConvert,
+        //            Fraction = x.Fraction,
+        //            ImageName = x.ImageName,
+        //        });
+        //}
+
         [HttpGet]
-        public IEnumerable<PastJoinAGroupViewModel> GetPastJoinAGroupById(int memberId)
+        public PageFilterViewModel<PastJoinAGroupViewModel> GetPastJoinAGroupById(int memberId, int pageNumber, int pageSize)
         {
-            return _aPastJoinAGroupService.GetPastJoinAGroupById(memberId)
-                .Select(x => new PastJoinAGroupViewModel
+            var queryResult = _aPastJoinAGroupService.GetPastJoinAGroupById(memberId, pageNumber, pageSize);
+
+            return new PageFilterViewModel<PastJoinAGroupViewModel>
+            {
+                PageNumber = queryResult.PageNumber,
+                TotalPages = queryResult.TotalPages,
+                Items = queryResult.Items.Select(x => new PastJoinAGroupViewModel
                 {
                     ActivityId = x.ActivityId,
                     ActivityCity = x.ActivityCity,
@@ -51,7 +76,8 @@ namespace JHobby.Website.Controllers.Api
                     TimeConvert = x.TimeConvert,
                     Fraction = x.Fraction,
                     ImageName = x.ImageName,
-                });
+                })
+        };
         }
     }
 }
