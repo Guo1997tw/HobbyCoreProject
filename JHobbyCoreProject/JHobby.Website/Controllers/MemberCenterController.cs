@@ -39,6 +39,10 @@ namespace JHobby.Website.Controllers
         /// <returns></returns>
         public IActionResult MemberProfile(int id)
         {
+            if(id == 0)
+            {
+                return RedirectToAction("NotFounds", "ErrorPage");
+            }
             ViewData["Title"] = "會員個人介紹";
             ViewBag.VerifyMemberId = _userAuthenticationService.GetUserId();
             ViewBag.MemberId = id;
