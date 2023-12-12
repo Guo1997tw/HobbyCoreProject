@@ -1,173 +1,172 @@
 ﻿@{
 	string bookMark = ViewData["BookMark"].ToString();
 
-<!-- Dashboard Menu -->
-switch(ViewData["BookMark"].ToString() == "ProfileSetting")
-<div class="dashboard-section coach-dash-section">
-	<div class="container">
-		<div class="row">
-			<div class="col-lg-12">
-				@switch (bookMark)
-				{
-					case "ProfileSetting":
-						<div class="dashboard-menu coaurt-menu-dash">
-							<ul>
-								<li>
-									<a class="active" href="/MemberCenter/ProfileSetting">
-										<img src="~/assets/img/icons/dashboard-icon.svg" alt="Icon">
-										<span>個人資訊</span>
-									</a>
-								</li>
-								<li>
-									<a href="/MemberCenter/LaunchATeam">
-										<img src="~/assets/img/icons/court-icon.svg" alt="Icon">
-										<span>開團管理</span>
-									</a>
-								</li>
-								<li>
-									<a href="/MemberCenter/JoinAGroup">
-										<img src="~/assets/img/icons/request-icon.svg" alt="Icon">
-										<span>參團管理</span>
-									</a>
-								</li>
-								<li>
-									<a href="/MemberCenter/Apply">
-										<img src="~/assets/img/icons/booking-icon.svg" alt="Icon">
-										<span>報名審核</span>
-									</a>
-								</li>
-							</ul>
-						</div>
-						break;
-					case "LaunchATeam":
-						<div class="dashboard-menu coaurt-menu-dash">
-							<ul>
-								<li>
-									<a href="/MemberCenter/ProfileSetting">
-										<img src="~/assets/img/icons/dashboard-icon.svg" alt="Icon">
-										<span>個人資訊</span>
-									</a>
-								</li>
-								<li>
-									<a class="active" href="/MemberCenter/LaunchATeam">
-										<img src="~/assets/img/icons/court-icon.svg" alt="Icon">
-										<span>開團管理</span>
-									</a>
-								</li>
-								<li>
-									<a href="/MemberCenter/JoinAGroup">
-										<img src="~/assets/img/icons/request-icon.svg" alt="Icon">
-										<span>參團管理</span>
-									</a>
-								</li>
-								<li>
-									<a href="/MemberCenter/Apply">
-										<img src="~/assets/img/icons/booking-icon.svg" alt="Icon">
-										<span>報名審核</span>
-									</a>
-								</li>
-							</ul>
-						</div>
-						break;
-					case "JoinAGroup":
-						<div class="dashboard-menu coaurt-menu-dash">
-							<ul>
-								<li>
-									<a href="/MemberCenter/ProfileSetting">
-										<img src="~/assets/img/icons/dashboard-icon.svg" alt="Icon">
-										<span>個人資訊</span>
-									</a>
-								</li>
-								<li>
-									<a href="/MemberCenter/LaunchATeam">
-										<img src="~/assets/img/icons/court-icon.svg" alt="Icon">
-										<span>開團管理</span>
-									</a>
-								</li>
-								<li>
-									<a class="active" href="/MemberCenter/JoinAGroup">
-										<img src="~/assets/img/icons/request-icon.svg" alt="Icon">
-										<span>參團管理</span>
-									</a>
-								</li>
-								<li>
-									<a href="/MemberCenter/Apply">
-										<img src="~/assets/img/icons/booking-icon.svg" alt="Icon">
-										<span>報名審核</span>
-									</a>
-								</li>
-							</ul>
-						</div>
-						break;
-					case "Apply":
-						<div class="dashboard-menu coaurt-menu-dash">
-							<ul>
-								<li>
-									<a href="/MemberCenter/ProfileSetting">
-										<img src="~/assets/img/icons/dashboard-icon.svg" alt="Icon">
-										<span>個人資訊</span>
-									</a>
-								</li>
-								<li>
-									<a href="/MemberCenter/LaunchATeam">
-										<img src="~/assets/img/icons/court-icon.svg" alt="Icon">
-										<span>開團管理</span>
-									</a>
-								</li>
-								<li>
-									<a href="/MemberCenter/JoinAGroup">
-										<img src="~/assets/img/icons/request-icon.svg" alt="Icon">
-										<span>參團管理</span>
-									</a>
-								</li>
-								<li>
-									<a class="active" href="/MemberCenter/Apply">
-										<img src="~/assets/img/icons/booking-icon.svg" alt="Icon">
-										<span>報名審核</span>
-									</a>
-								</li>
-							</ul>
-						</div>
-						break;
-					default:
-						<div class="dashboard-menu coaurt-menu-dash">
-							<!-- Default content or handle other cases here -->
-						</div>
-						break;
-				}
-			</div>
-			@* <div class="col-lg-12">
-				<div class="dashboard-menu coaurt-menu-dash">
-					<ul>
-						<li>
-							<a href="/MemberCenter/ProfileSetting">
-								<img src="~/assets/img/icons/dashboard-icon.svg" alt="Icon">
-								<span>個人資訊</span>
-							</a>
-						</li>
-						<li>
-							<a href="/MemberCenter/LaunchATeam">
-								<img src="~/assets/img/icons/court-icon.svg" alt="Icon">
-								<span>開團管理</span>
-							</a>
-						</li>
-						<li>
-							<a href="/MemberCenter/JoinAGroup">
-								<img src="~/assets/img/icons/request-icon.svg" alt="Icon">
-								<span>參團管理</span>
-							</a>
-						</li>
-						<li>
-							<a href="/MemberCenter/Apply">
-								<img src="~/assets/img/icons/booking-icon.svg" alt="Icon">
-								<span>報名審核</span>
-							</a>
-						</li>
-					</ul>
+	<!-- Dashboard Menu -->
+	<div class="dashboard-section coach-dash-section">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12">
+					@switch (bookMark)
+					{
+						case "ProfileSetting":
+							<div class="dashboard-menu coaurt-menu-dash">
+								<ul>
+									<li>
+										<a class="active" href="/MemberCenter/ProfileSetting">
+											<img src="~/assets/img/icons/dashboard-icon.svg" alt="Icon">
+											<span>個人資訊</span>
+										</a>
+									</li>
+									<li>
+										<a href="/MemberCenter/LaunchATeam">
+											<img src="~/assets/img/icons/court-icon.svg" alt="Icon">
+											<span>開團管理</span>
+										</a>
+									</li>
+									<li>
+										<a href="/MemberCenter/JoinAGroup">
+											<img src="~/assets/img/icons/request-icon.svg" alt="Icon">
+											<span>參團管理</span>
+										</a>
+									</li>
+									<li>
+										<a href="/MemberCenter/Apply">
+											<img src="~/assets/img/icons/booking-icon.svg" alt="Icon">
+											<span>報名審核</span>
+										</a>
+									</li>
+								</ul>
+							</div>
+							break;
+						case "LaunchATeam":
+							<div class="dashboard-menu coaurt-menu-dash">
+								<ul>
+									<li>
+										<a href="/MemberCenter/ProfileSetting">
+											<img src="~/assets/img/icons/dashboard-icon.svg" alt="Icon">
+											<span>個人資訊</span>
+										</a>
+									</li>
+									<li>
+										<a class="active" href="/MemberCenter/LaunchATeam">
+											<img src="~/assets/img/icons/court-icon.svg" alt="Icon">
+											<span>開團管理</span>
+										</a>
+									</li>
+									<li>
+										<a href="/MemberCenter/JoinAGroup">
+											<img src="~/assets/img/icons/request-icon.svg" alt="Icon">
+											<span>參團管理</span>
+										</a>
+									</li>
+									<li>
+										<a href="/MemberCenter/Apply">
+											<img src="~/assets/img/icons/booking-icon.svg" alt="Icon">
+											<span>報名審核</span>
+										</a>
+									</li>
+								</ul>
+							</div>
+							break;
+						case "JoinAGroup":
+							<div class="dashboard-menu coaurt-menu-dash">
+								<ul>
+									<li>
+										<a href="/MemberCenter/ProfileSetting">
+											<img src="~/assets/img/icons/dashboard-icon.svg" alt="Icon">
+											<span>個人資訊</span>
+										</a>
+									</li>
+									<li>
+										<a href="/MemberCenter/LaunchATeam">
+											<img src="~/assets/img/icons/court-icon.svg" alt="Icon">
+											<span>開團管理</span>
+										</a>
+									</li>
+									<li>
+										<a class="active" href="/MemberCenter/JoinAGroup">
+											<img src="~/assets/img/icons/request-icon.svg" alt="Icon">
+											<span>參團管理</span>
+										</a>
+									</li>
+									<li>
+										<a href="/MemberCenter/Apply">
+											<img src="~/assets/img/icons/booking-icon.svg" alt="Icon">
+											<span>報名審核</span>
+										</a>
+									</li>
+								</ul>
+							</div>
+							break;
+						case "Apply":
+							<div class="dashboard-menu coaurt-menu-dash">
+								<ul>
+									<li>
+										<a href="/MemberCenter/ProfileSetting">
+											<img src="~/assets/img/icons/dashboard-icon.svg" alt="Icon">
+											<span>個人資訊</span>
+										</a>
+									</li>
+									<li>
+										<a href="/MemberCenter/LaunchATeam">
+											<img src="~/assets/img/icons/court-icon.svg" alt="Icon">
+											<span>開團管理</span>
+										</a>
+									</li>
+									<li>
+										<a href="/MemberCenter/JoinAGroup">
+											<img src="~/assets/img/icons/request-icon.svg" alt="Icon">
+											<span>參團管理</span>
+										</a>
+									</li>
+									<li>
+										<a class="active" href="/MemberCenter/Apply">
+											<img src="~/assets/img/icons/booking-icon.svg" alt="Icon">
+											<span>報名審核</span>
+										</a>
+									</li>
+								</ul>
+							</div>
+							break;
+						default:
+							<div class="dashboard-menu coaurt-menu-dash">
+								<!-- Default content or handle other cases here -->
+							</div>
+							break;
+					}
 				</div>
+				@* <div class="col-lg-12">
+			<div class="dashboard-menu coaurt-menu-dash">
+			<ul>
+			<li>
+			<a href="/MemberCenter/ProfileSetting">
+			<img src="~/assets/img/icons/dashboard-icon.svg" alt="Icon">
+			<span>個人資訊</span>
+			</a>
+			</li>
+			<li>
+			<a href="/MemberCenter/LaunchATeam">
+			<img src="~/assets/img/icons/court-icon.svg" alt="Icon">
+			<span>開團管理</span>
+			</a>
+			</li>
+			<li>
+			<a href="/MemberCenter/JoinAGroup">
+			<img src="~/assets/img/icons/request-icon.svg" alt="Icon">
+			<span>參團管理</span>
+			</a>
+			</li>
+			<li>
+			<a href="/MemberCenter/Apply">
+			<img src="~/assets/img/icons/booking-icon.svg" alt="Icon">
+			<span>報名審核</span>
+			</a>
+			</li>
+			</ul>
+			</div>
 			</div> *@
+			</div>
 		</div>
 	</div>
-</div>
 }
 
