@@ -331,26 +331,24 @@
                     formData.append('joinFee', self.activityBuild.joinFee);
                     formData.append('activityNotes', self.activityBuild.activityNotes);
 
-                    try {
-                        const response = await fetch("/ActivityApi/LeaderCreate", {
-                            method: "POST",
-                            body: formData
-                        });
 
-                        const data = await response.json();
+                    const response = await fetch("/ActivityApi/LeaderCreate", {
+                        method: "POST",
+                        body: formData
+                    });
 
-                        self.activityBuild = data;
+                    const data = await response.json();
 
+                    self.activityBuild = data;
+
+                    console.log(JSON.stringify(self.activityBuild));
+
+                    if (data == true) {
                         console.log('Success', data);
 
                         alert("新增成功");
 
                         javascript: location.href = "/MemberCenter/LaunchATeam";
-                    }
-                    catch (error) {
-                        console.error('Error:', error);
-
-                        alert("新增失敗");
                     }
 
                     // await fetch("/ActivityApi/LeaderCreate", {
