@@ -1,4 +1,5 @@
-﻿using JHobby.Service.Models;
+﻿using JHobby.Repository.Models.Dto;
+using JHobby.Service.Models;
 
 namespace JHobby.Service.Implements
 {
@@ -6,6 +7,9 @@ namespace JHobby.Service.Implements
     {
         IEnumerable<PastJoinAGroupModel> GetPastJoinAGroupAll();
 
-        public IEnumerable<PastJoinAGroupModel> GetPastJoinAGroupById(int memberId);
+        //public IEnumerable<PastJoinAGroupModel> GetPastJoinAGroupById(int memberId);
+
+        public PageFilterDto<PastJoinAGroupModel> GetPastJoinAGroupById(int memberId, int pageNumber, int pageSize);
+
     }
 }

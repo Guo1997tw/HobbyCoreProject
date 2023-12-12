@@ -29,10 +29,8 @@ namespace JHobby.Website.Controllers.Api
                     ActivityUserId = s.ActivityUserId,
                     MemberId = s.MemberId,
                     ReviewStatus = s.ReviewStatus,
-                    ReviewTime = s.ReviewTime,
                     CurrentPeople = s.CurrentPeople,
                     MaxPeople = s.MaxPeople,
-                    StartTime = s.StartTime,
                     NickName = s.NickName,
                     DateConvert = s.DateConvert,
                     TimeConvert = s.TimeConvert,
@@ -42,26 +40,42 @@ namespace JHobby.Website.Controllers.Api
         }
 
         [HttpGet]
-        public IEnumerable<NowJoinAGroupViewModel> GetNowJoinAGroupById(int memberId)
+        public PageFilterViewModel<NowJoinAGroupViewModel> GetNowJoinAGroupById(int memberId, int pageNumber, int countPerPage = 3)
         {
-            return _aNowJoinAGroupService.GetNowJoinAGroupById(memberId)
-                .Select(s => new NowJoinAGroupViewModel
+            var queryResult = _aNowJoinAGroupService.GetNowJoinAGroupById(memberId, pageNumber, countPerPage);
+
+            if (queryResult != null)
+            {
+                return new PageFilterViewModel<NowJoinAGroupViewModel>
                 {
-                    ActivityUserId = s.ActivityUserId,
-                    ActivityId = s.ActivityId,
-                    MemberId = s.MemberId,
-                    ActivityName = s.ActivityName,
-                    ReviewStatus = s.ReviewStatus,
-                    ReviewTime = s.ReviewTime,
-                    CurrentPeople = s.CurrentPeople,
-                    MaxPeople = s.MaxPeople,
-                    StartTime = s.StartTime,
-                    NickName = s.NickName,
-                    DateConvert = s.DateConvert,
-                    TimeConvert = s.TimeConvert,
-                    ImageName = s.ImageName,
-                }
-            );
+                    PageNumber = queryResult.PageNumber,
+                    TotalPages = queryResult.TotalPages,
+                    Items = queryResult.Items.Select(s => new NowJoinAGroupViewModel
+                    {
+                        ActivityUserId = s.ActivityUserId,
+                        ActivityId = s.ActivityId,
+                        MemberId = s.MemberId,
+                        ActivityName = s.ActivityName,
+                        ReviewStatus = s.ReviewStatus,
+                        CurrentPeople = s.CurrentPeople,
+                        MaxPeople = s.MaxPeople,
+                        NickName = s.NickName,
+                        DateConvert = s.DateConvert,
+                        TimeConvert = s.TimeConvert,
+                        ImageName = s.ImageName,
+                    })
+                };
+            }
+            else
+            {
+                return new PageFilterViewModel<NowJoinAGroupViewModel>
+                {
+                    PageNumber = 0,
+                    TotalPages = 0,
+                    Items = Enumerable.Empty<NowJoinAGroupViewModel>()
+                };
+            }
+
         }
 
         [HttpPut("{activityId}/{memberId}")]

@@ -34,31 +34,52 @@ namespace JHobby.Repository.Implements
             return nowDto;
         }
 
-        public IEnumerable<NowJoinAGroupDto> GetNowJoinAGroupById(int memberId)
+        public PageFilterDto<NowJoinAGroupDto> GetNowJoinAGroupById(int memberId, int pageNumber, int countPerPage)
         {
             var activityUser = _jhobbyContext.Members.Select(x => new { id = x.MemberId, nickName = x.NickName });
             var activityImage = _jhobbyContext.ActivityImages.Select(a => new { id = a.ActivityId, imageName = a.ImageName });
 
-            return _jhobbyContext.ActivityUsers
-            .Where(Au => Au.MemberId == memberId
-            && (Au.ReviewStatus == "0"
-            || Au.ReviewStatus == "1"
-            || Au.ReviewStatus == "2"
-            || Au.ReviewStatus == "4"))
-            .Include(Au => Au.Activity)
-            .Select(a => new NowJoinAGroupDto
+            if (_jhobbyContext.Activities.Any(ad => ad.ActivityStatus == "1"))
             {
-                ActivityName = a.Activity.ActivityName,
-                ActivityUserId = a.ActivityUserId,
-                ActivityId = a.ActivityId,
-                MemberId = a.MemberId,
-                ReviewStatus = a.ReviewStatus,
-                CurrentPeople = a.Activity.CurrentPeople,
-                MaxPeople = a.Activity.MaxPeople,
-                NickName = activityUser.FirstOrDefault(z => z.id == a.Activity.MemberId).nickName,
-                StartTime = a.Activity.StartTime,
-                ImageName = activityImage.FirstOrDefault(i => i.id == a.Activity.ActivityId).imageName
-            });
+                var query = _jhobbyContext.ActivityUsers
+                .Where(Au => Au.MemberId == memberId
+                && (Au.ReviewStatus == "0"
+                || Au.ReviewStatus == "1"
+                || Au.ReviewStatus == "2"
+                || Au.ReviewStatus == "4"))
+                .Include(Au => Au.Activity)
+                .Select(a => new NowJoinAGroupDto
+                {
+                    ActivityName = a.Activity.ActivityName,
+                    ActivityUserId = a.ActivityUserId,
+                    ActivityId = a.ActivityId,
+                    MemberId = a.MemberId,
+                    ReviewStatus = a.ReviewStatus,
+                    CurrentPeople = a.Activity.CurrentPeople,
+                    MaxPeople = a.Activity.MaxPeople,
+                    NickName = activityUser.FirstOrDefault(z => z.id == a.Activity.MemberId).nickName,
+                    StartTime = a.Activity.StartTime,
+                    ImageName = activityImage.FirstOrDefault(i => i.id == a.Activity.ActivityId).imageName
+                });
+
+                var totalItems = query.Count();
+                var totalPage = (int)Math.Ceiling(totalItems / (decimal)countPerPage);
+                var filterPage = query
+                    .Skip((pageNumber - 1) * countPerPage)
+                    .Take(countPerPage);
+
+                return new PageFilterDto<NowJoinAGroupDto>
+                {
+                    PageNumber = pageNumber,
+                    TotalPages = totalPage,
+                    Items = filterPage
+                };
+            }
+            else
+            {
+                return null;
+            }
+
         }
 
         public bool NowJoinAGroupCancel(int activityId, int memberId, NowJoinAGroupCancelDto aGroupCancelDto)
@@ -83,6 +104,6 @@ namespace JHobby.Repository.Implements
                 return true;
             }
             else { return false; }
-        }
+        } 
     }
 }
