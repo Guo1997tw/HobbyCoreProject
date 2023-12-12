@@ -6,9 +6,10 @@ namespace JHobby.Repository.Interfaces
     {
         public IEnumerable<WishListDto> GetWishListAll();
 
-        public IEnumerable<WishListDto> GetWishListById(int memberId);
-
         public bool WishListDelete(int memberId, int wishId);
 
+        public IEnumerable<WishListDto> GetWishListById(int memberId);
+
+        public PageFilterDto<WishListDto> GetWishListById(int memberId, int pageNumber, int countPerPage);
     }
 }

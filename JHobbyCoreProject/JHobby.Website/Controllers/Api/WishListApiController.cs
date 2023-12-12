@@ -31,10 +31,15 @@ namespace JHobby.Website.Controllers.Api
         }
 
         [HttpGet]
-        public IEnumerable<WishListViewModel> GetWishListById(int memberId)
+        public PageFilterViewModel<WishListViewModel> GetWishListById(int memberId, int pageNumber, int countPerPage = 3)
         {
-            return _iWishListService.GetWishListById(memberId)
-                .Select(wl => new WishListViewModel
+            var queryResult = _iWishListService.GetWishListById(memberId, pageNumber, countPerPage);
+
+            return new PageFilterViewModel<WishListViewModel>
+            {
+                PageNumber = queryResult.PageNumber,
+                TotalPages = queryResult.TotalPages,
+                Items = queryResult.Items.Select(wl => new WishListViewModel
                 {
                     WishId = wl.WishId,
                     MemberId = wl.MemberId,
@@ -43,11 +48,12 @@ namespace JHobby.Website.Controllers.Api
                     ActivityId = wl.ActivityId,
                     SurplusQuota = wl.SurplusQuota,
                     ImageName = wl.ImageName,
-                });
+                })
+            };
         }
 
         [HttpDelete]
-        public IActionResult WishListDelete(int memberId,int wishId)
+        public IActionResult WishListDelete(int memberId, int wishId)
         {
             if (memberId >= 0)
             {
