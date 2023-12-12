@@ -146,7 +146,7 @@ namespace JHobby.Website
 
             app.UseAuthorization();
 
-            app.UseHangfireDashboard();
+            app.UseHangfireDashboard("/hangfire");
 
             app.MapControllerRoute(
                 name: "default",
