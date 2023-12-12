@@ -30,43 +30,51 @@ namespace JHobby.Website.Controllers.Api
         [HttpPost]
         public async Task<bool> LeaderCreate([FromForm] ActivityCreateViewModel activityCreateViewModel)
         {
-            var picPathList = new List<string>();
-            var activityCreateModel = _mapper.Map<ActivityCreateModel>(activityCreateViewModel);
-
-            if (activityCreateViewModel.File != null)
+            try
             {
-                var i = 1;
 
-                foreach (var file in activityCreateViewModel.File)
+                var picPathList = new List<string>();
+                var activityCreateModel = _mapper.Map<ActivityCreateModel>(activityCreateViewModel);
+
+                if (activityCreateViewModel.File != null)
                 {
-                    var fileName = file.FileName;
-                    var dateTime = DateTime.Now.ToString("yyyyMMddHHmmssffff");
-                    fileName = $"activity{i}{dateTime}.jpg";
-                    var filePath = $"{_rootPath}{fileName}";
-                    var fullFileName = $"\\activityImgs\\{fileName}";
+                    var i = 1;
 
-                    using var fs = new FileStream(filePath, FileMode.Create);
+                    foreach (var file in activityCreateViewModel.File)
+                    {
+                        var fileName = file.FileName;
+                        var dateTime = DateTime.Now.ToString("yyyyMMddHHmmssffff");
+                        fileName = $"activity{i}{dateTime}.jpg";
+                        var filePath = $"{_rootPath}{fileName}";
+                        var fullFileName = $"\\activityImgs\\{fileName}";
 
-                    await file.CopyToAsync(fs);
+                        using var fs = new FileStream(filePath, FileMode.Create);
 
-                    picPathList.Add(fullFileName);
+                        await file.CopyToAsync(fs);
 
-                    i++;
+                        picPathList.Add(fullFileName);
+
+                        i++;
+                    }
                 }
+
+                string picTemp = picPathList.FirstOrDefault();
+
+                activityCreateModel.ActivityImages = picPathList.Select(x => new ActivityImageCreateModel
+                {
+                    ImageName = x,
+                    IsCover = (x == picTemp) ? true : false
+                }).ToList();
+
+
+                var result = _activityService.ActivityCreate(activityCreateModel);
+
+                return result;
             }
-
-            string picTemp = picPathList.FirstOrDefault();
-
-            activityCreateModel.ActivityImages = picPathList.Select(x => new ActivityImageCreateModel
+            catch (Exception ex)
             {
-                ImageName = x,
-                IsCover = (x == picTemp) ? true : false
-            }).ToList();
-
-
-            var result = _activityService.ActivityCreate(activityCreateModel);
-
-            return result;
+                return false;
+            }
         }
 
         /// <summary>
