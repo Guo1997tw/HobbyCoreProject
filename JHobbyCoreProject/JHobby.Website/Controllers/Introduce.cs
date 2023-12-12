@@ -27,5 +27,21 @@ namespace JHobby.Website.Controllers
 
             return View();
         }
-    }
+
+		// Home/ConceptPage
+		public IActionResult ConceptPage()
+		{
+			try
+			{
+				ViewBag.verifyMemberId = _userAuthenticationService.GetUserId();
+			}
+			catch (Exception)
+			{
+
+				return View();
+			}
+
+			return View();
+		}
+	}
 }
