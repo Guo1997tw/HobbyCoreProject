@@ -193,6 +193,7 @@
 <!-- /Main Wrapper -->
 @section Scripts {
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.6.0/axios.min.js" integrity="sha512-WrdC3CE9vf1nBf58JHepuWT4x24uTacky9fuzw2g/3L9JkihgwZ6Cfv+JGTtNyosOhEmttMtEZ6H3qJWfI7gIQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="~/js/jhobbyselect2component.js"></script>
     <script src="~/js/taiwancity.js"></script>
 
@@ -292,7 +293,7 @@
 
                     fetch("/CategoryApi/GetCategoriesAllIncludeDetail").then(r => r.json()).then(d => { self.categorySource = d; });
                 },
-                async leaderBuild() {
+                leaderBuild() {
                     let self = this;
                     var formData = new FormData();
 
@@ -331,37 +332,40 @@
                     formData.append('joinFee', self.activityBuild.joinFee);
                     formData.append('activityNotes', self.activityBuild.activityNotes);
 
-
-                    const response = await fetch("/ActivityApi/LeaderCreate", {
-                        method: "POST",
-                        body: formData
-                    });
-
-                    const data = await response.json();
-
-                    self.activityBuild = data;
-
-                    console.log(JSON.stringify(self.activityBuild));
-
-                    if (data == true) {
-                        console.log('Success', data);
-
-                        alert("新增成功");
-
-                        javascript: location.href = "/MemberCenter/LaunchATeam";
-                    }
-
-                    // await fetch("/ActivityApi/LeaderCreate", {
-                    //     method: "POST",
-                    //     body: formData
-                    // }).then(r => r.json())
-                    //     .then(d => {
-                    //         self.activityBuild = d;
-                    //         console.log('Success', d);
-                    //         alert("建立成功");
-                    //         javascript: location.href = "/MemberCenter/LaunchATeam";
-                    //     });
+                    axios.post("/ActivityApi/LeaderCreate", formData, {
+                        headers: {
+                            'Content-Type': 'multipart/form-data'
+                        }
+                    }).then(response => {
+                        const d = response.data;
+                        self.activityBuild = d;
+                        if (d === true) {
+                            console.log('Success', d);
+                            alert("建立成功");
+                            location.href = "/MemberCenter/LaunchATeam";
+                        } else {
+                            alert("修改失敗");
+                        }
+                    })
                 },
+
+                //     await fetch("/ActivityApi/LeaderCreate", {
+                //         method: "POST",
+                //         headers: { 'Content-Type': 'application/form-data' },
+                //         body: formData
+                //     }).then(r => r.json())
+                //         .then(d => {
+                //             self.activityBuild = d;
+                //             if (d == true) {
+                //                 console.log('Success', d);
+                //                 alert("建立成功");
+                //                 javascript: location.href = "/MemberCenter/LaunchATeam";
+                //             }
+                //             else {
+                //                 alert("修改失敗");
+                //             }
+                //         });
+                // },
 
                 cancelBuild() {
                     window.location.href = "/MemberCenter/LaunchATeam";
