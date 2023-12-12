@@ -19,6 +19,7 @@ namespace JHobby.Website.Controllers
         public IActionResult LaunchATeam()
         {
             ViewData["Title"] = "開團紀錄";
+            ViewData["BookMark"] = "LaunchATeam";
             ViewBag.VerifyMemberId = _userAuthenticationService.GetUserId();
             return View();
         }
@@ -30,6 +31,7 @@ namespace JHobby.Website.Controllers
         public IActionResult JoinAGroup()
         {
             ViewBag.VerifyMemberId = _userAuthenticationService.GetUserId();
+            ViewData["BookMark"] = "JoinAGroup";
             return View();
         }
         // MemberCenter/MemberProfile
@@ -44,6 +46,7 @@ namespace JHobby.Website.Controllers
                 return RedirectToAction("NotFounds", "ErrorPage");
             }
             ViewData["Title"] = "會員個人介紹";
+            ViewData["BookMark"] = "MemberProfile";
             ViewBag.VerifyMemberId = _userAuthenticationService.GetUserId();
             ViewBag.MemberId = id;
             return View();
