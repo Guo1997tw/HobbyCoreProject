@@ -172,14 +172,12 @@
                                                                                     </h4>
                                                                                 </td>
                                                                                 <td>
-                                                                                    <!-- 連接參團人數 -->@* 改 *@
-                                                                                    <button type="button" class="btn btn-secondary"
-                                                                                            data-bs-toggle="modal"
-                                                                                            data-bs-target="#add-particpate-check" @@click="keepId2(item.memberId,item.activityId);Current()">
-                                                                                        <i class="feather-eye"></i>查看詳細狀態
-
-                                                                                    </button>
-                                                                                    @* 改 *@
+                                                                                    <!-- 連接參團人數 -->
+                                                                                    <a data-bs-toggle="modal"
+                                                                                       data-bs-target="#add-particpate-check"
+                                                                                       @@click="keepId2(item.memberId, item.activityId); Current()">
+                                                                                        {{ item.currentPeople || 0 }}
+                                                                                    </a>
                                                                                     <!-- /連接參團人數 -->
                                                                                 </td>
                                                                                 <td>
