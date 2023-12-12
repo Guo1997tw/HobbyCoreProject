@@ -202,7 +202,7 @@
                                         <div class="table-accept-btn">
                                             <a href="javascript:;"
                                                class="btn cancel-table-btn"
-                                            @@click="joinAGroupCancel">確定取消報名</a>
+                                               @@click="joinAGroupCancel">確定取消報名</a>
                                         </div>
                                         <div class="table-accept-btn">
                                             <a href="javascript:;"
@@ -792,7 +792,6 @@
                 submitScore() {
                     let _this = this;
                     _this.star = _this.tempStar;
-                    alert(JSON.stringify(_this.currentCard));
                     const payload = {
                         fraction: _this.star,
                         activityId: _this.currentCard.activityId,
@@ -808,8 +807,9 @@
                         )
                         .then((response) => {
                             if (response.data === false) {
-                                alert("操作失敗的訊息");
-                            } else {
+                                alert("無法重複評分");
+                            } 
+                            else {
                                 let cardListChange = _this.pastJoinAGroupCard.findIndex(
                                     (id) => id.activityId === _this.currentCard.activityId
                                 );
@@ -817,7 +817,7 @@
                                 if (cardListChange != null) {
                                     _this.pastJoinAGroupCard[cardListChange].fraction = _this.star;
                                 }
-                                alert("增加成功");
+                                alert("評分成功");
                             }
                         })
                         .catch((erro) => alert(`Erro: ${erro}`));
