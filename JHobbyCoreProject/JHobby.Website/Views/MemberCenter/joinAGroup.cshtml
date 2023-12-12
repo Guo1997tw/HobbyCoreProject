@@ -598,7 +598,7 @@
                         .then(response => {
                             _this.nowJoinAGroupCard = response.data.items;
                             _this.total = response.data.totalPages;
-                            _this.pageNumber = response.data.currentPage
+                            _this.pageNumber = response.data.pageNumber;
                         })
                         .catch((erro) => { alert(`Erro: ${erro}`); });
                 },
@@ -672,13 +672,8 @@
                 this.axiosWishListCard();
             },
             computed: {
-                total() {
-                    return Math.ceil(this.wishListCard.length / this.countPerPage);
-                },
                 filterCard() {
-                    var start = (this.pageNumber - 1) * this.countPerPage;
-                    var end = start + this.countPerPage;
-                    return this.wishListCard.slice(start, end);
+                    return this.wishListCard;
                 }
             },
             methods:
@@ -686,13 +681,17 @@
                 axiosWishListCard: function () {
                     var _this = this;
                     axios
-                        .get(`/WishListApi/GetWishListById?memberId=${_this.memberId}`)
-                        .then(response => _this.wishListCard = response.data)
+                        .get(`/WishListApi/GetWishListById?memberId=${_this.memberId}&pageNumber=${_this.pageNumber}`)
+                        .then(response => {
+                            _this.wishListCard = response.data.items;
+                            _this.total = response.data.totalPages;
+                            _this.pageNumber = response.data.pageNumber;
+                        })
                         .catch(error => alert(`發生錯誤${error}`))
-
                 },
                 pageClick(num) {
                     this.pageNumber = num;
+                    this.axiosWishListCard();
                 },
                 collectAGroupCancel(card) {
                     let _this = this;
