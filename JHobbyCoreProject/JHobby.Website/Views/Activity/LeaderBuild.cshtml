@@ -292,7 +292,7 @@
 
                     fetch("/CategoryApi/GetCategoriesAllIncludeDetail").then(r => r.json()).then(d => { self.categorySource = d; });
                 },
-                leaderBuild() {
+                async leaderBuild() {
                     let self = this;
                     var formData = new FormData();
 
@@ -331,7 +331,7 @@
                     formData.append('joinFee', self.activityBuild.joinFee);
                     formData.append('activityNotes', self.activityBuild.activityNotes);
 
-                    fetch("/ActivityApi/LeaderCreate", {
+                    await fetch("/ActivityApi/LeaderCreate", {
                         method: "POST",
                         body: formData
                     }).then(r => r.json())
