@@ -32,21 +32,6 @@ namespace JHobby.Website.Controllers
             return View();
         }
 
-        public IActionResult Privacy()
-        {
-            return View();
-        }
-
-        public IActionResult leaderEdit()
-        {
-            return View();
-        }
-
-        public IActionResult DashboardMenu()
-        {
-            return View();
-        }
-
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {

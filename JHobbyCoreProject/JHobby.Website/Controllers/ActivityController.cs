@@ -17,6 +17,10 @@ namespace JHobby.Website.Controllers
         //[Authorize(Roles = "Admin")]
         public IActionResult ActivityPage(int id)
         {
+            if (id == 0)
+            {
+                return RedirectToAction("NotFounds", "ErrorPage");
+            }
             ViewData["Title"] = "活動說明";
             ViewBag.activityId = id;
             try
@@ -29,7 +33,6 @@ namespace JHobby.Website.Controllers
                 ViewBag.logIn = false;
                 ViewBag.verifyMemberId = 0;
             }
-
             return View();
         }
 
