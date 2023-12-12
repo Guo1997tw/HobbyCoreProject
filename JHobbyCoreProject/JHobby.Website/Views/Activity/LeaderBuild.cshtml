@@ -25,7 +25,7 @@
                             <div class="mb-3">
                                 <label for="date" class="form-label">開團名稱</label>
                                 <div class="form-icon">
-                                    <input type="text" class="form-control" id="ActivityName" v-model="activityBuild.activityName">
+                                    <input type="text" maxlength="10" class="form-control" id="ActivityName" v-model="activityBuild.activityName">
                                     <span name="ActivityName" class="text-danger"></span>
                                 </div>
                             </div>
@@ -339,12 +339,12 @@
                             self.activityBuild = d;
                             console.log('Success', d);
                             alert("建立成功");
-                            javascript: location.href = "/MemberCenter/launchATeam";
+                            javascript: location.href = "/MemberCenter/LaunchATeam";
                         });
                 },
 
                 cancelBuild() {
-                    window.location.href = "/MemberCenter/launchATeam";
+                    window.location.href = "/MemberCenter/LaunchATeam";
                 },
             },
         }).component('select2', select2).mount("#Create");

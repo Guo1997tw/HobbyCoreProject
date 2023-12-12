@@ -25,7 +25,7 @@
                             <div class="mb-3">
                                 <label for="date" class="form-label">開團名稱</label>
                                 <div class="form-icon">
-                                    <input type="text" class="form-control" id="ActivityName" v-model="activityUpdate.activityName">
+                                    <input type="text" maxlength="10" class="form-control" id="ActivityName" v-model="activityUpdate.activityName">
                                     <span name="ActivityName" class="text-danger"></span>
                                 </div>
                             </div>
@@ -339,7 +339,7 @@
                                 console.log('Success', d);
                                 alert("修改成功");
 
-                                javascript: location.href = "/MemberCenter/launchATeam";
+                                javascript: location.href = "/MemberCenter/LaunchATeam";
                             }
                             else {
                                 alert("修改失敗");
@@ -352,16 +352,16 @@
                     self = this;
 
                     fetch("/ActivityApi/GetActivityStatus/@activityId")
-                    .then(r => r.json())
-                    .then(d => {
-                        if (d.joinDeadLine) {
-                            d.joinDeadLine = d.joinDeadLine.split('T')[0];
-                        }
-                        self.activityUpdate = d
-                    });
+                        .then(r => r.json())
+                        .then(d => {
+                            if (d.joinDeadLine) {
+                                d.joinDeadLine = d.joinDeadLine.split('T')[0];
+                            }
+                            self.activityUpdate = d
+                        });
                 },
                 cancelUpdate() {
-                    window.location.href = "/MemberCenter/launchATeam";
+                    window.location.href = "/MemberCenter/LaunchATeam";
                 },
             },
         }).component('select2', select2).mount("#Update");

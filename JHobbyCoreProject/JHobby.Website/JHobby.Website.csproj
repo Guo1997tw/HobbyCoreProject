@@ -33,7 +33,6 @@
   <ItemGroup>
 	<Folder Include="wwwroot\css\" />
     <Folder Include="wwwroot\images\register\" />
-    <Folder Include="wwwroot\NewFolder\" />
     <Folder Include="wwwroot\profile\" />
   </ItemGroup>
 
@@ -41,6 +40,13 @@
     <None Include="wwwroot\image\loader.jpg" />
     <None Include="wwwroot\image\logo.svg" />
     <None Include="wwwroot\image\whiteCaticon.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Update="Views\MemberCenter\ChangePwd.cshtml">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
   </ItemGroup>
 
 </Project>

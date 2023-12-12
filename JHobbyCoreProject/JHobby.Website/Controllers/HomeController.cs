@@ -32,35 +32,6 @@ namespace JHobby.Website.Controllers
             return View();
         }
 
-        // Home/ConceptPage
-        public IActionResult ConceptPage()
-        {
-            ViewBag.verifyMemberId = _userAuthenticationService.GetUserId();
-            return View();
-        }
-
-        public IActionResult Privacy()
-        {
-            return View();
-        }
-
-        public IActionResult leaderEdit()
-        {
-            return View();
-        }
-
-        public IActionResult Newcomer()
-        {
-            ViewBag.verifyMemberId = _userAuthenticationService.GetUserId();
-            ViewData["Title"] = "新手上路";
-            return View();
-        }
-
-        public IActionResult DashboardMenu()
-        {
-            return View();
-        }
-
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {

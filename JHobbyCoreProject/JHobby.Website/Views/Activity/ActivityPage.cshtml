@@ -20,7 +20,7 @@
         <div class="main-gallery-slider owl-carousel owl-theme">
             <div class="gallery-widget-item" v-for="item in activity.activityImages">
                 <a :href="item.imageName" data-fancybox="gallery1">
-                    <img style="width:380px;height:440px" class="img-fluid" alt="Image" :src="item.imageName">
+                    <img style="width:440px;height:380px" class="img-fluid" alt="Image" :src="item.imageName">
                 </a>
             </div>
         </div>
@@ -94,7 +94,7 @@
                                                 <ul>
                                                     <li class="author-group d-md-flex align-items-center justify-content-start" v-for="item in msgBord">
                                                         <div class="profile-pic">
-                                                            <a :href='"@Url.Action("MemberProfile","Profile")/"+item.memberId' class="d-inline-block"><img :src="item.headShot" alt="User"></a>
+                                                            <a :href='"@Url.Action("MemberProfile","MemberCenter")/"+item.memberId' class="d-inline-block"><img :src="item.headShot" alt="User"></a>
                                                         </div>
                                                         <div class="info">
                                                             <div class="head d-flex align-items-center justify-content-start">
@@ -154,7 +154,7 @@
                         <h4 class="border-bottom">活動主評價</h4>
                         <div class="d-flex justify-content-start align-items-center">
                             <div class="profile-pic">
-                                <a :href='"@Url.Action("MemberProfile","Profile")/"+profile.memberId'><img class="img-fluid" alt="User" :src="profile.headShot"></a>
+                                <a :href='"@Url.Action("MemberProfile","MemberCenter")/"+profile.memberId'><img class="img-fluid" alt="User" :src="profile.headShot"></a>
                             </div>
                             <div class="">
                                 <h5>{{profile.nickName}}</h5>
@@ -230,7 +230,7 @@
                                             </div>
                                             <div class="listing-button">
                                                 <div class="listing-venue-owner">
-                                                    <a class="navigation" v-bind:href='"@Url.Action("MemberProfile","Profile")/"+item.memberId'>
+                                                    <a class="navigation" v-bind:href='"@Url.Action("MemberProfile","MemberCenter")/"+item.memberId'>
                                                         <img :src="item.headShot" alt="Venue">{{item.nickName}}
                                                     </a>
                                                 </div>

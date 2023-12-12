@@ -5,7 +5,7 @@
     ViewData["Title"] = "活動搜尋";
 }
 @section Styles
-    {
+{
     <style>
         .btn-load {
             background: #FFFFFF;
@@ -15,6 +15,11 @@
             padding: 16px;
             min-width: 102px;
             display: inline-flex;
+        }
+
+        .jhobbyLabel {
+            color: #1d953f;
+            font-weight: bolder;
         }
     </style>
 }
@@ -34,8 +39,10 @@
                                 </div>
                                 <div class="col-xl-8 col-lg-9 col-sm-12 col-12">
                                     <div class="sortby-filter-group">
-
                                         <div class="sortbyset">
+                                            <span>縣市：<label class="jhobbyLabel">{{showCity}}&nbsp;</label></span>
+                                            <span>區域：<label class="jhobbyLabel">{{showArea}}&nbsp;</label></span>
+                                            <span>分類：<label class="jhobbyLabel">{{showCategoryType}}&emsp;</label></span>
                                             <span class="sortbytitle">報名截止日排序</span>
                                             <div class="sorting-select">
                                                 <select id="selectSort" v-model="sort" v-on:change="Sort()" class="form-select">
@@ -96,7 +103,7 @@
                             </div>
                             <div class="listing-button">
                                 <div class="listing-venue-owner">
-                                    <a class="navigation" v-bind:href='"@Url.Action("MemberProfile","Profile")/"+item.memberId'>
+                                    <a class="navigation" v-bind:href='"@Url.Action("MemberProfile","MemberCenter")/"+item.memberId'>
                                         <img :src="item.headShot" alt="Venue">{{item.nickName}}
                                     </a>
                                 </div>
@@ -129,7 +136,7 @@
 </div>
 <!-- /Page Content -->
 @section Scripts
-    {
+{
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/3.3.4/vue.global.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.6.0/axios.min.js" integrity="sha512-WrdC3CE9vf1nBf58JHepuWT4x24uTacky9fuzw2g/3L9JkihgwZ6Cfv+JGTtNyosOhEmttMtEZ6H3qJWfI7gIQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
@@ -144,13 +151,20 @@
                     wish: [],
                     sort: "asc",
                     blnData: true,
-                    blnAction: true
+                    blnAction: true,
+                    showCity: "",
+                    showArea: "",
+                    showCategoryType: "",
+                    typeList: []
                 }
             },
             mounted() {
                 let _this = this;
                 _this.GetCategoryTypeList();
+                _this.QueryCategoryList();
                 _this.blnAction = blnChange(`@blnLogIn`);
+                _this.showCity = _this.ShowCityArea(_this.DecodeHtml(`@search.city`))
+                _this.showArea = _this.ShowCityArea(_this.DecodeHtml(`@search.area`))
             },
             methods: {
                 GetCategoryTypeList() {
@@ -158,8 +172,8 @@
                     var form = new FormData();
                     form.append("categoryId", @search.categoryId);
                     form.append("categoryTypeId", @search.categoryTypeId);
-                    form.append("city", _this.decodeHtml(`@search.city`));
-                    form.append("area", _this.decodeHtml(`@search.area`));
+                    form.append("city", _this.DecodeHtml(`@search.city`));
+                    form.append("area", _this.DecodeHtml(`@search.area`));
                     form.append("sort", _this.sort);
                     axios.post("/MiddleCenterApi/GetCategoryTypeList", form, {
                         headers: {
@@ -181,6 +195,21 @@
                     if (!_this.blnAction) return
                     axios.get(`/WishApi/GetWishList/@verifyMemberId`)
                         .then(res => _this.wish = res.data)
+                        .catch(err => alert(err));
+                },
+                QueryCategoryList() {
+                    let _this = this;
+                    let tempList = [];
+                    axios.get("/CategoryApi/GetCategoriesAllIncludeDetail")
+                        .then(res => {
+                            tempList = res.data
+                            tempList.forEach(item => {
+                                for (var i = 0; i < item.categoryDetails.length; i++) {
+                                    _this.typeList.push(item.categoryDetails[i])
+                                };
+                            });
+                            _this.showCategoryType = _this.ShowType(`@search.categoryTypeId`);
+                        })
                         .catch(err => alert(err));
                 },
                 Fav(id) {
@@ -208,24 +237,40 @@
                 },
                 More() {
                     let _this = this;
-                    _this.listEnd += 6;
-                    _this.activityList = _this.originList.slice(_this.listStar, _this.listEnd)
-                    Jhobby_Animation()
+                    let listMax = _this.originList.length;
+                    if (_this.listEnd < listMax) {
+                        _this.listEnd += 6;
+                        _this.activityList = _this.originList.slice(_this.listStar, _this.listEnd)
+                        Jhobby_Animation()
+                    } else {
+                        alert("沒有更多囉")
+                    }
                 },
                 Sort() {
                     let _this = this;
                     _this.GetCategoryTypeList()
                     _this.QueryWish();
                 },
-                decodeHtml(str) {
+                DecodeHtml(str) {
                     let txt = document.createElement("textarea");
-                    txt.innerHTML=str;
+                    txt.innerHTML = str;
                     return txt.value;
+                },
+                ShowCityArea(str) {
+                    if (str == "") {
+                        return "無"
+                    }
+                    return str;
+                },
+                ShowType(str) {
+                    let _this = this;
+                    arry = _this.typeList.filter(x => x.categoryTypeId == str);
+                    if (arry.length < 1) {
+                        return "無";
+                    }
+                    return arry[0].typeName;
                 },
             }
         }).mount("#activity")
-
-
-
     </script>
 }

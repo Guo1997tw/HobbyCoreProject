@@ -18,7 +18,7 @@
                             <div class="d-sm-flex justify-content-between align-items-start">
                                 <h3 class="d-flex align-items-center justify-content-start mb-0">{{memberProfile.nickName}}</h3>
                                 <template v-if="btnMemberProfile">
-                                    <button class="btn btn-gradient pull-right write-review add-review" data-bs-toggle="modal" data-bs-target="#add-review"><a href="/profilesetting/profilesetting">編輯個人資訊</a></button>
+                                    <button class="btn btn-gradient pull-right write-review add-review" data-bs-toggle="modal" data-bs-target="#add-review"><a href="/MemberCenter/profilesetting">編輯個人資訊</a></button>
                                 </template>
                             </div>
 
@@ -101,7 +101,7 @@
 											<ul class="profile-coache-list">
 												<li>                                                    
                                                     @* submit *@
-                                                    <form action="/Middle/ActivityCenter" method="post">
+                                                    <form action="/Activity/ActivityCenter" method="post">
                                                         <input type="hidden" name="categoryId" :value="past.categoryId">
                                                         <input type="hidden" name="categoryTypeId" :value="past.categoryTypeId">
                                                         <button type="submit" class="btn btn-primary w-100">

@@ -81,7 +81,7 @@ namespace JHobby.Service.Implements
                 StartTime = _commonService.ConvertTime(result.StartTime).First().TimeConvert,
                 JoinDeadLine = _commonService.ConvertTime(result.JoinDeadLine).First().DateConvert,
                 ActivityNotes = result.ActivityNotes.Trim(),
-                CurrentPeople = result.CurrentPeople,
+                CurrentPeople = result.CurrentPeople == null ? 0:result.CurrentPeople,
                 MaxPeople = result.MaxPeople,
                 ActivityImages = result.ActivityImages.Select(ai => new ActivityImageModel
                 {

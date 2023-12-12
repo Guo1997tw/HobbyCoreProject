@@ -1,11 +1,8 @@
 ﻿using JHobby.Service.Interfaces;
-using JHobby.Service.Models;
 using JHobby.Website.Models.ViewModels;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc;
-using System.Reflection.Metadata.Ecma335;
-using System.Security.Claims;
 
 namespace JHobby.Website.Controllers
 {
@@ -59,7 +56,6 @@ namespace JHobby.Website.Controllers
             {
                 return RedirectToAction("NotFounds", "ErrorPage");
             }
-           
         }
     }
 }
