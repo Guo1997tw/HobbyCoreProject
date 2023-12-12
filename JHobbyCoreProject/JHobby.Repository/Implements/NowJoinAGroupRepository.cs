@@ -39,7 +39,7 @@ namespace JHobby.Repository.Implements
             var activityUser = _jhobbyContext.Members.Select(x => new { id = x.MemberId, nickName = x.NickName });
             var activityImage = _jhobbyContext.ActivityImages.Select(a => new { id = a.ActivityId, imageName = a.ImageName });
 
-            if (_jhobbyContext.Activities.Any(ad => ad.ActivityStatus == "1"))
+            if (_jhobbyContext.Activities.All(ad => ad.ActivityStatus == "1"))
             {
                 var query = _jhobbyContext.ActivityUsers
                 .Where(Au => Au.MemberId == memberId
