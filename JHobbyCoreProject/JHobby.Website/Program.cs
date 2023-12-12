@@ -26,7 +26,7 @@ namespace JHobby.Website
             // JHobby Coneection String
             builder.Services.AddDbContext<JhobbyContext>(option =>
             {
-                option.UseSqlServer(builder.Configuration.GetConnectionString("JHobby"));
+                option.UseSqlServer(builder.Configuration.GetConnectionString("JHobbyPROD"));
             });
 
             // Hangfire DI
@@ -34,7 +34,7 @@ namespace JHobby.Website
             .SetDataCompatibilityLevel(CompatibilityLevel.Version_180)
             .UseSimpleAssemblyNameTypeSerializer()
             .UseRecommendedSerializerSettings()
-            .UseSqlServerStorage(builder.Configuration.GetConnectionString("JHobby")));
+            .UseSqlServerStorage(builder.Configuration.GetConnectionString("JHobbyPROD")));
 
             builder.Services.AddHangfireServer();
 
