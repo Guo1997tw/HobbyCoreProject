@@ -249,7 +249,12 @@
                         .then(res => {
                             _this.activityList = res.data;
                         })
-                        .catch(err => alert(err));
+                        .catch(err => Swal.fire({
+                            text: err,
+                            icon: "error",
+                            confirmButtonColor: "#097E52",
+                            confirmButtonText: "確認"
+                        }));
                     if (!_this.blnAction) return
                     _this.QueryWish();
                 },
@@ -258,7 +263,12 @@
                     if (!_this.blnAction) return
                     axios.get(`/WishApi/GetWishList/@verifyMemberId`)
                         .then(res => _this.wish = res.data)
-                        .catch(err => alert(err));
+                        .catch(err => Swal.fire({
+                            text: err,
+                            icon: "error",
+                            confirmButtonColor: "#097E52",
+                            confirmButtonText: "確認"
+                        }));
                 },
                 Fav(id) {
                     let _this = this;
@@ -266,7 +276,12 @@
                     if (_this.wish.includes(id)) {
                         axios.delete(`/WishApi/DeleteWish/@verifyMemberId/${id}`)
                             .then(res => _this.QueryWish())
-                            .catch(err => alert(err));
+                            .catch(err => Swal.fire({
+                                text: err,
+                                icon: "error",
+                                confirmButtonColor: "#097E52",
+                                confirmButtonText: "確認"
+                            }));
                     }
                     else {
                         let _this = this;
@@ -280,7 +295,12 @@
                             }
                         })
                             .then(res => _this.QueryWish())
-                            .catch(err => alert(err));
+                            .catch(err => Swal.fire({
+                                text: err,
+                                icon: "error",
+                                confirmButtonColor: "#097E52",
+                                confirmButtonText: "確認"
+                            }));
                     }
                 }
             }
@@ -310,7 +330,12 @@
                                 _this.woman = _this.memberGender[i].woman;
                             }
                         })
-                        .catch(err => alert(err));
+                        .catch(err => Swal.fire({
+                            text: err,
+                            icon: "error",
+                            confirmButtonColor: "#097E52",
+                            confirmButtonText: "確認"
+                        }));
                 }
             }
         }).mount("#bestServices")
@@ -331,7 +356,12 @@
                         .then(res => {
                             _this.hotList = res.data;
                         })
-                        .catch(err => alert(err));
+                        .catch(err => Swal.fire({
+                            text: err,
+                            icon: "error",
+                            confirmButtonColor: "#097E52",
+                            confirmButtonText: "確認"
+                        }));
                 }
             }
         }).mount("#hotMember")

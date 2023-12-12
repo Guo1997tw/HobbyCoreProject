@@ -72,7 +72,23 @@ namespace JHobby.Website.Controllers.Api
                 {
                     PageNumber = 0,
                     TotalPages = 0,
-                    Items = Enumerable.Empty<NowJoinAGroupViewModel>()
+                    Items = new List<NowJoinAGroupViewModel>
+                    {
+                        new NowJoinAGroupViewModel
+                        {
+                             ActivityUserId = 0,
+                             ActivityId = 0,
+                             MemberId = 0,
+                             ActivityName = null,
+                             ReviewStatus = null,
+                             CurrentPeople = 0,
+                             MaxPeople = 0,
+                             NickName = null,
+                             DateConvert = null,
+                             TimeConvert = null,
+                             ImageName = null,
+                        }
+                    }
                 };
             }
 

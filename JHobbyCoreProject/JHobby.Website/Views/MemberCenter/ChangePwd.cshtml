@@ -77,15 +77,32 @@
         methods: {
             changePassword() {
                 if (!this.updateMember.oldpassword) {
-                    return alert("請輸入原先的密碼");
+                    return Swal.fire({
+                        text: "請輸入原先的密碼",
+                        icon: "warning",
+                        confirmButtonColor: "#097E52",
+                        confirmButtonText: "確認"
+                    });
+                   
                 }
 
                 if (this.updateMember.oldpassword === this.updateMember.newpassword) {
-                    return alert("舊密碼與新密碼不可以一樣");
+                    return Swal.fire({
+                        text: "舊密碼與新密碼不可以一樣",
+                        icon: "warning",
+                        confirmButtonColor: "#097E52",
+                        confirmButtonText: "確認"
+                    });
+                    
                 }
 
                 if (this.updateMember.newpassword !== this.updateMember.passwordtwo) {
-                    return alert("新的密碼與確認密碼欄位必須一樣");
+                    return Swal.fire({
+                        text: "新的密碼與確認密碼欄位必須一樣",
+                        icon: "warning",
+                        confirmButtonColor: "#097E52",
+                        confirmButtonText: "確認"
+                    });
                 }
 
                 let self = this;
@@ -104,11 +121,21 @@
                     .then(d => {
                         console.log('Success', d);
                         if (d == true) {
-                            alert("密碼修改成功~~");
+                            Swal.fire({
+                                text: "密碼修改成功!",
+                                icon: "success",
+                                confirmButtonColor: "#097E52",
+                                confirmButtonText: "確認"
+                            });
                             window.location.href = '/Home/Index';
                         }
                         else {
-                            alert("修改密碼失敗,請重新確認三個欄位輸入是否正確");
+                            Swal.fire({
+                                text: "修改密碼失敗,請重新確認三個欄位輸入是否正確",
+                                icon: "warning",
+                                confirmButtonColor: "#097E52",
+                                confirmButtonText: "確認"
+                            });
                             self.updateMember.newpassword = "";
                             self.updateMember.passwordtwo = "";
                             self.updateMember.oldpassword = "";
@@ -116,7 +143,13 @@
                     })
                     .catch(e => {
                         console.log('Fail', e);
-                        alert("修改密碼失敗,請重新嘗試");
+                        Swal.fire({
+                            text: "修改密碼失敗,請重新嘗試",
+                            icon: "error",
+                            confirmButtonColor: "#097E52",
+                            confirmButtonText: "確認"
+                        });
+                        
                     });
             },
         },
