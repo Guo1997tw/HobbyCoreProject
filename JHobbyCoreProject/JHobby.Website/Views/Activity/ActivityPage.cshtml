@@ -298,7 +298,12 @@
                             _this.GetCategoryTypeList();
                             _this.QueryProfile();
                         })
-                        .catch(err => alert(err));
+                        .catch(err => Swal.fire({
+                            text: err,
+                            icon: "error",
+                            confirmButtonColor: "#097E52",
+                            confirmButtonText: "確認"
+                        }));
                 },
                 QueryMsgBord() {
                     let _this = this;
@@ -309,7 +314,12 @@
                                 _this.blnMsg = false;
                             }
                         })
-                        .catch(err => alert(err));
+                        .catch(err => Swal.fire({
+                            text: err,
+                            icon: "error",
+                            confirmButtonColor: "#097E52",
+                            confirmButtonText: "確認"
+                        }));
                 },
                 QueryProfile() {
                     let _this = this;
@@ -318,7 +328,12 @@
                             _this.profile = res.data;
                             _this.star = _this.profile.fraction;
                         })
-                        .catch(err => alert(err));
+                        .catch(err => Swal.fire({
+                            text: err,
+                            icon: "error",
+                            confirmButtonColor: "#097E52",
+                            confirmButtonText: "確認"
+                        }));
                 },
                 QueryMemeberStatus() {
                     let _this = this;
@@ -327,7 +342,12 @@
                         .then(res => {
                             _this.joinBtnCheck = res.data;
                         })
-                        .catch(err => alert(err));
+                        .catch(err => Swal.fire({
+                            text: err,
+                            icon: "error",
+                            confirmButtonColor: "#097E52",
+                            confirmButtonText: "確認"
+                        }));
                 },
                 GetCategoryTypeList() {
                     let _this = this;
@@ -342,7 +362,12 @@
                         .then(res => {
                             _this.activityList = res.data;
                         })
-                        .catch(err => alert(err));
+                        .catch(err => Swal.fire({
+                            text: err,
+                            icon: "error",
+                            confirmButtonColor: "#097E52",
+                            confirmButtonText: "確認"
+                        }));
                     _this.QueryWish();
                 },
                 QueryWish() {
@@ -350,7 +375,12 @@
                     if (!_this.blnAction) return
                     axios.get("/WishApi/GetWishList/@verifyMemberId")
                         .then(res => _this.wish = res.data)
-                        .catch(err => alert(err));
+                        .catch(err => Swal.fire({
+                            text: err,
+                            icon: "error",
+                            confirmButtonColor: "#097E52",
+                            confirmButtonText: "確認"
+                        }));
                 },
                 Fav(id) {
                     let _this = this;
@@ -358,7 +388,12 @@
                     if (_this.wish.includes(id)) {
                         axios.delete(`/WishApi/DeleteWish/@verifyMemberId/${id}`)
                             .then(res => _this.QueryWish())
-                            .catch(err => alert(err));
+                            .catch(err => Swal.fire({
+                                text: err,
+                                icon: "error",
+                                confirmButtonColor: "#097E52",
+                                confirmButtonText: "確認"
+                            }));
                     }
                     else {
                         let _this = this;
@@ -372,7 +407,12 @@
                             }
                         })
                             .then(res => _this.QueryWish())
-                            .catch(err => alert(err));
+                            .catch(err => Swal.fire({
+                                text: err,
+                                icon: "error",
+                                confirmButtonColor: "#097E52",
+                                confirmButtonText: "確認"
+                            }));
                     }
                     //_this.GetCategoryTypeList();
                 },
@@ -392,11 +432,22 @@
                         }).then(res => {
                             _this.blnMsg = true;
                             _this.QueryMsgBord();
-                        }).catch(err => alert("請重新輸入"));
+                        })
+                        .catch(err => Swal.fire({
+                            text: "請重新輸入",
+                            icon: "warning",
+                            confirmButtonColor: "#097E52",
+                            confirmButtonText: "確認"
+                        }));
                         //_this.QueryActivity();
 
                     } else {
-                        alert("請輸入留言")
+                        Swal.fire({
+                            text: "請輸入留言",
+                            icon: "warning",
+                            confirmButtonColor: "#097E52",
+                            confirmButtonText: "確認"
+                        });
                     }
                     _this.message = "";
                 },
@@ -415,13 +466,28 @@
                     })
                         .then(res => {
                             if (res.data == true) {
-                                alert("參加成功");
+                                Swal.fire({
+                                    text: "參加成功",
+                                    icon: "success",
+                                    confirmButtonColor: "#097E52",
+                                    confirmButtonText: "確認"
+                                });
                                 _this.QueryMemeberStatus()
                             } else {
-                                alert("您已參加過")
+                                Swal.fire({
+                                    text: "您已參加過",
+                                    icon: "info",
+                                    confirmButtonColor: "#097E52",
+                                    confirmButtonText: "確認"
+                                });
                             }
                         })
-                        .catch(err => alert(err));
+                        .catch(err => Swal.fire({
+                            text: err,
+                            icon: "error",
+                            confirmButtonColor: "#097E52",
+                            confirmButtonText: "確認"
+                        }));
                 },
             }
         }).mount("#activity")
