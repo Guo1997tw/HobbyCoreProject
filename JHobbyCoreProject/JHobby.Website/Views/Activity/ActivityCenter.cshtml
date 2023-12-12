@@ -5,7 +5,7 @@
     ViewData["Title"] = "活動搜尋";
 }
 @section Styles
-    {
+{
     <style>
         .btn-load {
             background: #FFFFFF;
@@ -16,8 +16,9 @@
             min-width: 102px;
             display: inline-flex;
         }
-        .jhobbyLabel{
-            color:#1d953f;
+
+        .jhobbyLabel {
+            color: #1d953f;
             font-weight: bolder;
         }
     </style>
@@ -135,7 +136,7 @@
 </div>
 <!-- /Page Content -->
 @section Scripts
-    {
+{
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/3.3.4/vue.global.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.6.0/axios.min.js" integrity="sha512-WrdC3CE9vf1nBf58JHepuWT4x24uTacky9fuzw2g/3L9JkihgwZ6Cfv+JGTtNyosOhEmttMtEZ6H3qJWfI7gIQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
@@ -151,10 +152,10 @@
                     sort: "asc",
                     blnData: true,
                     blnAction: true,
-                    showCity:"",
-                    showArea:"",
-                    showCategoryType:"",
-                    typeList:[]
+                    showCity: "",
+                    showArea: "",
+                    showCategoryType: "",
+                    typeList: []
                 }
             },
             mounted() {
@@ -252,11 +253,11 @@
                 },
                 DecodeHtml(str) {
                     let txt = document.createElement("textarea");
-                    txt.innerHTML=str;
+                    txt.innerHTML = str;
                     return txt.value;
                 },
                 ShowCityArea(str) {
-                    if (str == "") { 
+                    if (str == "") {
                         return "無"
                     }
                     return str;

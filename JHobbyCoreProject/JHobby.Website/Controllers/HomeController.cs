@@ -32,38 +32,6 @@ namespace JHobby.Website.Controllers
             return View();
         }
 
-        // Home/ConceptPage
-        public IActionResult ConceptPage()
-        {
-            try
-            {
-                ViewBag.verifyMemberId = _userAuthenticationService.GetUserId();
-            }
-            catch (Exception)
-            {
-
-                return View();
-            }
-
-            return View();
-        }
-
-        public IActionResult Newcomer()
-        {
-            ViewData["Title"] = "新手上路";
-            try
-            {
-                ViewBag.verifyMemberId = _userAuthenticationService.GetUserId();
-            }
-            catch (Exception)
-            {
-
-                return View();
-            }
-
-            return View();
-        }
-
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
