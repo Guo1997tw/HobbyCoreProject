@@ -187,7 +187,12 @@
                             }
                             _this.activityList = _this.originList.slice(_this.listStar, _this.listEnd)
                         })
-                        .catch(err => alert(err));
+                        .catch(err => Swal.fire({
+                            text: err,
+                            icon: "error",
+                            confirmButtonColor: "#097E52",
+                            confirmButtonText: "確認"
+                        }));
                     _this.QueryWish();
                 },
                 QueryWish() {
@@ -195,7 +200,12 @@
                     if (!_this.blnAction) return
                     axios.get(`/WishApi/GetWishList/@verifyMemberId`)
                         .then(res => _this.wish = res.data)
-                        .catch(err => alert(err));
+                        .catch(err => Swal.fire({
+                            text: err,
+                            icon: "error",
+                            confirmButtonColor: "#097E52",
+                            confirmButtonText: "確認"
+                        }));
                 },
                 QueryCategoryList() {
                     let _this = this;
@@ -210,7 +220,12 @@
                             });
                             _this.showCategoryType = _this.ShowType(`@search.categoryTypeId`);
                         })
-                        .catch(err => alert(err));
+                        .catch(err => Swal.fire({
+                            text: err,
+                            icon: "error",
+                            confirmButtonColor: "#097E52",
+                            confirmButtonText: "確認"
+                        }));
                 },
                 Fav(id) {
                     let _this = this;
@@ -218,7 +233,12 @@
                     if (_this.wish.includes(id)) {
                         axios.delete(`/WishApi/DeleteWish/@verifyMemberId/${id}`)
                             .then(res => _this.QueryWish())
-                            .catch(err => alert(err));
+                            .catch(err => Swal.fire({
+                                text: err,
+                                icon: "error",
+                                confirmButtonColor: "#097E52",
+                                confirmButtonText: "確認"
+                            }));
                     }
                     else {
                         let _this = this;
@@ -232,7 +252,12 @@
                             }
                         })
                             .then(res => _this.QueryWish())
-                            .catch(err => alert(err));
+                            .catch(err => Swal.fire({
+                                text: err,
+                                icon: "error",
+                                confirmButtonColor: "#097E52",
+                                confirmButtonText: "確認"
+                            }));
                     }
                 },
                 More() {
@@ -243,7 +268,13 @@
                         _this.activityList = _this.originList.slice(_this.listStar, _this.listEnd)
                         Jhobby_Animation()
                     } else {
-                        alert("沒有更多囉")
+                        Swal.fire({
+                            position: "center",
+                            icon: "info",
+                            title: "沒有更多囉",
+                            showConfirmButton: false,
+                            timer: 1500
+                        });
                     }
                 },
                 Sort() {
