@@ -19,8 +19,8 @@ namespace JHobby.Website.Controllers
         public IActionResult LaunchATeam()
         {
             ViewData["Title"] = "開團紀錄";
-            ViewData["BookMark"] = "LaunchATeam";
-            ViewBag.VerifyMemberId = _userAuthenticationService.GetUserId();
+			ViewData["BookMark"] = "LaunchATeam";
+			ViewBag.VerifyMemberId = _userAuthenticationService.GetUserId();
             return View();
         }
         // MemberCenter/joinAGroup
@@ -31,8 +31,8 @@ namespace JHobby.Website.Controllers
         public IActionResult JoinAGroup()
         {
             ViewBag.VerifyMemberId = _userAuthenticationService.GetUserId();
-            ViewData["BookMark"] = "JoinAGroup";
-            return View();
+			ViewData["BookMark"] = "JoinAGroup";
+			return View();
         }
         // MemberCenter/MemberProfile
         /// <summary>
@@ -49,7 +49,8 @@ namespace JHobby.Website.Controllers
             ViewData["BookMark"] = "MemberProfile";
             ViewBag.VerifyMemberId = _userAuthenticationService.GetUserId();
             ViewBag.MemberId = id;
-            return View();
+			ViewData["BookMark"] = "MemberProfile";
+			return View();
         }
         /// <summary>
         /// 個人資訊修改
@@ -68,7 +69,7 @@ namespace JHobby.Website.Controllers
         /// <returns></returns>
         public IActionResult ChangePwd()
         {
-            ViewData["BookMark"] = "ChangePassword";
+            ViewData["BookMark"] = "ChangePwd";
             ViewBag.VerifyMemberId = _userAuthenticationService.GetUserId();
             return View();
         }
@@ -79,7 +80,8 @@ namespace JHobby.Website.Controllers
         public IActionResult Apply()
         {
             ViewData["Title"] = "報名審核";
-            ViewBag.VerifyMemberId = _userAuthenticationService.GetUserId();
+			ViewData["BookMark"] = "Apply";
+			ViewBag.VerifyMemberId = _userAuthenticationService.GetUserId();
             return View();
         }
     }
