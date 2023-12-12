@@ -14,22 +14,6 @@ namespace JHobby.Website.Controllers
 			_userAuthenticationService = userAuthenticationService;
 		}
 
-		[Authorize(Roles = "Member")]
-		public IActionResult LeaderBuild()
-		{
-			try
-			{
-				ViewBag.buildMemberId = _userAuthenticationService.GetUserId();
-			}
-			catch (Exception)
-			{
-
-				throw new Exception("Error!");
-			}
-
-			return View();
-		}
-
         [Authorize(Roles = "Member")]
         [HttpPost]
 		public IActionResult LeaderEdit([FromForm] int id)
