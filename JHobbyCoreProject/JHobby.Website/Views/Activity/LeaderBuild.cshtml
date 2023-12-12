@@ -217,7 +217,7 @@
                         activityCity: "",
                         activityArea: "",
                         activityLocation: "",
-                        startTime: null,
+                        startTime: "",
                         maxPeople: "",
                         categoryId: "",
                         categoryTypeId: "",
@@ -351,7 +351,7 @@
                     fetch("/ActivityApi/LeaderCreate", {
                         method: "POST",
                         body: formData
-                    }).then(r => { if (!r.ok) { throw new r; } return r.json(); })
+                    }).then(r => { if (!r.ok) { throw new Error("Error"); } return r.json(); })
                         .then(d => {
                             self.activityBuild = d;
                             if (d == true) {
