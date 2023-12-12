@@ -27,7 +27,7 @@ namespace JHobby.Service.Implements
             smtpClient.Port = 587;
             smtpClient.EnableSsl = true;
 
-            smtpClient.Credentials = new NetworkCredential("JHobby.THM103@gmail.com", "qbay cfun ebum bjhj");
+            smtpClient.Credentials = new NetworkCredential("JHobby.THM103@gmail.com", "dfgr qjhw rbqz zold");
 
             var mail = new MailMessage();
 
