@@ -116,7 +116,8 @@
                                                                     前往頁面
                                                                 </a>
                                                                 <a class="dropdown-item"
-                                                                   @@click="joinAGroupCancel">
+                                                                   data-bs-toggle="modal"
+                                                                   data-bs-target="#request-cancel-join">
                                                                     <i class="feather-corner-down-left"></i>
                                                                     取消報名
                                                                 </a>
@@ -129,9 +130,91 @@
                                         </table>
                                     </div>
                                 </div>
-
                             </div>
                         </div>
+                        <!-- 取消報名的彈跳視窗V1.0 -->
+                        <div class="modal custom-modal fade request-modal"
+                             id="request-cancel-join"
+                             style="display: none"
+                             aria-hidden="true"
+                             ref="modal">
+                            <div class="modal-dialog modal-dialog-centered modal-md"
+                                 style="max-width: 675px">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <div class="form-header modal-header-title">
+                                            <h4 class="mb-0">取消報名</h4>
+                                        </div>
+                                        <a class="close"
+                                           data-bs-dismiss="modal"
+                                           aria-label="Close">
+                                            <span class="align-center" aria-hidden="true">
+                                                <i class="feather-x"></i>
+                                            </span>
+                                        </a>
+                                    </div>
+                                    <div class="modal-body">
+                                        <!-- Court Request -->
+                                        <div class="row">
+                                            <div class="col-lg-12">
+                                                <div class="card dashboard-card court-information">
+                                                    <div class="d-flex align-items-center justify-content-between">
+                                                        <div class="card-header">
+                                                            <h4>取消報名注意事項:</h4>
+                                                            <p>1.送出後就無法再進行更改</p>
+                                                            <p>2.取消後無法再次報名</p>
+                                                        </div>
+                                                        <div class="appointment-info">
+                                                            <!-- 訊息欄位 -->
+                                                            <ul>
+                                                                <li>
+                                                                    <div class="appointment-item">
+                                                                        <div class="appointment-img">
+                                                                            <img :src="`${currentCard.imageName}`"
+                                                                                 alt="User" />
+                                                                        </div>
+                                                                        <div class="appointment-content">
+                                                                            <h6>
+                                                                                {{currentCard.activityName}}
+                                                                            </h6>
+                                                                            <p class="color-green">
+                                                                                目前人數:
+                                                                                {{currentCard.currentPeople}}人
+                                                                            </p>
+                                                                        </div>
+                                                                    </div>
+                                                                </li>
+                                                                <li>
+                                                                    <h6>活動時間</h6>
+                                                                    <p>{{currentCard.dateConvert}}</p>
+                                                                    <p>{{currentCard.timeConvert}}</p>
+                                                                </li>
+                                                            </ul>
+                                                            <!-- 訊息欄位 -->
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- /Court Request -->
+                                    </div>
+                                    <div class="modal-footer">
+                                        <div class="table-accept-btn">
+                                            <a href="javascript:;"
+                                               class="btn cancel-table-btn"
+                                               @@click="joinAGroupCancel">確定取消報名</a>
+                                        </div>
+                                        <div class="table-accept-btn">
+                                            <a href="javascript:;"
+                                               class="btn accept-btn"
+                                               data-bs-toggle="modal"
+                                               data-bs-target="#request-reject">上一頁</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- 取消報名的彈跳視窗V1.0  -->
                     </div>
                     <!--/報名紀錄-->
                     <!-- 心願單 -->
@@ -481,7 +564,7 @@
 
 @section Scripts
 {
-    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.prod.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="https://unpkg.com/vuejs-paginate-next@latest/dist/vuejs-paginate-next.umd.js"></script>
     <script>
@@ -490,8 +573,8 @@
             data() {
                 return {
                     nowJoinAGroupCard: [],
-                    countPerPage: 5,
                     pageNumber: 1,
+                    total: 0,
                     memberId: @loginMemberId,
                     currentCard: "",
                     activityId: "",
@@ -503,25 +586,25 @@
                 this.axiosNowJoinAGroupCard();
             },
             computed: {
-                total() {
-                    return Math.ceil(this.nowJoinAGroupCard.length / this.countPerPage);
-                },
                 filterCard() {
-                    var start = (this.pageNumber - 1) * this.countPerPage;
-                    var end = start + this.countPerPage;
-                    return this.nowJoinAGroupCard.slice(start, end);
-                }
+                    return this.nowJoinAGroupCard;
+                },
             },
             methods: {
                 axiosNowJoinAGroupCard: function () {
                     let _this = this;
                     axios
-                        .get(`/NowJoinAGroupApi/GetNowJoinAGroupById?memberId=${_this.memberId}`)
-                        .then((response) => { _this.nowJoinAGroupCard = response.data; })
+                        .get(`/NowJoinAGroupApi/GetNowJoinAGroupById?memberId=${_this.memberId}&pageNumber=${_this.pageNumber}`)
+                        .then(response => {
+                            _this.nowJoinAGroupCard = response.data.items;
+                            _this.total = response.data.totalPages;
+                            _this.pageNumber = response.data.pageNumber;
+                        })
                         .catch((erro) => { alert(`Erro: ${erro}`); });
                 },
                 pageClick(num) {
                     this.pageNumber = num;
+                    this.axiosNowJoinAGroupCard();
                 },
                 joinAGroupCancel() {
                     let _this = this;
@@ -537,22 +620,23 @@
                         )
                         .then((response) => {
                             if (response.status === 200) {
-                            // 直接從現有的 nowJoinAGroupCard 中移除該項目
-                            _this.nowJoinAGroupCard = _this.nowJoinAGroupCard.filter(
-                                (card) =>
-                                    !(
-                                        card.activityUserId === _this.currentCard.activityUserId &&
-                                        card.memberId === _this.currentCard.memberId
-                                    )
-                            );
-                            if (_this.filterCard.length === 0 && _this.pageNumber > 1) {
-                                _this.pageClick(_this.pageNumber - 1);
+                                // 直接從現有的 nowJoinAGroupCard 中移除該項目
+                                _this.nowJoinAGroupCard = _this.nowJoinAGroupCard.filter(
+                                    (card) =>
+                                        !(
+                                            card.activityUserId === _this.currentCard.activityUserId &&
+                                            card.memberId === _this.currentCard.memberId
+                                        )
+                                );
+                                if (_this.filterCard.length === 0 && _this.pageNumber > 1) {
+                                    _this.pageClick(_this.pageNumber - 1);
                                 }; 
-                        } else {
-                        alert("取消參加失敗");
+                            } else {
+                                alert("取消參加失敗");
                             };
-                })
+                        })
                         .catch((erro) => alert(`Erro: ${erro}`));
+                    $("#request-cancel-join").modal("hide");
                 },
                 setCurrentCard(card) {
                     this.currentCard = card;
@@ -588,13 +672,8 @@
                 this.axiosWishListCard();
             },
             computed: {
-                total() {
-                    return Math.ceil(this.wishListCard.length / this.countPerPage);
-                },
                 filterCard() {
-                    var start = (this.pageNumber - 1) * this.countPerPage;
-                    var end = start + this.countPerPage;
-                    return this.wishListCard.slice(start, end);
+                    return this.wishListCard;
                 }
             },
             methods:
@@ -602,13 +681,17 @@
                 axiosWishListCard: function () {
                     var _this = this;
                     axios
-                        .get(`/WishListApi/GetWishListById?memberId=${_this.memberId}`)
-                        .then(response => _this.wishListCard = response.data)
+                        .get(`/WishListApi/GetWishListById?memberId=${_this.memberId}&pageNumber=${_this.pageNumber}`)
+                        .then(response => {
+                            _this.wishListCard = response.data.items;
+                            _this.total = response.data.totalPages;
+                            _this.pageNumber = response.data.pageNumber;
+                        })
                         .catch(error => alert(`發生錯誤${error}`))
-
                 },
                 pageClick(num) {
                     this.pageNumber = num;
+                    this.axiosWishListCard();
                 },
                 collectAGroupCancel(card) {
                     let _this = this;
@@ -644,45 +727,52 @@
             .mount("#idWishListCard");
 
         // 過去活動卡片顯示
-        const pastJoinAGroup = Vue.createApp({
+        const pastJoinAGroupApp = Vue.createApp({
             data() {
                 return {
                     pastJoinAGroupCard: [],
-                    countPerPage: 5,
                     pageNumber: 1,
-                    memberId: @loginMemberId,
-                    currentCard: '',
+                    total: 0,
+                    memberId: @loginMemberId, //會員Id
+                    currentCard: "",
                     activityId: "",
                     pictureActivityId: "",
                     titleActivityId: "",
+                    scorePoint: "",
                     Star: 0,
-                    tempStar: 0,
+                    tempStar: 0, // 初始星星數為0
                     checkFraction: "",
                 };
             },
             mounted() {
                 this.axiosPastJoinAGroupCard();
-                $(this.$refs.modal).on('hidden.bs.modal', this.resetStarRating);
+                $(this.$refs.modal).on("hidden.bs.modal", this.resetStarRating);
             },
             computed: {
                 total() {
                     return Math.ceil(this.pastJoinAGroupCard.length / this.countPerPage);
                 },
                 filterCard() {
-                    var start = (this.pageNumber - 1) * this.countPerPage;
-                    var end = start + this.countPerPage;
-                    return this.pastJoinAGroupCard.slice(start, end);
-                }
+                    return this.pastJoinAGroupCard;
+                },
             },
             methods: {
                 axiosPastJoinAGroupCard: function () {
                     let _this = this;
-                    axios.get(`/PastJoinAGroupApi/GetPastJoinAGroupById?memberId=${_this.memberId}`)
-                        .then((response) => _this.pastJoinAGroupCard = response.data)
+                    axios
+                        .get(
+                            `/PastJoinAGroupApi/GetPastJoinAGroupById?memberId=${_this.memberId}&pageNumber=${_this.pageNumber}`
+                        )
+                        .then(response => {
+                            _this.pastJoinAGroupCard = response.data.items;
+                            _this.total = response.data.totalPages;
+                            _this.pageNumber = response.data.currentPage
+                        })
                         .catch((error) => alert(`發生錯誤: ${error}`));
                 },
                 pageClick(num) {
                     this.pageNumber = num;
+                    this.axiosPastJoinAGroupCard();
                 },
                 setCurrentCard(card) {
                     let _this = this;
@@ -704,7 +794,7 @@
                     const payload = {
                         fraction: _this.star,
                         activityId: _this.currentCard.activityId,
-                        memberId: 2,
+                        memberId: @loginMemberId, //會員Id
                     };
                     axios
                         .post(
@@ -714,13 +804,14 @@
                                 headers: { "Content-Type": "application/json" },
                             }
                         )
-                        .then(response => {
+                        .then((response) => {
                             if (response.data === false) {
-                                alert("重複輸入");
-                            }
+                                alert("無法重複評分");
+                            } 
                             else {
-                                let cardListChange = _this.pastJoinAGroupCard
-                                    .findIndex(id => id.activityId === _this.currentCard.activityId);
+                                let cardListChange = _this.pastJoinAGroupCard.findIndex(
+                                    (id) => id.activityId === _this.currentCard.activityId
+                                );
 
                                 if (cardListChange != null) {
                                     _this.pastJoinAGroupCard[cardListChange].fraction = _this.star;
@@ -729,27 +820,29 @@
                             }
                         })
                         .catch((erro) => alert(`Erro: ${erro}`));
-                    $('#request-coche').modal('hide');
+                    $("#request-coche").modal("hide");
                 },
                 getClass(index) {
                     if (index <= this.tempStar) {
-                        return 'fas fa-star filled';
+                        return "fas fa-star filled"; // 如果該星星的索引小於等於當前分數，則為填滿狀態
                     } else {
-                        return 'fa-regular fa-star';
+                        return "fa-regular fa-star"; // 否則為空星星狀態
                     }
                 },
                 selectScore(index) {
                     if (this.checkFraction === null) {
+                        // 只有當 checkFraction 為 0 時才允許選擇分數
                         this.tempStar = index;
-                    }
+                    } // 只更新暫存分數
                 },
                 resetStarRating() {
                     this.tempStar = 0;
                     this.star = 0;
                 },
                 showStartScore() {
-                    this.checkFraction = this.currentCard.fraction;
-                }
+                    let _this = this;
+                    _this.checkFraction = _this.currentCard.fraction;
+                },
             },
         })
             .component("paginate", VuejsPaginateNext)

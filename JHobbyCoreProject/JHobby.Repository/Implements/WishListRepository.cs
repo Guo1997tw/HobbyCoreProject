@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace JHobby.Repository.Implements
 {
@@ -36,24 +37,24 @@ namespace JHobby.Repository.Implements
               });
         }
 
-        public IEnumerable<WishListDto> GetWishListById(int memberId)
-        {
-            var imageName = _jhobbyContext.ActivityImages.Select(ai =>new { id = ai.ActivityId, imageName = ai.ImageName });
+        //public IEnumerable<WishListDto> GetWishListById(int memberId)
+        //{
+        //    var imageName = _jhobbyContext.ActivityImages.Select(ai =>new { id = ai.ActivityId, imageName = ai.ImageName });
 
-            return _jhobbyContext.Wishes.Where(w => w.MemberId == memberId)
-                .Include(a => a.Activity)
-                .Select(w => new WishListDto
-                {
-                    WishId = w.WishId,
-                    MemberId = w.MemberId,
-                    ActivityId = w.ActivityId,
-                    ActivityName = w.Activity.ActivityName,
-                    ActivityStatus = w.Activity.ActivityStatus,
-                    MaxPeople = w.Activity.MaxPeople,
-                    CurrentPeople = w.Activity.CurrentPeople,
-                    ImageName = imageName.FirstOrDefault(iN => iN.id == w.ActivityId).imageName,
-                });
-        }
+        //    return _jhobbyContext.Wishes.Where(w => w.MemberId == memberId)
+        //        .Include(a => a.Activity)
+        //        .Select(w => new WishListDto
+        //        {
+        //            WishId = w.WishId,
+        //            MemberId = w.MemberId,
+        //            ActivityId = w.ActivityId,
+        //            ActivityName = w.Activity.ActivityName,
+        //            ActivityStatus = w.Activity.ActivityStatus,
+        //            MaxPeople = w.Activity.MaxPeople,
+        //            CurrentPeople = w.Activity.CurrentPeople,
+        //            ImageName = imageName.FirstOrDefault(iN => iN.id == w.ActivityId).imageName,
+        //        });
+        //}
 
         public bool WishListDelete(int memberId, int wishId)
         {
@@ -67,6 +68,49 @@ namespace JHobby.Repository.Implements
                 return true;
             }
             else { return false; }
+        }
+
+        public PageFilterDto<WishListDto> GetWishListById(int memberId, int pageNumber, int countPerPage)
+        {
+            var imageName = _jhobbyContext.ActivityImages.Select(ai => new { id = ai.ActivityId, imageName = ai.ImageName });
+
+            var query = _jhobbyContext.Wishes.Where(w => w.MemberId == memberId)
+                .Include(a => a.Activity)
+                .Select(w => new WishListDto
+                {
+                    WishId = w.WishId,
+                    MemberId = w.MemberId,
+                    ActivityId = w.ActivityId,
+                    ActivityName = w.Activity.ActivityName,
+                    ActivityStatus = w.Activity.ActivityStatus,
+                    MaxPeople = w.Activity.MaxPeople,
+                    CurrentPeople = w.Activity.CurrentPeople,
+                    ImageName = imageName.FirstOrDefault(iN => iN.id == w.ActivityId).imageName,
+                });
+
+            var totalItems = query.Count();
+            var totalPage = (int)Math.Ceiling(totalItems / (decimal)countPerPage);
+            var filterPage = query
+                .Skip((pageNumber - 1) * countPerPage)
+                .Take(countPerPage);
+
+            return new PageFilterDto<WishListDto>
+            {
+                PageNumber = pageNumber,
+                TotalPages = totalPage,
+                Items = filterPage
+            };
+        }
+
+        public IEnumerable<WishListDto> GetWishListById(int memberId)
+        {
+            return _jhobbyContext.Wishes.Where(w => w.MemberId == memberId)
+                .Include(a => a.Activity)
+                .Select(w => new WishListDto
+                {
+                    MemberId = w.MemberId,
+                    ActivityId = w.ActivityId,
+                });
         }
     }
 }
