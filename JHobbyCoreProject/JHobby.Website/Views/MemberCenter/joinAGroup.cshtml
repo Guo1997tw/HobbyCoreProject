@@ -600,7 +600,12 @@
                             _this.total = response.data.totalPages;
                             _this.pageNumber = response.data.pageNumber;
                         })
-                        .catch((erro) => { alert(`Erro: ${erro}`); });
+                        .catch(erro => Swal.fire({
+                            text: "報名紀錄出了點錯!請洽本站客服!",
+                            icon: "error",
+                            confirmButtonColor: "#097E52",
+                            confirmButtonText: "確認"
+                        }));
                 },
                 pageClick(num) {
                     this.pageNumber = num;
@@ -632,10 +637,20 @@
                                     _this.pageClick(_this.pageNumber - 1);
                                 }; 
                             } else {
-                                alert("取消參加失敗");
+                                alert(Swal.fire({
+                                    text: "取消參加失敗",
+                                    icon: "warning",
+                                    confirmButtonColor: "#097E52",
+                                    confirmButtonText: "確認"
+                                }));
                             };
                         })
-                        .catch((erro) => alert(`Erro: ${erro}`));
+                        .catch(erro => Swal.fire({
+                            text: "取消報名出了點錯!請洽本站客服!",
+                            icon: "error",
+                            confirmButtonColor: "#097E52",
+                            confirmButtonText: "確認"
+                        }));
                     $("#request-cancel-join").modal("hide");
                 },
                 setCurrentCard(card) {
@@ -687,7 +702,12 @@
                             _this.total = response.data.totalPages;
                             _this.pageNumber = response.data.pageNumber;
                         })
-                        .catch(error => alert(`發生錯誤${error}`))
+                        .catch(error => Swal.fire({
+                            text: "心願單出了點錯!請洽本站客服!",
+                            icon: "error",
+                            confirmButtonColor: "#097E52",
+                            confirmButtonText: "確認"
+                        }))
                 },
                 pageClick(num) {
                     this.pageNumber = num;
@@ -705,9 +725,19 @@
                             if (_this.filterCard.length === 0 && _this.pageNumber > 1) {
                                 _this.pageClick(_this.pageNumber - 1);
                             }
-                            ; alert("已取消收藏")
+                            ; Swal.fire({
+                                text: "已取消收藏",
+                                icon: "warning",
+                                confirmButtonColor: "#097E52",
+                                confirmButtonText: "確認"
+                            });
                         })
-                        .catch(erro => alert(`${erro}`))
+                        .catch(erro => Swal.fire({
+                            text: "取消心願單出了點錯!請洽本站客服!",
+                            icon: "error",
+                            confirmButtonColor: "#097E52",
+                            confirmButtonText: "確認"
+                        }))
                 },
                 setCurrentCard(card) {
                     this.currentCard = card;
@@ -768,7 +798,12 @@
                             _this.total = response.data.totalPages;
                             _this.pageNumber = response.data.currentPage
                         })
-                        .catch((error) => alert(`發生錯誤: ${error}`));
+                        .catch(error => Swal.fire({
+                            text: "過去參團紀錄出了點錯!請洽本站客服!",
+                            icon: "error",
+                            confirmButtonColor: "#097E52",
+                            confirmButtonText: "確認"
+                        }));
                 },
                 pageClick(num) {
                     this.pageNumber = num;
@@ -806,7 +841,12 @@
                         )
                         .then((response) => {
                             if (response.data === false) {
-                                alert("無法重複評分");
+                                Swal.fire({
+                                    text: "無法重複評分",
+                                    icon: "warning",
+                                    confirmButtonColor: "#097E52",
+                                    confirmButtonText: "確認"
+                                });
                             } 
                             else {
                                 let cardListChange = _this.pastJoinAGroupCard.findIndex(
@@ -816,10 +856,20 @@
                                 if (cardListChange != null) {
                                     _this.pastJoinAGroupCard[cardListChange].fraction = _this.star;
                                 }
-                                alert("評分成功");
+                                Swal.fire({
+                                    text: "評分成功",
+                                    icon: "success",
+                                    confirmButtonColor: "#097E52",
+                                    confirmButtonText: "確認"
+                                });
                             }
                         })
-                        .catch((erro) => alert(`Erro: ${erro}`));
+                        .catch(erro => Swal.fire({
+                            text: "送出評分有點錯!請洽網站客服!",
+                            icon: "error",
+                            confirmButtonColor: "#097E52",
+                            confirmButtonText: "確認"
+                        }));
                     $("#request-coche").modal("hide");
                 },
                 getClass(index) {
