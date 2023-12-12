@@ -53,7 +53,14 @@
                 var emailRule = /^[a-zA-Z0-9._-]+@@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
 
                 if (!emailRule.test(this.memberReset.account)) {
-                    return alert("電子信箱格式有誤，請確認!!");
+                    Swal.fire({
+                        position: "center",
+                        icon: "info",
+                        title: "電子信箱格式有誤，請確認!!",
+                        showConfirmButton: false,
+                        timer: 2000
+                    });
+                    return
                 }
 
                 let self = this;
@@ -65,9 +72,20 @@
                 }).then(r => { if (!r.ok) throw new Error('Response Fail'); })
                     .then(d => {
                         console.log('Success');
-                        alert("信件已寄出，請確認。登入後請更改密碼，謝謝!!")
+                        Swal.fire({
+                            position: "center",
+                            icon: "success",
+                            title: "信件已寄出，請確認。登入後請更改密碼，謝謝!!",
+                            showConfirmButton: false,
+                            timer: 2000
+                        });
                         self.memberReset.account = "";
-                    }).catch(e => { console.log(e); });
+                    }).catch(err => Swal.fire({
+                        text: err,
+                        icon: "error",
+                        confirmButtonColor: "#097E52",
+                        confirmButtonText: "確認"
+                    }));
             },
         },
     }).mount("#restPwd");
