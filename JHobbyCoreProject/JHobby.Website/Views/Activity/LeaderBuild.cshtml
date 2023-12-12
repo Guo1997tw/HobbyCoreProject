@@ -333,7 +333,14 @@
                             confirmButtonText: "確認"
                         });
                     }
-
+                    if (self.activityBuild.startTime < self.activityBuild.joinDeadLine) {
+                        return Swal.fire({
+                            text: "活動截止時間需在活動開始時間之前!!",
+                            icon: "warning",
+                            confirmButtonColor: "#097E52",
+                            confirmButtonText: "確認"
+                        });
+                    }
                     if (!self.fileOne || !self.fileTwo || !self.fileThree) { 
                         return Swal.fire({
                             text: "請上傳圖片!!",
@@ -342,7 +349,6 @@
                             confirmButtonText: "確認"
                         });
                     }
-
                     if (this.fileOne) formData.append('file', self.fileOne);
                     if (this.fileTwo) formData.append('file', self.fileTwo);
                     if (this.fileThree) formData.append('file', self.fileThree);
