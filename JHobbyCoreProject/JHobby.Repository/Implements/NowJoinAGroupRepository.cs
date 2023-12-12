@@ -34,7 +34,7 @@ namespace JHobby.Repository.Implements
             return nowDto;
         }
 
-        public PageFilterDto<NowJoinAGroupDto> GetNowJoinAGroupById(int memberId, int pageNumber, int pageSize)
+        public PageFilterDto<NowJoinAGroupDto> GetNowJoinAGroupById(int memberId, int pageNumber, int countPerPage)
         {
             var activityUser = _jhobbyContext.Members.Select(x => new { id = x.MemberId, nickName = x.NickName });
             var activityImage = _jhobbyContext.ActivityImages.Select(a => new { id = a.ActivityId, imageName = a.ImageName });
@@ -61,10 +61,10 @@ namespace JHobby.Repository.Implements
             });
 
             var totalItems = query.Count();
-            var totalPage = (int)Math.Ceiling(totalItems / (decimal)pageSize);
+            var totalPage = (int)Math.Ceiling(totalItems / (decimal)countPerPage);
             var filterPage = query
-                .Skip((pageNumber - 1) * pageSize)
-                .Take(pageSize);
+                .Skip((pageNumber - 1) * countPerPage)
+                .Take(countPerPage);
 
             return new PageFilterDto<NowJoinAGroupDto>
             {
