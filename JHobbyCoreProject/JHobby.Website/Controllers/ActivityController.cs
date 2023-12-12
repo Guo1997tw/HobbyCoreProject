@@ -1,4 +1,5 @@
 ﻿using JHobby.Service.Interfaces;
+using JHobby.Website.Models.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -29,6 +30,23 @@ namespace JHobby.Website.Controllers
                 ViewBag.verifyMemberId = 0;
             }
 
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult ActivityCenter([FromForm] SearchArgsViewModel SearchArgs)
+        {
+            try
+            {
+                ViewBag.logIn = true;
+                ViewBag.verifyMemberId = _userAuthenticationService.GetUserId();
+            }
+            catch (Exception)
+            {
+                ViewBag.logIn = false;
+                ViewBag.verifyMemberId = 0;
+            }
+            ViewBag.search = SearchArgs;
             return View();
         }
     }
