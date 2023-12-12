@@ -161,7 +161,7 @@ function CheckPhone() {
     if ($("#phone").val().trim().length && !reg.test($("#phone").val().trim())) {
         Swal.fire({
             text: "手機號碼不正確，請重新輸入!",
-            icon: "error",
+            icon: "warrning",
             confirmButtonColor: "#097E52",
             confirmButtonText: "確認"
         });

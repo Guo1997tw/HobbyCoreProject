@@ -309,7 +309,7 @@
                         !self.activityUpdate.activityNotes) {
                         return Swal.fire({
                             text: "請填寫所有欄位!!",
-                            icon: "error",
+                            icon: "warning",
                             confirmButtonColor: "#097E52",
                             confirmButtonText: "確認"
                         });
@@ -319,7 +319,7 @@
                     if (isNaN(self.activityUpdate.maxPeople)) {
                         return Swal.fire({
                             text: "請輸入正確人數!!",
-                            icon: "error",
+                            icon: "warning",
                             confirmButtonColor: "#097E52",
                             confirmButtonText: "確認"
                         });
@@ -329,7 +329,7 @@
                     if (isNaN(self.activityUpdate.joinFee)) {
                         return Swal.fire({
                             text: "請輸入正確金額!!",
-                            icon: "error",
+                            icon: "warning",
                             confirmButtonColor: "#097E52",
                             confirmButtonText: "確認"
                         });

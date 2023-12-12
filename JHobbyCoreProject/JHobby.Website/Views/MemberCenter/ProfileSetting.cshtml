@@ -372,7 +372,7 @@
                         !_this.ProfileSetting.phone) {
                         Swal.fire({
                             text: "請填寫所有必填欄位!",
-                            icon: "error",
+                            icon: "warning",
                             confirmButtonColor: "#097E52",
                             confirmButtonText: "確認"
                         });
@@ -392,7 +392,7 @@
                     ) {
                         Swal.fire({
                             text: "請檢查欄位不可包含空白字元!",
-                            icon: "error",
+                            icon: "warning",
                             confirmButtonColor: "#097E52",
                             confirmButtonText: "確認"
                         });
@@ -403,7 +403,7 @@
                     if (!_this.file && !_this.ProfileSetting.headShot) {
                         Swal.fire({
                             text: "請上傳您的個人照片!",
-                            icon: "error",
+                            icon: "warning",
                             confirmButtonColor: "#097E52",
                             confirmButtonText: "確認"
                         });
@@ -414,7 +414,7 @@
                         if (!_this.isValid) {
                             Swal.fire({
                                 text: "身分證號碼有誤，請填寫正確資訊!",
-                                icon: "error",
+                                icon: "warning",
                                 confirmButtonColor: "#097E52",
                                 confirmButtonText: "確認"
                             });
@@ -502,7 +502,7 @@
                     if (validExts.indexOf(fileExt) < 0) {
                         Swal.fire({
                             text: "檔案類型錯誤，請重新選擇！",
-                            icon: "error",
+                            icon: "warning",
                             confirmButtonColor: "#097E52",
                             confirmButtonText: "確認"
                         });
