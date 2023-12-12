@@ -21,10 +21,9 @@
                                     <button class="btn btn-gradient pull-right write-review add-review" data-bs-toggle="modal" data-bs-target="#add-review"><a href="/MemberCenter/profilesetting">編輯個人資訊</a></button>
                                 </template>
                             </div>
-
-                            <ul class="d-sm-flex align-items-center">
+                            <ul class="d-sm-flex align-items-center"> 
                                 <li class="d-flex align-items-center">
-                                    <div class="white-bg d-flex align-items-center review venue-coach-details">
+                                    <div class="d-flex align-items-center review venue-coach-details">
                                         <span>個人評價:</span>
                                         <div class=" rating ">
                                             <i class="fas fa-star filled" v-for="n in Math.floor(star)"></i>
@@ -33,8 +32,8 @@
                                             <span>({{star}})</span>
                                         </div>
                                     </div>
-                                </li>
-                            </ul>
+                                 </li> 
+                             </ul> 
                             <img src="~/assets/img/icons/location.svg" />{{memberProfile.acitveCity}}
                         </div>
                     </div>
