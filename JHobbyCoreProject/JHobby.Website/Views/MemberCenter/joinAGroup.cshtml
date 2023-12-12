@@ -601,7 +601,7 @@
                             _this.pageNumber = response.data.pageNumber;
                         })
                         .catch(erro => Swal.fire({
-                            text: "報名紀錄出了點錯!請洽本站客服!",
+                            text: "報名紀錄出了點錯!",
                             icon: "error",
                             confirmButtonColor: "#097E52",
                             confirmButtonText: "確認"
@@ -637,12 +637,12 @@
                                     _this.pageClick(_this.pageNumber - 1);
                                 }; 
                             } else {
-                                alert(Swal.fire({
+                                Swal.fire({
                                     text: "取消參加失敗",
                                     icon: "warning",
                                     confirmButtonColor: "#097E52",
                                     confirmButtonText: "確認"
-                                }));
+                                });
                             };
                         })
                         .catch(erro => Swal.fire({
