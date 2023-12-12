@@ -44,25 +44,38 @@ namespace JHobby.Website.Controllers.Api
         {
             var queryResult = _aNowJoinAGroupService.GetNowJoinAGroupById(memberId, pageNumber, countPerPage);
 
-            return new PageFilterViewModel<NowJoinAGroupViewModel>
+            if (queryResult != null)
             {
-                PageNumber = queryResult.PageNumber,
-                TotalPages = queryResult.TotalPages,
-                Items = queryResult.Items.Select(s => new NowJoinAGroupViewModel
+                return new PageFilterViewModel<NowJoinAGroupViewModel>
                 {
-                    ActivityUserId = s.ActivityUserId,
-                    ActivityId = s.ActivityId,
-                    MemberId = s.MemberId,
-                    ActivityName = s.ActivityName,
-                    ReviewStatus = s.ReviewStatus,
-                    CurrentPeople = s.CurrentPeople,
-                    MaxPeople = s.MaxPeople,
-                    NickName = s.NickName,
-                    DateConvert = s.DateConvert,
-                    TimeConvert = s.TimeConvert,
-                    ImageName = s.ImageName,
-                })
-            };
+                    PageNumber = queryResult.PageNumber,
+                    TotalPages = queryResult.TotalPages,
+                    Items = queryResult.Items.Select(s => new NowJoinAGroupViewModel
+                    {
+                        ActivityUserId = s.ActivityUserId,
+                        ActivityId = s.ActivityId,
+                        MemberId = s.MemberId,
+                        ActivityName = s.ActivityName,
+                        ReviewStatus = s.ReviewStatus,
+                        CurrentPeople = s.CurrentPeople,
+                        MaxPeople = s.MaxPeople,
+                        NickName = s.NickName,
+                        DateConvert = s.DateConvert,
+                        TimeConvert = s.TimeConvert,
+                        ImageName = s.ImageName,
+                    })
+                };
+            }
+            else
+            {
+                return new PageFilterViewModel<NowJoinAGroupViewModel>
+                {
+                    PageNumber = 0,
+                    TotalPages = 0,
+                    Items = Enumerable.Empty<NowJoinAGroupViewModel>()
+                };
+            }
+
         }
 
         [HttpPut("{activityId}/{memberId}")]
