@@ -58,22 +58,6 @@ namespace JHobby.Website.Controllers
             return View();
         }
 
-        public IActionResult Newcomer()
-        {
-            ViewData["Title"] = "新手上路";
-            try
-            {
-                ViewBag.verifyMemberId = _userAuthenticationService.GetUserId();
-            }
-            catch (Exception)
-            {
-
-                return View();
-            }
-
-            return View();
-        }
-
         public IActionResult DashboardMenu()
         {
             return View();
