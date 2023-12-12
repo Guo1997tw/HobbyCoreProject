@@ -159,7 +159,13 @@ function GetDateTime() {
 function CheckPhone() {
     let reg = /^09[0-9]{8}$/;
     if ($("#phone").val().trim().length && !reg.test($("#phone").val().trim())) {
-        alert("手機號碼不正確，請重新輸入");
+        Swal.fire({
+            text: "手機號碼不正確，請重新輸入!",
+            icon: "error",
+            confirmButtonColor: "#097E52",
+            confirmButtonText: "確認"
+        });
+/*        alert("手機號碼不正確，請重新輸入");*/
         $("#phone").val("");
         return false
     }

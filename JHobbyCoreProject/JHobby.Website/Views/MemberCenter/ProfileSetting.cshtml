@@ -328,8 +328,10 @@
             },
             methods: {
                 validateIdNumber() {
+                    // 先將輸入值轉換為大寫
+                    this.ProfileSetting.identityCard = this.ProfileSetting.identityCard.toUpperCase();
                     // 使用正規表示式來驗證身分證號碼
-                    const regex = /^[A-Z][12][0-9]{8}$/;
+                    const regex = /^[A-Z][12][0-9]{8}$/g;
                     if (regex.test(this.ProfileSetting.identityCard)) {
                         this.isValid = true; // 設置為 true，表示格式正確
                     } else {
@@ -368,7 +370,13 @@
                         !_this.ProfileSetting.activeArea ||
                         !_this.ProfileSetting.address ||
                         !_this.ProfileSetting.phone) {
-                        alert("請填寫所有必填欄位！");
+                        Swal.fire({
+                            text: "請填寫所有必填欄位!",
+                            icon: "error",
+                            confirmButtonColor: "#097E52",
+                            confirmButtonText: "確認"
+                        });
+                        // alert("請填寫所有必填欄位！");
                         return;
                     }
                     if (
@@ -382,17 +390,37 @@
                         /\s/.test(_this.ProfileSetting.address) ||
                         /\s/.test(_this.ProfileSetting.phone)
                     ) {
-                        alert("請檢查欄位不可包含空白字元！");
+                        Swal.fire({
+                            text: "請檢查欄位不可包含空白字元!",
+                            icon: "error",
+                            confirmButtonColor: "#097E52",
+                            confirmButtonText: "確認"
+                        });
+                        // alert("請檢查欄位不可包含空白字元！");
                         return;
                     }
                     // 檢查是否有上傳圖片
                     if (!_this.file && !_this.ProfileSetting.headShot) {
-                        alert("請上傳您的個人照片");
+                        Swal.fire({
+                            text: "請上傳您的個人照片!",
+                            icon: "error",
+                            confirmButtonColor: "#097E52",
+                            confirmButtonText: "確認"
+                        });
+                        // alert("請上傳您的個人照片");
                         return; // 阻止儲存操作
                     }
-                    if (!_this.isValid) {
-                        alert("身分證號碼有誤，請填寫正確資訊！");
-                        return; // 阻止儲存操作
+                    if (_this.ProfileSetting.status === "0") {
+                        if (!_this.isValid) {
+                            Swal.fire({
+                                text: "身分證號碼有誤，請填寫正確資訊!",
+                                icon: "error",
+                                confirmButtonColor: "#097E52",
+                                confirmButtonText: "確認"
+                            });
+                            // alert("身分證號碼有誤，請填寫正確資訊!");
+                            return; // 阻止儲存操作
+                        }
                     }
                     if (!CheckPhone()) {
                         return;
@@ -428,19 +456,38 @@
                             //_this.ProfileSetting = res.data;
                             _this.ProfileSetting = {};
                             _this.message = "儲存完成，請重新登入後再次使用"
-                            alert("儲存完成，請重新登入後再次使用");
+                            Swal.fire({
+                                text: "請重新登入後再次使用",
+                                icon: "success",
+                                confirmButtonColor: "#097E52",
+                                confirmButtonText: "確認"
+                            });
+                            setTimeout(() => { javascript: location.href = "/Member/Login" }, 3000);
+                            // alert("儲存完成，請重新登入後再次使用");
                             // _this.$forceUpdate();
                             //javascript: location.href = "/Profile/MemberProfile/@verifyMemberId"
-                            javascript: location.href = "/Member/Login"
+                            // javascript: location.href = "/Member/Login"
                         })
-                        .catch(err => alert("儲存失敗"));
+                        .catch(err => Swal.fire({
+                            text: err,
+                            icon: "error",
+                            confirmButtonColor: "#097E52",
+                            confirmButtonText: "確認"
+                        }));
+                        // .catch(err => alert("儲存失敗"));
                 },
                 Reset() {
                     let _this = this;
                     _this.file = null;
                     _this.blnStatus = false;
                     _this.message = "重置完成"
-                    alert("重置完成");
+                    Swal.fire({
+                        text: "重置完成",
+                        icon: "success",
+                        confirmButtonColor: "#097E52",
+                        confirmButtonText: "確認"
+                    });
+                    // alert("重置完成");
                     // 重新發起 API 請求
                     _this.GetProfile();
                 },
@@ -453,7 +500,13 @@
                     let fileExt = _this.file.name
                     fileExt = fileExt.substring(fileExt.lastIndexOf('.'))
                     if (validExts.indexOf(fileExt) < 0) {
-                        alert("檔案類型錯誤，請重新選擇");
+                        Swal.fire({
+                            text: "檔案類型錯誤，請重新選擇！",
+                            icon: "error",
+                            confirmButtonColor: "#097E52",
+                            confirmButtonText: "確認"
+                        });
+                        // alert("檔案類型錯誤，請重新選擇");
                         _this.Reset();
                     }
                 },

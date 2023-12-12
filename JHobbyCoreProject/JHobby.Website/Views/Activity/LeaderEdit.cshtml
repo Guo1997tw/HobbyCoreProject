@@ -306,11 +306,35 @@
                         !self.activityUpdate.categoryTypeId ||
                         !self.activityUpdate.joinDeadLine ||
                         // !self.activityUpdate.joinFee ||
-                        !self.activityUpdate.activityNotes) { return alert("請填寫所有欄位!!"); }
+                        !self.activityUpdate.activityNotes) {
+                        return Swal.fire({
+                            text: "請填寫所有欄位!!",
+                            icon: "error",
+                            confirmButtonColor: "#097E52",
+                            confirmButtonText: "確認"
+                        });
+                        /* return alert("請填寫所有欄位!!"); */
+                    }
 
-                    if (isNaN(self.activityUpdate.maxPeople)) { return alert("請輸入正確人數!!"); }
+                    if (isNaN(self.activityUpdate.maxPeople)) {
+                        return Swal.fire({
+                            text: "請輸入正確人數!!",
+                            icon: "error",
+                            confirmButtonColor: "#097E52",
+                            confirmButtonText: "確認"
+                        });
+                    }
+                        // return alert("請輸入正確人數!!"); }
 
-                    if (isNaN(self.activityUpdate.joinFee)) { return alert("請輸入正確金額!!"); }
+                    if (isNaN(self.activityUpdate.joinFee)) {
+                        return Swal.fire({
+                            text: "請輸入正確金額!!",
+                            icon: "error",
+                            confirmButtonColor: "#097E52",
+                            confirmButtonText: "確認"
+                        });
+                    }
+                        // alert("請輸入正確金額!!"); }
 
                     // if (this.fileOne) formData.append('file', self.fileOne);
                     // if (this.fileTwo) formData.append('file', self.fileTwo);
@@ -337,12 +361,24 @@
                             self.activityUpdate = d;
                             if (d == true) {
                                 console.log('Success', d);
-                                alert("修改成功");
-
-                                javascript: location.href = "/MemberCenter/LaunchATeam";
+                                Swal.fire({
+                                    text: "修改成功",
+                                    icon: "success",
+                                    confirmButtonColor: "#097E52",
+                                    confirmButtonText: "確認"
+                                });
+                                // alert("修改成功");
+                                setTimeout(() => { javascript: location.href = "/MemberCenter/LaunchATeam" }, 2000);
+                                // javascript: location.href = "/MemberCenter/LaunchATeam";
                             }
                             else {
-                                alert("修改失敗");
+                                Swal.fire({
+                                    text: "修改失敗",
+                                    icon: "error",
+                                    confirmButtonColor: "#097E52",
+                                    confirmButtonText: "確認"
+                                });
+                                // alert("修改失敗");
 
                                 self.getActivityById();
                             }
