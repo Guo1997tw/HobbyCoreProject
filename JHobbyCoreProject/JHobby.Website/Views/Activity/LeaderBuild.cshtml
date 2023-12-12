@@ -332,40 +332,40 @@
                     formData.append('joinFee', self.activityBuild.joinFee);
                     formData.append('activityNotes', self.activityBuild.activityNotes);
 
-                    axios.post("/ActivityApi/LeaderCreate", formData, {
-                        headers: {
-                            'Content-Type': 'multipart/form-data'
-                        }
-                    }).then(response => {
-                        const d = response.data;
-                        self.activityBuild = d;
-                        if (d === true) {
-                            console.log('Success', d);
-                            alert("建立成功");
-                            location.href = "/MemberCenter/LaunchATeam";
-                        } else {
-                            alert("修改失敗");
-                        }
-                    })
-                },
+                    // axios.post("/ActivityApi/LeaderCreate", formData, {
+                    //     headers: {
+                    //         'Content-Type': 'multipart/form-data'
+                    //     }
+                    // }).then(response => {
+                    //     const d = response.data;
+                    //     self.activityBuild = d;
+                    //     if (d === true) {
+                    //         console.log('Success', d);
+                    //         alert("建立成功");
+                    //         location.href = "/MemberCenter/LaunchATeam";
+                    //     } else {
+                    //         alert("修改失敗");
+                    //     }
+                    // })
 
-                //     await fetch("/ActivityApi/LeaderCreate", {
-                //         method: "POST",
-                //         headers: { 'Content-Type': 'application/form-data' },
-                //         body: formData
-                //     }).then(r => r.json())
-                //         .then(d => {
-                //             self.activityBuild = d;
-                //             if (d == true) {
-                //                 console.log('Success', d);
-                //                 alert("建立成功");
-                //                 javascript: location.href = "/MemberCenter/LaunchATeam";
-                //             }
-                //             else {
-                //                 alert("修改失敗");
-                //             }
-                //         });
-                // },
+                    fetch("/ActivityApi/LeaderCreate", {
+                        method: "POST",
+                        body: formData
+                    }).then(r => { if (!r.ok) { throw new Error('Network response was not ok'); return r.json(); } })
+                        .then(d => {
+                            self.activityBuild = d;
+                            if (d == true) {
+                                console.log('Success', d);
+                                alert("建立成功");
+                                javascript: location.href = "/MemberCenter/LaunchATeam";
+                            }
+                            else {
+                                alert("修改失敗");
+                            }
+                        }).catch(e => {
+                            console.log(e);
+                        });
+                },
 
                 cancelBuild() {
                     window.location.href = "/MemberCenter/LaunchATeam";
