@@ -1,4 +1,5 @@
-﻿using JHobby.Service.Models;
+﻿using JHobby.Repository.Models.Dto;
+using JHobby.Service.Models;
 
 namespace JHobby.Service.Interfaces
 {
@@ -6,9 +7,10 @@ namespace JHobby.Service.Interfaces
     {
         public IEnumerable<WishListModel> GetWishListAll();
 
-        public IEnumerable<WishListModel> GetWishListById(int memberId);
+        //public IEnumerable<WishListModel> GetWishListById(int memberId);
 
         public bool WishListDelete(int memberId,int wishId);
 
+        public PageFilterDto<WishListModel> GetWishListById(int memberId, int pageNumber, int countPerPage);
     }
 }

@@ -20,8 +20,6 @@ namespace JHobby.Service.Models
 
         public string ReviewStatus { get; set; } = null!;
 
-        public DateTime ReviewTime { get; set; }
-
         public int? CurrentPeople { get; set; }
 
         public int? MaxPeople { get; set; }
@@ -29,11 +27,10 @@ namespace JHobby.Service.Models
         //團主NickName
         public string? NickName { get; set; }
 
-        public DateTime StartTime { get; set; }
-
         public string? DateConvert { get; set; }
 
         public string? TimeConvert { get; set; }
+
         public string ImageName { get; set; } = null!;
 
     }

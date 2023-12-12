@@ -6,6 +6,7 @@ using JHobby.Repository.Models.Entity;
 using JHobby.Service.Implements;
 using JHobby.Service.Interfaces;
 using JHobby.Website.Controllers.Api;
+using JHobby.Website.Filter;
 using JHobby.Website.Job;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.Data.SqlClient;
@@ -146,7 +147,11 @@ namespace JHobby.Website
 
             app.UseAuthorization();
 
-            app.UseHangfireDashboard();
+            // app.UseHangfireDashboard();
+            app.UseHangfireDashboard("/JHobbyJob", new DashboardOptions()
+            {
+                Authorization = new[] { new HangfireCustomAuthorizeFilter() }
+            });
 
             app.MapControllerRoute(
                 name: "default",

@@ -31,6 +31,7 @@
   </ItemGroup>
 
   <ItemGroup>
+	<Folder Include="wwwroot\activityImgs\" />
 	<Folder Include="wwwroot\css\" />
     <Folder Include="wwwroot\images\register\" />
     <Folder Include="wwwroot\profile\" />
