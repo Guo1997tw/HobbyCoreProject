@@ -259,9 +259,12 @@
                             let _this = this;
                             _this.reviewData = response.data;
                         })
-                        .catch((error) => {
-                            alert(`發生錯誤: ${error}`);
-                        });
+                        .catch(err => Swal.fire({
+                            text: err,
+                            icon: "error",
+                            confirmButtonColor: "#097E52",
+                            confirmButtonText: "確認"
+                        }));
                 },
                 updateOk: function (item) {
                     let _this = this;
@@ -276,9 +279,12 @@
                             _this.reviewData = response.data;
                             _this.axiosGetReviewById();
                         })
-                        .catch((error) => {
-                            alert(`發生錯誤: ${error}`);
-                        });
+                        .catch(err => Swal.fire({
+                            text: err,
+                            icon: "error",
+                            confirmButtonColor: "#097E52",
+                            confirmButtonText: "確認"
+                        }));
                 },
                 updateNo: function (item) {
                     let _this = this;
@@ -293,9 +299,12 @@
                             _this.reviewData = response.data;
                             _this.axiosGetReviewById();
                         })
-                        .catch((error) => {
-                            alert(`發生錯誤: ${error}`);
-                        });
+                        .catch(err => Swal.fire({
+                            text: err,
+                            icon: "error",
+                            confirmButtonColor: "#097E52",
+                            confirmButtonText: "確認"
+                        }));
                     _this._activityId = 0;
                     _this._applicantId = 0;
                 },

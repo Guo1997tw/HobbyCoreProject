@@ -307,13 +307,41 @@
                         !self.activityBuild.categoryTypeId ||
                         !self.activityBuild.joinDeadLine ||
                         // !self.activityBuild.joinFee ||
-                        !self.activityBuild.activityNotes) { return alert("請填寫所有欄位!!"); }
+                        !self.activityBuild.activityNotes) {
+                            return Swal.fire({
+                                text: "請填寫所有欄位!!",
+                                icon: "warning",
+                                confirmButtonColor: "#097E52",
+                                confirmButtonText: "確認"
+                            });
+                        }
 
-                    if (isNaN(self.activityBuild.maxPeople)) { return alert("請輸入正確人數!!"); }
+                    if (isNaN(self.activityBuild.maxPeople)) { 
+                        return Swal.fire({
+                            text: "請輸入正確人數!!",
+                            icon: "warning",
+                            confirmButtonColor: "#097E52",
+                            confirmButtonText: "確認"
+                        });
+                    }
 
-                    if (isNaN(self.activityBuild.joinFee)) { return alert("請輸入正確金額!!"); }
+                    if (isNaN(self.activityBuild.joinFee)) { 
+                        return Swal.fire({
+                            text: "請輸入正確金額!!",
+                            icon: "warning",
+                            confirmButtonColor: "#097E52",
+                            confirmButtonText: "確認"
+                        });
+                    }
 
-                    if (!self.fileOne || !self.fileTwo || !self.fileThree) { return alert("請上傳圖片!!"); }
+                    if (!self.fileOne || !self.fileTwo || !self.fileThree) { 
+                        return Swal.fire({
+                            text: "請上傳圖片!!",
+                            icon: "warning",
+                            confirmButtonColor: "#097E52",
+                            confirmButtonText: "確認"
+                        });
+                    }
 
                     if (this.fileOne) formData.append('file', self.fileOne);
                     if (this.fileTwo) formData.append('file', self.fileTwo);
@@ -347,7 +375,7 @@
                     //         alert("修改失敗");
                     //     }
                     // })
-
+                    
                     fetch("/ActivityApi/LeaderCreate", {
                         method: "POST",
                         body: formData
@@ -356,15 +384,30 @@
                             self.activityBuild = d;
                             if (d == true) {
                                 console.log('Success', d);
-                                alert("建立成功");
-                                javascript: location.href = "/MemberCenter/LaunchATeam";
+                                Swal.fire({
+                                    text: "建立成功",
+                                    icon: "success",
+                                    confirmButtonColor: "#097E52",
+                                    confirmButtonText: "確認"
+                                })
+                                setTimeout(() => { javascript: location.href = "/MemberCenter/LaunchATeam" }, 2000);
                             }
                             else {
-                                alert("修改失敗");
+                                Swal.fire({
+                                    text: "修改失敗",
+                                    icon: "error",
+                                    confirmButtonColor: "#097E52",
+                                    confirmButtonText: "確認"
+                                });
                             }
                         }).catch(e => {
                             console.error('Fetch error:', e);
-                            alert("請求失敗");
+                            Swal.fire({
+                                text: "請求失敗",
+                                icon: "error",
+                                confirmButtonColor: "#097E52",
+                                confirmButtonText: "確認"
+                            });
                         });
                 },
 
