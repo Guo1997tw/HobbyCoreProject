@@ -104,7 +104,12 @@
                 var emailRule = /^[a-zA-Z0-9._-]+@@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
 
                 if (!emailRule.test(this.memberLogin.account)) {
-                    return alert("電子信箱格式有誤，請確認!!");
+                    return Swal.fire({
+                        text: "電子信箱格式有誤，請確認!!",
+                        icon: "warning",
+                        confirmButtonColor: "#097E52",
+                        confirmButtonText: "確認"
+                    });
                 }
 
                 let self = this;
@@ -118,21 +123,37 @@
                 }).then(d => {
                     console.log('Success', d);
                     if (d == true) {
-                        alert("登入成功~~");
-
+                        Swal.fire({
+                            position: "center",
+                            icon: "success",
+                            title: "登入成功",
+                            showConfirmButton: false,
+                            timer: 900
+                        });
+                        setTimeout(() => { window.location.href = "/Home/Index" }, 900);
                         // const searchTemp = new URLSearchParams(window.location.search);
                         // const returnUrl = searchTemp.get('ReturnUrl');
 
                         // window.location.href = returnUrl ? decodeURIComponent(returnUrl) : '/Home/Index';
 
-                        window.location.href = "/Home/Index"
+                        //window.location.href = "/Home/Index"
                     }
                     else {
-                        alert("請確認帳號、密碼是否正確以及驗證信是否驗證成功!!");
+                        Swal.fire({
+                            text: "請確認帳號、密碼是否正確以及驗證信是否驗證成功!!",
+                            icon: "warning",
+                            confirmButtonColor: "#097E52",
+                            confirmButtonText: "確認"
+                        });
                     }
                 }).catch(e => {
                     console.log('Fail', e);
-                    alert("登入失敗，請確認帳號、密碼是否正確!!");
+                    Swal.fire({
+                        text: "登入失敗，請確認帳號、密碼是否正確!!",
+                        icon: "warning",
+                        confirmButtonColor: "#097E52",
+                        confirmButtonText: "確認"
+                    });
                 });
             },
         },

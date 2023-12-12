@@ -12,15 +12,13 @@ namespace JHobby.Website.Controllers.Api
     {
         private readonly IActivityService _activityService;
         private readonly IMapper _mapper;
-        private readonly ILogger _logger;
         private readonly string _rootPath;
 
 
-        public ActivityApiController(IActivityService activityService, IMapper mapper, IWebHostEnvironment webHostEnvironment, ILogger logger)
+        public ActivityApiController(IActivityService activityService, IMapper mapper, IWebHostEnvironment webHostEnvironment)
         {
             _activityService = activityService;
             _mapper = mapper;
-            _logger = logger;
             _rootPath = $@"{webHostEnvironment.WebRootPath}\activityImgs\";
         }
 
@@ -30,7 +28,7 @@ namespace JHobby.Website.Controllers.Api
         /// <param name="activityCreateViewModel"></param>
         /// <returns></returns>
         [HttpPost]
-        public async Task<IActionResult> LeaderCreate([FromForm] ActivityCreateViewModel activityCreateViewModel)
+        public async Task<bool> LeaderCreate([FromForm] ActivityCreateViewModel activityCreateViewModel)
         {
             try
             {
@@ -71,12 +69,11 @@ namespace JHobby.Website.Controllers.Api
 
                 var result = _activityService.ActivityCreate(activityCreateModel);
 
-                return Ok(result);
+                return result;
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "Error occurred in LeaderCreate");
-                return StatusCode(StatusCodes.Status500InternalServerError, "An error occurred while processing your request.");
+                return false;
             }
         }
 
