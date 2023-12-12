@@ -46,6 +46,7 @@ namespace JHobby.Website.Controllers
                 return RedirectToAction("NotFounds", "ErrorPage");
             }
             ViewData["Title"] = "會員個人介紹";
+            ViewData["BookMark"] = "MemberProfile";
             ViewBag.VerifyMemberId = _userAuthenticationService.GetUserId();
             ViewBag.MemberId = id;
 			ViewData["BookMark"] = "MemberProfile";

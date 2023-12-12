@@ -135,7 +135,14 @@
                         confirmButtonText: "確認"
                     });
                 }
-
+                if (!this.memberRegister.hashPassword) {
+                    return Swal.fire({
+                        text: "請填寫密碼!!",
+                        icon: "warning",
+                        confirmButtonColor: "#097E52",
+                        confirmButtonText: "確認"
+                    });
+                }
                 if ((this.memberRegister.passwordConfirm === null) || (this.memberRegister.hashPassword !== this.memberRegister.passwordConfirm)) {
                     return Swal.fire({
                         text: "密碼欄位需一致!!",
