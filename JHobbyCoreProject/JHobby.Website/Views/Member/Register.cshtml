@@ -128,14 +128,29 @@
                 var emailRule = /^[a-zA-Z0-9._-]+@@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
 
                 if (!emailRule.test(this.memberRegister.account)) {
-                    return alert("電子信箱格式有誤，請確認!!");
+                    return Swal.fire({
+                        text: "電子信箱格式有誤，請確認!!",
+                        icon: "warning",
+                        confirmButtonColor: "#097E52",
+                        confirmButtonText: "確認"
+                    });
                 }
 
                 if ((this.memberRegister.passwordConfirm === null) || (this.memberRegister.hashPassword !== this.memberRegister.passwordConfirm)) {
-                    return alert("密碼欄位需一致!!");
+                    return Swal.fire({
+                        text: "密碼欄位需一致!!",
+                        icon: "warning",
+                        confirmButtonColor: "#097E52",
+                        confirmButtonText: "確認"
+                    });
                 }
                 if (!this.memberRegister.policy) {
-                    return alert("您必須同意使用條款和隱私權政策才能註冊!!");
+                    return Swal.fire({
+                        text: "您必須同意使用條款和隱私權政策才能註冊!!",
+                        icon: "warning",
+                        confirmButtonColor: "#097E52",
+                        confirmButtonText: "確認"
+                    });
                 }
 
                 this.memberRegister.account = this.memberRegister.account.toLowerCase();
@@ -153,18 +168,33 @@
                     .then(d => {
                         console.log('Success', d);
                         if (d == true) {
-                            alert("註冊成功~~");
+                            Swal.fire({
+                                text: "註冊成功!!",
+                                icon: "success",
+                                confirmButtonColor: "#097E52",
+                                confirmButtonText: "確認"
+                            });
                             window.location.href = '/Home/Index';
                         }
                         else {
-                            alert("帳號重複，請重新輸入!!");
+                            Swal.fire({
+                                text: "帳號重複，請重新輸入!!",
+                                icon: "error",
+                                confirmButtonColor: "#097E52",
+                                confirmButtonText: "確認"
+                            });
                             self.memberRegister.account = "";
                             self.memberRegister.hashPassword = "",
                                 self.memberRegister.passwordConfirm = ""
                         }
                     }).catch(e => {
                         console.log('Fail', e);
-                        alert("帳號重複，請重新輸入!!");
+                        Swal.fire({
+                            text: "帳號重複，請重新輸入!!",
+                            icon: "error",
+                            confirmButtonColor: "#097E52",
+                            confirmButtonText: "確認"
+                        });
                     })
             },
 

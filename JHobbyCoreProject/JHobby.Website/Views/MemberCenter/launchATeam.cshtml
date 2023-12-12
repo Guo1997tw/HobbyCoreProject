@@ -326,7 +326,7 @@
 
                                                 </td>
                                                 <td>
-                                                    <h6>{{item.currentPeople}}</h6>
+                                                        <h6>{{item.currentPeople || 0 }}</h6>
                                                 </td>
                                                 <td>
                                                     <p> {{item.createdDateConvert}}</p>
@@ -667,7 +667,12 @@
                             this.axiosBrowsepicture = result.data;
                             this.maxPeople = result.data.maxPeople;
                         })
-                        .catch((error) => alert(`發生錯誤: ${error}`));
+                        .catch(err => Swal.fire({
+                            text: err,
+                            icon: "error",
+                            confirmButtonColor: "#097E52",
+                            confirmButtonText: "確認"
+                        }));
                 },
                 lookUpdates() {
                     axios.get(`/GroupStartingApi/GetByIdNow/${@VerifyMemberId}`)
@@ -679,7 +684,12 @@
                             }
                             this.currentPeople = viewModel.data.currentPeople;
                         })
-                        .catch((error) => alert(`發生錯誤: ${error}`));
+                        .catch(err => Swal.fire({
+                            text: err,
+                            icon: "error",
+                            confirmButtonColor: "#097E52",
+                            confirmButtonText: "確認"
+                        }));
                 },
                 updateno: function (item) {
                     let _this = this;
@@ -695,9 +705,12 @@
                             _this.lookUpdates();
                             _this.logBrowsepicture();
                         })
-                        .catch((error) => {
-                            alert(`發生錯誤: ${error}`);
-                        });
+                        .catch(err => Swal.fire({
+                            text: err,
+                            icon: "error",
+                            confirmButtonColor: "#097E52",
+                            confirmButtonText: "確認"
+                        }));
                     // _this._activityId = 0;
 
                 },
@@ -718,9 +731,13 @@
                 Current: function () {
                     let _this = this;
                     axios.get(`/GroupStartingApi/CurrentById/${_this._memberId}/${_this._activityId}`).then((res) => {
-                        // alert(_this.currentData.length);
                         _this.currentData = res.data
-                    }).catch((error) => alert(`發生錯誤: ${error}`));
+                    }).catch(err => Swal.fire({
+                        text: err,
+                        icon: "error",
+                        confirmButtonColor: "#097E52",
+                        confirmButtonText: "確認"
+                    }));
                 
                 },
                 keepId2: function (memberId, activityId) {

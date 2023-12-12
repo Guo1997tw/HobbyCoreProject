@@ -21,20 +21,20 @@
     </div>
 </div>
 
-@section Scripts{
+@section Scripts {
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/3.3.4/vue.global.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.6.0/axios.min.js" integrity="sha512-WrdC3CE9vf1nBf58JHepuWT4x24uTacky9fuzw2g/3L9JkihgwZ6Cfv+JGTtNyosOhEmttMtEZ6H3qJWfI7gIQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script>
         const verify = Vue.createApp({
             data() {
                 return {
-                    blnReSend:true,
-                    account:""
+                    blnReSend: true,
+                    account: ""
                 }
             },
             mounted() {
                 let _this = this;
-                _this.blnReSend=blnChange(`@Model.Success`);
+                _this.blnReSend = blnChange(`@Model.Success`);
             },
             methods: {
                 ReSendVerify() {
@@ -46,8 +46,12 @@
                             "Content-Type": "multipart/form-data"
                         }
                     })
-                    .catch(err => alert(err));
-                    alert("重送成功，請點選新信件內網址重新驗證")
+                        .catch(err => Swal.fire({
+                            text: "重送成功，請點選新信件內網址重新驗證",
+                            icon: "success",
+                            confirmButtonColor: "#097E52",
+                            confirmButtonText: "確認"
+                        }));
                 },
             }
         }).mount("#verify")
