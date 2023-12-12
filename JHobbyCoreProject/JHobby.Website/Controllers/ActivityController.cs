@@ -65,5 +65,24 @@ namespace JHobby.Website.Controllers
 
             return View();
         }
+
+        [Authorize(Roles = "Member")]
+        [HttpPost]
+        public IActionResult LeaderEdit([FromForm] int id)
+        {
+            try
+            {
+                //ViewBag.buildMemberId = _userAuthenticationService.GetUserId();
+
+                ViewBag.ActivityId = id;
+
+            }
+            catch (Exception)
+            {
+                throw new Exception("Error!");
+            }
+
+            return View();
+        }
     }
 }
