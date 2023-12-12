@@ -18,7 +18,11 @@
 
         .warntext-label {
             color: red;
-            font-size: 20px;
+            font-size: 16px;
+        }
+
+        .hidden {
+            display: none;
         }
     </style>
 }
@@ -199,7 +203,8 @@
                                     <div class="input-space">
                                         <label class="form-label">身份證</label>
                                         <label class="mark-label">(*必填欄位)</label>
-                                        <input type="text" maxlength="10" class="form-control" v-model="ProfileSetting.identityCard" id="identityCardInput" @@input="checkChineseInput">
+                                        <input type="text" maxlength="10" class="form-control" v-model="ProfileSetting.identityCard" id="identityCardInput" @@input="validateIdNumber" placeholder="請輸入身分證號碼">
+                                        <p v-if="!isValid" class="warntext-label">身分證號碼有誤，請填寫正確資訊至提示消失!</p>
                                     </div>
                                 </div>
                                 <div class="col-lg-12 col-md-6">
@@ -271,6 +276,8 @@
                     headShotName: "",
                     blnStatus: false,
                     message: "",
+                    idNumber: '',
+                    isValid: false,
                 };
             },
             computed: {
@@ -320,31 +327,13 @@
                 }
             },
             methods: {
-                checkChineseInput() {
-                    // 獲取輸入的身分證字串
-                    const identityCard = this.ProfileSetting.identityCard;
-
-                    // 使用正則表達式檢查是否包含中文字符
-                    const chineseRegex = /[\u4e00-\u9fa5\u3100-\u312F]/g;
-
-                    // 如果包含中文字符或注音符號
-                    if (chineseRegex.test(identityCard)) {
-                        // 清除中文字符或注音符號
-                        this.ProfileSetting.identityCard = identityCard.replace(chineseRegex, '');
-
-                        // 移除先前的警告訊息
-                        const warningElement = identityCardInput.nextElementSibling;
-                        if (warningElement && warningElement.tagName === 'DIV') {
-                            warningElement.remove();
-                        }
-                        // 插入一個用來顯示警告的元素
-                        identityCardInput.insertAdjacentHTML("afterend", '<div style="color: red;">★請不要輸入中文★</div>');
+                validateIdNumber() {
+                    // 使用正規表示式來驗證身分證號碼
+                    const regex = /^[A-Z][12][0-9]{8}$/;
+                    if (regex.test(this.ProfileSetting.identityCard)) {
+                        this.isValid = true; // 設置為 true，表示格式正確
                     } else {
-                        // 如果不包含中文字符，移除警告元素
-                        const warningElement = identityCardInput.nextElementSibling;
-                        if (warningElement && warningElement.tagName === 'DIV') {
-                            warningElement.remove();
-                        }
+                        this.isValid = false; // 設置為 false，表示格式不正確
                     }
                 },
                 GetProfile() {
@@ -399,6 +388,10 @@
                     // 檢查是否有上傳圖片
                     if (!_this.file && !_this.ProfileSetting.headShot) {
                         alert("請上傳您的個人照片");
+                        return; // 阻止儲存操作
+                    }
+                    if (!_this.isValid) {
+                        alert("身分證號碼有誤，請填寫正確資訊！");
                         return; // 阻止儲存操作
                     }
                     if (!CheckPhone()) {
