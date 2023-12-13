@@ -567,33 +567,33 @@ Version      : 1.0
 	}
 
 	// Our Team Slider
-
-	if($('.team-slider').length > 0) {      
-		$('.team-slider').owlCarousel({
-			items: 4,
-			loop:true,
-			margin:24,
-			nav:true,
-			dots: false,
-			autoplay:false,
-			smartSpeed: 2000,
-			navText : ["<i class='feather-chevron-left'></i>","<i class='feather-chevron-right'></i>"],
-			responsive:{
-				0:{
-					items:1
-				},
-				500:{
-					items:1
-				},
-				768:{
-					items:2
-				},
-				1000:{
-					items:4
-				}
-			}
-		})
-	}
+	//²¾¦Üsite.js
+	//if($('.team-slider').length > 0) {      
+	//	$('.team-slider').owlCarousel({
+	//		items: 4,
+	//		loop:true,
+	//		margin:24,
+	//		nav:true,
+	//		dots: false,
+	//		autoplay:false,
+	//		smartSpeed: 2000,
+	//		navText : ["<i class='feather-chevron-left'></i>","<i class='feather-chevron-right'></i>"],
+	//		responsive:{
+	//			0:{
+	//				items:1
+	//			},
+	//			500:{
+	//				items:1
+	//			},
+	//			768:{
+	//				items:2
+	//			},
+	//			1000:{
+	//				items:4
+	//			}
+	//		}
+	//	})
+	//}
 
 	// Masonry
 
