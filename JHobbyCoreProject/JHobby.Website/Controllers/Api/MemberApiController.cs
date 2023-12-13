@@ -18,18 +18,18 @@ namespace JHobby.Website.Controllers.Api
         private readonly IMemberRepository _memberRepository;
         private readonly ISendMailService _sendMailService;
         private readonly IMapper _mapper;
-        private readonly IHostEnvironment _hostingEnvironment;
+        private readonly IWebHostEnvironment _webHostEnvironment;
 
         public MemberApiController(IMemberService memberService, IMapper mapper,
                                    ISendMailService sendMailService,
                                    IMemberRepository memberRepository,
-                                   IHostEnvironment hostingEnvironment)
+								   IWebHostEnvironment webHostEnvironment)
         {
             _memberService = memberService;
             _mapper = mapper;
             _sendMailService = sendMailService;
             _memberRepository = memberRepository;
-            _hostingEnvironment = hostingEnvironment;
+			_webHostEnvironment = webHostEnvironment;
         }
 
         [HttpPost]
@@ -41,7 +41,7 @@ namespace JHobby.Website.Controllers.Api
         [HttpPost]
         public bool InsertRegister(MemberRegisterViewModel memberRegisterViewModel)
         {
-            string _path = _hostingEnvironment.ContentRootPath;
+            string _path = _webHostEnvironment.WebRootPath;
             if (!(_memberService.CheckAccountIsRepeat(memberRegisterViewModel.Account)))
             {
                 return false;
@@ -114,8 +114,8 @@ namespace JHobby.Website.Controllers.Api
         [HttpPost("{account}")]
         public bool UseResetPwd(MemberResetViewModel memberResetViewModel)
         {
-            string _path = _hostingEnvironment.ContentRootPath;
-            var mapper = _mapper.Map<MemberResetModel>(memberResetViewModel);
+            string _path = _webHostEnvironment.WebRootPath;
+			var mapper = _mapper.Map<MemberResetModel>(memberResetViewModel);
 
             var result = _memberService.ResetPwd(_path,mapper);
 
@@ -172,7 +172,7 @@ namespace JHobby.Website.Controllers.Api
         [HttpPost]
         public bool reSendVerifyMail([FromForm] ReSendVerifyMailViewModel reSendVerifyMailViewModel)
         {
-            string _path = _hostingEnvironment.ContentRootPath;
+            string _path = _webHostEnvironment.WebRootPath;
             var result = _sendMailService.SendLetter(_path, reSendVerifyMailViewModel.Account);
             if (result)
             {
