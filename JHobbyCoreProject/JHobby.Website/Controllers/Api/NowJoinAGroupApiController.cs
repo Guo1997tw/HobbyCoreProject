@@ -44,9 +44,7 @@ namespace JHobby.Website.Controllers.Api
         {
             var queryResult = _aNowJoinAGroupService.GetNowJoinAGroupById(memberId, pageNumber, countPerPage);
 
-            if (queryResult != null)
-            {
-                return new PageFilterViewModel<NowJoinAGroupViewModel>
+            return new PageFilterViewModel<NowJoinAGroupViewModel>
                 {
                     PageNumber = queryResult.PageNumber,
                     TotalPages = queryResult.TotalPages,
@@ -65,33 +63,6 @@ namespace JHobby.Website.Controllers.Api
                         ImageName = s.ImageName,
                     })
                 };
-            }
-            else
-            {
-                return new PageFilterViewModel<NowJoinAGroupViewModel>
-                {
-                    PageNumber = 0,
-                    TotalPages = 0,
-                    Items = new List<NowJoinAGroupViewModel>
-                    {
-                        new NowJoinAGroupViewModel
-                        {
-                             ActivityUserId = 0,
-                             ActivityId = 0,
-                             MemberId = 0,
-                             ActivityName = null,
-                             ReviewStatus = null,
-                             CurrentPeople = 0,
-                             MaxPeople = 0,
-                             NickName = null,
-                             DateConvert = null,
-                             TimeConvert = null,
-                             ImageName = null,
-                        }
-                    }
-                };
-            }
-
         }
 
         [HttpPut("{activityId}/{memberId}")]

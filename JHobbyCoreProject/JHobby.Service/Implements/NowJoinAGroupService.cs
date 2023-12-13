@@ -44,8 +44,6 @@ namespace JHobby.Service.Implements
         {
             var queryResult = _nowJoinAGroupRepository.GetNowJoinAGroupById(memberId, pageNumber, countPerPage);
 
-            if (queryResult != null)
-            {
                 return new PageFilterDto<NowJoinAGroupModel>
                 {
                     PageNumber = queryResult.PageNumber,
@@ -65,12 +63,6 @@ namespace JHobby.Service.Implements
                         ImageName = s.ImageName,
                     })
                 };
-            }
-            else
-            {
-                return null;
-            }
-
         }
 
         public bool NowJoinAGroupCancel(int activityId, int memberId, NowJoinAGroupCancelModel nowJoinAGroupCancel)
