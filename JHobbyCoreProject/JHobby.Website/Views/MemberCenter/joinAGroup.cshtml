@@ -585,9 +585,11 @@
                                                                     <span>({{ tempStar }})</span>
                                                                 </div>
                                                                 <div class="rating" v-else>
-                                                                    <i class="fas fa-star filled"
+                                                                    <i class="fas fa-star filled "
+                                                                       style="font-size: 22px;"
                                                                        v-for="n in Math.floor(checkFraction)"></i>
-                                                                    <i class="fa-regular fa-star filled"
+                                                                    <i class="fa-regular fa-star filled rating-star"
+                                                                       style="font-size: 22px;"
                                                                        v-for="x in 5-Math.ceil(checkFraction)"></i>
                                                                     <span>({{checkFraction}})</span>
                                                                 </div>
