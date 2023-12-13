@@ -31,7 +31,7 @@ namespace JHobby.Service.Implements
                 ActivityName = r.ActivityName,
                 ActivityStatus = _iCommonService.ConvertActivityStatus(r.ActivityStatus),
                 ActivityCity = r.ActivityCity,
-                CurrentPeople = r.CurrentPeople,
+                CurrentPeople = _iCommonService.checkCurrentPeople(r.CurrentPeople),
                 NickName = r.NickName,
 
                 //將StartTime轉成日期格式和時間格式
@@ -74,7 +74,7 @@ namespace JHobby.Service.Implements
                     ActivityName = r.ActivityName,
                     ActivityStatus = _iCommonService.ConvertActivityStatus(r.ActivityStatus),
                     ActivityCity = r.ActivityCity,
-                    CurrentPeople = r.CurrentPeople,
+                    CurrentPeople = _iCommonService.checkCurrentPeople(r.CurrentPeople),
                     NickName = r.NickName,
                     MemberId = r.MemberId,
                     Fraction = r.Fraction,
