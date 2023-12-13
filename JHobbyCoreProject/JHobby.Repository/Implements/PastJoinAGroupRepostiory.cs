@@ -109,7 +109,7 @@ namespace JHobby.Repository.Implements
                     .nikeName,
                     MemberId = a.Activity.MemberId,
                     Fraction = scoreByMemberId
-                    .FirstOrDefault(s => s.id == a.Activity.MemberId
+                    .FirstOrDefault(s => s.id == memberId
                     && s.activityid == a.ActivityId)
                     .score,
                     ImageName = imageName.FirstOrDefault(i => i.id == a.Activity.ActivityId).imageName,
