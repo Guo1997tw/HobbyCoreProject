@@ -57,7 +57,7 @@ namespace JHobby.Service.Implements
                         ActivityId = s.ActivityId,
                         MemberId = s.MemberId,
                         ReviewStatus = _iCommonService.ConvertReviewStatus(s.ReviewStatus),
-                        CurrentPeople = s.CurrentPeople,
+                        CurrentPeople = _iCommonService.checkCurrentPeople(s.CurrentPeople),
                         MaxPeople = s.MaxPeople,
                         NickName = s.NickName,
                         DateConvert = _iCommonService.ConvertTime(s.StartTime).First().DateConvert,
