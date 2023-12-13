@@ -273,14 +273,21 @@
                                                                ">
                                                         <h2 class="table-avatar">
                                                             <span class="table-head-name flex-grow-1">
-                                                                <a>
-                                                                    目前您沒有蒐藏任何揪團喔!!看看大家都在找那些好康的吧!
-                                                                </a>
+                                                                <form name="wishList"
+                                                                      action="https://localhost:7097/Activity/ActivityCenter"
+                                                                      method="post">
+                                                                    <a href="javascript:document.wishList.submit();">
+                                                                        目前您沒有蒐藏任何揪團喔!!看看大家都在找那些好康的吧!<span class="lh-1">
+                                                                            <i class="feather-arrow-right-circle ms-2"></i>
+                                                                        </span>
+                                                                    </a>
+                                                                </form>
                                                             </span>
                                                         </h2>
                                                     </td>
                                                 </tr>
-                                                <tr v-for="(card, index) in filterCard"
+                                                <tr v-else
+                                                    v-for="(card, index) in filterCard"
                                                     :key="index">
                                                     <td>
                                                         <div class="academy-info academy-info">
