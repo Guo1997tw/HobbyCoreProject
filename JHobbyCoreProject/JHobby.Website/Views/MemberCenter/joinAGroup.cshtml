@@ -56,7 +56,7 @@
                                                     <td class="sorting_1" style="display: flex;justify-content: center;">
                                                         <h2 class="table-avatar">
                                                             <span class="table-head-name flex-grow-1">
-                                                                <p>目前您沒有報名任何揪團喔!快來一起愛地球吧!</p>
+                                                                <a>目前您沒有報名任何揪團喔!快來一起愛地球吧!</a>
                                                             </span>
                                                         </h2>
                                                     </td>
@@ -266,6 +266,20 @@
                                     <div class="table-responsive dashboard-table-responsive">
                                         <table class="table dashboard-card-table">
                                             <tbody>
+                                                <tr v-if="wishListCard.length === 0 || wishListCard[0].wishId === 0">
+                                                    <td class="sorting_1"
+                                                        style=" display: flex;
+                                                                justify-content: center;
+                                                               ">
+                                                        <h2 class="table-avatar">
+                                                            <span class="table-head-name flex-grow-1">
+                                                                <a>
+                                                                    目前您沒有蒐藏任何揪團喔!!看看大家都在找那些好康的吧!
+                                                                </a>
+                                                            </span>
+                                                        </h2>
+                                                    </td>
+                                                </tr>
                                                 <tr v-for="(card, index) in filterCard"
                                                     :key="index">
                                                     <td>
