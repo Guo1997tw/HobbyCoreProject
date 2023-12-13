@@ -109,7 +109,7 @@ namespace JHobby.Service.Implements
             return false;
         }
 
-        public bool ResetPwd(MemberResetModel memberResetModel)
+        public bool ResetPwd(string _path, MemberResetModel memberResetModel)
         {
             var newPwd = RandomPwd();
             var salt = RandomSalt();
@@ -122,7 +122,7 @@ namespace JHobby.Service.Implements
 
             var execute = _memberRepository.ResetByIdAndNewInsert(mapper);
 
-            _sendMailService.ResetPwdSendLetter(memberResetModel.Account, newPwd);
+            _sendMailService.ResetPwdSendLetter(_path, memberResetModel.Account, newPwd);
 
             if (execute == false) { return false; }
 

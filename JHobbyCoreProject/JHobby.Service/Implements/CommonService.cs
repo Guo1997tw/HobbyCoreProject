@@ -1,12 +1,14 @@
 ﻿using JHobby.Service.Interfaces;
+using JHobby.Service.Models;
 using JHobby.Service.Models.Dto;
 using System.Security.Cryptography;
+using System.Text;
+using System.Text.RegularExpressions;
 
 namespace JHobby.Service.Implements
 {
     public class CommonService : ICommonService
     {
-
         readonly string _key = "HobbyKey";
         readonly string _iv = "27120589";
 
@@ -218,5 +220,48 @@ namespace JHobby.Service.Implements
             }
             return output;
         }
+
+        //讀取信件範本
+        public string getEmailData(string _path, string sHtmlName)
+        {
+            //輸出
+            string returnData = "";
+            //html檔路徑
+            string path = $"{_path}\\views\\Shared\\{sHtmlName}.cshtml";
+            //有資料
+            if (File.Exists(path))
+            {
+                //讀取檔案
+                StreamReader streamReader = new StreamReader(path, Encoding.GetEncoding("Big5"));
+                //轉字串給輸出
+                returnData = streamReader.ReadToEnd();
+            }
+            return returnData;
+        }
+
+        //取代郵件文字
+        public string setReplacedEmailData(string _path, string sHtmlName, EmailReplaceModel mailReplaceData)
+        {
+            //輸出
+            string returnData = "";
+
+            //讀取信件範本
+            returnData = getEmailData(_path, sHtmlName);
+
+            //取代文字
+            if (mailReplaceData != null)
+            {
+                if (!string.IsNullOrEmpty(mailReplaceData.Verify))
+                {
+                    returnData = Regex.Replace(returnData, "#verify#", mailReplaceData.Verify);
+                }
+                if (!string.IsNullOrEmpty(mailReplaceData.NewPwd))
+                {
+                    returnData = Regex.Replace(returnData, "#newPwd#", mailReplaceData.NewPwd);
+                }
+            }
+            return returnData;
+        }
     }
 }
+

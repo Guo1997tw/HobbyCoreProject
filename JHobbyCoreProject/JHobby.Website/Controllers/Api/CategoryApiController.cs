@@ -35,11 +35,11 @@ namespace JHobby.Website.Controllers.Api
             _categoryRepository = categoryRepository;
         }
 
-        [HttpGet]
-        public string ExecJob()
-        {
-            return backgroundJobs.Enqueue(() => _sendMailService.SendLetter("Guo1997tw@gmail.com"));
-        }
+        //[HttpGet]
+        //public string ExecJob()
+        //{
+        //    return backgroundJobs.Enqueue(() => _sendMailService.SendLetter("Guo1997tw@gmail.com"));
+        //}
 
         [HttpGet]
 		public IEnumerable<CategoryViewModel> GetCategoriesAll()

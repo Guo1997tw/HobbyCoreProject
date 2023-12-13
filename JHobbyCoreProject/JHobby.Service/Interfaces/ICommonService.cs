@@ -1,4 +1,5 @@
-﻿using JHobby.Service.Models.Dto;
+﻿using JHobby.Service.Models;
+using JHobby.Service.Models.Dto;
 
 namespace JHobby.Service.Interfaces
 {
@@ -24,5 +25,9 @@ namespace JHobby.Service.Interfaces
         public string EncodeBase64Url(string input);
 
         public string DecodeBase64Url(string input);
+
+        public string getEmailData(string _path, string sHtmlName);
+
+        public string setReplacedEmailData(string _path, string sHtmlName, EmailReplaceModel mailReplaceData);
     }
 }
