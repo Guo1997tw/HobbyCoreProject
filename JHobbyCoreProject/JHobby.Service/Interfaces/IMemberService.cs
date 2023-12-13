@@ -17,7 +17,7 @@ namespace JHobby.Service.Interfaces
 
         public bool CheckAccountIsRepeat(string account);
 
-        public bool ResetPwd(MemberResetModel memberResetModel);
+        public bool ResetPwd(string _path,MemberResetModel memberResetModel);
 
         public  MemberModel GetByIdDetail(int id);
 

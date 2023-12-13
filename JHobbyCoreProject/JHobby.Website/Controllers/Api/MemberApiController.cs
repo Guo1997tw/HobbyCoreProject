@@ -1,13 +1,10 @@
 ﻿using AutoMapper;
 using JHobby.Repository.Interfaces;
-using JHobby.Repository.Models.Dto;
-using JHobby.Service.Implements;
 using JHobby.Service.Interfaces;
 using JHobby.Service.Models;
 using JHobby.Website.Models.ViewModels;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
 
@@ -21,13 +18,18 @@ namespace JHobby.Website.Controllers.Api
         private readonly IMemberRepository _memberRepository;
         private readonly ISendMailService _sendMailService;
         private readonly IMapper _mapper;
+        private readonly IHostEnvironment _hostingEnvironment;
 
-        public MemberApiController(IMemberService memberService, IMapper mapper, ISendMailService sendMailService, IMemberRepository memberRepository)
+        public MemberApiController(IMemberService memberService, IMapper mapper,
+                                   ISendMailService sendMailService,
+                                   IMemberRepository memberRepository,
+                                   IHostEnvironment hostingEnvironment)
         {
             _memberService = memberService;
             _mapper = mapper;
             _sendMailService = sendMailService;
             _memberRepository = memberRepository;
+            _hostingEnvironment = hostingEnvironment;
         }
 
         [HttpPost]
@@ -39,7 +41,8 @@ namespace JHobby.Website.Controllers.Api
         [HttpPost]
         public bool InsertRegister(MemberRegisterViewModel memberRegisterViewModel)
         {
-            if(!(_memberService.CheckAccountIsRepeat(memberRegisterViewModel.Account)))
+            string _path = _hostingEnvironment.ContentRootPath;
+            if (!(_memberService.CheckAccountIsRepeat(memberRegisterViewModel.Account)))
             {
                 return false;
             }
@@ -52,9 +55,9 @@ namespace JHobby.Website.Controllers.Api
                 CreationDate = memberRegisterViewModel.CreationDate
             };
 
-            if(_memberService.CreateMemberRegister(mapper))
+            if (_memberService.CreateMemberRegister(mapper))
             {
-                _sendMailService.SendLetter(memberRegisterViewModel.Account);
+                _sendMailService.SendLetter(_path, memberRegisterViewModel.Account);
 
                 return true;
             }
@@ -111,9 +114,10 @@ namespace JHobby.Website.Controllers.Api
         [HttpPost("{account}")]
         public bool UseResetPwd(MemberResetViewModel memberResetViewModel)
         {
+            string _path = _hostingEnvironment.ContentRootPath;
             var mapper = _mapper.Map<MemberResetModel>(memberResetViewModel);
 
-            var result = _memberService.ResetPwd(mapper);
+            var result = _memberService.ResetPwd(_path,mapper);
 
             if (result == false) { return false; }
 
@@ -129,34 +133,34 @@ namespace JHobby.Website.Controllers.Api
 
             return Ok(mapper);
         }
-    
-    
-		[HttpGet("{id}")]
-		public ActionResult <MemberViewModel> GetMemberById(int id)     
-		{
-			var result = _memberService.GetByIdDetail(id);
-			var done= new MemberViewModel
-			{
-				MemberId= result.MemberId,
-				HashPassword = result.HashPassword,
 
-			};
+
+        [HttpGet("{id}")]
+        public ActionResult<MemberViewModel> GetMemberById(int id)
+        {
+            var result = _memberService.GetByIdDetail(id);
+            var done = new MemberViewModel
+            {
+                MemberId = result.MemberId,
+                HashPassword = result.HashPassword,
+
+            };
             return Ok(done);
-		}
+        }
 
 
-		[HttpPut("{id}")]
-		public IActionResult UpdateMember(int id, [FromBody] UpdateMemberViewModel updateMemberViewModel)
-		{
+        [HttpPut("{id}")]
+        public IActionResult UpdateMember(int id, [FromBody] UpdateMemberViewModel updateMemberViewModel)
+        {
             if (id < 0) { return BadRequest(); }
 
 
 
             var result = new UpdateMemberModel
             {
-               // Password = updateMemberViewModel.Password,
-				NewPassword = updateMemberViewModel.NewPassword,
-				OldPassword = updateMemberViewModel.OldPassword,
+                // Password = updateMemberViewModel.Password,
+                NewPassword = updateMemberViewModel.NewPassword,
+                OldPassword = updateMemberViewModel.OldPassword,
                 PasswordTwo = updateMemberViewModel.PasswordTwo,
             };
 
@@ -166,13 +170,15 @@ namespace JHobby.Website.Controllers.Api
         }
 
         [HttpPost]
-        public bool reSendVerifyMail([FromForm] ReSendVerifyMailViewModel reSendVerifyMailViewModel) {
-            var result = _sendMailService.SendLetter(reSendVerifyMailViewModel.Account);
+        public bool reSendVerifyMail([FromForm] ReSendVerifyMailViewModel reSendVerifyMailViewModel)
+        {
+            string _path = _hostingEnvironment.ContentRootPath;
+            var result = _sendMailService.SendLetter(_path, reSendVerifyMailViewModel.Account);
             if (result)
-            { 
+            {
                 return true;
-            }                
-         return false;
+            }
+            return false;
         }
-	}
+    }
 }
