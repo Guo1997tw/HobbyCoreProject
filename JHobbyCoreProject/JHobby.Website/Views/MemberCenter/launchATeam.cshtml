@@ -188,7 +188,8 @@
                                                                                         <i class="feather-edit">{{item.activityStatus}}</i>
                                                                                     </span>
                                                                                 </td>
-                                                                                <td class="table-accept-btn text-end">
+                                                                                <td class="table-accept-btn text-end"
+                                                                                        style="padding-left: 15px;padding-top: 25px;">
                                                                                     @* submit *@
                                                                                         <form action="/Activity/LeaderEdit" method="post">
                                                                                         <input type="hidden" name="id" :value="item.activityId">
