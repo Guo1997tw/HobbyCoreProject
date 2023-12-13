@@ -218,5 +218,10 @@ namespace JHobby.Service.Implements
             }
             return output;
         }
+
+        public int checkCurrentPeople(int? number)
+        {
+            return number == null ? 0 : number.Value;
+        }
     }
 }

@@ -24,5 +24,8 @@ namespace JHobby.Service.Interfaces
         public string EncodeBase64Url(string input);
 
         public string DecodeBase64Url(string input);
+
+        public int checkCurrentPeople(int? number);
+
     }
 }

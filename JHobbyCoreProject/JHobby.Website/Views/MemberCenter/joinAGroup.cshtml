@@ -280,7 +280,8 @@
                                                         </h2>
                                                     </td>
                                                 </tr>
-                                                <tr v-for="(card, index) in filterCard"
+                                                <tr v-else
+                                                    v-for="(card, index) in filterCard"
                                                     :key="index">
                                                     <td>
                                                         <div class="academy-info academy-info">
