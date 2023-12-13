@@ -38,7 +38,6 @@ namespace JHobby.Service.Implements
             mail.Subject = "94Hobby帳號註冊成功";
             mail.From = new MailAddress("JHobby.THM103@gmail.com", "94HobbyGM");
             mail.To.Add(account);
-            //mail.Body = $"<h1>恭喜您成為會員~</h1><br><a href=\"https://localhost:7097/member/VerifyMail/{verify}\" target=\"_blank\">帳號驗證</a>";
             mail.Body = body;
             mail.IsBodyHtml = true;
             mail.BodyEncoding = Encoding.UTF8;
