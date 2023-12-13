@@ -52,7 +52,17 @@
                                     <div class="table-responsive dashboard-table-responsive">
                                         <table class="table dashboard-card-table">
                                             <tbody>
-                                                <tr v-for="(card, index) in filterCard"
+                                                <tr v-if="nowJoinAGroupCard.length === 0 || nowJoinAGroupCard[0].activityUserId === 0">
+                                                    <td class="sorting_1" style="display: flex;justify-content: center;">
+                                                        <h2 class="table-avatar">
+                                                            <span class="table-head-name flex-grow-1">
+                                                                <p>目前您沒有報名任何揪團喔!快來一起愛地球吧!</p>
+                                                            </span>
+                                                        </h2>
+                                                    </td>
+                                                </tr>
+                                                <tr v-else
+                                                    v-for="(card, index) in filterCard"
                                                     :key="index">
                                                     <td>
                                                         <div class="academy-info">
@@ -635,7 +645,7 @@
                                 );
                                 if (_this.filterCard.length === 0 && _this.pageNumber > 1) {
                                     _this.pageClick(_this.pageNumber - 1);
-                                }; 
+                                };
                             } else {
                                 Swal.fire({
                                     text: "取消參加失敗",
@@ -847,7 +857,7 @@
                                     confirmButtonColor: "#097E52",
                                     confirmButtonText: "確認"
                                 });
-                            } 
+                            }
                             else {
                                 let cardListChange = _this.pastJoinAGroupCard.findIndex(
                                     (id) => id.activityId === _this.currentCard.activityId
