@@ -49,7 +49,8 @@
                             <!-- 參團區塊標題欄_報名紀錄展示卡片 -->
                             <div class="tab-content">
                                 <div class="tab-pane fade active show" id="nav-Court" role="tabpanel" aria-labelledby="nav-Court-tab" tabindex="0">
-                                    <div class="table-responsive dashboard-table-responsive">
+                                    <div class="table-responsive dashboard-table-responsive"
+                                         style="overflow-x: visible;">
                                         <table class="table dashboard-card-table">
                                             <tbody>
                                                 <tr v-if="nowJoinAGroupCard.length === 0 || nowJoinAGroupCard[0].activityUserId === 0">
@@ -271,7 +272,8 @@
                             </div>
                             <div class="tab-content">
                                 <div class="tab-pane fade active show" id="nav-Favourites" role="tabpanel" aria-labelledby="nav-Favourites-tab" tabindex="0">
-                                    <div class="table-responsive dashboard-table-responsive">
+                                    <div class="table-responsive dashboard-table-responsive"
+                                         style="overflow-x: visible;">
                                         <table class="table dashboard-card-table">
                                             <tbody>
                                                 <tr v-if="wishListCard.length === 0 || wishListCard[0].wishId === 0">
@@ -381,7 +383,8 @@
                             </div>
                             <div class="tab-content">
                                 <div class="tab-pane fade active show" id="nav-Recent" role="tabpanel" aria-labelledby="nav-Recent-tab" tabindex="0">
-                                    <div class="table-responsive table-datatble">
+                                    <div class="table-responsive table-datatble"
+                                         style="overflow-x: visible;">
                                         <table class="table table-borderless dashboard-card-table">
                                             <thead class="thead-light">
                                                 <tr>
