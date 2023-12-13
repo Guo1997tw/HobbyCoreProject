@@ -55,7 +55,7 @@ namespace JHobby.Website.Controllers.Api
         //}
 
         [HttpGet]
-        public PageFilterViewModel<PastJoinAGroupViewModel> GetPastJoinAGroupById(int memberId, int pageNumber, int countPerPage = 3)
+        public PageFilterViewModel<PastJoinAGroupViewModel> GetPastJoinAGroupById(int memberId, int pageNumber, int countPerPage = 5)
         {
             var queryResult = _aPastJoinAGroupService.GetPastJoinAGroupById(memberId, pageNumber, countPerPage);
 

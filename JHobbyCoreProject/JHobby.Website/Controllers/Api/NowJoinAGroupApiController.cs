@@ -40,7 +40,7 @@ namespace JHobby.Website.Controllers.Api
         }
 
         [HttpGet]
-        public PageFilterViewModel<NowJoinAGroupViewModel> GetNowJoinAGroupById(int memberId, int pageNumber, int countPerPage = 3)
+        public PageFilterViewModel<NowJoinAGroupViewModel> GetNowJoinAGroupById(int memberId, int pageNumber, int countPerPage = 5)
         {
             var queryResult = _aNowJoinAGroupService.GetNowJoinAGroupById(memberId, pageNumber, countPerPage);
 

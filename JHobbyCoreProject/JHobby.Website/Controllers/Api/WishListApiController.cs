@@ -31,7 +31,7 @@ namespace JHobby.Website.Controllers.Api
         }
 
         [HttpGet]
-        public PageFilterViewModel<WishListViewModel> GetWishListById(int memberId, int pageNumber, int countPerPage = 3)
+        public PageFilterViewModel<WishListViewModel> GetWishListById(int memberId, int pageNumber, int countPerPage = 5)
         {
             var queryResult = _iWishListService.GetWishListById(memberId, pageNumber, countPerPage);
 
