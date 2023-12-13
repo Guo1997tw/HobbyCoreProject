@@ -29,5 +29,8 @@ namespace JHobby.Service.Interfaces
         public string getEmailData(string _path, string sHtmlName);
 
         public string setReplacedEmailData(string _path, string sHtmlName, EmailReplaceModel mailReplaceData);
+
+        public int checkCurrentPeople(int? number);
+
     }
 }

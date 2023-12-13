@@ -262,6 +262,12 @@ namespace JHobby.Service.Implements
             }
             return returnData;
         }
+
+		//現在人數空值轉換
+        public int checkCurrentPeople(int? number)
+        {
+            return number == null ? 0 : number.Value;
+        }
     }
 }
 

@@ -56,7 +56,15 @@
                                                     <td class="sorting_1" style="display: flex;justify-content: center;">
                                                         <h2 class="table-avatar">
                                                             <span class="table-head-name flex-grow-1">
-                                                                <a>目前您沒有報名任何揪團喔!快來一起愛地球吧!</a>
+                                                                <form name="nowJoinAGroup"
+                                                                      action="https://localhost:7097/Activity/ActivityCenter"
+                                                                      method="post">
+                                                                    <a href="javascript:document.nowJoinAGroup.submit();">
+                                                                        目前您沒有報名任何揪團喔!快來一起愛地球吧!<span class="lh-1">
+                                                                            <i class="feather-arrow-right-circle ms-2"></i>
+                                                                        </span>
+                                                                    </a>
+                                                                </form>
                                                             </span>
                                                         </h2>
                                                     </td>
@@ -273,14 +281,21 @@
                                                                ">
                                                         <h2 class="table-avatar">
                                                             <span class="table-head-name flex-grow-1">
-                                                                <a>
-                                                                    目前您沒有蒐藏任何揪團喔!!看看大家都在找那些好康的吧!
-                                                                </a>
+                                                                <form name="wishList"
+                                                                      action="https://localhost:7097/Activity/ActivityCenter"
+                                                                      method="post">
+                                                                    <a href="javascript:document.wishList.submit();">
+                                                                        目前您沒有蒐藏任何揪團喔!!看看大家都在找那些好康的吧!<span class="lh-1">
+                                                                            <i class="feather-arrow-right-circle ms-2"></i>
+                                                                        </span>
+                                                                    </a>
+                                                                </form>
                                                             </span>
                                                         </h2>
                                                     </td>
                                                 </tr>
-                                                <tr v-for="(card, index) in filterCard"
+                                                <tr v-else
+                                                    v-for="(card, index) in filterCard"
                                                     :key="index">
                                                     <td>
                                                         <div class="academy-info academy-info">
@@ -381,7 +396,30 @@
                                             <!-- /參團區塊標題欄-->
                                             <!-- 過去參團卡片-->
                                             <tbody>
-                                                <tr v-for="(card, index) in filterCard" :key="index">
+                                                <tr v-if="pastJoinAGroupCard.length === 0 || pastJoinAGroupCard[0].activityId === 0">
+                                                    <td class="sorting_1"
+                                                        style="
+                                                               display: flex;
+                                                               justify-content: center;
+                                                             ">
+                                                        <h2 class="table-avatar">
+                                                            <span class="table-head-name flex-grow-1">
+                                                                <form name="pastJoinAGroup"
+                                                                      action="/Activity/ActivityCenter"
+                                                                      method="post">
+                                                                    <a href="javascript:document.pastJoinAGroup.submit();">
+                                                                        目前沒有任何你參與過的揪團喔!快行動吧!<span class="lh-1">
+                                                                            <i class="feather-arrow-right-circle ms-2"></i>
+                                                                        </span>
+                                                                    </a>
+                                                                </form>
+                                                            </span>
+                                                        </h2>
+                                                    </td>
+                                                </tr>
+                                                <tr v-else
+                                                    v-for="(card, index) in filterCard"
+                                                    :key="index">
                                                     <td>
                                                         <h2 class="table-avatar">
                                                             <a @@click="pictureLinkToGroupPage(filterCard[index])"
