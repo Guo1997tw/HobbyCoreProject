@@ -165,7 +165,6 @@ function CheckPhone() {
             confirmButtonColor: "#097E52",
             confirmButtonText: "確認"
         });
-/*        alert("手機號碼不正確，請重新輸入");*/
         $("#phone").val("");
         return false
     }
