@@ -110,7 +110,34 @@ function Jhobby_Main_gallery_slider() {
             }
         })
     }
-
+}
+function Jhobby_team_slider() {
+    if ($('.team-slider').length > 0) {
+        $('.team-slider').owlCarousel({
+            items: 4,
+            loop: true,
+            margin: 24,
+            nav: true,
+            dots: false,
+            autoplay: false,
+            smartSpeed: 2000,
+            navText: ["<i class='feather-chevron-left'></i>", "<i class='feather-chevron-right'></i>"],
+            responsive: {
+                0: {
+                    items: 1
+                },
+                500: {
+                    items: 1
+                },
+                768: {
+                    items: 2
+                },
+                1000: {
+                    items: 4
+                }
+            }
+        })
+    }
 }
 
 //動畫集合用函式
@@ -121,6 +148,7 @@ function Animations() {
     Jhobby_Fav_Icon();
     Jhobby_Featured_Coache_Slider();
     Jhobby_Main_gallery_slider();
+    Jhobby_team_slider();
 }
 //掛Vue後，動畫要延遲1.7秒後渲染
 function Jhobby_Animation() {
