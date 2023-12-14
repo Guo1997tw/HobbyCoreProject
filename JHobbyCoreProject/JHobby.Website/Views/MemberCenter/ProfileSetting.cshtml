@@ -32,7 +32,7 @@
 <div id="profileSet">
     @*     <div class="content court-bg" data-select2-id="18"> *@
     <div class="container" data-select2-id="17">
-        <label class="message-label">{{message}}</label>
+        <label  class="message-label">{{message}}</label>
         <template v-if="blnStatus">
             <div class="row" data-select2-id="16">
                 <div class="col-sm-12" data-select2-id="15">
@@ -131,7 +131,7 @@
                                 </div>
                             </form>
                             <div class="save-changes text-end">
-                                <a href="#MessageTop" class="btn btn-primary reset-profile" @@click="Reset">重置</a>
+                                <a href="#" class="btn btn-primary reset-profile" @@click="Reset">重置</a>
                                 <a href="#MessageTop" class="btn btn-primary reset-profile" @@click="Send">儲存</a>
                             </div>
                         </div>
@@ -248,8 +248,8 @@
                                 </div>
                             </form>
                             <div class="save-changes text-end">
-                                <a href="#MessageTop" class="btn btn-primary reset-profile" @@click="Reset">重置</a>
-                                <a href="#MessageTop" class="btn btn-primary reset-profile" @@click="Send">儲存</a>
+                                <a href="#" class="btn btn-primary reset-profile" @@click="Reset">重置</a>
+                                <a href="#" class="btn btn-primary reset-profile" @@click="Send">儲存</a>
                             </div>
                         </div>
                     </div>
@@ -259,7 +259,6 @@
     </div>
 </div>
 @* </div> *@
-
 @section Scripts{
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.6.0/axios.min.js" integrity="sha512-WrdC3CE9vf1nBf58JHepuWT4x24uTacky9fuzw2g/3L9JkihgwZ6Cfv+JGTtNyosOhEmttMtEZ6H3qJWfI7gIQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
@@ -333,9 +332,11 @@
                     // 使用正規表示式來驗證身分證號碼
                     const regex = /^[A-Z][12][0-9]{8}$/g;
                     if (regex.test(this.ProfileSetting.identityCard)) {
-                        this.isValid = true; // 設置為 true，表示格式正確
+                        // 設置為 true，表示格式正確
+                        this.isValid = true; 
                     } else {
-                        this.isValid = false; // 設置為 false，表示格式不正確
+                        // 設置為 false，表示格式不正確
+                        this.isValid = false; 
                     }
                 },
                 GetProfile() {
@@ -376,7 +377,6 @@
                             confirmButtonColor: "#097E52",
                             confirmButtonText: "確認"
                         });
-                        // alert("請填寫所有必填欄位！");
                         return;
                     }
                     if (
@@ -396,7 +396,6 @@
                             confirmButtonColor: "#097E52",
                             confirmButtonText: "確認"
                         });
-                        // alert("請檢查欄位不可包含空白字元！");
                         return;
                     }
                     // 檢查是否有上傳圖片
@@ -407,8 +406,7 @@
                             confirmButtonColor: "#097E52",
                             confirmButtonText: "確認"
                         });
-                        // alert("請上傳您的個人照片");
-                        return; // 阻止儲存操作
+                        return;
                     }
                     if (_this.ProfileSetting.status === "0") {
                         if (!_this.isValid) {
@@ -418,8 +416,8 @@
                                 confirmButtonColor: "#097E52",
                                 confirmButtonText: "確認"
                             });
-                            // alert("身分證號碼有誤，請填寫正確資訊!");
-                            return; // 阻止儲存操作
+                            // 阻止儲存操作
+                            return; 
                         }
                     }
                     if (!CheckPhone()) {
@@ -462,7 +460,7 @@
                                 confirmButtonColor: "#097E52",
                                 confirmButtonText: "確認"
                             });
-                            setTimeout(() => { javascript: location.href = "/Member/Login" }, 3000);
+                            setTimeout(() => { javascript: location.href = "/Member/Login" }, 2000);
                             // alert("儲存完成，請重新登入後再次使用");
                             // _this.$forceUpdate();
                             //javascript: location.href = "/Profile/MemberProfile/@verifyMemberId"
@@ -474,22 +472,26 @@
                             confirmButtonColor: "#097E52",
                             confirmButtonText: "確認"
                         }));
-                        // .catch(err => alert("儲存失敗"));
                 },
                 Reset() {
                     let _this = this;
                     _this.file = null;
                     _this.blnStatus = false;
                     _this.message = "重置完成"
-                    Swal.fire({
-                        text: "重置完成",
-                        icon: "success",
-                        confirmButtonColor: "#097E52",
-                        confirmButtonText: "確認"
-                    });
-                    // alert("重置完成");
-                    // 重新發起 API 請求
                     _this.GetProfile();
+                    Swal.fire({
+                        position: "center",
+                        icon: "success",
+                        title: "重置完成",
+                        showConfirmButton: false,
+                        timer: 1000
+                    });
+                    // Swal.fire({
+                    //     text: "重置完成",
+                    //     icon: "success",
+                    //     confirmButtonColor: "#097E52",
+                    //     confirmButtonText: "確認"
+                    // });
                 },
                 ChangName(id) {
                     return "HeadShot" + id;
@@ -506,7 +508,6 @@
                             confirmButtonColor: "#097E52",
                             confirmButtonText: "確認"
                         });
-                        // alert("檔案類型錯誤，請重新選擇");
                         _this.Reset();
                     }
                 },

@@ -49,7 +49,8 @@
                             <!-- 參團區塊標題欄_報名紀錄展示卡片 -->
                             <div class="tab-content">
                                 <div class="tab-pane fade active show" id="nav-Court" role="tabpanel" aria-labelledby="nav-Court-tab" tabindex="0">
-                                    <div class="table-responsive dashboard-table-responsive">
+                                    <div class="table-responsive dashboard-table-responsive"
+                                         style="overflow-x: visible;">
                                         <table class="table dashboard-card-table">
                                             <tbody>
                                                 <tr v-if="nowJoinAGroupCard.length === 0 || nowJoinAGroupCard[0].activityUserId === 0">
@@ -57,7 +58,7 @@
                                                         <h2 class="table-avatar">
                                                             <span class="table-head-name flex-grow-1">
                                                                 <form name="nowJoinAGroup"
-                                                                      action="https://localhost:7097/Activity/ActivityCenter"
+                                                                      action="/Activity/ActivityCenter"
                                                                       method="post">
                                                                     <a href="javascript:document.nowJoinAGroup.submit();">
                                                                         目前您沒有報名任何揪團喔!快來一起愛地球吧!<span class="lh-1">
@@ -130,7 +131,7 @@
                                                                 <a class="dropdown-item"
                                                                    :href="`/Activity/ActivityPage/${activityId}`"
                                                                    @@click="linkToGroupPage">
-                                                                    <i class="feather-chevron-right"></i>
+                                                                    <i class="fa-solid fa-arrow-up-right-from-square"></i>
                                                                     前往頁面
                                                                 </a>
                                                                 <a class="dropdown-item"
@@ -271,7 +272,8 @@
                             </div>
                             <div class="tab-content">
                                 <div class="tab-pane fade active show" id="nav-Favourites" role="tabpanel" aria-labelledby="nav-Favourites-tab" tabindex="0">
-                                    <div class="table-responsive dashboard-table-responsive">
+                                    <div class="table-responsive dashboard-table-responsive"
+                                         style="overflow-x: visible;">
                                         <table class="table dashboard-card-table">
                                             <tbody>
                                                 <tr v-if="wishListCard.length === 0 || wishListCard[0].wishId === 0">
@@ -282,7 +284,7 @@
                                                         <h2 class="table-avatar">
                                                             <span class="table-head-name flex-grow-1">
                                                                 <form name="wishList"
-                                                                      action="https://localhost:7097/Activity/ActivityCenter"
+                                                                      action="/Activity/ActivityCenter"
                                                                       method="post">
                                                                     <a href="javascript:document.wishList.submit();">
                                                                         目前您沒有蒐藏任何揪團喔!!看看大家都在找那些好康的吧!<span class="lh-1">
@@ -346,7 +348,7 @@
                                                                 <a class="dropdown-item"
                                                                    :href="`/Activity/ActivityPage/${activityId}`"
                                                                    @@click="linkToGroupPage">
-                                                                    <i class="feather-chevron-right"></i>
+                                                                    <i class="fa-solid fa-arrow-up-right-from-square"></i>
                                                                     前往頁面
                                                                 </a>
                                                                 <a class="dropdown-item"
@@ -381,7 +383,8 @@
                             </div>
                             <div class="tab-content">
                                 <div class="tab-pane fade active show" id="nav-Recent" role="tabpanel" aria-labelledby="nav-Recent-tab" tabindex="0">
-                                    <div class="table-responsive table-datatble">
+                                    <div class="table-responsive table-datatble"
+                                         style="overflow-x: visible;">
                                         <table class="table table-borderless dashboard-card-table">
                                             <thead class="thead-light">
                                                 <tr>
@@ -474,7 +477,7 @@
                                                                 <a class="dropdown-item"
                                                                    @@click="linkToGroupPage"
                                                                    :href="`/Activity/ActivityPage/${activityId}`">
-                                                                    <i class="feather-chevron-right"></i>
+                                                                    <i class="fa-solid fa-arrow-up-right-from-square"></i>
                                                                     前往頁面
                                                                 </a>
                                                                 <a href="javascript:;"
@@ -585,9 +588,11 @@
                                                                     <span>({{ tempStar }})</span>
                                                                 </div>
                                                                 <div class="rating" v-else>
-                                                                    <i class="fas fa-star filled"
+                                                                    <i class="fas fa-star filled "
+                                                                       style="font-size: 22px;"
                                                                        v-for="n in Math.floor(checkFraction)"></i>
-                                                                    <i class="fa-regular fa-star filled"
+                                                                    <i class="fa-regular fa-star filled rating-star"
+                                                                       style="font-size: 22px;"
                                                                        v-for="x in 5-Math.ceil(checkFraction)"></i>
                                                                     <span>({{checkFraction}})</span>
                                                                 </div>
