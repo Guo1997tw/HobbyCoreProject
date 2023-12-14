@@ -39,15 +39,13 @@ namespace JHobby.Repository.Implements
             var activityUser = _jhobbyContext.Members.Select(x => new { id = x.MemberId, nickName = x.NickName });
             var activityImage = _jhobbyContext.ActivityImages.Select(a => new { id = a.ActivityId, imageName = a.ImageName });
 
-            if (_jhobbyContext.Activities.All(ad => ad.ActivityStatus == "1"))
-            {
                 var query = _jhobbyContext.ActivityUsers
                 .Where(Au => Au.MemberId == memberId
                 && (Au.ReviewStatus == "0"
                 || Au.ReviewStatus == "1"
                 || Au.ReviewStatus == "2"
                 || Au.ReviewStatus == "4"))
-                .Include(Au => Au.Activity)
+                .Include(Au => Au.Activity).Where(Au =>Au.Activity.ActivityStatus == "1")
                 .Select(a => new NowJoinAGroupDto
                 {
                     ActivityName = a.Activity.ActivityName,
@@ -74,12 +72,6 @@ namespace JHobby.Repository.Implements
                     TotalPages = totalPage,
                     Items = filterPage
                 };
-            }
-            else
-            {
-                return null;
-            }
-
         }
 
         public bool NowJoinAGroupCancel(int activityId, int memberId, NowJoinAGroupCancelDto aGroupCancelDto)

@@ -227,7 +227,7 @@ namespace JHobby.Service.Implements
             //輸出
             string returnData = "";
             //html檔路徑
-            string path = $"{_path}\\views\\Shared\\{sHtmlName}.cshtml";
+            string path = $"{_path}\\mailHtml\\{sHtmlName}.html";
             //有資料
             if (File.Exists(path))
             {

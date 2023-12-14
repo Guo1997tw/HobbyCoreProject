@@ -1,6 +1,14 @@
 ﻿@{
     ViewData["Title"] = "經營理念";
 }
+@section Styles
+    {
+    <style>
+        .JhobbyColor {
+            color: black;
+        }
+    </style>
+}
 <partial name="_BreadcrumbPartial" />
 
 <div class="content">
@@ -19,3 +27,65 @@
         </div>
     </div>
 </div>
+
+<section id="team" class="section ourteam dull-bg" style="background-color:white">
+    <div class="container">
+        <div class="section-heading">
+            <h2>關於 <span>我們</span></h2>
+            <p class="sub-title">我們的團隊因熱情而團結，以卓越為動力</p>
+        </div>
+        <div class="featured-slider-group p-0">
+            <div class="owl-carousel team-slider owl-theme">
+                <div class="team-item" v-for="item in teamList">
+                    <div class="info text-center">
+                        <div class="wrap">
+                            <div class="prfile-pic">
+                                <img style="width:306px;height:472px;object-fit: cover" v-bind:src='"/teamimg/" + item.img' class="img-fluid" alt="Team-01">
+                            </div>
+                            <div class="short-info" style="background: linear-gradient(to bottom, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5));color: white;">
+                                <h4>{{item.Name}}</h4>
+                            </div>
+                        </div>
+                        <div class="more">
+                            <div class="short-info">
+                                <h4>{{item.Name}}</h4>
+                            </div>
+                            <p>
+                                {{item.Text}}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+@section Scripts{
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/3.3.4/vue.global.min.js"></script>
+    <script src="~/js/teamus.js"></script>
+    <script>
+        const teamId = Vue.createApp({
+            data() {
+                return {
+                    teamList: teamUs
+                }
+            },
+
+            mounted() {
+                let self = this;
+
+                self.shuffle(self.teamList);
+            },
+
+            methods: {
+                shuffle(array) {
+                    for (let i = array.length - 1; i > 0; i--) {
+                        const j = Math.floor(Math.random() * (i + 1));
+                        [array[i], array[j]] = [array[j], array[i]];
+                    }
+                }
+            },
+        }).mount("#team");
+    </script>
+}
