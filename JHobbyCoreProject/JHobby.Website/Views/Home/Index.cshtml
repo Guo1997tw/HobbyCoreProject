@@ -81,7 +81,7 @@
                             <div class="listing-img">
 
                                 <a v-bind:href='"@Url.Action("ActivityPage","Activity")/"+item.activityId'>
-                                    <img :src="item.activityImages[0].imageName" style="height:259px;width:417px" alt="Venue">
+                                    <img :src="item.activityImages[0].imageName" style="height:259px;width:417px;object-fit: cover" alt="Venue">
                                 </a>
                                 <div class="fav-item-venues">
                                     <span class="tag tag-yellow">精選</span>
@@ -181,7 +181,7 @@
                         <div class="listing-item mb-0">
                             <div class="listing-img">
                                 <a v-bind:href='"@Url.Action("MemberProfile","MemberCenter")/"+item.memberId'>
-                                    <img style="height:371px;width:307px" :src="item.headShot" alt="User">
+                                    <img style="height:371px;width:307px;object-fit: cover" :src="item.headShot" alt="User">
                                 </a>
                                 <div class="fav-item-venues">
                                     <span class="tag tag-blue">熱門</span>
