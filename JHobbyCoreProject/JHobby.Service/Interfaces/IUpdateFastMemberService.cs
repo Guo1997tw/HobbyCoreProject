@@ -8,8 +8,8 @@ using System.Threading.Tasks;
 
 namespace JHobby.Service.Interfaces
 {
-    public interface IUpdateProfileSettingService
+    public interface IUpdateFastMemberService
     {
-        public bool Update(int id, UpdateProfileSettingModel updateProfileSettingModel);
+        public bool Update(int id, UpdateFastMemberModel updateFastMemberModel);
     }
 }

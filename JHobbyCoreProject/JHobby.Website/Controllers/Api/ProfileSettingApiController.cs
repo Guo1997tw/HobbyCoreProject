@@ -12,16 +12,16 @@ namespace JHobby.Website.Controllers.Api
     public class ProfileSettingApiController : ControllerBase
     {
         private readonly IProfileSettingService _iProfileSettingService;
-        private readonly IUpdateProfileSettingService _iUpdateProfileSettingService;
+        //private readonly IUpdateProfileSettingService _iUpdateProfileSettingService;
 
         string _Path;
 
-        public ProfileSettingApiController(IProfileSettingService iProfileSettingService,
-                                           IUpdateProfileSettingService iUpdateProfileSettingService,
-                                           IWebHostEnvironment hostEnvironment)
+        public ProfileSettingApiController(IProfileSettingService iProfileSettingService, IWebHostEnvironment hostEnvironment
+                                           /*IUpdateProfileSettingService iUpdateProfileSettingService*/
+                                           )
         {
             _iProfileSettingService = iProfileSettingService;
-            _iUpdateProfileSettingService = iUpdateProfileSettingService;
+            //_iUpdateProfileSettingService = iUpdateProfileSettingService;
             _Path = $@"{hostEnvironment.WebRootPath}\profile\";
         }
 
@@ -47,7 +47,14 @@ namespace JHobby.Website.Controllers.Api
                 Phone = serviceModel.Phone,
                 PersonalProfile = serviceModel.PersonalProfile
             };
+
             return Ok(viewModel);
+
+            //if (ProfileSettingViewModel.Status == "1")
+            //{
+            //    HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+            //}
+            //return true;
         }
 
         ////[HttpPut("{id}")]
@@ -71,54 +78,52 @@ namespace JHobby.Website.Controllers.Api
         //    return Ok(_iUpdateProfileSettingService.Update(id, mapper));
         //}
 
-        FileInfo[] GetFiles()
-        {
-            DirectoryInfo directoryInfo = new DirectoryInfo(_Path);
-            FileInfo[] files = directoryInfo.GetFiles();
-            return files;
-        }
+        //FileInfo[] GetFiles()
+        //{
+        //    DirectoryInfo directoryInfo = new DirectoryInfo(_Path);
+        //    FileInfo[] files = directoryInfo.GetFiles();
+        //    return files;
+        //}
 
         //服務讓定義的方法成立
-        [HttpPut("{id}")]
-        public bool UpdateProfileSetting(int id, [FromForm] UpdateProfileSettingViewModel updateProfileSettingViewModel)
-        {
+        //[HttpPut("{id}")]
+        //public bool UpdateProfileSetting(int id, [FromForm] UpdateProfileSettingViewModel updateProfileSettingViewModel)
+        //{
 
-            var mapper = new UpdateProfileSettingModel();
-            string fileNamePath = $"/profile/HeadShot{id}.jpg";
-            mapper.HeadShot = fileNamePath;
-            mapper.Status = updateProfileSettingViewModel.Status;
-            mapper.MemberName = updateProfileSettingViewModel.MemberName;
-            mapper.NickName = updateProfileSettingViewModel.NickName;
-            mapper.Gender = updateProfileSettingViewModel.Gender;
-            mapper.IdentityCard = updateProfileSettingViewModel.IdentityCard;
-            mapper.Birthday = updateProfileSettingViewModel.Birthday;
-            mapper.ActiveCity = updateProfileSettingViewModel.ActiveCity;
-            mapper.ActiveArea = updateProfileSettingViewModel.ActiveArea;
-            mapper.Address = updateProfileSettingViewModel.Address;
-            mapper.Phone = updateProfileSettingViewModel.Phone;
-            mapper.PersonalProfile = updateProfileSettingViewModel.PersonalProfile;
+        //    var mapper = new UpdateProfileSettingModel();
+        //    string fileNamePath = $"/profile/HeadShot{id}.jpg";
+        //    mapper.HeadShot = fileNamePath;
+        //    mapper.MemberName = updateProfileSettingViewModel.MemberName;
+        //    mapper.NickName = updateProfileSettingViewModel.NickName;
+        //    mapper.Gender = updateProfileSettingViewModel.Gender;
+        //    mapper.IdentityCard = updateProfileSettingViewModel.IdentityCard;
+        //    mapper.Birthday = updateProfileSettingViewModel.Birthday;
+        //    mapper.ActiveCity = updateProfileSettingViewModel.ActiveCity;
+        //    mapper.ActiveArea = updateProfileSettingViewModel.ActiveArea;
+        //    mapper.Address = updateProfileSettingViewModel.Address;
+        //    mapper.Phone = updateProfileSettingViewModel.Phone;
+        //    mapper.PersonalProfile = updateProfileSettingViewModel.PersonalProfile;
  
-            _iUpdateProfileSettingService.Update(id, mapper);
+        //    _iUpdateProfileSettingService.Update(id, mapper);
 
-            if (updateProfileSettingViewModel.File != null)
-            {
-                if (updateProfileSettingViewModel.File.Length > 0)
-                {
-                    string fileName = $"HeadShot{id}.jpg";
-                    string SavePath = $@"{_Path}{fileName}";
-                    using (var steam = new FileStream(SavePath, FileMode.Create))
-                    {
-                        updateProfileSettingViewModel.File.CopyTo(steam);
-                    }
-                }
-            }
+        //    if (updateProfileSettingViewModel.File != null)
+        //    {
+        //        if (updateProfileSettingViewModel.File.Length > 0)
+        //        {
+        //            string fileName = $"HeadShot{id}.jpg";
+        //            string SavePath = $@"{_Path}{fileName}";
+        //            using (var steam = new FileStream(SavePath, FileMode.Create))
+        //            {
+        //                updateProfileSettingViewModel.File.CopyTo(steam);
+        //            }
+        //        }
+        //    }
 
-            if (updateProfileSettingViewModel.Status == "1")
-            {
-                HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
-            }
+            ////if (updateProfileSettingViewModel.Status == "1")
+            ////{
+            ////    HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+            ////}
 
-            return true;
+            //return true;
         }
     }
-}

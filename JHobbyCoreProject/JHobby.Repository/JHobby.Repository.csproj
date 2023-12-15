@@ -7,6 +7,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Implements\UpdateProfileSettingRepository.cs" />
+    <Compile Remove="Interfaces\IUpdateProfileSettingRepository.cs" />
+    <Compile Remove="Models\Dto\UpdateProfileSettingDto.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="AutoMapper" Version="12.0.1" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.13" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="7.0.13">

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace JHobby.Service.Models
 {
-    public class UpdateProfileSettingModel
+    public class UpdateFastMemberModel
     {
         public string? HeadShot { get; set; }
 

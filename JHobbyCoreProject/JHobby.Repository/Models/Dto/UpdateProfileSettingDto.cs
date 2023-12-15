@@ -10,10 +10,6 @@ namespace JHobby.Repository.Models.Dto
     {
         public string? HeadShot { get; set; }
 
-        public string Status { get; set; } = null!;
-
-        public int MemberId { get; set; }
-
         public string? MemberName { get; set; }
 
         public string? NickName { get; set; }

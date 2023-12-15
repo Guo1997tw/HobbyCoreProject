@@ -423,55 +423,12 @@
                     if (!CheckPhone()) {
                         return;
                     };
-                    var form = new FormData();
-                    if (_this.file)
-                    form.append('file', _this.file);
-                    form.append('headShot', _this.ProfileSetting.headShot);
-                    form.append('status', _this.CheckStatus((_this.ProfileSetting.status)));
-                    form.append('memberName', _this.ProfileSetting.memberName);
-                    form.append('nickName', _this.ProfileSetting.nickName);
-                    form.append('gender', _this.ProfileSetting.gender);
-                    form.append('identityCard', _this.ProfileSetting.identityCard);
-                    form.append('birthday', _this.ProfileSetting.birthday);
-                    form.append('activeCity', _this.ProfileSetting.activeCity);
-                    form.append('activeArea', _this.ProfileSetting.activeArea);
-                    form.append('address', _this.ProfileSetting.address);
-                    form.append('phone', _this.ProfileSetting.phone);
-                    form.append('personalProfile', _this.ProfileSetting.personalProfile);
-
-                    // var form_data = new FormData();
-                    // for (var key in this.ProfileSetting) {
-                    //     form_data.append(key, this.ProfileSetting[key]);
-                    // }
-
-                    axios.put("/ProfileSettingApi/UpdateProfileSetting/@verifyMemberId", form, {
-                        headers: {
-                            "Content-Type": "multipart/form-data"
-                        }
-                    })
-                        .then(res => {
-                            _this.GetProfile();
-                            //_this.ProfileSetting = res.data;
-                            _this.ProfileSetting = {};
-                            _this.message = "儲存完成，請重新登入後再次使用"
-                            Swal.fire({
-                                text: "請重新登入後再次使用",
-                                icon: "success",
-                                confirmButtonColor: "#097E52",
-                                confirmButtonText: "確認"
-                            });
-                            setTimeout(() => { javascript: location.href = "/Member/Login" }, 2000);
-                            // alert("儲存完成，請重新登入後再次使用");
-                            // _this.$forceUpdate();
-                            //javascript: location.href = "/Profile/MemberProfile/@verifyMemberId"
-                            // javascript: location.href = "/Member/Login"
-                        })
-                        .catch(err => Swal.fire({
-                            text: err,
-                            icon: "error",
-                            confirmButtonColor: "#097E52",
-                            confirmButtonText: "確認"
-                        }));
+                    if (_this.blnStatus) {
+                        _this.GeneralMeber();
+                    } else {
+                        _this.FastMember();
+                    }
+                    
                 },
                 Reset() {
                     let _this = this;
@@ -516,7 +473,102 @@
                         return "2"
                     }
                     return "1"
+                },
+                FastMember() {
+                    var form = new FormData();
+                    if (_this.file)
+                        form.append('file', _this.file);
+                    form.append('headShot', _this.ProfileSetting.headShot);
+                    //form.append('status', _this.CheckStatus((_this.ProfileSetting.status)));
+                    form.append('memberName', _this.ProfileSetting.memberName);
+                    form.append('nickName', _this.ProfileSetting.nickName);
+                    form.append('gender', _this.ProfileSetting.gender);
+                    form.append('identityCard', _this.ProfileSetting.identityCard);
+                    form.append('birthday', _this.ProfileSetting.birthday);
+                    form.append('activeCity', _this.ProfileSetting.activeCity);
+                    form.append('activeArea', _this.ProfileSetting.activeArea);
+                    form.append('address', _this.ProfileSetting.address);
+                    form.append('phone', _this.ProfileSetting.phone);
+                    form.append('personalProfile', _this.ProfileSetting.personalProfile);
+
+                    // var form_data = new FormData();
+                    // for (var key in this.ProfileSetting) {
+                    //     form_data.append(key, this.ProfileSetting[key]);
+                    // }
+
+                    axios.put("/UpdateFastMemberApi/UpdateFastMember/@verifyMemberId", form, {
+                        headers: {
+                            "Content-Type": "multipart/form-data"
+                        }
+                    })
+                        .then(res => {
+                            _this.GetProfile();
+                            //_this.ProfileSetting = res.data;
+                            _this.ProfileSetting = {};
+                            _this.message = "儲存完成，請重新登入後再次使用"
+                            Swal.fire({
+                                text: "請重新登入後再次使用",
+                                icon: "success",
+                                confirmButtonColor: "#097E52",
+                                confirmButtonText: "確認"
+                            });
+                            setTimeout(() => { javascript: location.href = "/Member/Login" }, 2000);
+                            //角色權限已更新! 系統將重新登入以載入最新資訊。
+                            // alert("儲存完成，請重新登入後再次使用");
+                            // _this.$forceUpdate();
+                            //javascript: location.href = "/Profile/MemberProfile/@verifyMemberId"
+                            // javascript: location.href = "/Member/Login"
+                        })
+                        .catch(err => Swal.fire({
+                            text: err,
+                            icon: "error",
+                            confirmButtonColor: "#097E52",
+                            confirmButtonText: "確認"
+                        }));
+                
+                },
+                GeneralMeber() {
+                    var form = new FormData();
+                    if (_this.file)
+                        form.append('file', _this.file);
+                    form.append('headShot', _this.ProfileSetting.headShot);
+                    //form.append('status', _this.CheckStatus((_this.ProfileSetting.status)));
+                    //form.append('memberName', _this.ProfileSetting.memberName);
+                    form.append('nickName', _this.ProfileSetting.nickName);
+                    //form.append('gender', _this.ProfileSetting.gender);
+                    //form.append('identityCard', _this.ProfileSetting.identityCard);
+                    //form.append('birthday', _this.ProfileSetting.birthday);
+                    form.append('activeCity', _this.ProfileSetting.activeCity);
+                    form.append('activeArea', _this.ProfileSetting.activeArea);
+                    form.append('address', _this.ProfileSetting.address);
+                    //form.append('phone', _this.ProfileSetting.phone);
+                    form.append('personalProfile', _this.ProfileSetting.personalProfile);
+
+                    axios.put("/UpdateGeneralMemberApi/UpdateGeneralMember/@verifyMemberId", form, {
+                        headers: {
+                            "Content-Type": "multipart/form-data"
+                        }
+                    })
+                        .then(res => {
+                            _this.GetProfile();
+                            _this.ProfileSetting = {};
+                            _this.message = "儲存完成"
+                            Swal.fire({
+                                text: "儲存完成",
+                                icon: "success",
+                                confirmButtonColor: "#097E52",
+                                confirmButtonText: "確認"
+                            });
+                            // setTimeout(() => { javascript: location.href = "/Member/Login" }, 2000);
+                        })
+                        .catch(err => Swal.fire({
+                            text: err,
+                            icon: "error",
+                            confirmButtonColor: "#097E52",
+                            confirmButtonText: "確認"
+                        }));
                 }
+
             },
             mounted() {
                 let _this = this;

@@ -91,8 +91,6 @@ namespace JHobby.Website
             builder.Services.AddScoped<ICommonService, CommonService>();
             builder.Services.AddScoped<IReviewRepository, ReviewRepository>();
             builder.Services.AddScoped<IReviewService, ReviewService>();
-            builder.Services.AddScoped<IUpdateProfileSettingRepository, UpdateProfileSettingRepository>();
-            builder.Services.AddScoped<IUpdateProfileSettingService, UpdateProfileSettingService>();
             builder.Services.AddScoped<INowJoinAGroupRepository, NowJoinAGroupRepository>();
             builder.Services.AddScoped<INowJoinAGroupService, NowJoinAGroupService>();
             builder.Services.AddScoped<IWishListRepository, WishListRepository>();
@@ -102,6 +100,10 @@ namespace JHobby.Website
             builder.Services.AddScoped<IinputScoreService, InputScoreService>();
             builder.Services.AddHttpContextAccessor();
             builder.Services.AddScoped<IUserAuthenticationService, UserAuthenticationService>();
+            builder.Services.AddScoped<IUpdateGeneralMemberRepository, UpdateGeneralMemberRepository>();
+            builder.Services.AddScoped<IUpdateGeneralMemberService, UpdateGeneralMemberService>();
+            builder.Services.AddScoped<IUpdateFastMemberRepository, UpdateFastMemberRepository>();
+            builder.Services.AddScoped<IUpdateFastMemberService, UpdateFastMemberService>();
 
             // Customization DI
             builder.Services.AddJhobbyScheduleJob();

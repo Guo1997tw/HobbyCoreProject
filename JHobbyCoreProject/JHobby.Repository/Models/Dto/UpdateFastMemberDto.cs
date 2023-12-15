@@ -1,12 +1,14 @@
-﻿namespace JHobby.Website.Models.ViewModels
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace JHobby.Repository.Models.Dto
 {
-    public class UpdateProfileSettingViewModel
+    public class UpdateFastMemberDto
     {
-        public IFormFile? File { get; set; }
-
         public string? HeadShot { get; set; }
-
-        public string Status { get; set; } = null!;
 
         public string? MemberName { get; set; }
 
@@ -17,6 +19,8 @@
         public string? IdentityCard { get; set; }
 
         public DateTime? Birthday { get; set; }
+
+        public string Status { get; set; } = null!;
 
         public string? ActiveCity { get; set; }
 

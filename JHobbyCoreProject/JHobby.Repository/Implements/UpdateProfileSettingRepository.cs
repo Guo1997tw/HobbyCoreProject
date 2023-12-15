@@ -26,7 +26,6 @@ namespace JHobby.Repository.Implements
             if (queryResult != null)
             {
                 queryResult.HeadShot = updateProfileSettingDto.HeadShot;
-                queryResult.Status = updateProfileSettingDto.Status;
                 queryResult.MemberName = updateProfileSettingDto.MemberName;
                 queryResult.NickName = updateProfileSettingDto.NickName;
                 queryResult.Gender = updateProfileSettingDto.Gender;

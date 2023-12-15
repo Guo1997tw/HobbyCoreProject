@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace JHobby.Service.Models
+﻿namespace JHobby.Website.Models.ViewModels
 {
-    public class UpdateProfileSettingModel
+    public class UpdateFastMemberViewModel
     {
+        public IFormFile? File { get; set; }
+
         public string? HeadShot { get; set; }
 
         public string? MemberName { get; set; }
