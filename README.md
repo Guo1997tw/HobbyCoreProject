@@ -12,3 +12,6 @@
 - **Framework**: Entity Framework, ASP.NET Core MVC, Web API
 - **Database**: Microsoft SQL Server
 - **Cloud**: Microsoft Azure
+
+### 專案展示：
+![94Hobby](https://drive.google.com/file/d/1cDFjdYbZXTw5ZhFLGM-hV-O0RG4h8xoV/view?usp=drive_link "94Hobby")
